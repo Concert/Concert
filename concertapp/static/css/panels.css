@@ -245,7 +245,7 @@ div#detail_waveform_panel_buf_right {
     margin-left: 878px;
 }
 
-div#detail_waveform_panel_view_wrap {
+div#detail_waveform_panel_view {
 	  color: #f8f8fa;
     width: 878px;
     height: 253px;
@@ -257,7 +257,7 @@ div#detail_waveform_panel_view_wrap {
     background: -webkit-gradient(linear, left top, left bottom, from(#45455a), to(#18181f));
 }
 
-div#detail_waveform_panel_view {
+div#detail_waveform_panel_view_inner_wrap {
 		width: 878px;
     height: 253px;
     -webkit-box-shadow:inset 0 0 10px #000000;
