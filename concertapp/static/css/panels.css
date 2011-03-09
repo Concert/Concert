@@ -228,7 +228,7 @@ div#detail_waveform_panel_top_right {
 
 div#detail_waveform_panel_middle {
     width: 960px;
-    height: 260px;
+    height: 254px;
     -webkit-box-orient: horizontal;
     display: -webkit-box;
 }
@@ -248,22 +248,51 @@ div#detail_waveform_panel_buf_right {
     margin-left: 878px;
 }
 
-div#detail_waveform_panel_view {
-	  color: #f8f8fa;
-    width: 878px;
-    height: 253px;
-    border: 1px solid white;
-    position: absolute;
-    /* Do not allow waveform to overflow window */
-    overflow-x: auto;
-    overflow-y: hidden;
-    background: -webkit-gradient(linear, left top, left bottom, from(#45455a), to(#18181f));
+div#detail_waveform_panel_buf_left .arrow{
+height: 57px;
+width: 100%;
+padding-top: 43px;
+font-weight: bold;
 }
 
-div#detail_waveform_panel_view_inner_wrap {
+div#detail_waveform_panel_buf_right .arrow{
+height: 57px;
+width: 100%;
+padding-top: 43px;
+font-weight: bold;
+}
+
+div#detail_waveform_panel_view {
+	  color: #f8f8fa;
+    width: 880px;
+    height: 255px;
+    position: absolute;
+    /* Do not allow waveform to overflow window */
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+/**SHADOW AND NOISE?**/
+div#detail_waveform_panel_view_overlay {
 		width: 878px;
-    height: 253px;
+    height: 198px;
     -webkit-box-shadow:inset 0 0 10px #000000;
+    z-index: 200;
+    position: absolute;
+    top: 41px;
+    left: 41px;
+    border: 1px solid white;
+}
+
+/**UNDERLAY GRADIENT**/
+div#detail_waveform_panel_view_underlay {
+		width: 880px;
+    height: 200px;
+    z-index: 100;
+    position: absolute;
+    top: 41px;
+    left: 41px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#45455a), to(#18181f));
 }
 
 div #detail_waveform_panel_playhead {
@@ -296,8 +325,7 @@ div#detail_waveform_panel_waveform_container {
 
 div#detail_waveform_panel_timecode {
     height: 40px;
-    background-color: gray;
-
+    background: #f8f8fa;
     position: absolute;
     top: 200px;
     z-index: 200;
@@ -308,6 +336,7 @@ div#audiolist_panel_contents {
     -webkit-box-orient: vertical;
 }
 
+
 /**
  *  Waveform highlight
  **/
@@ -315,6 +344,7 @@ div.highlight_container {
   z-index: 300;
   position: absolute;
 }
+
 div.highlight {
   height: 100%;
   position: relative;
