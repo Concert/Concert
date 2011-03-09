@@ -35,6 +35,7 @@ The base template for all pages.  All page templates will use this.
     <script src="/js/lib/vendor/gury.js"></script>
     <script src="/js/lib/vendor/jquery.easing.1.3.js"></script>
     <script src="/js/lib/vendor/jquery.scroll-startstop.events.js"></script>
+    <script src="/js/lib/vendor/jquery.noisy.js"></script>
     
     {# Helpers #}
     <script src="/js/lib/helpers/AnimatedDots.js"></script>
@@ -177,6 +178,12 @@ The base template for all pages.  All page templates will use this.
             </div>    
         </div>    
     </div>
+    
+    <script>
+    	$('body').noisy({
+				fallback: '/static/graphics/bg.png',
+			}).css('background-color', '#eeeef3');
+    </script> 
     
     {% block clientside %}{% endblock %}
     {# Some client-side templates that are used on most pages #}
