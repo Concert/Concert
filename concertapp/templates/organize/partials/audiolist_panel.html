@@ -1,24 +1,6 @@
-<div id="audio_wrap">
-	<div id="audio_search_wrap">
-			<div id="audio_search" class="darkNoise">
-					Audio Search
-			</div>
-	</div>
-	<div class="file_widget selected">
-			<div class="file_widget_icon">
-			</div>
-			<div class="file_widget_info">
-					<div class="title">
-						TITLE
-					</div>
-					<div class="info">
-						500 <span class="small_text">seconds of</span> something <span class="small_text">selected by</span> someone
-					</div>
-					<div class="tags">
-						TAG - TAG - TAG - TAG
-					</div>
-			</div>				
-	</div>
-	{% extends "partials/panel.html" %}
-	{% load buttons %}
+{% extends "partials/panel.html" %}
+{% block header_content %}
+<div id="audio_search" class="darkNoise">
+	Audio Search
 </div>
+{% endblock %}
