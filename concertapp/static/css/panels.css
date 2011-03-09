@@ -272,7 +272,7 @@ div#detail_waveform_panel_view {
     overflow-y: hidden;
 }
 
-/**SHADOW AND NOISE?**/
+/**SHADOW AND NOISE**/
 div#detail_waveform_panel_view_overlay {
 		width: 878px;
     height: 198px;
@@ -373,27 +373,6 @@ img.waveform_image {
     position: absolute;
 }
 
-div.file_widget {
-    width: 408px;
-    height: 70px;
-    border: 1px solid #000000;
-    display: -webkit-box;
-    -webkit-box-orient: horizontal;
-    padding: 5px;
-}
-
-div.file_widget_icon {
-    width: 78px;
-    height: 68px;
-    border: 1px solid #000000;
-}
-
-div.file_widget_info {
-    width: 315px;
-    height: 70px;
-    padding-left: 5px;
-}
-
 div#create_join_panel, div#manage_admin_collections_panel, div#manage_member_collections_panel, div#manage_request_collections_panel {
     height: 100px;
 }
@@ -406,7 +385,6 @@ div#create_join_input_container {
 span.tags {
 		display: block;
 		float: left;
-		-webkit-box-orient: horizontal;
     text-transform: uppercase;
     font-weight: bold;
     font-size: 10px;
@@ -420,61 +398,71 @@ span.tags {
 /*AUDIO PANEL*/
 
 div#audio_wrap{
-border-left: 1px solid white;
-width: 469px;
-padding-left: 10px;
+		border-left: 1px solid white;
+		width: 469px;
+		padding-left: 10px;
 }
 
 div#audio_search_wrap{
-background: -webkit-gradient(linear, left top, left bottom, from(#18181f), to(#45455a));
+		background: -webkit-gradient(linear, left top, left bottom, from(#18181f), to(#45455a));
 }
 
 div#audio_search{
-height: 28px;
-width: 447px;
-margin-bottom: 10px;
--webkit-box-shadow:inset 0 0 10px #000;
-color: white;
-font-family: Georgia, serif;
-border: 1px solid white;
-font-size: 14px;
-padding: 10px 10px 0px 10px;
+		height: 28px;
+		width: 447px;
+		margin-bottom: 10px;
+		-webkit-box-shadow:inset 0 0 10px #000;
+		color: white;
+		font-family: Georgia, serif;
+		border: 1px solid white;
+		font-size: 14px;
+		padding: 10px 10px 0px 10px;
 }
 
-div#audio_bar{
-height: 60px;
-width: 449px;
-overflow: hidden;
-margin-bottom: 10px;
-padding: 0px 10px 10px 10px;
-border-bottom: 1px black solid;
-font-weight: bold;
-text-transform: uppercase;
+div#audio_wrap .selected{
+		background: white;
+		color: #2e2e35;
+		overflow: hidden;
+		padding-top: 10px;
+		border-bottom: none;
+		-webkit-box-shadow: 0 0 5px rgba(0,0,0,0.4)
 }
 
-div#audio_bar .title{
-font-size: 14px;
+div.file_widget {
+   	height: 60px;
+		width: 449px;
+		overflow: hidden;
+		margin-bottom: 10px;
+		padding: 0px 10px 10px 10px;
+		border-bottom: 1px black solid;
+		font-weight: bold;
+		text-transform: uppercase;
+		display: -webkit-box;
+    -webkit-box-orient: horizontal;
+    cursor: pointer;
 }
 
-div#audio_bar .info{
-padding-bottom: 10px;
+div.file_widget_icon {
+		height: 58px;
+		width: 58px;
+    border: 1px solid #000000;
+    margin-right: 10px;
 }
 
-div#audio_bar .tags{
-font-weight: normal;
+div.file_widget .title{
+		font-size: 14px;
 }
 
-div#audio_bar .small_text{
-font-size: 10px;
-font-weight: normal;
-padding-bottom: 8px;
+div.file_widget .info{
+		padding-bottom: 10px;
 }
 
-div#audio_bar.selected{
-background: white;
-color: #2e2e35;
-overflow: hidden;
-padding-top: 10px;
-border-bottom: none;
--webkit-box-shadow: 0 0 5px rgba(0,0,0,0.4)
+div.file_widget .tags{
+		font-weight: normal;
+}
+
+div.file_widget .small_text{
+		font-size: 10px;
+		font-weight: normal;
+		padding-bottom: 8px;
 }

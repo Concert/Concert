@@ -1,13 +1,19 @@
 {% load extra_template_tags %}
 
 {% verbatim %}
-<div class="file_widget">
-    <div class="file_widget_icon">
-    </div>
-    <div class="file_widget_info">
-        ${name}<br>
-        ${duration} seconds uploaded by ${uploader.get("username")}<br>
-        tags!
-    </div>
-</div>
+	<div class="file_widget">
+			<div class="file_widget_icon">
+			</div>
+			<div class="file_widget_info">
+					<div class="title">
+						${name}
+					</div>
+					<div class="info">
+						${duration} <span class="small_text">seconds of</span> something <span class="small_text">selected by</span> ${uploader.get("username")}	
+					</div>
+					<div class="tags">
+						TAG - TAG - TAG - TAG
+					</div>
+			</div>				
+	</div>
 {% endverbatim %}
