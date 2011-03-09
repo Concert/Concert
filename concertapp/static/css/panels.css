@@ -138,29 +138,34 @@ div.global_options_panel_button {
 
 /*Overview Waveform Panel */
 div#overview_waveform_panel {
-    width: 900px;
+    width: 960px;
     height: 80px;
     margin-bottom: 20px;
     display: -webkit-box;
 }
 
 div#overview_waveform_panel_contents {
-    width: 900px;
+    width: 960px;
     height: 80px;
     -webkit-box-orient: vertical;
     display: -webkit-box;
 }
 
+div#overview_waveform_panel_top_wrap {
+    background: -webkit-gradient(linear, left top, left bottom, from(#45455a), to(#18181f));
+    
+}
+
 div#overview_waveform_panel_top {
-    background-color: #2e2e35;
     color: #f8f8fa;
-    width: 898px;
+    width: 958px;
     height: 58px;
     border: 1px solid white;
+    -webkit-box-shadow:inset 0 0 10px #000000;
 }
 
 div#overview_waveform_panel_bottom {
-    width: 900px;
+    width: 960px;
     height: 20px;
 }
 
@@ -179,23 +184,25 @@ div.playhead {
 
 /*Detail Waveform Panel */
 div#detail_waveform_panel {
-    width: 900px;
-    height: 355px;
+    width: 960px;
     margin-bottom: 20px;
     display: -webkit-box;
 }
 
 div#detail_waveform_panel_contents {
-    width: 900px;
-/*    height: 340px;*/
+    width: 960px;
     -webkit-box-orient: vertical;
     display: -webkit-box;
     background-color: #f8f8fa;
 }
 
+div#detail_waveform_panel_top_wrap{
+-webkit-box-shadow: 0 0 10px rgba(0,0,0,0.15);
+}
+
 div#detail_waveform_panel_top {
     background-color: #f8f8fa;
-    width: 820px;
+    width: 880px;
     height: 10px;
     padding-top: 15px;
     padding-bottom: 15px;
@@ -206,18 +213,18 @@ div#detail_waveform_panel_top {
 }
 
 div#detail_waveform_panel_top_left {
-    width: 410px;
+    width: 440px;
     text-transform: uppercase;
 }
 
 div#detail_waveform_panel_top_right {
-    width: 410px;
+    width: 440px;
     text-align: right;
     text-transform: uppercase;
 }
 
 div#detail_waveform_panel_middle {
-    width: 900px;
+    width: 960px;
     height: 260px;
     -webkit-box-orient: horizontal;
     display: -webkit-box;
@@ -235,20 +242,25 @@ div#detail_waveform_panel_buf_left {
 
 div#detail_waveform_panel_buf_right {
     /* Because the view element is absolute */
-    margin-left: 818px;
+    margin-left: 878px;
 }
 
-div#detail_waveform_panel_view {
-    background-color: #2e2e35;
-    color: #f8f8fa;
-    width: 818px;
+div#detail_waveform_panel_view_wrap {
+	  color: #f8f8fa;
+    width: 878px;
     height: 253px;
     border: 1px solid white;
-    
     position: absolute;
     /* Do not allow waveform to overflow window */
     overflow-x: auto;
     overflow-y: hidden;
+    background: -webkit-gradient(linear, left top, left bottom, from(#45455a), to(#18181f));
+}
+
+div#detail_waveform_panel_view {
+		width: 878px;
+    height: 253px;
+    -webkit-box-shadow:inset 0 0 10px #000000;
 }
 
 div #detail_waveform_panel_playhead {
@@ -257,18 +269,18 @@ div #detail_waveform_panel_playhead {
 
 div#detail_waveform_panel_bottom {
     background-color: #f8f8fa;
-    width: 820px;
+    width: 880px;
     height: 40px;
     padding-left: 40px;
     padding-right: 40px;
 }
 
 div#detail_waveform_panel_tags {
-    background-color: #b4b4ba;
-    width: 858px;
-    height: 18px;
-    padding: 20px;
+    background: #b4b4ba;
+    width: 948px;
+    padding: 0px 0px 10px 9px;
     border: 1px solid white;
+    -webkit-box-shadow:inset 0 0 10px rgba(0,0,0,0.4);
 }
 
 div#detail_waveform_panel_waveform_timecode_playhead {
@@ -359,12 +371,15 @@ div#create_join_input_container {
 }
 
 span.tags {
+		display: block;
+		float: left;
+		-webkit-box-orient: horizontal;
     text-transform: uppercase;
     font-weight: bold;
-    background-color: #eeeef3;
-    padding-top: 2px;
-    padding-bottom: 2px;
-    padding-right: 7px;
-    padding-left: 7px;
-    border: 1px solid black;
+    font-size: 10px;
+    background: #f8f8fa;
+		padding: 4px;
+		margin: 10px 9px 0px 0px;
+    border: 1px solid white;
+    -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.4);
 }

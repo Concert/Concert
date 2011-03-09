@@ -180,9 +180,22 @@ The base template for all pages.  All page templates will use this.
     </div>
     
     <script>
-    	$('body').noisy({
-				fallback: '/static/graphics/bg.png',
-			}).css('background-color', '#eeeef3');
+    
+    $('body').noisy();
+			
+    	$('.lightNoise').noisy({
+				intensity: 1, 
+				size: 240, 
+				opacity: 0.11,
+				monochrome: true
+			});
+			
+    	$('.darkNoise').noisy({
+				intensity: 1, 
+				size: 88, 
+				opacity: 0.06,
+				monochrome: true
+			});
     </script> 
     
     {% block clientside %}{% endblock %}

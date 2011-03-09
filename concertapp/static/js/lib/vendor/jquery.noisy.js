@@ -39,7 +39,7 @@
 	$.fn.noisy.defaults = {
 		// How many percent of the image that is filled with noise, 
 		//   represented by a number between 0 and 1 inclusive
-		intensity:          2.9,
+		intensity:          1,
 		
 		// The width and height of the image in pixels
 		size:               240,

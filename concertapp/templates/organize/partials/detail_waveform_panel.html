@@ -4,51 +4,88 @@
 {% endblock %}
 
 {% block panel_content %}
-<div id="detail_waveform_panel_top" class="detail_waveform_panel_top">
-    {# client side will fill this with goodness #}
+<div id="detail_waveform_panel_top_wrap">
+		<div id="detail_waveform_panel_top" class="detail_waveform_panel_top">
+		    {# client side will fill this with goodness #}
+		</div>
+		
+		<div id="detail_waveform_panel_middle" class="detail_waveform_panel_middle">
+		    <div id="detail_waveform_panel_buf_left" class="detail_waveform_panel_buf">
+		        <b>< <</b>
+		    </div>
+		    
+		    {# The view window #}
+		    <div id="detail_waveform_panel_view_wrap">
+		    		<div id="detail_waveform_panel_view" class="detail_waveform_panel_view darkNoise">
+		    		    
+		    		    <div id="detail_waveform_panel_waveform_timecode_playhead">
+		    		        
+		    		        <img id="detail_waveform_image" class="waveform_image" />
+			 			
+		    		        <div id="detail_waveform_panel_timecode">
+		    		            {# Timecode will be injected here #}
+		    		        </div>
+		    		        
+		    		        <div id="detail_waveform_panel_playhead" class="playhead">
+		    		            {# Playhead will be injected here #}
+		    		        </div>
+		    		        
+		    		        <div id="detail_waveform_panel_highlight_container" class="highlight_container">
+		    		            <div id="detail_waveform_panel_highlight" class="highlight disabled">
+		    		                
+		    		            </div>
+		    		            
+		    		        </div>
+		    		        
+		    		    </div>
+		    		</div>
+		    </div>
+		    
+		    
+		    <div id="detail_waveform_panel_buf_right" class="detail_waveform_panel_buf">
+		        <b>> ></b>
+		    </div>
+		</div>
+		
+		{% comment %}
+		<div id="detail_waveform_panel_bottom" class="detail_waveform_panel_bottom">
+		    {# Nothing? #}
+		</div>
+		{% endcomment %}
 </div>
 
-<div id="detail_waveform_panel_middle" class="detail_waveform_panel_middle">
-    <div id="detail_waveform_panel_buf_left" class="detail_waveform_panel_buf">
-        <b>< <</b>
-    </div>
-    
-    {# The view window #}
-    <div id="detail_waveform_panel_view" class="detail_waveform_panel_view">
-        
-        <div id="detail_waveform_panel_waveform_timecode_playhead">
-            
-            <img id="detail_waveform_image" class="waveform_image" />
-
-            <div id="detail_waveform_panel_timecode">
-                {# Timecode will be injected here #}
-            </div>
-            
-            <div id="detail_waveform_panel_playhead" class="playhead">
-                {# Playhead will be injected here #}
-            </div>
-            
-            <div id="detail_waveform_panel_highlight_container" class="highlight_container">
-                <div id="detail_waveform_panel_highlight" class="highlight disabled">
-                    
-                </div>
-                
-            </div>
-            
-        </div>
-    </div>
-    
-    
-    <div id="detail_waveform_panel_buf_right" class="detail_waveform_panel_buf">
-        <b>> ></b>
-    </div>
+<div id="detail_waveform_panel_tags" class="detail_waveform_panel_tags lightNoise">
+	<span class="tags">awesome</span>
+	<span class="tags">tag</span>
+	<span class="tags">slow</span>
+	<span class="tags">fast</span>
+	<span class="tags">tag</span>
+	<span class="tags">tag</span>
+	<span class="tags">tag</span>
+	<span class="tags">tag</span>
+	<span class="tags">tag</span>
+	<span class="tags">tag</span>
+	<span class="tags">tag</span>
+	<span class="tags">tag</span>
+	<span class="tags">tag</span>
+	<span class="tags">tag</span>
+	<span class="tags">tag</span>
+	<span class="tags">tag</span>
+	<span class="tags">awesome</span>
+	<span class="tags">tag</span>
+	<span class="tags">slow</span>
+	<span class="tags">fast</span>
+	<span class="tags">tag</span>
+	<span class="tags">tag</span>
+	<span class="tags">tag</span>
+	<span class="tags">tag</span>
+	<span class="tags">tag</span>
+	<span class="tags">tag</span>
+	<span class="tags">tag</span>
+	<span class="tags">tag</span>
+	<span class="tags">tag</span>
+	<span class="tags">tag</span>
+	<span class="tags">tag</span>
+	<span class="tags">tag</span>
 </div>
-
-{% comment %}
-<div id="detail_waveform_panel_bottom" class="detail_waveform_panel_bottom">
-    {# Nothing? #}
-</div>
-{% endcomment %}
-
-<div id="detail_waveform_panel_tags" class="detail_waveform_panel_tags"><span class="tags">tag</font></div>
 {% endblock %}

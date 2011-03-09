@@ -4,17 +4,19 @@
 {% endblock %}
 
 {% block panel_content %}
-<div id="overview_waveform_panel_top" class="overview_waveform_panel_top">
-    <img id="overview_waveform_image" class="waveform_image" />
-    <div id="overview_waveform_panel_playhead" class="playhead">
-        {# playhead will be injected here #}
-    </div>
-    <div id="overview_waveform_panel_highlight_container" class="highlight_container">
-        <div id="overview_waveform_panel_highlight" class="highlight disabled">
-        </div>
-        
-    </div>
-    
+<div id="overview_waveform_panel_top_wrap">
+		<div id="overview_waveform_panel_top" class="overview_waveform_panel_top darkNoise">
+		    <img id="overview_waveform_image" class="waveform_image" />					
+		    <div id="overview_waveform_panel_playhead" class="playhead">				
+		        {# playhead will be injected here #}														
+		    </div>																															
+		    <div id="overview_waveform_panel_highlight_container" class="highlight_container">
+		        <div id="overview_waveform_panel_highlight" class="highlight disabled">
+		        </div>																													
+		        																																
+		    </div>																															
+		    																																		
+		</div>																																	
 </div>
 <div id="overview_waveform_panel_bottom" class="overview_waveform_panel_bottom">
     segments
