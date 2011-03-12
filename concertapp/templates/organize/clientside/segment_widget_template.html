@@ -1,17 +1,22 @@
 {% load extra_template_tags %}
 
 {% verbatim %}
-<div class="segment_widget">
-    <div class="segment_name">
-        ${name}
-    </div>
-    <div class="segment_creator">
-        by ${creator.get("username")}
-    </div>
-    <div class="segment_audiofile">
-        from: <span class="segment_audiofile_name">
-            ${audioFile.get("name")}
-        </span>
-    </div>
-</div>
+	<div class="file_widget">
+			<div class="boxwrap">
+					<div class="file_widget_icon">
+					
+					</div>
+					<div class="file_widget_info">
+							<div class="title">
+								${name}
+							</div>
+							<div class="info">
+								${end-beginning} <span class="small_text">seconds of</span> ${audioFile.get("name")} <span class="small_text">selected by</span> ${creator.get("username")}	
+							</div>
+					</div>
+			</div>
+			<div class="tags">
+					TAG - TAG - TAG - TAG - TAG - TAG - TAG - TAG - TAG - TAG
+			</div>			
+	</div>
 {% endverbatim %}

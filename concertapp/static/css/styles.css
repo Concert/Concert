@@ -71,19 +71,19 @@ div.layout_middle {
 }
 
 div.layout_bottom {
-  width: 100%;
+  width: 960px;
   display: -webkit-box;
   -webkit-box-orient: horizontal;
 }
 
 div.layout_left {
-  width: 50%;
+  width: 480px;
   display: -webkit-box;
   -webkit-box-orient: vertical;
 }
 
 div.layout_right {
-  width: 50%;
+	width: 480px;
   display: -webkit-box;
   -webkit-box-orient: vertical;
 }

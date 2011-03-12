@@ -385,15 +385,48 @@ div#create_join_input_container {
 div.tag {
 		display: block;
 		float: left;
-		height: 18px;
+		height: 15px;
     text-transform: uppercase;
     font-weight: bold;
     font-size: 10px;
-    background: #f8f8fa;
-		padding: 5px 5px 0px 5px;
-		margin: 10px 10px 0px 0px;
+		background: #f8f8fa url(/graphics/x.png) -23px 0px no-repeat;
     border: 1px solid white;
     -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.5);
+		padding: 3px 5px 0px 5px;
+		margin: 10px 10px 0px 0px;
+		-webkit-transition: all 0.25s ease-in-out;
+		cursor: pointer;
+}
+
+/* to add a delay if needed */
+/*@-webkit-keyframes tagExpand {
+	0% {
+	padding: 3px 5px 0px 5px;
+	background: #f8f8fa url(/graphics/x.png) -23px 0px no-repeat;
+	}
+	75% {
+	padding: 3px 5px 0px 5px;
+	background: #f8f8fa url(/graphics/x.png) -23px 0px no-repeat;
+	}
+	100% {
+	padding: 3px 5px 0px 25px;
+	background: #f8f8fa url(/graphics/x.png) left left no-repeat;
+	}
+}
+
+div.tag:hover {
+	-webkit-animation-name: tagExpand;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-iteration-count: 0.5;
+	-webkit-animation-direction: alternate;
+	-webkit-animation-timing-function: ease-in-out;
+	padding: 3px 5px 0px 25px;
+	background: #f8f8fa url(/graphics/x.png) left left no-repeat;
+}	*/
+
+div.tag:hover {
+		padding: 3px 5px 0px 25px;
+		background: #f8f8fa url(/graphics/x.png) left left no-repeat;
 }
 
 /*AUDIO PANEL*/
@@ -402,12 +435,12 @@ div#audio_list_panel{
 		border-left: 1px solid white;
 		width: 469px;
 		padding-left: 10px;
-		-webkit-box-shadow: -1px 0px 1px rgba(0,0,0,0.5);
+		margin-bottom: 10px;
+		-webkit-box-shadow: -1px 0px 0px rgba(0,0,0,0.5);
 }
 
 div#audio_list_panel_header{
 		background: -webkit-gradient(linear, left top, left bottom, from(#18181f), to(#45455a));
-		margin-bottom: 10px;
 }
 
 div#audio_search{
@@ -416,7 +449,9 @@ div#audio_search{
 		-webkit-box-shadow:inset 0 0 10px #000;
 		color: white;
 		font-family: Georgia, serif;
-		border: 1px solid white;
+		border-top: 1px solid white;
+		border-right: 1px solid white;
+		border-left: 1px solid white;
 		font-size: 14px;
 		padding: 10px 10px 0px 10px;
 }
@@ -433,9 +468,11 @@ div#audio_list_panel .selected{
 div.file_widget {
 		width: 449px;
 		overflow: hidden;
-		margin-bottom: 10px;
-		padding: 0px 10px 10px 10px;
-		border-bottom: 1px black solid;
+		margin-bottom: 1px;
+		padding: 10px 10px 10px 10px;
+		border-top: 1px solid white;
+		border-bottom: 1px solid white;
+		-webkit-box-shadow: 0px 1px 0px rgba(0,0,0,0.5);
 		font-weight: bold;
 		text-transform: uppercase;
     cursor: pointer;
@@ -447,10 +484,13 @@ div.file_widget .boxwrap{
 }
 
 div.file_widget_icon {
-		height: 28px;
-		width: 28px;
-    border: 1px solid #000000;
+		height: 18px;
+		width: 18px;
+    background: #f8f8fa;
+    border: 1px solid white;
+    -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.5);
     margin-right: 10px;
+    margin-top: 5px;
 }
 
 div.file_widget .title{
