@@ -1,0 +1,13 @@
+{% load extra_template_tags %}
+
+	<div class="{{type}}_widget">
+			<div class="boxwrap">
+					<div class="{{type}}_widget_icon">
+					
+					</div>
+					<div class="{{type}}_widget_info">
+					    {% block info %}{% endblock %}
+					</div>
+			</div>
+			{% block bottom %}{% endblock %}
+	</div>

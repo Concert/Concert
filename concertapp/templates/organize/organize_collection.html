@@ -1,6 +1,7 @@
 {% extends 'base_site.html' %}
 {% load extra_template_tags %}
 {% load panels %}
+{% load widgets %}
 
 {% comment %}
     @file   organize_collection.html
@@ -27,7 +28,7 @@
 
     {# and some client-side templates #}
     <script id="file_widget_template" type="text/x-jquery-tmpl">
-        {% include 'organize/clientside/file_widget_template.html' %}
+        {% widget 'organize/clientside/file_widget_template.html' 'file' %}
     </script>
 
     <script id="segment_widget_template" type="text/x-jquery-tmpl">

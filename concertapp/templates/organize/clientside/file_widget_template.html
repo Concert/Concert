@@ -1,21 +1,19 @@
+{% extends 'organize/clientside/audiolist_widget_template.html' %}
 {% load extra_template_tags %}
 
-{% verbatim %}
-	<div class="file_widget">
-			<div class="boxwrap">
-					<div class="file_widget_icon">
-					</div>
-					<div class="file_widget_info">
-							<div class="title">
-								${name}
-							</div>
-							<div class="info">
-								${duration} <span class="small_text">seconds uploaded by</span> ${uploader.get("username")}	
-							</div>
-					</div>
-			</div>
-			<div class="tags">
-					TAG - TAG - TAG - TAG - TAG - TAG - TAG - TAG - TAG - TAG - TAG - TAG
-			</div>			
-	</div>
-{% endverbatim %}
+{% block info %}
+<div class="title">
+	{% verbatim %}${name}{% endverbatim %}
+</div>
+<div class="info">
+    {% verbatim %}
+		${duration} <span class="small_text">seconds uploaded by</span> ${uploader.get("username")}	
+	{% endverbatim %}
+</div>
+{% endblock %}
+
+{% block bottom %}
+<div class="segments">
+SEGMENT - SEGMENT - SEGMENT - SEGMENT - SEGMENT - SEGMENT - SEGMENT - SEGMENT - SEGMENT - SEGMENT - SEGMENT - SEGMENT - SEGMENT - SEGMENT - SEGMENT - SEGMENT
+</div>			
+{% endblock %}
