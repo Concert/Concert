@@ -24,6 +24,16 @@ var CommentsPanel = Panel.extend({
         }
         this.commentTemplate = commentTemplate;
         
+        /* The template for the panel header */
+        var headerTemplate = $('#comment_panel_header_template');
+        if(typeof(headerTemplate) == 'undefined') {
+            throw new Error('$(\'#comment_panel_header_template\') is undefined');
+        }
+        else if(headerTemplate.length == 0) {
+            throw new Error('headerTemplate not found');
+        }
+        this.headerTemplate = headerTemplate;
+        
         /* If an audio file was selected */
         _.bindAll(this, 'select_audio_file');
         $(modelManager).bind('audio_file_selected', this.select_audio_file);
@@ -64,7 +74,11 @@ var CommentsPanel = Panel.extend({
             };
         }(frag, template, this));
         
+        /* Fill contents */
         this.contents.html(frag);
+        
+        /* Fill header */
+        this.header.html(this.headerTemplate.tmpl(selectedAudioSegment.toJSON()));
     }, 
     
     /**
