@@ -55,6 +55,13 @@ var OrganizePage = LoggedInPage.extend({
             modelManager: modelManager, 
         });
         
+        /* Create comments panel */
+        this.commentsPanel = new CommentsPanel({
+            page: this, 
+            el: $('#comment_list_panel'), 
+            modelManager: modelManager 
+        });
+        
         
         /* When the space button is pressed, pause/play our audio */
         $(window).bind('keydown', function(me) {

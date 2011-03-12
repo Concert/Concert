@@ -1,0 +1,9 @@
+{% load extra_template_tags %}
+
+{% verbatim %}
+    <div class="comment_widget">
+        comment: ${comment}<br />
+        author: ${author.get("username")}<br />
+        time: ${time}<br />
+    </div>
+{% endverbatim %}
