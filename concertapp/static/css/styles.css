@@ -43,11 +43,13 @@ h3 {
 
 body {
   font: 12px "Helvetica", Verdana, Arial, sans-serif;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 0px #fff;
 }
 
 /*Page layout */
 body {
-  background: #eeeef3;
+  background: #e0e0e7;
   padding: 0;
   width: 960px;
   margin: auto;

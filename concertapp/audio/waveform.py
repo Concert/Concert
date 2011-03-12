@@ -220,7 +220,7 @@ class WaveformImage(object):
         self.previous_x, self.previous_y = None, None
  
         colors = [
-                    (248,248,250), (238,238,243)
+                    (255,255,255),
                  ]
   
         self.color_lookup = interpolate_colors(colors)
