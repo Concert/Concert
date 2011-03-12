@@ -8,7 +8,7 @@ from tastypie.authorization import DjangoAuthorization, Authorization
 from tastypie.http import *
 
 ###
-#   Make sure that the user who is trying to modify the board is the administrator.
+#   Make sure that the user who is trying to modify the audio file is the uploader
 ###
 class AudioFileAuthorization(ConcertAuthorization):
     def is_authorized(self, request, object=None):

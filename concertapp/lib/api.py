@@ -13,6 +13,7 @@ from tastypie.http import *
 from tastypie.resources import ModelResource, Resource, convert_post_to_put
 from tastypie.utils import is_valid_jsonp_callback_value, dict_strip_unicode_keys, trailing_slash
 import sys
+import datetime
 
 ###
 #   Just make sure that the user is logged into Django
@@ -75,9 +76,15 @@ class MyResource(ModelResource):
             # If we are looking at list, must run this function on elements
             elif type(attr) == list:
                 data = [get_recursive_bundle_data(x) for x in attr]
-            # we are looking at an attribute, just pass it back through recursion.
+            # we are looking at an attribute
             else:
-                data = attr
+                # If this is a date time attribute
+                if type(attr) == datetime.datetime:
+                    # Send along as string so json knows how to serialize it
+                    data = str(attr)
+                else:
+                    # just pass it back through recursion, will get serialized later
+                    data = attr
                 
             return data
         

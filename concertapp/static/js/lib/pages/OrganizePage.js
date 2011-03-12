@@ -51,7 +51,8 @@ var OrganizePage = LoggedInPage.extend({
             page: this, 
             el: $('#audio_list_panel'),
             files: modelManager.collectionAudioFiles,
-            segments: modelManager.collectionAudioSegments
+            segments: modelManager.collectionAudioSegments,
+            modelManager: modelManager, 
         });
         
         

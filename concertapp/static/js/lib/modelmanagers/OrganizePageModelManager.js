@@ -76,6 +76,7 @@ OrganizePageModelManager.prototype._loadData = function() {
     
     var dataToLoad = this._dataToLoad;
     
+    /* Most stuff is watching both files and widgets, so do this silently */
     this.collectionAudioFiles.refresh(dataToLoad.fileData, {silent: true});
     dataToLoad.fileData = null;
     
@@ -107,4 +108,20 @@ OrganizePageModelManager.prototype.select_audio = function(params) {
     this.selectedAudioSegments.refresh(segments);
     /* Remove previously selected files and select new ones */
     this.selectedAudioFiles.refresh(files);
+    
+    /**
+     *  TODO: Refactor code to just use these events.
+     **/
+    if(files.length == 1 && segments.length == 0) {
+        $(this).trigger('audio_file_selected', files[0]);
+    }
+    else if(files.length == 0 && segments.length == 1) {
+        $(this).trigger('audio_segment_selected', segments[0]);
+    }
+    else if(files.length == 0 && segments.length == 0){
+        $(this).trigger('audio_deselected');
+    }
+    else {
+        throw new Error('Not yet implemented multiple selection.');
+    }
 };

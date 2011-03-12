@@ -436,7 +436,7 @@ class TagComment(Comment):
     
 
 class SegmentComment(Comment):
-    segment = models.ForeignKey("AudioSegment")
+    segment = models.ForeignKey('AudioSegment', related_name='comments')
 
     def __unicode__(self):
         return "Segment Comment: " + self.comment[:10] + "..."

@@ -7,11 +7,11 @@
 /**
  *  This is the widget associated with an audio segment on the organize page.
  *	@class
- *  @extends    Widget
+ *  @extends    AudioListWidget
  **/
-var SegmentWidget = Widget.extend({
+var SegmentWidget = AudioListWidget.extend({
     initialize: function() {
-        Widget.prototype.initialize.call(this);
+        AudioListWidget.prototype.initialize.call(this);
         
         var params = this.options;        
         

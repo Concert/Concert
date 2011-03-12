@@ -14,7 +14,11 @@ var AudioSegment = ConcertBackboneModel.extend({
         return [
             {
                 attr: 'tags', 
-                collectionType: TagSet, 
+                collectionType: TagSet
+            },
+            {
+                attr: 'comments', 
+                collectionType: CommentSet 
             }
         ];
     }, 
