@@ -603,7 +603,7 @@ class AudioFile(models.Model):
         overviewImgPath = self.overviewWaveform.field.upload_to + wavName + '.png'
         
         # Generate image
-        audioHelpers.generateWaveform(wavPathAbsolute, os.path.join(MEDIA_ROOT, overviewImgPath), 898, 58)
+        audioHelpers.generateWaveform(wavPathAbsolute, os.path.join(MEDIA_ROOT, overviewImgPath), 958, 58)
 
         # Name of the image for the waveform editor (large waveform image)
         detailImgPath = self.detailWaveform.field.upload_to + wavName + '.png'
