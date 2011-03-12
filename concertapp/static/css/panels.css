@@ -434,13 +434,14 @@ div.tag:hover {
 div#audio_list_panel{
 		border-left: 1px solid white;
 		width: 469px;
-		padding-left: 10px;
 		margin-bottom: 10px;
 		-webkit-box-shadow: -1px 0px 0px rgba(0,0,0,0.5);
 }
 
 div#audio_list_panel_header{
 		background: -webkit-gradient(linear, left top, left bottom, from(#18181f), to(#45455a));
+		margin-left: 10px;
+		width: 467px;
 }
 
 div#audio_search{
@@ -461,16 +462,19 @@ div#audio_list_panel .selected{
 		background: white;
 		color: #2e2e35;
 		overflow: hidden;
-		padding-top: 10px;
+		padding: 10px 0px 10px 10px;
+		margin-left: 0px;
+		margin-bottom: 1px;
 		border-bottom: none;
+		border-bottom: 1px solid white;
 		-webkit-box-shadow: 0 0 5px rgba(0,0,0,0.5)
 }
 
-div.file_widget {
+div.audio_widget {
 		width: 449px;
-		overflow: hidden;
+		margin-left: 10px;
 		margin-bottom: 1px;
-		padding: 10px 10px 10px 10px;
+		padding: 10px 0px 10px 0px;
 		border-top: 1px solid white;
 		border-bottom: 1px solid white;
 		-webkit-box-shadow: 0px 1px 0px rgba(0,0,0,0.5);
@@ -478,26 +482,32 @@ div.file_widget {
     cursor: pointer;
 }
 
-div.file_widget .boxwrap{
+div.audio_widget .boxwrap{
 		display: -webkit-box;
     -webkit-box-orient: horizontal;
 }
 
 div.file_widget_icon {
-		height: 18px;
-		width: 18px;
-    background: #f8f8fa;
-    border: 1px solid white;
-    -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.5);
+		height: 24px;
+		width: 24px;
+    background: url(/graphics/file.png) no-repeat;
     margin-right: 10px;
-    margin-top: 5px;
+    margin-top: 3px;
 }
 
-div.file_widget .tags{
+div.segment_widget_icon {
+		height: 24px;
+		width: 24px;
+    background: url(/graphics/segment.png) no-repeat;
+    margin-right: 10px;
+    margin-top: 3px;
+}
+
+div.audio_widget .bottom{
 		font-weight: normal;
 }
 
-div.file_widget .info{
+div.audio_widget .info{
 		padding-bottom: 10px;
 }
 
@@ -547,7 +557,8 @@ margin-right: 10px;
 }
 
 div.event_widget .icon{
-width: 20px;
+width: 24px;
+min-height: 24px;
 padding-right: 10px;
 border-right: 1px solid white;
 margin-bottom: 10px;
@@ -571,6 +582,10 @@ text-align: right;
 
 .comment .icon {
 background: url(/graphics/comment.png) no-repeat;
+}
+
+.tag .icon {
+background: url(/graphics/tag.png) no-repeat;
 }
 
 

@@ -47,9 +47,9 @@ body {
   text-shadow: 1px 1px 0px #fff;
 }
 
-/*Page layout */
+/*Page layout   background: #e0e0e7;*/
 body {
-  background: #e0e0e7;
+	background: #eeeef3;
   padding: 0;
   width: 960px;
   margin: auto;
