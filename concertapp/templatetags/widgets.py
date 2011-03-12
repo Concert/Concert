@@ -6,9 +6,6 @@ register = template.Library()
 
 def get_widget(parser, token):
     try:
-        import sys
-        print >> sys.stderr, "token.split_contents():\n"+str(token.split_contents())
-        sys.stderr.flush()
         tag_name, template_location, widgetType = token.split_contents()
     except ValueError:
         raise template.TemplateSyntaxError, "%r tag requires two arguments" % token.contents.split()[0]
