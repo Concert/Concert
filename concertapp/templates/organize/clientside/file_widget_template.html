@@ -7,7 +7,7 @@
 </div>
 <div class="info">
     {% verbatim %}
-		${duration} <span class="small_text">seconds uploaded by</span> ${uploader.get("username")}	
+		${seconds_to_timecode(duration)} <span class="small_text"> uploaded by </span> ${uploader.get("username")}	
 	{% endverbatim %}
 </div>
 {% endblock %}

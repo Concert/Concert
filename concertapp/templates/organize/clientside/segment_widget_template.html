@@ -7,7 +7,7 @@
         	${name}
         </div>
         <div class="info">
-        	${end-beginning} <span class="small_text">seconds of</span> ${audioFile.get("name")} <span class="small_text">selected by</span> ${creator.get("username")}	
+        	${seconds_to_timecode(end-beginning)} <span class="small_text">of</span> ${audioFile.get("name")} <span class="small_text">selected by</span> ${creator.get("username")}	
         </div>
     {% endverbatim %}
 {% endblock %}
