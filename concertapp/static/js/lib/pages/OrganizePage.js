@@ -201,7 +201,7 @@ var OrganizePage = LoggedInPage.extend({
     
     play: function() {
         this.audio.play();
-        this.detailPanel.autoscrollBool = true;
+//        this.detailPanel.autoscrollBool = true;
         
     },
     
@@ -306,4 +306,5 @@ var OrganizePage = LoggedInPage.extend({
     move_audio: function(seconds) {
         this.audio.currentTime = seconds;
     }, 
+    
 });

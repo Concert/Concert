@@ -16,7 +16,7 @@ var OverviewWaveformPanel = WaveformPanel.extend({
         
         /* Instantiate widget for playhead */
         var playheadComponent = new OverviewWaveformPlayheadComponent({
-            el: this.playheadContainerElement,
+            el: this.playheadElement,
             panel: this,
             audio: this.page.audio
         });
@@ -37,6 +37,7 @@ var OverviewWaveformPanel = WaveformPanel.extend({
             panel: this 
         });
         this.highlighter = highlighter;
+
 
         $("#overview_waveform_panel_top").bind('click', function(me) {
             return function(e) {
@@ -61,6 +62,8 @@ var OverviewWaveformPanel = WaveformPanel.extend({
                 }
             }(this, selectedAudioFile)
         );
+    
+        this.playheadComponent.update_speed();
     }, 
     
     /**
@@ -72,6 +75,8 @@ var OverviewWaveformPanel = WaveformPanel.extend({
         WaveformPanel.prototype.audio_segment_selected.call(this, selectedAudioSegment);
         
         this.waveformImageElement.attr('src', selectedAudioSegment.get('audioFile').get('overviewWaveform'));
+        
+        this.playheadComponent.update_speed();
     }, 
     
     /**
@@ -87,6 +92,10 @@ var OverviewWaveformPanel = WaveformPanel.extend({
         return width/duration;
     },
 
+    /**
+     *  handle_click is called from event handler above
+     *  obtains seconds from mouse click information and moves audio
+     **/
     handle_click: function(left) {
         //update audio's currentTime to location clicked
         var seconds = left/this.get_resolution();

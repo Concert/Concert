@@ -25,15 +25,15 @@ var WaveformPanel = Panel.extend({
         }
         this.waveformImageElement = waveformImageElement;
         
-        /* The container for the playhead widget */
-        var playheadContainerElement = this.el.find('.playhead');
-        if(typeof(playheadContainerElement) == 'undefined') {
-            throw new Error('$(\'#detail_waveform_panel_playhead\') is undefined');
+        /* The playhead element */
+        var playheadElement = this.el.find('.playhead');
+        if(typeof(playheadElement) == 'undefined') {
+            throw new Error('playheadElement is undefined');
         }
-        else if(playheadContainerElement.length == 0) {
-            throw new Error('playheadContainerElement not found');
+        else if(playheadElement.length == 0) {
+            throw new Error('playheadElement not found');
         }
-        this.playheadContainerElement = playheadContainerElement;
+            this.playheadElement = playheadElement;
         
         /* The duration of the last selected audio file (or segment parent) */
         this.audioFileDuration = null;
@@ -47,7 +47,6 @@ var WaveformPanel = Panel.extend({
      **/
     audio_file_selected: function(selectedAudioFile) {
         this.audioFileDuration = selectedAudioFile.get('duration');
-        this.playheadComponent.audio_file_selected(selectedAudioFile);
         this.playheadComponent.reset();
     },
     
@@ -58,7 +57,6 @@ var WaveformPanel = Panel.extend({
      **/
     audio_segment_selected: function(selectedAudioSegment) {
         this.audioFileDuration = selectedAudioSegment.get('audioFile').get('duration');
-        this.playheadComponent.audio_segment_selected(selectedAudioSegment);
         this.playheadComponent.reset();
     }, 
     

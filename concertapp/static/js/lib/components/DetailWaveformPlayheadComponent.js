@@ -13,13 +13,15 @@ var DetailWaveformPlayheadComponent = WaveformPlayheadComponent.extend({
     initialize: function() {
         WaveformPlayheadComponent.prototype.initialize.call(this);
     },
-
-    /**
-     *  Notify panel that we'ved moved the playhead
-     **/
-    animate: function() {
-        var leftPx = WaveformPlayheadComponent.prototype.animate.call(this);
-
-        this.panel.playhead_moved(leftPx);
+    
+    update_speed: function() {
+        this.pxPerSecond = 10;
     },
+    
+    draw: function() {
+        WaveformPlayheadComponent.prototype.draw.call(this);
+        
+        this.panel.playhead_moved(this.leftPx);
+    }
+
 });

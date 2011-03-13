@@ -305,10 +305,29 @@ div.highlight {
   position: relative;
   background-color: white;
   opacity: 0.5;
+  display: -webkit-box;
+}
+
+div.leftHandle {
+    height: 100%;
+    position: absolute;
+    left: 0px;
+    background-color: black;
+    width: 2px;
+    visibility: inherit;
+}
+
+div.rightHandle {
+    height: 100%;
+    position: absolute;
+    right: 0px;
+    background-color: black;
+    width: 2px;
+    visibility: inherit;
 }
 
 /* Initially a highlight will be disabled */
-div.highlight.disabled {
+div.disabled {
   visibility: hidden;
 }
 
