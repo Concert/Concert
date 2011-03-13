@@ -236,8 +236,8 @@ div#detail_waveform_panel_middle {
 div.detail_waveform_panel_buf {
     width: 10px;
     height: 100%;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 12px;
+    padding-right: 18px;
 }
 
 div#detail_waveform_panel_buf_left {
@@ -248,18 +248,32 @@ div#detail_waveform_panel_buf_right {
     margin-left: 878px;
 }
 
-div#detail_waveform_panel_buf_left .arrow{
+div#detail_waveform_panel_buf_left .arrow_space{
 height: 57px;
 width: 100%;
 padding-top: 43px;
-font-weight: bold;
 }
 
-div#detail_waveform_panel_buf_right .arrow{
+div#detail_waveform_panel_buf_right .arrow_space{
 height: 57px;
 width: 100%;
 padding-top: 43px;
-font-weight: bold;
+}
+
+div#detail_waveform_panel_buf_left .arrow_space .arrow{
+	border-color: transparent #45455a transparent transparent;
+  border-style: solid;
+  border-width: 8px 12px 8px 0px;
+  width:0;
+  height:0;
+}
+
+div#detail_waveform_panel_buf_right .arrow_space .arrow{
+	border-color: transparent transparent transparent #45455a;
+  border-style: solid;
+  border-width: 8px 0px 8px 12px;
+  width:0;
+  height:0;
 }
 
 div#detail_waveform_panel_view {
