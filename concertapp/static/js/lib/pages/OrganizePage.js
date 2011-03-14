@@ -301,7 +301,9 @@ var OrganizePage = LoggedInPage.extend({
         this.audioLoopTimeUpdateCallback = audioLoopTimeUpdateCallback;
                 
         /* Start audio at beginning of loop */
-        audio.currentTime = startTime;
+        if(audio.currentTime < startTime || audio.currentTime > endTime) {
+            audio.currentTime = startTime;
+        }
         
         /* When audio loop changes time */
         $(audio).bind('timeupdate', this.audioLoopTimeUpdateCallback);    

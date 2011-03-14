@@ -113,6 +113,7 @@ var WaveformHighlighterComponent = Component.extend({
      *  @param  {Number}    x   -   The x-coordinate where the drag is currently.
      **/
     continueDrag: function(x) {
+        console.log('continue drag');
         this.lastDragEndX = x;
         
         /* Draw highlight */
@@ -136,6 +137,7 @@ var WaveformHighlighterComponent = Component.extend({
         /* If this was just a click */
         if(dragStartX == dragEndX) {
             /* Don't do anything */
+            this.reset();
             return;
         }
         var pxPerSecond = this.panel.get_resolution();
@@ -144,6 +146,10 @@ var WaveformHighlighterComponent = Component.extend({
         
         /* Tell panel about highlight */
         this.panel.waveform_highlighted(startTime, endTime);
+        
+        console.log('end drag finished');
+        console.log(this.disabled);
+        console.log(this.dragging);
         
     }, 
     

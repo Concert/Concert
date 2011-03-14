@@ -67,6 +67,10 @@ var WaveformPanel = Panel.extend({
         this.highlighter.disable();
     }, 
     
+    clear_audio_loop: function() {
+        this.page.clear_audio_loop();
+    },
+    
     /**
      *  Called from page when waveform should highlight
      **/
