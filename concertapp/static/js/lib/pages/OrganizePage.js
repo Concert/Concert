@@ -27,15 +27,13 @@ var OrganizePage = LoggedInPage.extend({
         
         /**
          *  The callback function for an audio loop (on a timeupdate event)
-         *  Doesn't work when initially set to null - unclear why
-         *  Timeupdate event has two handlers - the playhead handler and the loop handler
-         *  When initialized to null, playhead handler stops running as soon as the first 
-         *  highlight is selected. It's something to do with 
-         *  unbind('timeupdate', audioLoopTimeUpdateCallback) being called before 
-         *  bind('timeupdate', audioLoopTimeUpdateCallback) for the very first highlight, 
-         *  resulting in a call: unbind('timeupdate', null).
+         *  Doesn't work when initially set to null:
+         *  since clear_audio_loop is initially called before start_audio_loop
+         *  for all highlights, the call: unbind('timeupdate', null) is made
+         *  on the first highlight, unbinding all handlers bound to 'timeupdate'
+         *  including the playhead event handler
          **/ 
-//        this.audioLoopTimeUpdateCallback = null;
+         //this.audioLoopTimeUpdateCallback = null;
         var handler = function() {
             console.log('handler function');
         };
@@ -287,7 +285,6 @@ var OrganizePage = LoggedInPage.extend({
      *  @param  {Number}    endTime     -   The end of the loop
      **/
     start_audio_loop: function(startTime, endTime) {
-
         var audio = this.audio;
         
         /* This function will be called when a timeupdate event occurs. */
