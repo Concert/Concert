@@ -243,15 +243,13 @@ var WaveformHighlighterComponent = Component.extend({
      *  When the highlight is to be reset.  This will reset the width to 0.
      **/
     reset: function() {
-        console.log('reset called');
-        
         this.disable();
 
         this.highlight.css({
             width: '0px'
         });
                 
-       // this.panel.waveform_highlight_cleared();
+        this.panel.waveform_highlight_cleared();
     }
 
 });

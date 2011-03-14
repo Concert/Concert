@@ -31,10 +31,8 @@ var WaveformPlayheadComponent = Component.extend({
         /* When the audio experiences a time update, playhead is redrawn (detail) */
         $(audio).bind('canplaythrough', function(me) {
             return function() {
-                console.log('canplaythrough callback called');
                 $(this).bind('timeupdate', function(me) {
                     return function() {
-                        console.log('timeupdate callback called');
                         me.draw();
                     };
                 }(me));

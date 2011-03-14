@@ -25,9 +25,21 @@ var OrganizePage = LoggedInPage.extend({
         audio.preload = 'auto';
         this.audio = audio;
         
-        /* The callback function for an audio loop */
-        this.audioLoopTimeUpdateCallback = null;
-        
+        /**
+         *  The callback function for an audio loop (on a timeupdate event)
+         *  Doesn't work when initially set to null - unclear why
+         *  Timeupdate event has two handlers - the playhead handler and the loop handler
+         *  When initialized to null, playhead handler stops running as soon as the first 
+         *  highlight is selected. It's something to do with 
+         *  unbind('timeupdate', audioLoopTimeUpdateCallback) being called before 
+         *  bind('timeupdate', audioLoopTimeUpdateCallback) for the very first highlight, 
+         *  resulting in a call: unbind('timeupdate', null).
+         **/ 
+//        this.audioLoopTimeUpdateCallback = null;
+        var handler = function() {
+            console.log('handler function');
+        };
+        this.audioLoopTimeUpdateCallback = handler;
         
         /* This is the type of audio file we will use */
         this.audioType = com.concertsoundorganizer.compatibility.audioType;
@@ -67,7 +79,7 @@ var OrganizePage = LoggedInPage.extend({
                 }
             };
         }(this));
-        
+    
     }, 
     
     /**
@@ -220,6 +232,7 @@ var OrganizePage = LoggedInPage.extend({
      *  @param  {Panel}    panel    -   The panel that triggered the highlight
      **/
     waveform_highlighted: function(startTime, endTime, panel) {
+        
         /* Start audio loop */
         this.start_audio_loop(startTime, endTime);
         
@@ -243,6 +256,7 @@ var OrganizePage = LoggedInPage.extend({
      *  @param  {Panel}    panel    -   The panel that cleared the highlight.
      **/
     waveform_highlight_cleared: function(panel) {
+        
         this.clear_audio_loop();
         
         if(panel instanceof DetailWaveformPanel) {
@@ -273,8 +287,9 @@ var OrganizePage = LoggedInPage.extend({
      *  @param  {Number}    endTime     -   The end of the loop
      **/
     start_audio_loop: function(startTime, endTime) {
+
         var audio = this.audio;
-                
+        
         /* This function will be called when a timeupdate event occurs. */
         var audioLoopTimeUpdateCallback = function(startTime, endTime) {
             return function(e) {
@@ -287,13 +302,12 @@ var OrganizePage = LoggedInPage.extend({
         }(startTime, endTime);
         /* Save so we can unbind later */
         this.audioLoopTimeUpdateCallback = audioLoopTimeUpdateCallback;
-        
+                
         /* Start audio at beginning of loop */
         audio.currentTime = startTime;
         
         /* When audio loop changes time */
-        $(audio).bind('timeupdate', audioLoopTimeUpdateCallback);
-        
+        $(audio).bind('timeupdate', this.audioLoopTimeUpdateCallback);    
     }, 
     
     /**

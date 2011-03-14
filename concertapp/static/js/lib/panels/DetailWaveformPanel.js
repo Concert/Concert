@@ -188,7 +188,7 @@ var DetailWaveformPanel = WaveformPanel.extend({
      *  @param  {Number}    endTime    -    The time of the highlight end.
      **/
     waveform_highlighted: function(startTime, endTime) {
-//        this.autoscrollBool = true;
+        this.autoscrollBool = true;
         
         /* Tell page about our highlight */
         this.page.waveform_highlighted(startTime, endTime, this);
@@ -221,7 +221,7 @@ var DetailWaveformPanel = WaveformPanel.extend({
         }
         else {
             this.autoscrollBool = false;
-        }    
+        }
     },
     
     /**
@@ -257,7 +257,6 @@ var DetailWaveformPanel = WaveformPanel.extend({
      *  and autoscrolling is on, playhead_moved calls autoscrolling
      **/
     playhead_moved: function(leftPx) { 
-        console.log(this.autoscrollBool);
         if ((this.autoscrollBool && leftPx >= (815 + this.waveformView.scrollLeft())) ||
             (this.autoscrollBool && leftPx < this.waveformView.scrollLeft())) {
             this.autoscroll(leftPx);
