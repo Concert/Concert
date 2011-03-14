@@ -112,24 +112,17 @@ var DetailWaveformHighlighterComponent = WaveformHighlighterComponent.extend({
     },
     
     handle: function(x) {
-        //if x is plus or minus 2 px of lastDragStart
-        if(x <= (this.lastDragStartX + 2) && x >= (this.lastDragStartX - 2)) {
-            //find out if we have the left or right handle
-            if (this.lastDragStartX < this.lastDragEndX) {
-                //left handle
-            } else {
-                //right handle
-            }
-        //if x is plus or minus 2 px of lastDragEnd
-        } else if(x <= (this.lastDragEndX + 2) && x >= (this.lastDragEndX -2)) {
-            //find out if we have the left or right handle
-            if (this.lastDragStartX < this.lastDragEndX) {
-                return true;
-            } else {
-                return true;
-            }
-        } else {
-            return false;
+        if (x <= (this.lastDragEndX + 4) && x >= (this.lastDragEndX - 4)) {
+            return true;
         }
-    }, 
+        if (x <= (this.lastDragStartX + 4) && x >= (this.lastDragStartX -4)) {
+            var start = this.lastDragStartX;
+            this.lastDragStartX = this.lastDragEndX;
+            this.lastDragEndX = start;
+            return true;
+        }
+        
+        return false;
+    },
+    
 });
