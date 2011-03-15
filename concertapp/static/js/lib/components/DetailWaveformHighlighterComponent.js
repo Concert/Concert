@@ -99,7 +99,6 @@ var DetailWaveformHighlighterComponent = WaveformHighlighterComponent.extend({
             this.panel.clear_audio_loop();
             this.dragging = true;
         } else {
-            console.log('reset audio loop')
             /* Reset any old highlight */
             this.reset();
             /* Make highlight visible */
