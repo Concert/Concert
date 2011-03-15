@@ -83,7 +83,7 @@ var DetailWaveformTimecodeComponent = Component.extend({
                     
                     /* We will draw black 1px lines for now */
                     ctx.strokeStyle = 'black';
-                    ctx.lineCap = 'round';
+                    ctx.lineCap = 'square';
                     ctx.lineWidth = 1.0;
 
                     ctx.beginPath();
@@ -98,17 +98,26 @@ var DetailWaveformTimecodeComponent = Component.extend({
                         ctx.moveTo(cursor.x, cursor.y);
                         
                         /* Draw a vertical line at current point */
-                        ctx.lineTo(cursor.x, cursor.y+(height*0.75));
+                        ctx.lineTo(cursor.x, cursor.y+(height*0.50));
                         ctx.stroke();
                     }
                     
                     /* Place short marker every 10 seconds (on multiples of 5) */
-                    for(var i = 5; i < duration; i+=10) {
+                    for(var i = 5; i < duration; i+=5) {
                         cursor.x = i*pxPerSecond;
                         cursor.y = 0;
                         ctx.moveTo(cursor.x, cursor.y);
                         
-                        ctx.lineTo(cursor.x, cursor.y+(height * 0.33));
+                        ctx.lineTo(cursor.x, cursor.y+(height * 0.25));
+                        ctx.stroke();
+                    }
+                     /* Place short marker every 1 seconds */
+                    for(var i = 0; i < duration; i+=1) {
+                        cursor.x = i*pxPerSecond;
+                        cursor.y = 0;
+                        ctx.moveTo(cursor.x, cursor.y);
+                        
+                        ctx.lineTo(cursor.x, cursor.y+(height * 0.125));
                         ctx.stroke();
                     }
                     ctx.closePath();
