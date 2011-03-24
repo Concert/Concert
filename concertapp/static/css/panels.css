@@ -384,16 +384,16 @@ img.waveform_image {
     position: absolute;
 }
 
-div#create_join_panel, div#manage_admin_collections_panel, div#manage_member_collections_panel, div#manage_request_collections_panel {
-    height: 100px;
-}
-
-div#create_join_input_container {
 /* Fit overview image in box */
 img#overview_waveform_image {
     width: 100%;
     height: 58px;
 }
+
+div#create_join_panel, div#manage_admin_collections_panel, div#manage_member_collections_panel, div#manage_request_collections_panel {
+    height: 100px;
+}
+
 
 div.file_widget {
     width: 408px;
