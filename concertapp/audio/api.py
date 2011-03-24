@@ -30,10 +30,6 @@ class AudioFileResource(MyResource):
     name = fields.CharField('name')
     uploader = fields.ForeignKey('concertapp.users.api.UserResource', 'uploader', full=True)
     collection = fields.ForeignKey('concertapp.collection.api.CollectionResource', "collection")
-    detailWaveform = fields.FileField('detailWaveform')
-    overviewWaveform = fields.FileField('overviewWaveform')
-    mp3 = fields.FileField('mp3')
-    ogg = fields.FileField('ogg')
 
     class Meta:
         authentication = DjangoAuthentication()
@@ -43,7 +39,8 @@ class AudioFileResource(MyResource):
 
         allowed_methods = ['get','put','delete']
     
-        excludes = ['wav']
+        # waveforms and audio files can be determined from AudioFile id
+        excludes = ['wav', 'mp3', 'ogg']
 
 ###
 #   Only retrieve audioFile objects from a single collection.  Used for bootstrapping.

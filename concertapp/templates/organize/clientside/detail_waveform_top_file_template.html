@@ -1,10 +1,16 @@
+{% extends 'organize/clientside/detail_waveform_top_template.html' %}
 {% load extra_template_tags %}
 
-{% verbatim %}
-<div id="detail_waveform_panel_top_left" class="detail_waveform_panel_top_left">
-    <b>${name}</b> uploaded by <b>${uploader.get("username")}</b>
-</div>
-<div id="detail_waveform_panel_top_right" class="detail_waveform_panel_top_right">
-    <b>${duration} seconds</b>
-</div>
-{% endverbatim %}
+{% block verb %}uploaded{% endblock %}
+
+{% block username %}
+    {% verbatim %}
+        ${uploader.get("username")}
+    {% endverbatim %}
+{% endblock %}
+
+{% block right %}
+    {% verbatim %}
+        <b>${duration} seconds</b>
+    {% endverbatim %}
+{% endblock %}

@@ -54,7 +54,7 @@ var OverviewWaveformPanel = WaveformPanel.extend({
         WaveformPanel.prototype.audio_file_selected.call(this, selectedAudioFile);
         
         this._load_waveform_image(
-            selectedAudioFile.get('overviewWaveform'),
+            selectedAudioFile.get_waveform_src(10),
             function(me, selectedAudioFile) {
                 return function() {
                     me.highlighter.audio_file_selected(selectedAudioFile);
@@ -71,7 +71,7 @@ var OverviewWaveformPanel = WaveformPanel.extend({
     audio_segment_selected: function(selectedAudioSegment) {
         WaveformPanel.prototype.audio_segment_selected.call(this, selectedAudioSegment);
         
-        this.waveformImageElement.attr('src', selectedAudioSegment.get('audioFile').get('overviewWaveform'));
+        this.waveformImageElement.attr('src', selectedAudioSegment.get('audioFile').get_waveform_src(10));
     }, 
     
     /**

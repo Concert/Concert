@@ -220,6 +220,17 @@ div#detail_waveform_panel_top_left {
     text-transform: uppercase;
 }
 
+/* The name of the segment/file at the top of the detail panel */
+span#detail_waveform_selected_name {
+    font-weight: bold;
+}
+
+/* The text input box that appears when clicking on the name */
+input#detail_waveform_selected_name_editable {
+    height: 1em;
+}
+
+
 div#detail_waveform_panel_top_right {
     width: 440px;
     text-align: right;
@@ -378,8 +389,19 @@ div#create_join_panel, div#manage_admin_collections_panel, div#manage_member_col
 }
 
 div#create_join_input_container {
+/* Fit overview image in box */
+img#overview_waveform_image {
+    width: 100%;
+    height: 58px;
+}
+
+div.file_widget {
+    width: 408px;
+    height: 70px;
+    border: 1px solid #000000;
     display: -webkit-box;
     -webkit-box-orient: horizontal;
+    padding: 5px;
 }
 
 div.tag {

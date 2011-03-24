@@ -23,6 +23,39 @@ var AudioFile = ConcertBackboneModel.extend({
         ];
     }, 
     name: 'audiofile', 
+    
+    /**
+     *  Returns the path to the audio file specified by type.
+     *
+     *  @param  {String: ogg|mp3}    type    -   The type of audio file
+     **/
+    get_audio_src: function(type) {
+        var id = this.get('id');
+        
+        if(id) {
+            return '/media/audio/'+id+'.'+type;
+        }
+        else {
+            return null;
+        }
+    }, 
+    
+    /**
+     *  Returns the path to the waveform image specified by zoom_level
+     *
+     *  @param  {Number}    zoom_level    - The zoom level for this waveform image.
+     **/
+    get_waveform_src: function(zoom_level) {
+        var id = this.get('id');
+        
+        if(id) {
+            return '/media/waveforms/'+zoom_level+'/'+id+'.png';
+        }
+        else {
+            return null;
+        }
+    }, 
+    
 });
 
 /**
