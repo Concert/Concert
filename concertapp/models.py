@@ -463,7 +463,7 @@ class AudioFile(models.Model):
     name = models.CharField(max_length = 100)
     uploader = models.ForeignKey(User)
     collection = models.ForeignKey('Collection')
-    wav = models.FileField(upload_to = AUDIO_LOCATION, null = True)
+    wav = models.FileField(upload_to = AUDIO_LOCATION)
     ogg = models.FileField(upload_to = AUDIO_LOCATION)
     mp3 = models.FileField(upload_to = AUDIO_LOCATION)
     # The duration of the audio file.  Default is 0
@@ -484,7 +484,6 @@ class AudioFile(models.Model):
         # Get original filename of uploaded file
         name = str(f)
         self.name = name
-
         
         # Save ourself so we can get an id for the filename
         super(AudioFile, self).save(*args, **kwargs)
@@ -548,7 +547,6 @@ class AudioFile(models.Model):
         
     # Delete the current audio file from the filesystem
     def delete(self):
-      
         
         # Remove wav from this object, and delete file on filesystem.
         if(self.wav and os.path.exists(self.wav.name)):

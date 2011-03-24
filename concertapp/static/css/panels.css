@@ -8,6 +8,18 @@
   src: url(/fonts/GeosansLight.ttf) format("truetype");
 }
 
+/*selection prefs*/
+
+div::selection {
+    background-color:Transparent;
+    color:#000;
+    }
+    
+img::selection {
+    background-color:Transparent;
+    color:#000;
+    }
+
 /* This is a panel on the UI, used for many things. */
 div.panel {
     /* default panel values */
@@ -247,8 +259,8 @@ div#detail_waveform_panel_middle {
 div.detail_waveform_panel_buf {
     width: 10px;
     height: 100%;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 12px;
+    padding-right: 18px;
 }
 
 div#detail_waveform_panel_buf_left {
@@ -259,18 +271,32 @@ div#detail_waveform_panel_buf_right {
     margin-left: 878px;
 }
 
-div#detail_waveform_panel_buf_left .arrow{
+div#detail_waveform_panel_buf_left .arrow_space{
 height: 57px;
 width: 100%;
 padding-top: 43px;
-font-weight: bold;
 }
 
-div#detail_waveform_panel_buf_right .arrow{
+div#detail_waveform_panel_buf_right .arrow_space{
 height: 57px;
 width: 100%;
 padding-top: 43px;
-font-weight: bold;
+}
+
+div#detail_waveform_panel_buf_left .arrow_space .arrow{
+	border-color: transparent #45455a transparent transparent;
+  border-style: solid;
+  border-width: 8px 12px 8px 0px;
+  width:0;
+  height:0;
+}
+
+div#detail_waveform_panel_buf_right .arrow_space .arrow{
+	border-color: transparent transparent transparent #45455a;
+  border-style: solid;
+  border-width: 8px 0px 8px 12px;
+  width:0;
+  height:0;
 }
 
 div#detail_waveform_panel_view {
@@ -351,6 +377,7 @@ div#audiolist_panel_contents {
 /**
  *  Waveform highlight
  **/
+    
 div.highlight_container {
   z-index: 300;
   position: absolute;
@@ -359,8 +386,11 @@ div.highlight_container {
 div.highlight {
   height: 100%;
   position: relative;
-  background-color: white;
-  opacity: 0.5;
+  background: transparent;
+  -webkit-box-shadow:inset 0 0 20px #fff;
+  border-left: 1px solid #fff;
+  border-right: 1px solid #fff;
+  -webkit-box-shadow: 0px 0px 10px #000;
 }
 
 /* Initially a highlight will be disabled */
@@ -416,56 +446,60 @@ div.tag {
     -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.5);
 		padding: 3px 5px 0px 5px;
 		margin: 10px 10px 0px 0px;
-		-webkit-transition: all 0.25s ease-in-out;
 		cursor: pointer;
 }
 
-/* to add a delay if needed */
-/*@-webkit-keyframes tagExpand {
+/*div.tag:hover {
+		padding: 3px 5px 0px 25px;
+		background: #fff url(/graphics/x.png) left left no-repeat;
+		margin: 7px 10px 0px 0px;
+}*/
+
+@-webkit-keyframes tagExpand {
 	0% {
 	padding: 3px 5px 0px 5px;
-	background: #f8f8fa url(/graphics/x.png) -23px 0px no-repeat;
+	background: #fff url(/graphics/x.png) -23px 0px no-repeat;
+	margin: 7px 10px 3px 0px;
 	}
 	75% {
 	padding: 3px 5px 0px 5px;
-	background: #f8f8fa url(/graphics/x.png) -23px 0px no-repeat;
+	background: #fff url(/graphics/x.png) -23px 0px no-repeat;
+	margin: 7px 10px 3px 0px;
 	}
 	100% {
 	padding: 3px 5px 0px 25px;
-	background: #f8f8fa url(/graphics/x.png) left left no-repeat;
+	background: #fff url(/graphics/x.png) left left no-repeat;
+	margin: 7px 10px 3px 0px;
 	}
 }
 
 div.tag:hover {
 	-webkit-animation-name: tagExpand;
-	-webkit-animation-duration: 1s;
-	-webkit-animation-iteration-count: 0.5;
+	-webkit-animation-duration: 4s;
+	-webkit-animation-iteration-count: 1;
 	-webkit-animation-direction: alternate;
 	-webkit-animation-timing-function: ease-in-out;
 	padding: 3px 5px 0px 25px;
-	background: #f8f8fa url(/graphics/x.png) left left no-repeat;
-}	*/
-
-div.tag:hover {
-		padding: 3px 5px 0px 25px;
-		background: #f8f8fa url(/graphics/x.png) left left no-repeat;
-}
+	background: #fff url(/graphics/x.png) left left no-repeat;
+	margin: 7px 10px 3px 0px;
+}	
 
 /*AUDIO PANEL*/
 
 div#audio_list_panel{
 		border-left: 1px solid white;
 		width: 469px;
-		padding-left: 10px;
 		margin-bottom: 10px;
 		-webkit-box-shadow: -1px 0px 0px rgba(0,0,0,0.5);
 }
 
 div#audio_list_panel_header{
 		background: -webkit-gradient(linear, left top, left bottom, from(#18181f), to(#45455a));
+		margin-left: 10px;
+		width: 467px;
 }
 
-div#audio_search{
+input#audio_search{
 		height: 28px;
 		width: 447px;
 		-webkit-box-shadow:inset 0 0 10px #000;
@@ -477,22 +511,28 @@ div#audio_search{
 		font-size: 14px;
 		text-shadow: none;
 		padding: 10px 10px 0px 10px;
+		background: transparent;
+		outline: 0px;
+		margin-bottom: -2px;
 }
 
 div#audio_list_panel .selected{
 		background: white;
 		color: #2e2e35;
 		overflow: hidden;
-		padding-top: 10px;
+		padding: 10px 0px 10px 10px;
+		margin-left: 0px;
+		margin-bottom: 1px;
 		border-bottom: none;
-		-webkit-box-shadow: 0 0 5px rgba(0,0,0,0.5)
+		border-bottom: 1px solid white;
+		-webkit-box-shadow: 0px 0px 5px rgba(0,0,0,0.5)
 }
 
-div.file_widget {
-		width: 449px;
-		overflow: hidden;
+div.audio_widget {
+		width: 467px;
+		margin-left: 10px;
 		margin-bottom: 1px;
-		padding: 10px 10px 10px 10px;
+		padding: 10px 0px 10px 0px;
 		border-top: 1px solid white;
 		border-bottom: 1px solid white;
 		-webkit-box-shadow: 0px 1px 0px rgba(0,0,0,0.5);
@@ -500,33 +540,39 @@ div.file_widget {
     cursor: pointer;
 }
 
-div.file_widget .boxwrap{
+div.audio_widget .boxwrap{
 		display: -webkit-box;
     -webkit-box-orient: horizontal;
 }
 
 div.file_widget_icon {
-		height: 18px;
-		width: 18px;
-    background: #f8f8fa;
-    border: 1px solid white;
-    -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.5);
+		height: 24px;
+		width: 24px;
+    background: url(/graphics/file.png) no-repeat;
     margin-right: 10px;
-    margin-top: 5px;
+    margin-top: 3px;
 }
 
-div.file_widget .tags{
+div.segment_widget_icon {
+		height: 24px;
+		width: 24px;
+    background: url(/graphics/segment.png) no-repeat;
+    margin-right: 10px;
+    margin-top: 3px;
+}
+
+div.audio_widget .bottom{
 		font-weight: normal;
 }
 
-div.file_widget .info{
+div.audio_widget .info{
 		padding-bottom: 10px;
 }
 
 /*pushed to universal classes*/
 
 .title{
-		font-size: 14px;
+		font-size: 13px;
 		text-transform: uppercase;
 		font-weight: bold;
 }
@@ -548,7 +594,6 @@ font-size: 15px;
 div#comment_list_panel_header {
 padding-bottom: 10px;
 margin: 0px 10px 0px 0px;
-text-align: right;
 border-bottom: 1px solid white;
 -webkit-box-shadow: 0px 1px 0px rgba(0,0,0,0.5);
 margin-bottom: 1px;
@@ -569,7 +614,8 @@ margin-right: 10px;
 }
 
 div.event_widget .icon{
-width: 20px;
+width: 24px;
+min-height: 24px;
 padding-right: 10px;
 border-right: 1px solid white;
 margin-bottom: 10px;
@@ -595,4 +641,73 @@ text-align: right;
 background: url(/graphics/comment.png) no-repeat;
 }
 
+.tag .icon {
+background: url(/graphics/tag.png) no-repeat;
+}
+
+
+/*SEGMETN BARS*/
+.segment_bars_1 {
+padding-top: 2px;
+height: 3px;
+display: -webkit-box;
+-webkit-box-orient: horizontal;
+}
+
+.segment_bars_1 .box1 {
+margin-left: 20px;
+background: #45455a;
+width: 90px;
+}
+
+.segment_bars_2 {
+padding-top: 2px;
+height: 3px;
+display: -webkit-box;
+-webkit-box-orient: horizontal;
+}
+
+.segment_bars_2 .box1 {
+margin-left: 5px;
+background: #45455a;
+width: 200px;
+}
+
+.segment_bars_3 {
+padding-top: 2px;
+height: 3px;
+display: -webkit-box;
+-webkit-box-orient: horizontal;
+}
+
+.segment_bars_3 .box1 {
+margin-left: 30px;
+background: #45455a;
+width: 120px;
+}
+
+.segment_bars_4 {
+padding-top: 2px;
+height: 3px;
+display: -webkit-box;
+-webkit-box-orient: horizontal;
+}
+
+.segment_bars_4 .box1 {
+margin-left: 50px;
+background: #45455a;
+width: 100px;
+}
+
+#background_glare{
+	border-color: transparent transparent transparent rgba(255,255,255,0.4);
+  border-style: solid;
+  border-width: 0px 0px 520px 960px;
+  width:0;
+  height:0;
+  z-index: -2000;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 
