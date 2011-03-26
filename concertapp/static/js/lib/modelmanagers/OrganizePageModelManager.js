@@ -59,6 +59,16 @@ OrganizePageModelManager.prototype.init = function(params) {
     same reason as above */
     this.collectionAudioSegments = new AudioSegmentSet;
     
+    var collectionAudioSegmentsByStartTime = new AudioSegmentSet;
+    collectionAudioSegmentsByStartTime.comparator = function(segment) {
+        return segment.get('beginning');
+    };
+    /**
+     *  All of the audio segments for this collection sorted by start time.
+     **/
+    this.collectionAudioSegmentsByStartTime = collectionAudioSegmentsByStartTime;
+    
+    
     /* Here are all of the tags for this collection */
     this.collectionTags = new TagSet;
 
@@ -80,8 +90,15 @@ OrganizePageModelManager.prototype._loadData = function() {
     this.collectionAudioFiles.refresh(dataToLoad.fileData, {silent: true});
     dataToLoad.fileData = null;
     
-    this.collectionAudioSegments.refresh(dataToLoad.segmentData);
+    var collectionAudioSegments = this.collectionAudioSegments;
+    collectionAudioSegments.refresh(dataToLoad.segmentData);
     dataToLoad.segmentData = null;
+    
+    var collectionAudioSegmentsByStartTime = this.collectionAudioSegmentsByStartTime;
+    /* Put all audio segments in sorted lists */
+    for(var i = 0, il = collectionAudioSegments.length; i < il; i++) {
+        collectionAudioSegmentsByStartTime.add(collectionAudioSegments.at(i));
+    }
     
     this.collectionTags.refresh(dataToLoad.tagData);
     dataToLoad.tagData = null;
