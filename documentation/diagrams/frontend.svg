@@ -533,12 +533,6 @@
       <tspan x="-741.51" y="278.467">which the UI then monitors for changes.</tspan>
     </text>
   </g>
-  <g>
-    <rect style="fill: #ffffff" x="311.552" y="190.529" width="158.65" height="42"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="311.552" y="190.529" width="158.65" height="42"/>
-    <text style="fill: #000000;text-anchor:middle;font-size:16;font-family:sanserif;font-style:italic;font-weight:700" x="390.877" y="209.529">Backbone.Model</text>
-    <text style="fill: #000000;text-anchor:middle;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="390.877" y="225.029">The base model</text>
-  </g>
   <text style="fill: #000000;text-anchor:start;font-size:28.2222;font-family:sanserif;font-style:normal;font-weight:700" x="-652.03" y="3740.56">
     <tspan x="-652.03" y="3740.56">Sets</tspan>
   </text>
@@ -549,48 +543,6 @@
     <text style="fill: #000000;text-anchor:start;font-size:16.9333;font-family:sanserif;font-style:normal;font-weight:normal" x="-894.462" y="3796.95">
       <tspan x="-894.462" y="3796.95">The way data is stored.  Various UI elements watch these data sets for changes.</tspan>
     </text>
-  </g>
-  <g>
-    <rect style="fill: #ffffff" x="64.4906" y="535.022" width="148.6" height="72"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="64.4906" y="535.022" width="148.6" height="72"/>
-    <text style="fill: #000000;text-anchor:middle;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="138.791" y="551.022">&lt;&lt;Backbone.Model&gt;&gt;</text>
-    <text style="fill: #000000;text-anchor:middle;font-size:16;font-family:sanserif;font-style:normal;font-weight:700" x="138.791" y="570.022">User</text>
-    <text style="fill: #000000;text-anchor:middle;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="138.791" y="585.522">Represents a user</text>
-    <text style="fill: #000000;text-anchor:middle;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="138.791" y="599.522">object</text>
-  </g>
-  <g>
-    <rect style="fill: #ffffff" x="315.1" y="483.556" width="148.6" height="86"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="315.1" y="483.556" width="148.6" height="86"/>
-    <text style="fill: #000000;text-anchor:middle;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="389.4" y="499.556">&lt;&lt;Backbone.Model&gt;&gt;</text>
-    <text style="fill: #000000;text-anchor:middle;font-size:16;font-family:sanserif;font-style:normal;font-weight:700" x="389.4" y="518.556">Collection</text>
-    <text style="fill: #000000;text-anchor:middle;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="389.4" y="534.056">Represents a</text>
-    <text style="fill: #000000;text-anchor:middle;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="389.4" y="548.056">concert collection</text>
-    <text style="fill: #000000;text-anchor:middle;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="389.4" y="562.056">object</text>
-  </g>
-  <g>
-    <rect style="fill: #ffffff" x="660.168" y="500.526" width="148.6" height="100"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="660.168" y="500.526" width="148.6" height="100"/>
-    <text style="fill: #000000;text-anchor:middle;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="734.468" y="516.526">&lt;&lt;Backbone.Model&gt;&gt;</text>
-    <text style="fill: #000000;text-anchor:middle;font-size:16;font-family:sanserif;font-style:normal;font-weight:700" x="734.468" y="535.526">Request</text>
-    <text style="fill: #000000;text-anchor:middle;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="734.468" y="551.026">Represents a</text>
-    <text style="fill: #000000;text-anchor:middle;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="734.468" y="565.026">concert Request</text>
-    <text style="fill: #000000;text-anchor:middle;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="734.468" y="579.026">object (request to</text>
-    <text style="fill: #000000;text-anchor:middle;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="734.468" y="593.026">join a group)</text>
-  </g>
-  <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="292.306,211.529 262.321,211.529 262.321,571.022 214.1,571.022 "/>
-    <polygon style="fill: #ffffff" points="292.306,219.529 308.306,211.529 292.306,203.529 "/>
-    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="292.306,219.529 308.306,211.529 292.306,203.529 "/>
-  </g>
-  <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="390.877,251.77 390.877,358.042 389.4,358.042 389.4,482.551 "/>
-    <polygon style="fill: #ffffff" points="398.877,251.77 390.877,235.77 382.877,251.77 "/>
-    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="398.877,251.77 390.877,235.77 382.877,251.77 "/>
-  </g>
-  <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="489.448,211.529 565.185,211.529 565.185,550.526 659.159,550.526 "/>
-    <polygon style="fill: #ffffff" points="489.448,203.529 473.448,211.529 489.448,219.529 "/>
-    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="489.448,203.529 473.448,211.529 489.448,219.529 "/>
   </g>
   <g>
     <rect style="fill: #ffffff" x="-704.524" y="3947.04" width="193.6" height="70"/>

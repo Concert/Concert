@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
-<svg width="26cm" height="16cm" viewBox="518 12 506 318" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="32cm" height="21cm" viewBox="518 -83 627 412" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <g>
     <rect style="fill: #ffffff" x="663" y="14" width="58.8" height="36"/>
     <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="663" y="14" width="58.8" height="36"/>
@@ -27,9 +27,9 @@
     <text style="fill: #000000;text-anchor:middle;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="958.2" y="36">ModelManager</text>
   </g>
   <g>
-    <rect style="fill: #ffffff" x="894" y="165.5" width="128.1" height="36"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="894" y="165.5" width="128.1" height="36"/>
-    <text style="fill: #000000;text-anchor:middle;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="958.05" y="187.5">SeenInstances</text>
+    <rect style="fill: #ffffff" x="995" y="159.5" width="66.5" height="36"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="995" y="159.5" width="66.5" height="36"/>
+    <text style="fill: #000000;text-anchor:middle;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="1028.25" y="181.5">Model</text>
   </g>
   <g>
     <polygon style="fill: #ffffff" points="777,32 808.55,13.07 840.1,32 808.55,50.93 "/>
@@ -44,11 +44,11 @@
     <polygon style="fill: #ffffff" points="911,117.67 957.95,89.5 1004.9,117.67 957.95,145.84 "/>
     <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="911,117.67 957.95,89.5 1004.9,117.67 957.95,145.84 "/>
     <text style="fill: #000000;text-anchor:end;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="905" y="111.67">1</text>
-    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="1010.9" y="111.67">1</text>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="1010.9" y="111.67">*</text>
     <text style="fill: #000000;text-anchor:middle;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="957.95" y="121.67">Manages</text>
   </g>
-  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="958.2,51.0093 958.2,69.7511 957.95,69.7511 957.95,88.4929 "/>
-  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="957.95,145.84 957,145.84 957,165.5 958.05,165.5 "/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="958.2,51.0016 958.2,76.5 911,76.5 911,117.67 "/>
+  <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1004.9,117.67 1032,117.67 1032,159.5 1028.25,159.5 "/>
   <g>
     <polygon style="fill: #ffffff" points="660,117.67 691.55,98.74 723.1,117.67 691.55,136.6 "/>
     <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="660,117.67 691.55,98.74 723.1,117.67 691.55,136.6 "/>
@@ -76,4 +76,15 @@
   </g>
   <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="692.25,207.502 692.25,241 756.1,241 756.1,240.83 "/>
   <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="819.2,240.83 819.2,266.16 818.65,266.16 818.65,291.491 "/>
+  <g>
+    <polygon style="fill: #ffffff" points="941,-81.5 1131.8,-81.5 1143.8,-69.5 1143.8,0.5 941,0.5 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="941,-81.5 1131.8,-81.5 1143.8,-69.5 1143.8,0.5 941,0.5 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" points="1131.8,-81.5 1131.8,-69.5 1143.8,-69.5 "/>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="948" y="-56.6">
+      <tspan x="948" y="-56.6">Put models in their own</tspan>
+      <tspan x="948" y="-40.6">manager object to get a</tspan>
+      <tspan x="948" y="-24.6">whole bunch of logic out</tspan>
+      <tspan x="948" y="-8.6">of the page.</tspan>
+    </text>
+  </g>
 </svg>
