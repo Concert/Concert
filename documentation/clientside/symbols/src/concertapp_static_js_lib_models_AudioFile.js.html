@@ -1,0 +1,84 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">/**
+<span class='line'>  2</span>  *  @file       AudioFile.js
+<span class='line'>  3</span>  *  
+<span class='line'>  4</span>  *  @author     Colin Sullivan &lt;colinsul [at] gmail.com>
+<span class='line'>  5</span>  **/</span><span class="WHIT">
+<span class='line'>  6</span> </span><span class="WHIT"> 
+<span class='line'>  7</span> </span><span class="COMM">/**
+<span class='line'>  8</span>  *  An audio file object.
+<span class='line'>  9</span>  *  @class
+<span class='line'> 10</span>  *  @extends    ConcertBackboneModel
+<span class='line'> 11</span>  **/</span><span class="WHIT">
+<span class='line'> 12</span> </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">AudioFile</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">ConcertBackboneModel.extend</span><span class="PUNC">(</span><span class="WHIT">
+<span class='line'> 13</span> </span><span class="WHIT">	</span><span class="COMM">/**
+<span class='line'> 14</span> 	 *	@scope	AudioFile.prototype
+<span class='line'> 15</span> 	 **/</span><span class="WHIT">
+<span class='line'> 16</span> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 17</span> </span><span class="WHIT">    </span><span class="NAME">foreignKeyAttributes</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 18</span> </span><span class="WHIT">        </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="WHIT">
+<span class='line'> 19</span> </span><span class="WHIT">            </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 20</span> </span><span class="WHIT">                </span><span class="NAME">attr</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'uploader'</span><span class="PUNC">,</span><span class="WHIT"> 
+<span class='line'> 21</span>                 </span><span class="NAME">model</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">User</span><span class="WHIT"> 
+<span class='line'> 22</span>             </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 23</span> </span><span class="WHIT">            </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 24</span> </span><span class="WHIT">                </span><span class="NAME">attr</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'collection'</span><span class="PUNC">,</span><span class="WHIT"> 
+<span class='line'> 25</span>                 </span><span class="NAME">model</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">Collection</span><span class="WHIT"> 
+<span class='line'> 26</span>             </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 27</span> </span><span class="WHIT">        </span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 28</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT"> 
+<span class='line'> 29</span>     </span><span class="NAME">name</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'audiofile'</span><span class="PUNC">,</span><span class="WHIT"> 
+<span class='line'> 30</span>     
+<span class='line'> 31</span>     </span><span class="COMM">/**
+<span class='line'> 32</span>      *  Returns the path to the audio file specified by type.
+<span class='line'> 33</span>      *
+<span class='line'> 34</span>      *  @param  {String: ogg|mp3}    type    -   The type of audio file
+<span class='line'> 35</span>      **/</span><span class="WHIT">
+<span class='line'> 36</span> </span><span class="WHIT">    </span><span class="NAME">get_audio_src</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">type</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 37</span> </span><span class="WHIT">        </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">id</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'id'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 38</span> </span><span class="WHIT">        
+<span class='line'> 39</span>         </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">id</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 40</span> </span><span class="WHIT">            </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="STRN">'/media/audio/'</span><span class="PUNC">+</span><span class="NAME">id</span><span class="PUNC">+</span><span class="STRN">'.'</span><span class="PUNC">+</span><span class="NAME">type</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 41</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 42</span> </span><span class="WHIT">        </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 43</span> </span><span class="WHIT">            </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 44</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 45</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT"> 
+<span class='line'> 46</span>     
+<span class='line'> 47</span>     </span><span class="COMM">/**
+<span class='line'> 48</span>      *  Returns the path to the waveform image specified by zoom_level
+<span class='line'> 49</span>      *
+<span class='line'> 50</span>      *  @param  {Number}    zoom_level    - The zoom level for this waveform image.
+<span class='line'> 51</span>      **/</span><span class="WHIT">
+<span class='line'> 52</span> </span><span class="WHIT">    </span><span class="NAME">get_waveform_src</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">zoom_level</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 53</span> </span><span class="WHIT">        </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">id</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'id'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 54</span> </span><span class="WHIT">        
+<span class='line'> 55</span>         </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">id</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 56</span> </span><span class="WHIT">            </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="STRN">'/media/waveforms/'</span><span class="PUNC">+</span><span class="NAME">zoom_level</span><span class="PUNC">+</span><span class="STRN">'/'</span><span class="PUNC">+</span><span class="NAME">id</span><span class="PUNC">+</span><span class="STRN">'.png'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 57</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 58</span> </span><span class="WHIT">        </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 59</span> </span><span class="WHIT">            </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 60</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 61</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT"> 
+<span class='line'> 62</span>     
+<span class='line'> 63</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 64</span> 
+<span class='line'> 65</span> </span><span class="COMM">/**
+<span class='line'> 66</span>  *  A set of audio file objects
+<span class='line'> 67</span>  *  @class
+<span class='line'> 68</span>  *  @extends    ConcertBackboneCollection
+<span class='line'> 69</span>  **/</span><span class="WHIT">
+<span class='line'> 70</span> </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">AudioFileSet</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">ConcertBackboneCollection.extend</span><span class="PUNC">(</span><span class="WHIT">
+<span class='line'> 71</span> </span><span class="WHIT">    </span><span class="COMM">/**
+<span class='line'> 72</span> 	 *	@scope	AudioFile.prototype
+<span class='line'> 73</span> 	 **/</span><span class="WHIT">
+<span class='line'> 74</span> </span><span class="WHIT">	
+<span class='line'> 75</span> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 76</span> </span><span class="WHIT">    </span><span class="NAME">model</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">AudioFile</span><span class="WHIT">
+<span class='line'> 77</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span></pre></body></html>
