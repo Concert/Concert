@@ -190,6 +190,9 @@ class AudioSegment(models.Model):
     audioFile = models.ForeignKey('AudioFile')
     creator = models.ForeignKey(User)
     collection = models.ForeignKey('Collection')
+    
+    def __unicode__(self):
+      return self.name
 
     def save(self, *args, **kwargs):
         self.full_clean()
