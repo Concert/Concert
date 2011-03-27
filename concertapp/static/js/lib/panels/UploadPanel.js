@@ -8,7 +8,11 @@
  *  The panel that contains the upload form for the user to upload multiple files.
  *  @class
  **/
-var UploadPanel = Panel.extend({    
+var UploadPanel = Panel.extend(
+	/**
+	 *	@scope	UploadPanel.prototype
+	 **/
+{
     initialize: function() {
         Panel.prototype.initialize.call(this);
 
@@ -165,8 +169,8 @@ var UploadPanel = Panel.extend({
      *  creating a new UploadingFileWidget, and moving the inputElement into the
      *  widget.
      *
-     *  @param  fileChooser        jQuery HTMLInputElement - the <input> element that 
-     *                              the user used to select this file.
+     *  @param  {jQuery HTMLInputElement}   fileChooser - the <input> element that 
+     *                                      the user used to select this file.
      **/
     addFile: function(fileChooser) {
         /* The index for the current file */

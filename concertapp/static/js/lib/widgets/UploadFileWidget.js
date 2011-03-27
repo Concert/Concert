@@ -9,10 +9,14 @@
  *  @class
  *  @extends    Widget
  **/
-var UploadFileWidget = Widget.extend({
+var UploadFileWidget = Widget.extend(
+	/**
+	 *	@scope	UploadFileWidget.prototype
+	 **/
+{
     /**
-     *  @param  fileChooser         jQuery HTMLInputElement - that was used to select
-     *                                  this file.
+     *  @param  {jQuery HTMLInputElement}   fileChooser - that was used to select
+     *                                      this file.
      **/
     initialize: function() {
         Widget.prototype.initialize.call(this);

@@ -9,7 +9,11 @@
  *  @class
  *  @extends    Backbone.View
  **/
-var Component = Backbone.View.extend({
+var Component = Backbone.View.extend(
+	/**
+	 *	@scope	Component.prototype
+	 **/
+{
     initialize: function() {
         Backbone.View.prototype.initialize.call(this);
 

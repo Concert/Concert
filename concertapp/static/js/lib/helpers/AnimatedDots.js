@@ -21,9 +21,9 @@ function AnimatedDots(params) {
 }
 
 /**
- *  @param  container       jQuery HTMLDivElement/HTMLSpanElement...Anything really.
- *  @param  numDots         Number - defaults to 3  
- *  @param  animationSpeed        Number - defaults to 500  
+ *  @param  {jQuery HTMLDivElement/HTMLSpanElement...Anything really.}  container       
+ *  @param  {Number}         numDots - defaults to 3  
+ *  @param  {Number}        animationSpeed - defaults to 500  
  **/
 AnimatedDots.prototype.init = function(params) {
 

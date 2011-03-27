@@ -9,7 +9,11 @@
  *  @class
  *  @extends    Component
  **/
-var DetailWaveformTimecodeComponent = Component.extend({
+var DetailWaveformTimecodeComponent = Component.extend(
+	/**
+	 *	@scope	DetailWaveformTimecodeComponent.prototype
+	 **/
+{
     initialize: function() {
         Component.prototype.initialize.call(this);
 

@@ -8,8 +8,11 @@
  *  @class 
  *  @extend Widget
  **/
-var CollectionSearchResultWidget = Widget.extend({
-    
+var CollectionSearchResultWidget = Widget.extend(
+	/**
+	 *	@scope	CollectionSearchResultWidget.prototype
+	 **/
+{
     initialize: function() {
         Widget.prototype.initialize.call(this);
 

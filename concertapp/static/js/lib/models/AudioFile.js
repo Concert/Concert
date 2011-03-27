@@ -9,7 +9,11 @@
  *  @class
  *  @extends    ConcertBackboneModel
  **/
-var AudioFile = ConcertBackboneModel.extend({
+var AudioFile = ConcertBackboneModel.extend(
+	/**
+	 *	@scope	AudioFile.prototype
+	 **/
+{
     foreignKeyAttributes: function() {
         return [
             {
@@ -23,6 +27,39 @@ var AudioFile = ConcertBackboneModel.extend({
         ];
     }, 
     name: 'audiofile', 
+    
+    /**
+     *  Returns the path to the audio file specified by type.
+     *
+     *  @param  {String: ogg|mp3}    type    -   The type of audio file
+     **/
+    get_audio_src: function(type) {
+        var id = this.get('id');
+        
+        if(id) {
+            return '/media/audio/'+id+'.'+type;
+        }
+        else {
+            return null;
+        }
+    }, 
+    
+    /**
+     *  Returns the path to the waveform image specified by zoom_level
+     *
+     *  @param  {Number}    zoom_level    - The zoom level for this waveform image.
+     **/
+    get_waveform_src: function(zoom_level) {
+        var id = this.get('id');
+        
+        if(id) {
+            return '/media/waveforms/'+zoom_level+'/'+id+'.png';
+        }
+        else {
+            return null;
+        }
+    }, 
+    
 });
 
 /**
@@ -30,6 +67,11 @@ var AudioFile = ConcertBackboneModel.extend({
  *  @class
  *  @extends    ConcertBackboneCollection
  **/
-var AudioFileSet = ConcertBackboneCollection.extend({
+var AudioFileSet = ConcertBackboneCollection.extend(
+    /**
+	 *	@scope	AudioFile.prototype
+	 **/
+	
+{
     model: AudioFile
 });

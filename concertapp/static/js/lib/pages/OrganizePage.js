@@ -9,7 +9,11 @@
  *	@class
  *  @extends    LoggedInPage
  **/
-var OrganizePage = LoggedInPage.extend({
+var OrganizePage = LoggedInPage.extend(
+	/**
+	 *	@scope	OrganizePage.prototype
+	 **/
+{
     
     _initializeModelManager: function(params) {
         return new OrganizePageModelManager(params);
@@ -61,15 +65,16 @@ var OrganizePage = LoggedInPage.extend({
             page: this, 
             el: $('#audio_list_panel'),
             files: modelManager.collectionAudioFiles,
-            segments: modelManager.collectionAudioSegments
+            segments: modelManager.collectionAudioSegments,
+            modelManager: modelManager, 
         });
         
         
         /* When the space button is pressed, pause/play our audio */
         $(window).bind('keydown', function(me) {
             return function(e) {
-                
-                if(e.keyCode == 32) {
+                /* If this was a space, not from an input element */
+                if(e.keyCode == 32 && !$(e.srcElement).is('input')) {
                     e.preventDefault();
                     e.stopPropagation();
                     
@@ -188,7 +193,7 @@ var OrganizePage = LoggedInPage.extend({
         
         
         /* The proper audio source for this browser */
-        var audiosrc = audioFile.get(this.audioType);
+        var audiosrc = audioFile.get_audio_src(this.audioType);
         
         this.audio.src = audiosrc;
         

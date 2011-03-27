@@ -8,22 +8,20 @@
  *  it contains the functionality associated with an audio file on the organize
  *  page.
  *  @class
- *  @extends    Widget
+ *  @extends    AudioListWidget
  **/
-var FileWidget = Widget.extend({
-    
+var FileWidget = AudioListWidget.extend(
+	/**
+	 *	@scope	FileWidget.prototype
+	 **/
+{
     initialize: function() {
-        Widget.prototype.initialize.call(this);
+        AudioListWidget.prototype.initialize.call(this);
 
         var params = this.options;        
         
         _.bindAll(this, "render");
         this.render();
-    },
-    render: function() {
-        Widget.prototype.render.call(this);
-        
-        return this;
     },
     events: {
         'click': 'select_file'

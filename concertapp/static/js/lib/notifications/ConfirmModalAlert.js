@@ -104,7 +104,7 @@ ConfirmModalAlert.prototype.displayContent = function(params) {
 /**
  *  Same as parent's displayContent, except with a confirm and cancel button
  *
- *  @param  params        Object  {
+ *  @param  {Object}        params  {
  *                          cancelText: The string to place in the cancel button
  *                          confirmText: The string for the OK button.
  *                          confirmCallback: The function to call when user confirms

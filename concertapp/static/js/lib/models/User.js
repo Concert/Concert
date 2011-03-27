@@ -9,7 +9,11 @@
  *  @class
  *  @extends    Backbone.Model
  **/ 
-var User = ConcertBackboneModel.extend({
+var User = ConcertBackboneModel.extend(
+	/**
+	 *	@scope	User.prototype
+	 **/
+{
     name: 'user' 
 });
 
@@ -17,6 +21,10 @@ var User = ConcertBackboneModel.extend({
  *  Users represents a collection of django User objects.
  *  @class
  **/
-var UserSet = ConcertBackboneCollection.extend({
+var UserSet = ConcertBackboneCollection.extend(
+	/**
+	 *	@scope	UserSet.prototype
+	 **/
+{
     model: User
 });

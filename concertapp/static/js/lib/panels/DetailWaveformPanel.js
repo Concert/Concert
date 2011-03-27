@@ -9,7 +9,11 @@
  *  @class
  *  @extends    WaveformPanel
  **/
-var DetailWaveformPanel = WaveformPanel.extend({    
+var DetailWaveformPanel = WaveformPanel.extend(
+	/**
+	 *	@scope	DetailWaveformPanel.prototype
+	 **/
+{    
     initialize: function() {
         WaveformPanel.prototype.initialize.call(this);
 
@@ -45,8 +49,7 @@ var DetailWaveformPanel = WaveformPanel.extend({
             throw new Error('topContainer not found');
         }
         this.topContainer = topContainer;
-        
-        
+                
         var timecodeContainerElement = $('#detail_waveform_panel_timecode');
         if(typeof(timecodeContainerElement) == 'undefined') {
             throw new Error('$(\'#detail_waveform_panel_timecode\') is undefined');
@@ -132,8 +135,16 @@ var DetailWaveformPanel = WaveformPanel.extend({
             this.topFileTemplate.tmpl(selectedAudioFile.toJSON())
         );
         
+        /* Create editable text component to handle name change */
+        this.topNameComponent = new EditableModelTextComponent({
+            panel: this, 
+            model: selectedAudioFile, 
+            attr: 'name',
+            el: $('#detail_waveform_selected_name_container')
+        });
+        
         /* Load waveform image */
-        this._load_waveform_image(selectedAudioFile.get('detailWaveform'), function(me, selectedAudioFile) {
+        this._load_waveform_image(selectedAudioFile.get_waveform_src(10), function(me, selectedAudioFile) {
             /* and when done */
             return function() {
                 /* Draw timecode */
@@ -157,11 +168,18 @@ var DetailWaveformPanel = WaveformPanel.extend({
         this.topContainer.html(
             this.topSegmentTemplate.tmpl(selectedAudioSegment.toJSON())
         );
-        
+
+        /* Create editable text component to handle name change */
+        this.topNameComponent = new EditableModelTextComponent({
+            panel: this, 
+            model: selectedAudioFile, 
+            attr: 'name',
+            el: $('#detail_waveform_selected_name_container')
+        });
         
         /* Load waveform image */
         this._load_waveform_image(
-            selectedAudioSegment.get('audioFile').get('detailWaveform'),
+            selectedAudioSegment.get('audioFile').get_waveform_src(10),
             function(me, selectedAudioSegment) {
                 return function() {
                     /* Draw timecode */

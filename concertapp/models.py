@@ -191,6 +191,9 @@ class AudioSegment(models.Model):
     creator = models.ForeignKey(User)
     collection = models.ForeignKey('Collection')
 
+    def __unicode__(self):
+        return self.name
+
     def save(self, *args, **kwargs):
         self.full_clean()
 
@@ -436,7 +439,7 @@ class TagComment(Comment):
     
 
 class SegmentComment(Comment):
-    segment = models.ForeignKey("AudioSegment")
+    segment = models.ForeignKey('AudioSegment', related_name='comments')
 
     def __unicode__(self):
         return "Segment Comment: " + self.comment[:10] + "..."
@@ -453,18 +456,24 @@ class SegmentComment(Comment):
     
 
 class AudioFile(models.Model):
-    DETAIL_WAVEFORM_LOCATION = 'images/detail/'
-    OVERVIEW_WAVEFORM_LOCATION = 'images/overview/'
+    # The zoom levels (px per second) for images that will be created.  A directory
+    # for each of these numbers should exist in the MEDIA_ROOT/waveforms/ directory
+    ZOOM_LEVELS = [10]
+    # The height of each waveform image
+    WAVEFORM_IMAGE_HEIGHT = 198
+    WAVEFORM_LOCATION = 'waveforms/'
     AUDIO_LOCATION = 'audio/'
     name = models.CharField(max_length = 100)
     uploader = models.ForeignKey(User)
     collection = models.ForeignKey('Collection')
-    wav = models.FileField(upload_to = AUDIO_LOCATION)
+    wav = models.FileField(upload_to = AUDIO_LOCATION, null = True)
     ogg = models.FileField(upload_to = AUDIO_LOCATION)
     mp3 = models.FileField(upload_to = AUDIO_LOCATION)
-    detailWaveform = models.ImageField(upload_to = DETAIL_WAVEFORM_LOCATION)
-    overviewWaveform = models.ImageField(upload_to = OVERVIEW_WAVEFORM_LOCATION)
-    duration = models.DecimalField(max_digits = 8, decimal_places = 2, default=-1.0)
+    # The duration of the audio file.  Default is 0
+    duration = models.DecimalField(max_digits = 8, decimal_places = 2, default=0)
+    
+    def __unicode__(self):
+        return self.name
 
     ###
     #   Do everything necessary when an audio object is first created.
@@ -475,28 +484,35 @@ class AudioFile(models.Model):
     #   @throws     probably other stuff.
     def save(self, f = None, *args, **kwargs):
         # if we're updating not initializing
-        if not f:
+        if self.pk:
             return super(AudioFile,self).save(*args,**kwargs)
             
         # Get original filename of uploaded file
         name = str(f)
         self.name = name
+
         
-        wavName = name+'.wav'
-        oggName = name+'.ogg'
-        mp3Name = name+'.mp3'
+        # Save ourself so we can get an id for the filename
+        super(AudioFile, self).save(*args, **kwargs)
         
+        # Using this AudioFile object's id, create filenames
+        idString = str(self.id)
+        wavName = idString+'.wav'
+        oggName = idString+'.ogg'
+        mp3Name = idString+'.mp3'
+        
+
         # grab the path of the temporary uploaded file.  This is where the user's
         #   uploaded file exists currently.
         inputFilePath = f.temporary_file_path()
+        
         
         #   Create files with dummy contents but with proper names.
         self.wav.save(wavName, SimpleUploadedFile(wavName, 'temp contents'), save = False)
         self.ogg.save(oggName, SimpleUploadedFile(oggName, 'temp contents'), save = False)
         self.mp3.save(mp3Name, SimpleUploadedFile(mp3Name, 'temp contents'), save = False)
         
-        #   Now we have an auto-generated name from Python, and we know where
-        #   we should put the converted audio files
+        #   Now we placeholders for the audio files.
         
         # The input is the temporary uploaded file location
         wavInput = f.temporary_file_path()
@@ -538,6 +554,7 @@ class AudioFile(models.Model):
         
     # Delete the current audio file from the filesystem
     def delete(self):
+      
         
         # Remove wav from this object, and delete file on filesystem.
         if(self.wav and os.path.exists(self.wav.name)):
@@ -547,7 +564,6 @@ class AudioFile(models.Model):
             
             #   So instead, lets just delete the file manually.
             os.unlink(self.wav.name)
-
             
         # Remove ogg
         if(self.ogg and os.path.exists(self.ogg.name)):
@@ -559,15 +575,15 @@ class AudioFile(models.Model):
             #self.mp3.delete(save=False)
             os.unlink(self.mp3.name)
 
-        # Remove viewer
-        if(self.overviewWaveform and os.path.exists(self.overviewWaveform.name)):
-            #self.overviewWaveform.delete(save=False)
-            os.unlink(self.overviewWaveform.name)
-
-        # Remove editor image
-        if(self.detailWaveform and os.path.exists(self.detailWaveform.name)):
-            #self.detailWaveform.delete(save=False)
-            os.unlink(self.detailWaveform.name)
+        # For each zoom level
+        for zoomLevel in AudioFile.ZOOM_LEVELS:
+            # Path to waveform image for this zoom level
+            waveformPath = self._get_waveform_path(zoomLevel)
+            # If image exists at this zoom level
+            if(os.path.exists(waveformPath)):
+                # Remove it
+                os.unlink(waveformPath)
+            
 
         # Get all segments who have this audio object as its parent
         segments = AudioSegment.objects.filter(audioFile = self)
@@ -584,6 +600,17 @@ class AudioFile(models.Model):
         if(self.id):
             super(AudioFile, self).delete()
 
+    ###
+    #   Return a path to a waveform image for this AudioFile object at a given
+    #   zoom level.
+    #   
+    #   @param  {Number}    zoomLevel    -  The given zoom level.
+    ###
+    def _get_waveform_path(self, zoomLevel):
+        return os.path.join(
+            MEDIA_ROOT, AudioFile.WAVEFORM_LOCATION, str(zoomLevel), str(self.id)+'.png'
+        )
+
     ##
     # Generate all the waveforms for this audio object.  
     #
@@ -592,24 +619,23 @@ class AudioFile(models.Model):
         wavPath = self.wav.name
         # Absolute path to our wave file
         wavPathAbsolute = os.path.join(MEDIA_ROOT, wavPath)
-        # Name of our wave file
-        wavName = self.wav.name.split(self.wav.field.upload_to)[1]
+        
+        idString = str(self.id)
         
         # Get length of audio (samples)
-        length = audioHelpers.getLength(wavPathAbsolute)
-        
+        length = audioHelpers.getLength(wavPathAbsolute)        
 
-        # Path to the image for the waveform overview (relative to MEDIA_ROOT)
-        overviewImgPath = self.overviewWaveform.field.upload_to + wavName + '.png'
-        
-        # Generate image
-        audioHelpers.generateWaveform(wavPathAbsolute, os.path.join(MEDIA_ROOT, overviewImgPath), 898, 58)
-
-        # Name of the image for the waveform editor (large waveform image)
-        detailImgPath = self.detailWaveform.field.upload_to + wavName + '.png'
-        audioHelpers.generateWaveform(wavPathAbsolute, os.path.join(MEDIA_ROOT, detailImgPath), 10 * length, 198)
-
-        # Save the path relative to the media_dir
-        self.overviewWaveform = overviewImgPath
-        self.detailWaveform = detailImgPath
-
+        # For each zoom level
+        for zoomLevel in AudioFile.ZOOM_LEVELS:
+            # Path to the image for the waveform at this zoom level
+            waveformPath = self._get_waveform_path(zoomLevel)
+            audioHelpers.generateWaveform(
+                # from this wave file
+                wavPathAbsolute, 
+                # put waveform here
+                waveformPath, 
+                # At zoomLevel px per second (width)
+                zoomLevel * length, 
+                # Height
+                AudioFile.WAVEFORM_IMAGE_HEIGHT
+            )

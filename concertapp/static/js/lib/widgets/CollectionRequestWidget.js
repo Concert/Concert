@@ -10,8 +10,11 @@
  *  @class
  *  @extends    Widget
  **/
-var CollectionRequestWidget = Widget.extend({
-    
+var CollectionRequestWidget = Widget.extend(
+	/**
+	 *	@scope	CollectionRequestWidget.prototype
+	 **/
+{
     initialize: function() {
         Widget.prototype.initialize.call(this);
 
@@ -29,12 +32,12 @@ var CollectionRequestWidget = Widget.extend({
         
         var container = $(this.el);
         
-        /* User widget */
+        /* User widget 
         var userWidget = new UserWidget({
             container: container.children('.user_widget')
         });
         this.userWidget = userWidget;
-        
+        */
         
         return this;
     },

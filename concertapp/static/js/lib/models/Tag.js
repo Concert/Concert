@@ -10,7 +10,11 @@
  *  @class
  *  @extends    ConcertBackboneModel
  **/
-var Tag = ConcertBackboneModel.extend({
+var Tag = ConcertBackboneModel.extend(
+	/**
+	 *	@scope	Tag.prototype
+	 **/
+{
     foreignKeyAttributes: function() {
         return [
             {
@@ -32,6 +36,10 @@ var Tag = ConcertBackboneModel.extend({
  *  @class
  *  @extends    ConcertBackboneCollection
  **/
-var TagSet = ConcertBackboneCollection.extend({
+var TagSet = ConcertBackboneCollection.extend(
+	/**
+	 *	@scope	TagSet.prototype
+	 **/
+{
     model: Tag
 });

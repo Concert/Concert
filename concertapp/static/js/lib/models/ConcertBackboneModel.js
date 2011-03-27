@@ -7,7 +7,11 @@
  *  This is the class that all of our models inherit from, and provides special 
  *  functionality that we need for each model.
  **/
-var ConcertBackboneModel = Backbone.Model.extend({
+var ConcertBackboneModel = Backbone.Model.extend(
+	/**
+	 *	@scope	ConcertBackboneModel.prototype
+	 **/
+{
     
     /**
      *  On set, make sure all foreign key attributes and many to many attributes are

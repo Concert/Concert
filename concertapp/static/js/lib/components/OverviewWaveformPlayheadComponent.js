@@ -9,7 +9,11 @@
  *  @class
  *  @extends    WaveformPlayheadComponent
  **/
-var OverviewWaveformPlayheadComponent = WaveformPlayheadComponent.extend({
+var OverviewWaveformPlayheadComponent = WaveformPlayheadComponent.extend(
+	/**
+	 *	@scope	OverviewWaveformPlayheadComponent.prototype
+	 **/
+{
     initialize: function() {
         WaveformPlayheadComponent.prototype.initialize.call(this);
     },

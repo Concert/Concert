@@ -19,7 +19,7 @@ function Button(params) {
 /**
  *  Initializes behavior for buttons.
  *
- *  @param  params.container            jQuery HTMLDivElement - The DOM element that
+ *  @param  {jQuery HTMLDivElement}     params.container - The DOM element that
  *                                      all of the buttons behaviors will be assigned
  *                                      to.
  *

@@ -60,6 +60,9 @@ LoggedInModelManager.prototype.init = function(params) {
     /* Tags that we have seen */
     this.seenInstances['tag'] = new TagSet;
     
+    /* Comments we have seen */
+    this.seenInstances['comment'] = new CommentSet;
+    
     /* We will keep a reference to the current user */
     this.user = new User;
     

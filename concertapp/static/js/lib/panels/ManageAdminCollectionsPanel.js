@@ -11,7 +11,11 @@
  *  @class
  *  @extends    ManageTablePanel
  **/
-var ManageAdminCollectionsPanel = ManageTablePanel.extend({
+var ManageAdminCollectionsPanel = ManageTablePanel.extend(
+	/**
+	 *	@scope	ManageAdminCollectionsPanel.prototype
+	 **/
+{
     
     initialize: function() {
         ManageTablePanel.prototype.initialize.call(this);

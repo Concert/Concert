@@ -11,9 +11,10 @@ from concertapp.audiosegments.api import AudioSegmentResource
 from concertapp.organize.views import organize_collection
 from concertapp.dashboard.views import dashboard
 
+from concertapp.admin import admin_site
+
 from django.conf import settings
 from django.conf.urls.defaults import *
-from django.contrib import admin
 from django.views.generic.simple import redirect_to
 from tastypie.api import Api
 import django.contrib.auth.views
@@ -30,8 +31,6 @@ api1.register(AudioSegmentResource())
 # Events
 api1.register(EventResource())
 api1.register(RequestJoinCollectionEventResource())
-
-admin.autodiscover()
 
 urlpatterns = patterns('',
 
@@ -67,7 +66,7 @@ urlpatterns = patterns('',
     (r'^api/', include(api1.urls)),
 
     # admin
-    (r'^admin/', include(admin.site.urls)),
+    (r'^admin/', include(admin_site.urls)),
 )
 
 

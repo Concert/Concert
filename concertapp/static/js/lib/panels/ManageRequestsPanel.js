@@ -11,8 +11,11 @@
  *  @class
  *  @extends    ManageTablePanel
  **/
-var ManageRequestsPanel = ManageTablePanel.extend({
-    
+var ManageRequestsPanel = ManageTablePanel.extend(
+	/**
+	 *	@scope	ManageRequestsPanel.prototype
+	 **/
+{
     initialize: function() {
         ManageTablePanel.prototype.initialize.call(this);
 

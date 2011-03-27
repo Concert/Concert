@@ -10,7 +10,11 @@
  *	@class
  *  @extends    Backbone.Controller
  **/
-var Page = Backbone.Controller.extend({
+var Page = Backbone.Controller.extend(
+	/**
+	 *	@scope	Page.prototype
+	 **/
+{
     initialize: function(params) {
         /* Create dataset manager */
         var modelManager = this._initializeModelManager(params);

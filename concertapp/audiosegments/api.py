@@ -4,6 +4,7 @@ from concertapp.users.api import *
 from concertapp.audio.api import AudioFileResource
 from concertapp.collection.api import CollectionResource
 from concertapp.tags.api import TagResource
+from concertapp.comment.api import CommentResource
 from django.conf.urls.defaults import *
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
@@ -42,7 +43,8 @@ class AudioSegmentResource(NestedResource):
     audioFile = fields.ForeignKey(AudioFileResource, 'audioFile', full=True)
     tags = fields.ManyToManyField(TagResource, 'tags', full=True, null=True)
     collection = fields.ForeignKey(CollectionResource, 'collection', full=True)
-
+    comments = fields.ManyToManyField(CommentResource, 'comments', full=True, null=True)
+    
     class Meta:
         authentication = DjangoAuthentication()
         authorization = AudioSegmentAuthorization()

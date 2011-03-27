@@ -9,7 +9,11 @@
  *	@class
  *  @extends LoggedInPage
  **/
-var CollectionsPage = LoggedInPage.extend({
+var CollectionsPage = LoggedInPage.extend(
+	/**
+	 *	@scope	CollectionsPage.prototype
+	 **/
+{
     _initializeModelManager: function(params) {
         return new CollectionsPageModelManager(params);
     }, 
