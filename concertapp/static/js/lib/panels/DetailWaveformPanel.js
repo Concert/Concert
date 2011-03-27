@@ -216,14 +216,10 @@ var DetailWaveformPanel = WaveformPanel.extend(
     /**
      *  handle_scroll_stop is called on event above
      *  if autoscroll is OFF and the playhead is in view, turn autoscroll ON
-     *  otherwise keep autoscroll OFF
      **/
     handle_scroll_stop: function() {
         if (!this.autoscrollBool && this.playhead_in_view()) {
             this.autoscrollBool = true;
-        }
-        else {
-            this.autoscrollBool = false;
         }
     },
     

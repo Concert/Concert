@@ -174,8 +174,8 @@ var WaveformInteractionComponent = Component.extend(
             //update audio's currentTime to location clicked
             var seconds = dragStartX/this.panel.get_resolution();
             this.panel.page.move_audio(seconds);
-            
             return;
+            
         } else {
             this.leftHandle.removeClass('disabled');
             this.rightHandle.removeClass('disabled');

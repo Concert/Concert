@@ -313,7 +313,12 @@ var OrganizePage = LoggedInPage.extend(
     }, 
     
     move_audio: function(seconds) {
+        $(this.audio).one('timeupdate', function(me) {
+            return function() {
+                me.detailPanel.handle_scroll_stop();
+            }
+        }(this))
         this.audio.currentTime = seconds;
-    }, 
+    },     
     
 });
