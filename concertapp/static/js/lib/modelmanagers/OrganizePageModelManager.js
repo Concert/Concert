@@ -84,7 +84,6 @@ OrganizePageModelManager.prototype._loadData = function() {
     collectionAudioSegments.refresh(dataToLoad.segmentData);
     dataToLoad.segmentData = null;
     
-
     this.collectionTags.refresh(dataToLoad.tagData);
     dataToLoad.tagData = null;
 };

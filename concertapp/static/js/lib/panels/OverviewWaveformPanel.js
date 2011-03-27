@@ -103,7 +103,10 @@ var OverviewWaveformPanel = WaveformPanel.extend({
             selectedAudioFile.get_waveform_src(10),
             function(me, selectedAudioFile) {
                 return function() {
+                    /* Tell highlighter */
                     me.highlighter.audio_file_selected(selectedAudioFile);
+                    /* render segments */
+                    me.render_segment_bars(selectedAudioFile);
                 }
             }(this, selectedAudioFile)
         );
@@ -122,12 +125,15 @@ var OverviewWaveformPanel = WaveformPanel.extend({
         /* Load waveform image */
         this._load_waveform_image(
             audioFile.get_waveform_src(10),
-            /* Then tell highligher */
-            function(me, selectedAudioSegment) {
+            /* Then */
+            function(me, selectedAudioSegment, audioFile) {
                 return function() {
+                    /* Tell highlighter */
                     me.highlighter.audio_segment_selected(selectedAudioSegment);
+                    /* render segments */
+                    me.render_segment_bars(audioFile)
                 };
-            }(this, selectedAudioSegment)
+            }(this, selectedAudioSegment, audioFile)
         );
     }, 
     
@@ -135,7 +141,7 @@ var OverviewWaveformPanel = WaveformPanel.extend({
      *  The resolution of the waveform image (in pixels per second)
      **/
     get_resolution: function() {
-        /* Width of image is currently always 898 */
+        /* Width of image is currently always 960 */
         var width = 960;
         
         /* current duration of audio file */
@@ -159,12 +165,104 @@ var OverviewWaveformPanel = WaveformPanel.extend({
         /* Segments for this audio file */
         var segments = audioFile.get('segments');
         
-        /* for each segment */
+        /* For each row, save SegmentBarWidgets */
+        var segmentBarWidgets = [];
+        
+        /* for each row, save the right most SegmentBarWidget */
+        var rightmostSegmentBarWidgets = [];
+        
+        /* Each row element */
+        var segmentRowElements = [];
+        
+        /* Templates we will need */
+        var segmentBarRowTemplate = this.segmentBarRowTemplate;
+        var segmentBarTemplate = this.segmentBarTemplate;
+        
+        /* DOM Elements */
+        var segmentBarsContainerElement = this.segmentBarsContainerElement;
+        
+        /**
+         *  Determine if segment will fit on a given row. Called below.
+         **/
+        var segmentWillFitOnRow = function() {
+            /* get rightmost SegmentBarWidget */
+            var rightmost = rightmostSegmentBarWidgets[rowIndex];
+            
+            /* If this widget will fit after it */
+            if(widget.leftPx > rightmost.rightPx) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        
+        /* for each segment (they are already sorted by startTime)*/
         for(var i = 0, il = segments.length; i < il; i++) {
             var seg = segments.at(i);
             
-            console.log('seg.toJSON():');
-            console.log(seg.toJSON());
+            /* Which row we are currently on */
+            var rowIndex = 0;
+            
+            /* Create widget for this segment */
+            var widget = new AudioSegmentBarWidget({
+                panel: this, 
+                template: segmentBarTemplate,
+                model: seg 
+            }).render();
+            
+            
+            while(true) {
+                /* If there are segments in this row */
+                if(segmentBarWidgets[rowIndex]) {
+                    
+                    /* If segment will fit on this row */
+                    if(segmentWillFitOnRow()) {
+                        /* put widget on this row */
+                        segmentRowElements[rowIndex].append(widget.el);
+                        
+                        /* Save widget */
+                        segmentBarWidgets[rowIndex].push(widget);
+                        
+                        /* it is now the rightmost */
+                        rightmostSegmentBarWidgets[rowIndex] = widget;
+                    }
+                    /* if it wont fit */
+                    else {
+                        /* go to next row */
+                        rowIndex++;
+                    }                
+                }
+                /* There are no segments in this row yet, we will fit */
+                else {
+                    
+                    /* Create row */
+                    var rowElement = segmentBarRowTemplate.tmpl({
+                        row: rowIndex
+                    });
+                    
+                    
+                    /* Put widget in row */
+                    rowElement.append(widget.el);
+                    
+                    /* Save row */
+                    segmentRowElements[rowIndex] = rowElement;
+                    
+                    /* Put row in panel */
+                    segmentBarsContainerElement.append(rowElement);
+                    
+                    /* save segment bar widget */
+                    segmentBarWidgets[rowIndex] = [widget];
+                    
+                    /* We're currently the only segment, therefore we are the 
+                    rightmost */
+                    rightmostSegmentBarWidgets[rowIndex] = widget;
+                    
+                    /* Done with this segment */
+                    break;
+                }
+            }
+            
         }
     }, 
 })
