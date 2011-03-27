@@ -29,19 +29,8 @@ var OrganizePage = LoggedInPage.extend(
         audio.preload = 'auto';
         this.audio = audio;
         
-        /**
-         *  The callback function for an audio loop (on a timeupdate event)
-         *  Doesn't work when initially set to null:
-         *  since clear_audio_loop is initially called before start_audio_loop
-         *  for all highlights, the call: unbind('timeupdate', null) is made
-         *  on the first highlight, unbinding all handlers bound to 'timeupdate'
-         *  including the playhead event handler
-         **/ 
-         //this.audioLoopTimeUpdateCallback = null;
-        var handler = function() {
-            console.log('handler function');
-        };
-        this.audioLoopTimeUpdateCallback = handler;
+        /* The callback function for an audio loop (on a timeupdate event) */ 
+        this.audioLoopTimeUpdateCallback = function() {};
         
         /* This is the type of audio file we will use */
         this.audioType = com.concertsoundorganizer.compatibility.audioType;
