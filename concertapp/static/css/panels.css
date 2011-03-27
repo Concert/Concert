@@ -4,8 +4,8 @@
 
 /* FONT IMPORT */
 @font-face {
-  font-family: "GeosansLight";
-  src: url(/fonts/GeosansLight.ttf) format("truetype");
+    font-family: "GeosansLight";
+    src: url(/fonts/GeosansLight.ttf) format("truetype");
 }
 
 /*selection prefs*/
@@ -13,12 +13,12 @@
 div::selection {
     background-color:Transparent;
     color:#000;
-    }
-    
+}
+
 img::selection {
     background-color:Transparent;
     color:#000;
-    }
+}
 
 /* This is a panel on the UI, used for many things. */
 div.panel {
@@ -94,28 +94,28 @@ div#global_options_panel_left h1 {
 
 /* NOT IN USE AT THE MOMENT
 div#global_options_panel_left div#logout_info {
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: .75em;
-    margin-left: 2em;
-    margin-top: 1em;
-    display: -webkit-box;
-    -webkit-box-flex: 1;
-    -webkit-box-align: baseline;
+text-transform: uppercase;
+font-weight: bold;
+font-size: .75em;
+margin-left: 2em;
+margin-top: 1em;
+display: -webkit-box;
+-webkit-box-flex: 1;
+-webkit-box-align: baseline;
 }
 
 
 div#global_options_panel_left div#logout_info a{
-    margin-left: 1em;
+margin-left: 1em;
 }
 
 div#global_options_panel_middle {
-    text-align: center;
-    width: 320px;
+text-align: center;
+width: 320px;
 }*/
 
 div#global_options_panel_right {
-	width: 640px;
+    width: 640px;
     -webkit-box-pack: end;
     /* Contents (buttons) will also be horizontally spread using the box model */
     -webkit-box-orient: horizontal;
@@ -123,24 +123,24 @@ div#global_options_panel_right {
 }
 
 div#global_menu ul{
-	float: right;
-	padding-top: 29px;
+    float: right;
+    padding-top: 29px;
 }
 
 div#global_menu li{
-	float: right;
-	padding-left: 20px;
-	list-style: none;
-	font-size: 10px;
-	font-family: Helvetica, sans-serif;
-	text-transform: capitalize;
+    float: right;
+    padding-left: 20px;
+    list-style: none;
+    font-size: 10px;
+    font-family: Helvetica, sans-serif;
+    text-transform: capitalize;
 }
 
 div#global_menu a:link, a:hover, a:visited{
-	color: #282833;
-	font-weight: bold;
-	text-decoration: none;
-	text-transform:uppercase;
+    color: #282833;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform:uppercase;
 }
 
 div.global_options_panel_button {
@@ -165,7 +165,7 @@ div#overview_waveform_panel_contents {
 
 div#overview_waveform_panel_top_wrap {
     background: -webkit-gradient(linear, left top, left bottom, from(#18181f), to(#45455a));
-    
+
 }
 
 div#overview_waveform_panel_top {
@@ -186,12 +186,12 @@ div #overview_waveform_panel_playhead {
 }
 
 div.playhead {
-  background-color: #FF0000;
-  color: #FF0000;
-  width: 1px;
-  z-index: 300;
-  position: absolute;
-  
+    background-color: #FF0000;
+    color: #FF0000;
+    width: 1px;
+    z-index: 300;
+    position: absolute;
+
 }
 
 /*Detail Waveform Panel */
@@ -209,10 +209,10 @@ div#detail_waveform_panel_contents {
 }
 
 div#detail_waveform_panel_top_wrap{
--webkit-box-shadow: 0 0 10px rgba(0,0,0,0.25);
+    -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.25);
     border-top: 1px solid white;
-		border-right: 1px solid white;
-		border-left: 1px solid white;
+    border-right: 1px solid white;
+    border-left: 1px solid white;
 }
 
 div#detail_waveform_panel_top {
@@ -272,35 +272,35 @@ div#detail_waveform_panel_buf_right {
 }
 
 div#detail_waveform_panel_buf_left .arrow_space{
-height: 57px;
-width: 100%;
-padding-top: 43px;
+    height: 57px;
+    width: 100%;
+    padding-top: 43px;
 }
 
 div#detail_waveform_panel_buf_right .arrow_space{
-height: 57px;
-width: 100%;
-padding-top: 43px;
+    height: 57px;
+    width: 100%;
+    padding-top: 43px;
 }
 
 div#detail_waveform_panel_buf_left .arrow_space .arrow{
-	border-color: transparent #45455a transparent transparent;
-  border-style: solid;
-  border-width: 8px 12px 8px 0px;
-  width:0;
-  height:0;
+    border-color: transparent #45455a transparent transparent;
+    border-style: solid;
+    border-width: 8px 12px 8px 0px;
+    width:0;
+    height:0;
 }
 
 div#detail_waveform_panel_buf_right .arrow_space .arrow{
-	border-color: transparent transparent transparent #45455a;
-  border-style: solid;
-  border-width: 8px 0px 8px 12px;
-  width:0;
-  height:0;
+    border-color: transparent transparent transparent #45455a;
+    border-style: solid;
+    border-width: 8px 0px 8px 12px;
+    width:0;
+    height:0;
 }
 
 div#detail_waveform_panel_view {
-	  color: #f8f8fa;
+    color: #f8f8fa;
     width: 880px;
     height: 255px;
     position: absolute;
@@ -311,7 +311,7 @@ div#detail_waveform_panel_view {
 
 /**SHADOW AND NOISE**/
 div#detail_waveform_panel_view_overlay {
-		width: 878px;
+    width: 878px;
     height: 198px;
     -webkit-box-shadow:inset 0 0 10px #000000;
     z-index: 200;
@@ -323,7 +323,7 @@ div#detail_waveform_panel_view_overlay {
 
 /**UNDERLAY GRADIENT**/
 div#detail_waveform_panel_view_underlay {
-		width: 880px;
+    width: 880px;
     height: 200px;
     z-index: 100;
     position: absolute;
@@ -375,39 +375,39 @@ div#audiolist_panel_contents {
 
 
 /**
- *  Waveform highlight
- **/
-    
+*  Waveform highlight
+**/
+
 div.highlight_container {
-  z-index: 300;
-  position: absolute;
+    z-index: 300;
+    position: absolute;
 }
 
 div.highlight {
-  height: 100%;
-  position: relative;
-  background: transparent;
-  -webkit-box-shadow:inset 0 0 20px #fff;
-  border-left: 1px solid #fff;
-  border-right: 1px solid #fff;
-  -webkit-box-shadow: 0px 0px 10px #000;
+    height: 100%;
+    position: relative;
+    background: transparent;
+    -webkit-box-shadow:inset 0 0 20px #fff;
+    border-left: 1px solid #fff;
+    border-right: 1px solid #fff;
+    -webkit-box-shadow: 0px 0px 10px #000;
 }
 
 /* Initially a highlight will be disabled */
 div.highlight.disabled {
-  visibility: hidden;
+    visibility: hidden;
 }
 
 div#detail_waveform_panel_highlight_container {
-  height: 253px;
+    height: 253px;
 }
 div#overview_waveform_panel_highlight_container {
     height: 58px;
 }
 
 /**
- *  Waveform images
- **/
+*  Waveform images
+**/
 img.waveform_image {
     display: block;
     z-index: 100;
@@ -435,247 +435,249 @@ div.file_widget {
 }
 
 div.tag {
-		display: block;
-		float: left;
-		height: 15px;
+    display: block;
+    float: left;
+    height: 15px;
     text-transform: uppercase;
     font-weight: bold;
     font-size: 10px;
-		background: #f8f8fa url(/graphics/x.png) -23px 0px no-repeat;
+    background: #f8f8fa url(/graphics/x.png) -23px 0px no-repeat;
     border: 1px solid white;
     -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.5);
-		padding: 3px 5px 0px 5px;
-		margin: 10px 10px 0px 0px;
-		cursor: pointer;
+    padding: 3px 5px 0px 5px;
+    margin: 10px 10px 0px 0px;
+    cursor: pointer;
 }
 
 /*div.tag:hover {
-		padding: 3px 5px 0px 25px;
-		background: #fff url(/graphics/x.png) left left no-repeat;
-		margin: 7px 10px 0px 0px;
+padding: 3px 5px 0px 25px;
+background: #fff url(/graphics/x.png) left left no-repeat;
+margin: 7px 10px 0px 0px;
 }*/
 
 @-webkit-keyframes tagExpand {
-	0% {
-	padding: 3px 5px 0px 5px;
-	background: #fff url(/graphics/x.png) -23px 0px no-repeat;
-	margin: 7px 10px 3px 0px;
-	}
-	75% {
-	padding: 3px 5px 0px 5px;
-	background: #fff url(/graphics/x.png) -23px 0px no-repeat;
-	margin: 7px 10px 3px 0px;
-	}
-	100% {
-	padding: 3px 5px 0px 25px;
-	background: #fff url(/graphics/x.png) left left no-repeat;
-	margin: 7px 10px 3px 0px;
-	}
+    0% {
+        padding: 3px 5px 0px 5px;
+        background: #fff url(/graphics/x.png) -23px 0px no-repeat;
+        margin: 7px 10px 3px 0px;
+    }
+    75% {
+        padding: 3px 5px 0px 5px;
+        background: #fff url(/graphics/x.png) -23px 0px no-repeat;
+        margin: 7px 10px 3px 0px;
+    }
+    100% {
+        padding: 3px 5px 0px 25px;
+        background: #fff url(/graphics/x.png) left left no-repeat;
+        margin: 7px 10px 3px 0px;
+    }
 }
 
 div.tag:hover {
-	-webkit-animation-name: tagExpand;
-	-webkit-animation-duration: 4s;
-	-webkit-animation-iteration-count: 1;
-	-webkit-animation-direction: alternate;
-	-webkit-animation-timing-function: ease-in-out;
-	padding: 3px 5px 0px 25px;
-	background: #fff url(/graphics/x.png) left left no-repeat;
-	margin: 7px 10px 3px 0px;
+    -webkit-animation-name: tagExpand;
+    -webkit-animation-duration: 4s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-direction: alternate;
+    -webkit-animation-timing-function: ease-in-out;
+    padding: 3px 5px 0px 25px;
+    background: #fff url(/graphics/x.png) left left no-repeat;
+    margin: 7px 10px 3px 0px;
 }	
 
 /*AUDIO PANEL*/
 
 div#audio_list_panel{
-		border-left: 1px solid white;
-		width: 469px;
-		margin-bottom: 10px;
-		-webkit-box-shadow: -1px 0px 0px rgba(0,0,0,0.5);
+    border-left: 1px solid white;
+    width: 469px;
+    margin-bottom: 10px;
+    -webkit-box-shadow: -1px 0px 0px rgba(0,0,0,0.5);
 }
 
 div#audio_list_panel_header{
-		background: -webkit-gradient(linear, left top, left bottom, from(#18181f), to(#45455a));
-		margin-left: 10px;
-		width: 467px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#18181f), to(#45455a));
+    margin-left: 10px;
+    width: 467px;
 }
 
 input#audio_search{
-		height: 28px;
-		width: 447px;
-		-webkit-box-shadow:inset 0 0 10px #000;
-		color: white;
-		font-family: Georgia, serif;
-		border-top: 1px solid white;
-		border-right: 1px solid white;
-		border-left: 1px solid white;
-		font-size: 14px;
-		text-shadow: none;
-		padding: 10px 10px 0px 10px;
-		background: transparent;
-		outline: 0px;
-		margin-bottom: -2px;
+    height: 28px;
+    width: 447px;
+    -webkit-box-shadow:inset 0 0 10px #000;
+    color: white;
+    font-family: Georgia, serif;
+    border-top: 1px solid white;
+    border-right: 1px solid white;
+    border-left: 1px solid white;
+    font-size: 14px;
+    text-shadow: none;
+    padding: 10px 10px 0px 10px;
+    background: transparent;
+    outline: 0px;
+    margin-bottom: -2px;
 }
 
 div#audio_list_panel .selected{
-		background: white;
-		color: #2e2e35;
-		overflow: hidden;
-		padding: 10px 0px 10px 10px;
-		margin-left: 0px;
-		margin-bottom: 1px;
-		border-bottom: none;
-		border-bottom: 1px solid white;
-		-webkit-box-shadow: 0px 0px 5px rgba(0,0,0,0.5)
+    background: white;
+    color: #2e2e35;
+    overflow: hidden;
+    padding: 10px 0px 10px 10px;
+    margin-left: 0px;
+    margin-bottom: 1px;
+    border-bottom: none;
+    border-bottom: 1px solid white;
+    -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,0.5)
 }
 
 div.audio_widget {
-		width: 467px;
-		margin-left: 10px;
-		margin-bottom: 1px;
-		padding: 10px 0px 10px 0px;
-		border-top: 1px solid white;
-		border-bottom: 1px solid white;
-		-webkit-box-shadow: 0px 1px 0px rgba(0,0,0,0.5);
-		font-weight: bold;
+    width: 467px;
+    margin-left: 10px;
+    margin-bottom: 1px;
+    padding: 10px 0px 10px 0px;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    -webkit-box-shadow: 0px 1px 0px rgba(0,0,0,0.5);
+    font-weight: bold;
     cursor: pointer;
 }
 
 div.audio_widget .boxwrap{
-		display: -webkit-box;
+    display: -webkit-box;
     -webkit-box-orient: horizontal;
 }
 
 div.file_widget_icon {
-		height: 24px;
-		width: 24px;
+    height: 24px;
+    width: 24px;
     background: url(/graphics/file.png) no-repeat;
     margin-right: 10px;
     margin-top: 3px;
 }
 
 div.segment_widget_icon {
-		height: 24px;
-		width: 24px;
+    height: 24px;
+    width: 24px;
     background: url(/graphics/segment.png) no-repeat;
     margin-right: 10px;
     margin-top: 3px;
 }
 
 div.audio_widget .bottom{
-		font-weight: normal;
+    font-weight: normal;
 }
 
 div.audio_widget .info{
-		padding-bottom: 10px;
+    padding-bottom: 10px;
 }
 
 /*pushed to universal classes*/
 
 .title{
-		font-size: 13px;
-		text-transform: uppercase;
-		font-weight: bold;
+    font-size: 13px;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
 .small_text{
-		font-size: 10px;
-		font-weight: normal;
-		padding-bottom: 8px;
+    font-size: 10px;
+    font-weight: normal;
+    padding-bottom: 8px;
 }
 
 .text{
-font-family: Georgia, serif;
-text-transform: none;
-font-size: 15px;
+    font-family: Georgia, serif;
+    text-transform: none;
+    font-size: 15px;
 }
 
 /*event header*/
 
 div#comment_list_panel_header {
-padding-bottom: 10px;
-margin: 0px 10px 0px 0px;
-border-bottom: 1px solid white;
--webkit-box-shadow: 0px 1px 0px rgba(0,0,0,0.5);
-margin-bottom: 1px;
+    padding-bottom: 10px;
+    margin: 0px 10px 0px 0px;
+    border-bottom: 1px solid white;
+    -webkit-box-shadow: 0px 1px 0px rgba(0,0,0,0.5);
+    margin-bottom: 1px;
 }
 
 /*event_widget*/
 
 .event_widget{
-display: -webkit-box;
--webkit-box-orient: horizontal;
-width: 470px;
-border-bottom: 1px solid white;
-border-top: 1px solid white;
--webkit-box-shadow: 0px 1px 0px rgba(0,0,0,0.5);
-padding-top: 10px;
-margin-bottom: 1px;
-margin-right: 10px;
+    display: -webkit-box;
+    -webkit-box-orient: horizontal;
+    width: 470px;
+    border-bottom: 1px solid white;
+    border-top: 1px solid white;
+    -webkit-box-shadow: 0px 1px 0px rgba(0,0,0,0.5);
+    padding-top: 10px;
+    margin-bottom: 1px;
+    margin-right: 10px;
 }
 
 div.event_widget .icon{
-width: 24px;
-min-height: 24px;
-padding-right: 10px;
-border-right: 1px solid white;
-margin-bottom: 10px;
+    width: 24px;
+    min-height: 24px;
+    padding-right: 10px;
+    border-right: 1px solid white;
+    margin-bottom: 10px;
 }
 
 div.event_widget .center{
-padding: 0px 10px 0px 10px;
-width: 318px;
-border-left: 1px solid white;
-border-right: 1px solid white;
--webkit-box-shadow: 1px 0px 0px rgba(0,0,0,0.5), -1px 0px 0px rgba(0,0,0,0.5);
-margin: 0px 1px 10px 1px;
+    padding: 0px 10px 0px 10px;
+    width: 318px;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    -webkit-box-shadow: 1px 0px 0px rgba(0,0,0,0.5), -1px 0px 0px rgba(0,0,0,0.5);
+    margin: 0px 1px 10px 1px;
 }
 
 div.event_widget .user{
-margin: 0px 10px 10px 0px;
-width: 90px;
-border-left: 1px solid white;
-text-align: right;
+    margin: 0px 10px 10px 0px;
+    width: 90px;
+    border-left: 1px solid white;
+    text-align: right;
 }
 
 .comment .icon {
-background: url(/graphics/comment.png) no-repeat;
+    background: url(/graphics/comment.png) no-repeat;
 }
 
 .tag .icon {
-background: url(/graphics/tag.png) no-repeat;
+    background: url(/graphics/tag.png) no-repeat;
 }
 
 
 /**
  *  SEGMENT BARS
  **/
- 
+
 /* A row of segment bars */
 .segment_bar_row {
-padding-top: 2px;
-height: 3px;
-display: -webkit-box;
--webkit-box-orient: horizontal;
+    padding-top: 2px;
+    height: 3px;
+    display: -webkit-box;
+    -webkit-box-orient: horizontal;
 }
 
 /**
- *  A single segment bar
- *
- *  margin-left and width properties will change dynamically
- **/
+*  A single segment bar
+*
+*  margin-left and width properties will change dynamically
+**/
 .segment_bar {
-background: #45455a;
+    background: #45455a;
+    position: absolute;
+    height: 3px;
 }
 
 #background_glare{
-	border-color: transparent transparent transparent rgba(255,255,255,0.4);
-  border-style: solid;
-  border-width: 0px 0px 520px 960px;
-  width:0;
-  height:0;
-  z-index: -2000;
-  position: absolute;
-  top: 0;
-  left: 0;
+    border-color: transparent transparent transparent rgba(255,255,255,0.4);
+    border-style: solid;
+    border-width: 0px 0px 520px 960px;
+    width:0;
+    height:0;
+    z-index: -2000;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 

@@ -78,7 +78,7 @@ var OverviewWaveformPanel = WaveformPanel.extend({
             throw new Error('segmentBarTemplate not found');
         }
         /**
-         *  The template for each segment bar.  margin-left and width will change
+         *  The template for each segment bar.  left and width will change
          *  dynamically.
          **/
         this.segmentBarTemplate = segmentBarTemplate;
@@ -180,6 +180,8 @@ var OverviewWaveformPanel = WaveformPanel.extend({
         
         /* DOM Elements */
         var segmentBarsContainerElement = this.segmentBarsContainerElement;
+        /* Here we will store all of the new contents */
+        var segmentBarsContents = document.createDocumentFragment();
         
         /**
          *  Determine if segment will fit on a given row. Called below.
@@ -247,7 +249,7 @@ var OverviewWaveformPanel = WaveformPanel.extend({
                     segmentRowElements[rowIndex] = rowElement;
                     
                     /* Put row in panel */
-                    segmentBarsContainerElement.append(rowElement);
+                    segmentBarsContents.appendChild(rowElement.get(0));
                     
                     /* We're currently the only segment, therefore we are the 
                     rightmost */
@@ -259,5 +261,8 @@ var OverviewWaveformPanel = WaveformPanel.extend({
             }
             
         }
+        
+        /* replace old segment bars with new ones */
+        segmentBarsContainerElement.html(segmentBarsContents);
     }, 
 })
