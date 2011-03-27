@@ -198,8 +198,8 @@ var OverviewWaveformPanel = WaveformPanel.extend({
         }
         
         /* for each segment (they are already sorted by startTime)*/
-        for(var i = 0, il = segments.length; i < il; i++) {
-            var seg = segments.at(i);
+        for(var s = 0, sl = segments.length; s < sl; s++) {
+            var seg = segments.at(s);
             
             /* Which row we are currently on */
             var rowIndex = 0;
@@ -213,16 +213,13 @@ var OverviewWaveformPanel = WaveformPanel.extend({
             
             
             while(true) {
-                /* If there are segments in this row */
-                if(segmentBarWidgets[rowIndex]) {
+                /* If this row has been created */
+                if(segmentRowElements[rowIndex]) {
                     
                     /* If segment will fit on this row */
                     if(segmentWillFitOnRow()) {
                         /* put widget on this row */
                         segmentRowElements[rowIndex].append(widget.el);
-                        
-                        /* Save widget */
-                        segmentBarWidgets[rowIndex].push(widget);
                         
                         /* it is now the rightmost */
                         rightmostSegmentBarWidgets[rowIndex] = widget;
@@ -250,9 +247,6 @@ var OverviewWaveformPanel = WaveformPanel.extend({
                     
                     /* Put row in panel */
                     segmentBarsContainerElement.append(rowElement);
-                    
-                    /* save segment bar widget */
-                    segmentBarWidgets[rowIndex] = [widget];
                     
                     /* We're currently the only segment, therefore we are the 
                     rightmost */
