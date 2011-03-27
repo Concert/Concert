@@ -148,6 +148,27 @@ div.global_options_panel_button {
     margin-left: 0.5em;
 }
 
+select#collection_selector {
+    background-color: transparent;
+    cursor: pointer;
+    border: 0px;
+
+    color: #282833;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+    
+    font-family: inherit;
+    font-size: inherit;
+
+    -webkit-appearance: none;
+}
+
+options {
+    background-color: #FFFFFF;
+    padding-right: 5px;
+}
+
 /*Overview Waveform Panel */
 div#overview_waveform_panel {
     width: 960px;
