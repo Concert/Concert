@@ -25,7 +25,7 @@ rm -Rf serverside/*
 echo 'Generating server side documentation'
 doxygen Concert.cfg
 
-# Re-render all diagrams in the architecture folder
+# Re-render all diagrams
 cd diagrams/
 for dia in *.dia
 do
@@ -35,7 +35,6 @@ do
   rm $svg
   echo "Converting $dia to SVG"
   dia --export=$svg --filter=svg $dia
-  
 done
 
 cd ../../
