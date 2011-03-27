@@ -36,7 +36,7 @@ var OverviewWaveformPanel = WaveformPanel.extend(
         this.highlighterContainerElement = highlighterContainerElement;
         
         /* Highlighter */
-        var highlighter = new OverviewWaveformHighlighterComponent({
+        var highlighter = new OverviewWaveformInteractionComponent({
             el: highlighterContainerElement, 
             panel: this 
         });

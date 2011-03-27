@@ -86,7 +86,7 @@ var DetailWaveformPanel = WaveformPanel.extend(
         this.highlightContainerElement = highlightContainerElement;
         
         /* a highlighter component so we can highlight things */
-        var highlighter = new DetailWaveformHighlighterComponent({
+        var highlighter = new DetailWaveformInteractionComponent({
             el: highlightContainerElement, 
             panel: this, 
         });
