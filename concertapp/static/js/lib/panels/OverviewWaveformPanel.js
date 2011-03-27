@@ -211,7 +211,6 @@ var OverviewWaveformPanel = WaveformPanel.extend({
                 model: seg 
             }).render();
             
-            
             while(true) {
                 /* If this row has been created */
                 if(segmentRowElements[rowIndex]) {
@@ -223,6 +222,9 @@ var OverviewWaveformPanel = WaveformPanel.extend({
                         
                         /* it is now the rightmost */
                         rightmostSegmentBarWidgets[rowIndex] = widget;
+                        
+                        /* We're done with this segment */
+                        break;
                     }
                     /* if it wont fit */
                     else {
@@ -237,7 +239,6 @@ var OverviewWaveformPanel = WaveformPanel.extend({
                     var rowElement = segmentBarRowTemplate.tmpl({
                         row: rowIndex
                     });
-                    
                     
                     /* Put widget in row */
                     rowElement.append(widget.el);
