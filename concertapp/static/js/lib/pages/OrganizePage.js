@@ -9,11 +9,7 @@
  *	@class
  *  @extends    LoggedInPage
  **/
-var OrganizePage = LoggedInPage.extend(
-	/**
-	 *	@scope	OrganizePage.prototype
-	 **/
-{
+var OrganizePage = LoggedInPage.extend({
     
     _initializeModelManager: function(params) {
         return new OrganizePageModelManager(params);
@@ -40,7 +36,7 @@ var OrganizePage = LoggedInPage.extend(
         /*  Create waveform overview panel */
         this.overviewPanel = new OverviewWaveformPanel({
             page: this, 
-            el: $('#overview_waveform_panel'),
+            el: $('#overview_waveform_panel')
         });
 
         /* Create waveform detail panel */
@@ -57,6 +53,13 @@ var OrganizePage = LoggedInPage.extend(
             files: modelManager.collectionAudioFiles,
             segments: modelManager.collectionAudioSegments,
             modelManager: modelManager, 
+        });
+        
+        /* Create comments panel */
+        this.commentsPanel = new CommentsPanel({
+            page: this, 
+            el: $('#comment_list_panel'), 
+            modelManager: modelManager 
         });
         
         
@@ -76,7 +79,7 @@ var OrganizePage = LoggedInPage.extend(
     }, 
     
     /**
-     *  When a user selects some audio from the audio list.
+     *  Ensure that given audio is selected on UI.
      *
      *  @param  {Array}     params.files    -   The files selected.
      *  @param  {Array}     params.segments -   The selected segments
@@ -123,6 +126,22 @@ var OrganizePage = LoggedInPage.extend(
         else {
             throw new Error('Invalid parameters for select_audio');
         }
+    }, 
+    
+    /**
+     *  Ensure that given event is selected on the events panel and the UI.
+     *
+     *  @param  {Event}    event    -   The event that has been selected.
+     **/
+    select_event: function(event) {
+        
+    }, 
+    
+    /**
+     *  Ensure that new segment is created.
+     **/
+    create_new_segment: function() {
+        
     }, 
     
     /**
