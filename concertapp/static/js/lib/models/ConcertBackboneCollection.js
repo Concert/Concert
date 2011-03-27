@@ -8,7 +8,11 @@
  *  A ConcertBackboneCollection is our extension of Backbone.Collection to include
  *  functionality that all collections need.
  **/
-var ConcertBackboneCollection = Backbone.Collection.extend({
+var ConcertBackboneCollection = Backbone.Collection.extend(
+	/**
+	 *	@scope	ConcertBackboneCollection.prototype
+	 **/
+{
     
     initialize: function(models, options) {
         this.relatedModel = options.relatedModel;

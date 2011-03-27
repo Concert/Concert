@@ -26,7 +26,7 @@ Notifier.prototype.init = function(params) {
  *  Use this if you just want to display words to user, and not worry about getting
  *  anything back.
  *
- *  @param  params        Object            {
+ *  @param  {Object}        params            {
  *                                              title: The title of the alert
  *                                              content: the content of the alert
  *                                              url: instead of content, the url
@@ -45,7 +45,7 @@ Notifier.prototype.alert = function(params) {
 /**
  *  Use this if you want to do something different if the user chooses yes or no.
  *
- *  @param  params        Object            {
+ *  @param  {Object}        params            {
  *                                              title: The title of the alert
  *                                              content: the content of the alert
  *                                              url: instead of content, the url
@@ -70,7 +70,7 @@ Notifier.prototype.confirm = function(params) {
  *  Since we need to do this for a confirm or alert.  Just makes sure user sent
  *  in either content or URL parameters.
  *
- *  @param  params        Object 
+ *  @param  {Object}        params 
  **/
 Notifier.prototype.validateParams = function(params) {
     

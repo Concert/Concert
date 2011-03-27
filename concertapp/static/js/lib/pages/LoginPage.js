@@ -8,7 +8,11 @@
  *  @class
  *  @extends    Page
  **/
-var LoginPage = Page.extend({
+var LoginPage = Page.extend(
+	/**
+	 *	@scope	LoginPage.prototype
+	 **/
+{
     _initializeViews: function() {
         /* This will throw a modal window to the user 
             if there is a compatibility problem. */

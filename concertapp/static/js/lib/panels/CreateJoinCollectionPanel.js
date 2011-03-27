@@ -10,7 +10,11 @@
  *	@class
  *  @extends Panel
  **/
-var CreateJoinCollectionPanel = Panel.extend({
+var CreateJoinCollectionPanel = Panel.extend(
+	/**
+	 *	@scope	CreateJoinCollectionPanel.prototype
+	 **/
+{
     
     /**
     *  Initialize all stuffs.  We have an element for the input, as well as for the

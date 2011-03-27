@@ -16,7 +16,11 @@
  *  @class
  *  @extends    Page
  **/
-var LoggedInPage = Page.extend({
+var LoggedInPage = Page.extend(
+	/**
+	 *	@scope	LoggedInPage.prototype
+	 **/
+{
     
     /**
      *  Our dataset manager is this one.

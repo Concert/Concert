@@ -7,13 +7,17 @@
 /**
  *  The panel on the top of every page.
  *	@class
- *  @param  params.collectionSelector        jQuery HTMLSelectElement object - The
+ *  @param  {jQuery HTMLSelectElement}      params.collectionSelector - The
  *                                          select which chooses which collection to
  *                                          organize.
- *  @param  params.uploadButton             An UploadLinkLargeIconButton object.      
+ *  @param  {UploadLinkLargeIconButton}     params.uploadButton
  *
  **/
-var GlobalOptionsPanel = Panel.extend({
+var GlobalOptionsPanel = Panel.extend(
+	/**
+	 *	@scope	GlobalOptionsPanel.prototype
+	 **/
+{
     initialize: function() {
         Panel.prototype.initialize.call(this);
 

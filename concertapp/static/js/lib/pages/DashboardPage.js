@@ -9,7 +9,11 @@
  *	@class
  *  @extends    LoggedInPage
  **/
-var DashboardPage = LoggedInPage.extend({
+var DashboardPage = LoggedInPage.extend(
+	/**
+	 *	@scope	DashboardPage.prototype
+	 **/
+{
     /**
      *  Our dataset manager is this one.
      **/

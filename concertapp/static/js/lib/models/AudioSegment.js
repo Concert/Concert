@@ -9,7 +9,12 @@
  *  @class
  *  @extends    ConcertBackboneModel
  **/
-var AudioSegment = ConcertBackboneModel.extend({
+var AudioSegment = ConcertBackboneModel.extend(
+	/**
+	 *	@scope	AudioSegment.prototype
+	 **/
+
+{
     oneToManyAttributes: function() {
         return [
             {
@@ -51,6 +56,10 @@ var AudioSegment = ConcertBackboneModel.extend({
  *  @class
  *  @extends    ConcertBackboneCollection
  **/
-var AudioSegmentSet = ConcertBackboneCollection.extend({
+var AudioSegmentSet = ConcertBackboneCollection.extend(
+	/**
+	 *	@scope	AudioSegmentSet.prototype
+	 **/
+{
     model: AudioSegment 
 });

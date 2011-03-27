@@ -9,11 +9,21 @@
  *  @class
  *  @extends    Component
  **/
-var WaveformPlayheadComponent = Component.extend({
+var WaveformPlayheadComponent = Component.extend(
+	/**
+	 *	@scope	WaveformPlayheadComponent.prototype
+	 **/
+{
     initialize: function() {
         Component.prototype.initialize.call(this);
 
         var params = this.options;
+        
+        /* The rate at which the waveform image moves */
+        this.pxPerSecond = null;
+        
+        /* The 'css' left property of the playhead is set to leftPx */
+        this.leftPx = null;
         
         /* The HTML5 audio element that we will watch */
         var audio = params.audio;
@@ -22,53 +32,38 @@ var WaveformPlayheadComponent = Component.extend({
         }
         this.audio = audio;
         
-        var pxPerSecond = 10;
-        this.pxPerSecond = pxPerSecond;
-        
-        this.fileDuration = null;
-        
-        /* As the audio plays, animate playhead */
-//        $(audio).bind('timeupdate', function(me) {
-        setInterval(function(me){
+        /* When the audio experiences a time update, playhead is redrawn (detail) */
+        $(audio).bind('canplaythrough', function(me) {
             return function() {
-                /* TODO: inefficient really, we already have access to currentTime
-                here */
-                me.animate();
+                $(this).bind('timeupdate', function(me) {
+                    return function() {
+                        me.draw();
+                    };
+                }(me));
             };
-        }(this), 200);
+        }(this));        
     },
 
-    /**
-     *  audio_file_selected is called from the panel 
-     *  when a new audio file is selected
-     *  obtains duration from the selectedAudioFile
-     *  @param  {AudioFile}    selectedAudioFile    -   audio file that was selected
+    /** 
+     *  updates pxPerSecond 
+     *  for now only called from panel when a new file or segment is selected
+     *  later may be called on zoom
      **/
-    audio_file_selected: function(selectedAudioFile) {
-        var duration = selectedAudioFile.get('duration');
-        this.fileDuration = duration;
+    update_speed: function() {}, 
+
+    /**
+     *  draw is called from event handler above on timeupdate
+     *  draws the playhead with css 'left' property equal to currentTime * pxPerSecond
+     **/
+    draw: function() {
+        this.leftPx = this.audio.currentTime * this.pxPerSecond;
+        this.el.css('left', this.leftPx);
     },
     
     /**
-     *  called from panel when new audio segment is selected.
-     *
-     *  @param  {AudioSegment}    selectedAudioSegment    - audio segment selected
+     *  reset is called from panel when a new file or segment is selected
+     *  resets the playhead to the beginning of the waveform image
      **/
-    audio_segment_selected: function(selectedAudioSegment) {
-        this.fileDuration = selectedAudioSegment.get('audioFile').get('duration');
-    }, 
-
-    /**
-     *  animate is called from event handler above.
-     *  moves the playhead to the left the currentTime * 10
-     **/
-    animate: function() {
-        var leftPx = this.audio.currentTime * this.pxPerSecond
-        this.el.css('left', leftPx);
-        
-        return leftPx;
-    },
-    
     reset: function() {
         this.el.css('left', '0px');
     },
@@ -76,4 +71,5 @@ var WaveformPlayheadComponent = Component.extend({
     position: function() {
         return this.el.position().left;
     },
+
 });

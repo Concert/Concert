@@ -10,7 +10,11 @@
  *  @class
  *  @extends    Widget
  **/
-var AudioListWidget = Widget.extend({
+var AudioListWidget = Widget.extend(
+	/**
+	 *	@scope	AudioListWidget.prototype
+	 **/
+{
     
     initialize: function() {
         Widget.prototype.initialize.call(this);

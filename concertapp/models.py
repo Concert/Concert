@@ -194,6 +194,9 @@ class AudioSegment(models.Model):
     def __unicode__(self):
       return self.name
 
+    def __unicode__(self):
+        return self.name
+
     def save(self, *args, **kwargs):
         self.full_clean()
 
@@ -471,6 +474,9 @@ class AudioFile(models.Model):
     mp3 = models.FileField(upload_to = AUDIO_LOCATION)
     # The duration of the audio file.  Default is 0
     duration = models.DecimalField(max_digits = 8, decimal_places = 2, default=0)
+    
+    def __unicode__(self):
+        return self.name
 
     ###
     #   Do everything necessary when an audio object is first created.

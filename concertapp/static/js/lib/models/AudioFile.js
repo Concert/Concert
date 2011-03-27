@@ -9,7 +9,11 @@
  *  @class
  *  @extends    ConcertBackboneModel
  **/
-var AudioFile = ConcertBackboneModel.extend({
+var AudioFile = ConcertBackboneModel.extend(
+	/**
+	 *	@scope	AudioFile.prototype
+	 **/
+{
     foreignKeyAttributes: function() {
         return [
             {
@@ -74,6 +78,11 @@ var AudioFile = ConcertBackboneModel.extend({
  *  @class
  *  @extends    ConcertBackboneCollection
  **/
-var AudioFileSet = ConcertBackboneCollection.extend({
+var AudioFileSet = ConcertBackboneCollection.extend(
+    /**
+	 *	@scope	AudioFile.prototype
+	 **/
+	
+{
     model: AudioFile
 });

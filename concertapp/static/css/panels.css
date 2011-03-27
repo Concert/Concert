@@ -415,7 +415,43 @@ div.highlight {
 }
 
 /* Initially a highlight will be disabled */
-div.highlight.disabled {
+/*div.highlight.disabled {
+  height: 100%;
+  position: relative;
+  background-color: white;
+  opacity: 0.5;
+  display: -webkit-box;
+}
+*/
+
+div.leftHandle {
+    height: 100%;
+    position: absolute;
+    left: 0px;
+    background-color: black;
+    width: 2px;
+    visibility: inherit;
+}
+
+div.leftHandle:hover {
+    width: 4px;
+}
+
+div.rightHandle {
+    height: 100%;
+    position: absolute;
+    right: 0px;
+    background-color: black;
+    width: 2px;
+    visibility: inherit;
+}
+
+div.rightHandle:hover {
+    width: 4px;
+}
+
+/* Initially a highlight will be disabled */
+div.disabled {
     visibility: hidden;
 }
 

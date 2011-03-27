@@ -10,12 +10,16 @@
  *	@class
  *  @extends    WaveformPanel
  **/
-var OverviewWaveformPanel = WaveformPanel.extend({
+var OverviewWaveformPanel = WaveformPanel.extend(
+	/**
+	 *	@scope	OverviewWaveformPanel.prototype
+	 **/
+{
     initialize: function() {
         WaveformPanel.prototype.initialize.call(this)
         
         var playheadComponent = new OverviewWaveformPlayheadComponent({
-            el: this.playheadContainerElement,
+            el: this.playheadElement,
             panel: this,
             audio: this.page.audio
         });
@@ -36,8 +40,8 @@ var OverviewWaveformPanel = WaveformPanel.extend({
          **/
         this.highlighterContainerElement = highlighterContainerElement;
         
-        
-        var highlighter = new OverviewWaveformHighlighterComponent({
+        /* Highlighter */
+        var highlighter = new OverviewWaveformInteractionComponent({
             el: highlighterContainerElement, 
             panel: this 
         });
@@ -45,7 +49,7 @@ var OverviewWaveformPanel = WaveformPanel.extend({
          *  Highlighter component for this panel
          **/
         this.highlighter = highlighter;
-        
+                
         var segmentBarsContainerElement = $('#overview_waveform_panel_bottom');
         if(typeof(segmentBarsContainerElement) == 'undefined') {
             throw new Error('$(\'#overview_waveform_panel_bottom\') is undefined');
@@ -89,6 +93,7 @@ var OverviewWaveformPanel = WaveformPanel.extend({
                 me.handle_click(get_event_x(e));
             };
         }(this));
+
     }, 
     
     /**
@@ -110,6 +115,8 @@ var OverviewWaveformPanel = WaveformPanel.extend({
                 }
             }(this, selectedAudioFile)
         );
+    
+        this.playheadComponent.update_speed();
     }, 
     
     /**
@@ -135,6 +142,9 @@ var OverviewWaveformPanel = WaveformPanel.extend({
                 };
             }(this, selectedAudioSegment, audioFile)
         );
+
+        this.playheadComponent.update_speed();
+
     }, 
     
     /**
@@ -149,12 +159,6 @@ var OverviewWaveformPanel = WaveformPanel.extend({
         
         return width/duration;
     },
-
-    handle_click: function(left) {
-        //update audio's currentTime to location clicked
-        var seconds = left/this.get_resolution();
-        this.page.move_audio(seconds);
-    }, 
     
     /**
      *  Set up all of the audio segment bars.

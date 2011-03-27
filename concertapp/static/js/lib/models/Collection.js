@@ -8,7 +8,11 @@
  *  A Collection object represents a django Collection object.
  *  @class
  **/
-var Collection = ConcertBackboneModel.extend({
+var Collection = ConcertBackboneModel.extend(
+	/**
+	 *	@scope	Collection.prototype
+	 **/
+{
     
     oneToManyAttributes: function() {
         return [
@@ -73,6 +77,10 @@ var Collection = ConcertBackboneModel.extend({
  *  while lowercase collection just means a set or array)
  *  @class
  **/
-var CollectionSet = ConcertBackboneCollection.extend({
+var CollectionSet = ConcertBackboneCollection.extend(
+	/**
+	 *	@scope	CollectionSet.prototype
+	 **/
+{
     model: Collection,
 });

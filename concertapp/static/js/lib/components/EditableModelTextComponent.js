@@ -5,7 +5,11 @@
  **/
  
 
-var EditableModelTextComponent = Component.extend({
+var EditableModelTextComponent = Component.extend(
+	/**
+	 *	@scope	EditableModelTextComponent.prototype
+	 **/
+{
     initialize: function() {
         Component.prototype.initialize.call(this);
         

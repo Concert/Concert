@@ -9,7 +9,11 @@
  *	@class
  *  @extends    Widget
  **/
-var CollectionInfoWidget = Widget.extend({
+var CollectionInfoWidget = Widget.extend(
+	/**
+	 *	@scope	CollectionInfoWidget.prototype
+	 **/
+{
     initialize: function() {
         
     }, 

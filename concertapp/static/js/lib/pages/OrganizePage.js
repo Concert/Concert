@@ -9,7 +9,11 @@
  *	@class
  *  @extends    LoggedInPage
  **/
-var OrganizePage = LoggedInPage.extend({
+var OrganizePage = LoggedInPage.extend(
+	/**
+	 *	@scope	OrganizePage.prototype
+	 **/
+{
     
     _initializeModelManager: function(params) {
         return new OrganizePageModelManager(params);
@@ -25,9 +29,8 @@ var OrganizePage = LoggedInPage.extend({
         audio.preload = 'auto';
         this.audio = audio;
         
-        /* The callback function for an audio loop */
-        this.audioLoopTimeUpdateCallback = null;
-        
+        /* The callback function for an audio loop (on a timeupdate event) */ 
+        this.audioLoopTimeUpdateCallback = function() {};
         
         /* This is the type of audio file we will use */
         this.audioType = com.concertsoundorganizer.compatibility.audioType;
@@ -75,7 +78,7 @@ var OrganizePage = LoggedInPage.extend({
                 }
             };
         }(this));
-        
+    
     }, 
     
     /**
@@ -209,7 +212,7 @@ var OrganizePage = LoggedInPage.extend({
     
     play: function() {
         this.audio.play();
-        this.detailPanel.autoscrollBool = true;
+//        this.detailPanel.autoscrollBool = true;
         
     },
     
@@ -227,22 +230,15 @@ var OrganizePage = LoggedInPage.extend({
      *  @param  {Number}    endTime    -    The time of the highlight end.
      *  @param  {Panel}    panel    -   The panel that triggered the highlight
      **/
-    waveform_highlighted: function(startTime, endTime, panel) {
+    waveform_highlighted: function(startTime, endTime) {
         /* Start audio loop */
         this.start_audio_loop(startTime, endTime);
         
-        /* If this highlight was from the detail panel */
-        if(panel instanceof DetailWaveformPanel) {
-            /* Tell overview panel */
-            this.overviewPanel.highlight_waveform(startTime, endTime);
-        }
-        else if(panel instanceof OverviewWaveformPanel) {
-            /* Tell detail panel */
-            this.detailPanel.highlight_waveform(startTime, endTime);
-        }
-        else {
-            throw new Error('Panel argument is invalid.');
-        }
+        /* Tell overview panel */
+        this.overviewPanel.highlight_waveform(startTime, endTime);
+        /* Tell detail panel */
+        this.detailPanel.highlight_waveform(startTime, endTime);
+
     },
     
     /**
@@ -251,6 +247,7 @@ var OrganizePage = LoggedInPage.extend({
      *  @param  {Panel}    panel    -   The panel that cleared the highlight.
      **/
     waveform_highlight_cleared: function(panel) {
+        
         this.clear_audio_loop();
         
         if(panel instanceof DetailWaveformPanel) {
@@ -282,12 +279,11 @@ var OrganizePage = LoggedInPage.extend({
      **/
     start_audio_loop: function(startTime, endTime) {
         var audio = this.audio;
-                
+        
         /* This function will be called when a timeupdate event occurs. */
         var audioLoopTimeUpdateCallback = function(startTime, endTime) {
             return function(e) {
-                var currentTime = this.currentTime;
-                
+                var currentTime = audio.currentTime;
                 if(currentTime < startTime || currentTime > endTime) {
                     this.currentTime = startTime;
                 }
@@ -297,11 +293,12 @@ var OrganizePage = LoggedInPage.extend({
         this.audioLoopTimeUpdateCallback = audioLoopTimeUpdateCallback;
         
         /* Start audio at beginning of loop */
-        audio.currentTime = startTime;
+        if(audio.currentTime < startTime || audio.currentTime > endTime) {
+            audio.currentTime = startTime;
+        }
         
         /* When audio loop changes time */
-        $(audio).bind('timeupdate', audioLoopTimeUpdateCallback);
-        
+        $(audio).bind('timeupdate', this.audioLoopTimeUpdateCallback);    
     }, 
     
     /**
@@ -312,6 +309,12 @@ var OrganizePage = LoggedInPage.extend({
     }, 
     
     move_audio: function(seconds) {
+        $(this.audio).one('timeupdate', function(me) {
+            return function() {
+                me.detailPanel.handle_scroll_stop();
+            }
+        }(this))
         this.audio.currentTime = seconds;
-    }, 
+    },     
+    
 });

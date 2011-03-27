@@ -9,7 +9,11 @@
  *  @class
  *  @extends    ConcertBackboneModel
  **/ 
-var Request = ConcertBackboneModel.extend({
+var Request = ConcertBackboneModel.extend(
+	/**
+	 *	@scope	Request.prototype
+	 **/
+{
     
     foreignKeyAttributes: function() {
         return [
@@ -93,6 +97,10 @@ var Request = ConcertBackboneModel.extend({
  *  @class
  *  @extends    ConcertBackboneCollection
  **/
-var RequestSet = ConcertBackboneCollection.extend({
+var RequestSet = ConcertBackboneCollection.extend(
+	/**
+	 *	@scope	RequestSet.prototype
+	 **/
+{
     model: Request, 
 });

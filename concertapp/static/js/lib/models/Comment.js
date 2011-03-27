@@ -10,7 +10,11 @@
  *  @class      Comment
  *  @extends    ConcertBackboneModel
  **/
-var Comment = ConcertBackboneModel.extend({
+var Comment = ConcertBackboneModel.extend(
+	/**
+	 *	@scope	Comment.prototype
+	 **/
+{
     foreignKeyAttributes: function() {
         return [
             {
@@ -28,7 +32,11 @@ var Comment = ConcertBackboneModel.extend({
  *  @class      CommentSet
  *  @extends    ConcertBackboneCollection
  **/
-var CommentSet = ConcertBackboneCollection.extend({
+var CommentSet = ConcertBackboneCollection.extend(
+	/**
+	 *	@scope	CommentSet.prototype
+	 **/
+{
     model: Comment 
 });
  

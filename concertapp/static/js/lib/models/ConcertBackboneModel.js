@@ -7,7 +7,11 @@
  *  This is the class that all of our models inherit from, and provides special 
  *  functionality that we need for each model.
  **/
-var ConcertBackboneModel = Backbone.Model.extend({
+var ConcertBackboneModel = Backbone.Model.extend(
+	/**
+	 *	@scope	ConcertBackboneModel.prototype
+	 **/
+{
     
     /**
      *  On initialize, set our oneToManyAttributes to new collections if it hasn't

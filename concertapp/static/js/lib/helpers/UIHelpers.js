@@ -9,7 +9,7 @@
 /**
  *  Preloads all images via an image beacon to the server.
  *
- *  @param  urls        Array 
+ *  @param  {Array}        urls 
  **/
 function preloadImages(urls) {
     var images = [];
@@ -50,8 +50,8 @@ function detectBrowserCompatibility() {
  *  Takes an array of DOM nodes, and a container.  It will replace all of the nodes
  *  in the container with the given.
  *
- *  @param  nodes        Array  -   of DOM nodes to add to container
- *  @param  container        jQuery DOM element  
+ *  @param  {Array}                 nodes  -   of DOM nodes to add to container
+ *  @param  {jQuery DOM element}    container
  **/
 function domElementsReplace(nodes, container) {
     /* Empty container */

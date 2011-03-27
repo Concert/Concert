@@ -1,5 +1,5 @@
 /**
- *  @file       OverviewWaveformPlayheadComponent.js
+ *  @file       DetailWaveformPlayheadComponent.js
  *  
  *  @author     Amy Wieliczka <amywieliczka [at] gmail.com>
  **/
@@ -9,17 +9,23 @@
  *  @class
  *  @extends    WaveformPlayheadComponent
  **/
-var DetailWaveformPlayheadComponent = WaveformPlayheadComponent.extend({
+var DetailWaveformPlayheadComponent = WaveformPlayheadComponent.extend(
+	/**
+	 *	@scope	DetailWaveformPlayheadComponent.prototype
+	 **/
+{
     initialize: function() {
         WaveformPlayheadComponent.prototype.initialize.call(this);
     },
-
-    /**
-     *  Notify panel that we'ved moved the playhead
-     **/
-    animate: function() {
-        var leftPx = WaveformPlayheadComponent.prototype.animate.call(this);
-
-        this.panel.playhead_moved(leftPx);
+    
+    update_speed: function() {
+        this.pxPerSecond = 10;
     },
+    
+    draw: function() {
+        WaveformPlayheadComponent.prototype.draw.call(this);
+        
+        this.panel.playhead_moved(this.leftPx);
+    }
+
 });

@@ -68,11 +68,11 @@ ModalAlert.prototype.init = function(params) {
  *  Display a modal window with the content sent into the content argument.
  *  position in the middle of the screen.
  *
- *  @param  String/HTMLDivElement       params.content: The content for the window
- *  @param  String                      params.title: The content for the title, 
+ *  @param  {String/HTMLDivElement}       params.content: The content for the window
+ *  @param  {String}                      params.title: The content for the title, 
  *                                          defaults to "Alert".
- *  @param  String                      params.url: The URL of the content to display  
- *  @param  Boolean                     params.noOptions: if true, no options will be
+ *  @param  {String}                      params.url: The URL of the content to display  
+ *  @param  {Boolean}                     params.noOptions: if true, no options will be
  *                                          displayed.
  **/
 ModalAlert.prototype.displayContent = function(params) {
@@ -162,7 +162,7 @@ ModalAlert.prototype.displayContent = function(params) {
  *  Load a partial (html) file sent in as argument, and display that in the
  *  modal window.
  *
- *  @param          Object          params {
+ *  @param          {Object}          params {
  *                      String          url: The URL of the content
  *                      String          title: The title of the modal alert
  *                                  }
@@ -185,7 +185,7 @@ ModalAlert.prototype.loadAndDisplayContent = function(params) {
  *  Loads a partial defined by params.url, and fires callback stored
  *  in params.callback, sending data retrieved.
  *
- *  @param  params        Object  {
+ *  @param  {Object}        params  {
  *                          url: The URL of the content
  *                          callback: The callback function that takes a data arg
  *                          }
@@ -228,7 +228,7 @@ ModalAlert.prototype.close = function() {
  *  that if set to true, the loading box will be shown.  If set to false, the 
  *  loading animation will stop and window will be closed.
  *
- *  @param  show        Boolean     true: show loading, false: hide
+ *  @param  {Boolean}        show     true: show loading, false: hide
  **/
 ModalAlert.prototype.loading = function(show) {
     if(show) {

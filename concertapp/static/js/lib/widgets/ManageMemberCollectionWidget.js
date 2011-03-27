@@ -12,8 +12,11 @@
  *  @class
  *  @extends    Widget
  **/
-var ManageMemberCollectionWidget = Widget.extend({
-    
+var ManageMemberCollectionWidget = Widget.extend(
+	/**
+	 *	@scope	ManageMemberCollectionWidget.prototype
+	 **/
+{
     initialize: function() {
         Widget.prototype.initialize.call(this);
 

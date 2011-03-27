@@ -9,7 +9,11 @@
  *	@class
  *  @extends    Panel
  **/
-var AudioListPanel = Panel.extend({
+var AudioListPanel = Panel.extend(
+	/**
+	 *	@scope	AudioListPanel.prototype
+	 **/
+{
     initialize: function() {
         Panel.prototype.initialize.call(this);
         

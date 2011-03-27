@@ -9,7 +9,11 @@
  *	@class
  *  @extends    LoggedInPage
  **/
-var UploadPage = LoggedInPage.extend({
+var UploadPage = LoggedInPage.extend(
+	/**
+	 *	@scope	UploadPage.prototype
+	 **/
+{
     _initializeModelManager: function(params) {
         return new LoggedInModelManager(params);
     }, 

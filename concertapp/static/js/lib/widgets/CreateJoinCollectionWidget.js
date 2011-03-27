@@ -8,8 +8,11 @@
  *  The widget that is in charge of the collection search and join.
  *  @class
  **/
-var CreateJoinCollectionWidget = Widget.extend({
-    
+var CreateJoinCollectionWidget = Widget.extend(
+	/**
+	 *	@scope	CreateJoinCollectionWidget.prototype
+	 **/
+{
     initialize: function() {
         Widget.prototype.initialize.call(this);
         

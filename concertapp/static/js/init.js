@@ -10,10 +10,10 @@
  *  Initialize all client side functionality by creating the applicable
  *  page object.
  *
- *  @param  pagePath        String  -   From the server, the string that we will
+ *  @param  {String}        pagePath  -   From the server, the string that we will
  *  use to determine what page we are on.  This variable is sent in on 
  *  base_site.html template.
- *  @param  data        Object   -   the JSON object that contains all of the
+ *  @param  {Object}        data   -   the JSON object that contains all of the
  *  data we need for this page.
  **/
 function initializeUI(pagePath, data) {
