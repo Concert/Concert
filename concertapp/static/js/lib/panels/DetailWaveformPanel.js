@@ -168,7 +168,7 @@ var DetailWaveformPanel = WaveformPanel.extend({
         /* Create editable text component to handle name change */
         this.topNameComponent = new EditableModelTextComponent({
             panel: this, 
-            model: selectedAudioFile, 
+            model: selectedAudioSegment, 
             attr: 'name',
             el: $('#detail_waveform_selected_name_container')
         });
@@ -180,7 +180,6 @@ var DetailWaveformPanel = WaveformPanel.extend({
                 return function() {
                     /* Draw timecode */
                     me.timecodeComponent.audio_segment_selected(selectedAudioSegment);
-                    
                     me.highlighter.audio_segment_selected(selectedAudioSegment);
                 };
             }(this, selectedAudioSegment)

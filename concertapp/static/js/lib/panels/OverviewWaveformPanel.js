@@ -117,7 +117,18 @@ var OverviewWaveformPanel = WaveformPanel.extend({
     audio_segment_selected: function(selectedAudioSegment) {
         WaveformPanel.prototype.audio_segment_selected.call(this, selectedAudioSegment);
         
-        this.waveformImageElement.attr('src', selectedAudioSegment.get('audioFile').get_waveform_src(10));
+        var audioFile = selectedAudioSegment.get('audioFile');
+        
+        /* Load waveform image */
+        this._load_waveform_image(
+            audioFile.get_waveform_src(10),
+            /* Then tell highligher */
+            function(me, selectedAudioSegment) {
+                return function() {
+                    me.highlighter.audio_segment_selected(selectedAudioSegment);
+                };
+            }(this, selectedAudioSegment)
+        );
     }, 
     
     /**
@@ -139,4 +150,21 @@ var OverviewWaveformPanel = WaveformPanel.extend({
         this.page.move_audio(seconds);
     }, 
     
+    /**
+     *  Set up all of the audio segment bars.
+     *
+     *  @param  {AudioFile}    audioFile    The file whose segments we are rendering
+     **/
+    render_segment_bars: function(audioFile) {
+        /* Segments for this audio file */
+        var segments = audioFile.get('segments');
+        
+        /* for each segment */
+        for(var i = 0, il = segments.length; i < il; i++) {
+            var seg = segments.at(i);
+            
+            console.log('seg.toJSON():');
+            console.log(seg.toJSON());
+        }
+    }, 
 })
