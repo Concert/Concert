@@ -317,6 +317,10 @@ div.leftHandle {
     visibility: inherit;
 }
 
+div.leftHandle:hover {
+    width: 4px;
+}
+
 div.rightHandle {
     height: 100%;
     position: absolute;
@@ -326,9 +330,13 @@ div.rightHandle {
     visibility: inherit;
 }
 
+div.rightHandle:hover {
+    width: 4px;
+}
+
 /* Initially a highlight will be disabled */
 div.disabled {
-  visibility: hidden;
+    visibility: hidden;
 }
 
 div#detail_waveform_panel_highlight_container {

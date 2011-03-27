@@ -1,5 +1,5 @@
 /**
- *  @file       OverviewWaveformPlayheadComponent.js
+ *  @file       DetailWaveformPlayheadComponent.js
  *  
  *  @author     Amy Wieliczka <amywieliczka [at] gmail.com>
  **/

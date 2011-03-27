@@ -33,7 +33,7 @@ var WaveformPanel = Panel.extend({
         else if(playheadElement.length == 0) {
             throw new Error('playheadElement not found');
         }
-            this.playheadElement = playheadElement;
+        this.playheadElement = playheadElement;
         
         /* The duration of the last selected audio file (or segment parent) */
         this.audioFileDuration = null;
@@ -102,18 +102,6 @@ var WaveformPanel = Panel.extend({
      **/
     waveform_highlight_cleared: function() {
         this.page.waveform_highlight_cleared(this);
-    }, 
-    
-    /**
-     *  Called from highlight when an area of the waveform is highlighted.
-     *
-     *  @param  {Number}    startTime    -  The time (in seconds) of highlight start
-     *  @param  {Number}    endTime    -    The time of the highlight end.
-     **/
-    waveform_highlighted: function(startTime, endTime) {
-        /* Tell page about our highlight */
-        this.page.waveform_highlighted(startTime, endTime, this);
-    }, 
-    
+    },     
     
 });

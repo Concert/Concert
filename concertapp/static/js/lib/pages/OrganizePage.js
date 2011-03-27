@@ -229,22 +229,15 @@ var OrganizePage = LoggedInPage.extend({
      *  @param  {Number}    endTime    -    The time of the highlight end.
      *  @param  {Panel}    panel    -   The panel that triggered the highlight
      **/
-    waveform_highlighted: function(startTime, endTime, panel) {
+    waveform_highlighted: function(startTime, endTime) {
         /* Start audio loop */
         this.start_audio_loop(startTime, endTime);
         
-        /* If this highlight was from the detail panel */
-        if(panel instanceof DetailWaveformPanel) {
-            /* Tell overview panel */
-            this.overviewPanel.highlight_waveform(startTime, endTime);
-        }
-        else if(panel instanceof OverviewWaveformPanel) {
-            /* Tell detail panel */
-            this.detailPanel.highlight_waveform(startTime, endTime);
-        }
-        else {
-            throw new Error('Panel argument is invalid.');
-        }
+        /* Tell overview panel */
+        this.overviewPanel.highlight_waveform(startTime, endTime);
+        /* Tell detail panel */
+        this.detailPanel.highlight_waveform(startTime, endTime);
+
     },
     
     /**
@@ -284,19 +277,13 @@ var OrganizePage = LoggedInPage.extend({
      *  @param  {Number}    endTime     -   The end of the loop
      **/
     start_audio_loop: function(startTime, endTime) {
-        console.log('start_audio_loop');
         var audio = this.audio;
-        console.log(audio.currentTime);
         
         /* This function will be called when a timeupdate event occurs. */
         var audioLoopTimeUpdateCallback = function(startTime, endTime) {
             return function(e) {
                 var currentTime = audio.currentTime;
-                console.log(currentTime);
-                console.log(startTime);
-                console.log(endTime);
                 if(currentTime < startTime || currentTime > endTime) {
-                    console.log('timeupdate move audio');
                     this.currentTime = startTime;
                 }
             };
@@ -306,13 +293,9 @@ var OrganizePage = LoggedInPage.extend({
         
         /* Start audio at beginning of loop */
         if(audio.currentTime < startTime || audio.currentTime > endTime) {
-            console.log('start_audio_loop move audio');
             audio.currentTime = startTime;
         }
         
-        console.log(audio.currentTime);
-        console.log(startTime);
-        console.log(endTime);
         /* When audio loop changes time */
         $(audio).bind('timeupdate', this.audioLoopTimeUpdateCallback);    
     }, 

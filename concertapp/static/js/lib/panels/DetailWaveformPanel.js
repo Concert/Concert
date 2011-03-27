@@ -98,7 +98,7 @@ var DetailWaveformPanel = WaveformPanel.extend({
         }
         this.waveformView = waveformView;
         
-        this.setZoomLevel(10);
+        this.set_zoom_level(10);
         
         /**
          *  By default, autoscrolling is ON
@@ -116,12 +116,6 @@ var DetailWaveformPanel = WaveformPanel.extend({
             return function() {
                 me.handle_scroll_stop();
             }
-        }(this));
-        
-        this.waveformView.bind('click', function(me) {
-            return function(e) {
-                me.handle_click(get_event_x(e));
-            };
         }(this));
 
     },
@@ -179,25 +173,16 @@ var DetailWaveformPanel = WaveformPanel.extend({
         );
         
     }, 
-    
-    
-    /**
-     *  Called from highlight when an area of the waveform is highlighted.
-     *
-     *  @param  {Number}    startTime    -  The time (in seconds) of highlight start
-     *  @param  {Number}    endTime    -    The time of the highlight end.
-     **/
-    waveform_highlighted: function(startTime, endTime) {
-        this.autoscrollBool = true;
         
-        /* Tell page about our highlight */
-        this.page.waveform_highlighted(startTime, endTime, this);
-    }, 
+    highlight_waveform: function(startTime, endTime) {
+        WaveformPanel.prototype.highlight_waveform.call(this, startTime, endTime);
+        this.autoscrollBool = true;
+    },
     
     /**
-     *  setZoomLevel is initially called in init to set the zoomLevel to 10 pxPerSecond
+     *  set_zoom_level is initially called in init to set the zoomLevel to 10 pxPerSecond
      **/
-    setZoomLevel: function(zoomLevel) {
+    set_zoom_level: function(zoomLevel) {
         this.zoomLevel = zoomLevel;
         this.playheadComponent.update_speed();
     },
@@ -222,17 +207,6 @@ var DetailWaveformPanel = WaveformPanel.extend({
         else {
             this.autoscrollBool = false;
         }
-    },
-    
-    /**
-     *  handle_click is called on event above
-     *  updates audio's currentTime to location clicked
-     **/
-    handle_click: function(left) {
-        //update audio's currentTime to location clicked
-        var leftPx = left + this.waveformView.scrollLeft();
-        var seconds = leftPx/10;
-        this.page.move_audio(seconds);
     },
     
     /**
