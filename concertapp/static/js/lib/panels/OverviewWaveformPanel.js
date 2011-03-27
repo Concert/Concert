@@ -14,12 +14,14 @@ var OverviewWaveformPanel = WaveformPanel.extend({
     initialize: function() {
         WaveformPanel.prototype.initialize.call(this)
         
-        /* Instantiate widget for playhead */
         var playheadComponent = new OverviewWaveformPlayheadComponent({
             el: this.playheadContainerElement,
             panel: this,
             audio: this.page.audio
         });
+        /**
+         *  Playhead for this waveform panel
+         **/
         this.playheadComponent = playheadComponent;
         
         var highlighterContainerElement = $('#overview_waveform_panel_highlight_container');
@@ -29,15 +31,59 @@ var OverviewWaveformPanel = WaveformPanel.extend({
         else if(highlighterContainerElement.length == 0) {
             throw new Error('highlighterContainerElement not found');
         }
+        /**
+         *  Highlighter container DOM element.
+         **/
         this.highlighterContainerElement = highlighterContainerElement;
         
-        /* Highlighter */
+        
         var highlighter = new OverviewWaveformHighlighterComponent({
             el: highlighterContainerElement, 
             panel: this 
         });
+        /**
+         *  Highlighter component for this panel
+         **/
         this.highlighter = highlighter;
-
+        
+        var segmentBarsContainerElement = $('#overview_waveform_panel_bottom');
+        if(typeof(segmentBarsContainerElement) == 'undefined') {
+            throw new Error('$(\'#overview_waveform_panel_bottom\') is undefined');
+        }
+        else if(segmentBarsContainerElement.length == 0) {
+            throw new Error('segmentBarsContainerElement not found');
+        }
+        /**
+         *  Container element for all of our segment bars.
+         **/
+        this.segmentBarsContainerElement = segmentBarsContainerElement;
+        
+        var segmentBarRowTemplate = $('#segment_bar_row_template');
+        if(typeof(segmentBarRowTemplate) == 'undefined') {
+            throw new Error('$(\'#segment_bar_row_template\') is undefined');
+        }
+        else if(segmentBarRowTemplate.length == 0) {
+            throw new Error('segmentBarRowTemplate not found');
+        }
+        /**
+         *  The template for each segment bar row
+         **/
+        this.segmentBarRowTemplate = segmentBarRowTemplate;
+        
+        var segmentBarTemplate = $('#segment_bar_template');
+        if(typeof(segmentBarTemplate) == 'undefined') {
+            throw new Error('$(\'#segment_bar_template\') is undefined');
+        }
+        else if(segmentBarTemplate.length == 0) {
+            throw new Error('segmentBarTemplate not found');
+        }
+        /**
+         *  The template for each segment bar.  margin-left and width will change
+         *  dynamically.
+         **/
+        this.segmentBarTemplate = segmentBarTemplate;
+        
+        
         $("#overview_waveform_panel_top").bind('click', function(me) {
             return function(e) {
                 me.handle_click(get_event_x(e));

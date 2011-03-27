@@ -10,6 +10,33 @@
 var ConcertBackboneModel = Backbone.Model.extend({
     
     /**
+     *  On initialize, set our oneToManyAttributes to new collections if it hasn't
+     *  already been done by the set method.
+     **/
+    initialize: function(attributes, options) {
+        Backbone.Model.prototype.initialize.call(this, attributes, options);
+        
+        var oneToManyAttributes = this.oneToManyAttributes();
+        
+        /* If we have one to many attributes on this model */
+        if(oneToManyAttributes) {
+            /* For each one to many attribute */
+            for(var i = 0, il = oneToManyAttributes.length; i < il; i++) {
+                var oneToMany = oneToManyAttributes[i];
+                
+                /* If the one to many attribute has not yet been set */
+                if(!this.get(oneToMany.attr)) {
+                    var setArgs = {};
+                    setArgs[oneToMany.attr] = this._createOneToManyAttribute(oneToMany);
+                    
+                    /* do it */
+                    this.set(setArgs);
+                }
+            }
+        }
+    }, 
+    
+    /**
      *  On set, make sure all foreign key attributes and many to many attributes are
      *  handled properly.  This requires that the model has oneToManyAttributes and
      *  foreignKeyAttributes set on the model.  If these values are not set, 
@@ -41,55 +68,37 @@ var ConcertBackboneModel = Backbone.Model.extend({
         var foreignKeyAttributes = this.foreignKeyAttributes();
         
         if(attributes && oneToManyAttributes) {
+            /* For each one to many attribute */
             for(var i = 0, il = oneToManyAttributes.length; i < il; i++) {
                 var oneToMany = oneToManyAttributes[i];
                 
+                /* something that is being set for this related attribute */
                 var models = attributes[oneToMany.attr];
-                /* If we're trying to set the related model and it is not
-                    a collection */
-                if(models && !(models instanceof Backbone.Collection)) {
-                    /* It is either a list of strings or objects, or empty list */
-                    if(models[0] && typeof(models[0]) == 'object') {
-                        /* Create new collection of request objects */
-                        attributes[oneToMany.attr] = new oneToMany.collectionType(
-                            models, 
-                            /* Send in self incase collection requires it */
-                            {
-                                relatedModel: this
-                            }
-                        );
-                        
-                    }
-                    else if(models[0] && typeof(models[0]) == 'string') {
-                        /* We've got a list of urls */
-                        throw new Error('Not handling related objs as urls currently, send the full object.');
-                    }
-                    else if(models.length == 0){
-                        /* Set it to an empty set in case we want to add requests */
-                        attributes[oneToMany.attr] = new oneToMany.collectionType(
-                            null,
-                            {
-                                relatedModel: this 
-                            }
-                        );
-                    }
-                    else {
-                        throw new Error('Do not know how to handle object');
-                    }
-                    
-                }
-                /*  Requests member is not being set now, and it hasn't been 
-                    set yet */
-                else if(!models && !this.get(oneToMany.attr)) {
-                    /* Set it to an empty set in case we want to add requests */
-                    attributes[oneToMany.attr] = new oneToMany.collectionType(
-                        null,
-                        {
-                            relatedModel: this 
-                        }
-                    );
-                }            
                 
+                /* If we're trying to set the related model */
+                if(models) {
+                    
+                    /* If the argument is not of the proper type */
+                    if(!(models instanceof oneToMany.collectionType)) {
+                        
+                        /* Create one of the proper type */
+                        var newAttr = this._createOneToManyAttribute(oneToMany);
+                        
+                        /* If it is a list */
+                        if(typeof(models) == 'object' && 
+                        typeof(models.length) != 'undefined') {
+                            /* Load in objects */
+                            newAttr.refresh(models);
+                        }
+                        /* If it is something else */
+                        else {
+                            throw new Error('Do not know how to handle this currently.');
+                        }
+                        
+                        /* save new collection attribute */
+                        attributes[oneToMany.attr] = newAttr;
+                    }
+                }
             }
         }
         
@@ -135,6 +144,27 @@ var ConcertBackboneModel = Backbone.Model.extend({
         
         return Backbone.Model.prototype.set.call(this, attributes, options);
     },
+    
+    /**
+     *  Create a one to many attribute initially.
+     **/
+    _createOneToManyAttribute: function(oneToMany) {
+        /* Create new collection of request objects */
+        var attr = new oneToMany.collectionType(
+            null, 
+            /* Send in self incase collection requires it */
+            {
+                relatedModel: this
+            }
+        );
+        
+        if(oneToMany.comparator) {
+            attr.comparator = oneToMany.comparator;
+        }
+        
+        return attr;        
+    }, 
+    
     oneToManyAttributes: function(){
         return null;
     },

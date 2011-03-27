@@ -18,7 +18,18 @@ var AudioFile = ConcertBackboneModel.extend({
             },
             {
                 attr: 'collection', 
-                model: Collection 
+                model: Collection
+            }
+        ];
+    }, 
+    oneToManyAttributes: function() {
+        return [
+            {
+                attr: 'segments', 
+                collectionType: AudioSegmentSet,
+                comparator: function(segment) {
+                    return segment.get('beginning');
+                },  
             }
         ];
     }, 

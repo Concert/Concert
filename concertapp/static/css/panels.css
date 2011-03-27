@@ -646,57 +646,25 @@ background: url(/graphics/tag.png) no-repeat;
 }
 
 
-/*SEGMETN BARS*/
-.segment_bars_1 {
+/**
+ *  SEGMENT BARS
+ **/
+ 
+/* A row of segment bars */
+.segment_bar_row {
 padding-top: 2px;
 height: 3px;
 display: -webkit-box;
 -webkit-box-orient: horizontal;
 }
 
-.segment_bars_1 .box1 {
-margin-left: 20px;
+/**
+ *  A single segment bar
+ *
+ *  margin-left and width properties will change dynamically
+ **/
+.segment_bar {
 background: #45455a;
-width: 90px;
-}
-
-.segment_bars_2 {
-padding-top: 2px;
-height: 3px;
-display: -webkit-box;
--webkit-box-orient: horizontal;
-}
-
-.segment_bars_2 .box1 {
-margin-left: 5px;
-background: #45455a;
-width: 200px;
-}
-
-.segment_bars_3 {
-padding-top: 2px;
-height: 3px;
-display: -webkit-box;
--webkit-box-orient: horizontal;
-}
-
-.segment_bars_3 .box1 {
-margin-left: 30px;
-background: #45455a;
-width: 120px;
-}
-
-.segment_bars_4 {
-padding-top: 2px;
-height: 3px;
-display: -webkit-box;
--webkit-box-orient: horizontal;
-}
-
-.segment_bars_4 .box1 {
-margin-left: 50px;
-background: #45455a;
-width: 100px;
 }
 
 #background_glare{

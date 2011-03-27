@@ -36,7 +36,7 @@ var OrganizePage = LoggedInPage.extend({
         /*  Create waveform overview panel */
         this.overviewPanel = new OverviewWaveformPanel({
             page: this, 
-            el: $('#overview_waveform_panel'),
+            el: $('#overview_waveform_panel')
         });
 
         /* Create waveform detail panel */
