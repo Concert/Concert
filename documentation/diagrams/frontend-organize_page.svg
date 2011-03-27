@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
-<svg width="118cm" height="67cm" viewBox="-181 -837 2346 1323" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="108cm" height="42cm" viewBox="-181 -337 2146 824" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <g>
     <rect style="fill: #ffffff" x="20" y="-40" width="235.95" height="100"/>
     <rect style="fill: none; fill-opacity:0; stroke-width: 0.2; stroke: #000000" x="20" y="-40" width="235.95" height="100"/>
@@ -12,44 +12,13 @@
     <text style="fill: #000000;text-anchor:middle;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="137.975" y="52.5">segments on bottom</text>
   </g>
   <g>
-    <rect style="fill: #ffffff" x="980" y="-820" width="425.8" height="56"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="980" y="-820" width="425.8" height="56"/>
-    <text style="fill: #000000;text-anchor:middle;font-size:16;font-family:sanserif;font-style:normal;font-weight:700" x="1192.9" y="-801">OrganizePage</text>
-    <text style="fill: #000000;text-anchor:middle;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="1192.9" y="-785.5">Where people can</text>
-    <text style="fill: #000000;text-anchor:middle;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="1192.9" y="-771.5">organize audio</text>
-    <rect style="fill: #ffffff" x="980" y="-764" width="425.8" height="487"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="980" y="-764" width="425.8" height="487"/>
-    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="983" y="-750">+createNewSegment(startTime:Number,endTime:Number,</text>
-    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="983" y="-734">                  ignoreOverviewWaveformPanel:Boolean,</text>
-    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="983" y="-718">                  ignoreDetailWaveformPanel:Boolean)</text>
-    <text style="fill: #000000;text-anchor:start;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="983" y="-703.5">Ensure that both</text>
-    <text style="fill: #000000;text-anchor:start;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="983" y="-689.5">waveforms have</text>
-    <text style="fill: #000000;text-anchor:start;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="983" y="-675.5">been highlighted</text>
-    <text style="fill: #000000;text-anchor:start;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="983" y="-661.5">and create new</text>
-    <text style="fill: #000000;text-anchor:start;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="983" y="-647.5">segment model</text>
-    <text style="fill: #000000;text-anchor:start;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="983" y="-633.5">with timestamp</text>
-    <text style="fill: #000000;text-anchor:start;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="983" y="-619.5">in name</text>
-    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="983" y="-597">+selectAudioSegment(segment:AudioSegment)</text>
-    <text style="fill: #000000;text-anchor:start;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="983" y="-582.5">Ensure that</text>
-    <text style="fill: #000000;text-anchor:start;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="983" y="-568.5">segment has been</text>
-    <text style="fill: #000000;text-anchor:start;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="983" y="-554.5">selected</text>
-    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="983" y="-532">+selectAudioFile(file:AudioFile)</text>
-    <text style="fill: #000000;text-anchor:start;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="983" y="-517.5">Ensure that file</text>
-    <text style="fill: #000000;text-anchor:start;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="983" y="-503.5">has been</text>
-    <text style="fill: #000000;text-anchor:start;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="983" y="-489.5">selected</text>
-    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="983" y="-467">+selectAudioFileEvent(event:Event)</text>
-    <text style="fill: #000000;text-anchor:start;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="983" y="-452.5">Ensure that</text>
-    <text style="fill: #000000;text-anchor:start;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="983" y="-438.5">event is</text>
-    <text style="fill: #000000;text-anchor:start;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="983" y="-424.5">selected in</text>
-    <text style="fill: #000000;text-anchor:start;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="983" y="-410.5">event feed for</text>
-    <text style="fill: #000000;text-anchor:start;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="983" y="-396.5">the audio file</text>
-    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="983" y="-374">+selectAudioSegmentEvent(event:Event)</text>
-    <text style="fill: #000000;text-anchor:start;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="983" y="-359.5">Ensure that the</text>
-    <text style="fill: #000000;text-anchor:start;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="983" y="-345.5">event is</text>
-    <text style="fill: #000000;text-anchor:start;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="983" y="-331.5">selected in the</text>
-    <text style="fill: #000000;text-anchor:start;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="983" y="-317.5">event feed for</text>
-    <text style="fill: #000000;text-anchor:start;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="983" y="-303.5">the audio</text>
-    <text style="fill: #000000;text-anchor:start;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="983" y="-289.5">segment</text>
+    <rect style="fill: #ffffff" x="992" y="-336" width="135.2" height="56"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="992" y="-336" width="135.2" height="56"/>
+    <text style="fill: #000000;text-anchor:middle;font-size:16;font-family:sanserif;font-style:normal;font-weight:700" x="1059.6" y="-317">OrganizePage</text>
+    <text style="fill: #000000;text-anchor:middle;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="1059.6" y="-301.5">Where people can</text>
+    <text style="fill: #000000;text-anchor:middle;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="1059.6" y="-287.5">organize audio</text>
+    <rect style="fill: #ffffff" x="992" y="-280" width="135.2" height="8"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="992" y="-280" width="135.2" height="8"/>
   </g>
   <g>
     <rect style="fill: #ffffff" x="900" y="-60" width="237.9" height="100"/>
@@ -98,37 +67,37 @@
     <text style="fill: #000000;text-anchor:middle;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="942.2" y="444.5">waveform widget.</text>
   </g>
   <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="954.828,-277 280,-277 280,10 256.049,10 "/>
-    <polygon style="fill: #ffffff" points="980,-277 966,-272.2 952,-277 966,-281.8 "/>
-    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="980,-277 966,-272.2 952,-277 966,-281.8 "/>
-    <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="282" y="-137.5"></text>
-    <text style="fill: #000000;text-anchor:end;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="948" y="-281"> Controls</text>
-    <text style="fill: #000000;text-anchor:end;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="948" y="-265">1</text>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="966.828,-272 280,-272 280,10 256.049,10 "/>
+    <polygon style="fill: #ffffff" points="992,-272 978,-267.2 964,-272 978,-276.8 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="992,-272 978,-267.2 964,-272 978,-276.8 "/>
+    <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="282" y="-135"></text>
+    <text style="fill: #000000;text-anchor:end;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="960" y="-276"> Controls</text>
+    <text style="fill: #000000;text-anchor:end;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="960" y="-260">1</text>
     <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="260.049" y="6">1</text>
   </g>
   <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="980,-251.828 980,-220 1018.95,-220 1018.95,-60 "/>
-    <polygon style="fill: #ffffff" points="980,-277 984.8,-263 980,-249 975.2,-263 "/>
-    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="980,-277 984.8,-263 980,-249 975.2,-263 "/>
-    <text style="fill: #000000;text-anchor:middle;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="999.475" y="-224"></text>
-    <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="991" y="-265"></text>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="992,-246.828 992,-220 1018.95,-220 1018.95,-60 "/>
+    <polygon style="fill: #ffffff" points="992,-272 996.8,-258 992,-244 987.2,-258 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="992,-272 996.8,-258 992,-244 987.2,-258 "/>
+    <text style="fill: #000000;text-anchor:middle;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="1005.48" y="-224"></text>
+    <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="1003" y="-260"></text>
     <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="1022.95" y="-80"> 1</text>
     <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="1022.95" y="-64"></text>
   </g>
   <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1192.9,-250.82 1192.9,-158.048 1395.25,-158.048 1395.25,-40.1053 "/>
-    <polygon style="fill: #ffffff" points="1192.9,-275.992 1197.7,-261.992 1192.9,-247.992 1188.1,-261.992 "/>
-    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1192.9,-275.992 1197.7,-261.992 1192.9,-247.992 1188.1,-261.992 "/>
-    <text style="fill: #000000;text-anchor:middle;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="1294.08" y="-162.048"></text>
-    <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="1203.9" y="-263.992"></text>
-    <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="1399.25" y="-44.1053"></text>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1153.38,-304 1204.05,-304 1204.05,3 1279.89,3 "/>
+    <polygon style="fill: #ffffff" points="1128.21,-304 1142.21,-308.8 1156.21,-304 1142.21,-299.2 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1128.21,-304 1142.21,-308.8 1156.21,-304 1142.21,-299.2 "/>
+    <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="1206.05" y="-154.5"></text>
+    <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="1160.21" y="-308"></text>
+    <text style="fill: #000000;text-anchor:end;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="1275.89" y="-1"></text>
   </g>
   <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1192.9,-250.82 1192.9,-168.049 1852.43,-168.049 1852.43,-60.1061 "/>
-    <polygon style="fill: #ffffff" points="1192.9,-275.992 1197.7,-261.992 1192.9,-247.992 1188.1,-261.992 "/>
-    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1192.9,-275.992 1197.7,-261.992 1192.9,-247.992 1188.1,-261.992 "/>
-    <text style="fill: #000000;text-anchor:middle;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="1522.66" y="-172.049"></text>
-    <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="1203.9" y="-263.992"></text>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1059.6,-245.82 1059.6,-165.549 1852.43,-165.549 1852.43,-60.1061 "/>
+    <polygon style="fill: #ffffff" points="1059.6,-270.992 1064.4,-256.992 1059.6,-242.992 1054.8,-256.992 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1059.6,-270.992 1064.4,-256.992 1059.6,-242.992 1054.8,-256.992 "/>
+    <text style="fill: #000000;text-anchor:middle;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="1456.01" y="-169.549"></text>
+    <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="1070.6" y="-258.992"></text>
     <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="1856.43" y="-64.1061"></text>
   </g>
   <g>
@@ -194,49 +163,6 @@
     <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="1022.95" y="52"></text>
   </g>
   <g>
-    <rect style="fill: #ffffff" x="380" y="-460" width="258.55" height="86"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="380" y="-460" width="258.55" height="86"/>
-    <text style="fill: #000000;text-anchor:middle;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="509.275" y="-444">&lt;&lt;Event&gt;&gt;</text>
-    <text style="fill: #000000;text-anchor:middle;font-size:16;font-family:sanserif;font-style:normal;font-weight:700" x="509.275" y="-425">WaveformHighlightedEvent</text>
-    <text style="fill: #000000;text-anchor:middle;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="509.275" y="-409.5">An event that is thrown</text>
-    <text style="fill: #000000;text-anchor:middle;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="509.275" y="-395.5">when the waveform is</text>
-    <text style="fill: #000000;text-anchor:middle;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="509.275" y="-381.5">highlighted by the user</text>
-    <rect style="fill: #ffffff" x="380" y="-374" width="258.55" height="92"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="380" y="-374" width="258.55" height="92"/>
-    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="383" y="-360">+startTime: Number</text>
-    <text style="fill: #000000;text-anchor:start;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="383" y="-345.5">The start time of the</text>
-    <text style="fill: #000000;text-anchor:start;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="383" y="-331.5">highlight (in seconds)</text>
-    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="383" y="-309">+endTime: Number</text>
-    <text style="fill: #000000;text-anchor:start;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="383" y="-294.5">The end time in seconds</text>
-  </g>
-  <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="137.975,-40 140,-40 140,-371 353.824,-371 "/>
-    <polygon style="fill: #ffffff" points="378.995,-371 364.995,-366.2 350.995,-371 364.995,-375.8 "/>
-    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="378.995,-371 364.995,-366.2 350.995,-371 364.995,-375.8 "/>
-    <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="142" y="-209.5"></text>
-    <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="141.975" y="-44"> Throws</text>
-    <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="141.975" y="-28"></text>
-    <text style="fill: #000000;text-anchor:end;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="346.995" y="-375"></text>
-  </g>
-  <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="954.828,-820 809.779,-820 809.779,-371 639.558,-371 "/>
-    <polygon style="fill: #ffffff" points="980,-820 966,-815.2 952,-820 966,-824.8 "/>
-    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="980,-820 966,-815.2 952,-820 966,-824.8 "/>
-    <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="811.779" y="-599.5"></text>
-    <text style="fill: #000000;text-anchor:end;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="948" y="-824"> Catches</text>
-    <text style="fill: #000000;text-anchor:end;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="948" y="-808"></text>
-    <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="643.558" y="-375"></text>
-  </g>
-  <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="899.901,-10 720,-10 720,-282 663.722,-282 "/>
-    <polygon style="fill: #ffffff" points="638.55,-282 652.55,-286.8 666.55,-282 652.55,-277.2 "/>
-    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="638.55,-282 652.55,-286.8 666.55,-282 652.55,-277.2 "/>
-    <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="722" y="-150"></text>
-    <text style="fill: #000000;text-anchor:end;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="895.901" y="-14"> Throws</text>
-    <text style="fill: #000000;text-anchor:end;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="895.901" y="2"></text>
-    <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="670.55" y="-286"></text>
-  </g>
-  <g>
     <rect style="fill: #ffffff" x="1540" y="160" width="218.45" height="72"/>
     <rect style="fill: none; fill-opacity:0; stroke-width: 0.2; stroke: #000000" x="1540" y="160" width="218.45" height="72"/>
     <text style="fill: #000000;text-anchor:middle;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="1649.23" y="176">&lt;&lt;Widget&gt;&gt;</text>
@@ -268,69 +194,5 @@
     <text style="fill: #000000;text-anchor:middle;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="1742.8" y="256"></text>
     <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="1644.17" y="295.911">*</text>
     <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="1856.43" y="52.1059"></text>
-  </g>
-  <g>
-    <rect style="fill: #ffffff" x="1600" y="-640" width="271.55" height="100"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1600" y="-640" width="271.55" height="100"/>
-    <text style="fill: #000000;text-anchor:middle;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="1735.77" y="-624">&lt;&lt;Event&gt;&gt;</text>
-    <text style="fill: #000000;text-anchor:middle;font-size:16;font-family:sanserif;font-style:normal;font-weight:700" x="1735.77" y="-605">AudioSegmentSelectedEvent</text>
-    <text style="fill: #000000;text-anchor:middle;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="1735.77" y="-589.5">An event that is thrown</text>
-    <text style="fill: #000000;text-anchor:middle;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="1735.77" y="-575.5">when an audio segment</text>
-    <text style="fill: #000000;text-anchor:middle;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="1735.77" y="-561.5">has been selected in</text>
-    <text style="fill: #000000;text-anchor:middle;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="1735.77" y="-547.5">the list</text>
-    <rect style="fill: #ffffff" x="1600" y="-540" width="271.55" height="55"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1600" y="-540" width="271.55" height="55"/>
-    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="1603" y="-526">+segment: AudioSegment</text>
-    <text style="fill: #000000;text-anchor:start;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="1603" y="-511.5">The audio segment that</text>
-    <text style="fill: #000000;text-anchor:start;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="1603" y="-497.5">was selected</text>
-  </g>
-  <g>
-    <rect style="fill: #ffffff" x="1940" y="-640" width="224" height="100"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1940" y="-640" width="224" height="100"/>
-    <text style="fill: #000000;text-anchor:middle;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="2052" y="-624">&lt;&lt;Event&gt;&gt;</text>
-    <text style="fill: #000000;text-anchor:middle;font-size:16;font-family:sanserif;font-style:normal;font-weight:700" x="2052" y="-605">AudioFileSelectedEvent</text>
-    <text style="fill: #000000;text-anchor:middle;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="2052" y="-589.5">An event that is thrown</text>
-    <text style="fill: #000000;text-anchor:middle;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="2052" y="-575.5">when an audio file has</text>
-    <text style="fill: #000000;text-anchor:middle;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="2052" y="-561.5">been selected in the</text>
-    <text style="fill: #000000;text-anchor:middle;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="2052" y="-547.5">list</text>
-    <rect style="fill: #ffffff" x="1940" y="-540" width="224" height="55"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1940" y="-540" width="224" height="55"/>
-    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="1943" y="-526">+file: AudioFile</text>
-    <text style="fill: #000000;text-anchor:start;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="1943" y="-511.5">The audio file that was</text>
-    <text style="fill: #000000;text-anchor:start;font-size:11.2;font-family:sanserif;font-style:italic;font-weight:normal" x="1943" y="-497.5">selected</text>
-  </g>
-  <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1964.85,-85.1716 1964.85,-160 2052,-160 2052,-484.034 "/>
-    <polygon style="fill: #ffffff" points="1964.85,-60 1960.05,-74 1964.85,-88 1969.65,-74 "/>
-    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1964.85,-60 1960.05,-74 1964.85,-88 1969.65,-74 "/>
-    <text style="fill: #000000;text-anchor:middle;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="2008.42" y="-164"></text>
-    <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="1975.85" y="-80"> throws</text>
-    <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="1975.85" y="-64"></text>
-    <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="2056" y="-472.034"></text>
-  </g>
-  <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1964.85,-85.1716 1964.85,-377.154 1735.77,-377.154 1735.77,-484.013 "/>
-    <polygon style="fill: #ffffff" points="1964.85,-60 1960.05,-74 1964.85,-88 1969.65,-74 "/>
-    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1964.85,-60 1960.05,-74 1964.85,-88 1969.65,-74 "/>
-    <text style="fill: #000000;text-anchor:middle;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="1850.31" y="-381.154"></text>
-    <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="1975.85" y="-64"></text>
-    <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="1739.77" y="-472.013"></text>
-  </g>
-  <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1573.82,-562.5 1502.9,-562.5 1502.9,-548.5 1406.81,-548.5 "/>
-    <polygon style="fill: #ffffff" points="1598.99,-562.5 1584.99,-557.7 1570.99,-562.5 1584.99,-567.3 "/>
-    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1598.99,-562.5 1584.99,-557.7 1570.99,-562.5 1584.99,-567.3 "/>
-    <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="1504.9" y="-559.5"></text>
-    <text style="fill: #000000;text-anchor:end;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="1566.99" y="-566.5"></text>
-    <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="1410.81" y="-552.5"> catches</text>
-    <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="1410.81" y="-536.5"></text>
-  </g>
-  <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="2052,-665.172 2052,-700 1500,-700 1500,-548.5 1406.77,-548.5 "/>
-    <polygon style="fill: #ffffff" points="2052,-640 2047.2,-654 2052,-668 2056.8,-654 "/>
-    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="2052,-640 2047.2,-654 2052,-668 2056.8,-654 "/>
-    <text style="fill: #000000;text-anchor:middle;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="1776" y="-704"></text>
-    <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="2063" y="-644"></text>
-    <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="1410.77" y="-552.5"></text>
   </g>
 </svg>
