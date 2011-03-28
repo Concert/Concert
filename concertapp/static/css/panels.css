@@ -199,7 +199,11 @@ div#overview_waveform_panel_top {
 
 div#overview_waveform_panel_bottom {
     width: 960px;
-    height: 20px;
+    height: 40px;
+    overflow-y: scroll;
+    /* absolute so scroll will work on segment bars, which are also positioned 
+    absolute */
+    position: absolute;
 }
 
 div #overview_waveform_panel_playhead {
