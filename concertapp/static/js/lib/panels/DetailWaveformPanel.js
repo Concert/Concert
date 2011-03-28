@@ -69,7 +69,7 @@ var DetailWaveformPanel = WaveformPanel.extend(
         
         /* Instantiate component for playhead */
         var playheadComponent = new DetailWaveformPlayheadComponent({
-            el: this.playheadContainerElement,
+            el: this.playheadElement,
             panel: this,
             audio: this.page.audio
         });
@@ -86,7 +86,7 @@ var DetailWaveformPanel = WaveformPanel.extend(
         this.highlightContainerElement = highlightContainerElement;
         
         /* a highlighter component so we can highlight things */
-        var highlighter = new DetailWaveformHighlighterComponent({
+        var highlighter = new DetailWaveformInteractionComponent({
             el: highlightContainerElement, 
             panel: this, 
         });
@@ -101,12 +101,17 @@ var DetailWaveformPanel = WaveformPanel.extend(
         }
         this.waveformView = waveformView;
         
+        this.set_zoom_level(10);
+        
+        /**
+         *  By default, autoscrolling is ON
+         **/
         var autoscrollBool = true;
         this.autoscrollBool = autoscrollBool;
         
         this.waveformView.bind('scrollstart', function(me) {
             return function() {
-                me.handle_scroll();
+                me.handle_scroll_start();
             };
         }(this));
         
@@ -115,12 +120,7 @@ var DetailWaveformPanel = WaveformPanel.extend(
                 me.handle_scroll_stop();
             }
         }(this));
-        
-        this.waveformView.bind('click', function(me) {
-            return function(e) {
-                me.handle_click(get_event_x(e));
-            };
-        }(this));            
+
     },
     /**
      *  Called from page when an audio file has been selected.
@@ -191,24 +191,42 @@ var DetailWaveformPanel = WaveformPanel.extend(
         );
         
     }, 
-    
-    
-    /**
-     *  Called from highlight when an area of the waveform is highlighted.
-     *
-     *  @param  {Number}    startTime    -  The time (in seconds) of highlight start
-     *  @param  {Number}    endTime    -    The time of the highlight end.
-     **/
-    waveform_highlighted: function(startTime, endTime) {
-        this.autoscrollBool = true;
         
-        /* Tell page about our highlight */
-        this.page.waveform_highlighted(startTime, endTime, this);
-    }, 
-    
+    highlight_waveform: function(startTime, endTime) {
+        WaveformPanel.prototype.highlight_waveform.call(this, startTime, endTime);
+        this.autoscrollBool = true;
+    },
     
     /**
-     *  Determines if the playhead is in the current waveform view
+     *  set_zoom_level is initially called in init to set the zoomLevel to 10 pxPerSecond
+     **/
+    set_zoom_level: function(zoomLevel) {
+        this.zoomLevel = zoomLevel;
+        this.playheadComponent.update_speed();
+    },
+    
+    /**
+     *  handle_scroll_start is called on event above
+     *  immediately turns OFF autoscrolling
+     **/
+    handle_scroll_start: function() {
+        this.autoscrollBool = false;
+    },
+    
+    /**
+     *  handle_scroll_stop is called on event above
+     *  if autoscroll is OFF and the playhead is in view, turn autoscroll ON
+     **/
+    handle_scroll_stop: function() {
+        if (!this.autoscrollBool && this.playhead_in_view()) {
+            this.autoscrollBool = true;
+        }
+    },
+    
+    /**
+     *  playhead_in_view is called in handle_scroll_stop above
+     *  helps determine whether or not to turn autoscrolling ON on a scrollstop by
+     *  determining if the playhead is in the current waveform view
      **/
     playhead_in_view: function() {
         if (((this.waveformView.scrollLeft()) <= this.playheadComponent.position()) && 
@@ -221,55 +239,34 @@ var DetailWaveformPanel = WaveformPanel.extend(
     },
     
     /**
-     *  if the playhead is at the end of the view && AUTOSCROLLING ON 
-     *  scroll to position of playhead
+     *  playhead_moved is called every time the draw() method is called on the 
+     *  detail playhead (every time timeupdate is fired)
+     *  if the playhead is at the end of the view OR outside the view 
+     *  and autoscrolling is on, playhead_moved calls autoscrolling
      **/
-    playhead_moved: function(leftPx) {        
+    playhead_moved: function(leftPx) { 
         if ((this.autoscrollBool && leftPx >= (815 + this.waveformView.scrollLeft())) ||
             (this.autoscrollBool && leftPx < this.waveformView.scrollLeft())) {
             this.autoscroll(leftPx);
         }
 
-    }, 
-    
-    /**
-     *  Handles playhead behavior on scroll
-     **/
-    handle_scroll: function() {
-        this.autoscrollBool = false;
-    }, 
-
-    /**
-    *  Handles playhead behavior on a scroll stop
-    **/    
-    handle_scroll_stop: function() {
-        if (!this.autoscrollBool && this.playhead_in_view()) {
-            this.autoscrollBool = true;
-        }
-        else {
-            this.autoscrollBool = false;
-        }
-    }, 
+    },     
         
     /**
-     *  moves the waveform view to leftPx
+     *  autoscroll is called by playhead_moved if the playhead is out of view
+     *  scrolls the waveform image with a pretty easeOutExpo animation
      **/
     autoscroll: function(leftPx) {
         this.waveformView.animate({scrollLeft: leftPx}, 600, "easeOutExpo");
     },
-    
-    
-    handle_click: function(left) {
-        //update audio's currentTime to location clicked
-        var leftPx = left + this.waveformView.scrollLeft();
-        var seconds = leftPx/10;
-        this.page.move_audio(seconds);
-    }, 
+
     
     /**
      *  The resolution of the waveform image (in pixels/second)
+     *  This will eventually look at the panel's zoom level to calculate resolution
      **/
     get_resolution: function() {
         return 10;
     }, 
+
 });

@@ -20,7 +20,7 @@ var OverviewWaveformPanel = WaveformPanel.extend(
         
         /* Instantiate widget for playhead */
         var playheadComponent = new OverviewWaveformPlayheadComponent({
-            el: this.playheadContainerElement,
+            el: this.playheadElement,
             panel: this,
             audio: this.page.audio
         });
@@ -36,17 +36,11 @@ var OverviewWaveformPanel = WaveformPanel.extend(
         this.highlighterContainerElement = highlighterContainerElement;
         
         /* Highlighter */
-        var highlighter = new OverviewWaveformHighlighterComponent({
+        var highlighter = new OverviewWaveformInteractionComponent({
             el: highlighterContainerElement, 
             panel: this 
         });
         this.highlighter = highlighter;
-
-        $("#overview_waveform_panel_top").bind('click', function(me) {
-            return function(e) {
-                me.handle_click(get_event_x(e));
-            };
-        }(this));
     }, 
     
     /**
@@ -65,6 +59,8 @@ var OverviewWaveformPanel = WaveformPanel.extend(
                 }
             }(this, selectedAudioFile)
         );
+    
+        this.playheadComponent.update_speed();
     }, 
     
     /**
@@ -74,8 +70,10 @@ var OverviewWaveformPanel = WaveformPanel.extend(
      **/
     audio_segment_selected: function(selectedAudioSegment) {
         WaveformPanel.prototype.audio_segment_selected.call(this, selectedAudioSegment);
-        
+
         this.waveformImageElement.attr('src', selectedAudioSegment.get('audioFile').get_waveform_src(10));
+        this.playheadComponent.update_speed();
+
     }, 
     
     /**
@@ -89,12 +87,5 @@ var OverviewWaveformPanel = WaveformPanel.extend(
         var duration = this.audioFileDuration;
         
         return width/duration;
-    },
-
-    handle_click: function(left) {
-        //update audio's currentTime to location clicked
-        var seconds = left/this.get_resolution();
-        this.page.move_audio(seconds);
-    }, 
-    
+    },    
 })

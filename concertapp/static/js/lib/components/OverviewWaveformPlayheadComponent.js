@@ -18,8 +18,7 @@ var OverviewWaveformPlayheadComponent = WaveformPlayheadComponent.extend(
         WaveformPlayheadComponent.prototype.initialize.call(this);
     },
     
-    audio_file_selected: function(selectedAudioFile) {
-        WaveformPlayheadComponent.prototype.audio_file_selected.call(this, selectedAudioFile);
-        this.pxPerSecond = this.el.parent().width() / this.fileDuration;
+    update_speed: function() {
+        this.pxPerSecond = this.panel.get_resolution();         
     },
 });

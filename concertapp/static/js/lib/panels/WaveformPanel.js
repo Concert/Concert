@@ -29,15 +29,15 @@ var WaveformPanel = Panel.extend(
         }
         this.waveformImageElement = waveformImageElement;
         
-        /* The container for the playhead widget */
-        var playheadContainerElement = this.el.find('.playhead');
-        if(typeof(playheadContainerElement) == 'undefined') {
-            throw new Error('$(\'#detail_waveform_panel_playhead\') is undefined');
+        /* The playhead element */
+        var playheadElement = this.el.find('.playhead');
+        if(typeof(playheadElement) == 'undefined') {
+            throw new Error('playheadElement is undefined');
         }
-        else if(playheadContainerElement.length == 0) {
-            throw new Error('playheadContainerElement not found');
+        else if(playheadElement.length == 0) {
+            throw new Error('playheadElement not found');
         }
-        this.playheadContainerElement = playheadContainerElement;
+        this.playheadElement = playheadElement;
         
         /* The duration of the last selected audio file (or segment parent) */
         this.audioFileDuration = null;
@@ -51,7 +51,6 @@ var WaveformPanel = Panel.extend(
      **/
     audio_file_selected: function(selectedAudioFile) {
         this.audioFileDuration = selectedAudioFile.get('duration');
-        this.playheadComponent.audio_file_selected(selectedAudioFile);
         this.playheadComponent.reset();
     },
     
@@ -62,7 +61,6 @@ var WaveformPanel = Panel.extend(
      **/
     audio_segment_selected: function(selectedAudioSegment) {
         this.audioFileDuration = selectedAudioSegment.get('audioFile').get('duration');
-        this.playheadComponent.audio_segment_selected(selectedAudioSegment);
         this.playheadComponent.reset();
     }, 
     
@@ -72,6 +70,10 @@ var WaveformPanel = Panel.extend(
     clear_waveform_highlight: function() {
         this.highlighter.disable();
     }, 
+    
+    clear_audio_loop: function() {
+        this.page.clear_audio_loop();
+    },
     
     /**
      *  Called from page when waveform should highlight
@@ -104,18 +106,6 @@ var WaveformPanel = Panel.extend(
      **/
     waveform_highlight_cleared: function() {
         this.page.waveform_highlight_cleared(this);
-    }, 
-    
-    /**
-     *  Called from highlight when an area of the waveform is highlighted.
-     *
-     *  @param  {Number}    startTime    -  The time (in seconds) of highlight start
-     *  @param  {Number}    endTime    -    The time of the highlight end.
-     **/
-    waveform_highlighted: function(startTime, endTime) {
-        /* Tell page about our highlight */
-        this.page.waveform_highlighted(startTime, endTime, this);
-    }, 
-    
+    },     
     
 });
