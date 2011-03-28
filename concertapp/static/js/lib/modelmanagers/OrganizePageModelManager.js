@@ -166,7 +166,7 @@ OrganizePageModelManager.prototype.create_and_select_new_segment = function(star
         /* Creator of the segment is the current user */
         creator: this.user, 
         /* For now, name is just timestamp */
-        name: 'segment_'+timestamp.format('yyyy-mm-dd_hh:MM'), 
+        name: 'segment_'+timestamp.format('yyyy-mm-dd_hh:MM:ss:L'), 
         /* Collection is current collection */
         collection: this.collection, 
     });
@@ -175,7 +175,9 @@ OrganizePageModelManager.prototype.create_and_select_new_segment = function(star
     this.collectionAudioSegments.add(newSegment);
     
     /* Select new segment */
-    this.page.select_audio_segment(newSegment);
+    this.page.select_audio({
+        segments: [newSegment], 
+    });
     
     /* Now save to server */
     newSegment.save(null, {
