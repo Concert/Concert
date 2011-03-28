@@ -1,13 +1,20 @@
 {% load extra_template_tags %}
-
-	<div class="audio_widget">
-			<div class="boxwrap">
-					<div class="{{ widgetType }}_widget_icon">
-					
-					</div>
-					<div class="{{ widgetType }}_widget_info">
-					    {% block info %}{% endblock %}
-					</div>
-			</div>
-			{% block bottom %}{% endblock %}
-	</div>
+<div class="audio_widget {% verbatim %}{{if selected}} selected{{/if}}{% endverbatim %}
+">
+    <div class="boxwrap">
+        <div class="{{ widgetType }}_widget_icon">
+        </div>
+        <div class="{{ widgetType }}_widget_info audio_widget_info">
+            {% verbatim %}
+                <div class="title">
+                	<span class="audio_widget_title_text">${name}</span>
+                	<span class="audio_widget_title_buttons">
+                	    <button class="delete_audio_button">Delete</button>
+            	    </span>
+                </div>
+            {% endverbatim %}
+            {% block info %}{% endblock %}
+        </div>
+    </div>
+    {% block bottom %}{% endblock %}
+</div>

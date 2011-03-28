@@ -22,13 +22,22 @@ var SegmentWidget = AudioListWidget.extend(
         _.bindAll(this, "render");
         this.render();
     }, 
-    events: {
-        'click': 'select_segment', 
-    }, 
     /**
      *  Called when the segment is selected in the list
      **/
-    select_segment: function() {
+    _handle_title_click: function() {
+        AudioListWidget.prototype._handle_title_click.call(this);
+
+        /* Select audio segment */
         this.panel.page.select_audio({segments: [this.model]});
+    },
+    
+    /**
+     *  When this widget's delete button is clicked.
+     **/    
+    _handle_delete_click: function() {
+        AudioListWidget.prototype._handle_delete_click.call(this);
+        
+        this.panel.page.delete_audio_segment(this.model);
     }, 
 });

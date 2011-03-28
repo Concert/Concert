@@ -23,14 +23,22 @@ var FileWidget = AudioListWidget.extend(
         _.bindAll(this, "render");
         this.render();
     },
-    events: {
-        'click': 'select_file'
-    }, 
     /**
      *  This is called when this file was selected in the list.
      **/
-    select_file: function() {
+    _handle_title_click: function() {
+        AudioListWidget.prototype._handle_title_click.call(this);
+        
         this.panel.page.select_audio({files: [this.model]});
+    }, 
+    
+    /**
+     *  When this widget's delete button is clicked.
+     **/    
+    _handle_delete_click: function() {
+        AudioListWidget.prototype._handle_delete_click.call(this);
+        
+        this.panel.page.delete_audio_file(this.model);
     }, 
 });
 

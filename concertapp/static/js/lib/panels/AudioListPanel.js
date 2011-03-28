@@ -94,54 +94,8 @@ var AudioListPanel = Panel.extend(
         files.bind('remove', this.render);
         
         
-        /* If an audio file was selected */
-        _.bindAll(this, 'select_audio_file');
-        $(modelManager).bind('audio_file_selected', this.select_audio_file);
-
-        /* If an audio segment was selected */
-        _.bindAll(this, 'select_audio_segment');
-        $(modelManager).bind('audio_segment_selected', this.select_audio_segment);
-        
     }, 
     
-    /**
-     *  When a file is selected.
-     *
-     *  @param  {AudioFile}    selectedAudioFile    -   The file that was selected.
-     **/
-    select_audio_file: function(e, selectedAudioFile) {
-        /* Un-select previously selected widget */
-        var selectedWidget = this.selectedWidget;
-        if(selectedWidget) {
-            selectedWidget.de_select();
-        }
-        
-        
-        /* Make corresponding widget selected */
-        var newSelectedWidget = this.fileWidgets[selectedAudioFile.get('id')];
-        newSelectedWidget.select();
-        this.selectedWidget = newSelectedWidget;
-    }, 
-    
-    /**
-     *  When a segment is selected.
-     *
-     *  @param  {AudioSegment}    selectedAudioSegment    - The segment that was 
-     *  selected.
-     **/
-    select_audio_segment: function(e, selectedAudioSegment) {
-        /* Un-select previously selected widget */
-        var selectedWidget = this.selectedWidget;
-        if(selectedWidget) {
-            selectedWidget.de_select();
-        }
-        
-        
-        /* Make corresponding widget selected */
-        var newSelectedWidget = this.segmentWidgets[selectedAudioSegment.get('id')];
-        newSelectedWidget.select();
-        this.selectedWidget = newSelectedWidget;        
-    }, 
     /**
      *  Called when segments or file list is changed.
      **/

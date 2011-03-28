@@ -183,6 +183,15 @@ var ConcertBackboneModel = Backbone.Model.extend(
 
         return Backbone.Model.prototype.save.call(this, attrs, wrapErrorHelper(options));
     },
+    
+    /**
+     *  Wrap our error callback for destroy calls too.
+     **/
+    destroy: function(options) {
+        var wrapErrorHelper = com.concertsoundorganizer.helpers.wrapError;
+        
+        return Backbone.Model.prototype.destroy.call(this, wrapErrorHelper(options));
+    }, 
 
     /**
      *  Uses the 'static' name attribute of the model to create the url.  If the

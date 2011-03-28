@@ -2,18 +2,15 @@
 {% load extra_template_tags %}
 
 {% block info %}
-<div class="title">
-	{% verbatim %}${name}{% endverbatim %}
-</div>
-<div class="info">
-    {% verbatim %}
-		${seconds_to_timecode(duration)} <span class="small_text"> uploaded by </span> ${uploader.get("username")}	
-	{% endverbatim %}
-</div>
-{% endblock %}
+    <div class="info">
+        {% verbatim %}
+    		${seconds_to_timecode(duration)} <span class="small_text"> uploaded by </span> ${uploader.get("username")}	
+    	{% endverbatim %}
+    </div>
+    {% endblock %}
 
-{% block bottom %}
-<div class="bottom">
-		SEGMENT - SEGMENT - SEGMENT
-</div>			
+    {% block bottom %}
+    <div class="bottom">
+    		SEGMENT - SEGMENT - SEGMENT
+    </div>			
 {% endblock %}

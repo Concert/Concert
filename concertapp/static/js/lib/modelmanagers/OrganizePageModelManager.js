@@ -112,26 +112,38 @@ OrganizePageModelManager.prototype.select_audio = function(params) {
         segments = [];
     }
     
-    /* remove previously selected segments and select new ones */
-    this.selectedAudioSegments.refresh(segments);
-    /* Remove previously selected files and select new ones */
-    this.selectedAudioFiles.refresh(files);
+    var selectedAudioSegments = this.selectedAudioSegments;
+    var selectedAudioFiles = this.selectedAudioFiles;
     
-    /**
-     *  TODO: Refactor code to just use these events.
-     **/
-    if(files.length == 1 && segments.length == 0) {
-        $(this).trigger('audio_file_selected', files[0]);
-    }
-    else if(files.length == 0 && segments.length == 1) {
-        $(this).trigger('audio_segment_selected', segments[0]);
-    }
-    else if(files.length == 0 && segments.length == 0){
-        $(this).trigger('audio_deselected');
-    }
-    else {
-        throw new Error('Not yet implemented multiple selection.');
-    }
+    /* Deselect everything */
+    selectedAudioSegments.each(function(seg){
+        seg.set({
+            selected: false 
+        });
+    });
+    selectedAudioFiles.each(function(file){
+        file.set({
+            selected: false 
+        });
+    });
+    
+    /* remove previously selected segments and select new ones */
+    selectedAudioSegments.refresh(segments);
+    /* Remove previously selected files and select new ones */
+    selectedAudioFiles.refresh(files);
+    
+    /* Set all instances to selected */
+    selectedAudioSegments.each(function(seg){
+        seg.set({
+            selected: true
+        });
+    });
+    selectedAudioFiles.each(function(file){
+        file.set({
+            selected: true
+        });
+    });
+
 };
 
 /**
@@ -232,5 +244,38 @@ OrganizePageModelManager.prototype.modify_current_segment_times = function(start
         error_message: 'Audio segment was not modified' 
     });
 };
+
+/**
+ *  When an audio segment is to be deleted.
+ *
+ *  @param  {AudioSegment}  segment     The audio segment we're deleting
+ **/
+OrganizePageModelManager.prototype.delete_audio_segment = function(segment) {
+    var collectionAudioSegments = this.collectionAudioSegments;
+    
+    /* Remove from current collection's audio segments */
+    collectionAudioSegments.remove(segment);
+    
+    /* If this is the currently selected audio segment */
+    if(this.selectedAudioSegments.first() == segment) {
+        /* Select parent audio file */
+        this.page.select_audio({
+            files: [segment.get('audioFile')]
+        });
+    }
+    
+    /* Delete audio segment */
+    segment.destroy({
+        /* If there was a problem */
+        error_callback: function(segment, collectionAudioSegments) {
+            return function() {
+                /* Put back in audio segments list for current collection */
+                collectionAudioSegments.add(segment);
+            }
+        }(segment, collectionAudioSegments), 
+        error_message: 'Audio segment was not deleted'
+    });
+};
+
 
 

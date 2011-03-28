@@ -34,14 +34,6 @@ var CommentsPanel = Panel.extend({
         }
         this.headerTemplate = headerTemplate;
         
-        /* If an audio file was selected */
-        _.bindAll(this, 'select_audio_file');
-        $(modelManager).bind('audio_file_selected', this.select_audio_file);
-
-        /* If an audio segment was selected */
-        _.bindAll(this, 'select_audio_segment');
-        $(modelManager).bind('audio_segment_selected', this.select_audio_segment);
-        
     },
     
     /**

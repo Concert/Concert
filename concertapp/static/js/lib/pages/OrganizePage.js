@@ -157,7 +157,7 @@ var OrganizePage = LoggedInPage.extend(
      *  @param  {AudioSegment}    selectedAudioSegment    - The AudioSegment 
      *  that was selected.
      **/
-    select_audio_segment: function(selectedAudioSegment) {
+    select_audio_segment: function(selectedAudioSegment) {        
         /* Load the audio segment's file into the audio player */
         this._load_audio_file(selectedAudioSegment.get('audioFile'), function(me, selectedAudioSegment) {
             return function() {
@@ -221,6 +221,15 @@ var OrganizePage = LoggedInPage.extend(
         }(this))
         this.audio.currentTime = seconds;
     },
+    
+    /**
+     *  Ensure that given audio segment is deleted.
+     *
+     *  @param  {AudioSegment}    segment    The AudioSegment instance to delete
+     **/
+    delete_audio_segment: function(segment) {
+        this.modelManager.delete_audio_segment(segment);
+    }, 
     
     /**
      *  This will load an audio file into the audio player, and fire the callback

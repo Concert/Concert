@@ -598,7 +598,6 @@ div.audio_widget {
     border-bottom: 1px solid white;
     -webkit-box-shadow: 0px 1px 0px rgba(0,0,0,0.5);
     font-weight: bold;
-    cursor: pointer;
 }
 
 div.audio_widget .boxwrap{
@@ -628,6 +627,10 @@ div.audio_widget .bottom{
 
 div.audio_widget .info{
     padding-bottom: 10px;
+}
+
+span.audio_widget_title_text {
+    cursor: pointer;
 }
 
 /*pushed to universal classes*/
