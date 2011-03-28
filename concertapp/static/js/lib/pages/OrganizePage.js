@@ -66,15 +66,15 @@ var OrganizePage = LoggedInPage.extend(
         });
         
         
-        /* When the space button is pressed, pause/play our audio */
+        /* When the space button is pressed */
         $(window).bind('keydown', function(me) {
             return function(e) {
                 /* If this was a space, not from an input element */
                 if(e.keyCode == 32 && !$(e.srcElement).is('input')) {
                     e.preventDefault();
                     e.stopPropagation();
-                    
-                    me.play_pause();
+                    /* Handle event */
+                    me._handle_space_bar();
                 }
             };
         }(this));
@@ -82,7 +82,8 @@ var OrganizePage = LoggedInPage.extend(
     }, 
     
     /**
-     *  When a user selects some audio from the audio list.
+     *  Ensure that given audio models are shown as selected on the UI.  Takes
+     *  arrays in case we need to select multiple files/segments in the future.
      *
      *  @param  {Array}     params.files    -   The files selected.
      *  @param  {Array}     params.segments -   The selected segments
@@ -92,9 +93,9 @@ var OrganizePage = LoggedInPage.extend(
         this.modelManager.select_audio(params);
         
         /* Pause audio if it is currently playing */
-        this.pause();
-        /* Clear any highlights/loops */
-        this._clear_audio_loop();
+        this.audio.pause();
+        
+        /* Clear any highlights */
         this.clear_waveform_highlight();
         
         
@@ -132,7 +133,7 @@ var OrganizePage = LoggedInPage.extend(
     }, 
     
     /**
-     *  When a user has selected a single audio file.
+     *  Ensure that given audio file has been selected.
      *
      *  @param  {AudioFile}    selectedAudioFile    -   The AudioFile that was
      *  selected.
@@ -151,7 +152,7 @@ var OrganizePage = LoggedInPage.extend(
     },
     
     /**
-     *  When a user has selected a single audio segment
+     *  Ensure that given audio segment has been selected.
      *
      *  @param  {AudioSegment}    selectedAudioSegment    - The AudioSegment 
      *  that was selected.
@@ -176,6 +177,43 @@ var OrganizePage = LoggedInPage.extend(
     }, 
     
     /**
+     *  This is called from elsewhere when an area of the waveform was highlighted by 
+     *  the user.  Ensure that UI displays the highlight and the segment
+     *  is to be created.
+     *
+     *  @param  {Number}    startTime    -  The time (in seconds) of highlight start
+     *  @param  {Number}    endTime    -    The time of the highlight end.
+     **/
+    create_new_segment: function(startTime, endTime) {
+        /* Create new audio segment */
+        this.modelManager.create_and_select_new_segment(startTime, endTime);
+    },
+    
+    /**
+     *  This is called from elsewhere when we are to ensure that a waveform highlight 
+     *  is cleared.
+     **/
+    clear_waveform_highlight: function() {
+        this._clear_audio_loop();
+        this.detailPanel.clear_waveform_highlight();
+        this.overviewPanel.clear_waveform_highlight();
+    }, 
+    
+    /**
+     *  Called when audio is to change time.
+     *
+     *  @param  {Number}    seconds    The time we are to go to in the audio file.
+     **/
+    set_audio_time: function(seconds) {
+        $(this.audio).one('timeupdate', function(me) {
+            return function() {
+                me.detailPanel.handle_scroll_stop();
+            }
+        }(this))
+        this.audio.currentTime = seconds;
+    },
+    
+    /**
      *  This will load an audio file into the audio player, and fire the callback
      *  when complete.
      *
@@ -198,58 +236,18 @@ var OrganizePage = LoggedInPage.extend(
     /**
      *  When a user presses the space bar
      **/
-    play_pause: function() {
+    _handle_space_bar: function() {
         /* Get HTML5 audio object */
         var audio = this.audio;
             
         if(audio.paused) {
-            this.play();
+            audio.play();
         }
         else {
-            this.pause();
+            audio.pause();
         }
     }, 
-    
-    play: function() {
-        this.audio.play();
-//        this.detailPanel.autoscrollBool = true;
-        
-    },
-    
-    pause: function() {
-        this.audio.pause();
-    },
-    
-    
-    
-    /**
-     *  This is called from a panel when an area of the waveform was highlighted by 
-     *  the user.
-     *
-     *  @param  {Number}    startTime    -  The time (in seconds) of highlight start
-     *  @param  {Number}    endTime    -    The time of the highlight end.
-     *  @param  {Panel}    panel    -   The panel that triggered the highlight
-     **/
-    waveform_highlighted: function(startTime, endTime) {
-        /* Start audio loop */
-        this._start_audio_loop(startTime, endTime);
-        
-        /* Tell overview panel */
-        this.overviewPanel.highlight_waveform(startTime, endTime);
-        /* Tell detail panel */
-        this.detailPanel.highlight_waveform(startTime, endTime);
 
-    },
-    
-    /**
-     *  This is called from elsewhere when we are to ensure that a waveform highlight 
-     *  is cleared.
-     **/
-    clear_waveform_highlight: function() {
-        this._clear_audio_loop();
-        this.detailPanel.clear_waveform_highlight();
-        this.overviewPanel.clear_waveform_highlight();
-    }, 
     
     /**
      *  This is called when a section of a waveform is selected.  It will start
@@ -283,24 +281,9 @@ var OrganizePage = LoggedInPage.extend(
     }, 
     
     /**
-     *  This is called when a highlight is cleared on the UI.
-     **/
-    
-    
-    /**
      *  This is called internally the audio loop is to be turned off
      **/
     _clear_audio_loop: function() {
         $(this.audio).unbind('timeupdate', this.audioLoopTimeUpdateCallback);
     }, 
-    
-    move_audio: function(seconds) {
-        $(this.audio).one('timeupdate', function(me) {
-            return function() {
-                me.detailPanel.handle_scroll_stop();
-            }
-        }(this))
-        this.audio.currentTime = seconds;
-    },     
-    
 });

@@ -39,11 +39,13 @@ class AudioSegmentAuthorization(ConcertAuthorization):
 
 
 class AudioSegmentResource(NestedResource):
+    name = fields.CharField('name')
+    beginning = fields.FloatField('beginning')
+    end = fields.FloatField('end')
     creator = fields.ForeignKey(UserResource, 'creator', full=True) 
     audioFile = fields.ForeignKey(AudioFileResource, 'audioFile', full=True)
     tags = fields.ManyToManyField(TagResource, 'tags', full=True, null=True)
     collection = fields.ForeignKey(CollectionResource, 'collection', full=True)
-    comments = fields.ManyToManyField(CommentResource, 'comments', full=True, null=True)
     
     class Meta:
         authentication = DjangoAuthentication()

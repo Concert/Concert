@@ -68,13 +68,20 @@ OrganizePageModelManager.prototype.init = function(params) {
     this.selectedAudioSegments = new AudioSegmentSet;
     this.selectedAudioFiles = new AudioFileSet;
     
-    
+    /**
+     *  The current collection we are organizing.
+     **/
+    this.collection = new Collection;
 };
 
 OrganizePageModelManager.prototype._loadData = function() {
     LoggedInModelManager.prototype._loadData.call(this);
     
     var dataToLoad = this._dataToLoad;
+    
+    /* Load current collection */
+    this.collection.set(dataToLoad.collectionData);
+    dataToLoad.collectionData = null;
     
     /* Most stuff is watching both files and widgets, so do this silently */
     this.collectionAudioFiles.refresh(dataToLoad.fileData, {silent: true});
@@ -126,3 +133,62 @@ OrganizePageModelManager.prototype.select_audio = function(params) {
         throw new Error('Not yet implemented multiple selection.');
     }
 };
+
+/**
+ *  Create new audio segment object and set it as currently selected.
+ **/
+OrganizePageModelManager.prototype.create_and_select_new_segment = function(startTime, endTime) {
+    
+    var selectedSegments = this.selectedAudioSegments;
+    var selectedFiles = this.selectedAudioFiles;
+    
+    /* The audio file that will be the parent for our new segment */
+    var audioFile = null;
+    
+    /* If a segment is currently selected */
+    if(selectedSegments.length) {
+        /* Use segment's parent audio file */
+        audioFile = selectedSegments.first().get('audioFile');
+    }
+    /* If a file is currently selected */
+    else if(selectedFiles.length) {
+        /* Use it as the segment's parent */
+        audioFile = selectedFiles.first();
+    }
+    
+    var timestamp = new Date();
+    
+    /* Create new segment */
+    var newSegment = new AudioSegment({
+        audioFile: audioFile, 
+        beginning: startTime, 
+        end: endTime,
+        /* Creator of the segment is the current user */
+        creator: this.user, 
+        /* For now, name is just timestamp */
+        name: 'segment_'+timestamp.format('yyyy-mm-dd_hh:MM'), 
+        /* Collection is current collection */
+        collection: this.collection, 
+    });
+    
+    /* Add to this collection's audio segments */
+    this.collectionAudioSegments.add(newSegment);
+    
+    /* Select new segment */
+    this.page.select_audio_segment(newSegment);
+    
+    /* Now save to server */
+    newSegment.save(null, {
+        /* if there is an error */
+        error_callback: function(newSegment) {
+            return function() {
+                /* Delete our new segment */
+                newSegment.destroy();
+            }
+        }(newSegment), 
+        error_message: 'Audio segment was not created.' 
+    });
+    
+    
+};
+

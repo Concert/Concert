@@ -131,7 +131,30 @@ class CollectionResource(NestedResource):
 
         return object_list    
         
+###
+#   This resource is used for serializing a single collection.
+###
+class SingleCollectionResource(CollectionResource):
     
+    class Meta(CollectionResource.Meta):
+        #   The collection we are referring to.
+        collection = None
+    
+    ###
+    #   Must be called before anything else
+    ###
+    def set_collection(self, collection):
+        self._meta.collection = collection
+    
+    ###
+    #   Only retrieve stuff for this collection
+    ###
+    def apply_authorization_limits(self, request, object_list):
+        collection = self._meta.collection
+        
+        object_list = super(SingleCollectionResource, self).apply_authorization_limits(request, [collection])
+        
+        return object_list
 
 ###
 #   This resource is only for collections which the user is a member of.  This

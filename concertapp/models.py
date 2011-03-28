@@ -185,8 +185,8 @@ class RequestRevokedEvent(Event):
 
 class AudioSegment(models.Model):
     name = models.CharField(max_length = 100)
-    beginning = models.DecimalField(max_digits = 10, decimal_places = 2)
-    end = models.DecimalField(max_digits = 10, decimal_places = 2)
+    beginning = models.FloatField()
+    end = models.FloatField()
     audioFile = models.ForeignKey('AudioFile')
     creator = models.ForeignKey(User)
     collection = models.ForeignKey('Collection')

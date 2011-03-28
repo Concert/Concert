@@ -17,7 +17,9 @@ var Page = Backbone.Controller.extend(
 {
     initialize: function(params) {
         /* Create dataset manager */
-        var modelManager = this._initializeModelManager(params);
+        var modelManager = this._initializeModelManager(_.extend(params, {
+            page: this 
+        }));
         this.modelManager = modelManager;
         com.concertsoundorganizer.modelManager = modelManager;
 

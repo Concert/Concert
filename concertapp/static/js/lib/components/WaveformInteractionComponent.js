@@ -173,7 +173,7 @@ var WaveformInteractionComponent = Component.extend(
             
             //update audio's currentTime to location clicked
             var seconds = dragStartX/this.panel.get_resolution();
-            this.panel.page.move_audio(seconds);
+            this.panel.page.set_audio_time(seconds);
             return;
             
         } else {
@@ -188,7 +188,7 @@ var WaveformInteractionComponent = Component.extend(
         this.currentHighlight.endTime = endTime;
         
         /* Tell panel about highlight */
-        this.panel.page.waveform_highlighted(startTime, endTime);
+        this.panel.page.create_new_segment(startTime, endTime);
     }, 
     
     /**

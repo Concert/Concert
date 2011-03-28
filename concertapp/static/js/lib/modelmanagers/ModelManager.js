@@ -25,6 +25,13 @@ ModelManager.prototype.init = function(params) {
     /* Here is where we will store all of the seen instances of each model */
     this.seenInstances = {};
     
+    /* Keep a reference to the page */
+    var page = params.page;
+    if(typeof(page) == 'undefined') {
+        throw new Error('params.page is undefined');
+    }
+    this.page = page;
+    
 };
 
 /**

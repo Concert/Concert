@@ -18,6 +18,7 @@ from concertapp.settings import MEDIA_ROOT, LOGIN_REDIRECT_URL
 
 from concertapp.decorators import user_is_member_and_collection_exists
 
+from concertapp.collection.api import *
 from concertapp.audio.api import *
 from concertapp.audiosegments.api import *
 from concertapp.tags.api import *
@@ -47,6 +48,9 @@ def organize_collection(request, collection_id, col, user):
     tagsResource = CollectionTagResource()
     tagsResource.set_collection(col)
     
+    singleCollectionResource = SingleCollectionResource()
+    singleCollectionResource.set_collection(col)
+    
 #    commentResource = CollectionSegmentCommentResource()
 #    commentResource.set_collection(col)
         
@@ -54,6 +58,7 @@ def organize_collection(request, collection_id, col, user):
         'files': audioResource.as_dict(request), 
         'segments': segmentResource.as_dict(request),
         'tags': tagsResource.as_dict(request), 
+        'collection': singleCollectionResource.as_dict(request), 
  #       'segmentComments': commentResource.as_dict(request)
     }
     
