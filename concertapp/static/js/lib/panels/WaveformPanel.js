@@ -71,10 +71,6 @@ var WaveformPanel = Panel.extend(
         this.highlighter.disable();
     }, 
     
-    clear_audio_loop: function() {
-        this.page.clear_audio_loop();
-    },
-    
     /**
      *  Called from page when waveform should highlight
      **/
@@ -100,12 +96,4 @@ var WaveformPanel = Panel.extend(
         waveformImageElement.attr('src', src);
         
     }, 
-    
-    /**
-     *  Called from highlight when it has been cleared.
-     **/
-    waveform_highlight_cleared: function() {
-        this.page.waveform_highlight_cleared(this);
-    },     
-    
 });

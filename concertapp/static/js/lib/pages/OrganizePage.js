@@ -94,7 +94,7 @@ var OrganizePage = LoggedInPage.extend(
         /* Pause audio if it is currently playing */
         this.pause();
         /* Clear any highlights/loops */
-        this.clear_audio_loop();
+        this._clear_audio_loop();
         this.clear_waveform_highlight();
         
         
@@ -166,7 +166,7 @@ var OrganizePage = LoggedInPage.extend(
                 me.detailPanel.audio_segment_selected(selectedAudioSegment);
                 
                 /* Start audio loop */
-                me.start_audio_loop(
+                me._start_audio_loop(
                     selectedAudioSegment.get('beginning'),
                     selectedAudioSegment.get('end')
                 );
@@ -232,7 +232,7 @@ var OrganizePage = LoggedInPage.extend(
      **/
     waveform_highlighted: function(startTime, endTime) {
         /* Start audio loop */
-        this.start_audio_loop(startTime, endTime);
+        this._start_audio_loop(startTime, endTime);
         
         /* Tell overview panel */
         this.overviewPanel.highlight_waveform(startTime, endTime);
@@ -242,30 +242,11 @@ var OrganizePage = LoggedInPage.extend(
     },
     
     /**
-     *  This is called when a waveform is cleared.
-     *
-     *  @param  {Panel}    panel    -   The panel that cleared the highlight.
-     **/
-    waveform_highlight_cleared: function(panel) {
-        
-        this.clear_audio_loop();
-        
-        if(panel instanceof DetailWaveformPanel) {
-            /* Tell overview panel */
-            this.overviewPanel.clear_waveform_highlight();
-        }
-        else if(panel instanceof OverviewWaveformPanel) {
-            this.detailPanel.clear_waveform_highlight();
-        }
-        else {
-            throw new Error('Panel argument is invalid')
-        }
-    }, 
-    
-    /**
-     *  This is called when a waveform should be cleared.
+     *  This is called from elsewhere when we are to ensure that a waveform highlight 
+     *  is cleared.
      **/
     clear_waveform_highlight: function() {
+        this._clear_audio_loop();
         this.detailPanel.clear_waveform_highlight();
         this.overviewPanel.clear_waveform_highlight();
     }, 
@@ -277,7 +258,7 @@ var OrganizePage = LoggedInPage.extend(
      *  @param  {Number}    startTime    -  The beginning of the loop.
      *  @param  {Number}    endTime     -   The end of the loop
      **/
-    start_audio_loop: function(startTime, endTime) {
+    _start_audio_loop: function(startTime, endTime) {
         var audio = this.audio;
         
         /* This function will be called when a timeupdate event occurs. */
@@ -302,9 +283,14 @@ var OrganizePage = LoggedInPage.extend(
     }, 
     
     /**
-     *  This is called when a highlight is cleared.
+     *  This is called when a highlight is cleared on the UI.
      **/
-    clear_audio_loop: function() {
+    
+    
+    /**
+     *  This is called internally the audio loop is to be turned off
+     **/
+    _clear_audio_loop: function() {
         $(this.audio).unbind('timeupdate', this.audioLoopTimeUpdateCallback);
     }, 
     

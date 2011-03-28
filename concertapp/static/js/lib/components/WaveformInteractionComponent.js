@@ -126,8 +126,8 @@ var WaveformInteractionComponent = Component.extend(
      **/
     startDrag: function(x) {
         if(this.disabled == false && this.dragging == false && this.handle(x)) {
-            this.panel.clear_audio_loop();
             this.dragging = true;
+            this.panel.page.clear_waveform_highlight();
         } else {
             /* Reset any old highlight */
             this.reset();
@@ -290,10 +290,13 @@ var WaveformInteractionComponent = Component.extend(
      *  When this highlight is not being used.  It will not be shown on the screen.
      **/
     disable: function() {
-        this.disabled = true;
-        this.highlight.addClass('disabled');
-        this.leftHandle.addClass('disabled');
-        this.rightHandle.addClass('disabled');
+        /* If we are currently dragging, don't disable please */
+        if(!this.dragging) {
+            this.disabled = true;
+            this.highlight.addClass('disabled');
+            this.leftHandle.addClass('disabled');
+            this.rightHandle.addClass('disabled');            
+        }
     }, 
     
     /**
@@ -306,7 +309,7 @@ var WaveformInteractionComponent = Component.extend(
             width: '0px'
         });
                 
-        this.panel.waveform_highlight_cleared();
+        this.panel.page.clear_waveform_highlight();
     },
     
     /**
