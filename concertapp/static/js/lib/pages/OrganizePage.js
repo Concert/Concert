@@ -133,7 +133,23 @@ var OrganizePage = LoggedInPage.extend(
     }, 
     
     /**
-     *  Ensure that given audio file has been selected.
+     *  Ensure that given event is selected on the events panel and the UI.
+     *
+     *  @param  {Event}    event    -   The event that has been selected.
+     **/
+    select_event: function(event) {
+        
+    }, 
+    
+    /**
+     *  Ensure that new segment is created.
+     **/
+    create_new_segment: function() {
+        
+    }, 
+    
+    /**
+     *  When a user has selected a single audio file.
      *
      *  @param  {AudioFile}    selectedAudioFile    -   The AudioFile that was
      *  selected.
@@ -157,7 +173,7 @@ var OrganizePage = LoggedInPage.extend(
      *  @param  {AudioSegment}    selectedAudioSegment    - The AudioSegment 
      *  that was selected.
      **/
-    select_audio_segment: function(selectedAudioSegment) {        
+    select_audio_segment: function(selectedAudioSegment) {
         /* Load the audio segment's file into the audio player */
         this._load_audio_file(selectedAudioSegment.get('audioFile'), function(me, selectedAudioSegment) {
             return function() {
