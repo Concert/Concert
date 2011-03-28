@@ -36,6 +36,11 @@ var WaveformInteractionComponent = Component.extend(
         /* If we are currently dragging a highlight */
         this.dragging = false;
         
+        /**
+         *  If we are currently adjusting a highlight that already existed.
+         **/
+        this.adjusting = false;
+        
         /* Where the last drag started (x-coordinate) */
         this.lastDragStartX = null;
         
@@ -127,6 +132,9 @@ var WaveformInteractionComponent = Component.extend(
     startDrag: function(x) {
         if(this.disabled == false && this.dragging == false && this.handle(x)) {
             this.dragging = true;
+            /* we are adjusting the highlight */
+            this.adjusting = true;
+            
             this.panel.page.clear_waveform_highlight();
         } else {
             /* Reset any old highlight */
@@ -158,9 +166,6 @@ var WaveformInteractionComponent = Component.extend(
      *  @param  {Number}    x    -  The x-coordinate where the drag has stopped.
      **/
     endDrag: function(x) {
-        this.lastDragEndX = x;
-        
-        this.dragging = false;
         
         /* Now determine what the time of the highlight was relative to the audio
         file */
@@ -174,21 +179,34 @@ var WaveformInteractionComponent = Component.extend(
             //update audio's currentTime to location clicked
             var seconds = dragStartX/this.panel.get_resolution();
             this.panel.page.set_audio_time(seconds);
-            return;
-            
-        } else {
+        }
+        /* This was a drag */
+        else {
             this.leftHandle.removeClass('disabled');
             this.rightHandle.removeClass('disabled');
+
+            var pxPerSecond = this.panel.get_resolution();
+            var startTime = Math.min(dragStartX, dragEndX)/pxPerSecond;
+            var endTime = Math.max(dragStartX, dragEndX)/pxPerSecond;
+
+            this.currentHighlight.startTime = startTime;
+            this.currentHighlight.endTime = endTime;
+
+            /* if we were just adjusting */
+            if(this.adjusting) {
+                /* Tell panel that we've changed segment */
+                this.panel.page.modify_current_segment_times(startTime, endTime);
+            }
+            /* we must have been creating a new segment */
+            else {
+                /* Tell panel about highlight */
+                this.panel.page.create_new_segment(startTime, endTime);                
+            }
         }
-        var pxPerSecond = this.panel.get_resolution();
-        var startTime = Math.min(dragStartX, dragEndX)/pxPerSecond;
-        var endTime = Math.max(dragStartX, dragEndX)/pxPerSecond;
-        
-        this.currentHighlight.startTime = startTime;
-        this.currentHighlight.endTime = endTime;
-        
-        /* Tell panel about highlight */
-        this.panel.page.create_new_segment(startTime, endTime);
+
+        this.lastDragEndX = x;
+        this.dragging = false;
+        this.adjusting = false;
     }, 
     
     /**

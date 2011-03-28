@@ -190,6 +190,15 @@ var OrganizePage = LoggedInPage.extend(
     },
     
     /**
+     *  Called from elsewhere when the current segment has changed.  Ensure that
+     *  everything is updated.
+     **/
+    modify_current_segment_times: function(startTime, endTime) {
+        /* Modify current segment */
+        this.modelManager.modify_current_segment_times(startTime, endTime);
+    }, 
+    
+    /**
      *  This is called from elsewhere when we are to ensure that a waveform highlight 
      *  is cleared.
      **/

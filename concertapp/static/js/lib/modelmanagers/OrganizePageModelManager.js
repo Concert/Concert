@@ -190,7 +190,47 @@ OrganizePageModelManager.prototype.create_and_select_new_segment = function(star
         }(newSegment), 
         error_message: 'Audio segment was not created.' 
     });
-    
-    
 };
+
+/**
+ *  When the start and end points of the currently selected segment are changed.
+ *
+ *  @param  {Number}    startTime    The new start time
+ *  @param  {Number}    endTime    The new end time
+ **/
+OrganizePageModelManager.prototype.modify_current_segment_times = function(startTime, endTime) {
+    /* get current segment */
+    var currentSegment = this.selectedAudioSegments.first();
+    
+    /* Save current values */
+    var oldStartTime = currentSegment.get('beginning');
+    var oldEndTime = currentSegment.get('end');
+    
+    /* update values */
+    currentSegment.set({
+        beginning: startTime, 
+        end: endTime
+    });
+    
+    /* Tell page we've updated */
+    this.page.select_audio({
+        segments: [currentSegment]
+    });
+    
+    /* Try to save */
+    currentSegment.save(null, {
+        /* if stuff fails */
+        error_callback: function(oldStartTime, oldEndTime, currentSegment) {
+            return function() {
+                /* go back to old times */
+                currentSegment.set({
+                    beginning: startTime, 
+                    end: endTime 
+                });
+            };
+        }(oldStartTime, oldEndTime, currentSegment), 
+        error_message: 'Audio segment was not modified' 
+    });
+};
+
 
