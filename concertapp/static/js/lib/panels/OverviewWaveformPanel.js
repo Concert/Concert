@@ -88,12 +88,6 @@ var OverviewWaveformPanel = WaveformPanel.extend(
         this.segmentBarTemplate = segmentBarTemplate;
         
         
-        $("#overview_waveform_panel_top").bind('click', function(me) {
-            return function(e) {
-                me.handle_click(get_event_x(e));
-            };
-        }(this));
-
     }, 
     
     /**
