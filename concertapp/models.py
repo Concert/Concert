@@ -66,8 +66,7 @@ class Event(models.Model):
         if type(self)==Event:
             raise Exception("Event is abstract, but not through Django semantics (e.g., 'Class Meta: abstract = True' is NOT set).\nYou must use one of the Event subclasses")
         else:
-            # TODO: Fix this, this should only be users who are a member
-            # of the collection of interest.
+            # Add event to all of this collection's user's unread events
             self.real_type = self._get_real_type()
             super(Event,self).save(kwargs)
             for user in self.collection.users.all():
