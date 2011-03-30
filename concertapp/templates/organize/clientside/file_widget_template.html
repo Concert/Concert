@@ -16,6 +16,17 @@
 
     {% block bottom %}
     <div class="bottom">
-        {# audio segments will be injected here #}
+        {# List all segments for this audio file #}
+        
+        {% verbatim %}
+            {{each(i, segment) segments.toJSON()}}
+                <a href="#segment/${segment.id}">${segment.name}</a>
+        {% endverbatim %}
+        
+        {# only put separating dash if this is not the last segment #}
+        {% verbatim %}
+                {{if i != segments.length-1}} - {{/if}}
+            {{/each}}
+        {% endverbatim %}
     </div>
 {% endblock %}

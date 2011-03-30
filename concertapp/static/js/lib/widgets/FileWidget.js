@@ -18,11 +18,12 @@ var FileWidget = AudioListWidget.extend(
     initialize: function() {
         AudioListWidget.prototype.initialize.call(this);
 
-        var params = this.options;        
+        var params = this.options;   
         
         _.bindAll(this, "render");
         this.render();
     },
+        
     /**
      *  When this widget's delete button is clicked.
      **/    
