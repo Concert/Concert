@@ -255,6 +255,7 @@ OrganizePageModelManager.prototype.delete_audio_segment = function(segment) {
     
     /* Remove from current collection's audio segments */
     collectionAudioSegments.remove(segment);
+    segment.get('audioFile').get('segments').remove(segment);
     
     /* If this is the currently selected audio segment */
     if(this.selectedAudioSegments.first() == segment) {

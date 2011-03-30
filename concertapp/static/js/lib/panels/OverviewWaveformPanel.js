@@ -142,6 +142,18 @@ var OverviewWaveformPanel = WaveformPanel.extend(
     }, 
     
     /**
+     *  Called from page when audio segment is deleted. 
+     *  Re-renders segment bars when a segment is deleted. 
+     *
+     *  @param  {AudioSegment}    deletedAudioSegment     - The audio segment
+     **/
+    audio_segment_deleted: function(deletedAudioSegment) {
+        var audioFile = deletedAudioSegment.get('audioFile');
+        console.log(audioFile);
+        this.render_segment_bars(audioFile);
+    },
+    
+    /**
      *  The resolution of the waveform image (in pixels per second)
      **/
     get_resolution: function() {

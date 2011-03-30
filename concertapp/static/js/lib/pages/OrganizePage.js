@@ -238,6 +238,7 @@ var OrganizePage = LoggedInPage.extend(
      **/
     delete_audio_segment: function(segment) {
         this.modelManager.delete_audio_segment(segment);
+        this.overviewPanel.audio_segment_deleted(segment);
     }, 
     
     /**
