@@ -31,6 +31,7 @@ var OrganizePage = LoggedInPage.extend(
         
         /* The callback function for an audio loop (on a timeupdate event) */ 
         this.audioLoopTimeUpdateCallback = function() {};
+        this.audioLoopEnabled = false;
         
         /* This is the type of audio file we will use */
         this.audioType = com.concertsoundorganizer.compatibility.audioType;
@@ -218,16 +219,34 @@ var OrganizePage = LoggedInPage.extend(
     }, 
     
     /**
+     *  This is called from the waveform interaction component when a click happens
+     *  inside the current highlight
+     **/
+    enable_audio_loop: function() {
+        this._start_audio_loop(this.modelManager.selectedAudioSegments.first().get('beginning'),
+            this.modelManager.selectedAudioSegments.first().get('end'));
+    },
+    
+    /**
+     *  This is called from the waveform interaction component when a click happens
+     *  outside the current highlight
+     **/
+    disable_audio_loop: function() {
+        this._clear_audio_loop();
+    },
+    
+    /**
      *  Called when audio is to change time.
      *
      *  @param  {Number}    seconds    The time we are to go to in the audio file.
      **/
     set_audio_time: function(seconds) {
-        $(this.audio).one('timeupdate', function(me) {
+/*        $(this.audio).one('timeupdate', function(me) {
             return function() {
                 me.detailPanel.handle_scroll_stop();
             }
         }(this))
+        */
         this.audio.currentTime = seconds;
     },
     
@@ -285,33 +304,39 @@ var OrganizePage = LoggedInPage.extend(
      *  @param  {Number}    endTime     -   The end of the loop
      **/
     _start_audio_loop: function(startTime, endTime) {
-        var audio = this.audio;
+        if(this.audioLoopEnabled == false) {
+            var audio = this.audio;
         
-        /* This function will be called when a timeupdate event occurs. */
-        var audioLoopTimeUpdateCallback = function(startTime, endTime) {
-            return function(e) {
-                var currentTime = audio.currentTime;
-                if(currentTime < startTime || currentTime > endTime) {
-                    this.currentTime = startTime;
-                }
-            };
-        }(startTime, endTime);
-        /* Save so we can unbind later */
-        this.audioLoopTimeUpdateCallback = audioLoopTimeUpdateCallback;
+            /* This function will be called when a timeupdate event occurs. */
+            var audioLoopTimeUpdateCallback = function(startTime, endTime) {
+                return function(e) {
+                    var currentTime = audio.currentTime;
+                    if(currentTime < startTime || currentTime > endTime) {
+                        this.currentTime = startTime;
+                    }
+                };
+            }(startTime, endTime);
+            /* Save so we can unbind later */
+            this.audioLoopTimeUpdateCallback = audioLoopTimeUpdateCallback;
         
-        /* Start audio at beginning of loop */
-        if(audio.currentTime < startTime || audio.currentTime > endTime) {
-            audio.currentTime = startTime;
+            /* Start audio at beginning of loop */
+            if(audio.currentTime < startTime || audio.currentTime > endTime) {
+                audio.currentTime = startTime;
+            }
+        
+            /* When audio loop changes time */
+            $(audio).bind('timeupdate', this.audioLoopTimeUpdateCallback); 
+            this.audioLoopEnabled = true;
         }
-        
-        /* When audio loop changes time */
-        $(audio).bind('timeupdate', this.audioLoopTimeUpdateCallback);    
     }, 
     
     /**
      *  This is called internally the audio loop is to be turned off
      **/
     _clear_audio_loop: function() {
-        $(this.audio).unbind('timeupdate', this.audioLoopTimeUpdateCallback);
+        if(this.audioLoopEnabled == true) {
+            $(this.audio).unbind('timeupdate', this.audioLoopTimeUpdateCallback);
+            this.audioLoopEnabled = false;
+        }
     }, 
 });

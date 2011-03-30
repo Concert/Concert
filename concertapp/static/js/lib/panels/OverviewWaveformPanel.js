@@ -149,7 +149,6 @@ var OverviewWaveformPanel = WaveformPanel.extend(
      **/
     audio_segment_deleted: function(deletedAudioSegment) {
         var audioFile = deletedAudioSegment.get('audioFile');
-        console.log(audioFile);
         this.render_segment_bars(audioFile);
     },
     
