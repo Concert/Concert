@@ -142,13 +142,6 @@ var OrganizePage = LoggedInPage.extend(
     }, 
     
     /**
-     *  Ensure that new segment is created.
-     **/
-    create_new_segment: function() {
-        
-    }, 
-    
-    /**
      *  When a user has selected a single audio file.
      *
      *  @param  {AudioFile}    selectedAudioFile    -   The AudioFile that was
