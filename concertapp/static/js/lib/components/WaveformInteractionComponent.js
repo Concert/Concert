@@ -184,15 +184,16 @@ var WaveformInteractionComponent = Component.extend(
                 dragEndX > this.highlight.position().left + this.highlight.width()) {
                     this.panel.page.disable_audio_loop();
                 }
-            /* If click is inside current highlight */
-            else if(dragEndX > this.highlight.position().left && 
-                dragEndX < this.highlight.position().left + this.highlight.width()) {
-                    this.panel.page.enable_audio_loop();
-                } 
-
+                
             //update audio's currentTime to location clicked
             var seconds = dragStartX/this.panel.get_resolution();
             this.panel.page.set_audio_time(seconds);
+            
+            /* If click is inside current highlight */
+            if(dragEndX > this.highlight.position().left && 
+                dragEndX < this.highlight.position().left + this.highlight.width()) {
+                    this.panel.page.enable_audio_loop();
+                } 
         }
         /* This was a drag */
         else {
