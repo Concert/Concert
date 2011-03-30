@@ -137,8 +137,6 @@ var WaveformInteractionComponent = Component.extend(
             
             this.panel.page.clear_waveform_highlight();
         } else {
-            /* Reset any old highlight */
-            this.reset();
             /* Make highlight visible */
             this.enable();
             /* Save new starting point */
@@ -156,6 +154,13 @@ var WaveformInteractionComponent = Component.extend(
     continueDrag: function(x) {
         this.lastDragEndX = x;
         
+        /* If the mouse has moved out of the 'click' buffer zone */
+        if (this.lastDragEndX > this.lastDragStartX + 2 || 
+            this.lastDragEndX < this.lastDragStartX - 2) {
+                /* Reset any old highlight */
+                this.reset();
+        }
+
         /* Draw highlight */
         this.draw_highlight_px(this.lastDragStartX, this.lastDragEndX);
     }, 
