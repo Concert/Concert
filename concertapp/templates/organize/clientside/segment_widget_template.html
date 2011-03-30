@@ -15,9 +15,11 @@
 
 
 {% block bottom %}
-    {% verbatim %}
         <div class="bottom">
-        		TAG - TAG - TAG - TAG - TAG - TAG - TAG - TAG - TAG - TAG
-        </div>			
-    {% endverbatim %}
+            {% verbatim %}
+                {{each(i, tag) tags.toJSON()}}
+                    <a href="#tag/${tag.id}">${tag.name}</a>
+                {{/each}}
+            {% endverbatim %}
+        </div>
 {% endblock %}
