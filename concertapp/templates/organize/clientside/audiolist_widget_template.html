@@ -5,14 +5,14 @@
         <div class="{{ widgetType }}_widget_icon">
         </div>
         <div class="{{ widgetType }}_widget_info audio_widget_info">
-            {% verbatim %}
                 <div class="title">
-                	<span class="audio_widget_title_text">${name}</span>
+                	<a href="{% block title_text_href %}{% endblock %}" class="audio_widget_title_text">
+                	    {% verbatim %}${name}{% endverbatim %}
+                	</a>
                 	<span class="audio_widget_title_buttons">
                 	    <button class="delete_audio_button">Delete</button>
             	    </span>
                 </div>
-            {% endverbatim %}
             {% block info %}{% endblock %}
         </div>
     </div>

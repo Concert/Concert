@@ -1,6 +1,10 @@
 {% extends 'organize/clientside/audiolist_widget_template.html' %}
 {% load extra_template_tags %}
 
+{% block title_text_href %}
+    {% verbatim %}#segment/${id}{% endverbatim %}
+{% endblock %}
+
 {% block info %}
     {% verbatim %}
         <div class="info">
@@ -9,10 +13,13 @@
     {% endverbatim %}
 {% endblock %}
 
+
 {% block bottom %}
-    {% verbatim %}
         <div class="bottom">
-        		TAG - TAG - TAG - TAG - TAG - TAG - TAG - TAG - TAG - TAG
-        </div>			
-    {% endverbatim %}
+            {% verbatim %}
+                {{each(i, tag) tags.toJSON()}}
+                    <a href="#tag/${tag.id}">${tag.name}</a>
+                {{/each}}
+            {% endverbatim %}
+        </div>
 {% endblock %}

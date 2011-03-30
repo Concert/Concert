@@ -18,20 +18,12 @@ var FileWidget = AudioListWidget.extend(
     initialize: function() {
         AudioListWidget.prototype.initialize.call(this);
 
-        var params = this.options;        
+        var params = this.options;   
         
         _.bindAll(this, "render");
         this.render();
     },
-    /**
-     *  This is called when this file was selected in the list.
-     **/
-    _handle_title_click: function() {
-        AudioListWidget.prototype._handle_title_click.call(this);
         
-        this.panel.page.select_audio({files: [this.model]});
-    }, 
-    
     /**
      *  When this widget's delete button is clicked.
      **/    

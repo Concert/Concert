@@ -28,14 +28,6 @@ var AudioListWidget = Widget.extend(
     },    
     events: {
         'click button.delete_audio_button': '_handle_delete_click', 
-        'click span.audio_widget_title_text': '_handle_title_click', 
-    }, 
-    
-    /**
-     *  When this widget's title was clicked on.
-     **/
-    _handle_title_click: function() {
-        
     }, 
     
     /**

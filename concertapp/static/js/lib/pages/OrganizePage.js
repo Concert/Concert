@@ -79,7 +79,37 @@ var OrganizePage = LoggedInPage.extend(
                 }
             };
         }(this));
+    }, 
     
+    _initialize_routes: function() {
+        
+        LoggedInPage.prototype._initialize_routes.call(this);
+        
+        /**
+         *  Route for selecting a segment, #segment/5 will select segment with id 5
+         **/
+        this.route('segment/:segment_id', 'select_segment', function(segment_id) {
+            /* Get segment by id */
+            var segment = this.modelManager.seenInstances['audiosegment'].get(segment_id);
+
+            this.select_audio({
+                segments: [segment], 
+            });
+        });
+        
+        /**
+         *  Route for selecting an audio file, #file/5 will select file with id 5
+         **/
+        this.route('file/:file_id', 'select_file', function(file_id) {
+            /* get file by id */
+            var file = this.modelManager.seenInstances['audiofile'].get(file_id);
+            
+            this.select_audio({
+                files: [file] 
+            });
+        });
+         
+        
     }, 
     
     /**

@@ -35,12 +35,19 @@
         {% widget 'organize/clientside/segment_widget_template.html' 'segment' %}
     </script>
     
+    {# Template for top of detail waveform panel when a file is selected #}
     <script id="detail_waveform_top_file_template" type="text/x-jquery-tmpl">
         {% include 'organize/clientside/detail_waveform_top_file_template.html' %}
     </script>
     
+    {# Template for top of detail waveform panel when a segment is selected #}
     <script id="detail_waveform_top_segment_template" type="text/x-jquery-tmpl">
         {% include 'organize/clientside/detail_waveform_top_segment_template.html' %}    
+    </script>
+
+    {# Template for bottom of detail waveform panel when a segment is selected #}
+    <script id="detail_waveform_bottom_segment_template" type="text-x-jquery-tmpl">
+        {% include 'organize/clientside/detail_waveform_bottom_template.html' %}
     </script>
     
     <script id="comment_widget_template" type="text/x-jquery-tmpl">
@@ -58,6 +65,7 @@
     <script id="segment_bar_template" type="text/x-jquery-tmpl">
         {% include 'organize/clientside/segment_bar.html' %}
     </script>
+
     
         
 {% endblock %}

@@ -23,16 +23,6 @@ var SegmentWidget = AudioListWidget.extend(
         this.render();
     }, 
     /**
-     *  Called when the segment is selected in the list
-     **/
-    _handle_title_click: function() {
-        AudioListWidget.prototype._handle_title_click.call(this);
-
-        /* Select audio segment */
-        this.panel.page.select_audio({segments: [this.model]});
-    },
-    
-    /**
      *  When this widget's delete button is clicked.
      **/    
     _handle_delete_click: function() {

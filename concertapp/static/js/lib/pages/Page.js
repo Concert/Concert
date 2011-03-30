@@ -29,6 +29,10 @@ var Page = Backbone.Controller.extend(
         /* Load data so views can update and such */
         this.modelManager._loadData();
         
+        /* Initialize routes */
+        this._initialize_routes();
+        
+        Backbone.history.start();
     }, 
     /**
      *  This method just defines which dataset manager to use.  Should be overridden
@@ -44,6 +48,18 @@ var Page = Backbone.Controller.extend(
      *  in child classes.
      **/
     _initializeViews: function() {
+        return;
+    }, 
+    
+    /**
+     *  This method is called when routes are to be initialized.
+     **/
+    _initialize_routes: function() { 
+        
+        this.route('#', 'default', function() {
+            return;
+        });
+        
         return;
     }, 
 });

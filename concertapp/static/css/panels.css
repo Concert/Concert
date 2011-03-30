@@ -365,7 +365,7 @@ div#detail_waveform_panel_bottom {
     padding-right: 40px;
 }
 
-div#detail_waveform_panel_tags {
+div#detail_waveform_panel_bottom {
     background: #b4b4ba;
     width: 948px;
     padding: 0px 0px 9px 9px;
@@ -493,7 +493,7 @@ div.file_widget {
     padding: 5px;
 }
 
-div.tag {
+a.tag {
     display: block;
     float: left;
     height: 15px;
@@ -508,7 +508,7 @@ div.tag {
     cursor: pointer;
 }
 
-/*div.tag:hover {
+/*a.tag:hover {
 padding: 3px 5px 0px 25px;
 background: #fff url(/graphics/x.png) left left no-repeat;
 margin: 7px 10px 0px 0px;
@@ -532,7 +532,7 @@ margin: 7px 10px 0px 0px;
     }
 }
 
-div.tag:hover {
+a.tag:hover {
     -webkit-animation-name: tagExpand;
     -webkit-animation-duration: 4s;
     -webkit-animation-iteration-count: 1;
