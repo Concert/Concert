@@ -409,8 +409,6 @@ div.highlight {
     position: relative;
     background: transparent;
     -webkit-box-shadow:inset 0 0 20px #fff;
-    border-left: 1px solid #fff;
-    border-right: 1px solid #fff;
     -webkit-box-shadow: 0px 0px 10px #000;
 }
 
@@ -427,27 +425,31 @@ div.highlight {
 div.leftHandle {
     height: 100%;
     position: absolute;
-    left: 0px;
-    background-color: black;
-    width: 2px;
+    left: -1;
+    background-color: #fff;
+    width: 1px;
     visibility: inherit;
 }
 
 div.leftHandle:hover {
-    width: 4px;
+    left: -2px;
+    width: 3px;
+    cursor: col-resize;
 }
 
 div.rightHandle {
     height: 100%;
     position: absolute;
-    right: 0px;
-    background-color: black;
-    width: 2px;
+    right: -1px;
+    background-color: #fff;
+    width: 1px;
     visibility: inherit;
 }
 
 div.rightHandle:hover {
-    width: 4px;
+    right: -2px;
+    width: 3px;
+    cursor: col-resize;
 }
 
 /* Initially a highlight will be disabled */

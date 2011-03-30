@@ -171,10 +171,10 @@ var WaveformInteractionComponent = Component.extend(
         file */
         var dragStartX = this.lastDragStartX;
         var dragEndX = x;
-        /* If this was just a click */
-        if(dragStartX == dragEndX) {
+        /* If this was just a click (with a 2px error buffer) */
+        if(dragStartX < dragEndX + 2 && dragStartX > dragEndX - 2) {
             /* Don't do anything for the highlighter */
-            this.reset();
+            //this.reset();
             
             //update audio's currentTime to location clicked
             var seconds = dragStartX/this.panel.get_resolution();
