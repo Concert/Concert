@@ -1,6 +1,10 @@
 {% extends 'organize/clientside/audiolist_widget_template.html' %}
 {% load extra_template_tags %}
 
+{% block title_text_href %}
+    {% verbatim %}#segment/${id}{% endverbatim %}
+{% endblock %}
+
 {% block info %}
     {% verbatim %}
         <div class="info">
@@ -8,6 +12,7 @@
         </div>
     {% endverbatim %}
 {% endblock %}
+
 
 {% block bottom %}
     {% verbatim %}

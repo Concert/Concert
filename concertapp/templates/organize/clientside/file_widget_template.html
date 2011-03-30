@@ -1,6 +1,11 @@
 {% extends 'organize/clientside/audiolist_widget_template.html' %}
 {% load extra_template_tags %}
 
+{% block title_text_href %}
+    {% verbatim %}#file/${id}{% endverbatim %}
+{% endblock %}
+
+
 {% block info %}
     <div class="info">
         {% verbatim %}
@@ -11,6 +16,6 @@
 
     {% block bottom %}
     <div class="bottom">
-    		SEGMENT - SEGMENT - SEGMENT
-    </div>			
+        {# audio segments will be injected here #}
+    </div>
 {% endblock %}

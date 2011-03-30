@@ -42,7 +42,10 @@ var LoggedInPage = Page.extend(
             el: $('#global_options_panel'),
             userMemberCollections: this.modelManager.userMemberCollections
         });
-    }
-    
-    
+    },
+    _initialize_routes: function() {
+        Page.prototype._initialize_routes.call(this);
+        
+        return;
+    }, 
 });
