@@ -1,0 +1,7 @@
+{% load extra_template_tags %}
+
+{% verbatim %}
+    {{each(i, tag) tags.toJSON()}}
+        <a class="tag" href="#tag/${tag.id}">${tag.name}</a>
+    {{/each}}
+{% endverbatim %}

@@ -101,6 +101,30 @@ var DetailWaveformPanel = WaveformPanel.extend(
         }
         this.waveformView = waveformView;
         
+        var bottomContainerElement = $('#detail_waveform_panel_bottom');
+        if(typeof(bottomContainerElement) == 'undefined') {
+            throw new Error('$(\'#detail_waveform_panel_bottom\') is undefined');
+        }
+        else if(bottomContainerElement.length == 0) {
+            throw new Error('bottomContainerElement not found');
+        }
+        /**
+         *  Container for bottom content.
+         **/
+        this.bottomContainerElement = bottomContainerElement;
+        
+        var bottomSegmentTemplate = $('#detail_waveform_bottom_segment_template');
+        if(typeof(bottomSegmentTemplate) == 'undefined') {
+            throw new Error('$(\'#detail_waveform_bottom_segment_template\') is undefined');
+        }
+        else if(bottomSegmentTemplate.length == 0) {
+            throw new Error('bottomSegmentTemplate not found');
+        }
+        /**
+         *  Template for bottom content when a segment is selected.
+         **/
+        this.bottomSegmentTemplate = bottomSegmentTemplate;
+        
         this.set_zoom_level(10);
         
         /**
@@ -177,6 +201,11 @@ var DetailWaveformPanel = WaveformPanel.extend(
             el: $('#detail_waveform_selected_name_container')
         });
         
+        /* Load tags in bottom */
+        this.bottomContainerElement.html(
+            this.bottomSegmentTemplate.tmpl(selectedAudioSegment.toJSON())
+        );
+        
         /* Load waveform image */
         this._load_waveform_image(
             selectedAudioSegment.get('audioFile').get_waveform_src(10),
@@ -185,6 +214,7 @@ var DetailWaveformPanel = WaveformPanel.extend(
                     /* Draw timecode */
                     me.timecodeComponent.audio_segment_selected(selectedAudioSegment);
                     me.highlighter.audio_segment_selected(selectedAudioSegment);
+                    
                 };
             }(this, selectedAudioSegment)
         );
