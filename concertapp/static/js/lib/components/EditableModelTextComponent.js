@@ -72,6 +72,9 @@ var EditableModelTextComponent = Component.extend(
     attr_clicked: function(){
         /* Switch to input box */
         $(this.el).html(this.inputElement);
+        
+        /* Give input box focus */
+        this.inputElement.focus();
 
         this.delegateEvents();
     }, 
