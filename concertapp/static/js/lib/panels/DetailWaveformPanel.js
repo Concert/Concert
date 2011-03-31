@@ -138,8 +138,12 @@ var DetailWaveformPanel = WaveformPanel.extend(
          **/
         this.tagInputElement = tagInputElement;
         
-        this.tagInputComponent = new AutocompleteListInputComponent({
-            inputElement: tagInputElement, 
+        /**
+         *  The component used to add new tags to the selected segment.
+         **/
+        this.tagInputComponent = new TagAutocompleteListInputComponent({
+            inputElement: tagInputElement,
+            panel: this, 
         });
         
         
@@ -228,6 +232,7 @@ var DetailWaveformPanel = WaveformPanel.extend(
         this.tagsContainerElement.html(
             this.bottomSegmentTemplate.tmpl(selectedAudioSegment.toJSON())
         );
+        
         
         /* Load waveform image */
         this._load_waveform_image(

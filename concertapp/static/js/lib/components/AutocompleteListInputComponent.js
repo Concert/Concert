@@ -7,15 +7,15 @@
 /**
  *  This is a component when we need to input a list of entities, with auto complete.
  *  @class
- *  @extends    Backbone.View
+ *  @extends    Component
  **/
-var AutocompleteListInputComponent = Backbone.View.extend(
+var AutocompleteListInputComponent = Component.extend(
 /**
  *  @scope AudiocompleteListInputComponent.prototype
  **/
 {
     initialize: function() {
-        Backbone.View.prototype.initialize.call(this);
+        Component.prototype.initialize.call(this);
 
         var params = this.options;
         
@@ -36,11 +36,6 @@ var AutocompleteListInputComponent = Backbone.View.extend(
      **/
     TOKEN_SPLITTER: /[,\s]+/, 
 
-    render: function() {
-        Backbone.View.prototype.render.call(this);
-        
-        return this;
-    },
     /**
      *  Called when there is a keyup event on the input element.
      *
@@ -53,7 +48,26 @@ var AutocompleteListInputComponent = Backbone.View.extend(
         
         /* If another token was created */
         if(wordSplit.length > 1) {
-            /* TODO: Handle tag creation here */
+            /* Grab previous token */
+            var token = wordSplit[0];
+            
+            /* Remove everything from inputElement */
+            inputElement.val('');
+            
+            /* If token was fo-real */
+            if(token.length) {
+                this._handle_new_token(token);
+            }
+            
         }
-    }, 
+    },
+    
+    /**
+     *  Handle a new token that was entered in the inputElement.
+     *
+     *  @param  {String}    token   The token that was entered.
+     **/
+    _handle_new_token: function(token) {
+        return;
+    },
 });

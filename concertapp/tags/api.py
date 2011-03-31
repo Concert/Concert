@@ -38,7 +38,7 @@ class TagAuthorization(ConcertAuthorization):
 class TagResource(NestedResource):
     creator = fields.ForeignKey(UserResource, 'creator', full=True)
     collection = fields.ForeignKey(CollectionResource, "collection", full = True)
-    segments = fields.ToManyField('concertapp.audiosegments.api.AudioSegmentResource','segments', null = True)
+    segments = fields.ToManyField('concertapp.audiosegments.api.AudioSegmentResource', 'segments', null = True)
 
     class Meta:
         authentication = DjangoAuthentication()

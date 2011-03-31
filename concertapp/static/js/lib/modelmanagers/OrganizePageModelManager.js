@@ -277,5 +277,58 @@ OrganizePageModelManager.prototype.delete_audio_segment = function(segment) {
     });
 };
 
+/**
+ *  When the current segment is to be tagged.
+ *
+ *  @param  {String}    tagName    The name of the tag to give this segment.
+ **/
+OrganizePageModelManager.prototype.tag_current_segment = function(tagName) {
+    
+    /* Find given tag */
+    var tag = this.collectionTags.find(function(t) {
+        return (t.get('name') == tagName);
+    });
+    
+    var currentSegment = this.selectedAudioSegments.first();
+    
+    /* If tag already exists */
+    if(tag) {
+        /* TODO: something */
+        throw new Error('poo');
+    }
+    /* Tag does not yet exist */
+    else {
+        /* Create it */
+        tag = new Tag({
+            /* with the given name */
+            name: tagName, 
+            /* for the current collection */
+            collection: this.collection, 
+            /* Created by our user */
+            creator: this.user, 
+            /* With one segment, the current one */
+            segments: new AudioSegmentSet([currentSegment])
+        });
+        
+        /* Save tag */
+        tag.save(null, {
+            /* if there was an error */
+            error_callback: function(model) {
+                /* delete tag */
+                model.destroy();
+            }, 
+            error_message: 'Tag was not created.', 
+        });
+    }
+
+    currentSegment.get('tags').add(tag);
+    
+    /* Tell page to re-render for our audio again */
+    this.page.select_audio({
+        segments: [this.selectedAudioSegments.first()], 
+    });
+};
+
+
 
 

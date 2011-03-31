@@ -23,6 +23,9 @@ var Component = Backbone.View.extend(
         if(typeof(panel) == 'undefined') {
             throw new Error('params.panel is undefined');
         }
+        /**
+         *  The panel that interacts with this component.
+         **/
         this.panel = panel;
 
 
