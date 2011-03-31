@@ -101,17 +101,17 @@ var DetailWaveformPanel = WaveformPanel.extend(
         }
         this.waveformView = waveformView;
         
-        var bottomContainerElement = $('#detail_waveform_panel_bottom');
-        if(typeof(bottomContainerElement) == 'undefined') {
-            throw new Error('$(\'#detail_waveform_panel_bottom\') is undefined');
+        var tagsContainerElement = $('#detail_waveform_panel_tags');
+        if(typeof(tagsContainerElement) == 'undefined') {
+            throw new Error('$(\'#detail_waveform_panel_tags\') is undefined');
         }
-        else if(bottomContainerElement.length == 0) {
-            throw new Error('bottomContainerElement not found');
+        else if(tagsContainerElement.length == 0) {
+            throw new Error('tagsContainerElement not found');
         }
         /**
          *  Container for bottom content.
          **/
-        this.bottomContainerElement = bottomContainerElement;
+        this.tagsContainerElement = tagsContainerElement;
         
         var bottomSegmentTemplate = $('#detail_waveform_bottom_segment_template');
         if(typeof(bottomSegmentTemplate) == 'undefined') {
@@ -125,7 +125,24 @@ var DetailWaveformPanel = WaveformPanel.extend(
          **/
         this.bottomSegmentTemplate = bottomSegmentTemplate;
         
-        this.set_zoom_level(10);
+        
+        var tagInputElement = $('#detail_waveform_panel_tag_input');
+        if(typeof(tagInputElement) == 'undefined') {
+            throw new Error('$(\'#detail_waveform_panel_tag_input\') is undefined');
+        }
+        else if(tagInputElement.length == 0) {
+            throw new Error('tagInputElement not found');
+        }
+        /**
+         *  The input element for entering new tags.
+         **/
+        this.tagInputElement = tagInputElement;
+        
+        this.tagInputComponent = new AutocompleteListInputComponent({
+            inputElement: tagInputElement, 
+        });
+        
+        
         
         /**
          *  By default, autoscrolling is ON
@@ -144,6 +161,12 @@ var DetailWaveformPanel = WaveformPanel.extend(
                 me.handle_scroll_stop();
             }
         }(this));
+
+        
+
+
+
+        this.set_zoom_level(10);
 
     },
     /**
@@ -202,7 +225,7 @@ var DetailWaveformPanel = WaveformPanel.extend(
         });
         
         /* Load tags in bottom */
-        this.bottomContainerElement.html(
+        this.tagsContainerElement.html(
             this.bottomSegmentTemplate.tmpl(selectedAudioSegment.toJSON())
         );
         
