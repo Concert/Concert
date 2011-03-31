@@ -271,12 +271,12 @@ var OrganizePage = LoggedInPage.extend(
      *  @param  {Number}    seconds    The time we are to go to in the audio file.
      **/
     set_audio_time: function(seconds) {
-/*        $(this.audio).one('timeupdate', function(me) {
+        /* calls handle_scroll_stop to turn autoscrolling on when playhead is moved into view */
+        $(this.audio).one('timeupdate', function(me) {
             return function() {
                 me.detailPanel.handle_scroll_stop();
             }
-        }(this))
-        */
+        }(this));
         this.audio.currentTime = seconds;
     },
     
@@ -307,14 +307,12 @@ var OrganizePage = LoggedInPage.extend(
         var newAudioSrc = !(audio.src.search(audiosrc) > 0);
         
         if(newAudioSrc) {
-            console.log('loading new audio src');
             /* when the file is done loading */
             $(audio).one('canplaythrough', callback);
         
             this.audio.src = audiosrc;
         }
         else {
-            console.log('load_audio_file callback without loading audio src');
             callback();
         }
         
