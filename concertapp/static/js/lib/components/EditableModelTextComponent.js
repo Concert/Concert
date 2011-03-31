@@ -17,14 +17,15 @@ var EditableModelTextComponent = Component.extend(
         
         var el = $(this.el);
         
-        /* The attribute we are changing on this model instance */
         var attr = params.attr;
         if(typeof(attr) == 'undefined') {
             throw new Error('params.attr is undefined');
         }
+        /**
+         *  The name of the attribute we are changing on this model instance.
+         **/
         this.attr = attr;
         
-        /* Get input element (for changing the attribute) */
         var inputElement = el.children('input');
         if(typeof(inputElement) == 'undefined') {
             throw new Error('inputElement is undefined');
@@ -32,7 +33,10 @@ var EditableModelTextComponent = Component.extend(
         else if(inputElement.length == 0) {
             throw new Error('inputElement not found');
         }
-        /* remove from DOM */
+        /**
+         *  The input element that we will use to modify the attribute. (removed
+         *  from DOM).
+         **/
         this.inputElement = inputElement.detach();
         
         /* If there is more than one element left */
@@ -45,6 +49,10 @@ var EditableModelTextComponent = Component.extend(
         if(typeof(displayElement) == 'undefined') {
             throw new Error('el.children().first() is undefined');
         }
+        /**
+         *  The element we will use to display the value of this attribute. (removed
+         *  from DOM).
+         **/
         this.displayElement = displayElement;
         
         /* Make sure proper classes are on elements */
@@ -56,6 +64,9 @@ var EditableModelTextComponent = Component.extend(
             throw new Error('inputElement should have class "attribute_editor"');
         }
         
+        /* Bind keyup events in input element to our keyup handler */
+        _.bindAll(this, '_handle_input_keyup');
+        inputElement.bind('keyup', this._handle_input_keyup);
         
         _.bindAll(this, 'attr_clicked');
         _.bindAll(this, 'attr_input_blurred');
@@ -70,8 +81,10 @@ var EditableModelTextComponent = Component.extend(
      *  Called from self when the attribute of the model is clicked.
      **/
     attr_clicked: function(){
+        var inputElement = this.inputElement;
+        
         /* Switch to input box */
-        $(this.el).html(this.inputElement);
+        $(this.el).html(inputElement);
         
         /* Give input box focus */
         this.inputElement.focus();
@@ -80,12 +93,31 @@ var EditableModelTextComponent = Component.extend(
     }, 
     
     /**
+     *  Called from inputElement keyup event handler.
+     *
+     *  @param  {Event}     e   The keyup event
+     **/
+    _handle_input_keyup: function(e) {
+        
+        /* If this was a return key */
+        var keycode = e.keyCode;
+        if(keycode == 13) {
+//            e.stopPropagation();
+            
+            /* Blur field */
+            this.inputElement.blur();
+            
+        }
+    }, 
+    
+    /**
      *  Called from self when new attribute field was blurred.  Might still be
      *  old name.  
      **/
     attr_input_blurred: function(e) {
-
-        var inputElement = this.inputElement;        
+        var inputElement = this.inputElement;
+        var displayElement = this.displayElement;        
+        
         /* New attribute */
         var newAttr = inputElement.val();
         
@@ -111,10 +143,11 @@ var EditableModelTextComponent = Component.extend(
             });
         }
         
-        /* Change display element to new attr */
-        this.displayElement.html(newAttr);
         
+        /* Change display element to new attr text */
+        displayElement.html(newAttr);
+
         /* Put back display element */
-        $(this.el).html(this.displayElement);
+        $(this.el).html(displayElement);
     },
 });
