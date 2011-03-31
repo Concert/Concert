@@ -324,6 +324,8 @@ var WaveformInteractionComponent = Component.extend(
     enable: function() {
         this.disabled = false;
         this.highlight.removeClass('disabled');
+        this.leftHandle.removeClass('disabled');
+        this.rightHandle.removeClass('disabled');
     }, 
     
     /**

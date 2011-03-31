@@ -237,7 +237,7 @@ var DetailWaveformPanel = WaveformPanel.extend(
                     /* Draw timecode */
                     me.timecodeComponent.audio_segment_selected(selectedAudioSegment);
                     me.highlighter.audio_segment_selected(selectedAudioSegment);
-                    
+                    me.autoscroll(selectedAudioSegment.get('beginning') * me.get_resolution());
                 };
             }(this, selectedAudioSegment)
         );
@@ -308,7 +308,7 @@ var DetailWaveformPanel = WaveformPanel.extend(
      *  scrolls the waveform image with a pretty easeOutExpo animation
      **/
     autoscroll: function(leftPx) {
-        this.waveformView.animate({scrollLeft: leftPx}, 600, "easeOutExpo");
+        this.waveformView.animate({scrollLeft: leftPx - 20}, 600, "easeOutExpo");
     },
 
     
