@@ -89,69 +89,10 @@ var ConcertBackboneModel = Backbone.Model.extend(
                         var newAttr = this._createOneToManyAttribute(oneToMany);
                         
                         /* If it is a list */
-<<<<<<< Updated upstream
                         if(typeof(models) == 'object' && 
                         typeof(models.length) != 'undefined') {
                             /* Load in objects */
                             newAttr.refresh(models);
-=======
-                        if(models instanceof Array) {
-                            /* If the list is not empty */
-                            if(models.length) {
-                                /* if this list is of objects */
-                                if(typeof(models[0]) == 'object') {
-                                    /* Load in objects */
-                                    newAttr.refresh(models);                                
-                                }
-                                /* If this is a list of strings, models were
-                                sent as URLs */
-                                else if(typeof(models[0]) == 'string') {
-                                    var modelType = oneToMany.collectionType.prototype.model;
-                                    var modelName = modelType.prototype.name;
-                                    
-                                    var seenInstances = com.concertsoundorganizer.modelManager.seenInstances[modelName];
-
-                                    /* for each model URL in list */
-                                    _.each(models, function(modelUrl) {
-                                           var apiURL = com.concertsoundorganizer.apiBaseURL;
-                                           var modelId = modelUrl
-                                               .split(apiURL)[1]
-                                               .match(/\d+/);
-
-                                           if(modelId.length != 1) {
-                                               throw new Error('Malformed related model URL.');
-                                           }
-                                           else {
-                                               modelId = modelId[0];
-                                           }
-
-                                           /* Have we created this model before? */
-                                           var model = seenInstances.get(modelId);
-
-                                           /* If model instance was not found */
-                                           if(!model) {
-                                               console.log('No model found');
-                                               /* Create new instance with just id 
-                                               model = new modelType({
-                                                   id: modelId 
-                                               });
-                                               /* add to seen instances 
-                                               seenInstances.add(model);*/
-                                           }
-
-//                                           newAttr.add(model);
-                                    });
-                                }
-                            }
-                            else {
-                                /* empty list */
-                                newAttr.refresh([]);
-                            }
-                            
-                            /* save new collection attribute */
-                            attributes[oneToMany.attr] = newAttr;
-                            
->>>>>>> Stashed changes
                         }
                         /* If it is something else */
                         else {

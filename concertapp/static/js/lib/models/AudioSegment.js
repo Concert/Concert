@@ -20,11 +20,11 @@ var AudioSegment = ConcertBackboneModel.extend(
             {
                 attr: 'tags', 
                 collectionType: TagSet
-            },/*
+            },
             {
                 attr: 'comments', 
                 collectionType: CommentSet 
-            }*/
+            }
         ];
     }, 
     foreignKeyAttributes: function() {
@@ -49,6 +49,8 @@ var AudioSegment = ConcertBackboneModel.extend(
         ConcertBackboneModel.prototype.initialize.call(this, attributes, options);
         /* tell our AudioFile about us */
         this.get('audioFile').get('segments').add(this);
+        
+        /* Tell each of our tags about us */
     }, 
 });
 

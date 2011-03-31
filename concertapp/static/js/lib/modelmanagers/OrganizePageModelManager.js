@@ -86,11 +86,11 @@ OrganizePageModelManager.prototype._loadData = function() {
     /* Most stuff is watching both files and widgets, so do this silently */
     this.collectionAudioFiles.refresh(dataToLoad.fileData, {silent: true});
     dataToLoad.fileData = null;
-
+    
     var collectionAudioSegments = this.collectionAudioSegments;
     collectionAudioSegments.refresh(dataToLoad.segmentData);
     dataToLoad.segmentData = null;
-
+    
     this.collectionTags.refresh(dataToLoad.tagData);
     dataToLoad.tagData = null;
 };
@@ -291,8 +291,13 @@ OrganizePageModelManager.prototype.tag_current_segment = function(tagName) {
     
     var currentSegment = this.selectedAudioSegments.first();
     
-    /* If tag does not yet exist */
-    if(!tag) {
+    /* If tag already exists */
+    if(tag) {
+        /* TODO: something */
+        throw new Error('poo');
+    }
+    /* Tag does not yet exist */
+    else {
         /* Create it */
         tag = new Tag({
             /* with the given name */
@@ -301,6 +306,8 @@ OrganizePageModelManager.prototype.tag_current_segment = function(tagName) {
             collection: this.collection, 
             /* Created by our user */
             creator: this.user, 
+            /* With one segment, the current one */
+            segments: new AudioSegmentSet([currentSegment])
         });
         
         /* Save tag */
@@ -311,44 +318,10 @@ OrganizePageModelManager.prototype.tag_current_segment = function(tagName) {
                 model.destroy();
             }, 
             error_message: 'Tag was not created.', 
-            success: function(segment) {
-                return function(tag) {
-                    tag.get('segments').add(segment);
-                    segment.get('tags').add(tag, {
-                        /* save changes to server */
-                        save: true, 
-                        /* if error */
-                        error_callback: function(addedTag) {
-                            return function(seg) {
-                                /* remove tag from segment */
-                                seg.get('tags').remove(addedTag);
-                                addedTags.get('segments').remove(seg);
-                            };
-                        }(tag), 
-                        error_message: 'Segment was not tagged.'
-                    });
-                };
-            }(currentSegment), 
         });
     }
-    else {
-        /* tell tag and segment about eachother */
-        tag.get('segments').add(currentSegment);
-        currentSegment.get('tags').add(tag, {
-            /* save changes to server */
-            save: true, 
-            /* if error */
-            error_callback: function(addedTag) {
-                return function(seg) {
-                    /* remove tag from segment */
-                    seg.get('tags').remove(addedTag);
-                    addedTags.get('segments').remove(seg);
-                };
-            }(tag), 
-            error_message: 'Segment was not tagged.'
-        });
-    }
-    
+
+    currentSegment.get('tags').add(tag);
     
     /* Tell page to re-render for our audio again */
     this.page.select_audio({

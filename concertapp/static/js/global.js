@@ -10,9 +10,7 @@
  *  Global variables are in a namespace data structure.
  **/
 if(!com) var com = {};
-if(!com.concertsoundorganizer) com.concertsoundorganizer = {
-    apiBaseURL: '/api/1/', 
-};
+if(!com.concertsoundorganizer) com.concertsoundorganizer = {};
 if(!com.concertsoundorganizer.animation) {
     com.concertsoundorganizer.animation = {
         speed: 200, 
