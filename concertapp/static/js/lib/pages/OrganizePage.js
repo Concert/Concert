@@ -295,18 +295,23 @@ var OrganizePage = LoggedInPage.extend(
      *  when complete.
      *
      *  @param  {AudioFile}    audioFile    -   the file to load.
+     *  @param  {Function}      callback    -   the function to call when done loading audio file.
      **/
     _load_audio_file: function(audioFile, callback) {
         var audio = this.audio;
-        
-        /* when the file is done loading */
-        $(audio).one('canplaythrough', callback);
-        
-        
+
         /* The proper audio source for this browser */
         var audiosrc = audioFile.get_audio_src(this.audioType);
         
-        this.audio.src = audiosrc;
+        if(audio.src != audiosrc) {
+            /* when the file is done loading */
+            $(audio).one('canplaythrough', callback);
+        
+            this.audio.src = audiosrc;
+        }
+        else {
+            callback();
+        }
         
     }, 
     
