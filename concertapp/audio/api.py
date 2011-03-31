@@ -28,7 +28,7 @@ class AudioFileAuthorization(ConcertAuthorization):
 
 class AudioFileResource(MyResource):
     name = fields.CharField('name')
-    uploader = fields.ForeignKey('concertapp.users.api.UserResource', 'uploader', full=True)
+    uploader = fields.ForeignKey('concertapp.users.api.UserResource', 'uploader')
     collection = fields.ForeignKey('concertapp.collection.api.CollectionResource', "collection")
 
     class Meta:
