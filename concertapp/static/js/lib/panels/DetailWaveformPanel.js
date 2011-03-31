@@ -147,8 +147,8 @@ var DetailWaveformPanel = WaveformPanel.extend(
         /**
          *  By default, autoscrolling is ON
          **/
-        var autoscrollBool = true;
-        this.autoscrollBool = autoscrollBool;
+        var autoscrolling = true;
+        this.autoscrolling = autoscrolling;
         
         this.waveformView.bind('scrollstart', function(me) {
             return function() {
@@ -246,7 +246,7 @@ var DetailWaveformPanel = WaveformPanel.extend(
         
     highlight_waveform: function(startTime, endTime) {
         WaveformPanel.prototype.highlight_waveform.call(this, startTime, endTime);
-        this.autoscrollBool = true;
+        this.autoscrolling = true;
     },
     
     /**
@@ -262,7 +262,7 @@ var DetailWaveformPanel = WaveformPanel.extend(
      *  immediately turns OFF autoscrolling
      **/
     handle_scroll_start: function() {
-        this.autoscrollBool = false;
+        this.autoscrolling = false;
     },
     
     /**
@@ -270,8 +270,8 @@ var DetailWaveformPanel = WaveformPanel.extend(
      *  if autoscroll is OFF and the playhead is in view, turn autoscroll ON
      **/
     handle_scroll_stop: function() {
-        if (!this.autoscrollBool && this.playhead_in_view()) {
-            this.autoscrollBool = true;
+        if (!this.autoscrolling && this.playhead_in_view()) {
+            this.autoscrolling = true;
         }
     },
     
@@ -282,7 +282,7 @@ var DetailWaveformPanel = WaveformPanel.extend(
      **/
     playhead_in_view: function() {
         if (((this.waveformView.scrollLeft()) <= this.playheadComponent.position()) && 
-        ((this.waveformView.scrollLeft() + 815) >= this.playheadComponent.position())) {
+        ((this.waveformView.scrollLeft() + this.waveformView.width()) >= this.playheadComponent.position())) {
             return true;
         }
         else {
@@ -297,11 +297,10 @@ var DetailWaveformPanel = WaveformPanel.extend(
      *  and autoscrolling is on, playhead_moved calls autoscrolling
      **/
     playhead_moved: function(leftPx) { 
-        if ((this.autoscrollBool && leftPx >= (815 + this.waveformView.scrollLeft())) ||
-            (this.autoscrollBool && leftPx < this.waveformView.scrollLeft())) {
+        if ((this.autoscrolling && leftPx >= (this.waveformView.width() + this.waveformView.scrollLeft())) ||
+            (this.autoscrolling && leftPx < this.waveformView.scrollLeft())) {
             this.autoscroll(leftPx);
         }
-
     },     
         
     /**

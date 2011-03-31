@@ -268,12 +268,12 @@ var OrganizePage = LoggedInPage.extend(
      *  @param  {Number}    seconds    The time we are to go to in the audio file.
      **/
     set_audio_time: function(seconds) {
-/*        $(this.audio).one('timeupdate', function(me) {
+        /* calls handle_scroll_stop to turn autoscrolling on when playhead is moved into view */
+        $(this.audio).one('timeupdate', function(me) {
             return function() {
                 me.detailPanel.handle_scroll_stop();
             }
-        }(this))
-        */
+        }(this));
         this.audio.currentTime = seconds;
     },
     
