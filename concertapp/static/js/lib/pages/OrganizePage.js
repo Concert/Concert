@@ -123,9 +123,6 @@ var OrganizePage = LoggedInPage.extend(
         /* Tell model manager so we can maintain list of instances */
         this.modelManager.select_audio(params);
         
-        /* Pause audio if it is currently playing */
-        //this.audio.pause();
-        
         /* Clear any highlights */
         this.clear_waveform_highlight();
         
@@ -307,17 +304,14 @@ var OrganizePage = LoggedInPage.extend(
         var newAudioSrc = !(audio.src.search(audiosrc) > 0);
         
         if(newAudioSrc) {
-            console.log('loading new audio src');
             /* when the file is done loading */
             $(audio).one('canplaythrough', callback);
         
             this.audio.src = audiosrc;
         }
         else {
-            console.log('load_audio_file callback without loading audio src');
             callback();
-        }
-        
+        }        
     }, 
     
     /**
