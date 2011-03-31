@@ -282,7 +282,7 @@ var DetailWaveformPanel = WaveformPanel.extend(
      **/
     playhead_in_view: function() {
         if (((this.waveformView.scrollLeft()) <= this.playheadComponent.position()) && 
-        ((this.waveformView.scrollLeft() + 815) >= this.playheadComponent.position())) {
+        ((this.waveformView.scrollLeft() + this.waveformView.width()) >= this.playheadComponent.position())) {
             return true;
         }
         else {
@@ -297,7 +297,7 @@ var DetailWaveformPanel = WaveformPanel.extend(
      *  and autoscrolling is on, playhead_moved calls autoscrolling
      **/
     playhead_moved: function(leftPx) { 
-        if ((this.autoscrolling && leftPx >= (815 + this.waveformView.scrollLeft())) ||
+        if ((this.autoscrolling && leftPx >= (this.waveformView.width() + this.waveformView.scrollLeft())) ||
             (this.autoscrolling && leftPx < this.waveformView.scrollLeft())) {
             this.autoscroll(leftPx);
         }
