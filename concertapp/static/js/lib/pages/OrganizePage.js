@@ -124,7 +124,7 @@ var OrganizePage = LoggedInPage.extend(
         this.modelManager.select_audio(params);
         
         /* Pause audio if it is currently playing */
-        this.audio.pause();
+        //this.audio.pause();
         
         /* Clear any highlights */
         this.clear_waveform_highlight();

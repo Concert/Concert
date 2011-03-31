@@ -225,7 +225,9 @@ OrganizePageModelManager.prototype.modify_current_segment_times = function(start
     });
     
     /* Tell page we've updated */
-    this.page.select_audio_segment(currentSegment);
+    this.page.select_audio({
+        segments: [currentSegment]
+    });
     
     /* Try to save */
     currentSegment.save(null, {
@@ -253,7 +255,6 @@ OrganizePageModelManager.prototype.delete_audio_segment = function(segment) {
     
     /* Remove from current collection's audio segments */
     collectionAudioSegments.remove(segment);
-    segment.get('audioFile').get('segments').remove(segment);
     
     /* If this is the currently selected audio segment */
     if(this.selectedAudioSegments.first() == segment) {
