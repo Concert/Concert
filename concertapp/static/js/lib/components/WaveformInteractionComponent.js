@@ -137,8 +137,6 @@ var WaveformInteractionComponent = Component.extend(
             
             this.panel.page.clear_waveform_highlight();
         } else {
-            /* Make highlight visible */
-            this.enable();
             /* Save new starting point */
             this.lastDragStartX = x;
             /* We are now dragging */
@@ -159,6 +157,8 @@ var WaveformInteractionComponent = Component.extend(
             this.lastDragEndX < this.lastDragStartX - 2) {
                 /* Reset any old highlight */
                 this.reset();
+                /* Make highlight visible */
+                this.enable();
         }
 
         /* Draw highlight */
@@ -178,10 +178,10 @@ var WaveformInteractionComponent = Component.extend(
         var dragEndX = x;
         /* If this was just a click (with a 2px error buffer) */
         if(dragStartX < dragEndX + 2 && dragStartX > dragEndX - 2) {
-            
             /* If click is outside current highlight */
-            if(dragEndX < this.highlight.position().left ||
-                dragEndX > this.highlight.position().left + this.highlight.width()) {
+            if((dragEndX < this.highlight.position().left ||
+                dragEndX > this.highlight.position().left + this.highlight.width()) &&
+                this.disabled == false) {
                     this.panel.page.disable_audio_loop();
                 }
                 
@@ -190,8 +190,9 @@ var WaveformInteractionComponent = Component.extend(
             this.panel.page.set_audio_time(seconds);
             
             /* If click is inside current highlight */
-            if(dragEndX > this.highlight.position().left && 
-                dragEndX < this.highlight.position().left + this.highlight.width()) {
+            if((dragEndX > this.highlight.position().left && 
+                dragEndX < this.highlight.position().left + this.highlight.width()) &&
+                this.disabled == false) {
                     this.panel.page.enable_audio_loop();
                 } 
         }
