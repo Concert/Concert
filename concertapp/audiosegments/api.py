@@ -42,10 +42,10 @@ class AudioSegmentResource(NestedResource):
     name = fields.CharField('name')
     beginning = fields.FloatField('beginning')
     end = fields.FloatField('end')
-    creator = fields.ForeignKey(UserResource, 'creator') 
-    audioFile = fields.ForeignKey(AudioFileResource, 'audioFile')
-    tags = fields.ManyToManyField(TagResource, 'tags', null=True)
-    collection = fields.ForeignKey(CollectionResource, 'collection')
+    creator = fields.ForeignKey(UserResource, 'creator', full=True) 
+    audioFile = fields.ForeignKey(AudioFileResource, 'audioFile', full=True)
+    tags = fields.ManyToManyField(TagResource, 'tags', full=True, null=True)
+    collection = fields.ForeignKey(CollectionResource, 'collection', full=True)
     
     class Meta:
         authentication = DjangoAuthentication()

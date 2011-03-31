@@ -287,7 +287,7 @@ class CollectionRequestResource(CollectionResource):
 ###
 class RequestResource(MyResource):
     user = fields.ForeignKey(UserResource, 'user')
-    collection = fields.ForeignKey(CollectionResource, 'collection')
+    collection = fields.ForeignKey(CollectionResource, 'collection', full=True)
     status = fields.CharField('status', default='p')
 
     class Meta:

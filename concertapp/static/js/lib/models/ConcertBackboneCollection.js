@@ -24,8 +24,7 @@ var ConcertBackboneCollection = Backbone.Collection.extend(
      *  can also save our o2m relationship if options.save is set.
      *
      *  @param  {Boolean}    options.save    -  Save relation?
-     *  @param  {Function}    options.error_callback    -    Error callback
-     *  @param  {String}    options.error_message    Error message
+     *  @param  {Function}    options.error    -    Error callback
      **/
     _add : function(model, options) {
         options || (options = {});
@@ -35,6 +34,7 @@ var ConcertBackboneCollection = Backbone.Collection.extend(
         /* If the model hasn't yet been instantiated */
         if(!(model instanceof Backbone.Model)) {
             /* Check with dataset manager to see if it already exists */
+            
             var possibleDuplicate = seenInstances.get(model.id);
 
             /* If there is a duplicate */
