@@ -105,7 +105,7 @@ com.concertsoundorganizer.helpers.wrapError = function(options) {
             });
 
             if(callback) {
-                callback();
+                callback(model, resp);
             }
         }
 

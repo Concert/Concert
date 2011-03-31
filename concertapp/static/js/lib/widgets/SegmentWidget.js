@@ -20,7 +20,24 @@ var SegmentWidget = AudioListWidget.extend(
         var params = this.options;        
         
         _.bindAll(this, "render");
+        
+        this.model.get('tags').bind('add', this.render);
+        this.model.get('tags').bind('remove', this.render);
+        
+        
         this.render();
+    }, 
+    
+    render: function() {
+        AudioListWidget.prototype.render.call(this);
+        
+        this.model.get('tags').each(function(widget) {
+            return function(tag) {
+                tag.bind('change', widget.render);
+            };
+        }(this));
+        
+        return this;
     }, 
     /**
      *  When this widget's delete button is clicked.
