@@ -225,9 +225,7 @@ OrganizePageModelManager.prototype.modify_current_segment_times = function(start
     });
     
     /* Tell page we've updated */
-    this.page.select_audio({
-        segments: [currentSegment]
-    });
+    this.page.select_audio_segment(currentSegment);
     
     /* Try to save */
     currentSegment.save(null, {

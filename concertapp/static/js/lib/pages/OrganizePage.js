@@ -303,13 +303,18 @@ var OrganizePage = LoggedInPage.extend(
         /* The proper audio source for this browser */
         var audiosrc = audioFile.get_audio_src(this.audioType);
         
-        if(audio.src != audiosrc) {
+        /* If this is a new audio file */
+        var newAudioSrc = !(audio.src.search(audiosrc) > 0);
+        
+        if(newAudioSrc) {
+            console.log('loading new audio src');
             /* when the file is done loading */
             $(audio).one('canplaythrough', callback);
         
             this.audio.src = audiosrc;
         }
         else {
+            console.log('load_audio_file callback without loading audio src');
             callback();
         }
         

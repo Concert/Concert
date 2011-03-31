@@ -101,7 +101,7 @@ var WaveformInteractionComponent = Component.extend(
             return function(e) {
                 e.stopPropagation();
                 
-                me.startDrag(get_event_x(e));
+                me._handle_mousedown(get_event_x(e));
             };
         }(this));
         
@@ -110,7 +110,7 @@ var WaveformInteractionComponent = Component.extend(
                 e.stopPropagation();
                 
                 if(me.dragging) {
-                    me.continueDrag(get_event_x(e));
+                    me._handle_mousemove(get_event_x(e));
                 }
             };
         }(this));
@@ -119,17 +119,17 @@ var WaveformInteractionComponent = Component.extend(
             return function(e) {
                 e.stopPropagation();
                 
-                me.endDrag(get_event_x(e));
+                me._handle_mouseup(get_event_x(e));
             };
         }(this));
     }, 
     
     /**
-     *  When a drag is started.
+     *  When a mousedown event is triggered on this.el
      *
      *  @param  {Number}    x    -  The x-coordinate where the drag began.
      **/
-    startDrag: function(x) {
+    _handle_mousedown: function(x) {
         if(this.disabled == false && this.dragging == false && this.handle(x)) {
             this.dragging = true;
             /* we are adjusting the highlight */
@@ -145,32 +145,33 @@ var WaveformInteractionComponent = Component.extend(
     }, 
     
     /**
-     *  When a drag is continuing.  Called on every mousemove event.
+     *  When a mousemove event is triggered on this.el after a mousedown and before
+     *  a mouseup.
      *
      *  @param  {Number}    x   -   The x-coordinate where the drag is currently.
      **/
-    continueDrag: function(x) {
+    _handle_mousemove: function(x) {
         this.lastDragEndX = x;
         
-        /* If the mouse has moved out of the 'click' buffer zone */
+        /* If the mouse has moved out of the 'click' buffer zone.  This ensures
+        that the user is actually trying to make a highlight, and didn't just 
+        move the mouse a little bit while clicking. */
         if (this.lastDragEndX > this.lastDragStartX + 2 || 
             this.lastDragEndX < this.lastDragStartX - 2) {
                 /* Reset any old highlight */
                 this.reset();
-                /* Make highlight visible */
-                this.enable();
+                /* Draw highlight */
+                this.draw_highlight_px(this.lastDragStartX, this.lastDragEndX);
         }
 
-        /* Draw highlight */
-        this.draw_highlight_px(this.lastDragStartX, this.lastDragEndX);
     }, 
     
     /**
-     *  When a drag has stopped.
+     *  When a mouseup event is triggered on this.el
      *
      *  @param  {Number}    x    -  The x-coordinate where the drag has stopped.
      **/
-    endDrag: function(x) {
+    _handle_mouseup: function(x) {
         
         /* Now determine what the time of the highlight was relative to the audio
         file */
@@ -178,12 +179,12 @@ var WaveformInteractionComponent = Component.extend(
         var dragEndX = x;
         /* If this was just a click (with a 2px error buffer) */
         if(dragStartX < dragEndX + 2 && dragStartX > dragEndX - 2) {
-            /* If click is outside current highlight */
+            /* If click is outside current highlight, and the highlight is enabled */
             if((dragEndX < this.highlight.position().left ||
-                dragEndX > this.highlight.position().left + this.highlight.width()) &&
-                this.disabled == false) {
+                dragEndX > this.highlight.position().left + this.highlight.width()) 
+                && this.disabled == false) {
                     this.panel.page.disable_audio_loop();
-                }
+            }
                 
             //update audio's currentTime to location clicked
             var seconds = dragStartX/this.panel.get_resolution();
@@ -191,10 +192,10 @@ var WaveformInteractionComponent = Component.extend(
             
             /* If click is inside current highlight */
             if((dragEndX > this.highlight.position().left && 
-                dragEndX < this.highlight.position().left + this.highlight.width()) &&
-                this.disabled == false) {
+                dragEndX < this.highlight.position().left + this.highlight.width()) 
+                && this.disabled == false) {
                     this.panel.page.enable_audio_loop();
-                } 
+            } 
         }
         /* This was a drag */
         else {
@@ -210,12 +211,12 @@ var WaveformInteractionComponent = Component.extend(
 
             /* if we were just adjusting */
             if(this.adjusting) {
-                /* Tell panel that we've changed segment */
+                /* Tell page that we've changed segment */
                 this.panel.page.modify_current_segment_times(startTime, endTime);
             }
             /* we must have been creating a new segment */
             else {
-                /* Tell panel about highlight */
+                /* Tell page about highlight */
                 this.panel.page.create_new_segment(startTime, endTime);                
             }
         }
@@ -234,6 +235,11 @@ var WaveformInteractionComponent = Component.extend(
      *  @param  {Number}    y    -  The other side.
      **/
     draw_highlight_px: function(x, y) {
+        
+        /* Make highlight visible */
+        this.enable();
+        
+        
         /* If the values are left to right */
         if(x < y) {
             this.highlight.css({
