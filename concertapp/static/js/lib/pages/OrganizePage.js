@@ -123,9 +123,6 @@ var OrganizePage = LoggedInPage.extend(
         /* Tell model manager so we can maintain list of instances */
         this.modelManager.select_audio(params);
         
-        /* Pause audio if it is currently playing */
-        //this.audio.pause();
-        
         /* Clear any highlights */
         this.clear_waveform_highlight();
         
@@ -314,8 +311,7 @@ var OrganizePage = LoggedInPage.extend(
         }
         else {
             callback();
-        }
-        
+        }        
     }, 
     
     /**
