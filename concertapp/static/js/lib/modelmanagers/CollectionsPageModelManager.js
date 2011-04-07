@@ -39,10 +39,7 @@ CollectionsPageModelManager.prototype.init = function(params) {
 
 CollectionsPageModelManager.prototype._loadData = function() {
     LoggedInModelManager.prototype._loadData.call(this);
-    
     var dataToLoad = this._dataToLoad;
-    
-    var seenInstances = concertapp.page.modelManager.seenInstances['collection'];
     
     var userMemberCollections = this.userMemberCollections;
     for(var i=0, il = userMemberCollections.length; i < il; i++) {

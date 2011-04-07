@@ -49,7 +49,7 @@ var Collection = ConcertBackboneModel.extend(
      *  When a user wants to leave the collection.
      **/
     leave: function() {
-        var modelManager = concertapp.modelManager;
+        var modelManager = concertapp.page.modelManager;
         var user = modelManager.user;
         var userMemberCollections = modelManager.userMemberCollections;
         /* Remove user and save */

@@ -43,7 +43,7 @@ var CollectionSearchResultWidget = Widget.extend(
     joinCollection: function() {
         /* TODO: This is a bit confusing because the widget is calling the 
         modelManager directly.  The page should probably intervene here. */
-        concertapp.modelManager.request_to_join(this.model);
+        concertapp.page.modelManager.request_to_join(this.model);
     }, 
     showCollectionInfo: function() {
         console.log('showCollectionInfo');

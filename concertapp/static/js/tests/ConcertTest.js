@@ -91,7 +91,7 @@
                     //clickLink('#create_new_collection', ConcertTest.callbackHelper(function(browser) {
 
                         /* Now our collection object should be in seenInstances */
-                        //var collectionModelInstance = browser.evaluate('concertapp.modelManager.seenInstances[\'Collection\'].last()');
+                        //var collectionModelInstance = browser.evaluate('concertapp.page.modelManager.seenInstances[\'Collection\'].last()');
 
                         //assert.equal(collectionModelInstance.get('name'), ConcertTest.settings.newCollectionName);
 
@@ -123,7 +123,7 @@
           browser.fire('click', browser.querySelector('.file_widget'), ConcertTest.callbackHelper(function(browser) {
               /* Wait for stuff to load 
               browser.wait(ConcertTest.callbackHelper(function(browser) {
-                  var selectedAudioFiles = browser.evaluate('concertapp.modelManager.selectedAudioFiles');
+                  var selectedAudioFiles = browser.evaluate('concertapp.page.modelManager.selectedAudioFiles');
                   console.log('selectedAudioFiles.toJSON():');
                   console.log(selectedAudioFiles.toJSON());
               }));*/
