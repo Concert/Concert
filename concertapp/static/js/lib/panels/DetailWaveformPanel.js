@@ -194,6 +194,11 @@ var DetailWaveformPanel = WaveformPanel.extend(
             el: $('#detail_waveform_selected_name_container')
         });
         
+        /* Clear bottom tags area */
+        this.tagsContainerElement.empty();
+        /* Hide tag input box (for now) */
+        this.tagInputElement.hide();
+        
         /* Load waveform image */
         this._load_waveform_image(selectedAudioFile.get_waveform_src(10), function(me, selectedAudioFile) {
             /* and when done */
@@ -232,6 +237,9 @@ var DetailWaveformPanel = WaveformPanel.extend(
         this.tagsContainerElement.html(
             this.bottomSegmentTemplate.tmpl(selectedAudioSegment.toJSON())
         );
+        
+        /* Show tag input element */
+        this.tagInputElement.show();
         
         
         /* Load waveform image */
