@@ -6,10 +6,10 @@ JSTOOLKIT_ROOT='/opt/local/bin/jsdoc-toolkit'
 
 # Grab concertapp directory from master
 echo 'Updating code from master'
-git checkout namespaces
-git pull origin namespaces
+git checkout master
+git pull origin master
 git checkout gh-pages
-git checkout namespaces concertapp/
+git checkout master concertapp/
 
 # Remove vendor client side code (we dont need to document any)
 rm -R concertapp/static/js/lib/vendor/
