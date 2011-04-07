@@ -11,7 +11,7 @@
  **/
 concertapp.components.Component = Backbone.View.extend(
 	/**
-	 *	@scopeconcertapp.components.Componentprototype
+	 *	@scope concertapp.components.Component.prototype
 	 **/
 {
     initialize: function() {
