@@ -303,63 +303,30 @@ OrganizePageModelManager.prototype.tag_current_segment = function(tagName) {
             creator: this.user, 
         });
         
-        /* Save tag */
-        tag.save(null, {
-            /* if there was an error */
-            error_callback: function(model) {
-                /* delete tag */
-                model.destroy();
-            }, 
-            error_message: 'Tag was not created.', 
-            success: function(segment, page) {
-                return function(tag) {
-                    tag.get('segments').add(segment);
-                    segment.get('tags').add(tag, {
-                        /* save changes to server */
-                        save: true, 
-                        /* if error */
-                        error_callback: function(addedTag) {
-                            return function(seg) {
-                                /* remove tag from segment */
-                                seg.get('tags').remove(addedTag);
-                                addedTags.get('segments').remove(seg);
-                            };
-                        }(tag), 
-                        error_message: 'Segment was not tagged.',
-                        success: function(me){
-                            return function( ){
-                                /* Tell page to re-render for our audio again */
-                                me.page.select_audio({
-                                    segments: [me.selectedAudioSegments.first()], 
-                                });
-                            }
-                        }(this), 
-                    });
-                };
-            }(currentSegment, this.page), 
-        });
+        /* Add to seen instances */
+        this.seenInstances['tag'].add(tag);        
     }
-    else {
-        /* tell tag and segment about eachother */
-        tag.get('segments').add(currentSegment);
-        currentSegment.get('tags').add(tag, {
-            /* save changes to server */
-            save: true, 
-            /* if error */
-            error_callback: function(addedTag) {
-                return function(seg) {
-                    /* remove tag from segment */
-                    seg.get('tags').remove(addedTag);
-                    addedTags.get('segments').remove(seg);
-                };
-            }(tag), 
-            error_message: 'Segment was not tagged.'
-        });
-        /* Tell page to re-render for our audio again */
-        this.page.select_audio({
-            segments: [this.selectedAudioSegments.first()], 
-        });
-    }
+
+    /* tell tag and segment about eachother */
+    tag.get('segments').add(currentSegment);
+    currentSegment.get('tags').add(tag, {
+        /* save changes to server */
+        save: true, 
+        /* if error */
+        error_callback: function(addedTag) {
+            return function(seg) {
+                /* remove tag from segment */
+                seg.get('tags').remove(addedTag);
+                addedTags.get('segments').remove(seg);
+            };
+        }(tag), 
+        error_message: 'Segment was not tagged.'
+    });
+    /* Tell page to re-render for our audio again */
+    this.page.select_audio({
+        segments: [this.selectedAudioSegments.first()], 
+    });
+    
     
     
 };

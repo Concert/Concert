@@ -17,7 +17,9 @@ var getUrl = function(object) {
   return _.isFunction(object.url) ? object.url() : object.url;
 };
 
-
+/**
+ *  We're overriding Backbone.sync so we can do ghetto REST stuff.
+ **/
 Backbone.sync = function(method, model, options) {
     var type = methodMap[method];
     

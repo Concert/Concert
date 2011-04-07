@@ -55,6 +55,9 @@ var ConcertBackboneCollection = Backbone.Collection.extend(
 
         model = Backbone.Collection.prototype._add.call(this, model, options);
         
+        /**
+         *  If we're supposed to save this relationship
+         **/
         if(options.save) {
             /* We are 'creating' our relationship (in our modified REST
             implementation) */
@@ -69,8 +72,32 @@ var ConcertBackboneCollection = Backbone.Collection.extend(
             "/api/1/audiosegment/1/tag/2/" */
             options.url = this.relatedModel.url()+model.url({noBase:true});
             
-            /* we POST to this URL with no other data */
-            (this.sync || Backbone.sync)(method, null, options);
+            /* If the related instance hasn't even been created on the server */
+            if(!model.get('id')) {
+                /* when the instance is created, it will return a serialized 
+                representation of the related instance, and therefore we need
+                to update the related model */
+                var success = options.success;
+                options.success = function(resp) {
+                    
+                    console.log('resp:');
+                    console.log(resp);
+                    if (!model.set(model.parse(resp), options)) return false;
+                    if (success) success(model, resp);
+                };
+
+
+                /* send the related model instance too */
+                (this.sync || Backbone.sync)(method, model, options);
+            }
+            else {
+                /* The model instance has already been created, just need to create
+                the relationship */
+                
+                /* we POST to this URL with no other data */
+                (this.sync || Backbone.sync)(method, null, options);                
+            }
+            
             
         }
     },
