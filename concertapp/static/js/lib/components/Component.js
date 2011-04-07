@@ -5,8 +5,7 @@
  **/
  
 /**
- *  Things that each component will need
- *  @class
+ *  @class  Things that each component will need
  *  @extends    Backbone.View
  **/
 concertapp.components.Component = Backbone.View.extend(
