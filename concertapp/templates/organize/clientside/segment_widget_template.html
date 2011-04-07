@@ -18,7 +18,7 @@
         <div class="bottom">
             {% verbatim %}
                 {{each(i, tag) tags.toJSON()}}
-                    <a href="#tag/${tag.id}">${tag.name}</a>
+                    {{tmpl(tag) "#tag_widget_template"}}
                 {{/each}}
             {% endverbatim %}
         </div>
