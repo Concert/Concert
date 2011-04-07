@@ -203,7 +203,11 @@ ul.inheritsList
 	
 	<li><a href="../symbols/AudioSegment.html">AudioSegment</a></li>
 	
+	<li><a href="../symbols/AudioSegmentBarWidget.html">AudioSegmentBarWidget</a></li>
+	
 	<li><a href="../symbols/AudioSegmentSet.html">AudioSegmentSet</a></li>
+	
+	<li><a href="../symbols/AutocompleteListInputComponent.html">AutocompleteListInputComponent</a></li>
 	
 	<li><a href="../symbols/Button.html">Button</a></li>
 	
@@ -229,6 +233,8 @@ ul.inheritsList
 	
 	<li><a href="../symbols/CommentSet.html">CommentSet</a></li>
 	
+	<li><a href="../symbols/CommentWidget.html">CommentWidget</a></li>
+	
 	<li><a href="../symbols/Component.html">Component</a></li>
 	
 	<li><a href="../symbols/ConfirmModalAlert.html">ConfirmModalAlert</a></li>
@@ -245,7 +251,7 @@ ul.inheritsList
 	
 	<li><a href="../symbols/DashboardPage.html">DashboardPage</a></li>
 	
-	<li><a href="../symbols/DetailWaveformHighlighterComponent.html">DetailWaveformHighlighterComponent</a></li>
+	<li><a href="../symbols/DetailWaveformInteractionComponent.html">DetailWaveformInteractionComponent</a></li>
 	
 	<li><a href="../symbols/DetailWaveformPanel.html">DetailWaveformPanel</a></li>
 	
@@ -301,7 +307,7 @@ ul.inheritsList
 	
 	<li><a href="../symbols/OrganizePageModelManager%23init.html">OrganizePageModelManager#init</a></li>
 	
-	<li><a href="../symbols/OverviewWaveformHighlighterComponent.html">OverviewWaveformHighlighterComponent</a></li>
+	<li><a href="../symbols/OverviewWaveformInteractionComponent.html">OverviewWaveformInteractionComponent</a></li>
 	
 	<li><a href="../symbols/OverviewWaveformPanel.html">OverviewWaveformPanel</a></li>
 	
@@ -321,6 +327,8 @@ ul.inheritsList
 	
 	<li><a href="../symbols/Tag.html">Tag</a></li>
 	
+	<li><a href="../symbols/TagAutocompleteListInputComponent.html">TagAutocompleteListInputComponent</a></li>
+	
 	<li><a href="../symbols/TagSet.html">TagSet</a></li>
 	
 	<li><a href="../symbols/UploadFileWidget.html">UploadFileWidget</a></li>
@@ -337,7 +345,7 @@ ul.inheritsList
 	
 	<li><a href="../symbols/UserWidget.html">UserWidget</a></li>
 	
-	<li><a href="../symbols/WaveformHighlighterComponent.html">WaveformHighlighterComponent</a></li>
+	<li><a href="../symbols/WaveformInteractionComponent.html">WaveformInteractionComponent</a></li>
 	
 	<li><a href="../symbols/WaveformPanel.html">WaveformPanel</a></li>
 	
@@ -424,9 +432,45 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/OrganizePageModelManager.html#create_and_select_new_segment">create_and_select_new_segment</a></b>(startTime, endTime)
+								</div>
+								<div class="description">Create new audio segment object and set it as currently selected.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/OrganizePageModelManager.html#delete_audio_segment">delete_audio_segment</a></b>(segment)
+								</div>
+								<div class="description">When an audio segment is to be deleted.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/OrganizePageModelManager.html#modify_current_segment_times">modify_current_segment_times</a></b>(startTime, endTime)
+								</div>
+								<div class="description">When the start and end points of the currently selected segment are changed.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
 								<div class="fixedFont"><b><a href="../symbols/OrganizePageModelManager.html#select_audio">select_audio</a></b>()
 								</div>
 								<div class="description">Use this when files are to be selected on the user interface.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/OrganizePageModelManager.html#tag_current_segment">tag_current_segment</a></b>(tagName)
+								</div>
+								<div class="description">When the current segment is to be tagged.</div>
 							</td>
 						</tr>
 					
@@ -518,6 +562,126 @@ ul.inheritsList
 
 					<hr />
 				
+					<a name="create_and_select_new_segment"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>create_and_select_new_segment</b>(startTime, endTime)
+					
+					</div>
+					<div class="description">
+						Create new audio segment object and set it as currently selected.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>startTime</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>endTime</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="delete_audio_segment"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>delete_audio_segment</b>(segment)
+					
+					</div>
+					<div class="description">
+						When an audio segment is to be deleted.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/AudioSegment.html">AudioSegment</a>}</span> <b>segment</b>
+									
+								</dt>
+								<dd>The audio segment we're deleting</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="modify_current_segment_times"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>modify_current_segment_times</b>(startTime, endTime)
+					
+					</div>
+					<div class="description">
+						When the start and end points of the currently selected segment are changed.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{Number}</span> <b>startTime</b>
+									
+								</dt>
+								<dd>The new start time</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Number}</span> <b>endTime</b>
+									
+								</dt>
+								<dd>The new end time</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
 					<a name="select_audio"> </a>
 					<div class="fixedFont">
 					
@@ -558,6 +722,42 @@ ul.inheritsList
 						
 						
 
+					<hr />
+				
+					<a name="tag_current_segment"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>tag_current_segment</b>(tagName)
+					
+					</div>
+					<div class="description">
+						When the current segment is to be tagged.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{String}</span> <b>tagName</b>
+									
+								</dt>
+								<dd>The name of the tag to give this segment.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
 					
 				
 			
@@ -572,7 +772,7 @@ ul.inheritsList
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.3.2 on Sun Mar 27 2011 15:35:17 GMT-0400 (EDT)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.3.2 on Wed Apr 06 2011 20:25:31 GMT-0400 (EDT)
 		</div>
 	</body>
 </html>

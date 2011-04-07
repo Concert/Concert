@@ -203,7 +203,11 @@ ul.inheritsList
 	
 	<li><a href="../symbols/AudioSegment.html">AudioSegment</a></li>
 	
+	<li><a href="../symbols/AudioSegmentBarWidget.html">AudioSegmentBarWidget</a></li>
+	
 	<li><a href="../symbols/AudioSegmentSet.html">AudioSegmentSet</a></li>
+	
+	<li><a href="../symbols/AutocompleteListInputComponent.html">AutocompleteListInputComponent</a></li>
 	
 	<li><a href="../symbols/Button.html">Button</a></li>
 	
@@ -229,6 +233,8 @@ ul.inheritsList
 	
 	<li><a href="../symbols/CommentSet.html">CommentSet</a></li>
 	
+	<li><a href="../symbols/CommentWidget.html">CommentWidget</a></li>
+	
 	<li><a href="../symbols/Component.html">Component</a></li>
 	
 	<li><a href="../symbols/ConfirmModalAlert.html">ConfirmModalAlert</a></li>
@@ -245,7 +251,7 @@ ul.inheritsList
 	
 	<li><a href="../symbols/DashboardPage.html">DashboardPage</a></li>
 	
-	<li><a href="../symbols/DetailWaveformHighlighterComponent.html">DetailWaveformHighlighterComponent</a></li>
+	<li><a href="../symbols/DetailWaveformInteractionComponent.html">DetailWaveformInteractionComponent</a></li>
 	
 	<li><a href="../symbols/DetailWaveformPanel.html">DetailWaveformPanel</a></li>
 	
@@ -301,7 +307,7 @@ ul.inheritsList
 	
 	<li><a href="../symbols/OrganizePageModelManager%23init.html">OrganizePageModelManager#init</a></li>
 	
-	<li><a href="../symbols/OverviewWaveformHighlighterComponent.html">OverviewWaveformHighlighterComponent</a></li>
+	<li><a href="../symbols/OverviewWaveformInteractionComponent.html">OverviewWaveformInteractionComponent</a></li>
 	
 	<li><a href="../symbols/OverviewWaveformPanel.html">OverviewWaveformPanel</a></li>
 	
@@ -321,6 +327,8 @@ ul.inheritsList
 	
 	<li><a href="../symbols/Tag.html">Tag</a></li>
 	
+	<li><a href="../symbols/TagAutocompleteListInputComponent.html">TagAutocompleteListInputComponent</a></li>
+	
 	<li><a href="../symbols/TagSet.html">TagSet</a></li>
 	
 	<li><a href="../symbols/UploadFileWidget.html">UploadFileWidget</a></li>
@@ -337,7 +345,7 @@ ul.inheritsList
 	
 	<li><a href="../symbols/UserWidget.html">UserWidget</a></li>
 	
-	<li><a href="../symbols/WaveformHighlighterComponent.html">WaveformHighlighterComponent</a></li>
+	<li><a href="../symbols/WaveformInteractionComponent.html">WaveformInteractionComponent</a></li>
 	
 	<li><a href="../symbols/WaveformPanel.html">WaveformPanel</a></li>
 	
@@ -397,6 +405,15 @@ ul.inheritsList
 
 <!-- ============================== properties summary ===================== -->
 			
+				
+				
+				
+				
+				<dl class="inheritsList">
+				<dt>Fields borrowed from class <a href="../symbols/Component.html">Component</a>: </dt><dd><a href="../symbols/Component.html#panel">panel</a></dd>
+				</dl>
+				
+			
 
 <!-- ============================== methods summary ======================== -->
 			
@@ -415,29 +432,10 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/WaveformPlayheadComponent.html#animate">animate</a></b>()
+								<div class="fixedFont"><b><a href="../symbols/WaveformPlayheadComponent.html#draw">draw</a></b>()
 								</div>
-								<div class="description">animate is called from event handler above.</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/WaveformPlayheadComponent.html#audio_file_selected">audio_file_selected</a></b>(selectedAudioFile)
-								</div>
-								<div class="description">audio_file_selected is called from the panel 
- when a new audio file is selected
- obtains duration from the selectedAudioFile</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/WaveformPlayheadComponent.html#audio_segment_selected">audio_segment_selected</a></b>(selectedAudioSegment)
-								</div>
-								<div class="description">called from panel when new audio segment is selected.</div>
+								<div class="description">draw is called from event handler above on timeupdate
+ draws the playhead with css 'left' property equal to currentTime * pxPerSecond</div>
 							</td>
 						</tr>
 					
@@ -464,7 +462,19 @@ ul.inheritsList
 							<td class="nameDescription">
 								<div class="fixedFont"><b><a href="../symbols/WaveformPlayheadComponent.html#reset">reset</a></b>()
 								</div>
-								<div class="description"></div>
+								<div class="description">reset is called from panel when a new file or segment is selected
+ resets the playhead to the beginning of the waveform image</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/WaveformPlayheadComponent.html#update_speed">update_speed</a></b>()
+								</div>
+								<div class="description">updates pxPerSecond 
+ for now only called from panel when a new file or segment is selected
+ later may be called on zoom</div>
 							</td>
 						</tr>
 					
@@ -520,96 +530,22 @@ ul.inheritsList
 					Method Detail
 				</div>
 				
-					<a name="animate"> </a>
+					<a name="draw"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>animate</b>()
+					<b>draw</b>()
 					
 					</div>
 					<div class="description">
-						animate is called from event handler above.
- moves the playhead to the left the currentTime * 10
+						draw is called from event handler above on timeupdate
+ draws the playhead with css 'left' property equal to currentTime * pxPerSecond
 						
 						
 					</div>
 					
 					
 					
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="audio_file_selected"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>audio_file_selected</b>(selectedAudioFile)
-					
-					</div>
-					<div class="description">
-						audio_file_selected is called from the panel 
- when a new audio file is selected
- obtains duration from the selectedAudioFile
-						
-						
-					</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<span class="light fixedFont">{<a href="../symbols/AudioFile.html">AudioFile</a>}</span> <b>selectedAudioFile</b>
-									
-								</dt>
-								<dd>-   audio file that was selected</dd>
-							
-							</dl>
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="audio_segment_selected"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>audio_segment_selected</b>(selectedAudioSegment)
-					
-					</div>
-					<div class="description">
-						called from panel when new audio segment is selected.
-						
-						
-					</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<span class="light fixedFont">{<a href="../symbols/AudioSegment.html">AudioSegment</a>}</span> <b>selectedAudioSegment</b>
-									
-								</dt>
-								<dd>- audio segment selected</dd>
-							
-							</dl>
 						
 						
 						
@@ -678,7 +614,35 @@ ul.inheritsList
 					
 					</div>
 					<div class="description">
+						reset is called from panel when a new file or segment is selected
+ resets the playhead to the beginning of the waveform image
 						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="update_speed"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>update_speed</b>()
+					
+					</div>
+					<div class="description">
+						updates pxPerSecond 
+ for now only called from panel when a new file or segment is selected
+ later may be called on zoom
 						
 						
 					</div>
@@ -707,7 +671,7 @@ ul.inheritsList
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.3.2 on Sun Mar 27 2011 15:35:18 GMT-0400 (EDT)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.3.2 on Wed Apr 06 2011 20:25:32 GMT-0400 (EDT)
 		</div>
 	</body>
 </html>

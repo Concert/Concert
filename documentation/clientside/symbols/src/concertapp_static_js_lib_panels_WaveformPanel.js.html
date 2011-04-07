@@ -36,15 +36,15 @@
 <span class='line'> 29</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT">
 <span class='line'> 30</span> </span><span class="WHIT">        </span><span class="NAME">this.waveformImageElement</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">waveformImageElement</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 31</span> </span><span class="WHIT">        
-<span class='line'> 32</span>         </span><span class="COMM">/* The container for the playhead widget */</span><span class="WHIT">
-<span class='line'> 33</span> </span><span class="WHIT">        </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">playheadContainerElement</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.el.find</span><span class="PUNC">(</span><span class="STRN">'.playhead'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 34</span> </span><span class="WHIT">        </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="KEYW">typeof</span><span class="PUNC">(</span><span class="NAME">playheadContainerElement</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">==</span><span class="WHIT"> </span><span class="STRN">'undefined'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 35</span> </span><span class="WHIT">            </span><span class="KEYW">throw</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Error</span><span class="PUNC">(</span><span class="STRN">'$(\'#detail_waveform_panel_playhead\') is undefined'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 32</span>         </span><span class="COMM">/* The playhead element */</span><span class="WHIT">
+<span class='line'> 33</span> </span><span class="WHIT">        </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">playheadElement</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.el.find</span><span class="PUNC">(</span><span class="STRN">'.playhead'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 34</span> </span><span class="WHIT">        </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="KEYW">typeof</span><span class="PUNC">(</span><span class="NAME">playheadElement</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">==</span><span class="WHIT"> </span><span class="STRN">'undefined'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 35</span> </span><span class="WHIT">            </span><span class="KEYW">throw</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Error</span><span class="PUNC">(</span><span class="STRN">'playheadElement is undefined'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 36</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'> 37</span> </span><span class="WHIT">        </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">playheadContainerElement.length</span><span class="WHIT"> </span><span class="PUNC">==</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 38</span> </span><span class="WHIT">            </span><span class="KEYW">throw</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Error</span><span class="PUNC">(</span><span class="STRN">'playheadContainerElement not found'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 37</span> </span><span class="WHIT">        </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">playheadElement.length</span><span class="WHIT"> </span><span class="PUNC">==</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 38</span> </span><span class="WHIT">            </span><span class="KEYW">throw</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Error</span><span class="PUNC">(</span><span class="STRN">'playheadElement not found'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 39</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'> 40</span> </span><span class="WHIT">        </span><span class="NAME">this.playheadContainerElement</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">playheadContainerElement</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 40</span> </span><span class="WHIT">        </span><span class="NAME">this.playheadElement</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">playheadElement</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 41</span> </span><span class="WHIT">        
 <span class='line'> 42</span>         </span><span class="COMM">/* The duration of the last selected audio file (or segment parent) */</span><span class="WHIT">
 <span class='line'> 43</span> </span><span class="WHIT">        </span><span class="NAME">this.audioFileDuration</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
@@ -58,72 +58,50 @@
 <span class='line'> 51</span>      **/</span><span class="WHIT">
 <span class='line'> 52</span> </span><span class="WHIT">    </span><span class="NAME">audio_file_selected</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">selectedAudioFile</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'> 53</span> </span><span class="WHIT">        </span><span class="NAME">this.audioFileDuration</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">selectedAudioFile.get</span><span class="PUNC">(</span><span class="STRN">'duration'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 54</span> </span><span class="WHIT">        </span><span class="NAME">this.playheadComponent.audio_file_selected</span><span class="PUNC">(</span><span class="NAME">selectedAudioFile</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 55</span> </span><span class="WHIT">        </span><span class="NAME">this.playheadComponent.reset</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 56</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 57</span> </span><span class="WHIT">    
-<span class='line'> 58</span>     </span><span class="COMM">/**
-<span class='line'> 59</span>      *  Called from page when an audio segment is selected.
-<span class='line'> 60</span>      *
-<span class='line'> 61</span>      *  @param  {AudioSegment}    selectedAudioSegment    - The selected segment
-<span class='line'> 62</span>      **/</span><span class="WHIT">
-<span class='line'> 63</span> </span><span class="WHIT">    </span><span class="NAME">audio_segment_selected</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">selectedAudioSegment</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 64</span> </span><span class="WHIT">        </span><span class="NAME">this.audioFileDuration</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">selectedAudioSegment.get</span><span class="PUNC">(</span><span class="STRN">'audioFile'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">get</span><span class="PUNC">(</span><span class="STRN">'duration'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 65</span> </span><span class="WHIT">        </span><span class="NAME">this.playheadComponent.audio_segment_selected</span><span class="PUNC">(</span><span class="NAME">selectedAudioSegment</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 66</span> </span><span class="WHIT">        </span><span class="NAME">this.playheadComponent.reset</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 67</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT"> 
-<span class='line'> 68</span>     
-<span class='line'> 69</span>     </span><span class="COMM">/**
-<span class='line'> 70</span>      *  Called from page when waveform highlight should be cleared.
-<span class='line'> 71</span>      **/</span><span class="WHIT">
-<span class='line'> 72</span> </span><span class="WHIT">    </span><span class="NAME">clear_waveform_highlight</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 73</span> </span><span class="WHIT">        </span><span class="NAME">this.highlighter.disable</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 74</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT"> 
-<span class='line'> 75</span>     
-<span class='line'> 76</span>     </span><span class="COMM">/**
-<span class='line'> 77</span>      *  Called from page when waveform should highlight
-<span class='line'> 78</span>      **/</span><span class="WHIT">
-<span class='line'> 79</span> </span><span class="WHIT">    </span><span class="NAME">highlight_waveform</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">startTime</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">endTime</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 80</span> </span><span class="WHIT">        </span><span class="COMM">/* Draw highlight */</span><span class="WHIT">
-<span class='line'> 81</span> </span><span class="WHIT">        </span><span class="NAME">this.highlighter.draw_highlight_sec</span><span class="PUNC">(</span><span class="NAME">startTime</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">endTime</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 82</span> </span><span class="WHIT">        </span><span class="NAME">this.highlighter.enable</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 83</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 84</span> </span><span class="WHIT">    
-<span class='line'> 85</span>     </span><span class="COMM">/**
-<span class='line'> 86</span>      *  Called from internal when waveform image is to be loaded.
-<span class='line'> 87</span>      *
-<span class='line'> 88</span>      *  @param  {String}    src    -    The url of the waveform image.
-<span class='line'> 89</span>      *  @param  {Function}    callback  -   to be executed after waveform loads.
-<span class='line'> 90</span>      **/</span><span class="WHIT">
-<span class='line'> 91</span> </span><span class="WHIT">    </span><span class="NAME">_load_waveform_image</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">src</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">callback</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 92</span> </span><span class="WHIT">        </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">waveformImageElement</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.waveformImageElement</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 93</span> </span><span class="WHIT">        
-<span class='line'> 94</span>         </span><span class="COMM">/* When waveform image has loaded, execute callback */</span><span class="WHIT">
-<span class='line'> 95</span> </span><span class="WHIT">        </span><span class="NAME">waveformImageElement.imagesLoaded</span><span class="PUNC">(</span><span class="NAME">callback</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 96</span> </span><span class="WHIT">        
-<span class='line'> 97</span>         </span><span class="COMM">/* Load the waveform viewer with the audio files' waveform image */</span><span class="WHIT">
-<span class='line'> 98</span> </span><span class="WHIT">        </span><span class="NAME">waveformImageElement.attr</span><span class="PUNC">(</span><span class="STRN">'src'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">src</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 99</span> </span><span class="WHIT">        
-<span class='line'>100</span>     </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT"> 
-<span class='line'>101</span>     
-<span class='line'>102</span>     </span><span class="COMM">/**
-<span class='line'>103</span>      *  Called from highlight when it has been cleared.
-<span class='line'>104</span>      **/</span><span class="WHIT">
-<span class='line'>105</span> </span><span class="WHIT">    </span><span class="NAME">waveform_highlight_cleared</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>106</span> </span><span class="WHIT">        </span><span class="NAME">this.page.waveform_highlight_cleared</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>107</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT"> 
-<span class='line'>108</span>     
-<span class='line'>109</span>     </span><span class="COMM">/**
-<span class='line'>110</span>      *  Called from highlight when an area of the waveform is highlighted.
-<span class='line'>111</span>      *
-<span class='line'>112</span>      *  @param  {Number}    startTime    -  The time (in seconds) of highlight start
-<span class='line'>113</span>      *  @param  {Number}    endTime    -    The time of the highlight end.
-<span class='line'>114</span>      **/</span><span class="WHIT">
-<span class='line'>115</span> </span><span class="WHIT">    </span><span class="NAME">waveform_highlighted</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">startTime</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">endTime</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>116</span> </span><span class="WHIT">        </span><span class="COMM">/* Tell page about our highlight */</span><span class="WHIT">
-<span class='line'>117</span> </span><span class="WHIT">        </span><span class="NAME">this.page.waveform_highlighted</span><span class="PUNC">(</span><span class="NAME">startTime</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">endTime</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>118</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT"> 
-<span class='line'>119</span>     
-<span class='line'>120</span>     
-<span class='line'>121</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>122</span> </span></pre></body></html>
+<span class='line'> 54</span> </span><span class="WHIT">        </span><span class="NAME">this.playheadComponent.reset</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 55</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 56</span> </span><span class="WHIT">    
+<span class='line'> 57</span>     </span><span class="COMM">/**
+<span class='line'> 58</span>      *  Called from page when an audio segment is selected.
+<span class='line'> 59</span>      *
+<span class='line'> 60</span>      *  @param  {AudioSegment}    selectedAudioSegment    - The selected segment
+<span class='line'> 61</span>      **/</span><span class="WHIT">
+<span class='line'> 62</span> </span><span class="WHIT">    </span><span class="NAME">audio_segment_selected</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">selectedAudioSegment</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 63</span> </span><span class="WHIT">        </span><span class="NAME">this.audioFileDuration</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">selectedAudioSegment.get</span><span class="PUNC">(</span><span class="STRN">'audioFile'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">get</span><span class="PUNC">(</span><span class="STRN">'duration'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 64</span> </span><span class="WHIT">        </span><span class="NAME">this.playheadComponent.reset</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 65</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT"> 
+<span class='line'> 66</span>     
+<span class='line'> 67</span>     </span><span class="COMM">/**
+<span class='line'> 68</span>      *  Called from page when waveform highlight should be cleared.
+<span class='line'> 69</span>      **/</span><span class="WHIT">
+<span class='line'> 70</span> </span><span class="WHIT">    </span><span class="NAME">clear_waveform_highlight</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 71</span> </span><span class="WHIT">        </span><span class="NAME">this.highlighter.disable</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 72</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT"> 
+<span class='line'> 73</span>     
+<span class='line'> 74</span>     </span><span class="COMM">/**
+<span class='line'> 75</span>      *  Called from page when waveform should highlight
+<span class='line'> 76</span>      **/</span><span class="WHIT">
+<span class='line'> 77</span> </span><span class="WHIT">    </span><span class="NAME">highlight_waveform</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">startTime</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">endTime</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 78</span> </span><span class="WHIT">        </span><span class="COMM">/* Draw highlight */</span><span class="WHIT">
+<span class='line'> 79</span> </span><span class="WHIT">        </span><span class="NAME">this.highlighter.draw_highlight_sec</span><span class="PUNC">(</span><span class="NAME">startTime</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">endTime</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 80</span> </span><span class="WHIT">        </span><span class="NAME">this.highlighter.enable</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 81</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 82</span> </span><span class="WHIT">    
+<span class='line'> 83</span>     </span><span class="COMM">/**
+<span class='line'> 84</span>      *  Called from internal when waveform image is to be loaded.
+<span class='line'> 85</span>      *
+<span class='line'> 86</span>      *  @param  {String}    src    -    The url of the waveform image.
+<span class='line'> 87</span>      *  @param  {Function}    callback  -   to be executed after waveform loads.
+<span class='line'> 88</span>      **/</span><span class="WHIT">
+<span class='line'> 89</span> </span><span class="WHIT">    </span><span class="NAME">_load_waveform_image</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">src</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">callback</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 90</span> </span><span class="WHIT">        </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">waveformImageElement</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.waveformImageElement</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 91</span> </span><span class="WHIT">        
+<span class='line'> 92</span>         </span><span class="COMM">/* When waveform image has loaded, execute callback */</span><span class="WHIT">
+<span class='line'> 93</span> </span><span class="WHIT">        </span><span class="NAME">waveformImageElement.imagesLoaded</span><span class="PUNC">(</span><span class="NAME">callback</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 94</span> </span><span class="WHIT">        
+<span class='line'> 95</span>         </span><span class="COMM">/* Load the waveform viewer with the audio files' waveform image */</span><span class="WHIT">
+<span class='line'> 96</span> </span><span class="WHIT">        </span><span class="NAME">waveformImageElement.attr</span><span class="PUNC">(</span><span class="STRN">'src'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">src</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 97</span> </span><span class="WHIT">        
+<span class='line'> 98</span>     </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT"> 
+<span class='line'> 99</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>100</span> </span></pre></body></html>

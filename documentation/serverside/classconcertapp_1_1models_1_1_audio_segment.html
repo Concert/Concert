@@ -68,6 +68,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1models_1_1_audio_segment.html#af52e8f7d9744d23954eeb39f12fd1458">__unicode__</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1models_1_1_audio_segment.html#af52e8f7d9744d23954eeb39f12fd1458">__unicode__</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1models_1_1_audio_segment.html#a345bb6b0869311b5704330cba2c561bd">save</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1models_1_1_audio_segment.html#a6ed5b4aa4d14f51a4f6ec3c94556a163">clean</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1models_1_1_audio_segment.html#afa83f9b5a6de4e43f8a9b49e2513c94f">tag_list</a></td></tr>
@@ -75,13 +76,30 @@ Public Member Functions</h2></td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1models_1_1_audio_segment.html#acb5c961694a3f5256efc69dcf0611a5b">name</a> = models.CharField(max_length = 100)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1models_1_1_audio_segment.html#ae570405a871fbb22dd5b0ed90b719beb">beginning</a> = models.DecimalField(max_digits = 10, decimal_places = 2)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1models_1_1_audio_segment.html#ad57bff6ba4812881057215a7b31d452c">end</a> = models.DecimalField(max_digits = 10, decimal_places = 2)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1models_1_1_audio_segment.html#ae570405a871fbb22dd5b0ed90b719beb">beginning</a> = models.FloatField()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1models_1_1_audio_segment.html#ad57bff6ba4812881057215a7b31d452c">end</a> = models.FloatField()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1models_1_1_audio_segment.html#af5686a01c6da041c87fd943b7773f295">audioFile</a> = models.ForeignKey('<a class="el" href="classconcertapp_1_1models_1_1_audio_file.html">AudioFile</a>')</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1models_1_1_audio_segment.html#af4c1782a5b5ea04fbb5605b78f81495a">creator</a> = models.ForeignKey(User)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1models_1_1_audio_segment.html#a37ebd30eebd8e06a9b347994e9a1253b">collection</a> = models.ForeignKey('<a class="el" href="classconcertapp_1_1models_1_1_collection.html">Collection</a>')</td></tr>
 </table>
 <hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="af52e8f7d9744d23954eeb39f12fd1458"></a><!-- doxytag: member="concertapp::models::AudioSegment::__unicode__" ref="af52e8f7d9744d23954eeb39f12fd1458" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def concertapp::models::AudioSegment::__unicode__ </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"> <em>self</em>&#160;)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="af52e8f7d9744d23954eeb39f12fd1458"></a><!-- doxytag: member="concertapp::models::AudioSegment::__unicode__" ref="af52e8f7d9744d23954eeb39f12fd1458" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -202,7 +220,7 @@ Static Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">tuple <a class="el" href="classconcertapp_1_1models_1_1_audio_segment.html#ae570405a871fbb22dd5b0ed90b719beb">concertapp::models::AudioSegment::beginning</a> = models.DecimalField(max_digits = 10, decimal_places = 2)<code> [static]</code></td>
+          <td class="memname">tuple <a class="el" href="classconcertapp_1_1models_1_1_audio_segment.html#ae570405a871fbb22dd5b0ed90b719beb">concertapp::models::AudioSegment::beginning</a> = models.FloatField()<code> [static]</code></td>
         </tr>
       </table>
 </div>
@@ -241,7 +259,7 @@ Static Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">tuple <a class="el" href="classconcertapp_1_1models_1_1_audio_segment.html#ad57bff6ba4812881057215a7b31d452c">concertapp::models::AudioSegment::end</a> = models.DecimalField(max_digits = 10, decimal_places = 2)<code> [static]</code></td>
+          <td class="memname">tuple <a class="el" href="classconcertapp_1_1models_1_1_audio_segment.html#ad57bff6ba4812881057215a7b31d452c">concertapp::models::AudioSegment::end</a> = models.FloatField()<code> [static]</code></td>
         </tr>
       </table>
 </div>
@@ -280,7 +298,7 @@ Static Public Attributes</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 27 2011 15:35:22 for Concert by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Apr 6 2011 20:25:36 for Concert by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.2 </small></address>
 </body>

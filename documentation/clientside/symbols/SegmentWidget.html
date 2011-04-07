@@ -203,7 +203,11 @@ ul.inheritsList
 	
 	<li><a href="../symbols/AudioSegment.html">AudioSegment</a></li>
 	
+	<li><a href="../symbols/AudioSegmentBarWidget.html">AudioSegmentBarWidget</a></li>
+	
 	<li><a href="../symbols/AudioSegmentSet.html">AudioSegmentSet</a></li>
+	
+	<li><a href="../symbols/AutocompleteListInputComponent.html">AutocompleteListInputComponent</a></li>
 	
 	<li><a href="../symbols/Button.html">Button</a></li>
 	
@@ -229,6 +233,8 @@ ul.inheritsList
 	
 	<li><a href="../symbols/CommentSet.html">CommentSet</a></li>
 	
+	<li><a href="../symbols/CommentWidget.html">CommentWidget</a></li>
+	
 	<li><a href="../symbols/Component.html">Component</a></li>
 	
 	<li><a href="../symbols/ConfirmModalAlert.html">ConfirmModalAlert</a></li>
@@ -245,7 +251,7 @@ ul.inheritsList
 	
 	<li><a href="../symbols/DashboardPage.html">DashboardPage</a></li>
 	
-	<li><a href="../symbols/DetailWaveformHighlighterComponent.html">DetailWaveformHighlighterComponent</a></li>
+	<li><a href="../symbols/DetailWaveformInteractionComponent.html">DetailWaveformInteractionComponent</a></li>
 	
 	<li><a href="../symbols/DetailWaveformPanel.html">DetailWaveformPanel</a></li>
 	
@@ -301,7 +307,7 @@ ul.inheritsList
 	
 	<li><a href="../symbols/OrganizePageModelManager%23init.html">OrganizePageModelManager#init</a></li>
 	
-	<li><a href="../symbols/OverviewWaveformHighlighterComponent.html">OverviewWaveformHighlighterComponent</a></li>
+	<li><a href="../symbols/OverviewWaveformInteractionComponent.html">OverviewWaveformInteractionComponent</a></li>
 	
 	<li><a href="../symbols/OverviewWaveformPanel.html">OverviewWaveformPanel</a></li>
 	
@@ -321,6 +327,8 @@ ul.inheritsList
 	
 	<li><a href="../symbols/Tag.html">Tag</a></li>
 	
+	<li><a href="../symbols/TagAutocompleteListInputComponent.html">TagAutocompleteListInputComponent</a></li>
+	
 	<li><a href="../symbols/TagSet.html">TagSet</a></li>
 	
 	<li><a href="../symbols/UploadFileWidget.html">UploadFileWidget</a></li>
@@ -337,7 +345,7 @@ ul.inheritsList
 	
 	<li><a href="../symbols/UserWidget.html">UserWidget</a></li>
 	
-	<li><a href="../symbols/WaveformHighlighterComponent.html">WaveformHighlighterComponent</a></li>
+	<li><a href="../symbols/WaveformInteractionComponent.html">WaveformInteractionComponent</a></li>
 	
 	<li><a href="../symbols/WaveformPanel.html">WaveformPanel</a></li>
 	
@@ -413,6 +421,15 @@ ul.inheritsList
 					<tbody>
 					
 						<tr>
+							<td class="attributes">&lt;private&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/SegmentWidget.html#_handle_delete_click">_handle_delete_click</a></b>()
+								</div>
+								<div class="description">When this widget's delete button is clicked.</div>
+							</td>
+						</tr>
+					
+						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
 								<div class="fixedFont"><b><a href="../symbols/SegmentWidget.html#initialize">initialize</a></b>()
@@ -424,9 +441,9 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/SegmentWidget.html#select_segment">select_segment</a></b>()
+								<div class="fixedFont"><b><a href="../symbols/SegmentWidget.html#render">render</a></b>()
 								</div>
-								<div class="description">Called when the segment is selected in the list</div>
+								<div class="description"></div>
 							</td>
 						</tr>
 					
@@ -436,7 +453,7 @@ ul.inheritsList
 				
 				
 				<dl class="inheritsList">
-				<dt>Methods borrowed from class <a href="../symbols/AudioListWidget.html">AudioListWidget</a>: </dt><dd><a href="../symbols/AudioListWidget.html#de_select">de_select</a>, <a href="../symbols/AudioListWidget.html#render">render</a>, <a href="../symbols/AudioListWidget.html#select">select</a></dd>
+				<dt>Methods borrowed from class <a href="../symbols/AudioListWidget.html">AudioListWidget</a>: </dt><dd><a href="../symbols/AudioListWidget.html#de_select">de_select</a>, <a href="../symbols/AudioListWidget.html#select">select</a></dd>
 				</dl>
 				
 			
@@ -482,6 +499,31 @@ ul.inheritsList
 					Method Detail
 				</div>
 				
+					<a name="_handle_delete_click"> </a>
+					<div class="fixedFont">&lt;private&gt; 
+					
+					
+					<b>_handle_delete_click</b>()
+					
+					</div>
+					<div class="description">
+						When this widget's delete button is clicked.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
 					<a name="initialize"> </a>
 					<div class="fixedFont">
 					
@@ -507,15 +549,15 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="select_segment"> </a>
+					<a name="render"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>select_segment</b>()
+					<b>render</b>()
 					
 					</div>
 					<div class="description">
-						Called when the segment is selected in the list
+						
 						
 						
 					</div>
@@ -544,7 +586,7 @@ ul.inheritsList
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.3.2 on Sun Mar 27 2011 15:35:17 GMT-0400 (EDT)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.3.2 on Wed Apr 06 2011 20:25:32 GMT-0400 (EDT)
 		</div>
 	</body>
 </html>

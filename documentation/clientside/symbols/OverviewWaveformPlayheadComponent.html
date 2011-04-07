@@ -203,7 +203,11 @@ ul.inheritsList
 	
 	<li><a href="../symbols/AudioSegment.html">AudioSegment</a></li>
 	
+	<li><a href="../symbols/AudioSegmentBarWidget.html">AudioSegmentBarWidget</a></li>
+	
 	<li><a href="../symbols/AudioSegmentSet.html">AudioSegmentSet</a></li>
+	
+	<li><a href="../symbols/AutocompleteListInputComponent.html">AutocompleteListInputComponent</a></li>
 	
 	<li><a href="../symbols/Button.html">Button</a></li>
 	
@@ -229,6 +233,8 @@ ul.inheritsList
 	
 	<li><a href="../symbols/CommentSet.html">CommentSet</a></li>
 	
+	<li><a href="../symbols/CommentWidget.html">CommentWidget</a></li>
+	
 	<li><a href="../symbols/Component.html">Component</a></li>
 	
 	<li><a href="../symbols/ConfirmModalAlert.html">ConfirmModalAlert</a></li>
@@ -245,7 +251,7 @@ ul.inheritsList
 	
 	<li><a href="../symbols/DashboardPage.html">DashboardPage</a></li>
 	
-	<li><a href="../symbols/DetailWaveformHighlighterComponent.html">DetailWaveformHighlighterComponent</a></li>
+	<li><a href="../symbols/DetailWaveformInteractionComponent.html">DetailWaveformInteractionComponent</a></li>
 	
 	<li><a href="../symbols/DetailWaveformPanel.html">DetailWaveformPanel</a></li>
 	
@@ -301,7 +307,7 @@ ul.inheritsList
 	
 	<li><a href="../symbols/OrganizePageModelManager%23init.html">OrganizePageModelManager#init</a></li>
 	
-	<li><a href="../symbols/OverviewWaveformHighlighterComponent.html">OverviewWaveformHighlighterComponent</a></li>
+	<li><a href="../symbols/OverviewWaveformInteractionComponent.html">OverviewWaveformInteractionComponent</a></li>
 	
 	<li><a href="../symbols/OverviewWaveformPanel.html">OverviewWaveformPanel</a></li>
 	
@@ -321,6 +327,8 @@ ul.inheritsList
 	
 	<li><a href="../symbols/Tag.html">Tag</a></li>
 	
+	<li><a href="../symbols/TagAutocompleteListInputComponent.html">TagAutocompleteListInputComponent</a></li>
+	
 	<li><a href="../symbols/TagSet.html">TagSet</a></li>
 	
 	<li><a href="../symbols/UploadFileWidget.html">UploadFileWidget</a></li>
@@ -337,7 +345,7 @@ ul.inheritsList
 	
 	<li><a href="../symbols/UserWidget.html">UserWidget</a></li>
 	
-	<li><a href="../symbols/WaveformHighlighterComponent.html">WaveformHighlighterComponent</a></li>
+	<li><a href="../symbols/WaveformInteractionComponent.html">WaveformInteractionComponent</a></li>
 	
 	<li><a href="../symbols/WaveformPanel.html">WaveformPanel</a></li>
 	
@@ -397,6 +405,15 @@ ul.inheritsList
 
 <!-- ============================== properties summary ===================== -->
 			
+				
+				
+				
+				
+				<dl class="inheritsList">
+				<dt>Fields borrowed from class <a href="../symbols/Component.html">Component</a>: </dt><dd><a href="../symbols/Component.html#panel">panel</a></dd>
+				</dl>
+				
+			
 
 <!-- ============================== methods summary ======================== -->
 			
@@ -415,7 +432,7 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/OverviewWaveformPlayheadComponent.html#audio_file_selected">audio_file_selected</a></b>(selectedAudioFile)
+								<div class="fixedFont"><b><a href="../symbols/OverviewWaveformPlayheadComponent.html#initialize">initialize</a></b>()
 								</div>
 								<div class="description"></div>
 							</td>
@@ -424,7 +441,7 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/OverviewWaveformPlayheadComponent.html#initialize">initialize</a></b>()
+								<div class="fixedFont"><b><a href="../symbols/OverviewWaveformPlayheadComponent.html#update_speed">update_speed</a></b>()
 								</div>
 								<div class="description"></div>
 							</td>
@@ -436,7 +453,7 @@ ul.inheritsList
 				
 				
 				<dl class="inheritsList">
-				<dt>Methods borrowed from class <a href="../symbols/WaveformPlayheadComponent.html">WaveformPlayheadComponent</a>: </dt><dd><a href="../symbols/WaveformPlayheadComponent.html#animate">animate</a>, <a href="../symbols/WaveformPlayheadComponent.html#audio_segment_selected">audio_segment_selected</a>, <a href="../symbols/WaveformPlayheadComponent.html#position">position</a>, <a href="../symbols/WaveformPlayheadComponent.html#reset">reset</a></dd><dt>Methods borrowed from class <a href="../symbols/Component.html">Component</a>: </dt><dd><a href="../symbols/Component.html#_initializeElements">_initializeElements</a>, <a href="../symbols/Component.html#_initializeEvents">_initializeEvents</a>, <a href="../symbols/Component.html#render">render</a></dd>
+				<dt>Methods borrowed from class <a href="../symbols/WaveformPlayheadComponent.html">WaveformPlayheadComponent</a>: </dt><dd><a href="../symbols/WaveformPlayheadComponent.html#draw">draw</a>, <a href="../symbols/WaveformPlayheadComponent.html#position">position</a>, <a href="../symbols/WaveformPlayheadComponent.html#reset">reset</a></dd><dt>Methods borrowed from class <a href="../symbols/Component.html">Component</a>: </dt><dd><a href="../symbols/Component.html#_initializeElements">_initializeElements</a>, <a href="../symbols/Component.html#_initializeEvents">_initializeEvents</a>, <a href="../symbols/Component.html#render">render</a></dd>
 				</dl>
 				
 			
@@ -482,11 +499,11 @@ ul.inheritsList
 					Method Detail
 				</div>
 				
-					<a name="audio_file_selected"> </a>
+					<a name="initialize"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>audio_file_selected</b>(selectedAudioFile)
+					<b>initialize</b>()
 					
 					</div>
 					<div class="description">
@@ -498,17 +515,6 @@ ul.inheritsList
 					
 					
 						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<b>selectedAudioFile</b>
-									
-								</dt>
-								<dd></dd>
-							
-							</dl>
-						
 						
 						
 						
@@ -518,11 +524,11 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="initialize"> </a>
+					<a name="update_speed"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>initialize</b>()
+					<b>update_speed</b>()
 					
 					</div>
 					<div class="description">
@@ -555,7 +561,7 @@ ul.inheritsList
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.3.2 on Sun Mar 27 2011 15:35:17 GMT-0400 (EDT)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.3.2 on Wed Apr 06 2011 20:25:32 GMT-0400 (EDT)
 		</div>
 	</body>
 </html>
