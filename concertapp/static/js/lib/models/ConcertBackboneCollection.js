@@ -79,9 +79,6 @@ var ConcertBackboneCollection = Backbone.Collection.extend(
                 to update the related model */
                 var success = options.success;
                 options.success = function(resp) {
-                    
-                    console.log('resp:');
-                    console.log(resp);
                     if (!model.set(model.parse(resp), options)) return false;
                     if (success) success(model, resp);
                 };

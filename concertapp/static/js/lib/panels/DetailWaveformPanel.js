@@ -233,14 +233,26 @@ var DetailWaveformPanel = WaveformPanel.extend(
             el: $('#detail_waveform_selected_name_container')
         });
         
-        /* Load tags in bottom */
-        this.tagsContainerElement.html(
-            this.bottomSegmentTemplate.tmpl(selectedAudioSegment.toJSON())
-        );
-        
         /* Show tag input element */
         this.tagInputElement.show();
+
+        var frag = document.createDocumentFragment();
+        var panel = this;
+        /* For each of this segment's tags */
+        selectedAudioSegment.get('tags').each(function(tag) {
+            /* Create a tag widget */
+            var widget = new TagWidget({
+                model: tag, 
+                panel: panel, 
+            });
+            
+            /* Inject it into our fragment */
+            frag.appendChild(widget.render().el);
+        });
         
+        /* Load tags in bottom */
+        this.tagsContainerElement.html(frag);
+
         
         /* Load waveform image */
         this._load_waveform_image(

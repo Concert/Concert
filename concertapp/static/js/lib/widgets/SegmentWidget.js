@@ -17,13 +17,9 @@ var SegmentWidget = AudioListWidget.extend(
     initialize: function() {
         AudioListWidget.prototype.initialize.call(this);
         
-        var params = this.options;        
+        var params = this.options;      
         
         _.bindAll(this, "render");
-        
-        this.model.get('tags').bind('add', this.render);
-        this.model.get('tags').bind('remove', this.render);
-        
         
         this.render();
     }, 
@@ -31,11 +27,22 @@ var SegmentWidget = AudioListWidget.extend(
     render: function() {
         AudioListWidget.prototype.render.call(this);
         
-        this.model.get('tags').each(function(widget) {
-            return function(tag) {
-                tag.bind('change', widget.render);
-            };
-        }(this));
+        var tagContainerElement = $(this.el).find('.bottom');
+        var panel = this.panel;
+        var frag = document.createDocumentFragment();
+        
+        /* For each tag */
+        this.model.get('tags').each(function(tag) {
+            /* Create tag widget */
+            var widget = new TagWidget({
+                panel: panel, 
+                model: tag 
+            });
+            
+            frag.appendChild(widget.render().el);
+        });
+        
+        tagContainerElement.html(frag);
         
         return this;
     }, 
