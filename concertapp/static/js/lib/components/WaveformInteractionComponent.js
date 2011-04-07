@@ -8,16 +8,16 @@
 /**
  *  The component that allows for highlighting functionality on a WaveformPanel.
  *  @class
- *  @extends    Component
+ *  @extends   concertapp.components.Component
  *  @throws     Highlight   -   When a section of the waveform is highlighted.
  **/
-var WaveformInteractionComponent = Component.extend(
+var WaveformInteractionComponent = concertapp.components.Component.extend(
 	/**
 	 *	@scope	WaveformInteractionComponent.prototype
 	 **/
 {
     initialize: function() {
-        Component.prototype.initialize.call(this);
+       concertapp.components.Component.prototype.initialize.call(this);
         
         var params = this.options;
         
@@ -53,7 +53,7 @@ var WaveformInteractionComponent = Component.extend(
     }, 
     
     _initializeElements: function() {
-        Component.prototype._initializeElements.call(this);
+       concertapp.components.Component.prototype._initializeElements.call(this);
         
         
         /* Get highlight element inside this container */
@@ -91,7 +91,7 @@ var WaveformInteractionComponent = Component.extend(
     },
     
     _initializeEvents: function(){
-        Component.prototype._initializeEvents.call(this);
+       concertapp.components.Component.prototype._initializeEvents.call(this);
         
         /* The element that we are receiving the drag events from (should be defined
         in child classes) */

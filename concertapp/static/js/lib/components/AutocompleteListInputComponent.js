@@ -7,15 +7,15 @@
 /**
  *  This is a component when we need to input a list of entities, with auto complete.
  *  @class
- *  @extends    Component
+ *  @extends   concertapp.components.Component
  **/
-var AutocompleteListInputComponent = Component.extend(
+var AutocompleteListInputComponent = concertapp.components.Component.extend(
 /**
  *  @scope AudiocompleteListInputComponent.prototype
  **/
 {
     initialize: function() {
-        Component.prototype.initialize.call(this);
+       concertapp.components.Component.prototype.initialize.call(this);
 
         var params = this.options;
         

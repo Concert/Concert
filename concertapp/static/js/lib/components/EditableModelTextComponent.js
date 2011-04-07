@@ -5,13 +5,13 @@
  **/
  
 
-var EditableModelTextComponent = Component.extend(
+var EditableModelTextComponent = concertapp.components.Component.extend(
 	/**
 	 *	@scope	EditableModelTextComponent.prototype
 	 **/
 {
     initialize: function() {
-        Component.prototype.initialize.call(this);
+       concertapp.components.Component.prototype.initialize.call(this);
         
         var params = this.options;
         

@@ -9,9 +9,9 @@
  *  @class
  *  @extends    Backbone.View
  **/
-var Component = Backbone.View.extend(
+concertapp.components.Component = Backbone.View.extend(
 	/**
-	 *	@scope	Component.prototype
+	 *	@scopeconcertapp.components.Componentprototype
 	 **/
 {
     initialize: function() {

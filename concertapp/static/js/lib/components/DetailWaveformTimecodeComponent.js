@@ -7,15 +7,15 @@
 /**
  *  The widget that displays the timecode underneath the detail waveform.
  *  @class
- *  @extends    Component
+ *  @extends   concertapp.components.Component
  **/
-var DetailWaveformTimecodeComponent = Component.extend(
+var DetailWaveformTimecodeComponent = concertapp.components.Component.extend(
 	/**
 	 *	@scope	DetailWaveformTimecodeComponent.prototype
 	 **/
 {
     initialize: function() {
-        Component.prototype.initialize.call(this);
+       concertapp.components.Component.prototype.initialize.call(this);
 
         var params = this.options;
         
@@ -61,7 +61,7 @@ var DetailWaveformTimecodeComponent = Component.extend(
      *  Called internally when timecode is to be redrawn.
      **/
     render: function() {
-        Component.prototype.render.call(this);
+       concertapp.components.Component.prototype.render.call(this);
         var el = this.el;
         
         /* Pixels per second currently is 10 because we only have one zoom level */
