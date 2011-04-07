@@ -34,7 +34,7 @@ var OrganizePage = LoggedInPage.extend(
         this.audioLoopEnabled = false;
         
         /* This is the type of audio file we will use */
-        this.audioType = com.concertsoundorganizer.compatibility.audioType;
+        this.audioType = concertapp.compatibility.audioType;
         
         
         /*  Create waveform overview panel */

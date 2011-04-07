@@ -30,7 +30,7 @@ var ConcertBackboneCollection = Backbone.Collection.extend(
     _add : function(model, options) {
         options || (options = {});
         
-        var seenInstances = com.concertsoundorganizer.modelManager.seenInstances[this.model.prototype.name];
+        var seenInstances = concertapp.modelManager.seenInstances[this.model.prototype.name];
 
         /* If the model hasn't yet been instantiated */
         if(!(model instanceof Backbone.Model)) {
@@ -62,8 +62,8 @@ var ConcertBackboneCollection = Backbone.Collection.extend(
             /* We are 'creating' our relationship (in our modified REST
             implementation) */
             var method = 'create';
-            options = com.concertsoundorganizer.helpers.wrapError(options);
-            options.error = com.concertsoundorganizer.helpers.backboneWrapError(
+            options = concertapp.helpers.wrapError(options);
+            options.error = concertapp.helpers.backboneWrapError(
                 options.error, null, options
             );
             
@@ -112,12 +112,12 @@ var ConcertBackboneCollection = Backbone.Collection.extend(
 
         if(options.save) {
             var method = 'delete';
-            var wrapErrorHelper = com.concertsoundorganizer.helpers.wrapError;
+            var wrapErrorHelper = concertapp.helpers.wrapError;
             options = wrapErrorHelper(options);
 
             options.url = this.relatedModel.url()+model.url({noBase:true});
 
-            options.error = com.concertsoundorganizer.helpers.backboneWrapError(options.error, null, options);
+            options.error = concertapp.helpers.backboneWrapError(options.error, null, options);
 
             (this.sync || Backbone.sync)(method, null, options);
         }

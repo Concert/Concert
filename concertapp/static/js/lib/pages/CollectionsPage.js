@@ -60,7 +60,7 @@ var CollectionsPage = LoggedInPage.extend(
      **/
     denyRequestWithConfirm: function(req) {
         /* Show a confirm dialog */
-        com.concertsoundorganizer.notifier.confirm({
+        concertapp.notifier.confirm({
             title: "Are you sure?", 
             content: "Are you sure you want to deny "+req.get('user').get('username')+" from this collection?", 
             confirmCallback: function(req){
@@ -77,7 +77,7 @@ var CollectionsPage = LoggedInPage.extend(
      **/
     approveRequestWithConfirm: function(req) {
         /* Show a confirm dialog */
-        com.concertsoundorganizer.notifier.confirm({
+        concertapp.notifier.confirm({
             title: "Are you sure?", 
             content: "Are you sure you want to allow "+req.get('user').get('username')+" to organize this collection?", 
             confirmCallback: function(req) {
@@ -95,7 +95,7 @@ var CollectionsPage = LoggedInPage.extend(
     deleteCollectionWithConfirm: function(col) {
         /* First confirm with the user that this is what they would like to do */
         /* TODO: Remove this text */
-        com.concertsoundorganizer.notifier.confirm({
+        concertapp.notifier.confirm({
             title: 'Are you sure?', 
             content: 'Are you sure you want to delete '+col.get('name')+'<br />All associated audio will be removed from Concert.',
             confirmCallback: function(col) {
@@ -104,7 +104,7 @@ var CollectionsPage = LoggedInPage.extend(
                         success: function(model, response) {
                         },
                         error: function(model, response) {
-                            com.concertsoundorganizer.notifier.alert({
+                            concertapp.notifier.alert({
                                 title: 'Error', 
                                 content: 'An Error occurred: '+response.responseText
                             });
@@ -141,7 +141,7 @@ var CollectionsPage = LoggedInPage.extend(
      *  @param  {Collection}    col    -    The collection she/he is leaving.
      **/
     leave_collection_with_confirm: function(col) {
-        com.concertsoundorganizer.notifier.confirm({
+        concertapp.notifier.confirm({
             title: 'Are you sure?', 
             content: 'Are you sure you want to leave '+col.get('name')+'?<br />You will no longer be able to work on this collection\'s assets.', 
             confirmCallback: function(col) {

@@ -105,11 +105,11 @@ var ConcertBackboneModel = Backbone.Model.extend(
                                     var modelType = oneToMany.collectionType.prototype.model;
                                     var modelName = modelType.prototype.name;
                                     
-                                    var seenInstances = com.concertsoundorganizer.modelManager.seenInstances[modelName];
+                                    var seenInstances = concertapp.modelManager.seenInstances[modelName];
 
                                     /* for each model URL in list */
                                     _.each(models, function(modelUrl) {
-                                           var apiURL = com.concertsoundorganizer.apiBaseURL;
+                                           var apiURL = concertapp.apiBaseURL;
                                            var modelId = modelUrl
                                                .split(apiURL)[1]
                                                .match(/\d+/);
@@ -175,7 +175,7 @@ var ConcertBackboneModel = Backbone.Model.extend(
                         if(typeof(model) == 'object') {
 
                             /* If so we need to check with the dataset manager */
-                            var seenInstances = com.concertsoundorganizer.modelManager.seenInstances[foreignKey.model.prototype.name];
+                            var seenInstances = concertapp.modelManager.seenInstances[foreignKey.model.prototype.name];
 
                             var possibleDuplicate = seenInstances.get(model.id);
 
@@ -200,7 +200,7 @@ var ConcertBackboneModel = Backbone.Model.extend(
                             var modelUrl = model;
                             
                             var modelId = modelUrl
-                                .split(com.concertsoundorganizer.apiBaseURL)[1]
+                                .split(concertapp.apiBaseURL)[1]
                                 .match(/\d+/);
                             
                             if(modelId.length != 1) {
@@ -214,7 +214,7 @@ var ConcertBackboneModel = Backbone.Model.extend(
                             var modelType = foreignKey.model;
                             
                             /* The seen instances for this model type */
-                            var seenInstances = com.concertsoundorganizer.modelManager.seenInstances[modelType.prototype.name];
+                            var seenInstances = concertapp.modelManager.seenInstances[modelType.prototype.name];
                             
                             var model = seenInstances.get(modelId);
                             
@@ -265,7 +265,7 @@ var ConcertBackboneModel = Backbone.Model.extend(
      *  Display modal error to user when error occurs.
      **/
     save : function(attrs, options) {
-        var wrapErrorHelper = com.concertsoundorganizer.helpers.wrapError;
+        var wrapErrorHelper = concertapp.helpers.wrapError;
 
         return Backbone.Model.prototype.save.call(this, attrs, wrapErrorHelper(options));
     },
@@ -274,7 +274,7 @@ var ConcertBackboneModel = Backbone.Model.extend(
      *  Wrap our error callback for destroy calls too.
      **/
     destroy: function(options) {
-        var wrapErrorHelper = com.concertsoundorganizer.helpers.wrapError;
+        var wrapErrorHelper = concertapp.helpers.wrapError;
         
         return Backbone.Model.prototype.destroy.call(this, wrapErrorHelper(options));
     }, 
@@ -288,7 +288,7 @@ var ConcertBackboneModel = Backbone.Model.extend(
     url: function(options) {
         options || (options = {});
         
-        var url = com.concertsoundorganizer.apiBaseURL;
+        var url = concertapp.apiBaseURL;
         if(options.noBase) {
             url = '';
         }

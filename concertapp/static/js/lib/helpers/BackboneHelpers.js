@@ -69,7 +69,7 @@ Backbone.sync = function(method, model, options) {
 /**
  *  Helps to display error to user.
  **/
-com.concertsoundorganizer.helpers.wrapError = function(options) {
+concertapp.helpers.wrapError = function(options) {
     if(options){
         /* Get error messsage provided from caller */
         var error_message = options.error_message;        
@@ -101,7 +101,7 @@ com.concertsoundorganizer.helpers.wrapError = function(options) {
             }
 
             /* display error to the user */
-            com.concertsoundorganizer.notifier.alert({
+            concertapp.notifier.alert({
                 title: 'Error', 
                 content: error_message
             });
@@ -119,7 +119,7 @@ com.concertsoundorganizer.helpers.wrapError = function(options) {
 /**
  *  Another error wrapper, this is a clone of the backbone one.
  **/
-com.concertsoundorganizer.helpers.backboneWrapError = function(onError, model, options) {
+concertapp.helpers.backboneWrapError = function(onError, model, options) {
    return function(resp) {
      if (onError) {
        onError(model, resp, options);

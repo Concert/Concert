@@ -23,17 +23,17 @@ function preloadImages(urls) {
  *  be called on each page to ensure we have the compatibility variables set.
  **/
 function detectBrowserCompatibility() {
-    var notifier = com.concertsoundorganizer.notifier;
+    var notifier = concertapp.notifier;
     
     /**
      *  Detect audio compatibility, and throw notifications to the user if necessary.
      **/
     if(Modernizr.audio) {
         if(Modernizr.audio.ogg) {
-            com.concertsoundorganizer.compatibility.audioType = 'ogg';
+            concertapp.compatibility.audioType = 'ogg';
         }
         else if(Modernizr.audio.mp3) {
-            com.concertsoundorganizer.compatibility.audioType = 'mp3';
+            concertapp.compatibility.audioType = 'mp3';
         }
         else {
             /* TODO: Handle this case */

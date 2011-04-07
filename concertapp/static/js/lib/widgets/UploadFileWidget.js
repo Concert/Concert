@@ -78,7 +78,7 @@ var UploadFileWidget = Widget.extend(
      *  What we should do in the event of an upload error.
      **/
     handleUploadError: function(data) {
-        com.concertsoundorganizer.notifier.alert({
+        concertapp.notifier.alert({
             'title': 'Error', 
             'content': 'An error occurred while uploading.  Sorry!\n\n'+data
         });
@@ -170,7 +170,7 @@ var UploadFileWidget = Widget.extend(
                     /* The file was hopefully uploaded */
                     me.encodingWaiting = false;
 
-                    com.concertsoundorganizer.notifier.alert({
+                    concertapp.notifier.alert({
                         title: 'Success!', 
                         content: 'Your file uploaded successfully.', 
                     });

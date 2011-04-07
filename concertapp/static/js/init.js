@@ -20,7 +20,7 @@ function initializeUI(pagePath, data) {
     $(document).ready(function(){
 
         /* Make global notifier object that we can use anywhere to notify the user */
-        com.concertsoundorganizer.notifier = new Notifier({});
+        concertapp.notifier = new Notifier({});
 
         /* image urls put here will be loaded 
         preloadImages([
@@ -42,6 +42,6 @@ function initializeUI(pagePath, data) {
         detectBrowserCompatibility()
 
         /* Run the initializer function for this page. */
-        com.concertsoundorganizer.page = new pageInitializers[pagePath](data);
+        concertapp.page = new pageInitializers[pagePath](data);
     });
 }

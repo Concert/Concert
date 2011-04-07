@@ -13,13 +13,13 @@ function CreateNewCollectionButton(params) {
         this.init(params);
     }
 }
-CreateNewCollectionButton.prototype = new Button();
+CreateNewCollectionButton.prototype = new concertapp.buttons.Button();
 
 /**
  *  @constructor
  **/
 CreateNewCollectionButton.prototype.init = function(params) {
-    Button.prototype.init.call(this, params);
+    concertapp.buttons.Button.prototype.init.call(this, params);
     
     /* The panel we are on.  Need to access this to reset the form (for now this is
         good enough, but TODO: in the future, the CreateJoinCollectionPanel should

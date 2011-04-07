@@ -21,7 +21,7 @@ var Page = Backbone.Controller.extend(
             page: this 
         }));
         this.modelManager = modelManager;
-        com.concertsoundorganizer.modelManager = modelManager;
+        concertapp.modelManager = modelManager;
 
         /* Create views */
         this._initializeViews();

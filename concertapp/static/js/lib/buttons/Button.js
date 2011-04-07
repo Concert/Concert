@@ -9,7 +9,7 @@
  *  necessary for all buttons.
  *	@class
  **/
-function Button(params) {
+concertapp.buttons.Button = function(params) {
     if(params) {
         this.init(params);
     }
@@ -24,7 +24,7 @@ function Button(params) {
  *                                      to.
  *
  **/
-Button.prototype.init = function(params) {
+concertapp.buttons.Button.prototype.init = function(params) {
 
     /* Container where all of the behavior is assigned to is required */
     var container = params.container;
@@ -65,7 +65,7 @@ Button.prototype.init = function(params) {
  *  need to do anything.  This should be implemented in subclasses.
  *
  **/
-Button.prototype.click = function() {
+concertapp.buttons.Button.prototype.click = function() {
     
 }
 
@@ -73,7 +73,7 @@ Button.prototype.click = function() {
  *  When container is hovered, this function will be called.  Should be implemented
  *  in subclasses.
  **/
-Button.prototype.hoverIn = function() {
+concertapp.buttons.Button.prototype.hoverIn = function() {
     
 }
 
@@ -81,6 +81,6 @@ Button.prototype.hoverIn = function() {
  *  When container is hovered out, this function will be called.  Should be 
  *  implemented in subclasses.
  **/
-Button.prototype.hoverOut = function() {
+concertapp.buttons.Button.prototype.hoverOut = function() {
     
 }

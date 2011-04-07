@@ -15,13 +15,13 @@ function IconButton(params) {
         this.init(params);
     }
 }
-IconButton.prototype = new Button();
+IconButton.prototype = new concertapp.buttons.Button();
 
 /**
  *  Initialize button behaviors and such.
  **/
 IconButton.prototype.init = function(params) {
-    Button.prototype.init.call(this, params);
+    concertapp.buttons.Button.prototype.init.call(this, params);
 
     var container = this.container;
     

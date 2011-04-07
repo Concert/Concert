@@ -42,7 +42,7 @@ CollectionsPageModelManager.prototype._loadData = function() {
     
     var dataToLoad = this._dataToLoad;
     
-    var seenInstances = com.concertsoundorganizer.modelManager.seenInstances['collection'];
+    var seenInstances = concertapp.page.modelManager.seenInstances['collection'];
     
     var userMemberCollections = this.userMemberCollections;
     for(var i=0, il = userMemberCollections.length; i < il; i++) {
