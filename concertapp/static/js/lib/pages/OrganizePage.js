@@ -229,10 +229,22 @@ var OrganizePage = LoggedInPage.extend(
     /**
      *  Called from elsewhere when the current segment has changed.  Ensure that
      *  everything is updated.
+     *
+     *  @param  {Number}    startTime       The new beginning of the segment
+     *  @param  {Number}    endTime         The new end of the segment
      **/
     modify_current_segment_times: function(startTime, endTime) {
         /* Modify current segment */
         this.modelManager.modify_current_segment_times(startTime, endTime);
+    },
+    
+    /**
+     *  Called from elsewhere when current segment is to be tagged.
+     *
+     *  @param  {String}    tagName    The tag that we're giving this segment.
+     **/ 
+    tag_current_segment: function(tagName) {
+        this.modelManager.tag_current_segment(tagName);
     }, 
     
     /**

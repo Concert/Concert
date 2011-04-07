@@ -20,10 +20,12 @@ var ConcertBackboneModel = Backbone.Model.extend(
     initialize: function(attributes, options) {
         Backbone.Model.prototype.initialize.call(this, attributes, options);
         
+        
         var oneToManyAttributes = this.oneToManyAttributes();
         
         /* If we have one to many attributes on this model */
         if(oneToManyAttributes) {
+            
             /* For each one to many attribute */
             for(var i = 0, il = oneToManyAttributes.length; i < il; i++) {
                 var oneToMany = oneToManyAttributes[i];
@@ -32,9 +34,9 @@ var ConcertBackboneModel = Backbone.Model.extend(
                 if(!this.get(oneToMany.attr)) {
                     var setArgs = {};
                     setArgs[oneToMany.attr] = this._createOneToManyAttribute(oneToMany);
-                    
+
                     /* do it */
-                    this.set(setArgs);
+                    Backbone.Model.prototype.set.call(this, setArgs, {silent: true});
                 }
             }
         }
@@ -67,7 +69,7 @@ var ConcertBackboneModel = Backbone.Model.extend(
      *  ]}
      **/
     set: function(attributes, options) {
-        
+
         var oneToManyAttributes = this.oneToManyAttributes();
         var foreignKeyAttributes = this.foreignKeyAttributes();
         
@@ -78,8 +80,8 @@ var ConcertBackboneModel = Backbone.Model.extend(
                 
                 /* something that is being set for this related attribute */
                 var models = attributes[oneToMany.attr];
-                
-                /* If we're trying to set the related model */
+
+                /* If we're trying to set the related collection */
                 if(models) {
                     
                     /* If the argument is not of the proper type */
@@ -89,19 +91,70 @@ var ConcertBackboneModel = Backbone.Model.extend(
                         var newAttr = this._createOneToManyAttribute(oneToMany);
                         
                         /* If it is a list */
-                        if(typeof(models) == 'object' && 
-                        typeof(models.length) != 'undefined') {
-                            /* Load in objects */
-                            newAttr.refresh(models);
+                        if(models instanceof Array) {
+                            /* If the list is not empty */
+                            if(models.length) {
+                                /* if this list is of objects */
+                                if(typeof(models[0]) == 'object') {
+                                    /* Load in objects */
+                                    newAttr.refresh(models);                                
+                                }
+                                /* If this is a list of strings, models were
+                                sent as URLs */
+                                else if(typeof(models[0]) == 'string') {
+                                    var modelType = oneToMany.collectionType.prototype.model;
+                                    var modelName = modelType.prototype.name;
+                                    
+                                    var seenInstances = com.concertsoundorganizer.modelManager.seenInstances[modelName];
+
+                                    /* for each model URL in list */
+                                    _.each(models, function(modelUrl) {
+                                           var apiURL = com.concertsoundorganizer.apiBaseURL;
+                                           var modelId = modelUrl
+                                               .split(apiURL)[1]
+                                               .match(/\d+/);
+
+                                           if(modelId.length != 1) {
+                                               throw new Error('Malformed related model URL.');
+                                           }
+                                           else {
+                                               modelId = modelId[0];
+                                           }
+
+                                           /* Have we created this model before? */
+                                           var model = seenInstances.get(modelId);
+
+                                           /* If model instance was not found */
+                                           if(!model) {
+                                               /* Create new instance with just id */
+                                               model = new modelType({
+                                                   id: modelId 
+                                               });
+                                               /* add to seen instances */
+                                               seenInstances.add(model);
+                                           }
+
+                                           newAttr.add(model);
+                                    });
+                                }
+                            }
+                            else {
+                                /* empty list */
+                                newAttr.refresh([]);
+                            }
+                            
+                            /* save new collection attribute */
+                            attributes[oneToMany.attr] = newAttr;
+                            
                         }
-                        /* If it is something else */
+                        /* It is something else */
                         else {
                             throw new Error('Do not know how to handle this currently.');
                         }
                         
-                        /* save new collection attribute */
-                        attributes[oneToMany.attr] = newAttr;
                     }
+                    
+                    
                 }
             }
         }
@@ -110,7 +163,7 @@ var ConcertBackboneModel = Backbone.Model.extend(
             /* For each foreign key attribute */
             for(var i = 0, il = foreignKeyAttributes.length; i < il; i++) {
                 var foreignKey = foreignKeyAttributes[i];
-                
+
                 /* If we're trying to set this attribute */
                 if(foreignKey.attr in attributes) {
                     
@@ -119,7 +172,7 @@ var ConcertBackboneModel = Backbone.Model.extend(
                     /*  and it is not a model */
                     if(!(model instanceof Backbone.Model)) {
                         /* It might be an object */
-                        if(model && (model instanceof Object)) {
+                        if(typeof(model) == 'object') {
 
                             /* If so we need to check with the dataset manager */
                             var seenInstances = com.concertsoundorganizer.modelManager.seenInstances[foreignKey.model.prototype.name];
@@ -140,6 +193,39 @@ var ConcertBackboneModel = Backbone.Model.extend(
                                 seenInstances.add(attributes[foreignKey.attr]);
                             }
 
+                        }
+                        /* if the attribute was sent in as a string */
+                        else if(typeof(model) == 'string') {
+                            /* it is likely the URL of this model instance */
+                            var modelUrl = model;
+                            
+                            var modelId = modelUrl
+                                .split(com.concertsoundorganizer.apiBaseURL)[1]
+                                .match(/\d+/);
+                            
+                            if(modelId.length != 1) {
+                                throw new Error('Malformed related model url: '+modelUrl);
+                            }
+                            else {
+                                modelId = modelId[0];
+                            }
+                            
+                            /* The type of model */
+                            var modelType = foreignKey.model;
+                            
+                            /* The seen instances for this model type */
+                            var seenInstances = com.concertsoundorganizer.modelManager.seenInstances[modelType.prototype.name];
+                            
+                            var model = seenInstances.get(modelId);
+                            
+                            /* If model has already been instantiated */
+                            if(model) {
+                                attributes[foreignKey.attr] = model;
+                            }
+                            else {
+                                /* Model has not been instantiated */
+                                console.log('dont know what to do here');
+                            }
                         }
                     }
                 }
@@ -202,7 +288,7 @@ var ConcertBackboneModel = Backbone.Model.extend(
     url: function(options) {
         options || (options = {});
         
-        var url = '/api/1/'
+        var url = com.concertsoundorganizer.apiBaseURL;
         if(options.noBase) {
             url = '';
         }

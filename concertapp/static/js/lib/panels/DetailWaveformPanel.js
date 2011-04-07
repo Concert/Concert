@@ -138,8 +138,12 @@ var DetailWaveformPanel = WaveformPanel.extend(
          **/
         this.tagInputElement = tagInputElement;
         
-        this.tagInputComponent = new AutocompleteListInputComponent({
-            inputElement: tagInputElement, 
+        /**
+         *  The component used to add new tags to the selected segment.
+         **/
+        this.tagInputComponent = new TagAutocompleteListInputComponent({
+            inputElement: tagInputElement,
+            panel: this, 
         });
         
         
@@ -190,6 +194,11 @@ var DetailWaveformPanel = WaveformPanel.extend(
             el: $('#detail_waveform_selected_name_container')
         });
         
+        /* Clear bottom tags area */
+        this.tagsContainerElement.empty();
+        /* Hide tag input box (for now) */
+        this.tagInputElement.hide();
+        
         /* Load waveform image */
         this._load_waveform_image(selectedAudioFile.get_waveform_src(10), function(me, selectedAudioFile) {
             /* and when done */
@@ -224,10 +233,26 @@ var DetailWaveformPanel = WaveformPanel.extend(
             el: $('#detail_waveform_selected_name_container')
         });
         
+        /* Show tag input element */
+        this.tagInputElement.show();
+
+        var frag = document.createDocumentFragment();
+        var panel = this;
+        /* For each of this segment's tags */
+        selectedAudioSegment.get('tags').each(function(tag) {
+            /* Create a tag widget */
+            var widget = new TagWidget({
+                model: tag, 
+                panel: panel, 
+            });
+            
+            /* Inject it into our fragment */
+            frag.appendChild(widget.render().el);
+        });
+        
         /* Load tags in bottom */
-        this.tagsContainerElement.html(
-            this.bottomSegmentTemplate.tmpl(selectedAudioSegment.toJSON())
-        );
+        this.tagsContainerElement.html(frag);
+
         
         /* Load waveform image */
         this._load_waveform_image(

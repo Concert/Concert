@@ -208,7 +208,13 @@ class NestedResource(MyResource):
         django_related_field = getattr(bundle.obj,self._meta.nested)
         django_related_field.add(nested_object)     
         
-        return HttpCreated(location=self.get_resource_uri(bundle.obj))
+        resp = self.create_response(request,
+                                    self.full_dehydrate(updated_bundle.obj)
+                                    )
+        resp['location'] = self.get_resource_uri(updated_bundle)
+        resp.code = 201
+
+        return resp                              
     
     def nested_delete_detail(self, request, **kwargs):
         return self.nested_detail('delete', request, **kwargs)

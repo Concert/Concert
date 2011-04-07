@@ -27,6 +27,15 @@ var Tag = ConcertBackboneModel.extend(
             }
         ];
     },
+    
+    oneToManyAttributes: function() {
+        return [
+            {
+                attr: 'segments', 
+                collectionType: AudioSegmentSet 
+            }
+        ];
+    }, 
     name: 'tag', 
 });
 

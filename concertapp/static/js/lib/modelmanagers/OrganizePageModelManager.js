@@ -86,11 +86,11 @@ OrganizePageModelManager.prototype._loadData = function() {
     /* Most stuff is watching both files and widgets, so do this silently */
     this.collectionAudioFiles.refresh(dataToLoad.fileData, {silent: true});
     dataToLoad.fileData = null;
-    
+
     var collectionAudioSegments = this.collectionAudioSegments;
     collectionAudioSegments.refresh(dataToLoad.segmentData);
     dataToLoad.segmentData = null;
-    
+
     this.collectionTags.refresh(dataToLoad.tagData);
     dataToLoad.tagData = null;
 };
@@ -276,6 +276,61 @@ OrganizePageModelManager.prototype.delete_audio_segment = function(segment) {
         error_message: 'Audio segment was not deleted'
     });
 };
+
+/**
+ *  When the current segment is to be tagged.
+ *
+ *  @param  {String}    tagName    The name of the tag to give this segment.
+ **/
+OrganizePageModelManager.prototype.tag_current_segment = function(tagName) {
+    
+    /* Find given tag */
+    var tag = this.collectionTags.find(function(t) {
+        return (t.get('name') == tagName);
+    });
+    
+    var currentSegment = this.selectedAudioSegments.first();
+    
+    /* If tag does not yet exist */
+    if(!tag) {
+        /* Create it */
+        tag = new Tag({
+            /* with the given name */
+            name: tagName, 
+            /* for the current collection */
+            collection: this.collection, 
+            /* Created by our user */
+            creator: this.user, 
+        });
+        
+        /* Add to seen instances */
+        this.seenInstances['tag'].add(tag);        
+    }
+
+    /* tell tag and segment about eachother */
+    tag.get('segments').add(currentSegment);
+    currentSegment.get('tags').add(tag, {
+        /* save changes to server */
+        save: true, 
+        /* if error */
+        error_callback: function(addedTag) {
+            return function(seg) {
+                /* remove tag from segment */
+                seg.get('tags').remove(addedTag);
+                addedTags.get('segments').remove(seg);
+            };
+        }(tag), 
+        error_message: 'Segment was not tagged.'
+    });
+    /* Tell page to re-render for our audio again */
+    this.page.select_audio({
+        segments: [this.selectedAudioSegments.first()], 
+    });
+    
+    
+    
+};
+
 
 
 
