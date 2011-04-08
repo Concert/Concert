@@ -32,4 +32,29 @@ class RequestJoinCollectionEventResource(EventResource):
         authentication = DjangoAuthentication()
         
         queryset = RequestJoinCollectionEvent.objects.all()
+
+###
+#   The events for a single collection
+###
+class CollectionEventResource(EventResource):
     
+    class Meta(EventResource.Meta):
+        
+        # The collection
+        collection = None
+    
+    ###
+    #   Set the collection whose events we will retrieve.
+    ###
+    def set_collection(self, collection):
+        self._meta.collection = collection
+        
+    
+    ###
+    #   Only retrieve events for a single collection
+    ###
+    def apply_authorization_limits(self, request, object_list):
+        if not self._meta.collection:
+            raise Exception('You must call set_collection on this resource first')
+
+        return super(CollectionEventResource, self).apply_authorization_limits(request, object_list.filter(collection=self._meta.collection))
