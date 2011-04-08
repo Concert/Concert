@@ -304,7 +304,9 @@ OrganizePageModelManager.prototype.tag_current_segment = function(tagName) {
         });
         
         /* Add to seen instances */
-        this.seenInstances['tag'].add(tag);        
+        this.seenInstances['tag'].add(tag);
+        /* Add to tags for this collection */
+        this.collectionTags.add(tag);
     }
 
     /* tell tag and segment about eachother */

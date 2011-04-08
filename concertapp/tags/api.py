@@ -49,7 +49,16 @@ class TagResource(NestedResource):
             }        
 
         nested = 'segments'
-        
+    
+    def create_nested_event(self, obj, nested_obj, request):
+        AudioSegmentTaggedEvent.objects.create(
+            collection = obj.collection,
+            audio_segment = nested_obj,
+            tag = obj,
+            tagging_user = request.user
+        )
+        return
+
 
 ###
 #   Tags for a specific collection.
