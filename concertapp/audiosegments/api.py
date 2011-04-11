@@ -61,7 +61,7 @@ class AudioSegmentResource(NestedResource):
     def create_nested_event(self, obj, nested_obj, request):
         AudioSegmentTaggedEvent.objects.create(
             collection = obj.collection,
-            audio_segment = obj,
+            audioSegment = obj,
             tag = nested_obj,
             user = request.user
         )

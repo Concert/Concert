@@ -22,7 +22,7 @@ import os, tempfile, sys
 ###
 class ConcertUser(models.Model):
     user = models.ForeignKey(User, unique = True)
-    unread_events = models.ManyToManyField('Event')
+    unreadEvents = models.ManyToManyField('Event')
         
         
     
@@ -58,11 +58,11 @@ class Event(models.Model):
     time = models.DateTimeField(auto_now_add = True)
     collection = models.ForeignKey('Collection')
     active = models.BooleanField(default=True)
-    real_type = models.ForeignKey(ContentType, editable=False, null=True)
+    realType = models.ForeignKey(ContentType, editable=False, null=True)
 
     ###
     # Only allow sub classes of Event to be saved, and when saving, determine the 
-    # sub class' type and store it in real_type (e.g., TagCommentEvent, SegmentCommentEvent,
+    # sub class' type and store it in realType (e.g., TagCommentEvent, SegmentCommentEvent,
     # etc.)
     ###
     def save(self, **kwargs):
@@ -70,10 +70,10 @@ class Event(models.Model):
             raise Exception("Event is abstract, but not through Django semantics (e.g., 'Class Meta: abstract = True' is NOT set).\nYou must use one of the Event subclasses")
         else:
             # Add event to all of this collection's user's unread events
-            self.real_type = self._get_real_type()
+            self.realType = self._get_real_type()
             super(Event,self).save(kwargs)
             for user in self.collection.users.all():
-                user.get_profile().unread_events.add(self)
+                user.get_profile().unreadEvents.add(self)
 
     def _get_real_type(self):
         return ContentType.objects.get_for_model(type(self))
@@ -82,7 +82,7 @@ class Event(models.Model):
     # return the sub_class object thats associated with this tuple
     ###
     def cast(self):
-        return self.real_type.get_object_for_this_type(pk=self.pk)
+        return self.realType.get_object_for_this_type(pk=self.pk)
 
     def __unicode__(self):
         return str(self.cast())
@@ -118,25 +118,25 @@ class Event(models.Model):
 ###
 class AudioSegmentCreatedEvent(Event):
     # The audio segment that was created.
-    audio_segment = models.ForeignKey("AudioSegment", related_name = "created_event")
+    audioSegment = models.ForeignKey("AudioSegment", related_name = "created_event")
     
     def __unicode__(self):
         creator = self.user
-        audio_segment = self.audio_segment.name
+        audioSegment = self.audioSegment.name
 
-        return str(creator) + " created segment '" + str(audio_segment) + "'."
+        return str(creator) + " created segment '" + str(audioSegment) + "'."
     
 ###
 #   When an audio segment has been tagged.
 ###
 class AudioSegmentTaggedEvent(Event):
     # The audio segment that was tagged
-    audio_segment = models.ForeignKey("AudioSegment", related_name = "tagged_event")
+    audioSegment = models.ForeignKey("AudioSegment", related_name = "tagged_event")
     # The tag
     tag = models.ForeignKey("Tag", related_name = "tagged_event")
 
     def __unicode__(self):
-        return str(self.user) + " tagged '" + str(self.audio_segment.name) + "' with tag '" + self.tag.name + "'."
+        return str(self.user) + " tagged '" + str(self.audioSegment.name) + "' with tag '" + self.tag.name + "'."
 
 ###
 #   When an audio file was uploaded
@@ -217,7 +217,7 @@ class AudioSegment(models.Model):
         if new:
             AudioSegmentCreatedEvent.objects.create(
                 user = self.creator, 
-                audio_segment = self, 
+                audioSegment = self, 
                 collection = self.collection
             )
 
@@ -245,10 +245,10 @@ class AudioSegment(models.Model):
         return ', '.join(tags)
     
     def delete(self):
-        for event in AudioSegmentCreatedEvent.objects.filter(audio_segment = self):
+        for event in AudioSegmentCreatedEvent.objects.filter(audioSegment = self):
             event.active = False
 
-        for event in AudioSegmentTaggedEvent.objects.filter(audio_segment = self):
+        for event in AudioSegmentTaggedEvent.objects.filter(audioSegment = self):
             event.active = False
 
         super(AudioSegment,self).delete()
@@ -422,7 +422,7 @@ class Comment(models.Model):
         if type(self)==Comment:
             raise Exception("Comment is abstract, but not through Django semantics (e.g., 'Class Meta: abstract = True' is NOT set ).\nYou must use one of the Comment subclasses")
         else:
-            self.real_type = self._get_real_type()
+            self.realType = self._get_real_type()
             super(Comment,self).save(kwargs)
             
     def delete(self):
@@ -439,7 +439,7 @@ class Comment(models.Model):
     # return the sub_class object thats associated with this tuple
     ###
     def cast(self):
-        return self.real_type.get_object_for_this_type(pk=self.pk)
+        return self.realType.get_object_for_this_type(pk=self.pk)
     
     def __unicode__(self):
         return str(cast(self))
