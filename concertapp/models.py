@@ -3,6 +3,7 @@ from concertapp.settings import MEDIA_ROOT
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
+from django.core.exceptions import ValidationError
 from django.core.files  import File
 from django.core.files.base import ContentFile
 from django.core.files.storage import FileSystemStorage
@@ -52,6 +53,8 @@ post_save.connect(concert_post_save_receiver)
 # theoretically work using django signals.  
 ### 
 class Event(models.Model):
+    # Every event has a user associated with it, so lets just store it here
+    user = models.ForeignKey(User)
     time = models.DateTimeField(auto_now_add = True)
     collection = models.ForeignKey('Collection')
     active = models.BooleanField(default=True)
@@ -85,101 +88,107 @@ class Event(models.Model):
         return str(self.cast())
 
 
-class TagCommentEvent(Event):
-    tag_comment = models.ForeignKey("TagComment", related_name = 'comment_event')
+###
+#   When a user comments on a tag.
+###
+#class TagCommentEvent(Event):
+#    tag_comment = models.ForeignKey("TagComment", related_name = 'comment_event')
+    
+#    def __unicode__(self):
+#        author = self.user
+#        tag = self.tag_comment.tag.name
 
-    def __unicode__(self):
-        author = self.tag_comment.author
-        tag = self.tag_comment.tag.name
-
-        return str(author) + " commented on tag '" + str(tag) + "'."
-
-
-class SegmentCommentEvent(Event):
-    segment_comment = models.ForeignKey("SegmentComment", related_name = "comment_event" )
-
-    def __unicode__(self):
-        author = self.segment_comment.author
-        segment = self.segment_comment.segment.name
-
-        return str(author) + " commented on segment '" + str(segment) + "'."
+#        return str(author) + " commented on tag '" + str(tag) + "'."
 
 
-class TagCreatedEvent(Event):
-    tag = models.ForeignKey("Tag", related_name = "created_event")
+###
+#   When a user comments on a segment
+###
+#class SegmentCommentEvent(Event):
+#    segment_comment = models.ForeignKey("SegmentComment", related_name = "comment_event" )
 
-    def __unicode__(self):
-        creator = self.tag.creator
-        tag = self.tag.name
-        
-        return str(creator) + " created tag '" + str(tag) + "'."
+#    def __unicode__(self):
+#        author = self.segment_comment.author
+#        segment = self.segment_comment.segment.name
 
+#        return str(author) + " commented on segment '" + str(segment) + "'."
 
+###
+#   When an audio segment is created.
+###
 class AudioSegmentCreatedEvent(Event):
+    # The audio segment that was created.
     audio_segment = models.ForeignKey("AudioSegment", related_name = "created_event")
-
+    
     def __unicode__(self):
-        creator = self.audio_segment.creator
+        creator = self.user
         audio_segment = self.audio_segment.name
 
         return str(creator) + " created segment '" + str(audio_segment) + "'."
     
-
+###
+#   When an audio segment has been tagged.
+###
 class AudioSegmentTaggedEvent(Event):
+    # The audio segment that was tagged
     audio_segment = models.ForeignKey("AudioSegment", related_name = "tagged_event")
+    # The tag
     tag = models.ForeignKey("Tag", related_name = "tagged_event")
-    tagging_user = models.ForeignKey(User, related_name = "tagged_event")
 
     def __unicode__(self):
-        return str(self.tagging_user) + " tagged '" + str(self.audio_segment.name) + "' with tag '" + self.tag.name + "'."
+        return str(self.user) + " tagged '" + str(self.audio_segment.name) + "' with tag '" + self.tag.name + "'."
 
-
+###
+#   When an audio file was uploaded
+###
 class AudioFileUploadedEvent(Event):
+    # The audio file that was uploaded
     audioFile = models.ForeignKey("AudioFile", related_name = "audio_uploaded_event")
 
     def __unicode__(self):
         return str(self.audioFile.uploader) + " uploaded file '" + self.audioFile.name + "'."
 
-
+###
+#   When a user joins a collection
+###
 class JoinCollectionEvent(Event):
-    new_user = models.ForeignKey(User)
-
     def __unicode__(self):
-        return str(self.new_user) + " joined " + str(self.collection)        
-
-class LeaveCollectionEvent(Event):
-    old_user = models.ForeignKey(User)
-
-    def __unicode__(self):
-        return str(self.new_user) + " left " + str(self.collection)        
+        return str(self.user) + " joined " + str(self.collection)        
 
 ###
-#   An event that is created when a collection is created.
+#   When a user leaves a collection
+###
+class LeaveCollectionEvent(Event):
+    def __unicode__(self):
+        return str(self.user) + " left " + str(self.collection)        
+
+###
+#   When a collection is created.
 ###
 class CreateCollectionEvent(Event):
-    admin = models.ForeignKey(User)
-
     def __unicode__(self):
-        return str(self.admin) + " created " + str(self.collection)        
+        return str(self.user) + " created " + str(self.collection)        
     
-
+###
+#   When a user requests to join a collection
+###
 class RequestJoinCollectionEvent(Event):
-    requesting_user = models.ForeignKey(User)
-    
     def __unicode__(self):
-        return str(self.requesting_user) + " requested to join " + str(self.collection)
-        
+        return str(self.user) + " requested to join " + str(self.collection)
+
+###
+#   When a user gets denied from a collection.
+###
 class RequestDeniedEvent(Event):
-    requesting_user = models.ForeignKey(User)
-
     def __unicode__(self):
-        return str(self.requesting_user) + " was denied from " + str(self.collection)
+        return str(self.user) + " was denied from " + str(self.collection)
 
+###
+#   When a user revokes her/his request to join a collection
+###
 class RequestRevokedEvent(Event):
-    requesting_user = models.ForeignKey(User)
-
     def __unicode__(self):
-        return str(self.requesting_user) + " revoked join request from " + str(self.collection)
+        return str(self.user) + " revoked join request from " + str(self.collection)
 
 
 class AudioSegment(models.Model):
@@ -200,23 +209,36 @@ class AudioSegment(models.Model):
         self.full_clean()
 
         new = False
-        if not self.id or not AudioSegment.objects.filter(pk=self.id):
+        if not self.id:
             new = True
 
         super(AudioSegment, self).save(*args, **kwargs)
 
         if new:
-            event = AudioSegmentCreatedEvent(audio_segment = self, collection = self.collection)
-            event.save()
-            
+            AudioSegmentCreatedEvent.objects.create(
+                user = self.creator, 
+                audio_segment = self, 
+                collection = self.collection
+            )
 
+    # Make sure it has a unique name (relative to the other segments
+    # in the collection)
     def clean(self):
-        # if the audio segment is new, make sure it has a unique name (relative to the other segments
-        # in the collection
-        if not AudioSegment.objects.filter(pk=self.id):    
-            from django.core.exceptions import ValidationError
-            if AudioSegment.objects.filter(name = self.name, collection = self.collection):
+        try:
+            # If there is a segment in this collection with the same name
+            sameName = AudioSegment.objects.get(
+                name = self.name,
+                collection = self.collection
+            )
+            # And it is not the current segment
+            if sameName.id is not self.id:
                 raise ValidationError('Audio Segments must have unique names!')
+            
+        except ObjectDoesNotExist:
+            # There is no segment with the same name in this collection.  We're
+            # golden.
+            pass
+            
         
     def tag_list(self):
         tags = self.tag_set.all()
@@ -258,7 +280,7 @@ class Collection(models.Model):
                 self.users.add(self.admin)
 
             # Create event
-            CreateCollectionEvent.objects.create(admin=self.admin, collection=self)
+            CreateCollectionEvent.objects.create(user=self.admin, collection=self)
         else:
             super(Collection, self).save(*args, **kwargs)
 
@@ -294,7 +316,7 @@ class Request(models.Model):
                 super(Request, self).save(*args, **kwargs)
                 # Create event
                 RequestJoinCollectionEvent.objects.create(
-                    requesting_user=user,
+                    user=user,
                     collection=collection
                 )
         else:
@@ -314,7 +336,7 @@ class Request(models.Model):
         collection.users.add(user)
         
         # Create event
-        event = JoinCollectionEvent(new_user = user, collection = collection)
+        event = JoinCollectionEvent(user = user, collection = collection)
         event.save()
         
         self.delete()
@@ -324,7 +346,7 @@ class Request(models.Model):
     ###
     def deny(self):
         # Create proper event
-        event = RequestDeniedEvent(requesting_user = self.user, collection = self.collection)
+        event = RequestDeniedEvent(user = self.user, collection = self.collection)
         event.save()
         
         self.delete()
@@ -333,7 +355,7 @@ class Request(models.Model):
     #   When request is revoked
     ###
     def revoke(self):
-        event = RequestRevokedEvent(requesting_user = self.user, collection = self.collection)
+        event = RequestRevokedEvent(user = self.user, collection = self.collection)
         event.save()
         
         self.delete()
@@ -549,7 +571,7 @@ class AudioFile(models.Model):
 
         super(AudioFile, self).save(*args, **kwargs)
         
-        event = AudioFileUploadedEvent(audioFile = self, collection = self.collection)
+        event = AudioFileUploadedEvent(user = self.uploader, audioFile = self, collection = self.collection)
         event.save()
         
         

@@ -63,7 +63,7 @@ class AudioSegmentResource(NestedResource):
             collection = obj.collection,
             audio_segment = obj,
             tag = nested_obj,
-            tagging_user = request.user
+            user = request.user
         )
         return
 
