@@ -8,7 +8,7 @@
  *  @class  When an audio file is uploaded.
  *  @extends    ConcertBackboneModel
  **/
-var AudioFileUploadedEvent = ConcertBackboneModel.extend(
+var AudioFileUploadedEvent = Event.extend(
     /**
      *  @scope  AudioFileUploadedEvent.prototype
      **/
@@ -21,6 +21,7 @@ var AudioFileUploadedEvent = ConcertBackboneModel.extend(
             }
         ];
     }, 
+    name: 'audiofileuploadedevent', 
 });
 
 /**

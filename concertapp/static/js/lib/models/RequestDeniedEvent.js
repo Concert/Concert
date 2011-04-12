@@ -8,11 +8,12 @@
  *  @class  When a user is denied from a collection.
  *  @extends    ConcertBackboneModel
  **/
-var RequestDeniedEvent = ConcertBackboneModel.extend(
+var RequestDeniedEvent = Event.extend(
     /**
      *  @scope  RequestDeniedEvent.prototype
      **/
 {
+    name: 'requestdeniedevent', 
     
 });
 

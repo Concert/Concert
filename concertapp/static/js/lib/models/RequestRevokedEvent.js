@@ -8,11 +8,12 @@
  *  @class  When a user revokes her/his join request
  *  @extends    ConcertBackboneModel
  **/
-var RequestRevokedEvent = ConcertBackboneModel.extend(
+var RequestRevokedEvent = Event.extend(
     /**
      *  @scope  RequestRevokedEvent.prototype
      **/
 {
+    name: 'requestrevokedevent', 
     
 });
 

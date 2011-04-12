@@ -8,11 +8,12 @@
  *  @class  When a user's join request is approved.
  *  @extends    ConcertBackboneModel
  **/
-var JoinCollectionEvent = ConcertBackboneModel.extend(
+var JoinCollectionEvent = Event.extend(
     /**
      *  @scope  JoinCollectionEvent.prototype
      **/
 {
+    name: 'joincollectionevent', 
     
 });
 

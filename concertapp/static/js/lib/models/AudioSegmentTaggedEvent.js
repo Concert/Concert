@@ -8,7 +8,7 @@
  *  @class  When an audio segment was tagged.
  *  @extends    ConcertBackboneModel
  **/
-var AudioSegmentTaggedEvent = ConcertBackboneModel.extend(
+var AudioSegmentTaggedEvent = Event.extend(
     /**
      *  @scope  AudioSegmentTaggedEvent.prototype
      **/
@@ -25,6 +25,7 @@ var AudioSegmentTaggedEvent = ConcertBackboneModel.extend(
             }
         ];
     }, 
+    name: 'audiosegmenttaggedevent', 
 });
 
 /**

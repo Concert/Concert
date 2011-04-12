@@ -9,12 +9,12 @@
  *  collection.
  *  @extends    ConcertBackboneModel
  **/
-var CreateCollectionEvent = ConcertBackboneModel.extend(
+var CreateCollectionEvent = Event.extend(
     /**
      *  @scope  CreateCollectionEvent.prototype
      **/
 {
-    
+    name: 'createcollectionevent',
 });
 
 /**

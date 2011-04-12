@@ -8,7 +8,7 @@
  *  @class  When an audio segment is created.
  *  @extends    ConcertBackboneModel
  **/
-var AudioSegmentCreatedEvent = ConcertBackboneModel.extend(
+var AudioSegmentCreatedEvent = Event.extend(
     /**
      *  @scope  AudioSegmentCreatedEvent.prototype
      **/
@@ -21,6 +21,7 @@ var AudioSegmentCreatedEvent = ConcertBackboneModel.extend(
             }
         ];
     }, 
+    name: 'audiosegmentcreatedevent', 
 });
 
 /**

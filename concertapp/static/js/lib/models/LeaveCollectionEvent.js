@@ -8,11 +8,12 @@
  *  @class  When a user leaves a collection.
  *  @extends    ConcertBackboneModel
  **/
-var LeaveCollectionEvent = ConcertBackboneModel.extend(
+var LeaveCollectionEvent = Event.extend(
     /**
      *  @scope  LeaveCollectionEvent.prototype
      **/
 {
+    name: 'leavecollectionevent', 
     
 });
 

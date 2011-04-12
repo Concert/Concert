@@ -90,16 +90,16 @@ def organize_collection(request, collection_id, col, user):
         'segments': segmentResource.as_dict(request),
         'tags': tagsResource.as_dict(request), 
         'collection': singleCollectionResource.as_dict(request), 
-        'audioSegmentCreatedEvents': audioSegmentCreatedEventResource.as_dict(request), 
-        'audioSegmentTaggedEvents': audioSegmentTaggedEventResource.as_dict(request), 
-        'audioFileUploadedEvents': audioFileUploadedEventResource.as_dict(request), 
-        'joinCollectionEvents': joinCollectionEventResource.as_dict(request), 
-        'leaveCollectionEvents': leaveCollectionEventResource.as_dict(request), 
-        'createCollectionEvents': createCollectionEventResource.as_dict(request), 
-        'requestJoinCollectionEvents': requestJoinCollectionEventResource.as_dict(request), 
-        'requestDeniedEvents': requestDeniedEventResource.as_dict(request), 
-        'requestRevokedEvents': requestRevokedEventResource.as_dict(request), 
-        'requestJoinCollectionEvents': requestJoinCollectionEventResource.as_dict(request)
+        'audioSegmentCreatedEventData': audioSegmentCreatedEventResource.as_dict(request), 
+        'audioSegmentTaggedEventData': audioSegmentTaggedEventResource.as_dict(request), 
+        'audioFileUploadedEventData': audioFileUploadedEventResource.as_dict(request), 
+        'joinCollectionEventData': joinCollectionEventResource.as_dict(request), 
+        'leaveCollectionEventData': leaveCollectionEventResource.as_dict(request), 
+        'createCollectionEventData': createCollectionEventResource.as_dict(request), 
+        'requestJoinCollectionEventData': requestJoinCollectionEventResource.as_dict(request), 
+        'requestDeniedEventData': requestDeniedEventResource.as_dict(request), 
+        'requestRevokedEventData': requestRevokedEventResource.as_dict(request), 
+        'requestJoinCollectionEventData': requestJoinCollectionEventResource.as_dict(request)
     }
     
     return TemplateResponse(request, 'organize/organize_collection.html', {

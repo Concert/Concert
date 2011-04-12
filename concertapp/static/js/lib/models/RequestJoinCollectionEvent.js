@@ -8,11 +8,12 @@
  *  @class  When a user requests to join a collection
  *  @extends    ConcertBackboneModel
  **/
-var RequestJoinCollectionEvent = ConcertBackboneModel.extend(
+var RequestJoinCollectionEvent = Event.extend(
     /**
      *  @scope  RequestJoinCollectionEvent.prototype
      **/
 {
+    name: 'requestjoincollectionevent', 
     
 });
 
