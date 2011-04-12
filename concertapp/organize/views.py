@@ -52,11 +52,54 @@ def organize_collection(request, collection_id, col, user):
     singleCollectionResource = SingleCollectionResource()
     singleCollectionResource.set_collection(col)
     
+    # send in events of all types for this collection
+    audioSegmentCreatedEventResource = AudioSegmentCreatedEventResource()
+    audioSegmentCreatedEventResource.set_collection(col)
+    
+    audioSegmentTaggedEventResource = AudioSegmentTaggedEventResource()
+    audioSegmentTaggedEventResource.set_collection(col)
+    
+    audioFileUploadedEventResource = AudioFileUploadedEventResource()
+    audioFileUploadedEventResource.set_collection(col)
+
+    joinCollectionEventResource = JoinCollectionEventResource()
+    joinCollectionEventResource.set_collection(col)
+
+    leaveCollectionEventResource = LeaveCollectionEventResource()
+    leaveCollectionEventResource.set_collection(col)
+    
+    createCollectionEventResource = CreateCollectionEventResource()
+    createCollectionEventResource.set_collection(col)
+    
+    requestJoinCollectionEventResource = RequestJoinCollectionEventResource()
+    requestJoinCollectionEventResource.set_collection(col)
+    
+    requestDeniedEventResource = RequestDeniedEventResource()
+    requestDeniedEventResource.set_collection(col)
+    
+    requestRevokedEventResource = RequestRevokedEventResource()
+    requestRevokedEventResource.set_collection(col)
+    
+    requestJoinCollectionEventResource = RequestJoinCollectionEventResource()
+    requestJoinCollectionEventResource.set_collection(col)
+    
+    
+    
     data = {
         'files': audioResource.as_dict(request), 
         'segments': segmentResource.as_dict(request),
         'tags': tagsResource.as_dict(request), 
         'collection': singleCollectionResource.as_dict(request), 
+        'audioSegmentCreatedEvents': audioSegmentCreatedEventResource.as_dict(request), 
+        'audioSegmentTaggedEvents': audioSegmentTaggedEventResource.as_dict(request), 
+        'audioFileUploadedEvents': audioFileUploadedEventResource.as_dict(request), 
+        'joinCollectionEvents': joinCollectionEventResource.as_dict(request), 
+        'leaveCollectionEvents': leaveCollectionEventResource.as_dict(request), 
+        'createCollectionEvents': createCollectionEventResource.as_dict(request), 
+        'requestJoinCollectionEvents': requestJoinCollectionEventResource.as_dict(request), 
+        'requestDeniedEvents': requestDeniedEventResource.as_dict(request), 
+        'requestRevokedEvents': requestRevokedEventResource.as_dict(request), 
+        'requestJoinCollectionEvents': requestJoinCollectionEventResource.as_dict(request)
     }
     
     return TemplateResponse(request, 'organize/organize_collection.html', {

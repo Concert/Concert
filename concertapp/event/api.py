@@ -26,76 +26,23 @@ class EventResource(MyResource):
     time = fields.DateTimeField('time')
     collection = fields.ForeignKey(CollectionResource, 'collection')
 
-#####
-#   A resource class for every type of event.  I know, ugh...
-#   This is the exact same heirarchy as the models.
-#####
-
-
-class AudioSegmentCreatedEventResource(EventResource):
-    audioSegment = fields.ForeignKey(AudioSegmentResource, 'audioSegment')
-    
-    class Meta(EventResource.Meta):
-        queryset = AudioSegmentCreatedEvent.objects.all()
-
-class AudioSegmentTaggedEventResource(EventResource):
-    audioSegment = fields.ForeignKey(AudioSegmentResource, 'audioSegment')
-    tag = fields.ForeignKey(TagResource, 'tag')
-    
-    class Meta(EventResource.Meta):
-        queryset = AudioSegmentTaggedEvent.objects.all()
-
-class AudioFileUploadedEventResource(EventResource):
-    audioFile = fields.ForeignKey(AudioFileResource, 'audioFile')
-    
-    class Meta(EventResource.Meta):
-        queryset = AudioFileUploadedEvent.objects.all()
-
-class JoinCollectionEventResource(EventResource):
-    class Meta(EventResource.Meta):
-        queryset = JoinCollectionEvent.objects.all()
-
-class LeaveCollectionEventResource(EventResource):
-    class Meta(EventResource.Meta):
-        queryset = LeaveCollectionEvent.objects.all()
-
-class CreateCollectionEventResource(EventResource):
-    class Meta(EventResource.Meta):
-        queryset = CreateCollectionEvent.objects.all()
-
-class RequestJoinCollectionEventResource(EventResource):
-    class Meta(EventResource.Meta):
-        queryset = RequestJoinCollectionEvent.objects.all()
-
-class RequestDeniedEventResource(EventResource):
-    class Meta(EventResource.Meta):
-        queryset = RequestDeniedEvent.objects.all()
-
-class RequestRevokedEventResource(EventResource):
-    class Meta(EventResource.Meta):
-        queryset = RequestRevokedEvent.objects.all()
-
-class RequestJoinCollectionEventResource(EventResource):
-    class Meta(EventResource.Meta):
-        queryset = RequestJoinCollectionEvent.objects.all()
-
 ###
 #   The events for a single collection
 ###
 class CollectionEventResource(EventResource):
-    
+
     class Meta(EventResource.Meta):
-        
+
         # The collection
         collection = None
-    
+
     ###
     #   Set the collection whose events we will retrieve.
     ###
     def set_collection(self, collection):
         self._meta.collection = collection
-        
-    
+
+
     ###
     #   Only retrieve events for a single collection
     ###
@@ -104,3 +51,58 @@ class CollectionEventResource(EventResource):
             raise Exception('You must call set_collection on this resource first')
 
         return super(CollectionEventResource, self).apply_authorization_limits(request, object_list.filter(collection=self._meta.collection))
+
+
+#####
+#   A resource class for every type of event.  I know, ugh...
+#   This is the exact same heirarchy as the models.
+#####
+
+
+class AudioSegmentCreatedEventResource(CollectionEventResource):
+    audioSegment = fields.ForeignKey(AudioSegmentResource, 'audioSegment')
+    
+    class Meta(CollectionEventResource.Meta):
+        queryset = AudioSegmentCreatedEvent.objects.all()
+
+class AudioSegmentTaggedEventResource(CollectionEventResource):
+    audioSegment = fields.ForeignKey(AudioSegmentResource, 'audioSegment')
+    tag = fields.ForeignKey(TagResource, 'tag')
+    
+    class Meta(CollectionEventResource.Meta):
+        queryset = AudioSegmentTaggedEvent.objects.all()
+
+class AudioFileUploadedEventResource(CollectionEventResource):
+    audioFile = fields.ForeignKey(AudioFileResource, 'audioFile')
+    
+    class Meta(CollectionEventResource.Meta):
+        queryset = AudioFileUploadedEvent.objects.all()
+
+class JoinCollectionEventResource(CollectionEventResource):
+    class Meta(CollectionEventResource.Meta):
+        queryset = JoinCollectionEvent.objects.all()
+
+class LeaveCollectionEventResource(CollectionEventResource):
+    class Meta(CollectionEventResource.Meta):
+        queryset = LeaveCollectionEvent.objects.all()
+
+class CreateCollectionEventResource(CollectionEventResource):
+    class Meta(CollectionEventResource.Meta):
+        queryset = CreateCollectionEvent.objects.all()
+
+class RequestJoinCollectionEventResource(CollectionEventResource):
+    class Meta(CollectionEventResource.Meta):
+        queryset = RequestJoinCollectionEvent.objects.all()
+
+class RequestDeniedEventResource(CollectionEventResource):
+    class Meta(CollectionEventResource.Meta):
+        queryset = RequestDeniedEvent.objects.all()
+
+class RequestRevokedEventResource(CollectionEventResource):
+    class Meta(CollectionEventResource.Meta):
+        queryset = RequestRevokedEvent.objects.all()
+
+class RequestJoinCollectionEventResource(CollectionEventResource):
+    class Meta(CollectionEventResource.Meta):
+        queryset = RequestJoinCollectionEvent.objects.all()
+

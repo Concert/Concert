@@ -47,23 +47,6 @@ def concert_post_save_receiver(sender, **kwargs):
 post_save.connect(concert_post_save_receiver)
 
 ###
-#   An abstract class so that the related_name attribute can change dynamically
-#   depending on what child class is using it.
-###
-class RelatedToCollection(models.Model):
-    # Every event has a collection associated with it.  The collection will refer
-    # back to these event sets in different ways. For example, if the class that
-    # is inheriting from RelatedToCollection is an `AudioSegmentCreatedEvent`, then
-    # the attribute of the related `Collection` object would be 
-    # `audiosegmentcreatedevents`.  It is just the class name, all lowercase, with
-    # an 's' at the end.
-    collection = models.ForeignKey('Collection', related_name="%(class)ss")
-    
-    class Meta:
-        abstract = True
-
-
-###
 # An abstract class (abstract by Concert semantics, not Django) used as a base event
 # class.  Not abstract so models can have lists of events (i.e. a `User` can have
 # a m2m relationship of unread events)
@@ -73,6 +56,7 @@ class Event(models.Model):
     time = models.DateTimeField(auto_now_add = True)
     active = models.BooleanField(default=True)
     realType = models.ForeignKey(ContentType, editable=False, null=True)
+    collection = models.ForeignKey('Collection', related_name='events')
     
     ###
     # Only allow sub classes of Event to be saved, and when saving, determine the 
@@ -130,7 +114,7 @@ class Event(models.Model):
 ###
 #   When an audio segment is created.
 ###
-class AudioSegmentCreatedEvent(RelatedToCollection, Event):
+class AudioSegmentCreatedEvent(Event):
     # The audio segment that was created.
     audioSegment = models.ForeignKey("AudioSegment", related_name = "audioSegmentCreatedEvents")
     
@@ -143,7 +127,7 @@ class AudioSegmentCreatedEvent(RelatedToCollection, Event):
 ###
 #   When an audio segment has been tagged.
 ###
-class AudioSegmentTaggedEvent(RelatedToCollection, Event):
+class AudioSegmentTaggedEvent(Event):
     # The audio segment that was tagged
     audioSegment = models.ForeignKey("AudioSegment", related_name = "audioSegmentTaggedEvents")
     # The tag
@@ -155,7 +139,7 @@ class AudioSegmentTaggedEvent(RelatedToCollection, Event):
 ###
 #   When an audio file was uploaded
 ###
-class AudioFileUploadedEvent(RelatedToCollection, Event):
+class AudioFileUploadedEvent(Event):
     # The audio file that was uploaded
     audioFile = models.ForeignKey("AudioFile", related_name = "audioFileUploadedEvents")
 
@@ -165,42 +149,42 @@ class AudioFileUploadedEvent(RelatedToCollection, Event):
 ###
 #   When a user joins a collection
 ###
-class JoinCollectionEvent(RelatedToCollection, Event):
+class JoinCollectionEvent(Event):
     def __unicode__(self):
         return str(self.user) + " joined " + str(self.collection)        
 
 ###
 #   When a user leaves a collection
 ###
-class LeaveCollectionEvent(RelatedToCollection, Event):
+class LeaveCollectionEvent(Event):
     def __unicode__(self):
         return str(self.user) + " left " + str(self.collection)        
 
 ###
 #   When a collection is created.
 ###
-class CreateCollectionEvent(RelatedToCollection, Event):
+class CreateCollectionEvent(Event):
     def __unicode__(self):
         return str(self.user) + " created " + str(self.collection)        
     
 ###
 #   When a user requests to join a collection
 ###
-class RequestJoinCollectionEvent(RelatedToCollection, Event):
+class RequestJoinCollectionEvent(Event):
     def __unicode__(self):
         return str(self.user) + " requested to join " + str(self.collection)
 
 ###
 #   When a user gets denied from a collection.
 ###
-class RequestDeniedEvent(RelatedToCollection, Event):
+class RequestDeniedEvent(Event):
     def __unicode__(self):
         return str(self.user) + " was denied from " + str(self.collection)
 
 ###
 #   When a user revokes her/his request to join a collection
 ###
-class RequestRevokedEvent(RelatedToCollection, Event):
+class RequestRevokedEvent(Event):
     def __unicode__(self):
         return str(self.user) + " revoked join request from " + str(self.collection)
 

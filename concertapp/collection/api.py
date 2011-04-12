@@ -75,64 +75,13 @@ class RequestAuthorization(ConcertAuthorization):
 #   This is the resource that is used for a collection.
 ###
 class CollectionResource(NestedResource):
-    users = fields.ManyToManyField(UserResource, 'users', full=True, null = True)
+    users = fields.ManyToManyField(UserResource, 'users', null = True)
     admin = fields.ForeignKey(UserResource, 'admin')
-    # The events (of each type) associated with this collection
-    audioSegmentCreatedEvents = fields.ManyToManyField(
-        'concertapp.event.api.AudioSegmentCreatedEventResource',
-        'audiosegmentcreatedevents', 
-        full=True, 
+    events = fields.ManyToManyField(
+        'concertapp.event.api.EventResource',
+        'events',
         null=True
     )
-    audioSegmentTaggedEvents = fields.ManyToManyField(
-        'concertapp.event.api.AudioSegmentTaggedEventResource',
-        'audiosegmenttaggedevents', 
-        full=True, 
-        null=True
-    )
-    audioFileUploadedEvents = fields.ManyToManyField(
-        'concertapp.event.api.AudioFileUploadedEventResource',
-        'audiofileuploadedevents', 
-        full=True, 
-        null=True
-    )
-    joinCollectionEvents = fields.ManyToManyField(
-        'concertapp.event.api.JoinCollectionEventResource',
-        'joincollectionevents', 
-        full=True, 
-        null=True
-    )
-    leaveCollectionEvents = fields.ManyToManyField(
-        'concertapp.event.api.LeaveCollectionEventResource',
-        'leavecollectionevents', 
-        full=True, 
-        null=True
-    )
-    createCollectionEvents = fields.ManyToManyField(
-        'concertapp.event.api.CreateCollectionEventResource',
-        'createcollectionevents', 
-        full=True, 
-        null=True
-    )
-    RequestJoinCollectionEvents = fields.ManyToManyField(
-        'concertapp.event.api.RequestJoinCollectionEventResource',
-        'requestjoincollectionevents', 
-        full=True, 
-        null=True
-    )
-    requestDeniedEvents = fields.ManyToManyField(
-        'concertapp.event.api.RequestDeniedEventResource',
-        'requestdeniedevents', 
-        full=True, 
-        null=True
-    )
-    requestRevokedEvents = fields.ManyToManyField(
-        'concertapp.event.api.RequestRevokedEventResource',
-        'requestrevokedevents', 
-        full=True, 
-        null=True
-    )
-
     
     class Meta:
         authentication = DjangoAuthentication()
