@@ -37,8 +37,10 @@ var AutocompleteListInputComponent = Component.extend(
     /**
      *  Regexp used to split the input into separate tokens.
      **/
-    TOKEN_SPLITTER: /[,\s]+/, 
-
+    TOKEN_SPLITTER: /\s*,\s*|\s{2,}/,
+    SPACE_MATCH: /^\s*$/,
+    // hello my name
+    
     /**
      *  Called when there is a keyup event on the input element.
      *
@@ -60,7 +62,7 @@ var AutocompleteListInputComponent = Component.extend(
             this.inputElement.val('');
             
             /* If token was fo-real (not just another delimiter character) */
-            if(token.length) {
+            if(token.length && !token.match(AutocompleteListInputComponent.prototype.SPACE_MATCH)) {
                 this._handle_new_token(token);
             }
             
@@ -84,7 +86,7 @@ var AutocompleteListInputComponent = Component.extend(
             /* remove everything from inputElement */
             this.inputElement.val('');
             
-            if(token.length) {
+            if(token.length && !token.match(AutocompleteListInputComponent.prototype.SPACE_MATCH)) {
                 this._handle_new_token(token);
             }
         }
