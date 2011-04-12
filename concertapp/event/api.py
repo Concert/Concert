@@ -25,11 +25,12 @@ class EventResource(MyResource):
     user = fields.ForeignKey(UserResource, 'user')
     time = fields.DateTimeField('time')
     collection = fields.ForeignKey(CollectionResource, 'collection')
-    
-    class Meta:
-        authentication = DjangoAuthentication()
-        
-        queryset = Event.objects.all()
+
+#####
+#   A resource class for every type of event.  I know, ugh...
+#   This is the exact same heirarchy as the models.
+#####
+
 
 class AudioSegmentCreatedEventResource(EventResource):
     audioSegment = fields.ForeignKey(AudioSegmentResource, 'audioSegment')
@@ -37,7 +38,43 @@ class AudioSegmentCreatedEventResource(EventResource):
     class Meta(EventResource.Meta):
         queryset = AudioSegmentCreatedEvent.objects.all()
 
-        
+class AudioSegmentTaggedEventResource(EventResource):
+    audioSegment = fields.ForeignKey(AudioSegmentResource, 'audioSegment')
+    tag = fields.ForeignKey(TagResource, 'tag')
+    
+    class Meta(EventResource.Meta):
+        queryset = AudioSegmentTaggedEvent.objects.all()
+
+class AudioFileUploadedEventResource(EventResource):
+    audioFile = fields.ForeignKey(AudioFileResource, 'audioFile')
+    
+    class Meta(EventResource.Meta):
+        queryset = AudioFileUploadedEvent.objects.all()
+
+class JoinCollectionEventResource(EventResource):
+    class Meta(EventResource.Meta):
+        queryset = JoinCollectionEvent.objects.all()
+
+class LeaveCollectionEventResource(EventResource):
+    class Meta(EventResource.Meta):
+        queryset = LeaveCollectionEvent.objects.all()
+
+class CreateCollectionEventResource(EventResource):
+    class Meta(EventResource.Meta):
+        queryset = CreateCollectionEvent.objects.all()
+
+class RequestJoinCollectionEventResource(EventResource):
+    class Meta(EventResource.Meta):
+        queryset = RequestJoinCollectionEvent.objects.all()
+
+class RequestDeniedEventResource(EventResource):
+    class Meta(EventResource.Meta):
+        queryset = RequestDeniedEvent.objects.all()
+
+class RequestRevokedEventResource(EventResource):
+    class Meta(EventResource.Meta):
+        queryset = RequestRevokedEvent.objects.all()
+
 class RequestJoinCollectionEventResource(EventResource):
     class Meta(EventResource.Meta):
         queryset = RequestJoinCollectionEvent.objects.all()

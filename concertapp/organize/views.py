@@ -52,15 +52,11 @@ def organize_collection(request, collection_id, col, user):
     singleCollectionResource = SingleCollectionResource()
     singleCollectionResource.set_collection(col)
     
-    collectionEventsResource = CollectionEventResource()
-    collectionEventsResource.set_collection(col)
-    
     data = {
         'files': audioResource.as_dict(request), 
         'segments': segmentResource.as_dict(request),
         'tags': tagsResource.as_dict(request), 
         'collection': singleCollectionResource.as_dict(request), 
-        'events': collectionEventsResource.as_dict(request)
     }
     
     return TemplateResponse(request, 'organize/organize_collection.html', {

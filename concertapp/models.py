@@ -47,19 +47,33 @@ def concert_post_save_receiver(sender, **kwargs):
 post_save.connect(concert_post_save_receiver)
 
 ###
-# An abstract class (abstract by Concert semantics, not Django) used to house
-# information for all the events that can occur on the system.  Built for logging
-# purpose, not event triggered events, although that functionality could
-# theoretically work using django signals.  
-### 
+#   An abstract class so that the related_name attribute can change dynamically
+#   depending on what child class is using it.
+###
+class RelatedToCollection(models.Model):
+    # Every event has a collection associated with it.  The collection will refer
+    # back to these event sets in different ways. For example, if the class that
+    # is inheriting from RelatedToCollection is an `AudioSegmentCreatedEvent`, then
+    # the attribute of the related `Collection` object would be 
+    # `audiosegmentcreatedevents`.  It is just the class name, all lowercase, with
+    # an 's' at the end.
+    collection = models.ForeignKey('Collection', related_name="%(class)ss")
+    
+    class Meta:
+        abstract = True
+
+
+###
+# An abstract class (abstract by Concert semantics, not Django) used as a base event
+# class.  Not abstract so models can have lists of events (i.e. a `User` can have
+# a m2m relationship of unread events)
 class Event(models.Model):
     # Every event has a user associated with it, so lets just store it here
     user = models.ForeignKey(User)
     time = models.DateTimeField(auto_now_add = True)
-    collection = models.ForeignKey('Collection')
     active = models.BooleanField(default=True)
     realType = models.ForeignKey(ContentType, editable=False, null=True)
-
+    
     ###
     # Only allow sub classes of Event to be saved, and when saving, determine the 
     # sub class' type and store it in realType (e.g., TagCommentEvent, SegmentCommentEvent,
@@ -116,9 +130,9 @@ class Event(models.Model):
 ###
 #   When an audio segment is created.
 ###
-class AudioSegmentCreatedEvent(Event):
+class AudioSegmentCreatedEvent(RelatedToCollection, Event):
     # The audio segment that was created.
-    audioSegment = models.ForeignKey("AudioSegment", related_name = "created_event")
+    audioSegment = models.ForeignKey("AudioSegment", related_name = "audioSegmentCreatedEvents")
     
     def __unicode__(self):
         creator = self.user
@@ -129,9 +143,9 @@ class AudioSegmentCreatedEvent(Event):
 ###
 #   When an audio segment has been tagged.
 ###
-class AudioSegmentTaggedEvent(Event):
+class AudioSegmentTaggedEvent(RelatedToCollection, Event):
     # The audio segment that was tagged
-    audioSegment = models.ForeignKey("AudioSegment", related_name = "tagged_event")
+    audioSegment = models.ForeignKey("AudioSegment", related_name = "audioSegmentTaggedEvents")
     # The tag
     tag = models.ForeignKey("Tag", related_name = "tagged_event")
 
@@ -141,9 +155,9 @@ class AudioSegmentTaggedEvent(Event):
 ###
 #   When an audio file was uploaded
 ###
-class AudioFileUploadedEvent(Event):
+class AudioFileUploadedEvent(RelatedToCollection, Event):
     # The audio file that was uploaded
-    audioFile = models.ForeignKey("AudioFile", related_name = "audio_uploaded_event")
+    audioFile = models.ForeignKey("AudioFile", related_name = "audioFileUploadedEvents")
 
     def __unicode__(self):
         return str(self.audioFile.uploader) + " uploaded file '" + self.audioFile.name + "'."
@@ -151,42 +165,42 @@ class AudioFileUploadedEvent(Event):
 ###
 #   When a user joins a collection
 ###
-class JoinCollectionEvent(Event):
+class JoinCollectionEvent(RelatedToCollection, Event):
     def __unicode__(self):
         return str(self.user) + " joined " + str(self.collection)        
 
 ###
 #   When a user leaves a collection
 ###
-class LeaveCollectionEvent(Event):
+class LeaveCollectionEvent(RelatedToCollection, Event):
     def __unicode__(self):
         return str(self.user) + " left " + str(self.collection)        
 
 ###
 #   When a collection is created.
 ###
-class CreateCollectionEvent(Event):
+class CreateCollectionEvent(RelatedToCollection, Event):
     def __unicode__(self):
         return str(self.user) + " created " + str(self.collection)        
     
 ###
 #   When a user requests to join a collection
 ###
-class RequestJoinCollectionEvent(Event):
+class RequestJoinCollectionEvent(RelatedToCollection, Event):
     def __unicode__(self):
         return str(self.user) + " requested to join " + str(self.collection)
 
 ###
 #   When a user gets denied from a collection.
 ###
-class RequestDeniedEvent(Event):
+class RequestDeniedEvent(RelatedToCollection, Event):
     def __unicode__(self):
         return str(self.user) + " was denied from " + str(self.collection)
 
 ###
 #   When a user revokes her/his request to join a collection
 ###
-class RequestRevokedEvent(Event):
+class RequestRevokedEvent(RelatedToCollection, Event):
     def __unicode__(self):
         return str(self.user) + " revoked join request from " + str(self.collection)
 
@@ -571,7 +585,11 @@ class AudioFile(models.Model):
 
         super(AudioFile, self).save(*args, **kwargs)
         
-        event = AudioFileUploadedEvent(user = self.uploader, audioFile = self, collection = self.collection)
+        event = AudioFileUploadedEvent(
+          user = self.uploader,
+          audioFile = self,
+          collection = self.collection
+        )
         event.save()
         
         
