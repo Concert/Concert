@@ -28,9 +28,6 @@ var EventsPanel = Panel.extend({
     render: function(eventModels) {
         Panel.prototype.render.call(this);
         
-        console.log('eventModels.length:');
-        console.log(eventModels.length);
-        
         /* For each event model */
         eventModels.each(function(eventModel) {
             console.log('eventModel.toJSON():');

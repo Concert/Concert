@@ -55,5 +55,8 @@ var EventSet = ConcertBackboneCollection.extend(
      *  @scope  EventSet.prototype
      **/
 {
-    model: Event 
+    model: Event,
+    comparator: function(eventModel) {
+        return -(eventModel.get('time'));
+    }, 
 });

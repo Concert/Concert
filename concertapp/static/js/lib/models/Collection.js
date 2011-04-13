@@ -26,10 +26,7 @@ var Collection = ConcertBackboneModel.extend(
             },
             {
                 attr: 'events', 
-                collectionType: EventSet,
-                comparator: function(e) {
-                    return e.get('time');
-                }, 
+                collectionType: EventSet
             }
         ];
     },
