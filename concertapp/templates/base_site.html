@@ -24,7 +24,7 @@ The base template for all pages.  All page templates will use this.
     
     {# Vendor #}
     <script src="/js/lib/vendor/jquery-1.5.1.js"></script>
-    <script src="/js/lib/vendor/jquery.tmpl.min.js"></script>
+    <script src="/js/lib/vendor/jquery.tmpl.js"></script>
     <script src="/js/lib/vendor/jquery-ui-1.8.5.custom.min.js"></script>
     <script src="/js/lib/vendor/modernizr-1.6.min.js"></script>
     <script src="/js/lib/vendor/jquery.form.js"></script>
@@ -106,6 +106,17 @@ The base template for all pages.  All page templates will use this.
     <script src="/js/lib/widgets/CommentWidget.js"></script>
     <script src="/js/lib/widgets/AudioSegmentBarWidget.js"></script>
     <script src="/js/lib/widgets/TagWidget.js"></script>
+    <script src="/js/lib/widgets/EventWidget.js"></script>
+    <script src="/js/lib/widgets/AudioFileUploadedEventWidget.js"></script>
+    <script src="/js/lib/widgets/AudioSegmentCreatedEventWidget.js"></script>
+    <script src="/js/lib/widgets/AudioSegmentTaggedEventWidget.js"></script>
+    <script src="/js/lib/widgets/CreateCollectionEventWidget.js"></script>
+    <script src="/js/lib/widgets/JoinCollectionEventWidget.js"></script>
+    <script src="/js/lib/widgets/LeaveCollectionEventWidget.js"></script>
+    <script src="/js/lib/widgets/RequestDeniedEventWidget.js"></script>
+    <script src="/js/lib/widgets/RequestJoinCollectionEventWidget.js"></script>
+    <script src="/js/lib/widgets/RequestRevokedEventWidget.js"></script>
+    
     
     {# Components #}
     <script src="/js/lib/components/Component.js"></script>
@@ -218,6 +229,65 @@ The base template for all pages.  All page templates will use this.
     <script id="collection_selector_options_template" type="text/x-jquery-tmpl">
         {% include "../templates/clientside/collection_dropdown_options.html" %}
     </script>
+    
+    {# A link to a user #}
+    <script id="user_link_template" type="text/x-jquery-tmpl">
+        {% include 'clientside/user_link.html' %}
+    </script>
+    
+    {# A link to an audioFile #}
+    <script id="audiofile_link_template" type="text/x-jquery-tmpl">
+        {% include 'clientside/audiofile_link.html' %}
+    </script>
+    
+    {# A link to a collection #}
+    <script id="collection_link_template" type="text/x-jquery-tmpl">
+        {% include 'clientside/collection_link.html' %}
+    </script>
+    
+    {# A link to an audio segment #}
+    <script id="audiosegment_link_template" type="text/x-jquery-tmpl">
+        {% include 'clientside/audiosegment_link.html' %}
+    </script>
+    
+    {# A link to a tag #}
+    <script id="tag_link_template" type="text/x-jquery-tmpl">
+        {% include 'clientside/tag_link.html' %}
+    </script>
+    
+    {# Event widgets #}
+    <script id="event_template" type="text/x-jquery-tmpl">
+        {% include 'clientside/event.html' %}
+    </script>
+    <script id="audiofileuploadedevent_template" type="text/x-jquery-tmpl">
+        {% include 'clientside/audiofileuploadedevent.html' %}
+    </script>
+    <script id="audiosegmentcreatedevent_template" type="text/x-jquery-tmpl">
+        {% include 'clientside/audiosegmentcreatedevent.html' %}
+    </script>
+    <script id="audiosegmenttaggedevent_template" type="text/x-jquery-tmpl">
+        {% include 'clientside/audiosegmenttaggedevent.html' %}
+    </script>
+    <script id="createcollectionevent_template" type="text/x-jquery-tmpl">
+        {% include 'clientside/createcollectionevent.html' %}
+    </script>
+    <script id="joincollectionevent_template" type="text/x-jquery-tmpl">
+        {% include 'clientside/joincollectionevent.html' %}
+    </script>
+    <script id="leavecollectionevent_template" type="text/x-jquery-tmpl">
+        {% include 'clientside/leavecollectionevent.html' %}
+    </script>
+    <script id="requestdeniedevent_template" type="text/x-jquery-tmpl">
+        {% include 'clientside/requestdeniedevent.html' %}
+    </script>
+    <script id="requestjoincollectionevent_template" type="text/x-jquery-tmpl">
+        {% include 'clientside/requestjoincollectionevent.html' %}
+    </script>
+    <script id="requestrevokedevent_template" type="text/x-jquery-tmpl">
+        {% include 'clientside/requestrevokedevent.html' %}
+    </script>
+    
+    
     
     {# Send variable to javascript with recognizable path so we know what page we're on #}
     {% if js_page_path %}

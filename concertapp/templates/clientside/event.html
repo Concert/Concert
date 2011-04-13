@@ -1,0 +1,8 @@
+{% load extra_template_tags %}
+
+{# The base template for all events #}
+
+<div class="event">
+    {%verbatim%}{{tmpl(user.toJSON()) "#user_link_template"}}{%endverbatim%}
+    {% block event_text %}{% endblock %}
+</div>
