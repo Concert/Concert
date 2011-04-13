@@ -38,6 +38,16 @@ var Event = ConcertBackboneModel.extend(
         ];
     }, 
     name: 'event', 
+    /**
+     *  Override the set method so we can turn our time attribute into an actual
+     *  date object.
+     **/
+    set: function(attrs, options) {
+        if(attrs && attrs.time) {
+            attrs.time = new Date(attrs.time);
+        }
+        return ConcertBackboneModel.prototype.set.call(this, attrs, options);
+    }, 
 });
 
 var EventSet = ConcertBackboneCollection.extend(
