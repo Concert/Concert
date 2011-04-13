@@ -59,10 +59,10 @@ var OrganizePage = LoggedInPage.extend(
             modelManager: modelManager, 
         });
         
-        /* Create comments panel */
-        this.commentsPanel = new CommentsPanel({
+        /* Create events panel */
+        this.eventsPanel = new EventsPanel({
             page: this, 
-            el: $('#comment_list_panel'), 
+            el: $('#events_list_panel'), 
             modelManager: modelManager 
         });
         
