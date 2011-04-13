@@ -33,6 +33,13 @@ var Tag = ConcertBackboneModel.extend(
             {
                 attr: 'segments', 
                 collectionType: AudioSegmentSet 
+            },
+            {
+                attr: 'events', 
+                collectionType: EventSet, 
+                comparator: function(e) {
+                    return e.get('time');
+                }, 
             }
         ];
     }, 

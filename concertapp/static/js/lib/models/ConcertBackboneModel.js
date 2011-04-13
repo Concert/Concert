@@ -298,8 +298,18 @@ var ConcertBackboneModel = Backbone.Model.extend(
                                 attributes[foreignKey.attr] = model;
                             }
                             else {
-                                /* Model has not been instantiated */
-                                console.log('dont know what to do here');
+                                /* Model has not been instantiated, so create it */
+                                model = new modelType({
+                                    id: modelId
+                                });
+                                
+                                /* Add to seen instances */
+                                seenInstances.add(model);
+                                if(parentSeenInstances) {
+                                    parentSeenInstances.add(model);
+                                }
+                                
+                                attributes[foreignKey.attr] = model;
                             }
                         }
                     }

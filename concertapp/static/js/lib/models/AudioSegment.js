@@ -20,11 +20,14 @@ var AudioSegment = ConcertBackboneModel.extend(
             {
                 attr: 'tags', 
                 collectionType: TagSet
-            },/*
+            },
             {
-                attr: 'comments', 
-                collectionType: CommentSet 
-            }*/
+                attr: 'events', 
+                collectionType: EventSet,
+                comparator: function(e) {
+                    return e.get('time');
+                } 
+            }
         ];
     }, 
     foreignKeyAttributes: function() {

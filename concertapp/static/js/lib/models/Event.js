@@ -22,6 +22,18 @@ var Event = ConcertBackboneModel.extend(
             {
                 attr: 'collection', 
                 model: Collection 
+            },
+            {
+                attr: 'audioSegment', 
+                model: AudioSegment 
+            },
+            {
+                attr: 'audioFile', 
+                model: AudioFile
+            },
+            {
+                attr: 'tag', 
+                model: Tag 
             }
         ];
     }, 

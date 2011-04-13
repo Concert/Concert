@@ -51,12 +51,43 @@ post_save.connect(concert_post_save_receiver)
 # class.  Not abstract so models can have lists of events (i.e. a `User` can have
 # a m2m relationship of unread events)
 class Event(models.Model):
+    # The time this event occurred
+    time = models.DateTimeField(auto_now_add = True)
+    # Wether this event is shown to the public or not
+    active = models.BooleanField(default=True)
+    # The real class
+    realType = models.ForeignKey(ContentType, editable=False, null=True)
+    
+
+    # The collection that this event is associated with
+    collection = models.ForeignKey('Collection', related_name='events')
+
     # Every event has a user associated with it, so lets just store it here
     user = models.ForeignKey(User)
-    time = models.DateTimeField(auto_now_add = True)
-    active = models.BooleanField(default=True)
-    realType = models.ForeignKey(ContentType, editable=False, null=True)
-    collection = models.ForeignKey('Collection', related_name='events')
+
+    # This event might be related to an `AudioSegment` or an `AudioFile` object
+    audioSegment = models.ForeignKey('AudioSegment', related_name='events', null=True)
+    audioFile = models.ForeignKey('AudioFile', related_name='events', null=True)
+    # The event might also be related to a `Tag` instance
+    tag = models.ForeignKey('Tag', related_name='events', null=True)
+    
+    ###
+    #   The possible event types:
+    ###
+    EVENT_TYPES = (
+        (1, 'AudioSegmentCreatedEvent'),
+        (2, 'AudioSegmentTaggedEvent'),
+        (3, 'AudioFileUploadedEvent'),
+        (4, 'JoinCollectionEvent'),
+        (5, 'LeaveCollectionEvent'),
+        (6, 'CreateCollectionEvent'),
+        (7, 'RequestJoinCollectionEvent'),
+        (8, 'RequestDeniedEvent'),
+        (9, 'RequestRevokedEvent')
+    )
+    # The type of event that this is
+    eventType = models.IntegerField(choices=EVENT_TYPES)
+    
     
     ###
     # Only allow sub classes of Event to be saved, and when saving, determine the 
@@ -65,7 +96,7 @@ class Event(models.Model):
     ###
     def save(self, **kwargs):
         if type(self)==Event:
-            raise Exception("Event is abstract, but not through Django semantics (e.g., 'Class Meta: abstract = True' is NOT set).\nYou must use one of the Event subclasses")
+            raise Exception('Event is abstract, but not through Django semantics (e.g., \'Class Meta: abstract = True\' is NOT set).\nYou must use one of the Event subclasses')
         else:
             # Add event to all of this collection's user's unread events
             self.realType = self._get_real_type()
@@ -115,8 +146,10 @@ class Event(models.Model):
 #   When an audio segment is created.
 ###
 class AudioSegmentCreatedEvent(Event):
-    # The audio segment that was created.
-    audioSegment = models.ForeignKey("AudioSegment", related_name = "audioSegmentCreatedEvents")
+    # Set the default event type
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault('eventType', 1)
+        return super(AudioSegmentCreatedEvent, self).__init__(*args, **kwargs)
     
     def __unicode__(self):
         creator = self.user
@@ -128,10 +161,10 @@ class AudioSegmentCreatedEvent(Event):
 #   When an audio segment has been tagged.
 ###
 class AudioSegmentTaggedEvent(Event):
-    # The audio segment that was tagged
-    audioSegment = models.ForeignKey("AudioSegment", related_name = "audioSegmentTaggedEvents")
-    # The tag
-    tag = models.ForeignKey("Tag", related_name = "tagged_event")
+    # Set the default event type
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault('eventType', 2)
+        return super(AudioSegmentTaggedEvent, self).__init__(*args, **kwargs)
 
     def __unicode__(self):
         return str(self.user) + " tagged '" + str(self.audioSegment.name) + "' with tag '" + self.tag.name + "'."
@@ -140,9 +173,11 @@ class AudioSegmentTaggedEvent(Event):
 #   When an audio file was uploaded
 ###
 class AudioFileUploadedEvent(Event):
-    # The audio file that was uploaded
-    audioFile = models.ForeignKey("AudioFile", related_name = "audioFileUploadedEvents")
-
+    # Set the default event type
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault('eventType', 3)
+        return super(AudioFileUploadedEvent, self).__init__(*args, **kwargs)
+    
     def __unicode__(self):
         return str(self.audioFile.uploader) + " uploaded file '" + self.audioFile.name + "'."
 
@@ -150,6 +185,11 @@ class AudioFileUploadedEvent(Event):
 #   When a user joins a collection
 ###
 class JoinCollectionEvent(Event):
+    # Set the default event type
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault('eventType', 4)
+        return super(JoinCollectionEvent, self).__init__(*args, **kwargs)
+
     def __unicode__(self):
         return str(self.user) + " joined " + str(self.collection)        
 
@@ -157,6 +197,11 @@ class JoinCollectionEvent(Event):
 #   When a user leaves a collection
 ###
 class LeaveCollectionEvent(Event):
+    # Set the default event type
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault('eventType', 5)
+        return super(LeaveCollectionEvent, self).__init__(*args, **kwargs)
+
     def __unicode__(self):
         return str(self.user) + " left " + str(self.collection)        
 
@@ -164,6 +209,11 @@ class LeaveCollectionEvent(Event):
 #   When a collection is created.
 ###
 class CreateCollectionEvent(Event):
+    # Set the default event type
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault('eventType', 6)
+        return super(CreateCollectionEvent, self).__init__(*args, **kwargs)
+    
     def __unicode__(self):
         return str(self.user) + " created " + str(self.collection)        
     
@@ -171,6 +221,11 @@ class CreateCollectionEvent(Event):
 #   When a user requests to join a collection
 ###
 class RequestJoinCollectionEvent(Event):
+    # Set the default event type
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault('eventType', 7)
+        return super(RequestJoinCollectionEvent, self).__init__(*args, **kwargs)
+
     def __unicode__(self):
         return str(self.user) + " requested to join " + str(self.collection)
 
@@ -178,6 +233,11 @@ class RequestJoinCollectionEvent(Event):
 #   When a user gets denied from a collection.
 ###
 class RequestDeniedEvent(Event):
+    # Set the default event type
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault('eventType', 8)
+        return super(RequestDeniedEvent, self).__init__(*args, **kwargs)
+
     def __unicode__(self):
         return str(self.user) + " was denied from " + str(self.collection)
 
@@ -185,6 +245,11 @@ class RequestDeniedEvent(Event):
 #   When a user revokes her/his request to join a collection
 ###
 class RequestRevokedEvent(Event):
+    # Set the default event type
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault('eventType', 9)
+        return super(RequestRevokedEvent, self).__init__(*args, **kwargs)
+
     def __unicode__(self):
         return str(self.user) + " revoked join request from " + str(self.collection)
 
