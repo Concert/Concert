@@ -14,12 +14,12 @@ var AudioFileUploadedEvent = Event.extend(
      **/
 {
     foreignKeyAttributes: function() {
-        return [
+        return Event.prototype.foreignKeyAttributes.call(this).concat([
             {
                 attr: 'audioFile', 
                 model: AudioFile
             }
-        ];
+        ]);
     }, 
     name: 'audiofileuploadedevent', 
 });

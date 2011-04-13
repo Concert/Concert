@@ -14,12 +14,12 @@ var AudioSegmentCreatedEvent = Event.extend(
      **/
 {
     foreignKeyAttributes: function() {
-        return [
+        return Event.prototype.foreignKeyAttributes.call(this).concat([
             {
                 attr: 'audioSegment', 
                 model: AudioSegment 
             }
-        ];
+        ]);
     }, 
     name: 'audiosegmentcreatedevent', 
 });

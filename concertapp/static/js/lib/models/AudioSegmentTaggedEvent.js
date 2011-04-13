@@ -14,7 +14,7 @@ var AudioSegmentTaggedEvent = Event.extend(
      **/
 {
     foreignKeyAttributes: function() {
-        return [
+        return Event.prototype.foreignKeyAttributes.call(this).concat([
             {
                 attr: 'audioSegment', 
                 model: AudioSegment 
@@ -23,7 +23,7 @@ var AudioSegmentTaggedEvent = Event.extend(
                 attr: 'tag', 
                 model: Tag 
             }
-        ];
+        ]);
     }, 
     name: 'audiosegmenttaggedevent', 
 });

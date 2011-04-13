@@ -30,12 +30,29 @@ var ConcertBackboneCollection = Backbone.Collection.extend(
     _add : function(model, options) {
         options || (options = {});
         
-        var seenInstances = com.concertsoundorganizer.modelManager.seenInstances[this.model.prototype.name];
+        var modelManagerSeenInstances = com.concertsoundorganizer.modelManager.seenInstances;
+        var seenInstances = modelManagerSeenInstances[this.model.prototype.name];
+        
+        var parentSeenInstances = null;
+        /* If model has a parent class that is not 
+        ConcertBackboneModel */
+        var parentType = this.model.__super__;
+        if(parentType != ConcertBackboneModel.prototype) {
+            /* parent name */
+            var modelParentName = parentType.name;
+            parentSeenInstances = modelManagerSeenInstances[modelParentName];
+        }
+        
 
         /* If the model hasn't yet been instantiated */
         if(!(model instanceof Backbone.Model)) {
             /* Check with dataset manager to see if it already exists */
             var possibleDuplicate = seenInstances.get(model.id);
+            
+            /* If there was no duplicate found, try parent seen instances */
+            if(!possibleDuplicate && parentSeenInstances) {
+                possibleDuplicate = parentSeenInstances.get(model.id);
+            }
 
             /* If there is a duplicate */
             if(possibleDuplicate) {
@@ -50,6 +67,9 @@ var ConcertBackboneCollection = Backbone.Collection.extend(
                 model = new this.model(model);
                 
                 seenInstances.add(model);
+                if(parentSeenInstances) {
+                    parentSeenInstances.add(model);
+                }
             }   
         }
 
