@@ -46,6 +46,11 @@ class AudioSegmentResource(NestedResource):
     audioFile = fields.ForeignKey(AudioFileResource, 'audioFile')
     tags = fields.ManyToManyField(TagResource, 'tags', null=True)
     collection = fields.ForeignKey(CollectionResource, 'collection')
+    events = fields.ManyToManyField(
+        'concertapp.event.api.EventResource',
+        'events',
+        null=True
+    )
     
     class Meta:
         authentication = DjangoAuthentication()

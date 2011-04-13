@@ -30,6 +30,11 @@ class AudioFileResource(MyResource):
     name = fields.CharField('name')
     uploader = fields.ForeignKey('concertapp.users.api.UserResource', 'uploader')
     collection = fields.ForeignKey('concertapp.collection.api.CollectionResource', "collection")
+    events = fields.ManyToManyField(
+        'concertapp.event.api.EventResource',
+        'events',
+        null=True
+    )
 
     class Meta:
         authentication = DjangoAuthentication()

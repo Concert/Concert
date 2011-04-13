@@ -34,6 +34,13 @@ var AudioFile = ConcertBackboneModel.extend(
                 comparator: function(segment) {
                     return segment.get('beginning');
                 },  
+            },
+            {
+                attr: 'events', 
+                collectionType: EventSet, 
+                comparator: function(e) {
+                    return e.get('time');
+                }, 
             }
         ];
     }, 

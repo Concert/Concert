@@ -39,6 +39,11 @@ class TagResource(NestedResource):
     creator = fields.ForeignKey(UserResource, 'creator')
     collection = fields.ForeignKey(CollectionResource, "collection")
     segments = fields.ToManyField('concertapp.audiosegments.api.AudioSegmentResource', 'segments', null = True)
+    events = fields.ManyToManyField(
+        'concertapp.event.api.EventResource',
+        'events',
+        null=True
+    )
 
     class Meta:
         authentication = DjangoAuthentication()
