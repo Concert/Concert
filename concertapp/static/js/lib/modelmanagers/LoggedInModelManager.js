@@ -63,6 +63,21 @@ LoggedInModelManager.prototype.init = function(params) {
     /* Comments we have seen */
     this.seenInstances['comment'] = new CommentSet;
     
+    /* All events we have seen */
+    this.seenInstances['event'] = new EventSet;
+    
+    /* Events of all type */
+    this.seenInstances['audiofileuploadedevent'] = new AudioFileUploadedEventSet;
+    this.seenInstances['audiosegmentcreatedevent'] = new AudioSegmentCreatedEventSet;
+    this.seenInstances['audiosegmenttaggedevent'] = new AudioSegmentTaggedEventSet;
+    this.seenInstances['createcollectionevent'] = new CreateCollectionEventSet;
+    this.seenInstances['joincollectionevent'] = new JoinCollectionEventSet;
+    this.seenInstances['leavecollectionevent'] = new LeaveCollectionEventSet;
+    this.seenInstances['requestdeniedevent'] = new RequestDeniedEventSet;
+    this.seenInstances['requestjoincollectionevent'] = new RequestJoinCollectionEventSet;
+    this.seenInstances['requestrevokedevent'] = new RequestRevokedEventSet;
+    
+    
     /* We will keep a reference to the current user */
     this.user = new User;
     

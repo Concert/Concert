@@ -2,9 +2,9 @@
 
 {% block panel_content %}
 <p>{{ user.name }} </p>
-{% if user.get_profile.unread_events.count > 0 %}
+{% if user.get_profile.unreadEvents.count > 0 %}
 <ul id = 'recent_events'>
-  {% for event in user.get_profile.unread_events.all %}
+  {% for event in user.get_profile.unreadEvents.all %}
   {% if event.active %}
   <li>{{ event }}</li>
   {% endif %}

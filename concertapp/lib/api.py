@@ -120,7 +120,7 @@ class MyResource(ModelResource):
     # Generic nested resource stuff #
     #################################
 class NestedResource(MyResource):
-
+    
     def nested_dispatch_list(self, request, **kwargs):
         if "nested_pk" not in kwargs:
             raise Exception('Nested resource views need to be provided with a nested pk (primary key) in order to function')
@@ -206,8 +206,11 @@ class NestedResource(MyResource):
         self.is_valid(bundle, request)
         
         django_related_field = getattr(bundle.obj,self._meta.nested)
-        django_related_field.add(nested_object)     
+        django_related_field.add(nested_object)
         
+        self.create_nested_event(bundle.obj, nested_object, request)
+        
+        # Return a created response, with the entire serialized nested object
         resp = self.create_response(request,
                                     self.full_dehydrate(updated_bundle.obj)
                                     )
@@ -252,6 +255,7 @@ class NestedResource(MyResource):
             
         if function == 'post':
             non_nested_related_field.add(nested_item)
+            self.create_nested_event(non_nested_item, nested_item, request)
             return HttpCreated(location=self.get_resource_uri(non_nested_item))  
         elif function == 'delete':
             non_nested_related_field.remove(nested_item)

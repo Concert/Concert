@@ -97,15 +97,35 @@ var ConcertBackboneModel = Backbone.Model.extend(
                                 /* if this list is of objects */
                                 if(typeof(models[0]) == 'object') {
                                     /* Load in objects */
-                                    newAttr.refresh(models);                                
+                                    newAttr.refresh(models);
                                 }
                                 /* If this is a list of strings, models were
                                 sent as URLs */
                                 else if(typeof(models[0]) == 'string') {
-                                    var modelType = oneToMany.collectionType.prototype.model;
+                                    /* The class for this model */
+                                    var modelType = oneToMany.collectionType
+                                        .prototype.model;
                                     var modelName = modelType.prototype.name;
+
+                                    var modelManagerSeenInstances = 
+                                        com.concertsoundorganizer
+                                        .modelManager.seenInstances;
+                                        
+                                    /* The seen instances for this model */
+                                    var seenInstances = 
+                                        modelManagerSeenInstances[modelName];
                                     
-                                    var seenInstances = com.concertsoundorganizer.modelManager.seenInstances[modelName];
+                                    /* Seen instances of the parent model */
+                                    var parentSeenInstances = null;
+                                    /* If model has a parent class that is not 
+                                    ConcertBackboneModel */
+                                    var parentType = modelType.__super__;
+                                    if(parentType != ConcertBackboneModel.prototype) {
+                                        var modelParentName = parentType.name;
+                                        /* We need to use the parent's seen 
+                                        instances as well */
+                                        parentSeenInstances = modelManagerSeenInstances[modelParentName];
+                                    }
 
                                     /* for each model URL in list */
                                     _.each(models, function(modelUrl) {
@@ -126,12 +146,27 @@ var ConcertBackboneModel = Backbone.Model.extend(
 
                                            /* If model instance was not found */
                                            if(!model) {
-                                               /* Create new instance with just id */
-                                               model = new modelType({
-                                                   id: modelId 
-                                               });
-                                               /* add to seen instances */
-                                               seenInstances.add(model);
+                                               /* Check parent seen instances */
+                                               if(parentSeenInstances) {
+                                                   model = parentSeenInstances.get(modelId);
+                                               }
+                                               
+                                               /* If it still wasn't found */
+                                               if (!model) {
+                                                   /* Create new instance with just id */
+                                                   model = new modelType({
+                                                       id: modelId 
+                                                   });
+                                                   /* add to seen instances */
+                                                   seenInstances.add(model);
+
+                                                   /* if there is a parent seen instances
+                                                   then parentSeenInstances will be 
+                                                   set */
+                                                   if(parentSeenInstances) {
+                                                       parentSeenInstances.add(model);
+                                                   }                                                   
+                                               }
                                            }
 
                                            newAttr.add(model);
@@ -174,10 +209,27 @@ var ConcertBackboneModel = Backbone.Model.extend(
                         /* It might be an object */
                         if(typeof(model) == 'object') {
 
+                            var modelManagerSeenInstances = com.concertsoundorganizer.modelManager.seenInstances;
                             /* If so we need to check with the dataset manager */
-                            var seenInstances = com.concertsoundorganizer.modelManager.seenInstances[foreignKey.model.prototype.name];
+                            var seenInstances = modelManagerSeenInstances[foreignKey.model.prototype.name];
+                            
+                            var parentSeenInstances = null;
+                            /* If model has a parent class that is not 
+                            ConcertBackboneModel */
+                            var parentType = foreignKey.model.__super__;
+                            if(parentType != ConcertBackboneModel.prototype) {
+                                /* parent name */
+                                var modelParentName = parentType.name;
+                                parentSeenInstances = modelManagerSeenInstances[modelParentName];
+                            }
+                            
 
                             var possibleDuplicate = seenInstances.get(model.id);
+                            
+                            /* If there was no duplicate, check parent instances */
+                            if(!possibleDuplicate && parentSeenInstances) {
+                                possibleDuplicate = parentSeenInstances.get(model.id);
+                            }
 
                             /* If there is a duplicate */
                             if(possibleDuplicate) {
@@ -187,10 +239,14 @@ var ConcertBackboneModel = Backbone.Model.extend(
                                 /* Use duplicate moving forward */
                                 attributes[foreignKey.attr] = possibleDuplicate;
                             }            
-                            /* If not, create a new one */
+                            /* If no duplicate was found */
                             else {
                                 attributes[foreignKey.attr] = new foreignKey.model(model);
                                 seenInstances.add(attributes[foreignKey.attr]);
+                                
+                                if(parentSeenInstances) {
+                                    parentSeenInstances.add(attributes[foreignKey.attr]);
+                                }
                             }
 
                         }
@@ -210,13 +266,32 @@ var ConcertBackboneModel = Backbone.Model.extend(
                                 modelId = modelId[0];
                             }
                             
+                            var modelManagerSeenInstances = 
+                                com.concertsoundorganizer
+                                .modelManager.seenInstances;
+                                
                             /* The type of model */
                             var modelType = foreignKey.model;
                             
                             /* The seen instances for this model type */
-                            var seenInstances = com.concertsoundorganizer.modelManager.seenInstances[modelType.prototype.name];
-                            
+                            var seenInstances = modelManagerSeenInstances[modelType.prototype.name];
+
+                            var parentSeenInstances = null;
+                            /* If model has a parent class that is not 
+                            ConcertBackboneModel */
+                            var parentType = modelType.__super__;
+                            if(parentType != ConcertBackboneModel.prototype) {
+                                /* parent name */
+                                var modelParentName = parentType.name;
+                                parentSeenInstances = modelManagerSeenInstances[modelParentName];
+                            }
+
                             var model = seenInstances.get(modelId);
+                            
+                            /* If model wasn't found, check parent instances */
+                            if(!model && parentSeenInstances) {
+                                model = parentSeenInstances.get(modelId);
+                            }
                             
                             /* If model has already been instantiated */
                             if(model) {

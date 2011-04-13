@@ -55,6 +55,50 @@ OrganizePageModelManager.prototype.init = function(params) {
     }
     dataToLoad.tagData = tagData;
     
+    /**
+     *  Raw data for each type of event
+     **/
+    var eventDataSetNames = [
+        'audioSegmentCreatedEventData', 
+        'audioSegmentTaggedEventData', 
+        'audioFileUploadedEventData', 
+        'joinCollectionEventData', 
+        'leaveCollectionEventData', 
+        'createCollectionEventData', 
+        'requestJoinCollectionEventData', 
+        'requestDeniedEventData', 
+        'requestRevokedEventData', 
+        'requestJoinCollectionEventData'
+    ];
+    this.eventDataSetNames = eventDataSetNames;
+    
+    /* And corresponding sets to hold these events in by type */
+    var collectionEventSets = [
+        new AudioSegmentCreatedEventSet,
+        new AudioSegmentTaggedEventSet,
+        new AudioFileUploadedEventSet,
+        new JoinCollectionEventSet,
+        new LeaveCollectionEventSet,
+        new CreateCollectionEventSet,
+        new RequestJoinCollectionEventSet,
+        new RequestDeniedEventSet,
+        new RequestRevokedEventSet,
+        new RequestJoinCollectionEventSet
+    ];
+    this.collectionEventSets = collectionEventSets;
+    
+
+    for(var i = 0, il = eventDataSetNames.length; i < il; i++) {
+        var eventDataSetName = eventDataSetNames[i];
+        
+        var eventDataSet = params[eventDataSetName];
+        if(typeof(eventDataSet) == 'undefined') {
+            throw new Error('params['+eventDataSetName+'] is undefined');
+        }
+        dataToLoad[eventDataSetName] = eventDataSet;
+    }
+    
+    
     /* Here we will hold all of the audio segments for this collection for the
     same reason as above */
     this.collectionAudioSegments = new AudioSegmentSet;
@@ -93,7 +137,18 @@ OrganizePageModelManager.prototype._loadData = function() {
 
     this.collectionTags.refresh(dataToLoad.tagData);
     dataToLoad.tagData = null;
-};
+    
+    /* Load data for all events */
+    var collectionEventSets = this.collectionEventSets;
+    var eventDataSetNames = this.eventDataSetNames;
+    
+    for(var i = 0, il = eventDataSetNames.length; i < il; i++) {
+        var eventDataSetName = eventDataSetNames[i];
+        collectionEventSets[i].refresh(dataToLoad[eventDataSetName]);
+        dataToLoad[eventDataSetName] = null;
+    }
+    
+}
 
 /**
  *  Use this when files are to be selected on the user interface.
@@ -304,7 +359,9 @@ OrganizePageModelManager.prototype.tag_current_segment = function(tagName) {
         });
         
         /* Add to seen instances */
-        this.seenInstances['tag'].add(tag);        
+        this.seenInstances['tag'].add(tag);
+        /* Add to tags for this collection */
+        this.collectionTags.add(tag);
     }
 
     /* tell tag and segment about eachother */

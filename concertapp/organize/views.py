@@ -23,6 +23,7 @@ from concertapp.audio.api import *
 from concertapp.audiosegments.api import *
 from concertapp.tags.api import *
 from concertapp.comment.api import *
+from concertapp.event.api import *
 
 
 ###
@@ -51,15 +52,54 @@ def organize_collection(request, collection_id, col, user):
     singleCollectionResource = SingleCollectionResource()
     singleCollectionResource.set_collection(col)
     
-#    commentResource = CollectionSegmentCommentResource()
-#    commentResource.set_collection(col)
-        
+    # send in events of all types for this collection
+    audioSegmentCreatedEventResource = AudioSegmentCreatedEventResource()
+    audioSegmentCreatedEventResource.set_collection(col)
+    
+    audioSegmentTaggedEventResource = AudioSegmentTaggedEventResource()
+    audioSegmentTaggedEventResource.set_collection(col)
+    
+    audioFileUploadedEventResource = AudioFileUploadedEventResource()
+    audioFileUploadedEventResource.set_collection(col)
+
+    joinCollectionEventResource = JoinCollectionEventResource()
+    joinCollectionEventResource.set_collection(col)
+
+    leaveCollectionEventResource = LeaveCollectionEventResource()
+    leaveCollectionEventResource.set_collection(col)
+    
+    createCollectionEventResource = CreateCollectionEventResource()
+    createCollectionEventResource.set_collection(col)
+    
+    requestJoinCollectionEventResource = RequestJoinCollectionEventResource()
+    requestJoinCollectionEventResource.set_collection(col)
+    
+    requestDeniedEventResource = RequestDeniedEventResource()
+    requestDeniedEventResource.set_collection(col)
+    
+    requestRevokedEventResource = RequestRevokedEventResource()
+    requestRevokedEventResource.set_collection(col)
+    
+    requestJoinCollectionEventResource = RequestJoinCollectionEventResource()
+    requestJoinCollectionEventResource.set_collection(col)
+    
+    
+    
     data = {
         'files': audioResource.as_dict(request), 
         'segments': segmentResource.as_dict(request),
         'tags': tagsResource.as_dict(request), 
         'collection': singleCollectionResource.as_dict(request), 
- #       'segmentComments': commentResource.as_dict(request)
+        'audioSegmentCreatedEventData': audioSegmentCreatedEventResource.as_dict(request), 
+        'audioSegmentTaggedEventData': audioSegmentTaggedEventResource.as_dict(request), 
+        'audioFileUploadedEventData': audioFileUploadedEventResource.as_dict(request), 
+        'joinCollectionEventData': joinCollectionEventResource.as_dict(request), 
+        'leaveCollectionEventData': leaveCollectionEventResource.as_dict(request), 
+        'createCollectionEventData': createCollectionEventResource.as_dict(request), 
+        'requestJoinCollectionEventData': requestJoinCollectionEventResource.as_dict(request), 
+        'requestDeniedEventData': requestDeniedEventResource.as_dict(request), 
+        'requestRevokedEventData': requestRevokedEventResource.as_dict(request), 
+        'requestJoinCollectionEventData': requestJoinCollectionEventResource.as_dict(request)
     }
     
     return TemplateResponse(request, 'organize/organize_collection.html', {

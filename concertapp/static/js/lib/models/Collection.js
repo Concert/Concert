@@ -23,6 +23,10 @@ var Collection = ConcertBackboneModel.extend(
             {
                 attr: 'users', 
                 collectionType: UserSet
+            },
+            {
+                attr: 'events', 
+                collectionType: EventSet
             }
         ];
     },

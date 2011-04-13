@@ -5,6 +5,7 @@
 from concertapp.lib.api import NestedResource, ConcertAuthorization, DjangoAuthentication
 from concertapp.models import *
 from concertapp.users.api import *
+#from concertapp.event.api import *
 from django.conf.urls.defaults import *
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
@@ -74,9 +75,13 @@ class RequestAuthorization(ConcertAuthorization):
 #   This is the resource that is used for a collection.
 ###
 class CollectionResource(NestedResource):
-    
-    users = fields.ManyToManyField(UserResource, 'users', full=True, null = True)
-    admin = fields.ForeignKey(UserResource, 'admin', full=True)
+    users = fields.ManyToManyField(UserResource, 'users', null = True)
+    admin = fields.ForeignKey(UserResource, 'admin')
+    events = fields.ManyToManyField(
+        'concertapp.event.api.EventResource',
+        'events',
+        null=True
+    )
     
     class Meta:
         authentication = DjangoAuthentication()
