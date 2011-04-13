@@ -56,10 +56,16 @@ var Page = Backbone.Controller.extend(
      **/
     _initialize_routes: function() { 
         
-        this.route('#', 'default', function() {
-            return;
-        });
+        _.bindAll(this, this._default_route);
+        this.route('', 'default', this._default_route);
         
+        return;
+    }, 
+    
+    /**
+     *  This is the default route that will be executed.
+     **/
+    _default_route: function() {
         return;
     }, 
 });

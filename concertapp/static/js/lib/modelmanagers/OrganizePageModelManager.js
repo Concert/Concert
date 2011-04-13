@@ -25,6 +25,15 @@ OrganizePageModelManager.prototype.init = function(params) {
     var dataToLoad = this._dataToLoad;
     
     /**
+     *  Raw collection data for the current collection
+     **/
+    var collectionData = params.collectionData;
+    if(typeof(collectionData) == 'undefined') {
+        throw new Error('params.collectionData is undefined');
+    }
+    dataToLoad.collectionData = collectionData;
+    
+    /**
      *  The raw audio file data
      **/
     var fileData = params.files;
@@ -115,7 +124,7 @@ OrganizePageModelManager.prototype.init = function(params) {
     /**
      *  The current collection we are organizing.
      **/
-    this.collection = new Collection;
+    this.collection = null;
 };
 
 OrganizePageModelManager.prototype._loadData = function() {
@@ -124,8 +133,14 @@ OrganizePageModelManager.prototype._loadData = function() {
     var dataToLoad = this._dataToLoad;
     
     /* Load current collection */
-    this.collection.set(dataToLoad.collectionData);
+    var collection = this.seenInstances['collection'].get(dataToLoad.collectionData.id);
+    if(!collection) {
+        collection = new Collection();
+    }
+    collection.set(dataToLoad.collectionData);
+    this.collection = collection;
     dataToLoad.collectionData = null;
+    
     
     /* Most stuff is watching both files and widgets, so do this silently */
     this.collectionAudioFiles.refresh(dataToLoad.fileData, {silent: true});

@@ -89,7 +89,7 @@ def organize_collection(request, collection_id, col, user):
         'files': audioResource.as_dict(request), 
         'segments': segmentResource.as_dict(request),
         'tags': tagsResource.as_dict(request), 
-        'collection': singleCollectionResource.as_dict(request), 
+        'collectionData': singleCollectionResource.as_dict(request)[0], 
         'audioSegmentCreatedEventData': audioSegmentCreatedEventResource.as_dict(request), 
         'audioSegmentTaggedEventData': audioSegmentTaggedEventResource.as_dict(request), 
         'audioFileUploadedEventData': audioFileUploadedEventResource.as_dict(request), 

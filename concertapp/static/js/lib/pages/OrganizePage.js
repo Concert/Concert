@@ -108,8 +108,16 @@ var OrganizePage = LoggedInPage.extend(
                 files: [file] 
             });
         });
-         
+    }, 
+    
+    /**
+     *  The default route.
+     **/
+    _default_route: function() {
+        LoggedInPage.prototype._default_route.call(this);
         
+        /* Tell events panel to load events from collection */
+        this.eventsPanel.render(this.modelManager.collection.get('events'));
     }, 
     
     /**

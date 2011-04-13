@@ -42,14 +42,11 @@ LoggedInModelManager.prototype.init = function(params) {
     /* Any page that has collections represented will require a master list of collections we have seen */
     this.seenInstances['collection'] = new CollectionSet;
 
-
     /* Master list of requests */
     this.seenInstances['request'] = new RequestSet;
 
-
     /* We will need to maintain a list of users that we have seen */
     this.seenInstances['user'] = new UserSet;
-    
     
     /* Audio objects that we have seen */
     this.seenInstances['audiofile'] = new AudioFileSet;
