@@ -39,7 +39,6 @@ var AutocompleteListInputComponent = Component.extend(
      **/
     TOKEN_SPLITTER: /\s*,\s*|\s{2,}/,
     SPACE_MATCH: /^\s*$/,
-    // hello my name
     
     /**
      *  Called when there is a keyup event on the input element.
