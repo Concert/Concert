@@ -112,7 +112,49 @@ class MyResource(ModelResource):
         resp['location'] = self.get_resource_uri(updated_bundle)
         resp.code = 201
 
-        return resp                              
+        return resp      
+    
+    ###
+    #   overriding this to add a single line, so we skip the events field.
+    ###
+    def save_m2m(self, bundle):
+        """
+        Handles the saving of related M2M data.
+
+        Due to the way Django works, the M2M data must be handled after the
+        main instance, which is why this isn't a part of the main ``save`` bits.
+
+        Currently slightly inefficient in that it will clear out the whole
+        relation and recreate the related data as needed.
+        """
+        for field_name, field_object in self.fields.items():
+            
+            # Here is our addition, where we are skipping all save operations
+            # on the events field.  Yes I know, hackish.
+            if(field_name == 'events'):
+                continue
+
+            if not getattr(field_object, 'is_m2m', False):
+                continue
+
+            if not field_object.attribute:
+                continue
+
+            # Get the manager.
+            related_mngr = getattr(bundle.obj, field_object.attribute)
+
+            if hasattr(related_mngr, 'clear'):
+                # Clear it out, just to be safe.
+                related_mngr.clear()
+
+            related_objs = []
+
+            for related_bundle in bundle.data[field_name]:
+                related_bundle.obj.save()
+                related_objs.append(related_bundle.obj)
+
+            related_mngr.add(*related_objs)
+                        
 
 
 
