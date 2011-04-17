@@ -39,7 +39,7 @@ class ConcertAuthorization(Authorization):
 ###
 class MyResource(ModelResource):
     
-    class Meta:
+    class Meta():
         
         # incase we need to pass around the request in awkward ways.
         request = None
@@ -154,7 +154,6 @@ class MyResource(ModelResource):
                 related_objs.append(related_bundle.obj)
 
             related_mngr.add(*related_objs)
-                        
 
 
 
@@ -162,6 +161,9 @@ class MyResource(ModelResource):
     # Generic nested resource stuff #
     #################################
 class NestedResource(MyResource):
+    
+    class Meta(MyResource.Meta):
+        pass
     
     def nested_dispatch_list(self, request, **kwargs):
         if "nested_pk" not in kwargs:

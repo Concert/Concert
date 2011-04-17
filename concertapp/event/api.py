@@ -25,6 +25,9 @@ class EventResource(MyResource):
     user = fields.ForeignKey(UserResource, 'user')
     time = fields.DateTimeField('time')
     collection = fields.ForeignKey(CollectionResource, 'collection')
+    
+    class Meta():
+        queryset = Event.objects.all()
 
 ###
 #   The events for a single collection

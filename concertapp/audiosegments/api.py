@@ -52,7 +52,7 @@ class AudioSegmentResource(NestedResource):
         null=True
     )
     
-    class Meta:
+    class Meta(NestedResource.Meta):
         authentication = DjangoAuthentication()
         authorization = AudioSegmentAuthorization()
         queryset = AudioSegment.objects.all()

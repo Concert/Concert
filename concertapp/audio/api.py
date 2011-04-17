@@ -36,7 +36,7 @@ class AudioFileResource(MyResource):
         null=True
     )
 
-    class Meta:
+    class Meta(MyResource.Meta):
         authentication = DjangoAuthentication()
         authorization = AudioFileAuthorization()
         
