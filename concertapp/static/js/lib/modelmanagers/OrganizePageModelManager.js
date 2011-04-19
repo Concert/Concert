@@ -57,12 +57,12 @@ OrganizePageModelManager.prototype.init = function(params) {
     */
     /**
      *  Raw tag data
-     **/
+     *
     var tagData = params.tags;
     if(typeof(tagData) == 'undefined') {
         throw new Error('params.tags is undefined');
     }
-    dataToLoad.tagData = tagData;
+    dataToLoad.tagData = tagData;*/
     
     /**
      *  Raw data for each type of event
@@ -109,11 +109,11 @@ OrganizePageModelManager.prototype.init = function(params) {
     
     
     /* Here we will hold all of the audio segments for this collection for the
-    same reason as above */
+    same reason as above 
     this.collectionAudioSegments = new AudioSegmentSet;
-    
-    /* Here are all of the tags for this collection */
-    this.collectionTags = new TagSet;
+    */
+    /* Here are all of the tags for this collection 
+    this.collectionTags = new TagSet;*/
 
     /* Here we will store the audio segments and files that are selected (from the
     audio list panel).  Currently only one segment/file can be selected at once, so 
@@ -141,17 +141,6 @@ OrganizePageModelManager.prototype._loadData = function() {
     this.collection = collection;
     dataToLoad.collectionData = null;
     
-    
-    /* Most stuff is watching both files and widgets, so do this silently */
-//    this.collectionAudioFiles.refresh(dataToLoad.fileData, {silent: true});
-    dataToLoad.fileData = null;
-
-    var collectionAudioSegments = this.collectionAudioSegments;
-//    collectionAudioSegments.refresh(dataToLoad.segmentData);
-    dataToLoad.segmentData = null;
-
-    this.collectionTags.refresh(dataToLoad.tagData);
-    dataToLoad.tagData = null;
     
     /* Load data for all events */
     var collectionEventSets = this.collectionEventSets;

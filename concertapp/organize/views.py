@@ -40,9 +40,6 @@ from concertapp.event.api import *
 @user_is_member_and_collection_exists
 def organize_collection(request, collection_id, col, user):
     
-    tagsResource = CollectionTagResource()
-    tagsResource.set_collection(col)
-    
     singleCollectionResource = SingleCollectionResource()
     singleCollectionResource.set_collection(col)
     
@@ -80,7 +77,6 @@ def organize_collection(request, collection_id, col, user):
     
     
     data = {
-        'tags': tagsResource.as_dict(request), 
         'collectionData': singleCollectionResource.as_dict(request)[0], 
         'audioSegmentCreatedEventData': audioSegmentCreatedEventResource.as_dict(request), 
         'audioSegmentTaggedEventData': audioSegmentTaggedEventResource.as_dict(request), 
