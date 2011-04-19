@@ -95,8 +95,8 @@ var OverviewWaveformPanel = WaveformPanel.extend(
      *
      *  @param  {AudioFile}    selectedAudioFile    -   The audio file instance
      **/
-    audio_file_selected: function(selectedAudioFile) {
-        WaveformPanel.prototype.audio_file_selected.call(this, selectedAudioFile);
+    audio_file_selected: function(e, selectedAudioFile) {
+        WaveformPanel.prototype.audio_file_selected.call(this, e, selectedAudioFile);
         
         this._load_waveform_image(
             selectedAudioFile.get_waveform_src(10),
@@ -118,8 +118,8 @@ var OverviewWaveformPanel = WaveformPanel.extend(
      *
      *  @param  {AudioSegment}    selectedAudioSegment    - The audio segment
      **/
-    audio_segment_selected: function(selectedAudioSegment) {
-        WaveformPanel.prototype.audio_segment_selected.call(this, selectedAudioSegment);
+    audio_segment_selected: function(e, selectedAudioSegment) {
+        WaveformPanel.prototype.audio_segment_selected.call(this, e, selectedAudioSegment);
         
         var audioFile = selectedAudioSegment.get('audioFile');
         

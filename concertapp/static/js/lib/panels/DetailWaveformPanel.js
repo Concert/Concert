@@ -171,15 +171,14 @@ var DetailWaveformPanel = WaveformPanel.extend(
 
 
         this.set_zoom_level(10);
-
     },
     /**
      *  Called from page when an audio file has been selected.
      *
      *  @param  {AudioFile}    selectedAudioFile    -   The selected file.
      **/
-    audio_file_selected: function(selectedAudioFile) {
-        WaveformPanel.prototype.audio_file_selected.call(this, selectedAudioFile);
+    audio_file_selected: function(e, selectedAudioFile) {
+        WaveformPanel.prototype.audio_file_selected.call(this, e, selectedAudioFile);
         
         /* Load top content with audio file information */
         this.topContainer.html(
@@ -217,8 +216,8 @@ var DetailWaveformPanel = WaveformPanel.extend(
      *
      *  @param  {AudioSegment}    selectedAudioSegment    - The selected segment.
      **/
-    audio_segment_selected: function(selectedAudioSegment) {
-        WaveformPanel.prototype.audio_segment_selected.call(this, selectedAudioSegment);
+    audio_segment_selected: function(e, selectedAudioSegment) {
+        WaveformPanel.prototype.audio_segment_selected.call(this, e, selectedAudioSegment);
         
         /* Load top of panel with audio segment information */
         this.topContainer.html(
