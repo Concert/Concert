@@ -21,22 +21,22 @@ var AudioListPanel = Panel.extend(
         
         /**
          *  The set of files we're watching for this panel
-         **/
+         *
         var files = params.files;
         if(typeof(files) == 'undefined') {
             throw new Error('params.files is undefined');
         }
         this.files = files;
-
+*/
         /**
          *  The set of segments we're watching for this panel
-         **/
+         *
         var segments = params.segments;
         if(typeof(segments) == 'undefined') {
             throw new Error('params.segments is undefined');
         }
         this.segments = segments;
-
+*/
         
         /**
          *  The template for each file in the list
@@ -92,8 +92,6 @@ var AudioListPanel = Panel.extend(
         files.bind('refresh', this.render);
         files.bind('add', this.render);
         files.bind('remove', this.render);
-        
-        
     }, 
     
     /**

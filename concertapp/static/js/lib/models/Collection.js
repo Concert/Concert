@@ -27,6 +27,14 @@ var Collection = ConcertBackboneModel.extend(
             {
                 attr: 'events', 
                 collectionType: EventSet
+            },
+            {
+                attr: 'files', 
+                collectionType: AudioFileSet 
+            },
+            {
+                attr: 'segments', 
+                collectionType: AudioSegmentSet
             }
         ];
     },

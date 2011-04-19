@@ -35,7 +35,7 @@ OrganizePageModelManager.prototype.init = function(params) {
     
     /**
      *  The raw audio file data
-     **/
+     *
     var fileData = params.files;
     if(typeof(fileData) == 'undefined') {
         throw new Error('params.files is undefined');
@@ -43,18 +43,18 @@ OrganizePageModelManager.prototype.init = function(params) {
     dataToLoad.fileData = fileData;
     
     /* Here we will hold the audio files for this collection (just in case others
-    are seen) */
+    are seen) 
     this.collectionAudioFiles = new AudioFileSet;
     
     /**
      *  The raw audio segment data
-     **/
+     *
     var segmentData = params.segments;
     if(typeof(segmentData) == 'undefined') {
         throw new Error('params.segments is undefined');
     }
     dataToLoad.segmentData = segmentData;
-    
+    */
     /**
      *  Raw tag data
      **/
@@ -143,11 +143,11 @@ OrganizePageModelManager.prototype._loadData = function() {
     
     
     /* Most stuff is watching both files and widgets, so do this silently */
-    this.collectionAudioFiles.refresh(dataToLoad.fileData, {silent: true});
+//    this.collectionAudioFiles.refresh(dataToLoad.fileData, {silent: true});
     dataToLoad.fileData = null;
 
     var collectionAudioSegments = this.collectionAudioSegments;
-    collectionAudioSegments.refresh(dataToLoad.segmentData);
+//    collectionAudioSegments.refresh(dataToLoad.segmentData);
     dataToLoad.segmentData = null;
 
     this.collectionTags.refresh(dataToLoad.tagData);
@@ -243,7 +243,7 @@ OrganizePageModelManager.prototype.select_segment = function(segment) {
     
     
     /* remove previously selected segments and select new one */
-    this.selectedAudioSegments.refresh(segment);
+    this.selectedAudioSegments.refresh([segment]);
     
     /* Throw "selected_segment" event */
     $(this).trigger('select_segment', segment);
@@ -272,7 +272,7 @@ OrganizePageModelManager.prototype.select_file = function(file) {
     
     
     /* Remove previously selected files and select new one */
-    this.selectedAudioFiles.refresh(file);
+    this.selectedAudioFiles.refresh([file]);
     
     $(this).trigger('select_file', file);
 };
