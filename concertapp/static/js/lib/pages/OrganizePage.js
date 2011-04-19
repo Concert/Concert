@@ -94,7 +94,6 @@ var OrganizePage = LoggedInPage.extend(
          *  Route for selecting a segment, #segment/5 will select segment with id 5
          **/
         this.route('segment/:segment_id', 'select_segment', function(segment_id) {
-            console.log('route for selecting a segment');
             
             /* Get segment by id */
             var segment = this.modelManager.seenInstances['audiosegment'].get(segment_id);
@@ -108,7 +107,6 @@ var OrganizePage = LoggedInPage.extend(
          *  Route for selecting an audio file, #file/5 will select file with id 5
          **/
         this.route('file/:file_id', 'select_file', function(file_id) {
-            console.log('route for selecting a file');
             
             /* get file by id */
             var file = this.modelManager.seenInstances['audiofile'].get(file_id);
@@ -211,7 +209,6 @@ var OrganizePage = LoggedInPage.extend(
      *  selected.
      **/
     select_audio_file: function(selectedAudioFile) {
-        console.log("select_audio_file called");
         /* This is where loading notification should be */
         
         /* Clear everything currently selected */
@@ -247,7 +244,6 @@ var OrganizePage = LoggedInPage.extend(
      *  that was selected.
      **/
     select_audio_segment: function(selectedAudioSegment) {
-        console.log("select_audio_segment called");
         
         /* Clear everything currently selected */
         this._deselect_all();
