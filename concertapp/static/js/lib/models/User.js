@@ -14,7 +14,15 @@ var User = ConcertBackboneModel.extend(
 	 *	@scope	User.prototype
 	 **/
 {
-    name: 'user' 
+    name: 'user',
+    oneToManyAttributes: function() {
+        return [
+            {
+                attr: 'collections', 
+                collectionType: CollectionSet
+            }
+        ];
+    }, 
 });
 
 /**

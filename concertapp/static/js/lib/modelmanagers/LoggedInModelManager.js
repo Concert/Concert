@@ -28,25 +28,22 @@ LoggedInModelManager.prototype.init = function(params) {
     }
     dataToLoad['userData'] = userData;
     
-    /* Every page needs the collections that this user is a member of */
-    var userMemberCollectionsData = params.memberCollectionsData;
-    if(typeof(userMemberCollectionsData) == 'undefined') {
-        throw new Error('params.memberCollectionsData is undefined');
-    }
-    dataToLoad['userMemberCollectionsData'] = userMemberCollectionsData;
-    
-    /* Now lets create our Backbone collection of Concert Collections for which
-        the current user is a member. */
-    this.userMemberCollections = new CollectionSet;
-    
     /* Any page that has collections represented will require a master list of collections we have seen */
     this.seenInstances['collection'] = new CollectionSet;
 
     /* Master list of requests */
     this.seenInstances['request'] = new RequestSet;
-
+    
+    /**
+     *  The user who is currently logged in.
+     **/
+    var user = new User;
+    this.user = user;
+    
     /* We will need to maintain a list of users that we have seen */
-    this.seenInstances['user'] = new UserSet;
+    this.seenInstances['user'] = new UserSet([user], {
+        seenInstances: true 
+    });
     
     /* Audio objects that we have seen */
     this.seenInstances['audiofile'] = new AudioFileSet;
@@ -74,10 +71,6 @@ LoggedInModelManager.prototype.init = function(params) {
     this.seenInstances['requestjoincollectionevent'] = new RequestJoinCollectionEventSet;
     this.seenInstances['requestrevokedevent'] = new RequestRevokedEventSet;
     
-    
-    /* We will keep a reference to the current user */
-    this.user = new User;
-    
 };
 
 /**
@@ -92,16 +85,12 @@ LoggedInModelManager.prototype._loadData = function() {
      *  Load user info
      **/
     var user = this.user;
+    /* First just update id so everything will see that this user exists in 
+    seenInstances */
+    user.set({id: dataToLoad['userData'].id});
+    /* now set rest of attributes */
     user.set(dataToLoad['userData']);
-    this.seenInstances['user'].add(user);
     /* done with user data */
     dataToLoad['userData'] = null;
-    
-    /**
-     *  Load collection info
-     **/
-    var userMemberCollections = this.userMemberCollections;
-    userMemberCollections.refresh(dataToLoad['userMemberCollectionsData']);
-    dataToLoad['userMemberCollectionsData'] = null;
     
 };

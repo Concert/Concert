@@ -14,9 +14,8 @@ from concertapp.collection.api import *
 @login_required
 def logged_in_view(request):
     user = request.user
-    
-    
-    return TemplateResponse(request, 'dashboard/dashboard.html', {
+
+    return TemplateResponse(request, 'logged_in/logged_in.html', {
         'page_name': 'Concert',
         'js_page_path': '/',
     })

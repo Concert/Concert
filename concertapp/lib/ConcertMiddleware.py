@@ -1,7 +1,7 @@
 from django.core.context_processors import csrf
 from concertapp.collection.api import MemberCollectionResource
 from django.utils import simplejson
-from concertapp.users.api import UserResource
+from concertapp.users.api import UserWithCollectionsResource
 
 
 ###
@@ -21,15 +21,10 @@ class ConcertBootstrapDataMiddleware(object):
         # If the user is logged in, we will need the following data on the page.
         if user.is_authenticated():                
             # Data for user object
-            userResource = UserResource()
-            dehydratedUser = userResource.full_dehydrate(obj=user)
-            response.context_data['data']['userData'] = dehydratedUser.data
+            userResource = UserWithCollectionsResource()
+            userResource.set_user(user)
+            response.context_data['data']['userData'] = userResource.as_dict(request)[0]
             
-            # Data for collections to which the user is a member
-            r = MemberCollectionResource()
-            r.set_user(user)
-            response.context_data['data']['memberCollectionsData'] = r.as_dict(request)
-                        
         # combine above data, and any data that the view sent in into a single json 
         # object.
         response.context_data['data'] = simplejson.dumps(response.context_data['data'])

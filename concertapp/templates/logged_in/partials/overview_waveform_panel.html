@@ -1,0 +1,24 @@
+{% extends 'partials/panel.html' %}
+
+{% block header_content %}
+{% endblock %}
+
+{% block panel_content %}
+<div id="overview_waveform_panel_top_wrap">
+	<div id="overview_waveform_panel_top" class="overview_waveform_panel_top darkNoise">
+		<img id="detailed_waveform_image" class="waveform_image" width="958" height="58"/>
+		<div id="overview_waveform_panel_playhead" class="playhead">
+		    {# playhead will be injected here #}
+		</div>
+		<div id="overview_waveform_panel_highlight_container" class="highlight_container">
+		    <div id="overview_waveform_panel_highlight" class="highlight disabled">
+		        <div id="detail_waveform_panel_left_handle" class="leftHandle"></div>
+                <div id="detail_waveform_panel_right_handle" class="rightHandle"></div>
+		    </div>
+		</div>
+	</div>
+</div>
+<div id="overview_waveform_panel_bottom" class="overview_waveform_panel_bottom">
+    {# segment bars will be injected here #}
+</div>
+{% endblock %}

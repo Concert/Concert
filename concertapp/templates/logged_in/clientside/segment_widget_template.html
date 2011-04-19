@@ -1,0 +1,20 @@
+{% extends 'logged_in/clientside/audiolist_widget_template.html' %}
+{% load extra_template_tags %}
+
+{% block title_text_href %}
+    {% verbatim %}#segment/${id}{% endverbatim %}
+{% endblock %}
+
+{% block info %}
+    {% verbatim %}
+        <div class="info">
+        	${seconds_to_timecode(end-beginning)} <span class="small_text">of</span> ${audioFile.get("name")} <span class="small_text">selected by</span> ${creator.get("username")}	
+        </div>
+    {% endverbatim %}
+{% endblock %}
+
+
+{% block bottom %}
+        <div class="bottom">
+        </div>
+{% endblock %}

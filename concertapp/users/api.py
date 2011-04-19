@@ -7,9 +7,7 @@ from tastypie import fields
 from tastypie.bundle import Bundle
 from concertapp.models import *
 from django.contrib.auth.models import User
-from concertapp.lib.api import ConcertAuthorization, DjangoAuthentication
-
-from concertapp.lib.api import MyResource
+from concertapp.lib.api import ConcertAuthorization, DjangoAuthentication, MyResource
 
 ###
 #   This field is used on the user model to transparently add stuff from the
@@ -51,10 +49,14 @@ class UserResource(MyResource):
         authorization = ConcertAuthorization()
         fields = ['id', 'username',]
 
-###
-#   This resource is for a single user.
-###        
-class SingleUserResource(UserResource):
+class UserWithCollectionsResource(UserResource):
+    # Collections that the user is a member of
+    collections = fields.ManyToManyField(
+        'concertapp.collection.api.CollectionResource',
+        'collections',
+        null=True,
+        full=True
+    )
     
     class Meta(UserResource.Meta):
         # The user object
@@ -65,10 +67,10 @@ class SingleUserResource(UserResource):
     ###
     def set_user(self, user):
         self._meta.user = user
-        
+
     def apply_authorization_limits(self, request, object_list):
         user = self._meta.user
-        
-        object_list = super(SingleUserResource, self).apply_authorization_limits(request, [user])
-        
+
+        object_list = super(UserWithCollectionsResource, self).apply_authorization_limits(request, [user])
+
         return object_list

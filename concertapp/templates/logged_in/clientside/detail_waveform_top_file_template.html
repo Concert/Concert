@@ -1,0 +1,16 @@
+{% extends 'logged_in/clientside/detail_waveform_top_template.html' %}
+{% load extra_template_tags %}
+
+{% block verb %}uploaded{% endblock %}
+
+{% block username %}
+    {% verbatim %}
+        ${uploader.get("username")}
+    {% endverbatim %}
+{% endblock %}
+
+{% block right %}
+    {% verbatim %}
+        <b>${duration} seconds</b>
+    {% endverbatim %}
+{% endblock %}

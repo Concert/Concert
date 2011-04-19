@@ -3,17 +3,8 @@
  *  @author     Colin Sullivan <colinsul [at] gmail.com>
  **/ 
 
-
 /**
- *  This class will run certain functionality that must be run on every page where
- *  a user is logged in.
- *	@class
- *  @extends    Page
- **/
-/**
- *  This class includes functionality that runs on each page that the user is logged
- *  in.
- *  @class
+ *  @class  The main controller for when a user is logged into Concert.
  *  @extends    Page
  **/
 var LoggedInPage = Page.extend(
@@ -35,13 +26,16 @@ var LoggedInPage = Page.extend(
     _initializeViews: function() {
         Page.prototype._initializeViews.call(this);
         
-        /*  Create the globalOptionsPanel (the buttons and menus at the top of every 
-            page) */
+        /* Create the globalOptionsPanel (the buttons and menus at the top of 
+        the page) */
         this.globalOptionsPanel = new GlobalOptionsPanel({
             page: this, 
             el: $('#global_options_panel'),
-            userMemberCollections: this.modelManager.userMemberCollections
+            userMemberCollections: this.modelManager.user.get('collections')
         });
+        
+        
+        
     },
     _initialize_routes: function() {
         Page.prototype._initialize_routes.call(this);

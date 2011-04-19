@@ -67,20 +67,22 @@ var Collection = ConcertBackboneModel.extend(
     leave: function() {
         var modelManager = com.concertsoundorganizer.modelManager;
         var user = modelManager.user;
-        var userMemberCollections = modelManager.userMemberCollections;
         /* Remove user and save */
         this.get('users').remove(user, {
             error_message: 'An error occurred while leaving the collection',
-            error_callback: function(me, userMemberCollections, removedUser) {
+            /* If there was an error */
+            error_callback: function(me, removedUser) {
                 return function() {
+                    /* Put user back */
                     me.get('users').add(removedUser);
-                    userMemberCollections.add(me);
+                    /* Put collection back in user's list */
+                    removedUser.get('collections').add(me);
                 };
-            }(this, userMemberCollections, user),
+            }(this, user),
             save: true
         });
         /* Remove collection from memberCollections */
-        userMemberCollections.remove(this);
+        user.get('collections').remove(this);
         
     },
     

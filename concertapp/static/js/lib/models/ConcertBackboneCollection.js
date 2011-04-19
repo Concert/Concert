@@ -16,6 +16,11 @@ var ConcertBackboneCollection = Backbone.Collection.extend(
     
     initialize: function(models, options) {
         this.relatedModel = options.relatedModel;
+        
+        /**
+         *  If we are a seenInstances collection.
+         **/
+        this.seenInstances = options.seenInstances || false;
     }, 
     
     /**
@@ -30,47 +35,50 @@ var ConcertBackboneCollection = Backbone.Collection.extend(
     _add : function(model, options) {
         options || (options = {});
         
-        var modelManagerSeenInstances = com.concertsoundorganizer.modelManager.seenInstances;
-        var seenInstances = modelManagerSeenInstances[this.model.prototype.name];
-        
-        var parentSeenInstances = null;
-        /* If model has a parent class that is not 
-        ConcertBackboneModel */
-        var parentType = this.model.__super__;
-        if(parentType != ConcertBackboneModel.prototype) {
-            /* parent name */
-            var modelParentName = parentType.name;
-            parentSeenInstances = modelManagerSeenInstances[modelParentName];
-        }
-        
+        /* If we are not a seenInstances collection */
+        if(this.seenInstances) {
+            var modelManagerSeenInstances = com.concertsoundorganizer.modelManager.seenInstances;
+            var seenInstances = modelManagerSeenInstances[this.model.prototype.name];
 
-        /* If the model hasn't yet been instantiated */
-        if(!(model instanceof Backbone.Model)) {
-            /* Check with dataset manager to see if it already exists */
-            var possibleDuplicate = seenInstances.get(model.id);
-            
-            /* If there was no duplicate found, try parent seen instances */
-            if(!possibleDuplicate && parentSeenInstances) {
-                possibleDuplicate = parentSeenInstances.get(model.id);
+            var parentSeenInstances = null;
+            /* If model has a parent class that is not 
+            ConcertBackboneModel */
+            var parentType = this.model.__super__;
+            if(parentType != ConcertBackboneModel.prototype) {
+                /* parent name */
+                var modelParentName = parentType.name;
+                parentSeenInstances = modelManagerSeenInstances[modelParentName];
             }
 
-            /* If there is a duplicate */
-            if(possibleDuplicate) {
-                /* Send the attributes to the duplicate incase there are new ones */
-                possibleDuplicate.set(model);
 
-                /* Use duplicate moving forward */
-                model = possibleDuplicate;
-            }
-            /* If there is not a duplicate, create new instance */
-            else {
-                model = new this.model(model);
-                
-                seenInstances.add(model);
-                if(parentSeenInstances) {
-                    parentSeenInstances.add(model);
+            /* If the model hasn't yet been instantiated */
+            if(!(model instanceof Backbone.Model)) {
+                /* Check with dataset manager to see if it already exists */
+                var possibleDuplicate = seenInstances.get(model.id);
+
+                /* If there was no duplicate found, try parent seen instances */
+                if(!possibleDuplicate && parentSeenInstances) {
+                    possibleDuplicate = parentSeenInstances.get(model.id);
                 }
-            }   
+
+                /* If there is a duplicate */
+                if(possibleDuplicate) {
+                    /* Send the attributes to the duplicate incase there are new ones */
+                    possibleDuplicate.set(model);
+
+                    /* Use duplicate moving forward */
+                    model = possibleDuplicate;
+                }
+                /* If there is not a duplicate, create new instance */
+                else {
+                    model = new this.model(model);
+
+                    seenInstances.add(model);
+                    if(parentSeenInstances) {
+                        parentSeenInstances.add(model);
+                    }
+                }   
+            }
         }
 
         model = Backbone.Collection.prototype._add.call(this, model, options);

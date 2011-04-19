@@ -87,9 +87,17 @@ var ConcertBackboneModel = Backbone.Model.extend(
                     /* If the argument is not of the proper type */
                     if(!(models instanceof oneToMany.collectionType)) {
                         
-                        /* Create one of the proper type */
-                        var newAttr = this._createOneToManyAttribute(oneToMany);
-                        
+                        /* Get related collection */
+                        var newAttr = this.get(oneToMany.attr);
+                        /* If it hasn't been created for some reason */
+                        if(!this.get(oneToMany.attr)) {
+                            /* Create it */
+                            newAttr = this._createOneToManyAttribute(oneToMany);
+                            /* save new collection attribute */
+                            attributes[oneToMany.attr] = newAttr;
+                            
+                        }
+
                         /* If it is a list */
                         if(models instanceof Array) {
                             /* If the list is not empty */
@@ -178,8 +186,6 @@ var ConcertBackboneModel = Backbone.Model.extend(
                                 newAttr.refresh([]);
                             }
                             
-                            /* save new collection attribute */
-                            attributes[oneToMany.attr] = newAttr;
                             
                         }
                         /* It is something else */
