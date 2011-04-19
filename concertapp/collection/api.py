@@ -75,7 +75,7 @@ class RequestAuthorization(ConcertAuthorization):
 #   This is the resource that is used for a collection.
 ###
 class CollectionResource(NestedResource):
-    users = fields.ManyToManyField(UserResource, 'users', null = True)
+    users = fields.ManyToManyField(UserResource, 'users', null = True, full=True)
     admin = fields.ForeignKey(UserResource, 'admin')
     events = fields.ManyToManyField(
         'concertapp.event.api.EventResource',
