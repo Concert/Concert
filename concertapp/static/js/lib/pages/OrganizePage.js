@@ -77,6 +77,13 @@ var OrganizePage = LoggedInPage.extend(
                 }
             };
         }(this));
+        
+        /* Here we will store the audio segments and files that are selected (from the
+        audio list panel).  Currently only one segment/file can be selected at once, so 
+        the total cardinality of these sets will be 1. */
+        this.selectedAudioSegments = new AudioSegmentSet;
+        this.selectedAudioFiles = new AudioFileSet;
+
     }, 
     
     _initialize_routes: function() {
@@ -87,6 +94,8 @@ var OrganizePage = LoggedInPage.extend(
          *  Route for selecting a segment, #segment/5 will select segment with id 5
          **/
         this.route('segment/:segment_id', 'select_segment', function(segment_id) {
+            console.log('route for selecting a segment');
+            
             /* Get segment by id */
             var segment = this.modelManager.seenInstances['audiosegment'].get(segment_id);
 
@@ -99,6 +108,8 @@ var OrganizePage = LoggedInPage.extend(
          *  Route for selecting an audio file, #file/5 will select file with id 5
          **/
         this.route('file/:file_id', 'select_file', function(file_id) {
+            console.log('route for selecting a file');
+            
             /* get file by id */
             var file = this.modelManager.seenInstances['audiofile'].get(file_id);
             
@@ -119,6 +130,27 @@ var OrganizePage = LoggedInPage.extend(
     }, 
     
     /**
+     *  Called before anything is to be selected.  Handles deselecting of everything.
+     **/
+    _deselect_all: function() {
+        var selectedAudioSegments = this.selectedAudioSegments;
+        var selectedAudioFiles = this.selectedAudioFiles;
+
+        /* Deselect everything */
+        selectedAudioSegments.each(function(seg){
+            seg.set({
+                selected: false 
+            });
+        });
+        selectedAudioFiles.each(function(file){
+            file.set({
+                selected: false 
+            });
+        });
+
+    },
+    
+    /**
      *  Ensure that given audio models are shown as selected on the UI.  Takes
      *  arrays in case we need to select multiple files/segments in the future.
      *
@@ -126,12 +158,9 @@ var OrganizePage = LoggedInPage.extend(
      *  @param  {Array}     params.segments -   The selected segments
      **/
     select_audio: function(params) {
-        /* Tell model manager so we can maintain list of instances */
-        this.modelManager.select_audio(params);
-        
+                
         /* Clear any highlights */
         this.clear_waveform_highlight();
-        
         
         /* Determine what audio was selected */
         var files = params.files;
@@ -140,12 +169,12 @@ var OrganizePage = LoggedInPage.extend(
         segments || (segments = []);
         
         /* If one segment was selected */
-        if(segments.length == 1) {
+        if(segments.length == 1 && files.length == 0) {
             /* Selecting an audio segment */
             this.select_audio_segment(segments[0]);
         }
         /* If one file was selected */
-        else if(files.length == 1) {
+        else if(files.length == 1 && segments.length == 0) {
             /* Selecting a file */
             this.select_audio_file(files[0]);
         }
@@ -159,7 +188,7 @@ var OrganizePage = LoggedInPage.extend(
         }
         /* If more than one segment was selected */
         else if(segments.length > 1) {
-            throw new Error('Not implemented selecting multiple segments');
+            throw new Error('Multiple selection not supported currently.');
         }
         else {
             throw new Error('Invalid parameters for select_audio');
@@ -182,16 +211,33 @@ var OrganizePage = LoggedInPage.extend(
      *  selected.
      **/
     select_audio_file: function(selectedAudioFile) {
+        console.log("select_audio_file called");
         /* This is where loading notification should be */
+        
+        /* Clear everything currently selected */
+        this._deselect_all();
+
+        /* if we were just passed an id */
+        if(typeof(selectedAudioFile) == 'number') {
+            /* First retrieve file instance */
+            selectedAudioFile = this.modelManager.seenInstances['audiofile'].get(selectedAudioFile);
+        }
+
+        selectedAudioFile.set({
+            selected: true
+        });
+
+        /* Remove previously selected files and select new one */
+        this.selectedAudioFiles.refresh([selectedAudioFile]);
         
         /* Load audio file */
         this._load_audio_file(selectedAudioFile, function(me, selectedAudioFile) {
             /* when complete, notify panel */
             return function(){
-                me.overviewPanel.audio_file_selected(selectedAudioFile);
-                me.detailPanel.audio_file_selected(selectedAudioFile);
+                $(me).trigger('select_file', selectedAudioFile);
             };
         }(this, selectedAudioFile));
+        
     },
     
     /**
@@ -201,6 +247,26 @@ var OrganizePage = LoggedInPage.extend(
      *  that was selected.
      **/
     select_audio_segment: function(selectedAudioSegment) {
+        console.log("select_audio_segment called");
+        
+        /* Clear everything currently selected */
+        this._deselect_all();
+
+        /* If we were passed an id as a number */
+        if(typeof(selectedAudioSegment) == 'number') {
+            /* Get audio segment */
+            selectedAudioSegment = this.modelManager.seenInstances['audiosegment'].get(selectedAudioSegment);
+        }
+
+        /* Set as selected */
+        selectedAudioSegment.set({
+            selected: true
+        });
+
+
+        /* remove previously selected segments and select new one */
+        this.selectedAudioSegments.refresh([selectedAudioSegment]);
+        
         /* Load the audio segment's file into the audio player */
         this._load_audio_file(selectedAudioSegment.get('audioFile'), function(me, selectedAudioSegment) {
             return function() {
@@ -210,6 +276,9 @@ var OrganizePage = LoggedInPage.extend(
                     selectedAudioSegment.get('beginning'),
                     selectedAudioSegment.get('end')
                 );
+                
+                /* Throw "selected_segment" event */
+                $(me).trigger('select_segment', selectedAudioSegment);
             };
         }(this, selectedAudioSegment))
         
@@ -224,8 +293,26 @@ var OrganizePage = LoggedInPage.extend(
      *  @param  {Number}    endTime    -    The time of the highlight end.
      **/
     create_new_segment: function(startTime, endTime) {
+        /* Find parent audio file */
+        var selectedSegments = this.selectedAudioSegments;
+        var selectedFiles = this.selectedAudioFiles;
+
+        /* The audio file that will be the parent for our new segment */
+        var audioFile = null;
+
+        /* If a segment is currently selected */
+        if(selectedSegments.length) {
+            /* Use segment's parent audio file */
+            audioFile = selectedSegments.first().get('audioFile');
+        }
+        /* If a file is currently selected */
+        else if(selectedFiles.length) {
+            /* Use it as the segment's parent */
+            audioFile = selectedFiles.first();
+        }
+
         /* Create new audio segment */
-        this.modelManager.create_and_select_new_segment(startTime, endTime);
+        this.modelManager.create_and_select_new_segment(startTime, endTime, audioFile);
     },
     
     /**
