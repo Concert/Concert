@@ -20,7 +20,7 @@ var FileWidget = AudioListWidget.extend(
 
         var params = this.options;   
         
-        _.bindAll(this, "render");
+
         this.render();
     },
         

@@ -50,14 +50,12 @@ var OrganizePage = LoggedInPage.extend(
         });
 
 
-        /* Create the audio list panel */    
+        /* Create the audio list panel 
         this.audioListPanel = new AudioListPanel({
             page: this, 
             el: $('#audio_list_panel'),
-            files: modelManager.collectionAudioFiles,
-            segments: modelManager.collectionAudioSegments,
             modelManager: modelManager, 
-        });
+        });*/
         
         /* Create events panel */
         this.eventsPanel = new EventsPanel({

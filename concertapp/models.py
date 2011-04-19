@@ -260,7 +260,7 @@ class AudioSegment(models.Model):
     end = models.FloatField()
     audioFile = models.ForeignKey('AudioFile')
     creator = models.ForeignKey(User)
-    collection = models.ForeignKey('Collection')
+    collection = models.ForeignKey('Collection', related_name="segments")
     
     def __unicode__(self):
       return self.name
@@ -425,7 +425,7 @@ class Request(models.Model):
 
 class Tag(models.Model):
     segments = models.ManyToManyField('AudioSegment', related_name = "tags")
-    collection = models.ForeignKey('Collection')
+    collection = models.ForeignKey('Collection', related_name="tags")
     name = models.CharField(max_length = 100)
 #    time = models.DateTimeField(auto_now_add = True)
     creator = models.ForeignKey(User)
@@ -552,7 +552,7 @@ class AudioFile(models.Model):
     AUDIO_LOCATION = 'audio/'
     name = models.CharField(max_length = 100)
     uploader = models.ForeignKey(User)
-    collection = models.ForeignKey('Collection')
+    collection = models.ForeignKey('Collection', related_name="files")
     wav = models.FileField(upload_to = AUDIO_LOCATION)
     ogg = models.FileField(upload_to = AUDIO_LOCATION)
     mp3 = models.FileField(upload_to = AUDIO_LOCATION)
