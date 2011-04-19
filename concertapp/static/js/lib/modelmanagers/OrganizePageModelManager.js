@@ -255,6 +255,7 @@ OrganizePageModelManager.prototype.create_and_select_new_segment = function(star
     
     /* Add to this collection's audio segments */
     this.collectionAudioSegments.add(newSegment);
+    this.seenInstances['audiosegment'].add(newSegment);
     
     /* Select new segment */
     this.page.select_audio({
