@@ -54,7 +54,7 @@
             fill('password', settings.userOne.password).
             pressButton('Login', ConcertTest.callbackHelper(function(browser) {
                 var loc = browser.location.toString();
-                var shouldBeLoc = ConcertTest.settings.baseUrl+'/dashboard/';
+                var shouldBeLoc = ConcertTest.settings.baseUrl;
                 /* Make sure login worked */
                 assert.equal(loc, shouldBeLoc);
                 

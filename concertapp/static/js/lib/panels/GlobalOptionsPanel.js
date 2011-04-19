@@ -44,16 +44,6 @@ var GlobalOptionsPanel = Panel.extend(
             });        
         }
 
-        /* Get dashboard button */
-        var dashboardButtonContainer = contents.find('#dashboard_button');
-        /* If this page has a dashboard button */
-        if(dashboardButtonContainer.length) {
-            /* Create dashboard button */
-            this.dashboardButton = new DashboardLinkLargeIconButton({
-                container: dashboardButtonContainer,
-            });        
-        }
-
         /* get settings button */
         var settingsButtonContainer = contents.find('#settings_button');
         /* if this page has a settings button */

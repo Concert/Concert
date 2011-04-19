@@ -8,8 +8,8 @@ from concertapp.audiosegments.api import AudioSegmentResource
 
 # We can import the views explicitly here because there are only like
 # 3 server-side URLS in the entire program.
+from concertapp.views import logged_in_view
 from concertapp.organize.views import organize_collection
-from concertapp.dashboard.views import dashboard
 
 from concertapp.admin import admin_site
 
@@ -34,9 +34,6 @@ api1.register(RequestJoinCollectionEventResource())
 
 urlpatterns = patterns('',
 
-    # The default page is the dashboard
-    url(r'^$', redirect_to, {'url': '/dashboard/'}),
-
     # Login/logout pages
     (r'^login/$', 'concertapp.users.views.login_register'),
     (r'^logout/$', 'django.contrib.auth.views.logout_then_login'),
@@ -49,8 +46,8 @@ urlpatterns = patterns('',
 
     (r'^reset_pass_confirm/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$', 'django.contrib.auth.views.password_reset_confirm'),
 
-    # Dashboard page
-    url(r'^dashboard/$', dashboard, name='dashboard'),
+    # The Logged In Page
+    url(r'^$', logged_in_view, name='logged_in_view'),
 
     # collections urls (manage collections and organize audio)
     (r'^collections/', include('concertapp.collection.urls')),
