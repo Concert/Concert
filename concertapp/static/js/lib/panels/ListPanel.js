@@ -77,6 +77,17 @@ var ListPanel = Panel.extend(
         
         /* The list of segment widgets, indexed by ID of segment object */
         this.segmentWidgets = {};
+        
+        /**
+         *  What is currently rendered?
+         **/
+        this.currentlyRendered = null;
+        
+        /**
+         *  List of collection widgets.  Indexed by the ID of the collection
+         **/
+        this.collectionWidgets = {};
+        
     }, 
     
     /**
@@ -142,10 +153,18 @@ var ListPanel = Panel.extend(
      *  Render method called when on "collections" route to list collections.
      **/
     render_collections: function() {
-        /* If we're not in collection mode, exit */
-        if(this.page.currentRoute != 'collections') {
+        /* If a widget is currently selected, deselect it */
+        var selectedWidget = this.selectedWidget;
+        if(selectedWidget) {
+            selectedWidget.deselect();
+        }
+        
+        /* If we've already rendered the list of collections, no need to do it
+        again */
+        if(this.currentlyRendered == 'collections') {
             return;
         }
+        
         
         /* We'll be loading from our user's list of collections */
         var collections = this.page.modelManager.user.get('memberCollections');
@@ -153,6 +172,7 @@ var ListPanel = Panel.extend(
         var panel = this;
         var frag = document.createDocumentFragment();
         var template = this.collectionWidgetTemplate;
+        var collectionWidgets = [];
         /* For each collection */
         collections.each(function(collection) {
             /* Create collection widget */
@@ -163,8 +183,29 @@ var ListPanel = Panel.extend(
             });
             
             frag.appendChild(widget.render().el);
+            
+            collectionWidgets[collection.get('id')] = widget;
         });
         
         this.contents.html(frag);
+        
+        this.currentlyRendered = 'collections';
+        this.collectionWidgets = collectionWidgets;
+    }, 
+    
+    /**
+     *  Render method called when a single collection is selected.  Will ensure that
+     *  list of collections is shown, and that proper one is selected.
+     **/
+    render_collection: function(collectionId, collection) {
+        /* Ensure that list of collections is rendered, this will also deselect
+        currently selected widget */
+        this.render_collections();
+        
+        /* Select proper collection */
+        selectedWidget = this.collectionWidgets[collectionId];
+        selectedWidget.select();
+        
+        this.selectedWidget = selectedWidget;
     }, 
 });

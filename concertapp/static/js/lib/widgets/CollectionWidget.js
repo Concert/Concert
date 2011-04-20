@@ -6,25 +6,22 @@
 
 /**
  *  @class  Represents a collection in the collections listing
- *  @extends    Widget
+ *  @extends    ListWidget
  **/
-var CollectionWidget = Widget.extend(
+var CollectionWidget = ListWidget.extend(
     /**
      *  @scope  CollectionWidget.prototype
      **/
 {
     initialize: function() {
-        Widget.prototype.initialize.call(this);
+        ListWidget.prototype.initialize.call(this);
 
         var params = this.options;
         
-        
-
-        _.bindAll(this, "render");
     },
 
     render: function() {
-        Widget.prototype.render.call(this);
+        ListWidget.prototype.render.call(this);
         
         return this;
     }

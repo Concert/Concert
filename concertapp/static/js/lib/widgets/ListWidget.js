@@ -1,18 +1,17 @@
 /**
- *  @file       AudioListWidget.js
+ *  @file       ListWidget.js
  *  @author     Colin Sullivan <colinsul [at] gmail.com>
  **/
 
 /**
- *  This is a widget that is found in the Audio list panel.  Subclassed by
- *  FileWidget and SegmentWidget.
+ *  This is a widget that is found in the list panel.
  *  page.
  *  @class
  *  @extends    Widget
  **/
-var AudioListWidget = Widget.extend(
+var ListWidget = Widget.extend(
 	/**
-	 *	@scope	AudioListWidget.prototype
+	 *	@scope	ListWidget.prototype
 	 **/
 {
     
@@ -29,19 +28,19 @@ var AudioListWidget = Widget.extend(
         
         return this;
     },    
-    events: {
+/*    events: {
         'click button.delete_audio_button': '_handle_delete_click', 
-    }, 
+    }, */
     
     /**
      *  When this widget's delete button was clicked on.
-     **/
+     *
     _handle_delete_click: function() {
         
-    }, 
+    },*/ 
     
     /**
-     *  When the file/segment that this widget represents is selected, we will 
+     *  When the model that this widget represents is selected, we will 
      *  add a selected class.  Called from the panel.
      **/
     select: function() {
@@ -50,10 +49,10 @@ var AudioListWidget = Widget.extend(
     }, 
     
     /**
-     *  When another file/segment is selected, remove the selected class from this 
+     *  When another model is selected, remove the selected class from this 
      *  segment.  Called from the panel.
      **/
-    de_select: function() {
+    deselect: function() {
         var el = $(this.el);
         el.removeClass('selected');
     }, 

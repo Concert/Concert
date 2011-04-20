@@ -8,15 +8,15 @@
  *  it contains the functionality associated with an audio file on the organize
  *  page.
  *  @class
- *  @extends    AudioListWidget
+ *  @extends    ListWidget
  **/
-var FileWidget = AudioListWidget.extend(
+var FileWidget = ListWidget.extend(
 	/**
 	 *	@scope	FileWidget.prototype
 	 **/
 {
     initialize: function() {
-        AudioListWidget.prototype.initialize.call(this);
+        ListWidget.prototype.initialize.call(this);
 
         var params = this.options;   
         
@@ -28,7 +28,7 @@ var FileWidget = AudioListWidget.extend(
      *  When this widget's delete button is clicked.
      **/    
     _handle_delete_click: function() {
-        AudioListWidget.prototype._handle_delete_click.call(this);
+        ListWidget.prototype._handle_delete_click.call(this);
         
         this.panel.page.delete_audio_file(this.model);
     }, 
