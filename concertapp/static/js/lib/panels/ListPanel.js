@@ -14,8 +14,8 @@ var ListPanel = Panel.extend(
 	 *	@scope	ListPanel.prototype
 	 **/
 {
-    initialize: function() {
-        Panel.prototype.initialize.call(this);
+    _initialize_elements: function() {
+        Panel.prototype._initialize_elements.call(this);
         
         var params = this.options;
         
@@ -77,18 +77,12 @@ var ListPanel = Panel.extend(
         
         /* The list of segment widgets, indexed by ID of segment object */
         this.segmentWidgets = {};
-        
-        
-        _.bindAll(this, 'collections_render');
-
-        var page = this.page;
-        page.bind('route:collections', this.collections_render);
     }, 
     
     /**
      *  Called when we are in the audio mode, and the render method is called.
      **/
-    audio_render: function() {
+    render_audio: function() {
         
         /* If we're not in audio mode, exit */
         var currentRoute = this.page.currentRoute;
@@ -147,7 +141,7 @@ var ListPanel = Panel.extend(
     /**
      *  Render method called when on "collections" route to list collections.
      **/
-    collections_render: function() {
+    render_collections: function() {
         /* If we're not in collection mode, exit */
         if(this.page.currentRoute != 'collections') {
             return;

@@ -9,8 +9,8 @@
  *  @extends    Panel
  **/
 var EventsPanel = Panel.extend({
-    initialize: function() {
-        Panel.prototype.initialize.call(this);
+    _initialize_elements: function() {
+        Panel.prototype._initialize_elements.call(this);
 
         var params = this.options;
         
@@ -56,17 +56,42 @@ var EventsPanel = Panel.extend({
         }
         this.eventWidgetTemplate = eventWidgetTemplate;
         
-
-        _.bindAll(this, "render");
     },
-
+    
+    /**
+     *  When we are viewing collections.
+     **/
+    render_collections: function() {
+        /* nothing was selected */
+        this._render_nothing();
+    },
+    
+    /**
+     *  When we're viewing a single collection, show all of the events for that
+     *  collection.
+     **/
+    render_collection: function(collectionId, collection) {
+        /* Show the events for this collection */
+        console.log('collection.get("events")');
+        console.log(collection.get('events'));
+    }, 
+    
+    /**
+     *  Render method used when nothing is selected, or there are no events
+     *  to show.
+     **/
+    _render_nothing: function() {
+        this.contents.html(this.noContentContainer);
+    }, 
+    
+    
     /**
      *  Here we will render the list of events.  An argument is needed, the set of
      *  event models.
      *
      *  @param  {EventSet}    eventModels    The models to render
      **/
-    render: function(eventModels) {
+    render_events: function(eventModels) {
         Panel.prototype.render.call(this);
         
         var panel = this;

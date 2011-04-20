@@ -10,5 +10,10 @@
     
     <div id="{{ id }}_panel_contents" class="{{ id }}_panel_contents panel_contents">
         {% block panel_content %}{% endblock %}
+        <div id="{{ id }}_panel_nocontent_container" class="panel_nocontent_container">
+            <div id="{{ id }}_panel_nocontent_text" class="panel_nocontent_text">
+                {% block nocontent_text %}{% endblock %}
+            </div>
+        </div>
     </div>
 </div>

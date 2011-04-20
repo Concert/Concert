@@ -94,8 +94,11 @@ LoggedInModelManager.prototype.init = function(params) {
         })
     }
     
+    /* Add user to seen instances */
     this.seenInstances['user'].add(user);
     
+    /* The collection(s) which are currently selected */
+    this.selectedCollections = new CollectionSet;
     
 };
 
@@ -120,3 +123,18 @@ LoggedInModelManager.prototype._loadData = function() {
     dataToLoad['userData'] = null;
     
 };
+
+/**
+ *  Select a collection whose properties or audio we will view.
+ **/
+LoggedInModelManager.prototype.select_collection = function(collection) {
+    /* If we were passed the id of this collection */
+    if(_.isNumber(collection) || _.isString(collection)) {
+        /* Get actual collection instance */
+        collection = this.seenInstances['collection'].get(collection);
+    }
+    this.selectedCollections.refresh([collection]);
+    
+    return collection;
+};
+

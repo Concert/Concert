@@ -53,6 +53,16 @@ div.panel_loader_enabled {
     z-index: 9999;
 }
 
+/* A panel's no content container, displayed when there is no content to view */
+div.panel_nocontent_container {
+    width: 100%;
+    height: 100%;
+}
+div.panel_nocontent_text {
+    margin: auto;
+}
+
+
 /*
 *  Page Header.  We use the CSS3 box layout here, for more info:
 *  http://hacks.mozilla.org/2010/04/the-css-3-flexible-box-model/

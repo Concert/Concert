@@ -44,6 +44,15 @@ var LoggedInPage = Page.extend(
             modelManager: this.modelManager
         });
         
+        /**
+         *  The events panel on the left side of the UI.
+         **/
+        this.eventsPanel = new EventsPanel({
+            page: this, 
+            el: $('#events_list_panel'), 
+            modelManager: this.modelManager
+        });
+        
     },
     _initialize_routes: function() {
         Page.prototype._initialize_routes.call(this);
@@ -51,6 +60,9 @@ var LoggedInPage = Page.extend(
         
         _.bindAll(this, '_collections_route');
         this.route('', 'collections', this._collections_route);
+        
+        _.bindAll(this, '_collection_route');
+        this.route('collection/:collectionId', 'collection', this._collection_route);
         
         
         return;
@@ -62,4 +74,38 @@ var LoggedInPage = Page.extend(
     _collections_route: function() {
         this.currentRoute = 'collections';
     }, 
+    
+    /**
+     *  Route for "/#collection/:collectionId".  Shows managerial tasks for a 
+     *  collection.
+     **/
+    _collection_route: function(collectionId) {
+        /* select current collection in model manager */
+        var collection = this.modelManager.select_collection(collectionId);
+        
+        
+        this.currentRoute = 'collection';
+        return [collection];
+    }, 
+    
+    // Manually bind a single named route to a callback. For example:
+    //
+    //     this.route('search/:query/p:num', 'search', function(query, num) {
+    //       ...
+    //     });
+    //
+    route : function(route, name, callback) {
+        Backbone.history || (Backbone.history = new Backbone.History);
+        if (!_.isRegExp(route)) route = this._routeToRegExp(route);
+        Backbone.history.route(route, _.bind(function(fragment) {
+            var args = this._extractParameters(route, fragment);
+            /* Whatever our callback for this route returns, we will push into
+            the args array to send along with the route information */
+            args = args.concat(callback.apply(this, args));
+
+            this.trigger.apply(this, ['route:' + name].concat(args));
+        }, this));
+    },
+    
+    
 });
