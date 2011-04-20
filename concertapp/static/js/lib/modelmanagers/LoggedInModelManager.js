@@ -41,9 +41,10 @@ LoggedInModelManager.prototype.init = function(params) {
     this.user = user;
     
     /* We will need to maintain a list of users that we have seen */
-    this.seenInstances['user'] = new UserSet([user], {
+    this.seenInstances['user'] = new UserSet(null, {
         seenInstances: true 
     });
+    this.seenInstances['user'].add(user);
     
     /* Audio objects that we have seen */
     this.seenInstances['audiofile'] = new AudioFileSet;

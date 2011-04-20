@@ -88,14 +88,13 @@ var ConcertBackboneModel = Backbone.Model.extend(
                     if(!(models instanceof oneToMany.collectionType)) {
                         
                         /* Get related collection */
-                        var newAttr = this.get(oneToMany.attr);
+                        var newAttr = this.attributes[oneToMany.attr];
                         /* If it hasn't been created for some reason */
-                        if(!this.get(oneToMany.attr)) {
+                        if(!newAttr) {
                             /* Create it */
                             newAttr = this._createOneToManyAttribute(oneToMany);
                             /* save new collection attribute */
                             attributes[oneToMany.attr] = newAttr;
-                            
                         }
 
                         /* If it is a list */
@@ -106,6 +105,9 @@ var ConcertBackboneModel = Backbone.Model.extend(
                                 if(typeof(models[0]) == 'object') {
                                     /* Load in objects */
                                     newAttr.refresh(models);
+                                    /* Make sure we don't set the attribute
+                                    because it is still a array of objects */
+                                    delete attributes[oneToMany.attr];
                                 }
                                 /* If this is a list of strings, models were
                                 sent as URLs */
@@ -323,7 +325,7 @@ var ConcertBackboneModel = Backbone.Model.extend(
             }
         }
         
-        return Backbone.Model.prototype.set.call(this, attributes, options);
+        Backbone.Model.prototype.set.call(this, attributes, options);
     },
     
     /**

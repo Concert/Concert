@@ -16,6 +16,11 @@ var Page = Backbone.Controller.extend(
 	 **/
 {
     initialize: function(params) {
+        /**
+         *  The current route that we are on.
+         **/
+        this.currentRoute = null;
+
         /* Create dataset manager */
         var modelManager = this._initializeModelManager(_.extend(params, {
             page: this 
@@ -56,16 +61,8 @@ var Page = Backbone.Controller.extend(
      **/
     _initialize_routes: function() { 
         
-        _.bindAll(this, this._default_route);
-        this.route('', 'default', this._default_route);
         
         return;
     }, 
     
-    /**
-     *  This is the default route that will be executed.
-     **/
-    _default_route: function() {
-        return;
-    }, 
 });

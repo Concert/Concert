@@ -25,6 +25,7 @@ var LoggedInPage = Page.extend(
      **/
     _initializeViews: function() {
         Page.prototype._initializeViews.call(this);
+
         
         /* Create the globalOptionsPanel (the buttons and menus at the top of 
         the page) */
@@ -34,12 +35,31 @@ var LoggedInPage = Page.extend(
             userMemberCollections: this.modelManager.user.get('collections')
         });
         
-        
+        /**
+         *  The list on the right side of the UI.
+         **/
+        this.listPanel = new ListPanel({
+            page: this, 
+            el: $('#list_panel'),
+            modelManager: this.modelManager
+        });
         
     },
     _initialize_routes: function() {
         Page.prototype._initialize_routes.call(this);
         
+        
+        _.bindAll(this, '_collections_route');
+        this.route('', 'collections', this._collections_route);
+        
+        
         return;
+    }, 
+    
+    /**
+     *  Route for "/".  Lists collections and such.
+     **/
+    _collections_route: function() {
+        this.currentRoute = 'collections';
     }, 
 });

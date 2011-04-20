@@ -54,8 +54,7 @@ var Panel = Backbone.View.extend(
             throw new Error('header not found for panel');
         }
         this.header = header;
-
-
+        
         /* Get the loader element for this panel */
         var loader = container.children('.panel_loader');
         if(typeof(loader) == 'undefined' || loader.length == 0) {
@@ -75,12 +74,25 @@ var Panel = Backbone.View.extend(
             this.showLoadingNotification();
         }
         
+        _.bindAll(this, 'render');
+        
     },
     
-    /* This should be overridden */
+    /**
+     *  Render a panel.  This will call a mode_render method if one exists, or a
+     *  render method if one does not.
+     **/
     render: function() {
         
-        return this;
+        /* The method to render for a specific mode (ex. "audio_render") */
+        var modeRenderMethod = this[this.page.currentRoute+'_render'];
+        if(modeRenderMethod) {
+            return modeRenderMethod();
+        }
+        /* If no mode render method exists, just use typical render method */
+        else {
+            return this;
+        }
     },
     
     /**
@@ -112,6 +124,6 @@ var Panel = Backbone.View.extend(
      **/
     hideLoadingNotification: function() {
         this.loader.removeClass('panel_loader_enabled');
-    }
-    
+    },
+
 });

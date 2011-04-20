@@ -1,17 +1,17 @@
 /**
- *  @file       AudioListPanel.js
+ *  @file       ListPanel.js
  *  @author     Colin Sullivan <colinsul [at] gmail.com>
  **/ 
 
 
 /**
- *  Displays the segments and files within the audio organize page.
- *	@class
+ *
+ *	@class      Displays listing on right of UI
  *  @extends    Panel
  **/
-var AudioListPanel = Panel.extend(
+var ListPanel = Panel.extend(
 	/**
-	 *	@scope	AudioListPanel.prototype
+	 *	@scope	ListPanel.prototype
 	 **/
 {
     initialize: function() {
@@ -19,27 +19,9 @@ var AudioListPanel = Panel.extend(
         
         var params = this.options;
         
-        /**
-         *  The set of files we're watching for this panel
-         *
-        var files = params.files;
-        if(typeof(files) == 'undefined') {
-            throw new Error('params.files is undefined');
-        }
-        this.files = files;
-*/
-        /**
-         *  The set of segments we're watching for this panel
-         *
-        var segments = params.segments;
-        if(typeof(segments) == 'undefined') {
-            throw new Error('params.segments is undefined');
-        }
-        this.segments = segments;
-*/
         
         /**
-         *  The template for each file in the list
+         *  The template for each file in the list (when in audio mode)
          **/
         var fileWidgetTemplate = $('#file_widget_template');
         if(typeof(fileWidgetTemplate) == 'undefined') {
@@ -52,7 +34,7 @@ var AudioListPanel = Panel.extend(
         
         
         /**
-         *  The template for each segment in the list
+         *  The template for each segment in the list (when in audio mode)
          **/
         var segmentWidgetTemplate = $('#segment_widget_template');
         if(typeof(segmentWidgetTemplate) == 'undefined') {
@@ -85,19 +67,22 @@ var AudioListPanel = Panel.extend(
         this.segmentWidgets = {};
         
         
-        _.bindAll(this, "render");
-        segments.bind('refresh', this.render);
-        segments.bind('add', this.render);
-        segments.bind('remove', this.render);
-        files.bind('refresh', this.render);
-        files.bind('add', this.render);
-        files.bind('remove', this.render);
+        _.bindAll(this, 'collections_render');
+
+        var page = this.page;
+        page.bind('route:collections', this.collections_render);
     }, 
     
     /**
-     *  Called when segments or file list is changed.
+     *  Called when we are in the audio mode, and the render method is called.
      **/
-    render: function() {
+    audio_render: function() {
+        
+        /* If we're not in audio mode, exit */
+        var currentRoute = this.page.currentRoute;
+        if(currentRoute != 'file' || currentRoute != 'segment') {
+            return;
+        }
         
         /* temporary frag for dom additions */
         var frag = document.createDocumentFragment();
@@ -145,5 +130,22 @@ var AudioListPanel = Panel.extend(
         /* Save list of file/segment widgets */
         this.segmentWidgets = segmentWidgets;
         this.fileWidgets = fileWidgets;
+    }, 
+    
+    /**
+     *  Render method called when on "collections" route to list collections.
+     **/
+    collections_render: function() {
+        /* If we're not in collection mode, exit */
+        if(this.page.currentRoute != 'collections') {
+            return;
+        }
+        
+        /* We'll be loading from our user's list of collections */
+        var collections = this.page.modelManager.user.get('collections');
+        
+        console.log('collection_render');
+        console.log('collections.toJSON():');
+        console.log(collections.toJSON());
     }, 
 });

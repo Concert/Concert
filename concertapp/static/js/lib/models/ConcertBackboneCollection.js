@@ -36,7 +36,7 @@ var ConcertBackboneCollection = Backbone.Collection.extend(
         options || (options = {});
         
         /* If we are not a seenInstances collection */
-        if(this.seenInstances) {
+        if(!this.seenInstances) {
             var modelManagerSeenInstances = com.concertsoundorganizer.modelManager.seenInstances;
             var seenInstances = modelManagerSeenInstances[this.model.prototype.name];
 

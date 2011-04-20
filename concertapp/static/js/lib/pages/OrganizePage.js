@@ -51,7 +51,7 @@ var OrganizePage = LoggedInPage.extend(
 
 
         /* Create the audio list panel 
-        this.audioListPanel = new AudioListPanel({
+        this.audioListPanel = new ListPanel({
             page: this, 
             el: $('#audio_list_panel'),
             modelManager: modelManager, 
