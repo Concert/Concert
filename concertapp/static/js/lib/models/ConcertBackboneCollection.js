@@ -57,6 +57,7 @@ var ConcertBackboneCollection = Backbone.Collection.extend(
 
 
             /* Check with dataset manager to see if model exists */
+            
             var possibleDuplicate = seenInstances.get(model.id);
 
             /* If there was no duplicate found, try parent seen instances */

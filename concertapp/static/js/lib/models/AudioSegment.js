@@ -47,8 +47,11 @@ var AudioSegment = ConcertBackboneModel.extend(
     
     initialize: function(attributes, options) {
         ConcertBackboneModel.prototype.initialize.call(this, attributes, options);
-        /* tell our AudioFile about us */
-        this.get('audioFile').get('segments').add(this);
+        /* tell our AudioFile about us if it already exists */
+        var audioFile = this.get('audioFile');
+        if(audioFile) {
+            audioFile.get('segments').add(this);
+        }
     }, 
 });
 
