@@ -77,12 +77,18 @@ var ConcertBackboneCollection = Backbone.Collection.extend(
                 }
                 /* If there is not a duplicate, create new instance */
                 else {
-                    model = new this.model(model);
-
+                    /* with just id at first */
+                    var modelData = model;
+                    model = new this.model({id: modelData.id});
+                    /* So we can add to seenInstances */
                     seenInstances.add(model);
                     if(parentSeenInstances) {
                         parentSeenInstances.add(model);
                     }
+                    
+                    /* Now parse remainder of data */
+                    model.set(modelData);
+                    
                 }   
             }
             /* The model has already been instantiated */

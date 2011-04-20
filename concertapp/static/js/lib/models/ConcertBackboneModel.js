@@ -246,12 +246,24 @@ var ConcertBackboneModel = Backbone.Model.extend(
                             }            
                             /* If no duplicate was found */
                             else {
-                                attributes[foreignKey.attr] = new foreignKey.model(model);
-                                seenInstances.add(attributes[foreignKey.attr]);
+                                /* Create model instance with just id for now */
+                                var modelData = model;
+                                var modelInstance = new foreignKey.model(
+                                    {
+                                        id: modelData.id
+                                    }
+                                );
+                                
+                                seenInstances.add(modelInstance);
                                 
                                 if(parentSeenInstances) {
-                                    parentSeenInstances.add(attributes[foreignKey.attr]);
+                                    parentSeenInstances.add(modelInstance);
                                 }
+                                
+                                /* Now with rest of attributes */
+                                modelInstance.set(modelData);
+                                
+                                attributes[foreignKey.attr] = modelInstance;
                             }
 
                         }
