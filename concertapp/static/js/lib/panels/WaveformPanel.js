@@ -43,10 +43,10 @@ var WaveformPanel = Panel.extend(
         this.audioFileDuration = null;
         
         _.bindAll(this, "audio_segment_selected");
-        $(this.page.modelManager).bind('select_segment', this.audio_segment_selected);
+        $(this.page).bind('select_segment', this.audio_segment_selected);
         
         _.bindAll(this, "audio_file_selected");
-        $(this.page.modelManager).bind('select_file', this.audio_file_selected);
+        $(this.page).bind('select_file', this.audio_file_selected);
         
     },
     
