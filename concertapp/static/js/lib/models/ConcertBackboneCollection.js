@@ -92,13 +92,6 @@ var ConcertBackboneCollection = Backbone.Collection.extend(
                     
                 }   
             }
-            /* The model has already been instantiated */
-            else {
-                /* and there is a duplicate */
-                if(possibleDuplicate) {
-                    throw new Error('Model cannot be instantiated twice.');
-                }
-            }
         }
 
         model = Backbone.Collection.prototype._add.call(this, model, options);
