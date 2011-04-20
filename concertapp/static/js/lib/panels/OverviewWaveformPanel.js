@@ -21,7 +21,7 @@ var OverviewWaveformPanel = WaveformPanel.extend(
         var playheadComponent = new OverviewWaveformPlayheadComponent({
             el: this.playheadElement,
             panel: this,
-            audio: this.page.audio
+            audio: this.page.audioController.audio
         });
         /**
          *  Playhead for this waveform panel
@@ -98,48 +98,44 @@ var OverviewWaveformPanel = WaveformPanel.extend(
     audio_file_selected: function(e, selectedAudioFile) {
         WaveformPanel.prototype.audio_file_selected.call(this, e, selectedAudioFile);
         
-        this._load_waveform_image(
-            selectedAudioFile.get_waveform_src(10),
-            function(me, selectedAudioFile) {
-                return function() {
-                    /* Tell highlighter */
-                    me.highlighter.audio_file_selected(selectedAudioFile);
-                    /* render segments */
-                    me.render_segment_bars(selectedAudioFile);
-                }
-            }(this, selectedAudioFile)
-        );
-    
         this.playheadComponent.update_speed();
+        
+        if(this.fileWaveformWasLoaded) {
+            this.audio_file_waveform_loaded();
+        }
     }, 
+    
+    audio_file_waveform_loaded: function() {
+        if (WaveformPanel.prototype.audio_file_waveform_loaded.call(this)) {
+            /* Tell highlighter */
+            this.highlighter.audio_file_selected(selectedAudioFile);
+            /* render segments */
+            this.render_segment_bars(selectedAudioFile);
+        }
+    },
     
     /**
      *  Called from page when audio segment is selected.
      *
      *  @param  {AudioSegment}    selectedAudioSegment    - The audio segment
      **/
-    audio_segment_selected: function(e, selectedAudioSegment) {
+     audio_segment_selected: function(e, selectedAudioSegment) {     
         WaveformPanel.prototype.audio_segment_selected.call(this, e, selectedAudioSegment);
         
-        var audioFile = selectedAudioSegment.get('audioFile');
-        
-        /* Load waveform image */
-        this._load_waveform_image(
-            audioFile.get_waveform_src(10),
-            /* Then */
-            function(me, selectedAudioSegment, audioFile) {
-                return function() {
-                    /* Tell highlighter */
-                    me.highlighter.audio_segment_selected(selectedAudioSegment);
-                    /* render segments */
-                    me.render_segment_bars(audioFile)
-                };
-            }(this, selectedAudioSegment, audioFile)
-        );
-
         this.playheadComponent.update_speed();
-
+        
+        if(this.segmentWaveformWasLoaded) {
+            this.audio_segment_waveform_loaded();
+        }
     }, 
+    
+    audio_segment_waveform_loaded: function() {
+        WaveformPanel.prototype.audio_segment_waveform_loaded.call(this);
+        /* Tell highlighter */
+        this.highlighter.audio_segment_selected(this.selectedAudioSegment);
+        /* render segments */
+        this.render_segment_bars(this.selectedAudioSegment.get('audioFile'));
+    },
     
     /**
      *  Called from page when audio segment is deleted. 

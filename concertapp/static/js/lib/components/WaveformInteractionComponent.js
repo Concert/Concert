@@ -288,7 +288,6 @@ var WaveformInteractionComponent = Component.extend(
      *  @param  {AudioFile}    selectedAudioFile    -   The audio file object.
      **/
     audio_file_selected: function(selectedAudioFile) {
-        
         var audioFileDuration = selectedAudioFile.get('duration');
         this.audioFileDuration = audioFileDuration;
         

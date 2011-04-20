@@ -63,7 +63,7 @@ var DetailWaveformPanel = WaveformPanel.extend(
         var timecodeComponent = new DetailWaveformTimecodeComponent({
             el: timecodeContainerElement, 
             panel: this, 
-            audio: this.page.audio
+            audio: this.page.audioController.audio
         });
         this.timecodeComponent = timecodeComponent;
         
@@ -71,7 +71,7 @@ var DetailWaveformPanel = WaveformPanel.extend(
         var playheadComponent = new DetailWaveformPlayheadComponent({
             el: this.playheadElement,
             panel: this,
-            audio: this.page.audio
+            audio: this.page.audioController.audio
         });
         this.playheadComponent = playheadComponent;
         
@@ -164,9 +164,7 @@ var DetailWaveformPanel = WaveformPanel.extend(
             return function() {
                 me.handle_scroll_stop();
             }
-        }(this));
-
-        
+        }(this));        
 
 
 
@@ -179,7 +177,8 @@ var DetailWaveformPanel = WaveformPanel.extend(
      **/
     audio_file_selected: function(e, selectedAudioFile) {
         WaveformPanel.prototype.audio_file_selected.call(this, e, selectedAudioFile);
-        
+
+        console.log(selectedAudioFile.toJSON());
         /* Load top content with audio file information */
         this.topContainer.html(
             this.topFileTemplate.tmpl(selectedAudioFile.toJSON())
@@ -198,18 +197,20 @@ var DetailWaveformPanel = WaveformPanel.extend(
         /* Hide tag input box (for now) */
         this.tagInputElement.hide();
         
-        /* Load waveform image */
-        this._load_waveform_image(selectedAudioFile.get_waveform_src(10), function(me, selectedAudioFile) {
-            /* and when done */
-            return function() {
-                /* Draw timecode */
-                me.timecodeComponent.audio_file_selected(selectedAudioFile);
+        if(this.fileWaveformWasLoaded) {
+            this.audio_file_waveform_loaded();
+        }
                 
-                /* Set up highlighter */
-                me.highlighter.audio_file_selected(selectedAudioFile);
-            };            
-        }(this, selectedAudioFile));
-    }, 
+    },
+     
+    audio_file_waveform_loaded: function() {
+        if(WaveformPanel.prototype.audio_file_waveform_loaded.call(this)) {
+            /* Draw timecode */
+            this.timecodeComponent.audio_file_selected(this.selectedAudioFile);
+            /* Set up highlighter */
+            this.highlighter.audio_file_selected(this.selectedAudioFile);
+        }
+    },
     
     /**
      *  Called from page when audio segment has been selected.
@@ -250,23 +251,20 @@ var DetailWaveformPanel = WaveformPanel.extend(
         });
         
         /* Load tags in bottom */
-        this.tagsContainerElement.html(frag);
-
+        this.tagsContainerElement.html(frag);    
         
-        /* Load waveform image */
-        this._load_waveform_image(
-            selectedAudioSegment.get('audioFile').get_waveform_src(10),
-            function(me, selectedAudioSegment) {
-                return function() {
-                    /* Draw timecode */
-                    me.timecodeComponent.audio_segment_selected(selectedAudioSegment);
-                    me.highlighter.audio_segment_selected(selectedAudioSegment);
-                    me.autoscroll(selectedAudioSegment.get('beginning') * me.get_resolution());
-                };
-            }(this, selectedAudioSegment)
-        );
-        
+        if(this.segmentWaveformWasLoaded) {
+            this.audio_segment_waveform_loaded();
+        }    
     }, 
+    
+    audio_segment_waveform_loaded: function() {
+        WaveformPanel.prototype.audio_segment_waveform_loaded.call(this);
+        /* Draw timecode */
+        this.timecodeComponent.audio_segment_selected(this.selectedAudioSegment);
+        this.highlighter.audio_segment_selected(this.selectedAudioSegment);
+        this.autoscroll(this.selectedAudioSegment.get('beginning') * this.get_resolution());
+    },
         
     highlight_waveform: function(startTime, endTime) {
         WaveformPanel.prototype.highlight_waveform.call(this, startTime, endTime);

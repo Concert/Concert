@@ -134,14 +134,13 @@ OrganizePageModelManager.prototype._loadData = function() {
     collection.set(dataToLoad.collectionData);
     this.collection = collection;
     dataToLoad.collectionData = null;
-    
-    
+        
     /* Load data for all events */
     var collectionEventSets = this.collectionEventSets;
     var eventDataSetNames = this.eventDataSetNames;
-    
+
     for(var i = 0, il = eventDataSetNames.length; i < il; i++) {
-        var eventDataSetName = eventDataSetNames[i];
+        var eventDataSetName = eventDataSetNames[i];        
         collectionEventSets[i].refresh(dataToLoad[eventDataSetName]);
         dataToLoad[eventDataSetName] = null;
     }
