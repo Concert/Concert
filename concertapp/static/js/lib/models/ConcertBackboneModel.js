@@ -27,18 +27,17 @@ var ConcertBackboneModel = Backbone.Model.extend(
         if(oneToManyAttributes) {
             
             /* For each one to many attribute */
-            for(var i = 0, il = oneToManyAttributes.length; i < il; i++) {
-                var oneToMany = oneToManyAttributes[i];
-                
+            var me = this;
+            _.each(oneToManyAttributes, function(oneToMany) {
                 /* If the one to many attribute has not yet been set */
-                if(!this.get(oneToMany.attr)) {
+                if(!me.get(oneToMany.attr)) {
                     var setArgs = {};
-                    setArgs[oneToMany.attr] = this._createOneToManyAttribute(oneToMany);
+                    setArgs[oneToMany.attr] = me._createOneToManyAttribute(oneToMany);
 
                     /* do it */
-                    Backbone.Model.prototype.set.call(this, setArgs, {silent: true});
+                    Backbone.Model.prototype.set.call(me, setArgs, {silent: true});
                 }
-            }
+            });
         }
     }, 
     
@@ -75,9 +74,8 @@ var ConcertBackboneModel = Backbone.Model.extend(
         
         if(attributes && oneToManyAttributes) {
             /* For each one to many attribute */
-            for(var i = 0, il = oneToManyAttributes.length; i < il; i++) {
-                var oneToMany = oneToManyAttributes[i];
-                
+            var me = this;
+            _.each(oneToManyAttributes, function(oneToMany) {
                 /* something that is being set for this related attribute */
                 var models = attributes[oneToMany.attr];
 
@@ -88,11 +86,11 @@ var ConcertBackboneModel = Backbone.Model.extend(
                     if(!(models instanceof oneToMany.collectionType)) {
                         
                         /* Get related collection */
-                        var newAttr = this.attributes[oneToMany.attr];
+                        var newAttr = me.attributes[oneToMany.attr];
                         /* If it hasn't been created for some reason */
                         if(!newAttr) {
                             /* Create it */
-                            newAttr = this._createOneToManyAttribute(oneToMany);
+                            newAttr = me._createOneToManyAttribute(oneToMany);
                             /* save new collection attribute */
                             attributes[oneToMany.attr] = newAttr;
                         }
@@ -179,7 +177,7 @@ var ConcertBackboneModel = Backbone.Model.extend(
                                                }
                                            }
 
-                                           newAttr.add(model);
+                                           Backbone.Collection.prototype._add.call(newAttr, model);
                                     });
                                 }
                             }
@@ -198,15 +196,14 @@ var ConcertBackboneModel = Backbone.Model.extend(
                     }
                     
                     
-                }
-            }
+                }                
+            });
         }
         
         if(attributes && foreignKeyAttributes) {
             /* For each foreign key attribute */
-            for(var i = 0, il = foreignKeyAttributes.length; i < il; i++) {
-                var foreignKey = foreignKeyAttributes[i];
-
+            var me = this;
+            _.each(foreignKeyAttributes, function(foreignKey) {
                 /* If we're trying to set this attribute */
                 if(foreignKey.attr in attributes) {
                     
@@ -322,7 +319,8 @@ var ConcertBackboneModel = Backbone.Model.extend(
                         }
                     }
                 }
-            }
+                
+            });
         }
         
         Backbone.Model.prototype.set.call(this, attributes, options);

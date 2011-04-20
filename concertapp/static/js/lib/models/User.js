@@ -18,7 +18,7 @@ var User = ConcertBackboneModel.extend(
     oneToManyAttributes: function() {
         return [
             {
-                attr: 'collections', 
+                attr: 'memberCollections', 
                 collectionType: CollectionSet
             }
         ];

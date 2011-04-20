@@ -1,0 +1,34 @@
+{% extends 'logged_in/clientside/list_widget_template.html' %}
+{% load extra_template_tags %}
+
+{% block title %}
+    {% verbatim %}{{tmpl($data) "#collection_link_template"}}{% endverbatim %}
+{% endblock %}
+
+
+
+
+{% block info %}
+    <div class="info">
+        {% verbatim %}
+
+    	{% endverbatim %}
+    </div>
+    {% endblock %}
+
+    {% block bottom %}
+    <div class="bottom">
+        {# List all users for this collection #}
+        
+        {% verbatim %}
+            {{each(i, user) users.toJSON()}}
+                {{tmpl(user) "#user_link_template"}}
+        {% endverbatim %}
+        
+        {# only put comma if this is not the last user #}
+        {% verbatim %}
+                {{if i != users.length-1}} , {{/if}}
+            {{/each}}
+        {% endverbatim %}
+    </div>
+{% endblock %}

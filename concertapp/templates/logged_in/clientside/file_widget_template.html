@@ -1,9 +1,12 @@
-{% extends 'logged_in/clientside/audiolist_widget_template.html' %}
+{% extends 'logged_in/clientside/list_widget_template.html' %}
 {% load extra_template_tags %}
 
-{% block title_text_href %}
-    {% verbatim %}#file/${id}{% endverbatim %}
+{% block title %}
+    {% verbatim %}
+        do tmpl thing here for link
+    {% endverbatim %}
 {% endblock %}
+
 
 
 {% block info %}
@@ -12,9 +15,9 @@
     		${seconds_to_timecode(duration)} <span class="small_text"> uploaded by </span> ${uploader.get("username")}	
     	{% endverbatim %}
     </div>
-    {% endblock %}
+{% endblock %}
 
-    {% block bottom %}
+{% block bottom %}
     <div class="bottom">
         {# List all segments for this audio file #}
         

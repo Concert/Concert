@@ -20,9 +20,6 @@ var ListPanel = Panel.extend(
         var params = this.options;
         
         
-        /**
-         *  The template for each file in the list (when in audio mode)
-         **/
         var fileWidgetTemplate = $('#file_widget_template');
         if(typeof(fileWidgetTemplate) == 'undefined') {
             throw new Error('$(\'#file_widget_template\') is undefined');
@@ -30,12 +27,12 @@ var ListPanel = Panel.extend(
         else if(fileWidgetTemplate.length == 0) {
             throw new Error('fileWidgetTemplate not found');
         }
+        /**
+         *  The template for each file in the list (when in audio mode)
+         **/
         this.fileWidgetTemplate = fileWidgetTemplate;
         
         
-        /**
-         *  The template for each segment in the list (when in audio mode)
-         **/
         var segmentWidgetTemplate = $('#segment_widget_template');
         if(typeof(segmentWidgetTemplate) == 'undefined') {
             throw new Error('$(\'#segment_widget_template\') is undefined');
@@ -43,7 +40,22 @@ var ListPanel = Panel.extend(
         else if(segmentWidgetTemplate.length == 0) {
             throw new Error('segmentWidgetTemplate not found');
         }
+        /**
+         *  The template for each segment in the list (when in audio mode)
+         **/
         this.segmentWidgetTemplate = segmentWidgetTemplate;
+
+        var collectionWidgetTemplate = $('#collection_widget_template');
+        if(typeof(collectionWidgetTemplate) == 'undefined') {
+            throw new Error('$(\'#collection_widget_template\') is undefined');
+        }
+        else if(collectionWidgetTemplate.length == 0) {
+            throw new Error('collectionWidgetTemplate not found');
+        }
+        /**
+         *  The template for each collection in the list (when in collections mode)
+         **/
+        this.collectionWidgetTemplate = collectionWidgetTemplate;
 
         
         /**
@@ -142,10 +154,23 @@ var ListPanel = Panel.extend(
         }
         
         /* We'll be loading from our user's list of collections */
-        var collections = this.page.modelManager.user.get('collections');
+        var collections = this.page.modelManager.user.get('memberCollections');
         
-        console.log('collection_render');
-        console.log('collections.toJSON():');
-        console.log(collections.toJSON());
+        var panel = this;
+        var frag = document.createDocumentFragment();
+        var template = this.collectionWidgetTemplate;
+        /* For each collection */
+        collections.each(function(collection) {
+            /* Create collection widget */
+            var widget = new CollectionWidget({
+                panel: panel, 
+                model: collection,
+                template: template 
+            });
+            
+            frag.appendChild(widget.render().el);
+        });
+        
+        this.contents.html(frag);
     }, 
 });

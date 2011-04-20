@@ -1,8 +1,14 @@
-{% extends 'logged_in/clientside/audiolist_widget_template.html' %}
+{% extends 'logged_in/clientside/list_widget_template.html' %}
 {% load extra_template_tags %}
 
-{% block title_text_href %}
-    {% verbatim %}#segment/${id}{% endverbatim %}
+{% block title %}
+    {% verbatim %}
+        do tmpl thing here
+    {% endverbatim %}
+{% endblock %}
+
+{% block buttons %}
+    <button class="delete_audio_button">Delete</button>
 {% endblock %}
 
 {% block info %}

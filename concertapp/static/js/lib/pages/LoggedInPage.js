@@ -32,7 +32,7 @@ var LoggedInPage = Page.extend(
         this.globalOptionsPanel = new GlobalOptionsPanel({
             page: this, 
             el: $('#global_options_panel'),
-            userMemberCollections: this.modelManager.user.get('collections')
+            userMemberCollections: this.modelManager.user.get('memberCollections')
         });
         
         /**

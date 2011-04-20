@@ -47,11 +47,13 @@ class UserResource(MyResource):
         queryset = User.objects.all()
         authentication = DjangoAuthentication()
         authorization = ConcertAuthorization()
-        fields = ['id', 'username',]
+        
+        excludes = ['date_joined', 'email', 'first_name', 'is_active', 'is_staff', 'is_superuser', 'last_login', 'last_name', 'password']
 
 class UserWithCollectionsResource(UserResource):
-    # Collections that the user is a member of
-    collections = fields.ManyToManyField(
+    # Collections that the user is a member of.  DO NOT NAME THIS "collections" or
+    # it won't work (I don't know why)
+    memberCollections = fields.ManyToManyField(
         'concertapp.collection.api.CollectionResource',
         'collections',
         null=True,

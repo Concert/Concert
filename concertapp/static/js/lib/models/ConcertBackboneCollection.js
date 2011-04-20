@@ -35,6 +35,11 @@ var ConcertBackboneCollection = Backbone.Collection.extend(
     _add : function(model, options) {
         options || (options = {});
         
+        if(this.model.prototype.name == 'collection') {
+            /* Adding a collection */
+            true;
+        }
+        
         /* If we are not a seenInstances collection */
         if(!this.seenInstances) {
             var modelManagerSeenInstances = com.concertsoundorganizer.modelManager.seenInstances;
@@ -51,16 +56,17 @@ var ConcertBackboneCollection = Backbone.Collection.extend(
             }
 
 
+            /* Check with dataset manager to see if model exists */
+            var possibleDuplicate = seenInstances.get(model.id);
+
+            /* If there was no duplicate found, try parent seen instances */
+            if(!possibleDuplicate && parentSeenInstances) {
+                possibleDuplicate = parentSeenInstances.get(model.id);
+            }
+
+
             /* If the model hasn't yet been instantiated */
             if(!(model instanceof Backbone.Model)) {
-                /* Check with dataset manager to see if it already exists */
-                var possibleDuplicate = seenInstances.get(model.id);
-
-                /* If there was no duplicate found, try parent seen instances */
-                if(!possibleDuplicate && parentSeenInstances) {
-                    possibleDuplicate = parentSeenInstances.get(model.id);
-                }
-
                 /* If there is a duplicate */
                 if(possibleDuplicate) {
                     /* Send the attributes to the duplicate incase there are new ones */
@@ -78,6 +84,13 @@ var ConcertBackboneCollection = Backbone.Collection.extend(
                         parentSeenInstances.add(model);
                     }
                 }   
+            }
+            /* The model has already been instantiated */
+            else {
+                /* and there is a duplicate */
+                if(possibleDuplicate) {
+                    throw new Error('Model cannot be instantiated twice.');
+                }
             }
         }
 

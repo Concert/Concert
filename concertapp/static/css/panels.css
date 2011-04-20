@@ -617,7 +617,7 @@ div#list_panel .selected{
     -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,0.5)
 }
 
-div.audio_widget {
+div.list_widget {
     width: 467px;
     margin-left: 10px;
     margin-bottom: 1px;
@@ -628,7 +628,7 @@ div.audio_widget {
     font-weight: bold;
 }
 
-div.audio_widget .boxwrap{
+div.list_widget .boxwrap{
     display: -webkit-box;
     -webkit-box-orient: horizontal;
 }
@@ -649,15 +649,15 @@ div.segment_widget_icon {
     margin-top: 3px;
 }
 
-div.audio_widget .bottom{
+div.list_widget .bottom{
     font-weight: normal;
 }
 
-div.audio_widget .info{
+div.list_widget .info{
     padding-bottom: 10px;
 }
 
-span.audio_widget_title_text {
+span.list_widget_title_text {
     cursor: pointer;
 }
 

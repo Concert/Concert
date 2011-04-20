@@ -14,8 +14,17 @@ from concertapp.collection.api import *
 @login_required
 def logged_in_view(request):
     user = request.user
+    
+    userResource = UserWithCollectionsResource()
+    userResource.set_user(user)
+#    response.context_data['data']['userData'] = userResource.as_dict(request)[0]
+    
 
     return TemplateResponse(request, 'logged_in/logged_in.html', {
         'page_name': 'Concert',
         'js_page_path': '/',
+        'data': {
+            # Data for user currently logged in
+            'userData': userResource.as_dict(request)[0], 
+        }, 
     })

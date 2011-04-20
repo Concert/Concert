@@ -115,6 +115,7 @@ The base template for all pages.  All page templates will use this.
     <script src="/js/lib/widgets/RequestDeniedEventWidget.js"></script>
     <script src="/js/lib/widgets/RequestJoinCollectionEventWidget.js"></script>
     <script src="/js/lib/widgets/RequestRevokedEventWidget.js"></script>
+    <script src="/js/lib/widgets/CollectionWidget.js"></script>
     
     
     {# Components #}
@@ -281,11 +282,10 @@ The base template for all pages.  All page templates will use this.
     <script id="requestjoincollectionevent_template" type="text/x-jquery-tmpl">
         {% include 'clientside/requestjoincollectionevent.html' %}
     </script>
+    
     <script id="requestrevokedevent_template" type="text/x-jquery-tmpl">
         {% include 'clientside/requestrevokedevent.html' %}
     </script>
-    
-    
     
     {# Send variable to javascript with recognizable path so we know what page we're on #}
     {% if js_page_path %}
