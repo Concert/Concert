@@ -25,6 +25,9 @@ class EventResource(MyResource):
     user = fields.ForeignKey(UserResource, 'user')
     time = fields.DateTimeField('time')
     collection = fields.ForeignKey(CollectionResource, 'collection')
+    audioSegment = fields.ForeignKey(AudioSegmentResource, 'audioSegment', null=True)
+    tag = fields.ForeignKey(TagResource, 'tag', null=True)
+    audioFile = fields.ForeignKey(AudioFileResource, 'audioFile', null=True)
     
     class Meta():
         queryset = Event.objects.all()

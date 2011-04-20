@@ -210,7 +210,7 @@ var ConcertBackboneModel = Backbone.Model.extend(
                     var model = attributes[foreignKey.attr];
 
                     /*  and it is not a model */
-                    if(!(model instanceof Backbone.Model)) {
+                    if(model && !(model instanceof Backbone.Model)) {
                         /* It might be an object */
                         if(typeof(model) == 'object') {
 

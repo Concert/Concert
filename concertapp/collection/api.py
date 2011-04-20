@@ -80,7 +80,8 @@ class CollectionResource(NestedResource):
     events = fields.ManyToManyField(
         'concertapp.event.api.EventResource',
         'events',
-        null=True
+        null=True,
+        full=True
     )
     # Segments and files will be sent along with the collection
     files = fields.ManyToManyField(

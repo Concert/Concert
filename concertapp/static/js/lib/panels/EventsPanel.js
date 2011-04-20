@@ -14,6 +14,8 @@ var EventsPanel = Panel.extend({
 
         var params = this.options;
         
+        var $ = jQuery;
+        
         /**
          *  Which widget class do we use for which event type.
          **/
@@ -44,17 +46,6 @@ var EventsPanel = Panel.extend({
             9: $('#requestrevokedevent_template')
         }
         
-        /**
-         *  The template used for rendering an event widget
-         **/
-        var eventWidgetTemplate = $('#event_template');
-        if(typeof(eventWidgetTemplate) == 'undefined') {
-            throw new Error('$(\'#event_template\') is undefined');
-        }
-        else if(eventWidgetTemplate.length == 0) {
-            throw new Error('eventWidgetTemplate not found');
-        }
-        this.eventWidgetTemplate = eventWidgetTemplate;
         
     },
     
@@ -71,9 +62,9 @@ var EventsPanel = Panel.extend({
      *  collection.
      **/
     render_collection: function(collectionId, collection) {
-        /* Show the events for this collection */
-        console.log('collection.get("events")');
-        console.log(collection.get('events'));
+        /* Render the events for this collection */
+        this._render_events(collection.get('events'));
+        
     }, 
     
     /**
@@ -91,7 +82,7 @@ var EventsPanel = Panel.extend({
      *
      *  @param  {EventSet}    eventModels    The models to render
      **/
-    render_events: function(eventModels) {
+    _render_events: function(eventModels) {
         Panel.prototype.render.call(this);
         
         var panel = this;
@@ -104,7 +95,7 @@ var EventsPanel = Panel.extend({
             /* Proper widget for this event */
             var widgetClass = eventTypesToWidgetMap[eventType];
             var widgetTemplate = eventTypesToTemplateMap[eventType];
-            
+
             /* Create widget */
             var widget = new widgetClass({
                 panel: panel, 
