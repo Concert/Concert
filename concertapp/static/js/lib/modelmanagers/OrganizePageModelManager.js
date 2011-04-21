@@ -131,6 +131,7 @@ OrganizePageModelManager.prototype._loadData = function() {
     if(!collection) {
         collection = new Collection();
     }
+    
     collection.set(dataToLoad.collectionData);
     this.collection = collection;
     dataToLoad.collectionData = null;

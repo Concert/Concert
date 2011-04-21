@@ -96,6 +96,7 @@ var OverviewWaveformPanel = WaveformPanel.extend(
      *  @param  {AudioFile}    selectedAudioFile    -   The audio file instance
      **/
     audio_file_selected: function(e, selectedAudioFile) {
+        console.log("OverviewWaveformPanel calls audio_file_selected");
         WaveformPanel.prototype.audio_file_selected.call(this, e, selectedAudioFile);
         
         this.playheadComponent.update_speed();
@@ -103,17 +104,11 @@ var OverviewWaveformPanel = WaveformPanel.extend(
         if(this.fileWaveformWasLoaded) {
             this.audio_file_waveform_loaded();
         }
+        
+        this.highlighter.audio_file_selected(this.selectedAudioFile);
+        this.render_segment_bars(selectedAudioFile);
     }, 
-    
-    audio_file_waveform_loaded: function() {
-        if (WaveformPanel.prototype.audio_file_waveform_loaded.call(this)) {
-            /* Tell highlighter */
-            this.highlighter.audio_file_selected(selectedAudioFile);
-            /* render segments */
-            this.render_segment_bars(selectedAudioFile);
-        }
-    },
-    
+        
     /**
      *  Called from page when audio segment is selected.
      *
@@ -127,16 +122,11 @@ var OverviewWaveformPanel = WaveformPanel.extend(
         if(this.segmentWaveformWasLoaded) {
             this.audio_segment_waveform_loaded();
         }
-    }, 
-    
-    audio_segment_waveform_loaded: function() {
-        WaveformPanel.prototype.audio_segment_waveform_loaded.call(this);
-        /* Tell highlighter */
+        
         this.highlighter.audio_segment_selected(this.selectedAudioSegment);
-        /* render segments */
         this.render_segment_bars(this.selectedAudioSegment.get('audioFile'));
-    },
-    
+    }, 
+        
     /**
      *  Called from page when audio segment is deleted. 
      *  Re-renders segment bars when a segment is deleted. 

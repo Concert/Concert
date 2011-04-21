@@ -176,21 +176,22 @@ var DetailWaveformPanel = WaveformPanel.extend(
      *  @param  {AudioFile}    selectedAudioFile    -   The selected file.
      **/
     audio_file_selected: function(e, selectedAudioFile) {
+        console.log("DetailWaveformPanel calls audio_file_selected");
         WaveformPanel.prototype.audio_file_selected.call(this, e, selectedAudioFile);
 
-        console.log(selectedAudioFile.toJSON());
+        //console.log(selectedAudioFile.toJSON());
         /* Load top content with audio file information */
-        this.topContainer.html(
-            this.topFileTemplate.tmpl(selectedAudioFile.toJSON())
-        );
+        //this.topContainer.html(
+        //    this.topFileTemplate.tmpl(selectedAudioFile.toJSON())
+        //);
         
         /* Create editable text component to handle name change */
-        this.topNameComponent = new EditableModelTextComponent({
-            panel: this, 
-            model: selectedAudioFile, 
-            attr: 'name',
-            el: $('#detail_waveform_selected_name_container')
-        });
+        //this.topNameComponent = new EditableModelTextComponent({
+        //    panel: this, 
+        //    model: selectedAudioFile, 
+        //    attr: 'name',
+        //    el: $('#detail_waveform_selected_name_container')
+        //});
         
         /* Clear bottom tags area */
         this.tagsContainerElement.empty();
@@ -200,16 +201,12 @@ var DetailWaveformPanel = WaveformPanel.extend(
         if(this.fileWaveformWasLoaded) {
             this.audio_file_waveform_loaded();
         }
+        
+        console.log(this.selectedAudioFile);
+        console.log(this.selectedAudioFile.get('duration'));
+        this.timecodeComponent.audio_file_selected(this.audioFileDuration);
+        this.highlighter.audio_file_selected(this.selectedAudioFile);
                 
-    },
-     
-    audio_file_waveform_loaded: function() {
-        if(WaveformPanel.prototype.audio_file_waveform_loaded.call(this)) {
-            /* Draw timecode */
-            this.timecodeComponent.audio_file_selected(this.selectedAudioFile);
-            /* Set up highlighter */
-            this.highlighter.audio_file_selected(this.selectedAudioFile);
-        }
     },
     
     /**
@@ -255,17 +252,13 @@ var DetailWaveformPanel = WaveformPanel.extend(
         
         if(this.segmentWaveformWasLoaded) {
             this.audio_segment_waveform_loaded();
-        }    
-    }, 
-    
-    audio_segment_waveform_loaded: function() {
-        WaveformPanel.prototype.audio_segment_waveform_loaded.call(this);
-        /* Draw timecode */
+        }
+        
         this.timecodeComponent.audio_segment_selected(this.selectedAudioSegment);
         this.highlighter.audio_segment_selected(this.selectedAudioSegment);
         this.autoscroll(this.selectedAudioSegment.get('beginning') * this.get_resolution());
-    },
-        
+    }, 
+            
     highlight_waveform: function(startTime, endTime) {
         WaveformPanel.prototype.highlight_waveform.call(this, startTime, endTime);
         this.autoscrolling = true;

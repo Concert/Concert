@@ -56,15 +56,18 @@ var AudioController = Backbone.Controller.extend(
     },
     
     _select_file: function(e, selectedAudioFile) {
+        console.log("AudioController calls _select_file");
         this._load_audio_file(selectedAudioFile, function(me) {
             return function() {
+                console.log("AudioController triggers audio_loaded");
                 $(me).trigger('audio_loaded');
             }
         }(this));
         
         this._load_waveform_image(selectedAudioFile.get_waveform_src(10), function(me) {
             return function() {
-                $(me).trigger('file_waveform_loaded');
+                console.log("AudioController triggers waveform_loaded");
+                $(me).trigger('waveform_loaded');
             }
         }(this));        
     },
@@ -89,7 +92,7 @@ var AudioController = Backbone.Controller.extend(
         this._load_waveform_image(audioFile.get_waveform_src(10),
             function(me) {
                 return function() {
-                    $(me).trigger('segment_waveform_loaded');
+                    $(me).trigger('waveform_loaded');
                 };
             }(this));        
     },
