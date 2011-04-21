@@ -36,7 +36,7 @@ var ListWidget = Widget.extend(
      *  When this widget was clicked on.  Subclasses all probably need to handle
      *  this.
      **/
-    _handle_click: function() {
+    _handle_click: function(e) {
         
     },
     

@@ -28,8 +28,10 @@ var CollectionWidget = ListWidget.extend(
      *  When widget is clicked.
      **/
     _handle_click: function(e) {
-        console.log('e:');
-        console.log(e);
+        ListWidget.prototype._handle_click.call(this, e);
+        
+        /* Go to collection */
+        window.location.assign('#collection/'+this.model.get('id'));
     }, 
 });
 
