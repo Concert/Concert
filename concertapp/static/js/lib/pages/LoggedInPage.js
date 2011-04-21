@@ -95,6 +95,13 @@ var LoggedInPage = Page.extend(
             this._collection_audio_file_route
         );
         
+        _.bindAll(this, '_collection_audio_segment_route');
+        this.route(
+            'collection/:collectionId/audio/file/:fileId/segment/:segmentId',
+            'collection_audio_segment',
+            this._collection_audio_segment_route
+        );
+        
         this.defaultHash = '#collections';
         return;
     }, 
@@ -146,6 +153,20 @@ var LoggedInPage = Page.extend(
         return newArgs;
     },
     
+    /**
+     *  Route for "/#collection/:collectionId/audio/file/:fileId/segment/:segmentId"
+     *  Shows audio segment's waveform, parent audio file, and events
+     **/
+     _collection_audio_segment_route: function(collectionId, fileId, segmentId) {
+         var newArgs = this._collection_audio_file_route(collectionId, fileId);
+         var segment = this.modelManager.select_audio_segment(segmentId);
+         newArgs.push(segment);
+         
+         this.currentRoute = 'collection_audio_segment';
+
+         return newArgs;
+     },
+    
     // Manually bind a single named route to a callback. For example:
     //
     //     this.route('search/:query/p:num', 'search', function(query, num) {
@@ -164,6 +185,5 @@ var LoggedInPage = Page.extend(
             this.trigger.apply(this, ['route:' + name].concat(args));
         }, this));
     },
-    
-    
 });
+    

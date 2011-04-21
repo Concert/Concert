@@ -141,6 +141,10 @@ LoggedInModelManager.prototype.select_collection = function(collection) {
     return collection;
 };
 
+/**
+ *  Select an audio file to view
+ *  @param  {AudioFile|Number}    selectedAudioFile     the selected audio file to view
+ **/ 
 LoggedInModelManager.prototype.select_audiofile = function(selectedAudioFile) {
     /* if we were just passed an id */
     if(_.isNumber(selectedAudioFile) || _.isString(selectedAudioFile)) {
@@ -154,4 +158,82 @@ LoggedInModelManager.prototype.select_audiofile = function(selectedAudioFile) {
     return selectedAudioFile;
 };
 
+/**
+ *  Select an audio segment to view
+ *  @param  {AudioSegment|Number}    selectedAudioSegment       the selected audio segment to view
+ **/
+LoggedInModelManager.prototype.select_audio_segment = function(selectedAudioSegment) {
+    if(_.isNumber(selectedAudioSegment) || _.isString(selectedAudioSegment)) {
+        selectedAudioSegment = this.seenInstances['audiosegment'].get(selectedAudioSegment);
+    }
+    
+    this.selectedAudioSegments.refresh([selectedAudioSegment]);
+    
+    return selectedAudioSegment;
+};
+
+
+/**
+ *  Create new audio segment object and set it as currently selected.
+ **/
+//LoggedInModelManager.prototype.create_and_select_new_segment = function(startTime, endTime, callback) {    
+//    var timestamp = new Date();
+    
+//    var routeName = this.page.currentRoute;
+//    if(currentRoute == 'collection_audio_file') {
+        
+//    }
+    
+    /* Find parent audio file */
+//    var selectedSegments = this.selectedAudioSegments;
+//    var selectedFiles = this.modelManagerselectedAudioFiles;
+
+    /* The audio file that will be the parent for our new segment */
+//    var audioFile = null;
+
+    /* If a segment is currently selected */
+//    if(selectedSegments.length) {
+        /* Use segment's parent audio file */
+//        audioFile = selectedSegments.first().get('audioFile');
+//    }
+    /* If a file is currently selected */
+//    else if(selectedFiles.length) {
+        /* Use it as the segment's parent */
+//        audioFile = selectedFiles.first();
+//    }
+    
+    /* Create new segment */
+//    var newSegment = new AudioSegment({
+//        audioFile: audioFile, 
+//        beginning: startTime, 
+//        end: endTime,
+        /* Creator of the segment is the current user */
+//        creator: this.user, 
+        /* For now, name is just timestamp */
+//        name: 'segment_'+timestamp.format('yyyy-mm-dd_hh:MM:ss:L'), 
+        /* Collection is current collection */
+//        collection: this.collection, 
+//    });
+    
+    /* Add to this collection's audio segments */
+//    this.collectionAudioSegments.add(newSegment);
+//    this.seenInstances['audiosegment'].add(newSegment);
+    
+    /* Select new segment */
+//    this.page.select_audio({
+//        segments: [newSegment], 
+//    });
+    
+    /* Now save to server */
+//    newSegment.save(null, {
+        /* if there is an error */
+//        error_callback: function(newSegment) {
+//            return function() {
+                /* Delete our new segment */
+//                newSegment.destroy();
+//            }
+//        }(newSegment), 
+//        error_message: 'Audio segment was not created.' 
+//    });
+//};
 

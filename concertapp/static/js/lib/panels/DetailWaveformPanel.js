@@ -16,8 +16,6 @@ var DetailWaveformPanel = WaveformPanel.extend(
 {    
     initialize: function() {
         WaveformPanel.prototype.initialize.call(this);
-        
-        console.log('detail here');
 
         var params = this.options;
                         
@@ -212,8 +210,8 @@ var DetailWaveformPanel = WaveformPanel.extend(
      *
      *  @param  {AudioSegment}    selectedAudioSegment    - The selected segment.
      **/
-    audio_segment_selected: function(e, selectedAudioSegment) {
-        WaveformPanel.prototype.audio_segment_selected.call(this, e, selectedAudioSegment);
+    render_collection_audio_segment: function(collectionId, fileId, segmentId, selectedCollection, selectedAudioFile, selectedAudioSegment) {
+        WaveformPanel.prototype.render_collection_audio_segment.call(this, collectionId, fileId, segmentId, selectedCollection, selectedAudioFile, selectedAudioSegment);
         
         /* Load top of panel with audio segment information */
         this.topContainer.html(
