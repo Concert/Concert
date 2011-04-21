@@ -36,10 +36,10 @@ var AudioController = Backbone.Controller.extend(
         this.audioType = com.concertsoundorganizer.compatibility.audioType;
         
         _.bindAll(this, "_select_file");
-        $(this.page).bind('select_file', this._select_file);
+        this.page.bind('route:collection_audio_file', this._select_file);
         
-        _.bindAll(this, "_select_segment");
-        $(this.page).bind('select_segment', this._select_segment);
+//        _.bindAll(this, "_select_segment");
+//        $(this.page).bind('route:collection_audio_segment', this._select_segment);
                 
         /* When the space button is pressed */
         $(window).bind('keydown', function(me) {
@@ -53,9 +53,10 @@ var AudioController = Backbone.Controller.extend(
                 }
             };
         }(this));
+        
     },
     
-    _select_file: function(e, selectedAudioFile) {
+    _select_file: function(collectionId, fileId, selectedCollection, selectedAudioFile) {
         console.log("AudioController calls _select_file");
         this._load_audio_file(selectedAudioFile, function(me) {
             return function() {

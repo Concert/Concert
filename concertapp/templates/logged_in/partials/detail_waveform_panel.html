@@ -31,43 +31,47 @@
 		    		        
 		    	<img id="detail_waveform_image" class="waveform_image" />
 			 			
-		    		<div id="detail_waveform_panel_timecode">
-		    		    {# Timecode will be injected here #}
-		    	    </div>
-		    		        
-		            <div id="detail_waveform_panel_playhead" class="playhead">
-			            {# Playhead will be injected here #}
-			        </div>
-		    		        
-		            <div id="detail_waveform_panel_highlight_container" class="highlight_container">
-			            <div id="detail_waveform_panel_highlight" class="highlight disabled">
-			                <div id="detail_waveform_panel_left_handle" class="leftHandle"></div>
-                            <div id="detail_waveform_panel_right_handle" class="rightHandle"></div> 
-                        </div>
-		    		</div>
-		    		        
+		    	<div id="detail_waveform_panel_timecode">
+		    	    {# Timecode will be injected here #}
 		    	</div>
+		    		        
+		        <div id="detail_waveform_panel_playhead" class="playhead">
+			        {# Playhead will be injected here #}
+			    </div>
+
+                <div id="detail_waveform_panel_highlight_container" 
+                    class="highlight_container">
+                    <div id="detail_waveform_panel_highlight" 
+                        class="highlight disabled">
+                        <div id="detail_waveform_panel_left_handle" 
+                            class="leftHandle">
+                        </div>
+                        <div id="detail_waveform_panel_right_handle" 
+                            class="rightHandle">
+                        </div> 
+                    </div>
+                </div>
 		    		
-		    </div>
-		    
-		    
-		    <div id="detail_waveform_panel_buf_right" class="detail_waveform_panel_buf">
-		        <div class="arrow_space">
-		        	<div class="arrow"></div>
-		        </div>
-		        <div class="arrow_space">
-		        	<div class="arrow"></div>
-		        </div>
-		    </div>
-		    
+            </div>
+
 		</div>
+		    
+	    <div id="detail_waveform_panel_buf_right" class="detail_waveform_panel_buf">
+	        <div class="arrow_space">
+	        	<div class="arrow"></div>
+	        </div>
+	        <div class="arrow_space">
+	        	<div class="arrow"></div>
+	        </div>
+	    </div>
+	    
+	</div>
 		
-		{% comment %}
-		<div id="detail_waveform_panel_bottom" class="detail_waveform_panel_bottom">
-		    {# Nothing? #}
-        </div>
-	    {% endcomment %}
+	{% comment %}
+	<div id="detail_waveform_panel_bottom" class="detail_waveform_panel_bottom">
+	    {# Nothing? #}
     </div>
+	{% endcomment %}
 
     <div id="detail_waveform_panel_bottom" class="detail_waveform_panel_bottom lightNoise">
         <input type="text" id="detail_waveform_panel_tag_input" placeholder="Enter a new or existing tag name" />

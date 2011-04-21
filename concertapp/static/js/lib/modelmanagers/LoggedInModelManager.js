@@ -100,6 +100,10 @@ LoggedInModelManager.prototype.init = function(params) {
     /* The collection(s) which are currently selected */
     this.selectedCollections = new CollectionSet;
     
+    /* The currently selected audio */
+    this.selectedAudioFiles = new AudioFileSet;
+    this.selectedAudioSegments = new AudioSegmentSet;
+    
 };
 
 /**
@@ -107,7 +111,6 @@ LoggedInModelManager.prototype.init = function(params) {
  *  was loaded initially.
  **/
 LoggedInModelManager.prototype._loadData = function() {
-    
     var dataToLoad = this._dataToLoad;
     
     /**
@@ -137,4 +140,18 @@ LoggedInModelManager.prototype.select_collection = function(collection) {
     
     return collection;
 };
+
+LoggedInModelManager.prototype.select_audiofile = function(selectedAudioFile) {
+    /* if we were just passed an id */
+    if(_.isNumber(selectedAudioFile) || _.isString(selectedAudioFile)) {
+        /* First retrieve file instance */
+        selectedAudioFile = this.seenInstances['audiofile'].get(selectedAudioFile);
+    }
+    
+    /* Remove previously selected files and select new one */
+    this.selectedAudioFiles.refresh([selectedAudioFile]);
+    
+    return selectedAudioFile;
+};
+
 

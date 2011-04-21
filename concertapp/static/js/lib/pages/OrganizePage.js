@@ -168,44 +168,7 @@ var OrganizePage = LoggedInPage.extend(
             throw new Error('Invalid parameters for select_audio');
         }
     }, 
-    
-    /**
-     *  Ensure that given event is selected on the events panel and the UI.
-     *
-     *  @param  {Event}    event    -   The event that has been selected.
-     **/
-    select_event: function(event) {
         
-    }, 
-    
-    /**
-     *  When a user has selected a single audio file.
-     *
-     *  @param  {AudioFile}    selectedAudioFile    -   The AudioFile that was
-     *  selected.
-     **/
-    select_audio_file: function(selectedAudioFile) {
-        /* This is where loading notification should be */
-        
-        /* Clear everything currently selected */
-        this._deselect_all();
-
-        /* if we were just passed an id */
-        if(typeof(selectedAudioFile) == 'number') {
-            /* First retrieve file instance */
-            selectedAudioFile = this.modelManager.seenInstances['audiofile'].get(selectedAudioFile);
-        }
-
-        selectedAudioFile.set({
-            selected: true
-        });
-
-        /* Remove previously selected files and select new one */
-        this.selectedAudioFiles.refresh([selectedAudioFile]);
-
-        $(this).trigger('select_file', selectedAudioFile);        
-    },
-    
     /**
      *  Ensure that given audio segment has been selected.
      *

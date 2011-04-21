@@ -39,19 +39,19 @@ var WaveformPanel = Panel.extend(
         }
         this.playheadElement = playheadElement;
         
-        var fileWasSelected = false;
-        this.fileWasSelected = fileWasSelected;
+        var itemWasSelected = false;
+        this.itemWasSelected = itemWasSelected;
         var waveformWasLoaded = false;
         this.waveformWasLoaded = waveformWasLoaded;
         
         /* The duration of the last selected audio file (or segment parent) */
         this.audioFileDuration = null;
                 
-        _.bindAll(this, "audio_file_selected");
-        $(this.page).bind('select_file', this.audio_file_selected);
+//        _.bindAll(this, "audio_file_selected");
+//        $(this.page).bind('select_file', this.audio_file_selected);
 
-        _.bindAll(this, "audio_segment_selected");
-        $(this.page).bind('select_segment', this.audio_segment_selected);
+//        _.bindAll(this, "audio_segment_selected");
+//        $(this.page).bind('select_segment', this.audio_segment_selected);
                 
         _.bindAll(this, "_waveform_loaded");
         $(this.page.audioController).bind('waveform_loaded', this._waveform_loaded);
@@ -63,9 +63,9 @@ var WaveformPanel = Panel.extend(
      *
      *  @param  {AudioFile}    selectedAudioFile    -   The selected file
      **/
-    audio_file_selected: function(e, selectedAudioFile) {        
-        console.log("WaveformPanel calls audio_file_selected");
-        this.fileWasSelected = true;
+    render_collection_audio_file: function(collectionId, fileId, selectedCollection, selectedAudioFile) {       
+        console.log("WaveformPanel calls render_collection_audio_file");
+        this.itemWasSelected = true;
         
         this.selectedAudioFile = selectedAudioFile;
         if(this.waveformWasLoaded) {
@@ -81,9 +81,9 @@ var WaveformPanel = Panel.extend(
      *
      *  @param  {AudioSegment}    selectedAudioSegment    - The selected segment
      **/
-    audio_segment_selected: function(e, selectedAudioSegment) {
+    render_collection_audio_segment: function(e, selectedAudioSegment) {
         console.log("WaveformPanel calls audio_segment_selected");
-        this.segmentWasSelected = true;
+        this.itemWasSelected = true;
         
         this.selectedAudioSegment = selectedAudioSegment;
         this.selectedAudioFile = selectedAudioSegment.get('audioFile');
@@ -96,12 +96,15 @@ var WaveformPanel = Panel.extend(
     },
     
     _waveform_loaded: function() {
+        console.log('waveform_loaded on waveform panel')
         this.waveformWasLoaded = true;
-        if(!this.fileWasSelected || !this.segmentWasSelected) {
+        if(!this.itemWasSelected) {
             return;
         } 
         
         var waveformImageElement = this.waveformImageElement;
+        
+        console.log(this.selectedAudioFile.get_waveform_src(10));
         
         /* Load the waveform viewer with the audio files' waveform image */
         waveformImageElement.attr('src', this.selectedAudioFile.get_waveform_src(10));

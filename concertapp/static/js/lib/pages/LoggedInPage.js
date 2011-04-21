@@ -53,10 +53,27 @@ var LoggedInPage = Page.extend(
             modelManager: this.modelManager
         });
         
+        /* Create audio controller */ 
+        this.audioController = new AudioController({
+            page: this
+        });
+
+        /*  Create waveform overview panel */
+        this.overviewPanel = new OverviewWaveformPanel({
+            page: this, 
+            el: $('#overview_waveform_panel')
+        });
+                
+        /* Create waveform detail panel */
+        this.detailPanel = new DetailWaveformPanel({
+            page: this, 
+            el: $('#detail_waveform_panel'),
+        });
+        
     },
+    
     _initialize_routes: function() {
         Page.prototype._initialize_routes.call(this);
-        
         
         _.bindAll(this, '_collections_route');
         this.route('collections', 'collections', this._collections_route);
@@ -69,6 +86,13 @@ var LoggedInPage = Page.extend(
             'collection/:collectionId/audio',
             'collection_audio',
             this._collection_audio_route
+        );
+        
+        _.bindAll(this, '_collection_audio_file_route');
+        this.route(
+            'collection/:collectionId/audio/file/:fileId',
+            'collection_audio_file',
+            this._collection_audio_file_route
         );
         
         this.defaultHash = '#collections';
@@ -103,10 +127,24 @@ var LoggedInPage = Page.extend(
         /* Get collection from collection route handler */
         var newArgs = this._collection_route(collectionId);
         
-        this.currentRoute = 'collection_audio'
+        this.currentRoute = 'collection_audio';
         
         return newArgs;
     }, 
+    
+    /**
+     *  Route for "/#collection/:collectionId/audio/file/:fileId" Shows audio file's
+     *  waveform, segments, and events
+     **/
+    _collection_audio_file_route: function(collectionId, fileId) {
+        var newArgs = this._collection_route(collectionId);
+        var file = this.modelManager.select_audiofile(fileId);
+        newArgs.push(file);
+        
+        this.currentRoute = 'collection_audio_file';        
+        
+        return newArgs;
+    },
     
     // Manually bind a single named route to a callback. For example:
     //
@@ -122,7 +160,7 @@ var LoggedInPage = Page.extend(
             /* Whatever our callback for this route returns, we will push into
             the args array to send along with the route information */
             args = args.concat(callback.apply(this, args));
-
+            
             this.trigger.apply(this, ['route:' + name].concat(args));
         }, this));
     },

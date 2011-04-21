@@ -49,7 +49,7 @@ var OverviewWaveformPanel = WaveformPanel.extend(
          *  Highlighter component for this panel
          **/
         this.highlighter = highlighter;
-                
+        
         var segmentBarsContainerElement = $('#overview_waveform_panel_bottom');
         if(typeof(segmentBarsContainerElement) == 'undefined') {
             throw new Error('$(\'#overview_waveform_panel_bottom\') is undefined');
@@ -87,7 +87,6 @@ var OverviewWaveformPanel = WaveformPanel.extend(
          **/
         this.segmentBarTemplate = segmentBarTemplate;
         
-        
     }, 
     
     /**
@@ -95,15 +94,11 @@ var OverviewWaveformPanel = WaveformPanel.extend(
      *
      *  @param  {AudioFile}    selectedAudioFile    -   The audio file instance
      **/
-    audio_file_selected: function(e, selectedAudioFile) {
-        console.log("OverviewWaveformPanel calls audio_file_selected");
-        WaveformPanel.prototype.audio_file_selected.call(this, e, selectedAudioFile);
+    render_collection_audio_file: function(collectionId, fileId, selectedCollection, selectedAudioFile) {
+        console.log("OverviewWaveformPanel calls render_collection_audio_file");
+        WaveformPanel.prototype.render_collection_audio_file.call(this, collectionId, fileId, selectedCollection, selectedAudioFile);
         
         this.playheadComponent.update_speed();
-        
-        if(this.fileWaveformWasLoaded) {
-            this.audio_file_waveform_loaded();
-        }
         
         this.highlighter.audio_file_selected(this.selectedAudioFile);
         this.render_segment_bars(selectedAudioFile);
@@ -118,10 +113,6 @@ var OverviewWaveformPanel = WaveformPanel.extend(
         WaveformPanel.prototype.audio_segment_selected.call(this, e, selectedAudioSegment);
         
         this.playheadComponent.update_speed();
-        
-        if(this.segmentWaveformWasLoaded) {
-            this.audio_segment_waveform_loaded();
-        }
         
         this.highlighter.audio_segment_selected(this.selectedAudioSegment);
         this.render_segment_bars(this.selectedAudioSegment.get('audioFile'));

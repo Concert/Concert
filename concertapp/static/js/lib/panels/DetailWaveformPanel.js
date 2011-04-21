@@ -16,10 +16,11 @@ var DetailWaveformPanel = WaveformPanel.extend(
 {    
     initialize: function() {
         WaveformPanel.prototype.initialize.call(this);
+        
+        console.log('detail here');
 
         var params = this.options;
-        
-        
+                        
         /* The template for the top of the panel when a file is selected */
         var topFileTemplate = $('#detail_waveform_top_file_template');
         if(typeof(topFileTemplate) == 'undefined') {
@@ -169,15 +170,16 @@ var DetailWaveformPanel = WaveformPanel.extend(
 
 
         this.set_zoom_level(10);
+
     },
     /**
      *  Called from page when an audio file has been selected.
      *
      *  @param  {AudioFile}    selectedAudioFile    -   The selected file.
      **/
-    audio_file_selected: function(e, selectedAudioFile) {
+    render_collection_audio_file: function(collectionId, fileId, selectedCollection, selectedAudioFile) {
         console.log("DetailWaveformPanel calls audio_file_selected");
-        WaveformPanel.prototype.audio_file_selected.call(this, e, selectedAudioFile);
+        WaveformPanel.prototype.render_collection_audio_file.call(this, collectionId, fileId, selectedCollection, selectedAudioFile);
 
         //console.log(selectedAudioFile.toJSON());
         /* Load top content with audio file information */
@@ -197,10 +199,6 @@ var DetailWaveformPanel = WaveformPanel.extend(
         this.tagsContainerElement.empty();
         /* Hide tag input box (for now) */
         this.tagInputElement.hide();
-        
-        if(this.fileWaveformWasLoaded) {
-            this.audio_file_waveform_loaded();
-        }
         
         console.log(this.selectedAudioFile);
         console.log(this.selectedAudioFile.get('duration'));
@@ -249,10 +247,6 @@ var DetailWaveformPanel = WaveformPanel.extend(
         
         /* Load tags in bottom */
         this.tagsContainerElement.html(frag);    
-        
-        if(this.segmentWaveformWasLoaded) {
-            this.audio_segment_waveform_loaded();
-        }
         
         this.timecodeComponent.audio_segment_selected(this.selectedAudioSegment);
         this.highlighter.audio_segment_selected(this.selectedAudioSegment);

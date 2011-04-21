@@ -133,6 +133,8 @@ var Panel = Backbone.View.extend(
             'route:collections': 'render_collections', 
             'route:collection': 'render_collection', 
             'route:collection_audio': 'render_collection_audio', 
+            'route:collection_audio_file': 'render_collection_audio_file',
+            'route:collection_audio_segment': 'render_collection_audio_segment',
         };
     }, 
     
