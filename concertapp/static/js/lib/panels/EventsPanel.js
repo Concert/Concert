@@ -68,6 +68,14 @@ var EventsPanel = Panel.extend({
     }, 
     
     /**
+     *  When we are viewing the list of audio for a collection, same as 
+     *  viewing a collection.
+     **/
+    render_collection_audio: function(collectionId, collection) {
+        return this.render_collection(collectionId, collection);
+    }, 
+    
+    /**
      *  Render method used when nothing is selected, or there are no events
      *  to show.
      **/
