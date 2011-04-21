@@ -19,11 +19,17 @@ var CollectionWidget = ListWidget.extend(
         var params = this.options;
         
     },
-
     render: function() {
         ListWidget.prototype.render.call(this);
         
         return this;
-    }
+    },
+    /**
+     *  When widget is clicked.
+     **/
+    _handle_click: function(e) {
+        console.log('e:');
+        console.log(e);
+    }, 
 });
 

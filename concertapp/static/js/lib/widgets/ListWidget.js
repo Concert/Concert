@@ -28,16 +28,17 @@ var ListWidget = Widget.extend(
         
         return this;
     },    
-/*    events: {
-        'click button.delete_audio_button': '_handle_delete_click', 
-    }, */
+    events: {
+        'click': '_handle_click'
+    },
     
     /**
-     *  When this widget's delete button was clicked on.
-     *
-    _handle_delete_click: function() {
+     *  When this widget was clicked on.  Subclasses all probably need to handle
+     *  this.
+     **/
+    _handle_click: function() {
         
-    },*/ 
+    },
     
     /**
      *  When the model that this widget represents is selected, we will 

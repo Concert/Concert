@@ -1,6 +1,5 @@
 {% load extra_template_tags %}
-<div class="list_widget {% verbatim %}{{if selected}} selected{{/if}}{% endverbatim %}
-">
+<div class="list_widget {{ widgetType }}_list_widget">
     <div class="boxwrap">
         <div class="{{ widgetType }}_widget_icon">
         </div>
