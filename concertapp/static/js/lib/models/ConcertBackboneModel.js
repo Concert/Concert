@@ -184,6 +184,8 @@ var ConcertBackboneModel = Backbone.Model.extend(
                             else {
                                 /* empty list */
                                 newAttr.refresh([]);
+                                /* Done with this attribute */
+                                delete attributes[oneToMany.attr];
                             }
                             
                             
