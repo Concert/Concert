@@ -36,7 +36,7 @@ var ConcertBackboneCollection = Backbone.Collection.extend(
         options || (options = {});
         
         /* If we are not a seenInstances collection */
-        if(this.seenInstances) {
+        if(!this.seenInstances) {
             var modelManagerSeenInstances = com.concertsoundorganizer.modelManager.seenInstances;
             var seenInstances = modelManagerSeenInstances[this.model.prototype.name];
 
@@ -51,16 +51,18 @@ var ConcertBackboneCollection = Backbone.Collection.extend(
             }
 
 
+            /* Check with dataset manager to see if model exists */
+            
+            var possibleDuplicate = seenInstances.get(model.id);
+
+            /* If there was no duplicate found, try parent seen instances */
+            if(!possibleDuplicate && parentSeenInstances) {
+                possibleDuplicate = parentSeenInstances.get(model.id);
+            }
+
+
             /* If the model hasn't yet been instantiated */
             if(!(model instanceof Backbone.Model)) {
-                /* Check with dataset manager to see if it already exists */
-                var possibleDuplicate = seenInstances.get(model.id);
-
-                /* If there was no duplicate found, try parent seen instances */
-                if(!possibleDuplicate && parentSeenInstances) {
-                    possibleDuplicate = parentSeenInstances.get(model.id);
-                }
-
                 /* If there is a duplicate */
                 if(possibleDuplicate) {
                     /* Send the attributes to the duplicate incase there are new ones */
@@ -71,12 +73,18 @@ var ConcertBackboneCollection = Backbone.Collection.extend(
                 }
                 /* If there is not a duplicate, create new instance */
                 else {
-                    model = new this.model(model);
-
+                    /* with just id at first */
+                    var modelData = model;
+                    model = new this.model({id: modelData.id});
+                    /* So we can add to seenInstances */
                     seenInstances.add(model);
                     if(parentSeenInstances) {
                         parentSeenInstances.add(model);
                     }
+                    
+                    /* Now parse remainder of data */
+                    model.set(modelData);
+                    
                 }   
             }
         }

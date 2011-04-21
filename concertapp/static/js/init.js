@@ -18,7 +18,6 @@
  **/
 function initializeUI(pagePath, data) {
     $(document).ready(function(){
-
         /* Make global notifier object that we can use anywhere to notify the user */
         com.concertsoundorganizer.notifier = new Notifier({});
 

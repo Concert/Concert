@@ -97,7 +97,7 @@ The base template for all pages.  All page templates will use this.
     <script src="/js/lib/widgets/CollectionSearchResultWidget.js"></script>
     <script src="/js/lib/widgets/CollectionSearchResultsWidget.js"></script>
     <script src="/js/lib/widgets/UploadFileWidget.js"></script>
-    <script src="/js/lib/widgets/AudioListWidget.js"></script>
+    <script src="/js/lib/widgets/ListWidget.js"></script>
     <script src="/js/lib/widgets/FileWidget.js"></script>
     <script src="/js/lib/widgets/SegmentWidget.js"></script>
     <script src="/js/lib/widgets/CollectionInfoWidget.js"></script>
@@ -115,6 +115,7 @@ The base template for all pages.  All page templates will use this.
     <script src="/js/lib/widgets/RequestDeniedEventWidget.js"></script>
     <script src="/js/lib/widgets/RequestJoinCollectionEventWidget.js"></script>
     <script src="/js/lib/widgets/RequestRevokedEventWidget.js"></script>
+    <script src="/js/lib/widgets/CollectionWidget.js"></script>
     
     
     {# Components #}
@@ -143,7 +144,7 @@ The base template for all pages.  All page templates will use this.
     <script src="/js/lib/panels/WaveformPanel.js"></script>
     <script src="/js/lib/panels/OverviewWaveformPanel.js"></script>
     <script src="/js/lib/panels/DetailWaveformPanel.js"></script>
-    <script src="/js/lib/panels/AudioListPanel.js"></script>
+    <script src="/js/lib/panels/ListPanel.js"></script>
     <script src="/js/lib/panels/ManageCollectionsPanel.js"></script>
     <script src="/js/lib/panels/EventsPanel.js"></script>
     
@@ -282,11 +283,10 @@ The base template for all pages.  All page templates will use this.
     <script id="requestjoincollectionevent_template" type="text/x-jquery-tmpl">
         {% include 'clientside/requestjoincollectionevent.html' %}
     </script>
+    
     <script id="requestrevokedevent_template" type="text/x-jquery-tmpl">
         {% include 'clientside/requestrevokedevent.html' %}
     </script>
-    
-    
     
     {# Send variable to javascript with recognizable path so we know what page we're on #}
     {% if js_page_path %}

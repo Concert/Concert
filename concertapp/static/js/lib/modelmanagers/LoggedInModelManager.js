@@ -28,11 +28,7 @@ LoggedInModelManager.prototype.init = function(params) {
     }
     dataToLoad['userData'] = userData;
     
-    /* Any page that has collections represented will require a master list of collections we have seen */
-    this.seenInstances['collection'] = new CollectionSet;
-
-    /* Master list of requests */
-    this.seenInstances['request'] = new RequestSet;
+    
     
     /**
      *  The user who is currently logged in.
@@ -40,36 +36,69 @@ LoggedInModelManager.prototype.init = function(params) {
     var user = new User;
     this.user = user;
     
-    /* We will need to maintain a list of users that we have seen */
-    this.seenInstances['user'] = new UserSet([user], {
-        seenInstances: true 
-    });
+    /**
+     *  A master list, for each type of model, of each instance we have come
+     *  across so we can ensure there are no duplicates.
+     **/
+    this.seenInstances = {
+        collection: new CollectionSet(null, {
+            seenInstances: true 
+        }), 
+        requests: new RequestSet(null, {
+            seenInstances: true
+        }), 
+        user: new UserSet(null, {
+            seenInstances: true
+        }),
+        audiofile: new AudioFileSet(null, {
+            seenInstances: true
+        }),
+        audiosegment: new AudioSegmentSet(null, {
+            seenInstances: true
+        }), 
+        tag: new TagSet(null, {
+            seenInstances: true
+        }), 
+        comment: new CommentSet(null, {
+            seenInstances: true
+        }), 
+        'event': new EventSet(null, {
+            seenInstances: true
+        }), 
+        audiofileuploadedevent: new AudioFileUploadedEventSet(null, {
+            seenInstances: true
+        }), 
+        audiosegmentcreatedevent: new AudioSegmentCreatedEventSet(null, {
+            seenInstances: true
+        }), 
+        audiosegmenttaggedevent: new AudioSegmentTaggedEventSet(null, {
+            seenInstances: true
+        }), 
+        createcollectionevent: new CreateCollectionEventSet(null, {
+            seenInstances: true
+        }), 
+        joincollectionevent: new JoinCollectionEventSet(null, {
+            seenInstances: true
+        }), 
+        leavecollectionevent: new LeaveCollectionEventSet(null, {
+            seenInstances: true
+        }), 
+        requestdeniedevent: new RequestDeniedEventSet(null, {
+            seenInstances: true
+        }), 
+        requestjoincollectionevent: new RequestJoinCollectionEventSet(null, {
+            seenInstances: true
+        }), 
+        requestrevokedevent: new RequestRevokedEventSet(null, {
+            seenInstances: true
+        })
+    }
     
-    /* Audio objects that we have seen */
-    this.seenInstances['audiofile'] = new AudioFileSet;
+    /* Add user to seen instances */
+    this.seenInstances['user'].add(user);
     
-    /* Audio segments that we have seen */
-    this.seenInstances['audiosegment'] = new AudioSegmentSet;
-    
-    /* Tags that we have seen */
-    this.seenInstances['tag'] = new TagSet;
-    
-    /* Comments we have seen */
-    this.seenInstances['comment'] = new CommentSet;
-    
-    /* All events we have seen */
-    this.seenInstances['event'] = new EventSet;
-    
-    /* Events of all type */
-    this.seenInstances['audiofileuploadedevent'] = new AudioFileUploadedEventSet;
-    this.seenInstances['audiosegmentcreatedevent'] = new AudioSegmentCreatedEventSet;
-    this.seenInstances['audiosegmenttaggedevent'] = new AudioSegmentTaggedEventSet;
-    this.seenInstances['createcollectionevent'] = new CreateCollectionEventSet;
-    this.seenInstances['joincollectionevent'] = new JoinCollectionEventSet;
-    this.seenInstances['leavecollectionevent'] = new LeaveCollectionEventSet;
-    this.seenInstances['requestdeniedevent'] = new RequestDeniedEventSet;
-    this.seenInstances['requestjoincollectionevent'] = new RequestJoinCollectionEventSet;
-    this.seenInstances['requestrevokedevent'] = new RequestRevokedEventSet;
+    /* The collection(s) which are currently selected */
+    this.selectedCollections = new CollectionSet;
     
 };
 
@@ -94,3 +123,18 @@ LoggedInModelManager.prototype._loadData = function() {
     dataToLoad['userData'] = null;
     
 };
+
+/**
+ *  Select a collection whose properties or audio we will view.
+ **/
+LoggedInModelManager.prototype.select_collection = function(collection) {
+    /* If we were passed the id of this collection */
+    if(_.isNumber(collection) || _.isString(collection)) {
+        /* Get actual collection instance */
+        collection = this.seenInstances['collection'].get(collection);
+    }
+    this.selectedCollections.refresh([collection]);
+    
+    return collection;
+};
+

@@ -23,7 +23,7 @@ class ConcertBootstrapDataMiddleware(object):
             # Data for user object
             userResource = UserWithCollectionsResource()
             userResource.set_user(user)
-            response.context_data['data']['userData'] = userResource.as_dict(request)[0]
+#            response.context_data['data']['userData'] = userResource.as_dict(request)[0]
             
         # combine above data, and any data that the view sent in into a single json 
         # object.

@@ -25,6 +25,43 @@ var Panel = Backbone.View.extend(
      *                                  notification.
      **/
     initialize: function() {
+        this._initialize_elements();
+        
+        _.bindAll(this, 'render');
+        
+        /**
+         *  This is a map of key value pairs, where each key is a "route:xxx" string
+         *  and each value is a string that represents the method to be used to 
+         *  render this route.  This is initialized in the _initialize_route_handlers
+         *  method.
+         **/
+        this.routeHandlerMap = null;
+        this._initialize_route_handlers();
+        
+        var routeHandlerMap = this.routeHandlerMap;
+        var page = this.page;
+        /* For each route handler */
+        for(var route in routeHandlerMap) {
+            var handlerString = routeHandlerMap[route];
+            var handlerMethod = this[handlerString];
+            /* If this method exists */
+            if(handlerMethod) {
+                /* Closure */
+                _.bindAll(this, handlerString);
+                /* Handle this route with the corresponding method */
+                page.bind(route, this[handlerString]);
+            }
+            /* Just use render method */
+            else {
+                page.bind(route, this.render);
+            }
+            
+        }
+        
+
+    },
+    
+    _initialize_elements: function() {
         var params = this.options;
         
         var page = params.page;
@@ -54,8 +91,19 @@ var Panel = Backbone.View.extend(
             throw new Error('header not found for panel');
         }
         this.header = header;
-
-
+        
+        var noContentContainer = contents.children('.panel_nocontent_container');
+        if(typeof(noContentContainer) == 'undefined') {
+            throw new Error('container.children(\'.panel_nocontent_container\') is undefined');
+        }
+        else if(noContentContainer.length == 0) {
+            throw new Error('noContentContainer not found');
+        }
+        /**
+         *  The div to display when this panel has no content.  Remove from DOM.
+         **/
+        this.noContentContainer = noContentContainer.detach();
+        
         /* Get the loader element for this panel */
         var loader = container.children('.panel_loader');
         if(typeof(loader) == 'undefined' || loader.length == 0) {
@@ -74,10 +122,23 @@ var Panel = Backbone.View.extend(
         if(loading) {
             this.showLoadingNotification();
         }
-        
-    },
+    }, 
     
-    /* This should be overridden */
+    /**
+     *  Initialize all methods for handling route changes.  Each panel should be
+     *  able to handle any route or state change from the controller.
+     **/
+    _initialize_route_handlers: function() {
+        this.routeHandlerMap = {
+            'route:collections': 'render_collections', 
+            'route:collection': 'render_collection', 
+            'route:collection_audio': 'render_collection_audio', 
+        };
+    }, 
+    
+    /**
+     *  Render a panel.  Should be subclassed if needed.
+     **/
     render: function() {
         
         return this;
@@ -112,6 +173,6 @@ var Panel = Backbone.View.extend(
      **/
     hideLoadingNotification: function() {
         this.loader.removeClass('panel_loader_enabled');
-    }
-    
+    },
+
 });

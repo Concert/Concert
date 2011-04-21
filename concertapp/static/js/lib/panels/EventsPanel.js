@@ -9,10 +9,12 @@
  *  @extends    Panel
  **/
 var EventsPanel = Panel.extend({
-    initialize: function() {
-        Panel.prototype.initialize.call(this);
+    _initialize_elements: function() {
+        Panel.prototype._initialize_elements.call(this);
 
         var params = this.options;
+        
+        var $ = jQuery;
         
         /**
          *  Which widget class do we use for which event type.
@@ -44,29 +46,51 @@ var EventsPanel = Panel.extend({
             9: $('#requestrevokedevent_template')
         }
         
-        /**
-         *  The template used for rendering an event widget
-         **/
-        var eventWidgetTemplate = $('#event_template');
-        if(typeof(eventWidgetTemplate) == 'undefined') {
-            throw new Error('$(\'#event_template\') is undefined');
-        }
-        else if(eventWidgetTemplate.length == 0) {
-            throw new Error('eventWidgetTemplate not found');
-        }
-        this.eventWidgetTemplate = eventWidgetTemplate;
         
-
-        _.bindAll(this, "render");
     },
-
+    
+    /**
+     *  When we are viewing collections.
+     **/
+    render_collections: function() {
+        /* nothing was selected */
+        this._render_nothing();
+    },
+    
+    /**
+     *  When we're viewing a single collection, show all of the events for that
+     *  collection.
+     **/
+    render_collection: function(collectionId, collection) {
+        /* Render the events for this collection */
+        this._render_events(collection.get('events'));
+        
+    }, 
+    
+    /**
+     *  When we are viewing the list of audio for a collection, same as 
+     *  viewing a collection.
+     **/
+    render_collection_audio: function(collectionId, collection) {
+        return this.render_collection(collectionId, collection);
+    }, 
+    
+    /**
+     *  Render method used when nothing is selected, or there are no events
+     *  to show.
+     **/
+    _render_nothing: function() {
+        this.contents.html(this.noContentContainer);
+    }, 
+    
+    
     /**
      *  Here we will render the list of events.  An argument is needed, the set of
      *  event models.
      *
      *  @param  {EventSet}    eventModels    The models to render
      **/
-    render: function(eventModels) {
+    _render_events: function(eventModels) {
         Panel.prototype.render.call(this);
         
         var panel = this;
@@ -79,7 +103,7 @@ var EventsPanel = Panel.extend({
             /* Proper widget for this event */
             var widgetClass = eventTypesToWidgetMap[eventType];
             var widgetTemplate = eventTypesToTemplateMap[eventType];
-            
+
             /* Create widget */
             var widget = new widgetClass({
                 panel: panel, 
