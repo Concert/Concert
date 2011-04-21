@@ -38,6 +38,12 @@ var Page = Backbone.Controller.extend(
         this._initialize_routes();
         
         Backbone.history.start();
+        
+        /* If there is currently no hash */
+        if(Backbone.history.fragment == '') {
+            /* Go to default */
+            window.location.assign(this.defaultHash);
+        }
     }, 
     /**
      *  This method just defines which dataset manager to use.  Should be overridden

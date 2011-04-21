@@ -29,7 +29,9 @@ var ListWidget = Widget.extend(
         return this;
     },    
     events: {
-        'click': '_handle_click'
+        'click': '_handle_click',
+        'mouseenter': '_handle_mouseenter', 
+        'mouseleave': '_handle_mouseleave'
     },
     
     /**
@@ -39,6 +41,20 @@ var ListWidget = Widget.extend(
     _handle_click: function(e) {
         
     },
+    
+    /**
+     *  When this widget is moused over.
+     **/
+    _handle_mouseenter: function(e) {
+        
+    }, 
+    
+    /**
+     *  When this widget receives a mouseout event.
+     **/
+    _handle_mouseleave: function(e) {
+        
+    }, 
     
     /**
      *  When the model that this widget represents is selected, we will 

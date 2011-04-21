@@ -59,25 +59,25 @@ var LoggedInPage = Page.extend(
         
         
         _.bindAll(this, '_collections_route');
-        this.route('', 'collections', this._collections_route);
+        this.route('collections', 'collections', this._collections_route);
         
         _.bindAll(this, '_collection_route');
         this.route('collection/:collectionId', 'collection', this._collection_route);
         
-        
+        this.defaultHash = '#collections';
         return;
     }, 
     
     /**
-     *  Route for "/".  Lists collections and such.
+     *  Route for "/#collections".  Lists collections and such.
      **/
     _collections_route: function() {
         this.currentRoute = 'collections';
     }, 
     
     /**
-     *  Route for "/#collection/:collectionId".  Shows managerial tasks for a 
-     *  collection.
+     *  Route for "/#collection/:collectionId".  Shows preview of a collection 
+     *  by displaying events on left.
      **/
     _collection_route: function(collectionId) {
         /* select current collection in model manager */

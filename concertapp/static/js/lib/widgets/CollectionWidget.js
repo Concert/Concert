@@ -18,6 +18,8 @@ var CollectionWidget = ListWidget.extend(
 
         var params = this.options;
         
+        this.hoverUrl = 'collection/'+this.model.get('id');
+        
     },
     render: function() {
         ListWidget.prototype.render.call(this);
@@ -30,8 +32,21 @@ var CollectionWidget = ListWidget.extend(
     _handle_click: function(e) {
         ListWidget.prototype._handle_click.call(this, e);
         
+    },
+    _handle_mouseenter: function(e) {
+        ListWidget.prototype._handle_mouseenter.call(this, e);
+        
         /* Go to collection */
-        window.location.assign('#collection/'+this.model.get('id'));
+        window.location.assign('#'+this.hoverUrl);
+    },
+    _handle_mouseleave: function(e) {
+        ListWidget.prototype._handle_mouseleave.call(this, e);
+        
+        /* If we are still on our collection's preview URL */
+        if(Backbone.history.fragment == this.hoverUrl) {
+            /* Go back to collections list */
+            window.location.assign('#collections');
+        }
     }, 
 });
 
