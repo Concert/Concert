@@ -2,9 +2,7 @@
 {% load extra_template_tags %}
 
 {% block title %}
-    {% verbatim %}
-        do tmpl thing here for link
-    {% endverbatim %}
+        {% verbatim %}{{tmpl($data) "#audiofile_link_template"}}{% endverbatim %}
 {% endblock %}
 
 

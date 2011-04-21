@@ -93,13 +93,7 @@ var ListPanel = Panel.extend(
     /**
      *  Called when we are in the audio mode, and the render method is called.
      **/
-    render_audio: function() {
-        
-        /* If we're not in audio mode, exit */
-        var currentRoute = this.page.currentRoute;
-        if(currentRoute != 'file' || currentRoute != 'segment') {
-            return;
-        }
+    render_collection_audio: function(collectionId, collection) {
         
         /* temporary frag for dom additions */
         var frag = document.createDocumentFragment();
@@ -109,7 +103,7 @@ var ListPanel = Panel.extend(
         var segmentWidgets = {};
         
         /* Put each file in list */
-        this.files.each(function(fileWidgetTemplate, panel, frag, fileWidgets) {
+        collection.get('files').each(function(fileWidgetTemplate, panel, frag, fileWidgets) {
             return function(obj) {
                 /* Create a file widget */
                 var widget = new FileWidget({
@@ -126,7 +120,7 @@ var ListPanel = Panel.extend(
         
         
         /* Put each segment in list */
-        this.segments.each(function(segmentWidgetTemplate, panel, frag, segmentWidgets) {
+        collection.get('segments').each(function(segmentWidgetTemplate, panel, frag, segmentWidgets) {
             return function(obj) {
                 /* Create segment widget */
                 var widget = new SegmentWidget({
@@ -147,6 +141,10 @@ var ListPanel = Panel.extend(
         /* Save list of file/segment widgets */
         this.segmentWidgets = segmentWidgets;
         this.fileWidgets = fileWidgets;
+        
+        /* Save some state */
+        this.currentlyRendered = 'collection_audio';
+        this.selectedWidget = null;
     }, 
     
     /**

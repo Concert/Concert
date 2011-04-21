@@ -1,5 +1,5 @@
 {% load extra_template_tags %}
 
 {% verbatim %}
-    <a class="audiosegment" href="#segment/${id}">${name}</a>
+    <a class="audiosegment" href="#collection/${collection.get('id')}/audio/segment/${id}">${name}</a>
 {% endverbatim %}

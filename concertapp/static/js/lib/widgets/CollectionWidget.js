@@ -19,6 +19,7 @@ var CollectionWidget = ListWidget.extend(
         var params = this.options;
         
         this.hoverUrl = 'collection/'+this.model.get('id');
+        this.clickUrl = this.hoverUrl+'/audio';
         
     },
     render: function() {
@@ -32,6 +33,8 @@ var CollectionWidget = ListWidget.extend(
     _handle_click: function(e) {
         ListWidget.prototype._handle_click.call(this, e);
         
+        /* Go to collection's audio */
+        window.location.assign('#'+this.clickUrl);
     },
     _handle_mouseenter: function(e) {
         ListWidget.prototype._handle_mouseenter.call(this, e);

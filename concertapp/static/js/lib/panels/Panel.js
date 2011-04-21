@@ -132,6 +132,7 @@ var Panel = Backbone.View.extend(
         this.routeHandlerMap = {
             'route:collections': 'render_collections', 
             'route:collection': 'render_collection', 
+            'route:collection_audio': 'render_collection_audio', 
         };
     }, 
     

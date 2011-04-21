@@ -64,6 +64,13 @@ var LoggedInPage = Page.extend(
         _.bindAll(this, '_collection_route');
         this.route('collection/:collectionId', 'collection', this._collection_route);
         
+        _.bindAll(this, '_collection_audio_route');
+        this.route(
+            'collection/:collectionId/audio',
+            'collection_audio',
+            this._collection_audio_route
+        );
+        
         this.defaultHash = '#collections';
         return;
     }, 
@@ -86,6 +93,19 @@ var LoggedInPage = Page.extend(
         
         this.currentRoute = 'collection';
         return [collection];
+    }, 
+    
+    /**
+     *  Rotue for "/#collection/:collectionId/audio".  Shows collection's audio
+     *  files and segments.
+     **/
+    _collection_audio_route: function(collectionId) {
+        /* Get collection from collection route handler */
+        var newArgs = this._collection_route(collectionId);
+        
+        this.currentRoute = 'collection_audio'
+        
+        return newArgs;
     }, 
     
     // Manually bind a single named route to a callback. For example:
