@@ -91,8 +91,6 @@ var ConcertBackboneModel = Backbone.Model.extend(
                         if(!newAttr) {
                             /* Create it */
                             newAttr = me._createOneToManyAttribute(oneToMany);
-                            /* save new collection attribute */
-                            attributes[oneToMany.attr] = newAttr;
                         }
 
                         /* If it is a list */
@@ -103,9 +101,6 @@ var ConcertBackboneModel = Backbone.Model.extend(
                                 if(typeof(models[0]) == 'object') {
                                     /* Load in objects */
                                     newAttr.refresh(models);
-                                    /* Make sure we don't set the attribute
-                                    because it is still a array of objects */
-                                    delete attributes[oneToMany.attr];
                                 }
                                 /* If this is a list of strings, models were
                                 sent as URLs */
@@ -181,12 +176,9 @@ var ConcertBackboneModel = Backbone.Model.extend(
                                     });
                                 }
                             }
-                            else {
-                                /* empty list */
-                                newAttr.refresh([]);
-                                /* Done with this attribute */
-                                delete attributes[oneToMany.attr];
-                            }
+                            
+                            attributes[oneToMany.attr] = newAttr;
+                            
                             
                             
                         }
@@ -337,7 +329,7 @@ var ConcertBackboneModel = Backbone.Model.extend(
             });
         }
         
-        Backbone.Model.prototype.set.call(this, attributes, options);
+        return Backbone.Model.prototype.set.call(this, attributes, options);
     },
     
     /**
