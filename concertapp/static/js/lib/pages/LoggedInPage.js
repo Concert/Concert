@@ -186,11 +186,23 @@ var LoggedInPage = Page.extend(
         }, this));
     },
     
+    /**
+     *  Called from a component or something when there is a new audio segment
+     *  to be created.
+     **/
     create_new_segment: function(startTime, endTime) {
-        this.modelManager.create_and_select_new_segment(startTime, endTime, function(me) {
-            return function() {
-            }
-        }(this));
+        /* Throw event so everyone knows what is happening */
+        this.trigger('creating_new_segment');
+        
+        this.modelManager.create_and_select_new_segment(startTime, endTime,
+            /* When the segment is created */
+            function(model, resp) {
+                var collectionId = model.get('collection').get('id');
+                var fileId = model.get('audioFile').get('id');
+                var segmentId = model.get('id');
+                /* Go to new URL */
+                window.location.assign('#collection/'+collectionId+'/audio/file/'+fileId+'/segment/'+segmentId);
+        });
     },
     
     /**

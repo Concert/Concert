@@ -50,6 +50,9 @@ var WaveformPanel = Panel.extend(
         _.bindAll(this, "_waveform_loaded");
         $(this.page.audioController).bind('waveform_loaded', this._waveform_loaded);
         
+        /* When the controller is in the process of creating a new audio segment */
+        _.bindAll(this, 'show_loading_notification');
+        this.page.bind('creating_new_segment', this.show_loading_notification);
     },
     
     /**
@@ -57,7 +60,8 @@ var WaveformPanel = Panel.extend(
      *
      *  @param  {AudioFile}    selectedAudioFile    -   The selected file
      **/
-    render_collection_audio_file: function(collectionId, fileId, selectedCollection, selectedAudioFile) {       
+    render_collection_audio_file: function(collectionId, fileId, selectedCollection, selectedAudioFile) {
+        this.hide_loading_notification();
         console.log("WaveformPanel calls render_collection_audio_file");
         this.itemWasSelected = true;
         
@@ -76,6 +80,7 @@ var WaveformPanel = Panel.extend(
      *  @param  {AudioSegment}    selectedAudioSegment    - The selected segment
      **/
     render_collection_audio_segment: function(collectionId, fileId, segmentId, selectedCollection, selectedAudioFile, selectedAudioSegment) {
+        this.hide_loading_notification();
         console.log("WaveformPanel calls render_collection_audio_segment");
         this.itemWasSelected = true;
         

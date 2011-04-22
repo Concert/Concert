@@ -175,8 +175,13 @@ LoggedInModelManager.prototype.select_audio_segment = function(selectedAudioSegm
 
 /**
  *  Create new audio segment object and set it as currently selected.
+ *
+ *  @param  {Number}        startTime   The start time of this new segment
+ *  @param  {Number}        endTime     The end time of the new segment
+ *  @param  {Function}      callback    The callback to call when saving the new
+ *                                      segment is complete.
  **/
-LoggedInModelManager.prototype.create_and_select_new_segment = function(startTime, endTime) {    
+LoggedInModelManager.prototype.create_and_select_new_segment = function(startTime, endTime, callback) {    
     var timestamp = new Date();
 
     /* The audio file that will be the parent for our new segment */
@@ -216,11 +221,7 @@ LoggedInModelManager.prototype.create_and_select_new_segment = function(startTim
             };
         }(newSegment), 
         error_message: 'Audio segment was not created.', 
-        success: function(poop) {
-            return function(model, resp) {
-                console.log(model.get('id'));
-            };
-        }(true)
+        success: callback
     });
 };
 

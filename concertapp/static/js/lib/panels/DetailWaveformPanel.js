@@ -163,8 +163,7 @@ var DetailWaveformPanel = WaveformPanel.extend(
             return function() {
                 me.handle_scroll_stop();
             }
-        }(this));        
-
+        }(this));
 
 
         this.set_zoom_level(10);

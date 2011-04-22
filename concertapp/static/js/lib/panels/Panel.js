@@ -120,7 +120,7 @@ var Panel = Backbone.View.extend(
 
         /* If we should be loading, show the loading notification */
         if(loading) {
-            this.showLoadingNotification();
+            this.show_loading_notification();
         }
     }, 
     
@@ -154,27 +154,27 @@ var Panel = Backbone.View.extend(
         var loading = this.loading;
         if(!loading) {
             /* Enable loading notification */
-            this.showLoadingNotification();
-            this.loading = true;
+            this.show_loading_notification();
         }
         else {
-            this.hideLoadingNotification();
-            this.loading = false;
+            this.hide_loading_notification();
         }
     },
 
     /**
      *  Display the loading notification on this panel.
      **/
-    showLoadingNotification: function() {
-        this.loader.addClass('panel_loader_enabled');    
+    show_loading_notification: function() {
+        this.loader.addClass('panel_loader_enabled');
+        this.loading = true;
     },
 
     /**
      *  Hide the loading notification on this panel.
      **/
-    hideLoadingNotification: function() {
+    hide_loading_notification: function() {
         this.loader.removeClass('panel_loader_enabled');
+        this.loading = false;
     },
 
 });
