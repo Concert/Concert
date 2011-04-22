@@ -176,64 +176,51 @@ LoggedInModelManager.prototype.select_audio_segment = function(selectedAudioSegm
 /**
  *  Create new audio segment object and set it as currently selected.
  **/
-//LoggedInModelManager.prototype.create_and_select_new_segment = function(startTime, endTime, callback) {    
-//    var timestamp = new Date();
-    
-//    var routeName = this.page.currentRoute;
-//    if(currentRoute == 'collection_audio_file') {
-        
-//    }
-    
-    /* Find parent audio file */
-//    var selectedSegments = this.selectedAudioSegments;
-//    var selectedFiles = this.modelManagerselectedAudioFiles;
+LoggedInModelManager.prototype.create_and_select_new_segment = function(startTime, endTime) {    
+    var timestamp = new Date();
 
     /* The audio file that will be the parent for our new segment */
-//    var audioFile = null;
-
-    /* If a segment is currently selected */
-//    if(selectedSegments.length) {
-        /* Use segment's parent audio file */
-//        audioFile = selectedSegments.first().get('audioFile');
-//    }
+    var audioFile = null;
+    
+    var routeName = this.page.currentRoute;
+    
     /* If a file is currently selected */
-//    else if(selectedFiles.length) {
-        /* Use it as the segment's parent */
-//        audioFile = selectedFiles.first();
-//    }
+    if(routeName == 'collection_audio_file') {
+        audioFile = this.selectedAudioFiles.first();
+    } 
+    else if(currentRoute == 'collection_audio_segment') {
+        audioFile = this.selectedAudioSegments.first().get('audioFile');
+    }
     
     /* Create new segment */
-//    var newSegment = new AudioSegment({
-//        audioFile: audioFile, 
-//        beginning: startTime, 
-//        end: endTime,
-        /* Creator of the segment is the current user */
-//        creator: this.user, 
-        /* For now, name is just timestamp */
-//        name: 'segment_'+timestamp.format('yyyy-mm-dd_hh:MM:ss:L'), 
-        /* Collection is current collection */
-//        collection: this.collection, 
-//    });
-    
-    /* Add to this collection's audio segments */
-//    this.collectionAudioSegments.add(newSegment);
-//    this.seenInstances['audiosegment'].add(newSegment);
-    
-    /* Select new segment */
-//    this.page.select_audio({
-//        segments: [newSegment], 
-//    });
+    var newSegment = new AudioSegment({
+        audioFile: audioFile,
+        beginning: startTime,
+        end: endTime,
+        creator: this.user, 
+        name: 'segment_'+timestamp.format('yyyy-mm-dd_hh:MM:ss:L'), 
+        collection: this.selectedCollections.first(),
+    });
+
+    /* Because newSegment has no ID, it can be added to these sets manually */
+    this.selectedCollections.first().get('segments').add(newSegment);
+    this.seenInstances['audiosegment'].add(newSegment);
     
     /* Now save to server */
-//    newSegment.save(null, {
+    newSegment.save(null, {
         /* if there is an error */
-//        error_callback: function(newSegment) {
-//            return function() {
+        error_callback: function(newSegment) {
+            return function() {
                 /* Delete our new segment */
-//                newSegment.destroy();
-//            }
-//        }(newSegment), 
-//        error_message: 'Audio segment was not created.' 
-//    });
-//};
+                newSegment.destroy();
+            };
+        }(newSegment), 
+        error_message: 'Audio segment was not created.', 
+        success: function(poop) {
+            return function(model, resp) {
+                console.log(model.get('id'));
+            };
+        }(true)
+    });
+};
 

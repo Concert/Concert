@@ -185,5 +185,23 @@ var LoggedInPage = Page.extend(
             this.trigger.apply(this, ['route:' + name].concat(args));
         }, this));
     },
+    
+    create_new_segment: function(startTime, endTime) {
+        this.modelManager.create_and_select_new_segment(startTime, endTime, function(me) {
+            return function() {
+            }
+        }(this));
+    },
+    
+    /**
+     *  This is called from elsewhere when we are to ensure that a waveform highlight 
+     *  is cleared.
+     **/
+    clear_waveform_highlight: function() {
+        this.audioController._clear_audio_loop();
+        this.detailPanel.clear_waveform_highlight();
+        this.overviewPanel.clear_waveform_highlight();
+    },
+    
 });
     

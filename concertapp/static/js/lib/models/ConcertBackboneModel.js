@@ -371,8 +371,9 @@ var ConcertBackboneModel = Backbone.Model.extend(
      **/
     save : function(attrs, options) {
         var wrapErrorHelper = com.concertsoundorganizer.helpers.wrapError;
+        options = wrapErrorHelper(options);
 
-        return Backbone.Model.prototype.save.call(this, attrs, wrapErrorHelper(options));
+        return Backbone.Model.prototype.save.call(this, attrs, options);
     },
     
     /**
