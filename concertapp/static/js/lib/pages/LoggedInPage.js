@@ -144,6 +144,7 @@ var LoggedInPage = Page.extend(
      *  waveform, segments, and events
      **/
     _collection_audio_file_route: function(collectionId, fileId) {
+        this.clear_waveform_highlight();
         var newArgs = this._collection_route(collectionId);
         var file = this.modelManager.select_audiofile(fileId);
         newArgs.push(file);
@@ -158,6 +159,7 @@ var LoggedInPage = Page.extend(
      *  Shows audio segment's waveform, parent audio file, and events
      **/
      _collection_audio_segment_route: function(collectionId, fileId, segmentId) {
+         this.clear_waveform_highlight();
          var newArgs = this._collection_audio_file_route(collectionId, fileId);
          var segment = this.modelManager.select_audio_segment(segmentId);
          newArgs.push(segment);
@@ -204,6 +206,44 @@ var LoggedInPage = Page.extend(
                 window.location.assign('#collection/'+collectionId+'/audio/file/'+fileId+'/segment/'+segmentId);
         });
     },
+    
+    /**
+     *  Called from elsewhere when the current segment has changed.  Ensure that
+     *  everything is updated.
+     *
+     *  @param  {Number}    startTime       The new beginning of the segment
+     *  @param  {Number}    endTime         The new end of the segment
+     **/
+    modify_current_segment_times: function(startTime, endTime) {
+        /* Modify current segment */
+        this.modelManager.modify_current_segment_times(startTime, endTime,
+            /* When the segment is created */
+            function(model, resp) {
+                var collectionId = model.get('collection').get('id');
+                var fileId = model.get('audioFile').get('id');
+                var segmentId = model.get('id');
+                /* Go to new URL */
+                window.location.assign('#collection/'+collectionId+'/audio/file/'+fileId+'/segment/'+segmentId);
+        });
+    },
+    
+    /**
+     *  Called from elsewhere when current segment is to be tagged.
+     *
+     *  @param  {String}    tagName    The tag that we're giving this segment.
+     **/ 
+    tag_current_segment: function(tagName) {
+        this.modelManager.tag_current_segment(tagName);
+    },
+
+    /**
+     *  Ensure that given audio segment is deleted.
+     *
+     *  @param  {AudioSegment}    segment    The AudioSegment instance to delete
+     **/
+    delete_audio_segment: function(segment) {
+        this.modelManager.delete_audio_segment(segment);
+    }, 
     
     /**
      *  This is called from elsewhere when we are to ensure that a waveform highlight 

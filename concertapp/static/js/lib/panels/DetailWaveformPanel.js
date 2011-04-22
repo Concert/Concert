@@ -175,7 +175,6 @@ var DetailWaveformPanel = WaveformPanel.extend(
      *  @param  {AudioFile}    selectedAudioFile    -   The selected file.
      **/
     render_collection_audio_file: function(collectionId, fileId, selectedCollection, selectedAudioFile) {
-        console.log("DetailWaveformPanel calls audio_file_selected");
         WaveformPanel.prototype.render_collection_audio_file.call(this, collectionId, fileId, selectedCollection, selectedAudioFile);
 
         //console.log(selectedAudioFile.toJSON());
@@ -197,8 +196,6 @@ var DetailWaveformPanel = WaveformPanel.extend(
         /* Hide tag input box (for now) */
         this.tagInputElement.hide();
         
-        console.log(this.selectedAudioFile);
-        console.log(this.selectedAudioFile.get('duration'));
         this.timecodeComponent.audio_file_selected(this.audioFileDuration);
         this.highlighter.audio_file_selected(this.selectedAudioFile);
                 

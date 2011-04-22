@@ -95,7 +95,6 @@ var OverviewWaveformPanel = WaveformPanel.extend(
      *  @param  {AudioFile}    selectedAudioFile    -   The audio file instance
      **/
     render_collection_audio_file: function(collectionId, fileId, selectedCollection, selectedAudioFile) {
-        console.log("OverviewWaveformPanel calls render_collection_audio_file");
         WaveformPanel.prototype.render_collection_audio_file.call(this, collectionId, fileId, selectedCollection, selectedAudioFile);
         
         this.playheadComponent.update_speed();

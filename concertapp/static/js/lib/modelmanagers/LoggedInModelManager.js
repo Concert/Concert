@@ -162,7 +162,7 @@ LoggedInModelManager.prototype.select_audiofile = function(selectedAudioFile) {
  *  Select an audio segment to view
  *  @param  {AudioSegment|Number}    selectedAudioSegment       the selected audio segment to view
  **/
-LoggedInModelManager.prototype.select_audio_segment = function(selectedAudioSegment) {
+LoggedInModelManager.prototype.select_audio_segment = function(selectedAudioSegment) {    
     if(_.isNumber(selectedAudioSegment) || _.isString(selectedAudioSegment)) {
         selectedAudioSegment = this.seenInstances['audiosegment'].get(selectedAudioSegment);
     }
@@ -225,3 +225,142 @@ LoggedInModelManager.prototype.create_and_select_new_segment = function(startTim
     });
 };
 
+/**
+ *  When the start and end points of the currently selected segment are changed.
+ *
+ *  @param  {Number}    startTime    The new start time
+ *  @param  {Number}    endTime    The new end time
+ **/
+LoggedInModelManager.prototype.modify_current_segment_times = function(startTime, endTime) {
+    /* get current segment */
+    var currentSegment = this.selectedAudioSegments.first();
+    
+    /* Save current values */
+    var oldStartTime = currentSegment.get('beginning');
+    var oldEndTime = currentSegment.get('end');
+
+    console.log("currentSegment.get('beginning'):");
+    console.log(currentSegment.get('beginning'));
+    console.log("currentSegment.get('end'):");
+    console.log(currentSegment.get('end'));
+    
+    /* update values */
+    currentSegment.set({
+        beginning: startTime, 
+        end: endTime
+    });
+    
+    console.log("currentSegment.get('beginning'):");
+    console.log(currentSegment.get('beginning'));
+    console.log("currentSegment.get('end'):");
+    console.log(currentSegment.get('end'));
+        
+    /* Try to save */
+    //save is failing :(
+    currentSegment.save(null, {
+        /* if stuff fails */
+        error_callback: function(oldStartTime, oldEndTime, currentSegment) {
+            return function() {
+                /* go back to old times */
+                currentSegment.set({
+                    beginning: startTime, 
+                    end: endTime 
+                });
+            };
+        }(oldStartTime, oldEndTime, currentSegment), 
+        error_message: 'Audio segment was not modified', 
+        success: function() {
+            return function(model, resp) {
+                console.log("model.get('id')");
+                console.log(model.get('id'));
+            };
+        }()
+    });
+};
+
+/**
+ *  When an audio segment is to be deleted.
+ *
+ *  @param  {AudioSegment}  segment     The audio segment we're deleting
+
+LoggedInModelManager.prototype.delete_audio_segment = function(segment) {
+    //is this right? what about seenInstances?
+    var collectionAudioSegments = this.selectedCollections.first().get('segments');
+    
+    /* Remove from current collection's audio segments 
+    collectionAudioSegments.remove(segment);
+    
+    /* If this is the currently selected audio segment 
+    if(this.selectedAudioSegments.first() == segment) {
+        /* Select parent audio file 
+//        this.page.select_audio({
+//            files: [segment.get('audioFile')]
+//        });
+        console.log(segment deleted was the currently selected audio segment)
+    }
+    
+    /* Delete audio segment 
+    segment.destroy({
+        /* If there was a problem 
+        error_callback: function(segment, collectionAudioSegments) {
+            return function() {
+                /* Put back in audio segments list for current collection 
+                collectionAudioSegments.add(segment);
+            }
+        }(segment, collectionAudioSegments), 
+        error_message: 'Audio segment was not deleted'
+    });
+};
+
+/**
+ *  When the current segment is to be tagged.
+ *
+ *  @param  {String}    tagName    The name of the tag to give this segment.
+ **
+LoggedInModelManager.prototype.tag_current_segment = function(tagName) {
+    /* Find given tag *
+    var tag = this.collectionTags.find(function(t) {
+        return (t.get('name') == tagName);
+    });
+    
+    var currentSegment = this.selectedAudioSegments.first();
+    
+    /* If tag does not yet exist *
+    if(!tag) {
+        /* Create it *
+        tag = new Tag({
+            /* with the given name *
+            name: tagName, 
+            /* for the current collection *
+            collection: this.collection, 
+            /* Created by our user *
+            creator: this.user, 
+        });
+        
+        /* Add to seen instances *
+        this.seenInstances['tag'].add(tag);
+        /* Add to tags for this collection *
+        this.collectionTags.add(tag);
+    }
+
+    /* tell tag and segment about eachother *
+    tag.get('segments').add(currentSegment);
+    currentSegment.get('tags').add(tag, {
+        /* save changes to server *
+        save: true, 
+        /* if error *
+        error_callback: function(addedTag) {
+            return function(seg) {
+                /* remove tag from segment *
+                seg.get('tags').remove(addedTag);
+                addedTags.get('segments').remove(seg);
+            };
+        }(tag), 
+        error_message: 'Segment was not tagged.'
+    });
+    /* Tell page to re-render for our audio again *
+    this.page.select_audio({
+        segments: [this.selectedAudioSegments.first()], 
+    });
+};
+*/

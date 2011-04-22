@@ -62,7 +62,7 @@ var WaveformPanel = Panel.extend(
      **/
     render_collection_audio_file: function(collectionId, fileId, selectedCollection, selectedAudioFile) {
         this.hide_loading_notification();
-        console.log("WaveformPanel calls render_collection_audio_file");
+
         this.itemWasSelected = true;
         
         this.selectedAudioFile = selectedAudioFile;
@@ -81,7 +81,7 @@ var WaveformPanel = Panel.extend(
      **/
     render_collection_audio_segment: function(collectionId, fileId, segmentId, selectedCollection, selectedAudioFile, selectedAudioSegment) {
         this.hide_loading_notification();
-        console.log("WaveformPanel calls render_collection_audio_segment");
+
         this.itemWasSelected = true;
         
         this.selectedAudioSegment = selectedAudioSegment;
@@ -95,15 +95,12 @@ var WaveformPanel = Panel.extend(
     },
     
     _waveform_loaded: function() {
-        console.log('waveform_loaded on waveform panel')
         this.waveformWasLoaded = true;
         if(!this.itemWasSelected) {
             return;
         } 
         
         var waveformImageElement = this.waveformImageElement;
-        
-        console.log(this.selectedAudioFile.get_waveform_src(10));
         
         /* Load the waveform viewer with the audio files' waveform image */
         waveformImageElement.attr('src', this.selectedAudioFile.get_waveform_src(10));
