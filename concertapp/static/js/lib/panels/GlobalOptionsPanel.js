@@ -67,7 +67,7 @@ var GlobalOptionsPanel = Panel.extend(
         collectionSelector.bind('change', function(e) {
             var collection_id = $(this).val();
 
-            window.location = '/organize/collection/'+collection_id;
+//            window.location = '/organize/collection/'+collection_id;
         });
 
         /* This is the template for the collection dropdown */

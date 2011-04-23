@@ -293,8 +293,9 @@ class AudioSegment(models.Model):
                 name = self.name,
                 collection = self.collection
             )
+            
             # And it is not the current segment
-            if sameName.id is not self.id:
+            if sameName.id != self.id:
                 raise ValidationError('Audio Segments must have unique names!')
             
         except ObjectDoesNotExist:
