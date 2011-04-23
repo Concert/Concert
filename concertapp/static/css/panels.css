@@ -24,7 +24,6 @@ img::selection {
 div.panel {
     /* default panel values */
     position: relative;
-    min-height: 60px;
 }
 
 /* This is the div that shows a loading notification on each panel */
@@ -70,26 +69,26 @@ div.panel_nocontent_text {
 *  http://www.w3.org/TR/css3-box/#types
 */
 div#global_options_panel {
-    width: 954px;
-    -webkit-box-orient: horizontal;
-    display: -webkit-box;
-    margin-top: 20px;
-    margin-bottom: 20px;
-	margin-left: 1px;
-}
-
-div#global_options_panel_contents {
-    width: 954px;
+    width: 914px;
 	background-color: #f8f8fa;
-   /* -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.25);*/
     border: 1px solid white;
 	outline: 1px solid rgba(0,0,0,0.25);
     -webkit-box-orient: horizontal;
     display: -webkit-box;
+	margin-left: 1px;
+	padding: 20px;
+}
+
+div#global_options_panel_contents {
+    width: 914px;
+    -webkit-box-orient: horizontal;
+    display: -webkit-box;
+	height: 40px;
+	background: url(/graphics/logo.png) center no-repeat;
 }
 
 div#global_options_panel_left {
-    width: 317px;
+    width: 297px;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-box-pack: start;
@@ -103,9 +102,7 @@ div#global_options_panel_left h1 {
     text-transform: lowercase;
     display: -webkit-box;
     -webkit-box-flex: 1;
-    padding-top: 25px;
     padding-left: 32px;
-    background: url(/graphics/logo.png) left no-repeat;
 }
 
 /* NOT IN USE AT THE MOMENT
@@ -131,7 +128,7 @@ width: 320px;
 }*/
 
 div#global_options_panel_right {
-    width: 637px;
+    width: 617px;
     -webkit-box-pack: end;
     /* Contents (buttons) will also be horizontally spread using the box model */
     -webkit-box-orient: horizontal;
@@ -140,7 +137,6 @@ div#global_options_panel_right {
 
 div#global_menu ul{
     float: right;
-    padding-top: 29px;
 }
 
 div#global_menu li{
@@ -158,7 +154,7 @@ div#global_menu a:link, a:hover, a:visited{
     text-decoration: none;
     text-transform:uppercase;
 }
-
+/*
 div.global_options_panel_button {
     margin-right: 0.5em;
     margin-left: 0.5em;
@@ -183,7 +179,7 @@ select#collection_selector {
 options {
     background-color: #FFFFFF;
     padding-right: 5px;
-}
+}*/
 
 #inset{
 	background: #bfbfc8;
