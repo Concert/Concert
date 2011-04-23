@@ -195,7 +195,7 @@ LoggedInModelManager.prototype.create_and_select_new_segment = function(startTim
     if(routeName == 'collection_audio_file') {
         audioFile = this.selectedAudioFiles.first();
     } 
-    else if(currentRoute == 'collection_audio_segment') {
+    else if(routeName == 'collection_audio_segment') {
         audioFile = this.selectedAudioSegments.first().get('audioFile');
     }
     

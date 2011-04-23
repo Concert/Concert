@@ -34,7 +34,6 @@ function initializeUI(pagePath, data) {
             '/': LoggedInPage,
             '/collections/': CollectionsPage,
             '/audio/upload/': UploadPage,
-            '/organize/collection/': OrganizePage
         };
         
         /* Check browser problems */
