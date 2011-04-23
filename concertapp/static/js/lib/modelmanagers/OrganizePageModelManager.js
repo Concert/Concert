@@ -114,13 +114,7 @@ OrganizePageModelManager.prototype.init = function(params) {
     */
     /* Here are all of the tags for this collection 
     this.collectionTags = new TagSet;*/
-
-    /* Here we will store the audio segments and files that are selected (from the
-    audio list panel).  Currently only one segment/file can be selected at once, so 
-    the total cardinality of these sets will be 1. */
-    this.selectedAudioSegments = new AudioSegmentSet;
-    this.selectedAudioFiles = new AudioFileSet;
-    
+        
     /**
      *  The current collection we are organizing.
      **/
@@ -137,17 +131,17 @@ OrganizePageModelManager.prototype._loadData = function() {
     if(!collection) {
         collection = new Collection();
     }
+    
     collection.set(dataToLoad.collectionData);
     this.collection = collection;
     dataToLoad.collectionData = null;
-    
-    
+        
     /* Load data for all events */
     var collectionEventSets = this.collectionEventSets;
     var eventDataSetNames = this.eventDataSetNames;
-    
+
     for(var i = 0, il = eventDataSetNames.length; i < il; i++) {
-        var eventDataSetName = eventDataSetNames[i];
+        var eventDataSetName = eventDataSetNames[i];        
         collectionEventSets[i].refresh(dataToLoad[eventDataSetName]);
         dataToLoad[eventDataSetName] = null;
     }
@@ -155,143 +149,9 @@ OrganizePageModelManager.prototype._loadData = function() {
 }
 
 /**
- *  When multiple audio files/segments are to be selected.  Just an interface
- *  for now.  Method doesn't actually handle multiple selection.
- *  
- *  @param  {Array}    params.files    -    The selected audio files
- *  @param  {Array}    params.segments    - The selected audio segments.
- **/
-OrganizePageModelManager.prototype.select_audio = function(params) {
-    var files = params.files;
-    if(typeof(files) == 'undefined') {
-        files = [];
-    }
-    
-    var segments = params.segments;
-    if(typeof(segments) == 'undefined') {
-        segments = [];
-    }
-    
-    /* If there is one audio segment */
-    if(segments.length == 1 && files.length == 0) {
-        this.select_segment(segments[0]);
-    }
-    /* If there is one audio file */
-    else if(files.length == 1 && segments.length == 0) {
-        this.select_file(files[0]);
-    }
-    else {
-        throw new Error('Multiple selection not supported currently.');
-    }
-
-};
-
-/**
- *  Called before anything is to be selected.  Handles deselecting of everything.
- **/
-OrganizePageModelManager.prototype._deselect_all = function() {
-    var selectedAudioSegments = this.selectedAudioSegments;
-    var selectedAudioFiles = this.selectedAudioFiles;
-    
-    /* Deselect everything */
-    selectedAudioSegments.each(function(seg){
-        seg.set({
-            selected: false 
-        });
-    });
-    selectedAudioFiles.each(function(file){
-        file.set({
-            selected: false 
-        });
-    });
-    
-};
-
-
-
-/**
- *  When a single audio segment is selected.
- *
- *  @param  {Number | AudioSegment}    segment - The segment object or id
- *  @throws selected_segment
- **/
-OrganizePageModelManager.prototype.select_segment = function(segment) {
-    /* Clear everything currently selected */
-    this._deselect_all();
-
-    /* If we were passed an id as a number */
-    if(typeof(segment) == 'number') {
-        /* Get audio segment */
-        segment = this.seenInstances['audiosegment'].get(segment);
-    }
-    
-    /* Set as selected */
-    segment.set({
-        selected: true
-    });
-    
-    
-    /* remove previously selected segments and select new one */
-    this.selectedAudioSegments.refresh([segment]);
-    
-    /* Throw "selected_segment" event */
-    $(this).trigger('select_segment', segment);
-    
-};
-
-/**
- *  When a single audio file is to be selected.
- *
- *  @param  {Number | AudioFile}    file    -    The file or id.
- *  @throws select_file
- **/
-OrganizePageModelManager.prototype.select_file = function(file) {
-    /* Clear everything currently selected */
-    this._deselect_all();
-
-    /* if we were just passed an id */
-    if(typeof(file) == 'number') {
-        /* First retrieve file instance */
-        file = this.seenInstances['audiofile'].get(file);
-    }
-
-    file.set({
-        selected: true
-    });
-    
-    
-    /* Remove previously selected files and select new one */
-    this.selectedAudioFiles.refresh([file]);
-    
-    $(this).trigger('select_file', file);
-};
-
-
-
-
-
-/**
  *  Create new audio segment object and set it as currently selected.
  **/
-OrganizePageModelManager.prototype.create_and_select_new_segment = function(startTime, endTime) {
-    
-    var selectedSegments = this.selectedAudioSegments;
-    var selectedFiles = this.selectedAudioFiles;
-    
-    /* The audio file that will be the parent for our new segment */
-    var audioFile = null;
-    
-    /* If a segment is currently selected */
-    if(selectedSegments.length) {
-        /* Use segment's parent audio file */
-        audioFile = selectedSegments.first().get('audioFile');
-    }
-    /* If a file is currently selected */
-    else if(selectedFiles.length) {
-        /* Use it as the segment's parent */
-        audioFile = selectedFiles.first();
-    }
-    
+OrganizePageModelManager.prototype.create_and_select_new_segment = function(startTime, endTime, audioFile) {    
     var timestamp = new Date();
     
     /* Create new segment */

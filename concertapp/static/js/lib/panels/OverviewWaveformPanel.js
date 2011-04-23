@@ -21,7 +21,7 @@ var OverviewWaveformPanel = WaveformPanel.extend(
         var playheadComponent = new OverviewWaveformPlayheadComponent({
             el: this.playheadElement,
             panel: this,
-            audio: this.page.audio
+            audio: this.page.audioController.audio
         });
         /**
          *  Playhead for this waveform panel
@@ -49,7 +49,7 @@ var OverviewWaveformPanel = WaveformPanel.extend(
          *  Highlighter component for this panel
          **/
         this.highlighter = highlighter;
-                
+        
         var segmentBarsContainerElement = $('#overview_waveform_panel_bottom');
         if(typeof(segmentBarsContainerElement) == 'undefined') {
             throw new Error('$(\'#overview_waveform_panel_bottom\') is undefined');
@@ -87,7 +87,6 @@ var OverviewWaveformPanel = WaveformPanel.extend(
          **/
         this.segmentBarTemplate = segmentBarTemplate;
         
-        
     }, 
     
     /**
@@ -95,52 +94,29 @@ var OverviewWaveformPanel = WaveformPanel.extend(
      *
      *  @param  {AudioFile}    selectedAudioFile    -   The audio file instance
      **/
-    audio_file_selected: function(e, selectedAudioFile) {
-        WaveformPanel.prototype.audio_file_selected.call(this, e, selectedAudioFile);
+    render_collection_audio_file: function(collectionId, fileId, selectedCollection, selectedAudioFile) {
+        WaveformPanel.prototype.render_collection_audio_file.call(this, collectionId, fileId, selectedCollection, selectedAudioFile);
         
-        this._load_waveform_image(
-            selectedAudioFile.get_waveform_src(10),
-            function(me, selectedAudioFile) {
-                return function() {
-                    /* Tell highlighter */
-                    me.highlighter.audio_file_selected(selectedAudioFile);
-                    /* render segments */
-                    me.render_segment_bars(selectedAudioFile);
-                }
-            }(this, selectedAudioFile)
-        );
-    
         this.playheadComponent.update_speed();
+        
+        this.highlighter.audio_file_selected(this.selectedAudioFile);
+        this.render_segment_bars(selectedAudioFile);
     }, 
-    
+        
     /**
      *  Called from page when audio segment is selected.
      *
      *  @param  {AudioSegment}    selectedAudioSegment    - The audio segment
      **/
-    audio_segment_selected: function(e, selectedAudioSegment) {
-        WaveformPanel.prototype.audio_segment_selected.call(this, e, selectedAudioSegment);
+     render_collection_audio_segment: function(collectionId, fileId, segmentId, selectedCollection, selectedAudioFile, selectedAudioSegment) {
+        WaveformPanel.prototype.render_collection_audio_segment.call(this, collectionId, fileId, segmentId, selectedCollection, selectedAudioFile, selectedAudioSegment);
         
-        var audioFile = selectedAudioSegment.get('audioFile');
-        
-        /* Load waveform image */
-        this._load_waveform_image(
-            audioFile.get_waveform_src(10),
-            /* Then */
-            function(me, selectedAudioSegment, audioFile) {
-                return function() {
-                    /* Tell highlighter */
-                    me.highlighter.audio_segment_selected(selectedAudioSegment);
-                    /* render segments */
-                    me.render_segment_bars(audioFile)
-                };
-            }(this, selectedAudioSegment, audioFile)
-        );
-
         this.playheadComponent.update_speed();
-
+        
+        this.highlighter.audio_segment_selected(this.selectedAudioSegment);
+        this.render_segment_bars(this.selectedAudioSegment.get('audioFile'));
     }, 
-    
+        
     /**
      *  Called from page when audio segment is deleted. 
      *  Re-renders segment bars when a segment is deleted. 

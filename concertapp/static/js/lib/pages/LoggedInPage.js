@@ -53,10 +53,27 @@ var LoggedInPage = Page.extend(
             modelManager: this.modelManager
         });
         
+        /* Create audio controller */ 
+        this.audioController = new AudioController({
+            page: this
+        });
+
+        /*  Create waveform overview panel */
+        this.overviewPanel = new OverviewWaveformPanel({
+            page: this, 
+            el: $('#overview_waveform_panel')
+        });
+                
+        /* Create waveform detail panel */
+        this.detailPanel = new DetailWaveformPanel({
+            page: this, 
+            el: $('#detail_waveform_panel'),
+        });
+        
     },
+    
     _initialize_routes: function() {
         Page.prototype._initialize_routes.call(this);
-        
         
         _.bindAll(this, '_collections_route');
         this.route('collections', 'collections', this._collections_route);
@@ -69,6 +86,20 @@ var LoggedInPage = Page.extend(
             'collection/:collectionId/audio',
             'collection_audio',
             this._collection_audio_route
+        );
+        
+        _.bindAll(this, '_collection_audio_file_route');
+        this.route(
+            'collection/:collectionId/audio/file/:fileId',
+            'collection_audio_file',
+            this._collection_audio_file_route
+        );
+        
+        _.bindAll(this, '_collection_audio_segment_route');
+        this.route(
+            'collection/:collectionId/audio/file/:fileId/segment/:segmentId',
+            'collection_audio_segment',
+            this._collection_audio_segment_route
         );
         
         this.defaultHash = '#collections';
@@ -103,10 +134,40 @@ var LoggedInPage = Page.extend(
         /* Get collection from collection route handler */
         var newArgs = this._collection_route(collectionId);
         
-        this.currentRoute = 'collection_audio'
+        this.currentRoute = 'collection_audio';
         
         return newArgs;
     }, 
+    
+    /**
+     *  Route for "/#collection/:collectionId/audio/file/:fileId" Shows audio file's
+     *  waveform, segments, and events
+     **/
+    _collection_audio_file_route: function(collectionId, fileId) {
+        this.clear_waveform_highlight();
+        var newArgs = this._collection_route(collectionId);
+        var file = this.modelManager.select_audiofile(fileId);
+        newArgs.push(file);
+        
+        this.currentRoute = 'collection_audio_file';        
+        
+        return newArgs;
+    },
+    
+    /**
+     *  Route for "/#collection/:collectionId/audio/file/:fileId/segment/:segmentId"
+     *  Shows audio segment's waveform, parent audio file, and events
+     **/
+     _collection_audio_segment_route: function(collectionId, fileId, segmentId) {
+         this.clear_waveform_highlight();
+         var newArgs = this._collection_audio_file_route(collectionId, fileId);
+         var segment = this.modelManager.select_audio_segment(segmentId);
+         newArgs.push(segment);
+         
+         this.currentRoute = 'collection_audio_segment';
+
+         return newArgs;
+     },
     
     // Manually bind a single named route to a callback. For example:
     //
@@ -122,10 +183,77 @@ var LoggedInPage = Page.extend(
             /* Whatever our callback for this route returns, we will push into
             the args array to send along with the route information */
             args = args.concat(callback.apply(this, args));
-
+            
             this.trigger.apply(this, ['route:' + name].concat(args));
         }, this));
     },
     
+    /**
+     *  Called from a component or something when there is a new audio segment
+     *  to be created.
+     **/
+    create_new_segment: function(startTime, endTime) {
+        /* Throw event so everyone knows what is happening */
+        this.trigger('creating_new_segment');
+        
+        this.modelManager.create_and_select_new_segment(startTime, endTime,
+            /* When the segment is created */
+            function(model, resp) {
+                var collectionId = model.get('collection').get('id');
+                var fileId = model.get('audioFile').get('id');
+                var segmentId = model.get('id');
+                /* Go to new URL */
+                window.location.assign('#collection/'+collectionId+'/audio/file/'+fileId+'/segment/'+segmentId);
+        });
+    },
+    
+    /**
+     *  Called from elsewhere when the current segment has changed.  Ensure that
+     *  everything is updated.
+     *
+     *  @param  {Number}    startTime       The new beginning of the segment
+     *  @param  {Number}    endTime         The new end of the segment
+     **/
+    modify_current_segment_times: function(startTime, endTime) {
+        /* Modify current segment */
+        this.modelManager.modify_current_segment_times(startTime, endTime,
+            /* When the segment is created */
+            function(model, resp) {
+                var collectionId = model.get('collection').get('id');
+                var fileId = model.get('audioFile').get('id');
+                var segmentId = model.get('id');
+                /* Go to new URL */
+                window.location.assign('#collection/'+collectionId+'/audio/file/'+fileId+'/segment/'+segmentId);
+        });
+    },
+    
+    /**
+     *  Called from elsewhere when current segment is to be tagged.
+     *
+     *  @param  {String}    tagName    The tag that we're giving this segment.
+     **/ 
+    tag_current_segment: function(tagName) {
+        this.modelManager.tag_current_segment(tagName);
+    },
+
+    /**
+     *  Ensure that given audio segment is deleted.
+     *
+     *  @param  {AudioSegment}    segment    The AudioSegment instance to delete
+     **/
+    delete_audio_segment: function(segment) {
+        this.modelManager.delete_audio_segment(segment);
+    }, 
+    
+    /**
+     *  This is called from elsewhere when we are to ensure that a waveform highlight 
+     *  is cleared.
+     **/
+    clear_waveform_highlight: function() {
+        this.audioController._clear_audio_loop();
+        this.detailPanel.clear_waveform_highlight();
+        this.overviewPanel.clear_waveform_highlight();
+    },
     
 });
+    

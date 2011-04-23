@@ -35,9 +35,9 @@ var DetailWaveformTimecodeComponent = Component.extend(
      *
      *  @param  {AudioFile}    selectedAudioFile    -   selected audio file
      **/
-    audio_file_selected: function(selectedAudioFile) {
+    audio_file_selected: function(audioFileDuration) {
         /* Save duration of audio */
-        this.fileDuration = selectedAudioFile.get('duration');
+        this.fileDuration = audioFileDuration;
         
         /* render */
         this.render();

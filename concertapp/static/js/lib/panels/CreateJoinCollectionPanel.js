@@ -97,9 +97,7 @@ var CreateJoinCollectionPanel = Panel.extend(
                 newCollectionName: this.currentTerm,
                 panel: this,  
             });
-            
-            console.log(createNewElement.get(0));
-                        
+                                    
             /* Put in search results area */
             this.createResultsElement.append(createNewElement);
         }

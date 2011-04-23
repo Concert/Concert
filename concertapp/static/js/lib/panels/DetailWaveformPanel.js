@@ -18,8 +18,7 @@ var DetailWaveformPanel = WaveformPanel.extend(
         WaveformPanel.prototype.initialize.call(this);
 
         var params = this.options;
-        
-        
+                        
         /* The template for the top of the panel when a file is selected */
         var topFileTemplate = $('#detail_waveform_top_file_template');
         if(typeof(topFileTemplate) == 'undefined') {
@@ -63,7 +62,7 @@ var DetailWaveformPanel = WaveformPanel.extend(
         var timecodeComponent = new DetailWaveformTimecodeComponent({
             el: timecodeContainerElement, 
             panel: this, 
-            audio: this.page.audio
+            audio: this.page.audioController.audio
         });
         this.timecodeComponent = timecodeComponent;
         
@@ -71,7 +70,7 @@ var DetailWaveformPanel = WaveformPanel.extend(
         var playheadComponent = new DetailWaveformPlayheadComponent({
             el: this.playheadElement,
             panel: this,
-            audio: this.page.audio
+            audio: this.page.audioController.audio
         });
         this.playheadComponent = playheadComponent;
         
@@ -166,58 +165,49 @@ var DetailWaveformPanel = WaveformPanel.extend(
             }
         }(this));
 
-        
-
-
 
         this.set_zoom_level(10);
+
     },
     /**
      *  Called from page when an audio file has been selected.
      *
      *  @param  {AudioFile}    selectedAudioFile    -   The selected file.
      **/
-    audio_file_selected: function(e, selectedAudioFile) {
-        WaveformPanel.prototype.audio_file_selected.call(this, e, selectedAudioFile);
-        
+    render_collection_audio_file: function(collectionId, fileId, selectedCollection, selectedAudioFile) {
+        WaveformPanel.prototype.render_collection_audio_file.call(this, collectionId, fileId, selectedCollection, selectedAudioFile);
+
+        //console.log(selectedAudioFile.toJSON());
         /* Load top content with audio file information */
-        this.topContainer.html(
-            this.topFileTemplate.tmpl(selectedAudioFile.toJSON())
-        );
+        //this.topContainer.html(
+        //    this.topFileTemplate.tmpl(selectedAudioFile.toJSON())
+        //);
         
         /* Create editable text component to handle name change */
-        this.topNameComponent = new EditableModelTextComponent({
-            panel: this, 
-            model: selectedAudioFile, 
-            attr: 'name',
-            el: $('#detail_waveform_selected_name_container')
-        });
+        //this.topNameComponent = new EditableModelTextComponent({
+        //    panel: this, 
+        //    model: selectedAudioFile, 
+        //    attr: 'name',
+        //    el: $('#detail_waveform_selected_name_container')
+        //});
         
         /* Clear bottom tags area */
         this.tagsContainerElement.empty();
         /* Hide tag input box (for now) */
         this.tagInputElement.hide();
         
-        /* Load waveform image */
-        this._load_waveform_image(selectedAudioFile.get_waveform_src(10), function(me, selectedAudioFile) {
-            /* and when done */
-            return function() {
-                /* Draw timecode */
-                me.timecodeComponent.audio_file_selected(selectedAudioFile);
+        this.timecodeComponent.audio_file_selected(this.audioFileDuration);
+        this.highlighter.audio_file_selected(this.selectedAudioFile);
                 
-                /* Set up highlighter */
-                me.highlighter.audio_file_selected(selectedAudioFile);
-            };            
-        }(this, selectedAudioFile));
-    }, 
+    },
     
     /**
      *  Called from page when audio segment has been selected.
      *
      *  @param  {AudioSegment}    selectedAudioSegment    - The selected segment.
      **/
-    audio_segment_selected: function(e, selectedAudioSegment) {
-        WaveformPanel.prototype.audio_segment_selected.call(this, e, selectedAudioSegment);
+    render_collection_audio_segment: function(collectionId, fileId, segmentId, selectedCollection, selectedAudioFile, selectedAudioSegment) {
+        WaveformPanel.prototype.render_collection_audio_segment.call(this, collectionId, fileId, segmentId, selectedCollection, selectedAudioFile, selectedAudioSegment);
         
         /* Load top of panel with audio segment information */
         this.topContainer.html(
@@ -250,24 +240,13 @@ var DetailWaveformPanel = WaveformPanel.extend(
         });
         
         /* Load tags in bottom */
-        this.tagsContainerElement.html(frag);
-
+        this.tagsContainerElement.html(frag);    
         
-        /* Load waveform image */
-        this._load_waveform_image(
-            selectedAudioSegment.get('audioFile').get_waveform_src(10),
-            function(me, selectedAudioSegment) {
-                return function() {
-                    /* Draw timecode */
-                    me.timecodeComponent.audio_segment_selected(selectedAudioSegment);
-                    me.highlighter.audio_segment_selected(selectedAudioSegment);
-                    me.autoscroll(selectedAudioSegment.get('beginning') * me.get_resolution());
-                };
-            }(this, selectedAudioSegment)
-        );
-        
+        this.timecodeComponent.audio_segment_selected(this.selectedAudioSegment);
+        this.highlighter.audio_segment_selected(this.selectedAudioSegment);
+        this.autoscroll(this.selectedAudioSegment.get('beginning') * this.get_resolution());
     }, 
-        
+            
     highlight_waveform: function(startTime, endTime) {
         WaveformPanel.prototype.highlight_waveform.call(this, startTime, endTime);
         this.autoscrolling = true;

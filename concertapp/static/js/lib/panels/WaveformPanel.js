@@ -39,15 +39,20 @@ var WaveformPanel = Panel.extend(
         }
         this.playheadElement = playheadElement;
         
+        var itemWasSelected = false;
+        this.itemWasSelected = itemWasSelected;
+        var waveformWasLoaded = false;
+        this.waveformWasLoaded = waveformWasLoaded;
+        
         /* The duration of the last selected audio file (or segment parent) */
         this.audioFileDuration = null;
+                
+        _.bindAll(this, "_waveform_loaded");
+        $(this.page.audioController).bind('waveform_loaded', this._waveform_loaded);
         
-        _.bindAll(this, "audio_segment_selected");
-        $(this.page.modelManager).bind('select_segment', this.audio_segment_selected);
-        
-        _.bindAll(this, "audio_file_selected");
-        $(this.page.modelManager).bind('select_file', this.audio_file_selected);
-        
+        /* When the controller is in the process of creating a new audio segment */
+        _.bindAll(this, 'show_loading_notification');
+        this.page.bind('creating_new_segment', this.show_loading_notification);
     },
     
     /**
@@ -55,7 +60,16 @@ var WaveformPanel = Panel.extend(
      *
      *  @param  {AudioFile}    selectedAudioFile    -   The selected file
      **/
-    audio_file_selected: function(e, selectedAudioFile) {
+    render_collection_audio_file: function(collectionId, fileId, selectedCollection, selectedAudioFile) {
+        this.hide_loading_notification();
+
+        this.itemWasSelected = true;
+        
+        this.selectedAudioFile = selectedAudioFile;
+        if(this.waveformWasLoaded) {
+            this._waveform_loaded();
+        }
+        
         this.audioFileDuration = selectedAudioFile.get('duration');
         this.playheadComponent.reset();
     },
@@ -65,10 +79,32 @@ var WaveformPanel = Panel.extend(
      *
      *  @param  {AudioSegment}    selectedAudioSegment    - The selected segment
      **/
-    audio_segment_selected: function(e, selectedAudioSegment) {
-        this.audioFileDuration = selectedAudioSegment.get('audioFile').get('duration');
+    render_collection_audio_segment: function(collectionId, fileId, segmentId, selectedCollection, selectedAudioFile, selectedAudioSegment) {
+        this.hide_loading_notification();
+
+        this.itemWasSelected = true;
+        
+        this.selectedAudioSegment = selectedAudioSegment;
+        this.selectedAudioFile = selectedAudioFile;
+        if(this.waveformWasLoaded) {
+            this._waveform_loaded();
+        }
+        
+        this.audioFileDuration = selectedAudioFile.get('duration');
         this.playheadComponent.reset();
-    }, 
+    },
+    
+    _waveform_loaded: function() {
+        this.waveformWasLoaded = true;
+        if(!this.itemWasSelected) {
+            return;
+        } 
+        
+        var waveformImageElement = this.waveformImageElement;
+        
+        /* Load the waveform viewer with the audio files' waveform image */
+        waveformImageElement.attr('src', this.selectedAudioFile.get_waveform_src(10));
+    },
     
     /**
      *  Called from page when waveform highlight should be cleared.
