@@ -167,7 +167,7 @@ var AudioController = Backbone.Controller.extend(
     },
     
     /**
-     *  This is called internally the audio loop is to be turned off
+     *  This is called internally when the audio loop is to be turned off
      **/
     _clear_audio_loop: function() {
         if(this.audioLoopEnabled == true) {

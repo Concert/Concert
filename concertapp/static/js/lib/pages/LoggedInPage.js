@@ -189,8 +189,9 @@ var LoggedInPage = Page.extend(
     },
     
     /**
-     *  Called from a component or something when there is a new audio segment
-     *  to be created.
+     *  Called from elsewhere when there is a new audio segment to be created
+     *  @param  {Number}    startTime   the start time of the new segment
+     *  @param  {Number}    endTime     the end time of the new segment
      **/
     create_new_segment: function(startTime, endTime) {
         /* Throw event so everyone knows what is happening */

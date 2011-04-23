@@ -1,6 +1,7 @@
 /**
  *  @file       LoggedInModelManager.js
- *  @author     Colin Sullivan <colinsul [at] gmail.com>
+ *  @author     Colin Sullivan <colinsul [at] gmail.com
+ *  @author     amy wieliczka <amywieliczka [at] gmail.com
  **/
  
 /**
@@ -129,6 +130,7 @@ LoggedInModelManager.prototype._loadData = function() {
 
 /**
  *  Select a collection whose properties or audio we will view.
+ *  @param  {Collection|Number}    collection      the selected collection
  **/
 LoggedInModelManager.prototype.select_collection = function(collection) {
     /* If we were passed the id of this collection */
@@ -207,6 +209,7 @@ LoggedInModelManager.prototype.create_and_select_new_segment = function(startTim
         collection: this.selectedCollections.first(),
     });
 
+    /* TODO: make this less hackish please */
     /* Because newSegment has no ID, it can be added to these sets manually */
     this.selectedCollections.first().get('segments').add(newSegment);
     this.seenInstances['audiosegment'].add(newSegment);
@@ -239,24 +242,13 @@ LoggedInModelManager.prototype.modify_current_segment_times = function(startTime
     var oldStartTime = currentSegment.get('beginning');
     var oldEndTime = currentSegment.get('end');
 
-    console.log("currentSegment.get('beginning'):");
-    console.log(currentSegment.get('beginning'));
-    console.log("currentSegment.get('end'):");
-    console.log(currentSegment.get('end'));
-    
     /* update values */
     currentSegment.set({
         beginning: startTime, 
         end: endTime
     });
     
-    console.log("currentSegment.get('beginning'):");
-    console.log(currentSegment.get('beginning'));
-    console.log("currentSegment.get('end'):");
-    console.log(currentSegment.get('end'));
-        
     /* Try to save */
-    //save is failing :(
     currentSegment.save(null, {
         /* if stuff fails */
         error_callback: function(oldStartTime, oldEndTime, currentSegment) {
@@ -268,13 +260,7 @@ LoggedInModelManager.prototype.modify_current_segment_times = function(startTime
                 });
             };
         }(oldStartTime, oldEndTime, currentSegment), 
-        error_message: 'Audio segment was not modified', 
-        success: function() {
-            return function(model, resp) {
-                console.log("model.get('id')");
-                console.log(model.get('id'));
-            };
-        }()
+        error_message: 'Audio segment was not modified'
     });
 };
 
@@ -282,29 +268,30 @@ LoggedInModelManager.prototype.modify_current_segment_times = function(startTime
  *  When an audio segment is to be deleted.
  *
  *  @param  {AudioSegment}  segment     The audio segment we're deleting
-
+ */
 LoggedInModelManager.prototype.delete_audio_segment = function(segment) {
-    //is this right? what about seenInstances?
     var collectionAudioSegments = this.selectedCollections.first().get('segments');
     
-    /* Remove from current collection's audio segments 
+    /* Remove from current collection's audio segments */
     collectionAudioSegments.remove(segment);
     
-    /* If this is the currently selected audio segment 
+    /* If this is the currently selected audio segment */
     if(this.selectedAudioSegments.first() == segment) {
-        /* Select parent audio file 
-//        this.page.select_audio({
-//            files: [segment.get('audioFile')]
-//        });
-        console.log(segment deleted was the currently selected audio segment)
+        /* Select parent audio file */
+        var collectionId = segment.get('collection').get('id');
+        var fileId = segment.get('audioFile').get('id');
+        /* Go to new URL */
+        window.location.assign('#collection/'+collectionId+'/audio/file/'+fileId);
+
+        console.log("segment deleted was the currently selected audio segment");
     }
     
-    /* Delete audio segment 
+    /* Delete audio segment */
     segment.destroy({
-        /* If there was a problem 
+        /* If there was a problem */
         error_callback: function(segment, collectionAudioSegments) {
             return function() {
-                /* Put back in audio segments list for current collection 
+                /* Put back in audio segments list for current collection */
                 collectionAudioSegments.add(segment);
             }
         }(segment, collectionAudioSegments), 
@@ -315,52 +302,49 @@ LoggedInModelManager.prototype.delete_audio_segment = function(segment) {
 /**
  *  When the current segment is to be tagged.
  *
- *  @param  {String}    tagName    The name of the tag to give this segment.
- **
+ *  @param  {String}    tagName    The name of the tag to give this segment. 
+ **/
 LoggedInModelManager.prototype.tag_current_segment = function(tagName) {
-    /* Find given tag *
-    var tag = this.collectionTags.find(function(t) {
+    /* Find given tag */
+    var tag = this.selectedCollections.first().get('tags').find(function(t) {
         return (t.get('name') == tagName);
     });
     
     var currentSegment = this.selectedAudioSegments.first();
     
-    /* If tag does not yet exist *
+    /* If tag does not yet exist */
     if(!tag) {
-        /* Create it *
+        /* Create it */
         tag = new Tag({
-            /* with the given name *
+            /* with the given name */
             name: tagName, 
-            /* for the current collection *
-            collection: this.collection, 
-            /* Created by our user *
+            /* for the current collection */
+            collection: this.selectedCollections.first(),
+            /* Created by our user */
             creator: this.user, 
         });
         
-        /* Add to seen instances *
+        /*TODO: make less hackish please (x2) */
+        /* Add to seen instances */
         this.seenInstances['tag'].add(tag);
-        /* Add to tags for this collection *
-        this.collectionTags.add(tag);
+        /* Add to tags for this collection */
+        this.selectedCollections.first().get('tags').add(tag);
     }
 
-    /* tell tag and segment about eachother *
+    /* tell tag and segment about eachother */
     tag.get('segments').add(currentSegment);
     currentSegment.get('tags').add(tag, {
-        /* save changes to server *
+        /* save changes to server */
         save: true, 
-        /* if error *
+        /* if error */
         error_callback: function(addedTag) {
             return function(seg) {
-                /* remove tag from segment *
+                /* remove tag from segment */
                 seg.get('tags').remove(addedTag);
                 addedTags.get('segments').remove(seg);
             };
         }(tag), 
         error_message: 'Segment was not tagged.'
     });
-    /* Tell page to re-render for our audio again *
-    this.page.select_audio({
-        segments: [this.selectedAudioSegments.first()], 
-    });
+    
 };
-*/
