@@ -55,35 +55,41 @@ div.panel_loader_enabled {
 
 /* A panel's no content container, displayed when there is no content to view */
 div.panel_nocontent_container {
+	display: none;
     width: 100%;
     height: 100%;
-}
+}/*
 div.panel_nocontent_text {
     margin: auto;
 }
 
-
+*/
 /*
 *  Page Header.  We use the CSS3 box layout here, for more info:
 *  http://hacks.mozilla.org/2010/04/the-css-3-flexible-box-model/
 *  http://www.w3.org/TR/css3-box/#types
 */
 div#global_options_panel {
-    width: 960px;
+    width: 954px;
     -webkit-box-orient: horizontal;
     display: -webkit-box;
     margin-top: 20px;
     margin-bottom: 20px;
+	margin-left: 1px;
 }
 
 div#global_options_panel_contents {
-    width: 100%;
+    width: 954px;
+	background-color: #f8f8fa;
+   /* -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.25);*/
+    border: 1px solid white;
+	outline: 1px solid rgba(0,0,0,0.25);
     -webkit-box-orient: horizontal;
     display: -webkit-box;
 }
 
 div#global_options_panel_left {
-    width: 320px;
+    width: 317px;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-box-pack: start;
@@ -125,7 +131,7 @@ width: 320px;
 }*/
 
 div#global_options_panel_right {
-    width: 640px;
+    width: 637px;
     -webkit-box-pack: end;
     /* Contents (buttons) will also be horizontally spread using the box model */
     -webkit-box-orient: horizontal;
@@ -179,6 +185,15 @@ options {
     padding-right: 5px;
 }
 
+#inset{
+	background: #bfbfc8;
+    border-left: 1px solid white;
+ 	border-right: 1px solid white;
+ 	border-bottom: 1px solid white;
+    -webkit-box-shadow:inset 0 0 5px rgba(0,0,0,0.3);
+	margin-bottom: 20px;
+}
+
 /*Overview Waveform Panel */
 div#overview_waveform_panel {
     width: 960px;
@@ -188,7 +203,7 @@ div#overview_waveform_panel {
 }
 
 div#overview_waveform_panel_contents {
-    width: 960px;
+    width: 958px;
     height: 80px;
     -webkit-box-orient: vertical;
     display: -webkit-box;
@@ -203,7 +218,9 @@ div#overview_waveform_panel_top {
     color: #f8f8fa;
     width: 958px;
     height: 58px;
-    border: 1px solid white;
+/* 	border-top: 1px solid #e3e3ec;
+	border-bottom: 1px solid #e3e3ec;
+   border: 1px solid white;*/
     -webkit-box-shadow:inset 0 0 10px #000000;
 }
 
@@ -226,29 +243,28 @@ div.playhead {
 }
 
 /*Detail Waveform Panel */
-div#detail_waveform_panel {
+div#detail_waveform {
     width: 960px;
-    margin-bottom: 20px;
     display: -webkit-box;
+	-webkit-box-orient: vertical;
 }
 
 div#detail_waveform_panel_contents {
-    width: 960px;
+    width: 956px;
+	margin-left:1px;
     -webkit-box-orient: vertical;
     display: -webkit-box;
-    background-color: #f8f8fa;
 }
 
 div#detail_waveform_panel_top_wrap{
-    -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.25);
-    border-top: 1px solid white;
-    border-right: 1px solid white;
-    border-left: 1px solid white;
+	background-color: #f8f8fa;
+   /* -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.25);*/
+    border: 1px solid white;
+	outline: 1px solid rgba(0,0,0,0.25);
 }
 
 div#detail_waveform_panel_top {
-    background: #f8f8fa;
-    width: 878px;
+    width: 874px;
     height: 10px;
     padding-top: 15px;
     padding-bottom: 15px;
@@ -281,7 +297,7 @@ div#detail_waveform_panel_top_right {
 }
 
 div#detail_waveform_panel_middle {
-    width: 960px;
+    width: 956px;
     height: 254px;
     -webkit-box-orient: horizontal;
     display: -webkit-box;
@@ -366,21 +382,17 @@ div#detail_waveform_panel_view_underlay {
 div #detail_waveform_panel_playhead {
     height: 253px;
 }
-
+/*
 div#detail_waveform_panel_bottom {
-    background-color: #f8f8fa;
     width: 880px;
     height: 40px;
     padding-left: 40px;
     padding-right: 40px;
-}
+}*/
 
 div#detail_waveform_panel_bottom {
-    background: #b4b4ba;
     width: 948px;
     padding: 0px 0px 9px 9px;
-    border: 1px solid white;
-    -webkit-box-shadow:inset 0 0 10px rgba(0,0,0,0.5);
 }
 
 div#detail_waveform_panel_waveform_timecode_playhead {

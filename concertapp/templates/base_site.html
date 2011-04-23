@@ -186,18 +186,18 @@ The base template for all pages.  All page templates will use this.
     </div>
     
     <div id="layout" class="layout">
-        <div id="layout_top" class="layout_top">
-            {% if user.is_authenticated %}
-                {% panel 'partials/global_options_panel.html' 'Concert' 'global_options' %}
-            {% else %}
-                <h1>Concert</h1>
-            {% endif %}
-        </div>
-
-        <div id="layout_middle" class="layout_middle">
-            {% block middle %}{% endblock %}
-        </div>
-        
+		<div id="inset" class="lightNoise">
+        	<div id="layout_top" class="layout_top">
+            	{% if user.is_authenticated %}
+                	{% panel 'partials/global_options_panel.html' 'Concert' 'global_options' %}
+            	{% else %}
+                	<h1>Concert</h1>
+            	{% endif %}
+        	</div>
+		 	<div id="layout_middle" class="layout_middle">
+          		{% block middle %}{% endblock %}
+			</div>
+		</div>
         <div id="layout_bottom" class="layout_bottom">
             <div id="layout_left" class="layout_left"> 
                 {% block left %}{% endblock %}
