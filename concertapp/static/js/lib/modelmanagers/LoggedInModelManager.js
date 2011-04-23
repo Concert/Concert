@@ -325,10 +325,10 @@ LoggedInModelManager.prototype.tag_current_segment = function(tagName) {
         });
         
         /*TODO: make less hackish please (x2) */
-        /* Add to seen instances */
-        this.seenInstances['tag'].add(tag);
         /* Add to tags for this collection */
         this.selectedCollections.first().get('tags').add(tag);
+        /* Add to seen instances */
+        this.seenInstances['tag'].add(tag);
     }
 
     /* tell tag and segment about eachother */
