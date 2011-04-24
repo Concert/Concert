@@ -12,7 +12,7 @@
 
 div::selection {
     background-color:Transparent;
-    color:#000;
+    color:	fuschia;
 }
 
 img::selection {
@@ -37,14 +37,14 @@ div.panel_loader {
     z-index: -1;
 }
 
-/* This is the actual loading notification (Animation or "Loading...") */
+/* This is the actual loading notification (Animation or "Loading...") 
 div.panel_loader_notification {
     position: relative;
     top: 50%;
     height: 1em;
     margin-top: -0.5em;
     color: white;
-}
+}*/
 
 /* This class is added when the panel loader is to be displayed */
 div.panel_loader_enabled {
@@ -69,22 +69,23 @@ div.panel_nocontent_text {
 *  http://www.w3.org/TR/css3-box/#types
 */
 div#global_options_panel {
-    width: 914px;
-	background-color: #f8f8fa;
+    width: 934px;
+	height: 40px;
     border: 1px solid white;
-	outline: 1px solid rgba(0,0,0,0.25);
+/*	outline: 1px solid rgba(0,0,0,0.25);
     -webkit-box-orient: horizontal;
-    display: -webkit-box;
+    display: -webkit-box;*/
 	margin-left: 1px;
-	padding: 20px;
+	padding: 10px;
+	background: #f8f8fa url(/graphics/logo.png) center no-repeat;
 }
-
+/*
 div#global_options_panel_contents {
     width: 914px;
     -webkit-box-orient: horizontal;
     display: -webkit-box;
-	height: 40px;
-	background: url(/graphics/logo.png) center no-repeat;
+
+
 }
 
 div#global_options_panel_left {
@@ -103,7 +104,7 @@ div#global_options_panel_left h1 {
     display: -webkit-box;
     -webkit-box-flex: 1;
     padding-left: 32px;
-}
+}*/
 
 /* NOT IN USE AT THE MOMENT
 div#global_options_panel_left div#logout_info {
@@ -125,12 +126,12 @@ margin-left: 1em;
 div#global_options_panel_middle {
 text-align: center;
 width: 320px;
-}*/
+}
 
 div#global_options_panel_right {
     width: 617px;
     -webkit-box-pack: end;
-    /* Contents (buttons) will also be horizontally spread using the box model */
+   Contents (buttons) will also be horizontally spread using the box model 
     -webkit-box-orient: horizontal;
     display: -webkit-box;
 }
@@ -153,7 +154,7 @@ div#global_menu a:link, a:hover, a:visited{
     font-weight: bold;
     text-decoration: none;
     text-transform:uppercase;
-}
+}*/
 /*
 div.global_options_panel_button {
     margin-right: 0.5em;
@@ -182,11 +183,11 @@ options {
 }*/
 
 #inset{
-	background: #bfbfc8;
+	background: #b7b7be;
     border-left: 1px solid white;
  	border-right: 1px solid white;
  	border-bottom: 1px solid white;
-    -webkit-box-shadow:inset 0 0 5px rgba(0,0,0,0.3);
+    -webkit-box-shadow: inset 0px 0px 5px rgba(0,0,0,0.3), 0px 0px 40px white;
 	margin-bottom: 20px;
 }
 
