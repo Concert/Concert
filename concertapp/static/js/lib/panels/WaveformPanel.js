@@ -48,11 +48,12 @@ var WaveformPanel = Panel.extend(
         this.audioFileDuration = null;
                 
         _.bindAll(this, "_waveform_loaded");
-        $(this.page.audioController).bind('waveform_loaded', this._waveform_loaded);
+        this.page.audioController.bind('waveform_loaded', this._waveform_loaded);
         
         /* When the controller is in the process of creating a new audio segment */
         _.bindAll(this, 'show_loading_notification');
         this.page.bind('creating_new_segment', this.show_loading_notification);
+        
     },
     
     /**
