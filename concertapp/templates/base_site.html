@@ -10,14 +10,13 @@ The base template for all pages.  All page templates will use this.
 {% load panels %}
 
 <!DOCTYPE html>
-
 <html>
   <head>
     <title>Concert</title>
     <link rel="icon" type="image/png" href="/graphics/logo.png" />
     <link rel="stylesheet" type="text/css" href="/css/styles.css">
     <link rel="stylesheet" type="text/css" href="/css/panels.css">
-    <link rel="stylehseet" type="text/css" href="/css/pages.css">
+   <!-- <link rel="stylehseet" type="text/css" href="/css/pages.css">-->
 
     {# Global namespaces and variables #}
     <script src="/js/global.js"></script>
@@ -154,26 +153,23 @@ The base template for all pages.  All page templates will use this.
     <script src="/js/lib/pages/UploadPage.js"></script>
     <script src="/js/lib/pages/LoginPage.js"></script>
     <script src="/js/lib/pages/AudioController.js"></script>
-
       
     <script src="/js/init.js"></script>
 
 </head>
 <body>
-
+<!--
     <div id="modal-container">
         <div id="modal-overlay" class="modal-overlay">
           <div id="modal-overlay-background" class="modal-overlay-background"></div>
           <div id="modal-overlay-pane" class="modal-overlay-pane corner-all">
             <div id="modal-overlay-header" class="modal-overlay-header blue corner-top">
               <h2 id="modal-overlay-header" class="modal-overlay-header">
-                <!-- This is where the content for a modal alert title goes -->
               </h2>
-              <button id="modal-overlay-close-button" class="modal-overlay-close-button image-button cross"><!-- --></button>
+              <button id="modal-overlay-close-button" class="modal-overlay-close-button image-button cross"></button>
               <div class="clear"></div>
             </div>
             <div id="modal-overlay-content" class="modal-overlay-content">
-               <!-- This is where the modal content goes -->
             </div>
             <div id="modal-overlay-confirm" class="modal-overlay-confirm corner-bottom">
               <button id="modal-overlay-confirm-ok" class="corner-all text-button blue control"></button>
@@ -183,45 +179,26 @@ The base template for all pages.  All page templates will use this.
           </div>
         </div>
     </div>
-    
-    <div id="layout" class="layout">
-		<div id="inset" class="lightNoise">
-        	<div id="layout_top" class="layout_top">
-            	{% if user.is_authenticated %}
-                	{% panel 'partials/global_options_panel.html' 'Concert' 'global_options' %}
-            	{% else %}
-                	<h1>Concert</h1>
-            	{% endif %}
+-->
+    <div id="layout">
+		<div id="inset">
+        	<div id="layout_top">
         	</div>
-		 	<div id="layout_middle" class="layout_middle">
+		 	<div id="layout_middle">
           		{% block middle %}{% endblock %}
 			</div>
 		</div>
-        <div id="layout_bottom" class="layout_bottom">
-            <div id="layout_left" class="layout_left"> 
+        <div id="layout_bottom">
+            <div id="bottom_left"> 
                 {% block left %}{% endblock %}
             </div>
-            <div id="layout_right" class="layout_right">
+            <div id="bottom_right">
                 {% block right %}{% endblock %}
             </div>    
         </div>    
     </div>
-    <div id="background_glare"></div>
-    <!--
-    <script>
-    
-    $('body').noisy();
-			
-    	$('.lightNoise').noisy();
-			
-    	$('.darkNoise').noisy({
-				intensity: 1, 
-				size: 88, 
-				opacity: 0.06,
-				monochrome: true
-			});
-    </script> 
--->
+   <!-- <div id="background_glare"></div>-->
+
     {% block clientside %}{% endblock %}
     {# Some client-side templates that are used on most pages #}
     <script id="collection_selector_options_template" type="text/x-jquery-tmpl">

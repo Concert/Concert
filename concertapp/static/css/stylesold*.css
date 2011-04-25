@@ -1,19 +1,44 @@
-/* FONT IMPORT */
-@font-face {
-    font-family: "GeosansLight";
-    src: url(/fonts/GeosansLight.ttf) format("truetype");
+/*  @file styles.sass
+ *  Global styles that all pages use. */
+
+/*  Resets */
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p,
+blockquote, pre, a, abbr, address, cite, code, del, dfn, em, img, ins,
+q, small, strong, sub, sup, dl, dt, dd, ol, ul, li, fieldset, form,
+label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
 
-/*selection prefs*/
-
-div::selection {
-    background-color:Transparent;
-    color:	fuschia;
+article, aside, figure, figure img, figcaption, hgroup,
+footer, header, nav, section {
+  display: block;
 }
 
-img::selection {
-    background-color:Transparent;
-    color:#000;
+a img {
+  border: 0;
+}
+
+figure {
+  position: relative;
+}
+
+figure img {
+  width: 100%;
+}
+
+/*Typography Presets */
+h1 {
+  font-size: 3em;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+h3 {
+  font-size: 1.4em;
 }
 
 body {
@@ -25,66 +50,50 @@ body {
   -moz-user-select: none;
   -o-user-select: none;
   user-select: none;
-  background: #e1e1e6;
-  padding: 0;
-  width: 960px;
-  margin: 0 auto;
   
 }
 
-div#layout {
+/*Page layout   background: #e0e0e7;*/
+body {
+	background: #e1e1e6;
+  padding: 0;
+  width: 960px;
+  margin: auto;
+}
+
+div.layout {
   display: -webkit-box;
   -webkit-box-orient: vertical;
 }
 
-div#inset{
-	background: #b7b7be;
-    border-left: 1px solid white;
- 	border-right: 1px solid white;
- 	border-bottom: 1px solid white;
-    -webkit-box-shadow: inset 0px 0px 5px rgba(0,0,0,0.3), 0px 0px 40px white;
-	margin-bottom: 20px;
+div.layout_top {
+  width: 100%;
 }
 
-div#layout_top {
-	width: 934px;
-	height: 40px;
-	border: 1px solid white;
-	/*	outline: 1px solid rgba(0,0,0,0.25);
-	    -webkit-box-orient: horizontal;
-	    display: -webkit-box;*/
-	margin-left: 1px;
-	padding: 10px;
-	background: #f8f8fa url(/graphics/logo.png) center no-repeat;
-}
-
-div#layout_middle {
+div.layout_middle {
   width: 100%;
   display: -webkit-box;
   -webkit-box-orient: vertical;
 }
 
-div#layout_bottom {
+div.layout_bottom {
   width: 960px;
   display: -webkit-box;
   -webkit-box-orient: horizontal;
 }
 
-div#bottom_left {
+div.layout_left {
   width: 480px;
   display: -webkit-box;
   -webkit-box-orient: vertical;
 }
 
-div#bottom_right {
-  width: 480px;
+div.layout_right {
+	width: 480px;
   display: -webkit-box;
   -webkit-box-orient: vertical;
 }
 
-
-
-/*****************************************/
 div.file_thumb {
   display: table-cell;
 }
@@ -106,7 +115,7 @@ div.file_actions {
   display: table-cell;
 }
 
-/*Buttons 
+/*Buttons */
 button {
   cursor: pointer;
 }
@@ -138,14 +147,15 @@ button.cross {
 
 
 button.settings {
+  /*    background-image: url('/paths/settings.svg') */
   background-size: 1000%;
   background-position: 50% 50%;
   height: 50px;
   width: 50px;
-}*/
+}
 
-/*    Large Icon Buttons    
-
+/*    Large Icon Buttons      */
+/* Container */
 
 div.large-icon-button {
   height: 60px;
@@ -154,14 +164,14 @@ div.large-icon-button {
   text-align: center;
 }
 
-
+/* Icon */
 
 button.large-icon-button-icon {
   height: 40px;
   width: 40px;
 }
 
-
+/* Label */
 
 label.large-icon-button-label {
   cursor: pointer;
@@ -173,10 +183,10 @@ label.large-icon-button-label {
 
 label.large-icon-button-label.hover {
   text-decoration: underline;
-}  */
+}
 
-/*********************** Modal Overlay Styles *********************** 
-
+/*********************** Modal Overlay Styles *********************** */
+/* blue */
 
 .blue {
   color: #d9eef7;
@@ -201,7 +211,7 @@ button.blue:active {
   background: -webkit-gradient(linear, left top, left bottom, from(#0078a5), to(#00adee));
   background: -moz-linear-gradient(top, #0078a5, #00adee);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0078a5', endColorstr='#00adee');
-}*/
+}
 
 /*Overlay modal box */
 

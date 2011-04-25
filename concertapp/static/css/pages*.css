@@ -1,6 +1,6 @@
 /*
- *  Page-specific layout
- */
+ *  Page-specific layout */
+
 /* Settings Page */
 div.create_join_panel {
   -webkit-box-flex: 4;
@@ -22,3 +22,4 @@ div#recent_events_panel {
 /*
  *  Audio list panel
  */
+ 
