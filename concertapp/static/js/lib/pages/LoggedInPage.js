@@ -28,12 +28,12 @@ var LoggedInPage = Page.extend(
 
         
         /* Create the globalOptionsPanel (the buttons and menus at the top of 
-        the page) */
+        the page) 
         this.globalOptionsPanel = new GlobalOptionsPanel({
             page: this, 
             el: $('#global_options_panel'),
             userMemberCollections: this.modelManager.user.get('memberCollections')
-        });
+        });*/
         
         /**
          *  The list on the right side of the UI.
