@@ -32,7 +32,7 @@ div#overview_waveform_panel_top {
 	margin: 0 auto;
     height: 60px;
   	background: -webkit-gradient(linear, left top, left bottom, from(#18181f), to(#45455a));
-    -webkit-box-shadow:inset 0 0 10px #000000;
+    -webkit-box-shadow: inset 0 0 10px #000000;
 }
 
 div#overview_waveform_panel_playhead {
@@ -273,11 +273,11 @@ div.disabled {
 
 div#detail_waveform_panel_highlight_container {
     height: 196px;
-	margin: 2px;
+	margin: 2px 0px 2px 0px;
 }
 div#overview_waveform_panel_highlight_container {
     height: 58px;
-	margin: 1px;
+	margin: 1px 0px 1px 0px;
 }
 
 /**
@@ -291,7 +291,7 @@ img.waveform_image {
 
 /* Fit overview image in box */
 img#overview_waveform_image {
-    width: 100%;
+    width: 956px;
     height: 60px;
 }
 
