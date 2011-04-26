@@ -8,9 +8,8 @@ The software is currently not in a release state, as it is being completely re-w
 
 Here is a recent mockup of the interface:
 
-->[[http://github.concertsoundorganizer.org/Concert/images/concert11.png|width=640px]]<-
+![UI mockup](http://github.concertsoundorganizer.org/Concert/images/concert11.png)
 
-->UI mockup ([full size](http://github.concertsoundorganizer.org/Concert/images/concert11.png)).<-
 
 
 
