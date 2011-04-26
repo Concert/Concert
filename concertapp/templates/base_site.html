@@ -158,46 +158,36 @@ The base template for all pages.  All page templates will use this.
 
 </head>
 <body>
-
-    <div id="modal-container">
-        <div id="modal-overlay" class="modal-overlay">
-          <div id="modal-overlay-background" class="modal-overlay-background"></div>
-          <div id="modal-overlay-pane" class="modal-overlay-pane corner-all">
-            <div id="modal-overlay-header" class="modal-overlay-header blue corner-top">
-              <h2 id="modal-overlay-header" class="modal-overlay-header">
-              </h2>
-              <button id="modal-overlay-close-button" class="modal-overlay-close-button image-button cross"></button>
-              <div class="clear"></div>
+	<div id="modal-container">
+        <div id="modal-overlay">
+		    <div id="modal-overlay-background"></div>
+         	<div id="modal-overlay-pane">
+              	<button id="modal-overlay-confirm-ok">ok</button>
+              	<button id="modal-overlay-confirm-cancel">cancel</button>
             </div>
-            <div id="modal-overlay-content" class="modal-overlay-content">
-            </div>
-            <div id="modal-overlay-confirm" class="modal-overlay-confirm corner-bottom">
-              <button id="modal-overlay-confirm-ok" class="corner-all text-button blue control"></button>
-              <button id="modal-overlay-confirm-cancel" class="corner-all text-button control blue"></button>
-              <div class="clear"></div>
-            </div>
-          </div>
-        </div>
-    </div>
-
-    <div id="layout">
-		<div id="inset">
-        	<div id="layout_top">
-        	</div>
-		 	<div id="layout_middle">
-          		{% block middle %}{% endblock %}
-			</div>
 		</div>
-        <div id="layout_bottom">
-            <div id="bottom_left"> 
-                {% block left %}{% endblock %}
-            </div>
-            <div id="bottom_right">
-                {% block right %}{% endblock %}
-            </div>    
-        </div>    
-    </div>
-   <!--- <div id="background_glare"></div> -->
+	</div>
+</div>
+
+<div id="layout">
+	<div id="inset">
+    	<div id="layout_top">
+       	</div>
+		<div id="layout_middle">
+          	{% block middle %}{% endblock %}
+		</div>
+	</div>
+    <div id="layout_bottom">
+    	<div id="bottom_left"> 
+       		{% block left %}{% endblock %}
+       	</div>
+        <div id="bottom_right">
+       		{% block right %}{% endblock %}
+       	</div>    
+	</div>    
+</div>
+
+<!--- <div id="background_glare"></div> -->
 
     {% block clientside %}{% endblock %}
     {# Some client-side templates that are used on most pages #}

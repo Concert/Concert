@@ -84,20 +84,21 @@ div#bottom_right {
 
 /*Overlay modal box */
 
-div.modal-overlay {
+div#modal-overlay {
 	outline: 0 !important;
 	display: none;
 }
 
-div.modal-overlay-background {
+div#modal-overlay-background {
 	width: 100%;
 	height: 100%;
 	position: fixed;
 	z-index: 999999;
-	background: rgba(230, 235, 209, 0.7);
+	background: rgba(0,0,0,0.4);
 }
 
-div.modal-overlay-pane {
+div#modal-overlay-pane {
 	position: fixed;
 	z-index: 10000001;
+	background: #fff;
 }
