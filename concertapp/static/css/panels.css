@@ -3,6 +3,10 @@ div.panel {
     position: relative;
 }
 
+.panel_nocontent_container {
+	display: none;
+}
+
 /* This is the div that shows a loading notification on each panel */
 div.panel_loader {
     position: absolute;
@@ -30,31 +34,24 @@ div.panel_loader_enabled {
 }
 
 /*Overview Waveform Panel */
-div#overview_waveform_panel_contents {
-    width: 958px;
-    height: 80px;
-    -webkit-box-orient: vertical;
-    display: -webkit-box;
-    margin-bottom: 20px;
-}
+
 div#overview_waveform_panel_top {
     color: #f8f8fa;
     width: 958px;
-    height: 58px;
-/* 	border-top: 1px solid #e3e3ec;
-	border-bottom: 1px solid #e3e3ec;
-   border: 1px solid white;*/
+    height: 60px;
   	background: -webkit-gradient(linear, left top, left bottom, from(#18181f), to(#45455a));
     -webkit-box-shadow:inset 0 0 10px #000000;
 }
 
 div#overview_waveform_panel_bottom {
-    width: 960px;
-    height: 40px;
+    width: 958px;
+    height: 20px;
+	padding-bottom: 20px;
 }
 
 div#overview_waveform_panel_playhead {
-    height: 58px;
+    height: 60px;
+	margin: 0px 1px 0px 1px;
 }
 
 div.playhead {
@@ -63,7 +60,6 @@ div.playhead {
     width: 1px;
     z-index: 300;
     position: absolute;
-
 }
 
 /*Detail Waveform Panel */
@@ -198,7 +194,8 @@ div#detail_waveform_panel_view_underlay {
 }
 
 div#detail_waveform_panel_playhead {
-    height: 253px;
+    height: 198px;
+	margin: 1px;
 }
 
 div#detail_waveform_panel_bottom {
@@ -309,7 +306,7 @@ img.waveform_image {
 /* Fit overview image in box */
 img#overview_waveform_image {
     width: 100%;
-    height: 58px;
+    height: 60px;
 }
 
 div#create_join_panel, div#manage_admin_collections_panel, div#manage_member_collections_panel, div#manage_request_collections_panel {
