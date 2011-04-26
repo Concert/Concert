@@ -8,9 +8,9 @@ The software is currently not in a release state, as it is being completely re-w
 
 Here is a recent mockup of the interface:
 
-->[[https://docs.google.com/uc?id=0By64YSWDH2DYZmNjNzZjNDktZjk4MC00NjIwLTkwN2UtNmY5YzRlNjBiMDkw&export=download&authkey=CKX4-_UG&hl=en|width=640px]]<-
+->[[http://github.concertsoundorganizer.org/Concert/images/concert11.png|width=640px]]<-
 
-->UI mockup ([full size](https://docs.google.com/uc?id=0By64YSWDH2DYZmNjNzZjNDktZjk4MC00NjIwLTkwN2UtNmY5YzRlNjBiMDkw&export=download&authkey=CKX4-_UG&hl=en)).<-
+->UI mockup ([full size](http://github.concertsoundorganizer.org/Concert/images/concert11.png)).<-
 
 
 
