@@ -162,16 +162,15 @@ div#detail_waveform_panel_middle_right .arrow_space .arrow{
     border-color: transparent transparent transparent #45455a;
     border-style: solid;
     border-width: 8px 0px 8px 12px;
-    width:0;
-    height:0;
+    width: 0;
+    height: 0;
 }
 
 div#detail_waveform_panel_view {
     color: #f8f8fa;
     width: 874px;
     height: 255px;
-    /*  position: absolute;
-   Do not allow waveform to overflow window */
+    position: absolute;
     overflow-x: scroll;
     overflow-y: hidden;
 }
