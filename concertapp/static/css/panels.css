@@ -134,8 +134,7 @@ div#detail_waveform_panel_middle_right {
 	padding-left: 18px;
     padding-right: 12px;
 	width: 10px;
-    /* Because the view element is absolute 
-    margin-left: 878px;*/
+    margin-left: 874px;
 }
 
 div#detail_waveform_panel_middle_left .arrow_space{
@@ -177,7 +176,7 @@ div#detail_waveform_panel_view {
 
 /**SHADOW AND NOISE**/
 div#detail_waveform_panel_view_overlay {
-    width: 878px;
+    width: 874px;
     height: 198px;
     -webkit-box-shadow:inset 0 0 10px #000000;
     z-index: 200;
@@ -189,7 +188,7 @@ div#detail_waveform_panel_view_overlay {
 
 /**UNDERLAY GRADIENT**/
 div#detail_waveform_panel_view_underlay {
-    width: 880px;
+    width: 874px;
     height: 200px;
     z-index: 100;
     position: absolute;
@@ -601,4 +600,3 @@ div.event_widget .user{
     top: 0;
     left: 0;
 }
-
