@@ -435,9 +435,9 @@ input#list_search {
 }
 
 div#list_panel .selected{
-	width: 444px;
+	width: 446px;
 	border: 1px solid white;
-	padding: 10px;
+	padding: 9px;
 	background: #f8f8fa;
     color: #2e2e35;
     overflow: hidden;
@@ -510,6 +510,7 @@ div#comment_list_panel_header {
     border-bottom: 1px solid white;
     -webkit-box-shadow: 0px 1px 0px rgba(0,0,0,0.5);
     margin-bottom: 1px;
+background: #fff;
 }
 
 /*event_widget*/
@@ -523,6 +524,7 @@ div#comment_list_panel_header {
     padding-top: 10px;
     margin-bottom: 1px;
     margin-right: 10px;
+background: #fff;
 }
 
 div.event_widget .icon{
