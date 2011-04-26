@@ -46,6 +46,7 @@ div#inset{
  	border-bottom: 1px solid white;
     -webkit-box-shadow: inset 0px 0px 2px rgba(0,0,0,0.4);
 	margin-bottom: 20px;
+	background: #b5b5bc;
 	/*background-image: -webkit-radial-gradient(circle, white, #c9c9d1)*/
 }
 
