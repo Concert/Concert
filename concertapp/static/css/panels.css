@@ -30,25 +30,13 @@ div.panel_loader_enabled {
 }
 
 /*Overview Waveform Panel */
-div#overview_waveform_panel {
-    width: 960px;
-    height: 80px;
-    margin-bottom: 20px;
-    display: -webkit-box;
-}
-
 div#overview_waveform_panel_contents {
     width: 958px;
     height: 80px;
     -webkit-box-orient: vertical;
     display: -webkit-box;
+    margin-bottom: 20px;
 }
-
-div#overview_waveform_panel_top_wrap {
-    background: -webkit-gradient(linear, left top, left bottom, from(#18181f), to(#45455a));
-
-}
-
 div#overview_waveform_panel_top {
     color: #f8f8fa;
     width: 958px;
@@ -56,6 +44,7 @@ div#overview_waveform_panel_top {
 /* 	border-top: 1px solid #e3e3ec;
 	border-bottom: 1px solid #e3e3ec;
    border: 1px solid white;*/
+  	background: -webkit-gradient(linear, left top, left bottom, from(#18181f), to(#45455a));
     -webkit-box-shadow:inset 0 0 10px #000000;
 }
 
@@ -64,7 +53,7 @@ div#overview_waveform_panel_bottom {
     height: 40px;
 }
 
-div #overview_waveform_panel_playhead {
+div#overview_waveform_panel_playhead {
     height: 58px;
 }
 
@@ -78,24 +67,21 @@ div.playhead {
 }
 
 /*Detail Waveform Panel */
-div#detail_waveform {
-    width: 960px;
-    display: -webkit-box;
-	-webkit-box-orient: vertical;
-}
 
 div#detail_waveform_panel_contents {
-    width: 956px;
-	margin-left:1px;
     -webkit-box-orient: vertical;
     display: -webkit-box;
 }
-
+/*
 div#detail_waveform_panel_top_wrap{
-	background-color: #f8f8fa;
-   /* -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.25);*/
-    border: 1px solid white;
-	outline: 1px solid rgba(0,0,0,0.25);
+
+}*/
+
+div#detail_wavform_wrap{
+ 	width: 954px;
+	border: 1px solid white;
+	margin: 0 auto;
+	background: #f8f8fa;
 }
 
 div#detail_waveform_panel_top {
@@ -132,40 +118,39 @@ div#detail_waveform_panel_top_right {
 }
 
 div#detail_waveform_panel_middle {
-    width: 956px;
+    width: 954px;
     height: 254px;
     -webkit-box-orient: horizontal;
     display: -webkit-box;
 }
 
-div.detail_waveform_panel_buf {
-    width: 10px;
-    height: 100%;
-    padding-left: 12px;
+div#detail_waveform_panel_middle_left {
+	padding-left: 12px;
     padding-right: 18px;
+	width: 10px;
 }
 
-div#detail_waveform_panel_buf_left {
+div#detail_waveform_panel_middle_right {
+	padding-left: 18px;
+    padding-right: 12px;
+	width: 10px;
+    /* Because the view element is absolute 
+    margin-left: 878px;*/
 }
 
-div#detail_waveform_panel_buf_right {
-    /* Because the view element is absolute */
-    margin-left: 878px;
-}
-
-div#detail_waveform_panel_buf_left .arrow_space{
+div#detail_waveform_panel_middle_left .arrow_space{
     height: 57px;
     width: 100%;
     padding-top: 43px;
 }
 
-div#detail_waveform_panel_buf_right .arrow_space{
+div#detail_waveform_panel_middle_right .arrow_space{
     height: 57px;
     width: 100%;
     padding-top: 43px;
 }
 
-div#detail_waveform_panel_buf_left .arrow_space .arrow{
+div#detail_waveform_panel_middle_left .arrow_space .arrow{
     border-color: transparent #45455a transparent transparent;
     border-style: solid;
     border-width: 8px 12px 8px 0px;
@@ -173,7 +158,7 @@ div#detail_waveform_panel_buf_left .arrow_space .arrow{
     height:0;
 }
 
-div#detail_waveform_panel_buf_right .arrow_space .arrow{
+div#detail_waveform_panel_middle_right .arrow_space .arrow{
     border-color: transparent transparent transparent #45455a;
     border-style: solid;
     border-width: 8px 0px 8px 12px;
@@ -183,10 +168,10 @@ div#detail_waveform_panel_buf_right .arrow_space .arrow{
 
 div#detail_waveform_panel_view {
     color: #f8f8fa;
-    width: 880px;
+    width: 874px;
     height: 255px;
-    position: absolute;
-    /* Do not allow waveform to overflow window */
+    /*  position: absolute;
+   Do not allow waveform to overflow window */
     overflow-x: scroll;
     overflow-y: hidden;
 }
@@ -214,7 +199,7 @@ div#detail_waveform_panel_view_underlay {
     background: -webkit-gradient(linear, left top, left bottom, from(#45455a), to(#18181f));
 }
 
-div #detail_waveform_panel_playhead {
+div#detail_waveform_panel_playhead {
     height: 253px;
 }
 
@@ -227,9 +212,9 @@ div#detail_waveform_panel_waveform_timecode_playhead {
     position: absolute;
 }
 
-div#detail_waveform_panel_waveform_container {
+/*div#detail_waveform_panel_waveform_container {
 
-}
+}*/
 
 div#detail_waveform_panel_timecode {
     height: 40px;
@@ -373,11 +358,6 @@ input#detail_waveform_panel_tag_input {
 
 input#detail_waveform_panel_tag_input:focus {
     border: 0;
-}
-
-
-::selection {
-    background: transparent;
 }
 
 input#detail_waveform_panel_tag_input::-webkit-input-placeholder {

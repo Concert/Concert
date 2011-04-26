@@ -4,69 +4,56 @@
 {% endblock %}
 
 {% block panel_content %}
-<div id="detail_waveform_panel_top_wrap">
+<div id="detail_wavform_wrap">
 	<div id="detail_waveform_panel_top" class="detail_waveform_panel_top">
 	    {# client side will fill this with goodness #}
 	</div>	
-	<div id="detail_waveform_panel_middle" class="detail_waveform_panel_middle">
-	    <div id="detail_waveform_panel_buf_left" class="detail_waveform_panel_buf">
-	        <div class="arrow_space">
-        		<div class="arrow"></div>
-	        </div>
-	        <div class="arrow_space">
-	    		<div class="arrow"></div>
-		    </div>
+	
+	<div id="detail_waveform_panel_middle">
+		
+	    <div id="detail_waveform_panel_middle_left">
+	        <div class="arrow_space"><div class="arrow"></div></div>
+	        <div class="arrow_space"><div class="arrow"></div></div>
 	    </div>
 		    
 		{# The view window #}
 		    
-		{# These divs sit above and below the waveform to render shadow and noise correctly #}
-		<div id="detail_waveform_panel_view_overlay" class="darkNoise"></div>
+		{# These divs sit above and below the waveform to render shadow correctly #}
+		<div id="detail_waveform_panel_view_overlay"></div>
 		<div id="detail_waveform_panel_view_underlay"></div>
 		    
 		<div id="detail_waveform_panel_view" class="detail_waveform_panel_view">
-		    		  		    
-		    <div id="detail_waveform_panel_waveform_timecode_playhead">
-		    		        
+		   <div id="detail_waveform_panel_waveform_timecode_playhead">
 		    	<img id="detail_waveform_image" class="waveform_image" />
-			 			
-		    	<div id="detail_waveform_panel_timecode">
+			 	<div id="detail_waveform_panel_timecode">
 		    	    {# Timecode will be injected here #}
 		   	    </div>
-		   		        
-		        <div id="detail_waveform_panel_playhead" class="playhead">
+		   		<div id="detail_waveform_panel_playhead" class="playhead">
 			        {# Playhead will be injected here #}
 			    </div>
-		    		        
-		         <div id="detail_waveform_panel_highlight_container" class="highlight_container">
+		    	<div id="detail_waveform_panel_highlight_container" class="highlight_container">
 			        <div id="detail_waveform_panel_highlight" class="highlight disabled">
-	              		<div id="detail_waveform_panel_left_handle" class="leftHandle"></div>
-                        <div id="detail_waveform_panel_right_handle" class="rightHandle"></div> 
+	              		<div id="detail_waveform_panel_left_handle" class="leftHandle">	
+	              		</div>
+                        <div id="detail_waveform_panel_right_handle" class="rightHandle">
+                        </div> 
                     </div>
 		   		</div>
-		    		        
-		   	</div>
-		    		
+		   </div>
 		</div>
-		<div id="detail_waveform_panel_buf_right" class="detail_waveform_panel_buf">
-		    <div class="arrow_space">
-		      	<div class="arrow"></div>
-      		</div>
-		    <div class="arrow_space">
-        		<div class="arrow"></div>
-		     </div>
+		
+		<div id="detail_waveform_panel_middle_right">
+		    <div class="arrow_space"><div class="arrow"></div></div>
+		    <div class="arrow_space"><div class="arrow"></div></div>
 		</div> 
+		
 	</div>
 </div>
-<div id="detail_waveform_panel_bottom" class="detail_waveform_panel_bottom">
+
+<div id="detail_waveform_panel_bottom">
     <input type="text" id="detail_waveform_panel_tag_input" placeholder="Enter a new or existing tag name" />
     <div id="detail_waveform_panel_tags">
 	    {# tags will be injected here #}            
     </div>
 </div>
 {% endblock %}
-
-
-=======
-
-

@@ -4,7 +4,7 @@
     src: url(/fonts/GeosansLight.ttf) format("truetype");
 }
 
-/*selection prefs*/
+/*selection prefs
 
 div::selection {
     background-color:fuschia;
@@ -14,7 +14,7 @@ div::selection {
 img::selection {
     background-color:Transparent;
     color:#000;
-}
+}*/
 
 body {
 	font: 12px "Helvetica", Arial, sans-serif;
@@ -35,9 +35,9 @@ body {
 
 div#layout {
 	width: 960px;
-		margin: 0 auto;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
+	margin: 0 auto;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
 }
 
 div#inset{
@@ -53,56 +53,51 @@ div#layout_top {
 	width: 934px;
 	height: 40px;
 	border: 1px solid white;
-	/*	outline: 1px solid rgba(0,0,0,0.25);
-	    -webkit-box-orient: horizontal;
-	    display: -webkit-box;*/
-	margin-left: 1px;
+	margin: 0 auto;
 	padding: 10px;
 	background: #f8f8fa url(/graphics/logo.png) center no-repeat;
 }
 
 div#layout_middle {
-  width: 100%;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
+	width: 100%;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
 }
 
 div#layout_bottom {
-  width: 960px;
-  display: -webkit-box;
-  -webkit-box-orient: horizontal;
+	width: 960px;
+	display: -webkit-box;
+	-webkit-box-orient: horizontal;
 }
 
 div#bottom_left {
-  width: 480px;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
+	width: 480px;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
 }
 
 div#bottom_right {
-  width: 480px;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
+	width: 480px;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
 }
 
 /*Overlay modal box */
 
 div.modal-overlay {
-  outline: 0 !important;
-  display: none;
+	outline: 0 !important;
+	display: none;
 }
-
 
 div.modal-overlay-background {
-  width: 100%;
-  height: 100%;
+	width: 100%;
+	height: 100%;
 	position: fixed;
-  z-index: 999999;
-  background: rgba(230, 235, 209, 0.7);
+	z-index: 999999;
+	background: rgba(230, 235, 209, 0.7);
 }
 
-
 div.modal-overlay-pane {
- position: fixed;
- z-index: 10000001;
+	position: fixed;
+	z-index: 10000001;
 }
