@@ -29,8 +29,6 @@ LoggedInModelManager.prototype.init = function(params) {
     }
     dataToLoad['userData'] = userData;
     
-    
-    
     /**
      *  The user who is currently logged in.
      **/

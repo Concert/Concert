@@ -1,4 +1,4 @@
-from concertapp.lib.api import ConcertAuthorization, MyResource,DjangoAuthentication
+from concertapp.lib.api import ConcertAuthorization, MyResource, DjangoAuthentication, TzDateTimeField
 from concertapp.models import *
 from django.conf.urls.defaults import *
 from django.contrib.auth.models import User
@@ -9,13 +9,14 @@ from tastypie.http import *
 
 
 
+
 ###
 #   A generic resource for a comment.
 ###
 class CommentResource(MyResource):
     comment = fields.CharField('comment')
     author = fields.ForeignKey('concertapp.users.api.UserResource', 'author', full=True)
-    time = fields.DateTimeField('time')
+    time = TzDateTimeField('time')
     
     class Meta:
         authentication = DjangoAuthentication()

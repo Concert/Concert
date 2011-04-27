@@ -16,6 +16,36 @@ import sys
 import datetime
 
 ###
+#   Helper for TzDateTimeField
+###
+def string_to_local_datetime(value):
+    parsed = dateutil.parser.parse(value)
+    try:
+        django_tz = pytz.timezone(settings.TIME_ZONE)
+        return parsed.astimezone(django_tz)
+    except ValueError: # datetime without timezone information
+        return parsed
+
+
+class TzDateTimeField(fields.DateTimeField):
+    """
+    A datetime field that honors timezone information.
+    """
+    def hydrate(self, bundle):
+        value = fields.ApiField.hydrate(self, bundle)
+
+        if value and not hasattr(value, 'year'):
+            try:
+                # Try to rip a date/datetime out of it.
+                value = string_to_local_datetime(value)
+            except ValueError:
+                pass
+
+        return value
+    
+
+
+###
 #   Just make sure that the user is logged into Django
 ###
 class DjangoAuthentication(Authentication):
@@ -47,51 +77,7 @@ class MyResource(ModelResource):
         # this attribute should be set to the name of the tastypie field which
         # represents the nested resource
         nested = None
-    
-    
-    ###
-    #   This method is used anytime the data needs to be retrieved as a 
-    #   python dict.  TODO: Determine if there is a better way to do this.
-    ###
-    def as_dict(self, request):
-        
-        # Get objects
-        objs = self.get_object_list(request)
-        # Get dehydrated bundles
-        objsBundles = [self.full_dehydrate(obj=obj) for obj in objs]
-        
-        ###
-        #   A helper function that will get the dicts of any sub-bundles.
-        ###
-        def get_recursive_bundle_data(attr):
-            # If we are looking at a bundle
-            if type(attr) == Bundle:
-                # We will re-construct all of the attributes as dicts, they
-                # are currently either bundles or attributes.
-                data = {}
-                # For each attribute
-                for key in attr.data:
-                    # Get bundle data
-                    data[key] = get_recursive_bundle_data(attr.data[key])
-            # If we are looking at list, must run this function on elements
-            elif type(attr) == list:
-                data = [get_recursive_bundle_data(x) for x in attr]
-            # we are looking at an attribute
-            else:
-                # If this is a date time attribute
-                if type(attr) == datetime.datetime:
-                    # Send along as string so json knows how to serialize it
-                    data = str(attr)
-                else:
-                    # just pass it back through recursion, will get serialized later
-                    data = attr
-                
-            return data
-        
-        # For each of our objects, get dict as mentioned above.
-        objsDicts = [get_recursive_bundle_data(bundle) for bundle in objsBundles]
 
-        return objsDicts
 
     ###
     #   This method returns the serialized object upon creation, instead of 

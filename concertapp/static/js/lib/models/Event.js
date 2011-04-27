@@ -43,8 +43,16 @@ var Event = ConcertBackboneModel.extend(
      *  date object.
      **/
     set: function(attrs, options) {
-        if(attrs && attrs.time) {
-            attrs.time = new Date(attrs.time);
+        /* If we're setting the time attribute as a string */
+        if(attrs && attrs.time && _.isString(attrs.time)) {
+            /* Create date object */
+            var dateObj = new Date(attrs.time);
+            if(dateObj.valueOf()) {
+                attrs.time = dateObj;
+            }
+            else {
+                throw new Error('Invalid date for event id '+this.id+': '+attrs.time);
+            }
         }
         return ConcertBackboneModel.prototype.set.call(this, attrs, options);
     }, 

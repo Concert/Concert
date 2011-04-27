@@ -2,7 +2,7 @@
 #   This file contains REST API functionality relating to events
 ###
 from concertapp.collection.api import *
-from concertapp.lib.api import MyResource, DjangoAuthentication
+from concertapp.lib.api import MyResource, DjangoAuthentication, TzDateTimeField
 from concertapp.models import *
 from concertapp.users.api import *
 from concertapp.audiosegments.api import *
@@ -23,7 +23,7 @@ from urlparse import parse_qs
 ###
 class EventResource(MyResource):
     user = fields.ForeignKey(UserResource, 'user')
-    time = fields.DateTimeField('time')
+    time = TzDateTimeField('time')
     collection = fields.ForeignKey(CollectionResource, 'collection')
     audioSegment = fields.ForeignKey(AudioSegmentResource, 'audioSegment', null=True)
     tag = fields.ForeignKey(TagResource, 'tag', null=True)

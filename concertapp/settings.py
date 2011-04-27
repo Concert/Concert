@@ -139,3 +139,4 @@ SITE_ID = 1
 
 CSRF_FAILURE_VIEW='concertapp.lib.errorviews.csrf_failure'
 
+TASTYPIE_DATETIME_FORMATTING='rfc-2822'

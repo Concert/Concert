@@ -15,16 +15,18 @@ from concertapp.collection.api import *
 def logged_in_view(request):
     user = request.user
     
+    # User resource with nested collections
     userResource = UserWithCollectionsResource()
-    userResource.set_user(user)
-#    response.context_data['data']['userData'] = userResource.as_dict(request)[0]
-    
+    # Dehydrate for a single user
+    userBundle = userResource.full_dehydrate(user)
+    # Convert to dict
+    userData = userResource._meta.serializer.to_simple(userBundle, {})
 
     return TemplateResponse(request, 'logged_in/logged_in.html', {
         'page_name': 'Concert',
         'js_page_path': '/',
         'data': {
             # Data for user currently logged in
-            'userData': userResource.as_dict(request)[0], 
+            'userData': userData, 
         }, 
     })
