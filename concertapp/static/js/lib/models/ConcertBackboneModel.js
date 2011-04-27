@@ -168,11 +168,21 @@ var ConcertBackboneModel = Backbone.Model.extend(
                                                    set */
                                                    if(parentSeenInstances) {
                                                        parentSeenInstances.add(model);
-                                                   }                                                   
+                                                   }
+                                                   
+                                                   /* Also add to our relation */
+                                                   Backbone.Collection.prototype._add.call(newAttr, model);
                                                }
                                            }
-
-                                           Backbone.Collection.prototype._add.call(newAttr, model);
+                                           /* Model instance did exist */
+                                           else {
+                                               /* Check to see if it is in our relation */
+                                               if(!newAttr.getByCid(model.cid)) {
+                                                   /* If not, add it */
+                                                   Backbone.Collection.prototype._add.call(newAttr, model);
+                                               }
+                                           }
+                                           
                                     });
                                 }
                             }
