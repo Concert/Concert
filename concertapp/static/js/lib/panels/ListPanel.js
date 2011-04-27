@@ -152,7 +152,7 @@ var ListPanel = Panel.extend(
     /**
      *  Render method called when on "collections" route to list collections.
      **/
-    render_collections: function() {
+    render_collections: function(collections) {
         /* If a widget is currently selected, deselect it */
         var selectedWidget = this.selectedWidget;
         if(selectedWidget) {
@@ -165,9 +165,6 @@ var ListPanel = Panel.extend(
             return;
         }
         
-        
-        /* We'll be loading from our user's list of collections */
-        var collections = this.page.modelManager.user.get('memberCollections');
         
         var panel = this;
         var frag = document.createDocumentFragment();
