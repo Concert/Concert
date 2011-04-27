@@ -93,9 +93,21 @@ var ListPanel = Panel.extend(
     }, 
     
     /**
+     *  De-select the currently selected widget
+     **/
+    _deselect_currently_selected_widget: function() {
+        /* If a widget is currently selected, deselect it */
+        var selectedWidget = this.selectedWidget;
+        if(selectedWidget) {
+            selectedWidget.deselect();
+        }
+    }, 
+    
+    /**
      *  Called when we are in the audio mode, and the render method is called.
      **/
     render_collection_audio: function(collectionId, collection) {
+        this._deselect_currently_selected_widget();
         
         /* temporary frag for dom additions */
         var frag = document.createDocumentFragment();
@@ -150,14 +162,25 @@ var ListPanel = Panel.extend(
     }, 
     
     /**
+     *  Render method called when we're looking at a single audio file.
+     **/
+    render_collection_audio_file: function(collectionId, fileId, collection, audioFile) {
+        /* Ensure that the list of audio is rendered */
+        this.render_collection_audio(collectionId, collection);
+        
+        /* Ensure that proper audio is selected in list */
+        selectedWidget = this.fileWidgets[fileId];
+        selectedWidget.select();
+        
+        this.selectedWidget = selectedWidget;
+    }, 
+    
+    
+    /**
      *  Render method called when on "collections" route to list collections.
      **/
     render_collections: function(collections) {
-        /* If a widget is currently selected, deselect it */
-        var selectedWidget = this.selectedWidget;
-        if(selectedWidget) {
-            selectedWidget.deselect();
-        }
+        this._deselect_currently_selected_widget();
         
         /* If we've already rendered the list of collections, no need to do it
         again */
