@@ -91,19 +91,7 @@ var Panel = Backbone.View.extend(
             throw new Error('header not found for panel');
         }
         this.header = header;
-        
-        var noContentContainer = contents.children('.panel_nocontent_container');
-        if(typeof(noContentContainer) == 'undefined') {
-            throw new Error('container.children(\'.panel_nocontent_container\') is undefined');
-        }
-        else if(noContentContainer.length == 0) {
-            throw new Error('noContentContainer not found');
-        }
-        /**
-         *  The div to display when this panel has no content.  Remove from DOM.
-         **/
-        this.noContentContainer = noContentContainer.detach();
-        
+                
         /* Get the loader element for this panel */
         var loader = container.children('.panel_loader');
         if(typeof(loader) == 'undefined' || loader.length == 0) {

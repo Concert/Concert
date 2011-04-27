@@ -80,7 +80,7 @@ var EventsPanel = Panel.extend({
      *  to show.
      **/
     _render_nothing: function() {
-        this.contents.html(this.noContentContainer);
+        
     }, 
     
     
