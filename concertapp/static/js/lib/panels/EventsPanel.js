@@ -83,6 +83,14 @@ var EventsPanel = Panel.extend({
     }, 
     
     /**
+     *  When we are viewing an audio file from a collection
+     **/
+    render_collection_audio_file: function(collectionId, fileId, collection, audioFile) {
+        /* render the audio file's events */
+        this._render_events(audioFile.get('events'));
+    }, 
+    
+    /**
      *  Render method used when nothing is selected, or there are no events
      *  to show.
      **/
