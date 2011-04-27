@@ -91,6 +91,14 @@ var EventsPanel = Panel.extend({
     }, 
     
     /**
+     *  When we are viewing an audio segment from a collection
+     **/
+    render_collection_audio_segment: function(collectionId, fileId, segmentId, collection, audioFile, audioSegment) {
+        /* render segment's events */
+        this._render_events(audioSegment.get('events'));
+    }, 
+    
+    /**
      *  Render method used when nothing is selected, or there are no events
      *  to show.
      **/

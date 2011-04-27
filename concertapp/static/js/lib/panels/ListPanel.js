@@ -175,6 +175,19 @@ var ListPanel = Panel.extend(
         this.selectedWidget = selectedWidget;
     }, 
     
+    /**
+     *  When we are viewing an audio segment from a collection
+     **/
+    render_collection_audio_segment: function(collectionId, fileId, segmentId, collection, audioFile, audioSegment) {
+        /* Ensure that the list of audio is rendered */
+        this.render_collection_audio(collectionId, collection);
+        
+        /* Ensure that segment is selected in list */
+        selectedWidget = this.segmentWidgets[segmentId];
+        selectedWidget.select();
+        
+        this.selectedWidget = selectedWidget;
+    }, 
     
     /**
      *  Render method called when on "collections" route to list collections.
