@@ -52,9 +52,16 @@ var EventsPanel = Panel.extend({
     /**
      *  When we are viewing collections.
      **/
-    render_collections: function() {
-        /* nothing was selected */
-        this._render_nothing();
+    render_collections: function(collections) {
+        var allCollectionEvents = new EventSet;
+        
+        /* For each collection, aggregate together the events */
+        collections.each(function(collection) {
+            allCollectionEvents.add(collection.get('events').models);
+        });
+        
+        /* Render this giant list of events */
+        this._render_events(allCollectionEvents);
     },
     
     /**

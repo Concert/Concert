@@ -111,6 +111,10 @@ var LoggedInPage = Page.extend(
      **/
     _collections_route: function() {
         this.currentRoute = 'collections';
+        
+        /* We will send along the list of collections that this user is a member
+        of, as these will be the collections listed on this page */
+        return [this.modelManager.user.get('memberCollections')];
     }, 
     
     /**
