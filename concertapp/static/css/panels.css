@@ -384,19 +384,15 @@ a.tag:hover {
 /*AUDIO PANEL*/
 
 div#list_panel{
-	width: 468px;
+	width: 359px;
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
-	border: 1px solid white;
-    -webkit-box-shadow: inset 0px 0px 2px rgba(0,0,0,0.4);
 	padding-top: 1px;
 	padding-bottom: 1px;
-	margin-left: 10px;
-	background: #b5b5bc;
 }
 
 div#list_nav{
-	width: 444px;
+	width: 335px;
 	height: 20px;
 	border: 1px solid white;
 	padding: 10px;
@@ -404,7 +400,7 @@ div#list_nav{
 }
 
 div#list_panel_header{
-    width: 466px;
+    width: 357px;
 	margin: 0 auto;
 }
 
@@ -417,7 +413,7 @@ input#list_search, input#detail_waveform_panel_tag_input {
 div#list_search{
 	background: -webkit-gradient(linear, left top, left bottom, from(#18181f), to(#45455a));
     height: 40px;
-    width: 446px;
+    width: 337px;
    -webkit-box-shadow:inset 0 0 10px #000;*/
     text-shadow: none;
 	padding: 0px 10px 0px 10px;
@@ -428,14 +424,14 @@ input#list_search {
 	background: transparent;
 	text-decoration: none;
 	height: 30px;
-	width: 446px;
+	width: 337px;
 	padding-top: 10px;
 	outline: 0px;
 	border: 0px;
 }
 
 div#list_panel .selected{
-	width: 446px;
+	width: 335px;
 	border: 1px solid white;
 	padding: 9px;
 	background: #f8f8fa;
@@ -445,7 +441,7 @@ div#list_panel .selected{
 }
 
 div.list_widget {
-    width: 446px;
+    width: 335px;
     padding: 10px;
     font-weight: bold;
 	margin: 0 auto;
@@ -485,7 +481,7 @@ span.list_widget_title_text {
 }
 
 /*pushed to universal classes*/
-.title{
+div.title{
     font-size: 13px;
     text-transform: uppercase;
     font-weight: bold;
@@ -510,21 +506,25 @@ div#comment_list_panel_header {
     border-bottom: 1px solid white;
     -webkit-box-shadow: 0px 1px 0px rgba(0,0,0,0.5);
     margin-bottom: 1px;
-background: #fff;
+	background: #fff;
+}
+
+div#events_list_panel{
+	width: 578px;
+	padding: 10px;
 }
 
 /*event_widget*/
 .event_widget{
     display: -webkit-box;
     -webkit-box-orient: horizontal;
-    width: 470px;
     border-bottom: 1px solid white;
     border-top: 1px solid white;
     -webkit-box-shadow: 0px 1px 0px rgba(0,0,0,0.5);
     padding-top: 10px;
     margin-bottom: 1px;
     margin-right: 10px;
-background: #fff;
+	background: #fff;
 }
 
 div.event_widget .icon{
