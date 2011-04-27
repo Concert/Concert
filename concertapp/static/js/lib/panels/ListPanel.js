@@ -88,6 +88,8 @@ var ListPanel = Panel.extend(
          **/
         this.collectionWidgets = {};
         
+        
+        
     }, 
     
     /**

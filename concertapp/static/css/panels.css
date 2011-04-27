@@ -404,13 +404,13 @@ div#list_panel_header{
 	margin: 0 auto;
 }
 
-input#list_search, input#detail_waveform_panel_tag_input {
+input#list_panel_search, input#detail_waveform_panel_tag_input {
     font-family: Georgia, serif;
     font-size: 14px;
     color: white;    
 }
 
-div#list_search{
+div#list_panel_search_container{
 	background: -webkit-gradient(linear, left top, left bottom, from(#18181f), to(#45455a));
     height: 40px;
     width: 337px;
@@ -420,7 +420,7 @@ div#list_search{
 	margin-bottom: -2px;
 }
 
-input#list_search {
+input#list_panel_search {
 	background: transparent;
 	text-decoration: none;
 	height: 30px;
