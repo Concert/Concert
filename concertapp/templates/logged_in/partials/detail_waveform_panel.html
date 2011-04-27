@@ -1,4 +1,5 @@
 {% extends 'partials/panel.html' %}
+{% load panels %}
 
 
 {% block panel_content %}
@@ -49,9 +50,6 @@
 </div>
 
 <div id="detail_waveform_panel_bottom">
-    <input type="text" id="detail_waveform_panel_tag_input" placeholder="Enter a new or existing tag name" />
-    <div id="detail_waveform_panel_tags">
-	    {# tags will be injected here #}            
-    </div>
+    {% panel 'logged_in/partials/detail_panel_tag_bay.html' 'detail_waveform_panel_tag_bay' %}
 </div>
 {% endblock %}

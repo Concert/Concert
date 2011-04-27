@@ -10,18 +10,18 @@
 
 {% block middle %}
     {#  We have two waveform viewer panels #}
-    {% panel 'logged_in/partials/overview_waveform_panel.html' 'Overview Waveform' 'overview_waveform' %}
-    {% panel 'logged_in/partials/detail_waveform_panel.html' 'Detail Waveform' 'detail_waveform' %}
+    {% panel 'logged_in/partials/overview_waveform_panel.html' 'overview_waveform' %}
+    {% panel 'logged_in/partials/detail_waveform_panel.html' 'detail_waveform' %}
 {% endblock %}
 
 {% block left %}
     {# an events panel #}
-    {% panel 'logged_in/partials/eventslist_panel.html' '' 'events_list' %}
+    {% panel 'logged_in/partials/eventslist_panel.html' 'events_list' %}
 {% endblock %}
 
 {% block right %}
     {# and a list panel #}
-    {% panel 'logged_in/partials/list_panel.html' '' 'list' %}
+    {% panel 'logged_in/partials/list_panel.html' 'list' %}
 {% endblock %}
 
 {% block clientside %}
