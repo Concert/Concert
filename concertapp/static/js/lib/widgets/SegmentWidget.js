@@ -19,6 +19,12 @@ var SegmentWidget = ListWidget.extend(
         
         var params = this.options;      
         
+        this.clickUrl = '#collection/'
+            +this.model.get('collection').get('id')
+            +'/audio/file/'
+            +this.model.get('audioFile').get('id')
+            +'/segment/'
+            +this.model.get('id');
         
         this.render();
     }, 

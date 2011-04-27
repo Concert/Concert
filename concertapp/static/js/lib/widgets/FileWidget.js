@@ -20,6 +20,11 @@ var FileWidget = ListWidget.extend(
 
         var params = this.options;   
         
+        
+        this.clickUrl = '#collection/'
+            +this.model.get('collection').get('id')
+            +'/audio/file/'
+            +this.model.get('id');
 
         this.render();
     },

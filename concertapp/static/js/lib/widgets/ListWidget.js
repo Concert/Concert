@@ -39,7 +39,8 @@ var ListWidget = Widget.extend(
      *  this.
      **/
     _handle_click: function(e) {
-        
+        /* Go to click url */
+        window.location.assign(this.clickUrl);
     },
     
     /**
