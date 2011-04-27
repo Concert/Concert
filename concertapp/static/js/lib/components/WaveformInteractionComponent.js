@@ -52,8 +52,8 @@ var WaveformInteractionComponent = Component.extend(
         this.audioFileDuration = null;
     }, 
     
-    _initializeElements: function() {
-        Component.prototype._initializeElements.call(this);
+    _initialize_elements: function() {
+        Component.prototype._initialize_elements.call(this);
         
         
         /* Get highlight element inside this container */
@@ -90,8 +90,8 @@ var WaveformInteractionComponent = Component.extend(
             endTime:null};
     },
     
-    _initializeEvents: function(){
-        Component.prototype._initializeEvents.call(this);
+    _initialize_events: function(){
+        Component.prototype._initialize_events.call(this);
         
         /* The element that we are receiving the drag events from (should be defined
         in child classes) */
