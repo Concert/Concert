@@ -71,26 +71,24 @@
 <span class='line'> 64</span>                     </span><span class="NAME">model</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">req</span><span class="PUNC">,</span><span class="WHIT"> 
 <span class='line'> 65</span>                     </span><span class="NAME">template</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">template</span><span class="WHIT">
 <span class='line'> 66</span> </span><span class="WHIT">                </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 67</span> </span><span class="WHIT">                
-<span class='line'> 68</span>                 </span><span class="NAME">console.log</span><span class="PUNC">(</span><span class="NAME">req</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 69</span> </span><span class="WHIT">                
-<span class='line'> 70</span>                 </span><span class="NAME">frag.appendChild</span><span class="PUNC">(</span><span class="NAME">widget.el</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 71</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 72</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this.collectionRequestWidgetTemplate</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">frag</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 67</span> 
+<span class='line'> 68</span> </span><span class="WHIT">                </span><span class="NAME">frag.appendChild</span><span class="PUNC">(</span><span class="NAME">widget.el</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 69</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 70</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this.collectionRequestWidgetTemplate</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">frag</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 71</span> </span><span class="WHIT">        
+<span class='line'> 72</span>         </span><span class="NAME">requestContainer.html</span><span class="PUNC">(</span><span class="NAME">frag</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 73</span> </span><span class="WHIT">        
-<span class='line'> 74</span>         </span><span class="NAME">requestContainer.html</span><span class="PUNC">(</span><span class="NAME">frag</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 75</span> </span><span class="WHIT">        
-<span class='line'> 76</span>         </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 77</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 78</span> </span><span class="WHIT">    </span><span class="NAME">events</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 79</span> </span><span class="WHIT">        </span><span class="STRN">'click .delete_collection'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'delete_collection'</span><span class="WHIT">
-<span class='line'> 80</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 81</span> </span><span class="WHIT">    </span><span class="COMM">/**
-<span class='line'> 82</span>      *  This is called when the user first clicks the delete button.  Let page
-<span class='line'> 83</span>      *  handle it.
-<span class='line'> 84</span>      **/</span><span class="WHIT">
-<span class='line'> 85</span> </span><span class="WHIT">    </span><span class="NAME">delete_collection</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 86</span> </span><span class="WHIT">        </span><span class="NAME">this.panel.page.deleteCollectionWithConfirm</span><span class="PUNC">(</span><span class="NAME">this.model</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 87</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT"> 
-<span class='line'> 88</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 89</span> </span></pre></body></html>
+<span class='line'> 74</span>         </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 75</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 76</span> </span><span class="WHIT">    </span><span class="NAME">events</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 77</span> </span><span class="WHIT">        </span><span class="STRN">'click .delete_collection'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'delete_collection'</span><span class="WHIT">
+<span class='line'> 78</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 79</span> </span><span class="WHIT">    </span><span class="COMM">/**
+<span class='line'> 80</span>      *  This is called when the user first clicks the delete button.  Let page
+<span class='line'> 81</span>      *  handle it.
+<span class='line'> 82</span>      **/</span><span class="WHIT">
+<span class='line'> 83</span> </span><span class="WHIT">    </span><span class="NAME">delete_collection</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 84</span> </span><span class="WHIT">        </span><span class="NAME">this.panel.page.deleteCollectionWithConfirm</span><span class="PUNC">(</span><span class="NAME">this.model</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 85</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT"> 
+<span class='line'> 86</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 87</span> </span></pre></body></html>

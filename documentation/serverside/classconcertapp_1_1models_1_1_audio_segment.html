@@ -80,7 +80,7 @@ Static Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1models_1_1_audio_segment.html#ad57bff6ba4812881057215a7b31d452c">end</a> = models.FloatField()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1models_1_1_audio_segment.html#af5686a01c6da041c87fd943b7773f295">audioFile</a> = models.ForeignKey('<a class="el" href="classconcertapp_1_1models_1_1_audio_file.html">AudioFile</a>')</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1models_1_1_audio_segment.html#af4c1782a5b5ea04fbb5605b78f81495a">creator</a> = models.ForeignKey(User)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1models_1_1_audio_segment.html#a37ebd30eebd8e06a9b347994e9a1253b">collection</a> = models.ForeignKey('<a class="el" href="classconcertapp_1_1models_1_1_collection.html">Collection</a>')</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1models_1_1_audio_segment.html#a37ebd30eebd8e06a9b347994e9a1253b">collection</a> = models.ForeignKey('<a class="el" href="classconcertapp_1_1models_1_1_collection.html">Collection</a>', related_name=&quot;segments&quot;)</td></tr>
 </table>
 <hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="af52e8f7d9744d23954eeb39f12fd1458"></a><!-- doxytag: member="concertapp::models::AudioSegment::__unicode__" ref="af52e8f7d9744d23954eeb39f12fd1458" args="" -->
@@ -233,7 +233,7 @@ Static Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">tuple <a class="el" href="classconcertapp_1_1models_1_1_audio_segment.html#a37ebd30eebd8e06a9b347994e9a1253b">concertapp::models::AudioSegment::collection</a> = models.ForeignKey('<a class="el" href="classconcertapp_1_1models_1_1_collection.html">Collection</a>')<code> [static]</code></td>
+          <td class="memname">tuple <a class="el" href="classconcertapp_1_1models_1_1_audio_segment.html#a37ebd30eebd8e06a9b347994e9a1253b">concertapp::models::AudioSegment::collection</a> = models.ForeignKey('<a class="el" href="classconcertapp_1_1models_1_1_collection.html">Collection</a>', related_name=&quot;segments&quot;)<code> [static]</code></td>
         </tr>
       </table>
 </div>
@@ -281,7 +281,7 @@ Static Public Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/Users/colin/Projects/Concert/concertapp/<a class="el" href="models_8py.html">models.py</a></li>
+<li>/Users/colin/Projects/Concert.gh-pages/concertapp/<a class="el" href="models_8py.html">models.py</a></li>
 </ul>
 </div>
 <!--- window showing the filter options -->
@@ -298,7 +298,7 @@ Static Public Attributes</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Apr 6 2011 20:25:36 for Concert by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Apr 28 2011 14:29:33 for Concert by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.2 </small></address>
 </body>

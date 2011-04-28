@@ -57,7 +57,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a>  </div>
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a>  </div>
   <div class="headertitle">
 <h1>concertapp::users::api::UserResource Class Reference</h1>  </div>
 </div>
@@ -78,9 +79,30 @@ Inheritance diagram for concertapp::users::api::UserResource:<!-- endSectionHead
 <tr><td colspan="2"><h2><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1users_1_1api_1_1_user_resource_1_1_meta.html">Meta</a></td></tr>
+<tr><td colspan="2"><h2><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1users_1_1api_1_1_user_resource.html#afeb16904ebe0409e76837af3b55d9d86">unreadEvents</a></td></tr>
 </table>
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="afeb16904ebe0409e76837af3b55d9d86"></a><!-- doxytag: member="concertapp::users::api::UserResource::unreadEvents" ref="afeb16904ebe0409e76837af3b55d9d86" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">tuple <a class="el" href="classconcertapp_1_1users_1_1api_1_1_user_resource.html#afeb16904ebe0409e76837af3b55d9d86">concertapp::users::api::UserResource::unreadEvents</a><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<b>Initial value:</b><div class="fragment"><pre class="fragment">UserProfileManyToManyField(
+        <span class="stringliteral">&#39;concertapp.event.api.EventResource&#39;</span>,
+        <span class="stringliteral">&#39;unreadEvents&#39;</span>
+    )
+</pre></div>
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/Users/colin/Projects/Concert/concertapp/users/<a class="el" href="users_2api_8py.html">api.py</a></li>
+<li>/Users/colin/Projects/Concert.gh-pages/concertapp/users/<a class="el" href="users_2api_8py.html">api.py</a></li>
 </ul>
 </div>
 <!--- window showing the filter options -->
@@ -97,7 +119,7 @@ Classes</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Apr 6 2011 20:25:36 for Concert by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Apr 28 2011 14:29:34 for Concert by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.2 </small></address>
 </body>

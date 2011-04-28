@@ -70,18 +70,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr><td colspan="2"><h2><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1models_1_1_concert_user.html#aa65285f7d709e88fa6a162d9bbf65ee5">user</a> = models.ForeignKey(User, unique = True)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1models_1_1_concert_user.html#aeeb833d02871195146e30f63026f5f56">unread_events</a> = models.ManyToManyField('<a class="el" href="classconcertapp_1_1models_1_1_event.html">Event</a>')</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1models_1_1_concert_user.html#a435b6566050f72db5818834e9d571e9e">unreadEvents</a> = models.ManyToManyField('<a class="el" href="classconcertapp_1_1models_1_1_event.html">Event</a>')</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>An extension to the User model accomplished through the Django supported AUTH_PROFILE_MODULE. </p>
 <p>Each 'ConcertUser' is linked to a django User via a ForeginKey, thus allowing <a class="el" href="classconcertapp_1_1models_1_1_concert_user.html" title="An extension to the User model accomplished through the Django supported AUTH_PROFILE_MODULE.">ConcertUser</a> to hold extra attributes, accessable via &lt;User&gt;.get_profile().&lt;ConcertUser&gt;.attribute </p>
 <hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="aeeb833d02871195146e30f63026f5f56"></a><!-- doxytag: member="concertapp::models::ConcertUser::unread_events" ref="aeeb833d02871195146e30f63026f5f56" args="" -->
+<a class="anchor" id="a435b6566050f72db5818834e9d571e9e"></a><!-- doxytag: member="concertapp::models::ConcertUser::unreadEvents" ref="a435b6566050f72db5818834e9d571e9e" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">tuple <a class="el" href="classconcertapp_1_1models_1_1_concert_user.html#aeeb833d02871195146e30f63026f5f56">concertapp::models::ConcertUser::unread_events</a> = models.ManyToManyField('<a class="el" href="classconcertapp_1_1models_1_1_event.html">Event</a>')<code> [static]</code></td>
+          <td class="memname">tuple <a class="el" href="classconcertapp_1_1models_1_1_concert_user.html#a435b6566050f72db5818834e9d571e9e">concertapp::models::ConcertUser::unreadEvents</a> = models.ManyToManyField('<a class="el" href="classconcertapp_1_1models_1_1_event.html">Event</a>')<code> [static]</code></td>
         </tr>
       </table>
 </div>
@@ -103,7 +103,7 @@ Static Public Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/Users/colin/Projects/Concert/concertapp/<a class="el" href="models_8py.html">models.py</a></li>
+<li>/Users/colin/Projects/Concert.gh-pages/concertapp/<a class="el" href="models_8py.html">models.py</a></li>
 </ul>
 </div>
 <!--- window showing the filter options -->
@@ -120,7 +120,7 @@ Static Public Attributes</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Apr 6 2011 20:25:36 for Concert by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Apr 28 2011 14:29:33 for Concert by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.2 </small></address>
 </body>

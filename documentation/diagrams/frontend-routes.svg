@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
+<svg width="118cm" height="32cm" viewBox="59 -8 2356 634" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g>
+    <polygon style="fill: #ffffff" points="874.251,36.6666 918.974,36.6666 904.416,76.6666 859.692,76.6666 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="874.251,36.6666 918.974,36.6666 904.416,76.6666 859.692,76.6666 "/>
+    <text style="fill: #000000;text-anchor:middle;font-size:12.8;font-family:sanserif;font-style:normal;font-weight:normal" x="889.333" y="60.5666">
+      <tspan x="889.333" y="60.5666">url</tspan>
+    </text>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="892.999,138.443 950.112,167 892.999,195.557 835.886,167 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="892.999,138.443 950.112,167 892.999,195.557 835.886,167 "/>
+    <text style="fill: #000000;text-anchor:middle;font-size:12.8;font-family:sanserif;font-style:normal;font-weight:normal" x="892.999" y="170.9">
+      <tspan x="892.999" y="170.9">route</tspan>
+    </text>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="890.029" y1="77.6235" x2="891.713" y2="128.285"/>
+    <polygon style="fill: #000000" points="891.962,135.781 886.633,125.953 891.713,128.285 896.627,125.621 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="891.962,135.781 886.633,125.953 891.713,128.285 896.627,125.621 "/>
+  </g>
+  <g>
+    <path style="fill: #ffffff" d="M 155.939 355 L 247.656,355 L 266,375 L 247.656,395 L 155.939,395 L 137.595,375 L 155.939,355z"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 155.939 355 L 247.656,355 L 266,375 L 247.656,395 L 155.939,395 L 137.595,375 L 155.939,355"/>
+    <text style="fill: #000000;text-anchor:middle;font-size:12.8;font-family:sanserif;font-style:normal;font-weight:normal" x="201.798" y="379">
+      <tspan x="201.798" y="379">/</tspan>
+    </text>
+  </g>
+  <g>
+    <path style="fill: #ffffff" d="M 809.658 353.5 L 976.208,353.5 L 1009.52,373.5 L 976.208,393.5 L 809.658,393.5 L 776.348,373.5 L 809.658,353.5z"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 809.658 353.5 L 976.208,353.5 L 1009.52,373.5 L 976.208,393.5 L 809.658,393.5 L 776.348,373.5 L 809.658,353.5"/>
+    <text style="fill: #000000;text-anchor:middle;font-size:12.8;font-family:sanserif;font-style:normal;font-weight:normal" x="892.933" y="377.5">
+      <tspan x="892.933" y="377.5">/#collection/:id/audio/</tspan>
+    </text>
+  </g>
+  <g>
+    <path style="fill: #ffffff" d="M 1146.29 353.5 L 1352.64,353.5 L 1393.91,373.5 L 1352.64,393.5 L 1146.29,393.5 L 1105.02,373.5 L 1146.29,353.5z"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 1146.29 353.5 L 1352.64,353.5 L 1393.91,373.5 L 1352.64,393.5 L 1146.29,393.5 L 1105.02,373.5 L 1146.29,353.5"/>
+    <text style="fill: #000000;text-anchor:middle;font-size:12.8;font-family:sanserif;font-style:normal;font-weight:normal" x="1249.47" y="377.5">
+      <tspan x="1249.47" y="377.5">/#collection/:id/file/:id</tspan>
+    </text>
+  </g>
+  <g>
+    <path style="fill: #ffffff" d="M 1463.94 355 L 1751.04,355 L 1808.46,375 L 1751.04,395 L 1463.94,395 L 1406.52,375 L 1463.94,355z"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 1463.94 355 L 1751.04,355 L 1808.46,375 L 1751.04,395 L 1463.94,395 L 1406.52,375 L 1463.94,355"/>
+    <text style="fill: #000000;text-anchor:middle;font-size:12.8;font-family:sanserif;font-style:normal;font-weight:normal" x="1607.49" y="379">
+      <tspan x="1607.49" y="379">/#collection/:id/file/:id/segment/:id</tspan>
+    </text>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="540.666,-7 723.766,-7 735.766,5 735.766,27 540.666,27 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="540.666,-7 723.766,-7 735.766,5 735.766,27 540.666,27 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" points="723.766,-7 723.766,5 735.766,5 "/>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="547.666" y="17.9">
+      <tspan x="547.666" y="17.9">First, the URL comes in</tspan>
+    </text>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="521.166,90.5 765.866,90.5 777.866,102.5 777.866,156.5 521.166,156.5 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="521.166,90.5 765.866,90.5 777.866,102.5 777.866,156.5 521.166,156.5 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" points="765.866,90.5 765.866,102.5 777.866,102.5 "/>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="528.166" y="115.4">
+      <tspan x="528.166" y="115.4">The corresponding route handler</tspan>
+      <tspan x="528.166" y="131.4">determines which context is to</tspan>
+      <tspan x="528.166" y="147.4">be used.</tspan>
+    </text>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="854.777" y1="177.396" x2="211.193" y2="352.445"/>
+    <polygon style="fill: #000000" points="203.956,354.413 212.293,346.964 211.193,352.445 214.917,356.613 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="203.956,354.413 212.293,346.964 211.193,352.445 214.917,356.613 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="897.403" y1="194.356" x2="921.314" y2="342.884"/>
+    <polygon style="fill: #000000" points="922.506,350.288 915.98,341.21 921.314,342.884 925.853,339.621 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="922.506,350.288 915.98,341.21 921.314,342.884 925.853,339.621 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="921.997" y1="182.055" x2="1241.64" y2="348.01"/>
+    <polygon style="fill: #000000" points="1248.3,351.465 1237.12,351.295 1241.64,348.01 1241.73,342.42 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1248.3,351.465 1237.12,351.295 1241.64,348.01 1241.73,342.42 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="931.409" y1="177.35" x2="1577.56" y2="351.462"/>
+    <polygon style="fill: #000000" points="1584.8,353.414 1573.84,355.64 1577.56,351.462 1576.45,345.984 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1584.8,353.414 1573.84,355.64 1577.56,351.462 1576.45,345.984 "/>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="73.5,417.5 310.5,417.5 322.5,429.5 322.5,483.5 73.5,483.5 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="73.5,417.5 310.5,417.5 322.5,429.5 322.5,483.5 73.5,483.5 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" points="310.5,417.5 310.5,429.5 322.5,429.5 "/>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="80.5" y="442.4">
+      <tspan x="80.5" y="442.4">The default route will be a </tspan>
+      <tspan x="80.5" y="458.4">listing of all collections for</tspan>
+      <tspan x="80.5" y="474.4">which a user is a member.</tspan>
+    </text>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="768.5,415.5 1005.5,415.5 1017.5,427.5 1017.5,481.5 768.5,481.5 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="768.5,415.5 1005.5,415.5 1017.5,427.5 1017.5,481.5 768.5,481.5 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" points="1005.5,415.5 1005.5,427.5 1017.5,427.5 "/>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="775.5" y="440.4">
+      <tspan x="775.5" y="440.4">A route that lists all of the</tspan>
+      <tspan x="775.5" y="456.4">audio files and segments for a</tspan>
+      <tspan x="775.5" y="472.4">collection</tspan>
+    </text>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="1109.5,413.5 1377.3,413.5 1389.3,425.5 1389.3,511.5 1109.5,511.5 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1109.5,413.5 1377.3,413.5 1389.3,425.5 1389.3,511.5 1109.5,511.5 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" points="1377.3,413.5 1377.3,425.5 1389.3,425.5 "/>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="1116.5" y="438.4">
+      <tspan x="1116.5" y="438.4">Viewing a single audio file,</tspan>
+      <tspan x="1116.5" y="454.4">will be much like parent route, </tspan>
+      <tspan x="1116.5" y="470.4">but an audio file will be selected</tspan>
+      <tspan x="1116.5" y="486.4">and the events for this audio file</tspan>
+      <tspan x="1116.5" y="502.4">will be displayed.</tspan>
+    </text>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="1436.5,420.5 1765.9,420.5 1777.9,432.5 1777.9,502.5 1436.5,502.5 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1436.5,420.5 1765.9,420.5 1777.9,432.5 1777.9,502.5 1436.5,502.5 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" points="1765.9,420.5 1765.9,432.5 1777.9,432.5 "/>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="1443.5" y="445.4">
+      <tspan x="1443.5" y="445.4">Viewing a single audio segment  Will</tspan>
+      <tspan x="1443.5" y="461.4">show events and such related to this </tspan>
+      <tspan x="1443.5" y="477.4">segment, and audio list will still remain.</tspan>
+      <tspan x="1443.5" y="493.4">Will also create highlight and loop.</tspan>
+    </text>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="1693.5,140.5 2076.8,140.5 2088.8,152.5 2088.8,302.5 1693.5,302.5 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1693.5,140.5 2076.8,140.5 2088.8,152.5 2088.8,302.5 1693.5,302.5 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" points="2076.8,140.5 2076.8,152.5 2088.8,152.5 "/>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="1700.5" y="165.4">
+      <tspan x="1700.5" y="165.4">Should this be namespaced relative to audio file?</tspan>
+      <tspan x="1700.5" y="181.4"></tspan>
+      <tspan x="1700.5" y="197.4">One one hand, it does make sense because it is </tspan>
+      <tspan x="1700.5" y="213.4">sort of an addition of functionality from just </tspan>
+      <tspan x="1700.5" y="229.4">selecting the audio file (highlight and loop).</tspan>
+      <tspan x="1700.5" y="245.4"></tspan>
+      <tspan x="1700.5" y="261.4">On the other hand, the namespace doesn't really</tspan>
+      <tspan x="1700.5" y="277.4">help us too much at all technically.</tspan>
+      <tspan x="1700.5" y="293.4"></tspan>
+    </text>
+  </g>
+  <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 4; stroke: #000000" x1="1695.86" y1="354.004" x2="1770.28" y2="303.506"/>
+  <g>
+    <rect style="fill: #ffffff" x="69.1604" y="509" width="249.45" height="45"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 4; stroke: #000000" x="69.1604" y="509" width="249.45" height="45"/>
+    <text style="fill: #000000;text-anchor:middle;font-size:12.8;font-family:sanserif;font-style:normal;font-weight:normal" x="193.885" y="535.4">
+      <tspan x="193.885" y="535.4">ListPanel populates with collections</tspan>
+    </text>
+  </g>
+  <g>
+    <path style="fill: #ffffff" d="M 441.818 355.9 L 606.468,355.9 L 639.398,375.9 L 606.468,395.9 L 441.818,395.9 L 408.888,375.9 L 441.818,355.9z"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 441.818 355.9 L 606.468,355.9 L 639.398,375.9 L 606.468,395.9 L 441.818,395.9 L 408.888,375.9 L 441.818,355.9"/>
+    <text style="fill: #000000;text-anchor:middle;font-size:12.8;font-family:sanserif;font-style:normal;font-weight:normal" x="524.143" y="379.9">
+      <tspan x="524.143" y="379.9">/#collection/:id/</tspan>
+    </text>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="387.586,426.9 663.086,426.9 675.086,438.9 675.086,476.9 387.586,476.9 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="387.586,426.9 663.086,426.9 675.086,438.9 675.086,476.9 387.586,476.9 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" points="663.086,426.9 663.086,438.9 675.086,438.9 "/>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="394.586" y="451.8">
+      <tspan x="394.586" y="451.8">Lists properties/operations/</tspan>
+      <tspan x="394.586" y="467.8">events for the selected collection.</tspan>
+    </text>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="866.663" y1="183.378" x2="594.496" y2="352.628"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="598.449,344.282 592.597,353.809 603.73,352.774 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="60" y="580" width="256.85" height="45"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 4; stroke: #000000" x="60" y="580" width="256.85" height="45"/>
+    <text style="fill: #000000;text-anchor:middle;font-size:12.8;font-family:sanserif;font-style:normal;font-weight:normal" x="188.425" y="606.4">
+      <tspan x="188.425" y="606.4">Unused view elements are disabled?</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="380" y="500" width="275.5" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 4; stroke: #000000" x="380" y="500" width="275.5" height="54"/>
+    <text style="fill: #000000;text-anchor:middle;font-size:12.8;font-family:sanserif;font-style:normal;font-weight:normal" x="517.75" y="522.9">
+      <tspan x="517.75" y="522.9">View all properties of this collection,</tspan>
+      <tspan x="517.75" y="538.9">including events in events listing.</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="757" y="509" width="275.5" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 4; stroke: #000000" x="757" y="509" width="275.5" height="54"/>
+    <text style="fill: #000000;text-anchor:middle;font-size:12.8;font-family:sanserif;font-style:normal;font-weight:normal" x="894.75" y="539.9">
+      <tspan x="894.75" y="539.9">ListPanel populates with audio</tspan>
+    </text>
+  </g>
+  <g>
+    <path style="fill: #ffffff" d="M 2200.9 358.7 L 2292.62,358.7 L 2310.97,378.7 L 2292.62,398.7 L 2200.9,398.7 L 2182.56,378.7 L 2200.9,358.7z"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 2200.9 358.7 L 2292.62,358.7 L 2310.97,378.7 L 2292.62,398.7 L 2200.9,398.7 L 2182.56,378.7 L 2200.9,358.7"/>
+    <text style="fill: #000000;text-anchor:middle;font-size:12.8;font-family:sanserif;font-style:normal;font-weight:normal" x="2246.76" y="382.7">
+      <tspan x="2246.76" y="382.7">/#user/:id/</tspan>
+    </text>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="2087.54,436.034 2401.54,436.034 2413.54,448.034 2413.54,486.034 2087.54,486.034 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="2087.54,436.034 2401.54,436.034 2413.54,448.034 2413.54,486.034 2087.54,486.034 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" points="2401.54,436.034 2401.54,448.034 2413.54,448.034 "/>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="2094.54" y="460.934">
+      <tspan x="2094.54" y="460.934">Viewing information about a user.  Maybe</tspan>
+      <tspan x="2094.54" y="476.934">events that the user 'initiated'.</tspan>
+    </text>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="938.16" y1="173.968" x2="2187.19" y2="366.678"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="2178.75,370.436 2189.4,367.019 2180.28,360.553 "/>
+  </g>
+</svg>

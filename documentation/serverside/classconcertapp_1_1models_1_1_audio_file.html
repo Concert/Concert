@@ -84,7 +84,7 @@ Static Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1models_1_1_audio_file.html#ad35a147414fd28a321a3338f41524562">AUDIO_LOCATION</a> = 'audio/'</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1models_1_1_audio_file.html#a081a5462f8636d50385bf7eb3f9c841c">name</a> = models.CharField(max_length = 100)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1models_1_1_audio_file.html#ab05f383c0d6c1ffbefb6faa0d5a301d6">uploader</a> = models.ForeignKey(User)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1models_1_1_audio_file.html#afb4b71e912f3b4985ac3dc96d2ef4109">collection</a> = models.ForeignKey('<a class="el" href="classconcertapp_1_1models_1_1_collection.html">Collection</a>')</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1models_1_1_audio_file.html#afb4b71e912f3b4985ac3dc96d2ef4109">collection</a> = models.ForeignKey('<a class="el" href="classconcertapp_1_1models_1_1_collection.html">Collection</a>', related_name=&quot;files&quot;)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1models_1_1_audio_file.html#a42a70fff623a3cd9e0ff7e72ae887a53">wav</a> = models.FileField(upload_to = <a class="el" href="classconcertapp_1_1models_1_1_audio_file.html#ad35a147414fd28a321a3338f41524562">AUDIO_LOCATION</a>)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1models_1_1_audio_file.html#a10da661bd74fe953137c88ce00e17928">ogg</a> = models.FileField(upload_to = <a class="el" href="classconcertapp_1_1models_1_1_audio_file.html#ad35a147414fd28a321a3338f41524562">AUDIO_LOCATION</a>)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1models_1_1_audio_file.html#ab9fff724ff9fc31e3ebbafc27a7ea5ea">mp3</a> = models.FileField(upload_to = <a class="el" href="classconcertapp_1_1models_1_1_audio_file.html#ad35a147414fd28a321a3338f41524562">AUDIO_LOCATION</a>)</td></tr>
@@ -198,7 +198,7 @@ Static Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">tuple <a class="el" href="classconcertapp_1_1models_1_1_audio_file.html#afb4b71e912f3b4985ac3dc96d2ef4109">concertapp::models::AudioFile::collection</a> = models.ForeignKey('<a class="el" href="classconcertapp_1_1models_1_1_collection.html">Collection</a>')<code> [static]</code></td>
+          <td class="memname">tuple <a class="el" href="classconcertapp_1_1models_1_1_audio_file.html#afb4b71e912f3b4985ac3dc96d2ef4109">concertapp::models::AudioFile::collection</a> = models.ForeignKey('<a class="el" href="classconcertapp_1_1models_1_1_collection.html">Collection</a>', related_name=&quot;files&quot;)<code> [static]</code></td>
         </tr>
       </table>
 </div>
@@ -350,7 +350,7 @@ Static Public Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/Users/colin/Projects/Concert/concertapp/<a class="el" href="models_8py.html">models.py</a></li>
+<li>/Users/colin/Projects/Concert.gh-pages/concertapp/<a class="el" href="models_8py.html">models.py</a></li>
 </ul>
 </div>
 <!--- window showing the filter options -->
@@ -367,7 +367,7 @@ Static Public Attributes</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Apr 6 2011 20:25:36 for Concert by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Apr 28 2011 14:29:34 for Concert by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.2 </small></address>
 </body>

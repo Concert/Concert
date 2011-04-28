@@ -58,6 +58,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-attribs">Static Public Attributes</a>  </div>
   <div class="headertitle">
 <h1>concertapp::audiosegments::api::AudioSegmentResource Class Reference</h1>  </div>
@@ -80,6 +81,9 @@ Inheritance diagram for concertapp::audiosegments::api::AudioSegmentResource:<!-
 <tr><td colspan="2"><h2><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1audiosegments_1_1api_1_1_audio_segment_resource_1_1_meta.html">Meta</a></td></tr>
+<tr><td colspan="2"><h2><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1audiosegments_1_1api_1_1_audio_segment_resource.html#acd4bb648782183a393539872c6a984f8">create_nested_event</a></td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1audiosegments_1_1api_1_1_audio_segment_resource.html#a22b1e5cca472a22b244130f795a60d41">name</a> = fields.CharField('<a class="el" href="classconcertapp_1_1audiosegments_1_1api_1_1_audio_segment_resource.html#a22b1e5cca472a22b244130f795a60d41">name</a>')</td></tr>
@@ -89,7 +93,48 @@ Static Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1audiosegments_1_1api_1_1_audio_segment_resource.html#a865a2d9f3efb439623865f4c9dc6c932">audioFile</a> = fields.ForeignKey(<a class="el" href="classconcertapp_1_1audio_1_1api_1_1_audio_file_resource.html">AudioFileResource</a>, '<a class="el" href="classconcertapp_1_1audiosegments_1_1api_1_1_audio_segment_resource.html#a865a2d9f3efb439623865f4c9dc6c932">audioFile</a>')</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1audiosegments_1_1api_1_1_audio_segment_resource.html#acf67208888532c88707d43b09e9fdf2d">tags</a> = fields.ManyToManyField(<a class="el" href="classconcertapp_1_1tags_1_1api_1_1_tag_resource.html">TagResource</a>, '<a class="el" href="classconcertapp_1_1audiosegments_1_1api_1_1_audio_segment_resource.html#acf67208888532c88707d43b09e9fdf2d">tags</a>', null=True)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1audiosegments_1_1api_1_1_audio_segment_resource.html#ad69da4622f74d85c4c3f63d562c22838">collection</a> = fields.ForeignKey(<a class="el" href="classconcertapp_1_1collection_1_1api_1_1_collection_resource.html">CollectionResource</a>, '<a class="el" href="classconcertapp_1_1audiosegments_1_1api_1_1_audio_segment_resource.html#ad69da4622f74d85c4c3f63d562c22838">collection</a>')</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1audiosegments_1_1api_1_1_audio_segment_resource.html#a2a8af82c3b3c238f73352891b1dd7281">events</a></td></tr>
 </table>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="acd4bb648782183a393539872c6a984f8"></a><!-- doxytag: member="concertapp::audiosegments::api::AudioSegmentResource::create_nested_event" ref="acd4bb648782183a393539872c6a984f8" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def concertapp::audiosegments::api::AudioSegmentResource::create_nested_event </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"> <em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"> <em>obj</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"> <em>nested_obj</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"> <em>request</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
 <hr/><h2>Member Data Documentation</h2>
 <a class="anchor" id="a865a2d9f3efb439623865f4c9dc6c932"></a><!-- doxytag: member="concertapp::audiosegments::api::AudioSegmentResource::audioFile" ref="a865a2d9f3efb439623865f4c9dc6c932" args="" -->
 <div class="memitem">
@@ -156,6 +201,24 @@ Static Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a2a8af82c3b3c238f73352891b1dd7281"></a><!-- doxytag: member="concertapp::audiosegments::api::AudioSegmentResource::events" ref="a2a8af82c3b3c238f73352891b1dd7281" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">tuple <a class="el" href="classconcertapp_1_1audiosegments_1_1api_1_1_audio_segment_resource.html#a2a8af82c3b3c238f73352891b1dd7281">concertapp::audiosegments::api::AudioSegmentResource::events</a><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<b>Initial value:</b><div class="fragment"><pre class="fragment">fields.ManyToManyField(
+        <span class="stringliteral">&#39;concertapp.event.api.EventResource&#39;</span>,
+        <span class="stringliteral">&#39;events&#39;</span>,
+        null=<span class="keyword">True</span>
+    )
+</pre></div>
+</div>
+</div>
 <a class="anchor" id="a22b1e5cca472a22b244130f795a60d41"></a><!-- doxytag: member="concertapp::audiosegments::api::AudioSegmentResource::name" ref="a22b1e5cca472a22b244130f795a60d41" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -183,7 +246,7 @@ Static Public Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/Users/colin/Projects/Concert/concertapp/audiosegments/<a class="el" href="audiosegments_2api_8py.html">api.py</a></li>
+<li>/Users/colin/Projects/Concert.gh-pages/concertapp/audiosegments/<a class="el" href="audiosegments_2api_8py.html">api.py</a></li>
 </ul>
 </div>
 <!--- window showing the filter options -->
@@ -200,7 +263,7 @@ Static Public Attributes</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Apr 6 2011 20:25:35 for Concert by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Apr 28 2011 14:29:30 for Concert by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.2 </small></address>
 </body>

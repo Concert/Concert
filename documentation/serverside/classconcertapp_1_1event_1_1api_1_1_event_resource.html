@@ -63,14 +63,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h1>concertapp::event::api::EventResource Class Reference</h1>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="concertapp::event::api::EventResource" --><!-- doxytag: inherits="concertapp::lib::api::MyResource" --><!-- startSectionHeader --><div class="dynheader">
+<!-- doxytag: class="concertapp::event::api::EventResource" --><!-- doxytag: inherits="concertapp::lib::api::MyResource" -->
+<p>A resource for base-event class.  
+<a href="#_details">More...</a></p>
+<!-- startSectionHeader --><div class="dynheader">
 Inheritance diagram for concertapp::event::api::EventResource:<!-- endSectionHeader --></div>
 <!-- startSectionSummary --><!-- endSectionSummary --><!-- startSectionContent --><div class="dyncontent">
  <div class="center">
   <img src="classconcertapp_1_1event_1_1api_1_1_event_resource.png" usemap="#concertapp::event::api::EventResource_map" alt=""/>
   <map id="concertapp::event::api::EventResource_map" name="concertapp::event::api::EventResource_map">
-<area href="classconcertapp_1_1lib_1_1api_1_1_my_resource.html" alt="concertapp::lib::api::MyResource" shape="rect" coords="0,0,352,24"/>
-<area href="classconcertapp_1_1event_1_1api_1_1_request_join_collection_event_resource.html" alt="concertapp::event::api::RequestJoinCollectionEventResource" shape="rect" coords="0,112,352,136"/>
+<area href="classconcertapp_1_1lib_1_1api_1_1_my_resource.html" alt="concertapp::lib::api::MyResource" shape="rect" coords="0,0,354,24"/>
+<area href="classconcertapp_1_1event_1_1api_1_1_collection_event_resource.html" alt="concertapp::event::api::CollectionEventResource" shape="rect" coords="0,112,354,136"/>
+<area href="classconcertapp_1_1event_1_1api_1_1_audio_file_uploaded_event_resource.html" alt="concertapp::event::api::AudioFileUploadedEventResource" shape="rect" coords="364,168,718,192"/>
+<area href="classconcertapp_1_1event_1_1api_1_1_audio_segment_created_event_resource.html" alt="concertapp::event::api::AudioSegmentCreatedEventResource" shape="rect" coords="364,224,718,248"/>
+<area href="classconcertapp_1_1event_1_1api_1_1_audio_segment_tagged_event_resource.html" alt="concertapp::event::api::AudioSegmentTaggedEventResource" shape="rect" coords="364,280,718,304"/>
+<area href="classconcertapp_1_1event_1_1api_1_1_create_collection_event_resource.html" alt="concertapp::event::api::CreateCollectionEventResource" shape="rect" coords="364,336,718,360"/>
+<area href="classconcertapp_1_1event_1_1api_1_1_join_collection_event_resource.html" alt="concertapp::event::api::JoinCollectionEventResource" shape="rect" coords="364,392,718,416"/>
+<area href="classconcertapp_1_1event_1_1api_1_1_leave_collection_event_resource.html" alt="concertapp::event::api::LeaveCollectionEventResource" shape="rect" coords="364,448,718,472"/>
+<area href="classconcertapp_1_1event_1_1api_1_1_request_denied_event_resource.html" alt="concertapp::event::api::RequestDeniedEventResource" shape="rect" coords="364,504,718,528"/>
+<area href="classconcertapp_1_1event_1_1api_1_1_request_join_collection_event_resource.html" alt="concertapp::event::api::RequestJoinCollectionEventResource" shape="rect" coords="364,560,718,584"/>
+<area href="classconcertapp_1_1event_1_1api_1_1_request_join_collection_event_resource.html" alt="concertapp::event::api::RequestJoinCollectionEventResource" shape="rect" coords="364,616,718,640"/>
+<area href="classconcertapp_1_1event_1_1api_1_1_request_revoked_event_resource.html" alt="concertapp::event::api::RequestRevokedEventResource" shape="rect" coords="364,672,718,696"/>
 </map>
  </div><!-- endSectionContent --></div>
 
@@ -81,9 +94,13 @@ Classes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1event_1_1api_1_1_event_resource_1_1_meta.html">Meta</a></td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1event_1_1api_1_1_event_resource.html#a88a8b0e6640d8c6d9fd04173b6dea4a9">user</a> = fields.ForeignKey(<a class="el" href="classconcertapp_1_1users_1_1api_1_1_user_resource.html">UserResource</a>, '<a class="el" href="classconcertapp_1_1event_1_1api_1_1_event_resource.html#a88a8b0e6640d8c6d9fd04173b6dea4a9">user</a>')</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1event_1_1api_1_1_event_resource.html#a7edc961816e5521197925752a3a08fee">time</a> = fields.DateTimeField('<a class="el" href="classconcertapp_1_1event_1_1api_1_1_event_resource.html#a7edc961816e5521197925752a3a08fee">time</a>')</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1event_1_1api_1_1_event_resource.html#aa9dc88d13034a79a407d885f7d3d4ee7">collection</a> = fields.ForeignKey(<a class="el" href="classconcertapp_1_1collection_1_1api_1_1_collection_resource.html">CollectionResource</a>, '<a class="el" href="classconcertapp_1_1event_1_1api_1_1_event_resource.html#aa9dc88d13034a79a407d885f7d3d4ee7">collection</a>')</td></tr>
 </table>
+<hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>A resource for base-event class. </p>
+<p>Probably shouldn't be accessed through URLs because we don't know what type of event it is. </p>
 <hr/><h2>Member Data Documentation</h2>
 <a class="anchor" id="aa9dc88d13034a79a407d885f7d3d4ee7"></a><!-- doxytag: member="concertapp::event::api::EventResource::collection" ref="aa9dc88d13034a79a407d885f7d3d4ee7" args="" -->
 <div class="memitem">
@@ -111,8 +128,21 @@ Static Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a88a8b0e6640d8c6d9fd04173b6dea4a9"></a><!-- doxytag: member="concertapp::event::api::EventResource::user" ref="a88a8b0e6640d8c6d9fd04173b6dea4a9" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">tuple <a class="el" href="classconcertapp_1_1event_1_1api_1_1_event_resource.html#a88a8b0e6640d8c6d9fd04173b6dea4a9">concertapp::event::api::EventResource::user</a> = fields.ForeignKey(<a class="el" href="classconcertapp_1_1users_1_1api_1_1_user_resource.html">UserResource</a>, '<a class="el" href="classconcertapp_1_1event_1_1api_1_1_event_resource.html#a88a8b0e6640d8c6d9fd04173b6dea4a9">user</a>')<code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/Users/colin/Projects/Concert/concertapp/event/<a class="el" href="event_2api_8py.html">api.py</a></li>
+<li>/Users/colin/Projects/Concert.gh-pages/concertapp/event/<a class="el" href="event_2api_8py.html">api.py</a></li>
 </ul>
 </div>
 <!--- window showing the filter options -->
@@ -129,7 +159,7 @@ Static Public Attributes</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Apr 6 2011 20:25:35 for Concert by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Apr 28 2011 14:29:31 for Concert by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.2 </small></address>
 </body>

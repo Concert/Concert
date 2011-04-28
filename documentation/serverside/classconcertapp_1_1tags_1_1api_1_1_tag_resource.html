@@ -58,6 +58,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-attribs">Static Public Attributes</a>  </div>
   <div class="headertitle">
 <h1>concertapp::tags::api::TagResource Class Reference</h1>  </div>
@@ -80,12 +81,56 @@ Inheritance diagram for concertapp::tags::api::TagResource:<!-- endSectionHeader
 <tr><td colspan="2"><h2><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1tags_1_1api_1_1_tag_resource_1_1_meta.html">Meta</a></td></tr>
+<tr><td colspan="2"><h2><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1tags_1_1api_1_1_tag_resource.html#a3813814af066e23f30cb51678553f8d1">create_nested_event</a></td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1tags_1_1api_1_1_tag_resource.html#a454af3e0958add05eaa44e40b1e4460b">creator</a> = fields.ForeignKey(<a class="el" href="classconcertapp_1_1users_1_1api_1_1_user_resource.html">UserResource</a>, '<a class="el" href="classconcertapp_1_1tags_1_1api_1_1_tag_resource.html#a454af3e0958add05eaa44e40b1e4460b">creator</a>')</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1tags_1_1api_1_1_tag_resource.html#ac34aea5f8cfa7890a38f24c316e1ba62">collection</a> = fields.ForeignKey(<a class="el" href="classconcertapp_1_1collection_1_1api_1_1_collection_resource.html">CollectionResource</a>, &quot;collection&quot;)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1tags_1_1api_1_1_tag_resource.html#a43359a1d26c2576c26c8228cdc7f02ab">segments</a> = fields.ToManyField('<a class="el" href="classconcertapp_1_1audiosegments_1_1api_1_1_audio_segment_resource.html">concertapp.audiosegments.api.AudioSegmentResource</a>', '<a class="el" href="classconcertapp_1_1tags_1_1api_1_1_tag_resource.html#a43359a1d26c2576c26c8228cdc7f02ab">segments</a>', null = True)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1tags_1_1api_1_1_tag_resource.html#ab60efab1fcaed3ff78824dba2fd14acc">events</a></td></tr>
 </table>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a3813814af066e23f30cb51678553f8d1"></a><!-- doxytag: member="concertapp::tags::api::TagResource::create_nested_event" ref="a3813814af066e23f30cb51678553f8d1" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def concertapp::tags::api::TagResource::create_nested_event </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"> <em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"> <em>obj</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"> <em>nested_obj</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"> <em>request</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
 <hr/><h2>Member Data Documentation</h2>
 <a class="anchor" id="ac34aea5f8cfa7890a38f24c316e1ba62"></a><!-- doxytag: member="concertapp::tags::api::TagResource::collection" ref="ac34aea5f8cfa7890a38f24c316e1ba62" args="" -->
 <div class="memitem">
@@ -113,6 +158,24 @@ Static Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ab60efab1fcaed3ff78824dba2fd14acc"></a><!-- doxytag: member="concertapp::tags::api::TagResource::events" ref="ab60efab1fcaed3ff78824dba2fd14acc" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">tuple <a class="el" href="classconcertapp_1_1tags_1_1api_1_1_tag_resource.html#ab60efab1fcaed3ff78824dba2fd14acc">concertapp::tags::api::TagResource::events</a><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<b>Initial value:</b><div class="fragment"><pre class="fragment">fields.ManyToManyField(
+        <span class="stringliteral">&#39;concertapp.event.api.EventResource&#39;</span>,
+        <span class="stringliteral">&#39;events&#39;</span>,
+        null=<span class="keyword">True</span>
+    )
+</pre></div>
+</div>
+</div>
 <a class="anchor" id="a43359a1d26c2576c26c8228cdc7f02ab"></a><!-- doxytag: member="concertapp::tags::api::TagResource::segments" ref="a43359a1d26c2576c26c8228cdc7f02ab" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -127,7 +190,7 @@ Static Public Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/Users/colin/Projects/Concert/concertapp/tags/<a class="el" href="tags_2api_8py.html">api.py</a></li>
+<li>/Users/colin/Projects/Concert.gh-pages/concertapp/tags/<a class="el" href="tags_2api_8py.html">api.py</a></li>
 </ul>
 </div>
 <!--- window showing the filter options -->
@@ -144,7 +207,7 @@ Static Public Attributes</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Apr 6 2011 20:25:36 for Concert by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Apr 28 2011 14:29:34 for Concert by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.2 </small></address>
 </body>

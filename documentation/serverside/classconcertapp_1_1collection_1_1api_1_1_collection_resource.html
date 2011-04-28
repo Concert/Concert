@@ -93,8 +93,12 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Make sure the user is an admin if they are trying to modify or delete the collection.  <a href="#af5f904acf39e5962a84e6ac84dc7f6fd"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1collection_1_1api_1_1_collection_resource.html#a7ed13a2fbcea34dd5f405adfe2f4f4be">users</a> = fields.ManyToManyField(<a class="el" href="classconcertapp_1_1users_1_1api_1_1_user_resource.html">UserResource</a>, '<a class="el" href="classconcertapp_1_1collection_1_1api_1_1_collection_resource.html#a7ed13a2fbcea34dd5f405adfe2f4f4be">users</a>', full=True, null = True)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1collection_1_1api_1_1_collection_resource.html#ae8996a14bba46df37030f98a8dcdc765">admin</a> = fields.ForeignKey(<a class="el" href="classconcertapp_1_1users_1_1api_1_1_user_resource.html">UserResource</a>, '<a class="el" href="classconcertapp_1_1collection_1_1api_1_1_collection_resource.html#ae8996a14bba46df37030f98a8dcdc765">admin</a>', full=True)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1collection_1_1api_1_1_collection_resource.html#a7ed13a2fbcea34dd5f405adfe2f4f4be">users</a> = fields.ManyToManyField(<a class="el" href="classconcertapp_1_1users_1_1api_1_1_user_resource.html">UserResource</a>, '<a class="el" href="classconcertapp_1_1collection_1_1api_1_1_collection_resource.html#a7ed13a2fbcea34dd5f405adfe2f4f4be">users</a>', null = True, full=True)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1collection_1_1api_1_1_collection_resource.html#ae8996a14bba46df37030f98a8dcdc765">admin</a> = fields.ForeignKey(<a class="el" href="classconcertapp_1_1users_1_1api_1_1_user_resource.html">UserResource</a>, '<a class="el" href="classconcertapp_1_1collection_1_1api_1_1_collection_resource.html#ae8996a14bba46df37030f98a8dcdc765">admin</a>')</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1collection_1_1api_1_1_collection_resource.html#a4770ba3a51d61e2f53cf9e455ecfa87d">events</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1collection_1_1api_1_1_collection_resource.html#a929dc028199857e1ec3e4168e93cee61">files</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1collection_1_1api_1_1_collection_resource.html#aad261311ccd007e385aa1505377dd5d5">segments</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classconcertapp_1_1collection_1_1api_1_1_collection_resource.html#a5c8b816347e1b73596074eaea6e87b0b">tags</a></td></tr>
 </table>
 <hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="af5f904acf39e5962a84e6ac84dc7f6fd"></a><!-- doxytag: member="concertapp::collection::api::CollectionResource::apply_authorization_limits" ref="af5f904acf39e5962a84e6ac84dc7f6fd" args="" -->
@@ -170,7 +174,7 @@ Static Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">tuple <a class="el" href="classconcertapp_1_1collection_1_1api_1_1_collection_resource.html#ae8996a14bba46df37030f98a8dcdc765">concertapp::collection::api::CollectionResource::admin</a> = fields.ForeignKey(<a class="el" href="classconcertapp_1_1users_1_1api_1_1_user_resource.html">UserResource</a>, '<a class="el" href="classconcertapp_1_1collection_1_1api_1_1_collection_resource.html#ae8996a14bba46df37030f98a8dcdc765">admin</a>', full=True)<code> [static]</code></td>
+          <td class="memname">tuple <a class="el" href="classconcertapp_1_1collection_1_1api_1_1_collection_resource.html#ae8996a14bba46df37030f98a8dcdc765">concertapp::collection::api::CollectionResource::admin</a> = fields.ForeignKey(<a class="el" href="classconcertapp_1_1users_1_1api_1_1_user_resource.html">UserResource</a>, '<a class="el" href="classconcertapp_1_1collection_1_1api_1_1_collection_resource.html#ae8996a14bba46df37030f98a8dcdc765">admin</a>')<code> [static]</code></td>
         </tr>
       </table>
 </div>
@@ -178,12 +182,87 @@ Static Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a4770ba3a51d61e2f53cf9e455ecfa87d"></a><!-- doxytag: member="concertapp::collection::api::CollectionResource::events" ref="a4770ba3a51d61e2f53cf9e455ecfa87d" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">tuple <a class="el" href="classconcertapp_1_1collection_1_1api_1_1_collection_resource.html#a4770ba3a51d61e2f53cf9e455ecfa87d">concertapp::collection::api::CollectionResource::events</a><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<b>Initial value:</b><div class="fragment"><pre class="fragment">fields.ManyToManyField(
+        <span class="stringliteral">&#39;concertapp.event.api.EventResource&#39;</span>,
+        <span class="stringliteral">&#39;events&#39;</span>,
+        null=<span class="keyword">True</span>
+    )
+</pre></div>
+</div>
+</div>
+<a class="anchor" id="a929dc028199857e1ec3e4168e93cee61"></a><!-- doxytag: member="concertapp::collection::api::CollectionResource::files" ref="a929dc028199857e1ec3e4168e93cee61" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">tuple <a class="el" href="classconcertapp_1_1collection_1_1api_1_1_collection_resource.html#a929dc028199857e1ec3e4168e93cee61">concertapp::collection::api::CollectionResource::files</a><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<b>Initial value:</b><div class="fragment"><pre class="fragment">fields.ManyToManyField(
+        <span class="stringliteral">&#39;concertapp.audio.api.AudioFileResource&#39;</span>,
+        <span class="stringliteral">&#39;files&#39;</span>,
+        null=<span class="keyword">True</span>,
+        full=<span class="keyword">True</span>
+    )
+</pre></div>
+</div>
+</div>
+<a class="anchor" id="aad261311ccd007e385aa1505377dd5d5"></a><!-- doxytag: member="concertapp::collection::api::CollectionResource::segments" ref="aad261311ccd007e385aa1505377dd5d5" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">tuple <a class="el" href="classconcertapp_1_1collection_1_1api_1_1_collection_resource.html#aad261311ccd007e385aa1505377dd5d5">concertapp::collection::api::CollectionResource::segments</a><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<b>Initial value:</b><div class="fragment"><pre class="fragment">fields.ManyToManyField(
+        <span class="stringliteral">&#39;concertapp.audiosegments.api.AudioSegmentResource&#39;</span>,
+        <span class="stringliteral">&#39;segments&#39;</span>,
+        null=<span class="keyword">True</span>,
+        full=<span class="keyword">True</span>
+    )
+</pre></div>
+</div>
+</div>
+<a class="anchor" id="a5c8b816347e1b73596074eaea6e87b0b"></a><!-- doxytag: member="concertapp::collection::api::CollectionResource::tags" ref="a5c8b816347e1b73596074eaea6e87b0b" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">tuple <a class="el" href="classconcertapp_1_1collection_1_1api_1_1_collection_resource.html#a5c8b816347e1b73596074eaea6e87b0b">concertapp::collection::api::CollectionResource::tags</a><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<b>Initial value:</b><div class="fragment"><pre class="fragment">fields.ManyToManyField(
+        <span class="stringliteral">&#39;concertapp.tags.api.TagResource&#39;</span>,
+        <span class="stringliteral">&#39;tags&#39;</span>,
+        null=<span class="keyword">True</span>,
+        full=<span class="keyword">True</span>
+    )
+</pre></div>
+</div>
+</div>
 <a class="anchor" id="a7ed13a2fbcea34dd5f405adfe2f4f4be"></a><!-- doxytag: member="concertapp::collection::api::CollectionResource::users" ref="a7ed13a2fbcea34dd5f405adfe2f4f4be" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">tuple <a class="el" href="classconcertapp_1_1collection_1_1api_1_1_collection_resource.html#a7ed13a2fbcea34dd5f405adfe2f4f4be">concertapp::collection::api::CollectionResource::users</a> = fields.ManyToManyField(<a class="el" href="classconcertapp_1_1users_1_1api_1_1_user_resource.html">UserResource</a>, '<a class="el" href="classconcertapp_1_1collection_1_1api_1_1_collection_resource.html#a7ed13a2fbcea34dd5f405adfe2f4f4be">users</a>', full=True, null = True)<code> [static]</code></td>
+          <td class="memname">tuple <a class="el" href="classconcertapp_1_1collection_1_1api_1_1_collection_resource.html#a7ed13a2fbcea34dd5f405adfe2f4f4be">concertapp::collection::api::CollectionResource::users</a> = fields.ManyToManyField(<a class="el" href="classconcertapp_1_1users_1_1api_1_1_user_resource.html">UserResource</a>, '<a class="el" href="classconcertapp_1_1collection_1_1api_1_1_collection_resource.html#a7ed13a2fbcea34dd5f405adfe2f4f4be">users</a>', null = True, full=True)<code> [static]</code></td>
         </tr>
       </table>
 </div>
@@ -192,7 +271,7 @@ Static Public Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/Users/colin/Projects/Concert/concertapp/collection/<a class="el" href="collection_2api_8py.html">api.py</a></li>
+<li>/Users/colin/Projects/Concert.gh-pages/concertapp/collection/<a class="el" href="collection_2api_8py.html">api.py</a></li>
 </ul>
 </div>
 <!--- window showing the filter options -->
@@ -209,7 +288,7 @@ Static Public Attributes</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Apr 6 2011 20:25:35 for Concert by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Apr 28 2011 14:29:31 for Concert by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.2 </small></address>
 </body>
