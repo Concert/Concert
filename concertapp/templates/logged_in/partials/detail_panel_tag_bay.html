@@ -1,0 +1,13 @@
+{% extends 'partials/panel.html' %}
+
+{% block header_content %}
+    <input type="text" id="detail_waveform_panel_tag_input" placeholder="Enter a new or existing tag name" />
+{% endblock %}
+
+
+{% block panel_content %}
+    {# Left this extra container in case Craig decides to move things around #}
+    <div id="detail_waveform_panel_tags">
+	    {# tags will be injected here #}
+    </div>
+{% endblock %}

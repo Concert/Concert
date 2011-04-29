@@ -1,38 +1,34 @@
-{% extends 'base_site.html' %}
+<!DOCTYPE html>
 
+<html>
+  <head>
+      <title>Concert</title>
+      <link rel="icon" type="image/png" href="/graphics/logo.png" />
+  </head>
+  
+  <body>
+      <h2>Login</h2>
+      {% if login_form.errors %}
+      <p class = 'error'>Your username and password didn't match. Please try again.</p>
+      {% endif %}
+      <form method="post" action="{% url concertapp.users.views.login_register %}">
+        {% csrf_token %}
+        {{ login_form.username.label_tag }}
+        {{ login_form.username }}
+        {{ login_form.password.label_tag }}
+        {{ login_form.password }}
+        <a href = "{% url django.contrib.auth.views.password_reset %}">Forgot your password?</a>
 
-{% block middle %}
-<h2>Login</h2>
-{% if login_form.errors %}
-<p class = 'error'>Your username and password didn't match. Please try again.</p>
-{% endif %}
-<form method="post" action="{% url concertapp.users.views.login_register %}">
-  {% csrf_token %}
-  {{ login_form.username.label_tag }}
-  {{ login_form.username }}
-  {{ login_form.password.label_tag }}
-  {{ login_form.password }}
-  <a href = "{% url django.contrib.auth.views.password_reset %}">Forgot your password?</a>
+        <input type="submit" value="Login" />  
+        <input type="hidden" name="next" value="{{ next }}" />
+      </form>
 
-  <input type="submit" value="Login" />  
-  <input type="hidden" name="next" value="{{ next }}" />
-</form>
+      <h2>Register</h2>
+      <form method = "post" action="{% url concertapp.users.views.login_register %}">
+        {% csrf_token %}
+        {{ register_form.as_table }}
+        <input type="submit" value="Register" />
+      </form>
 
-<h2>Register</h2>
-<form method = "post" action="{% url concertapp.users.views.login_register %}">
-  {% csrf_token %}
-  {{ register_form.as_table }}
-  <input type="submit" value="Register" />
-</form>
-
-{% endblock %}
-
-{% block clientside %}
-<script>
-    {# Initialize the login page.  We need this here instead of in base #}
-    {#  because we aren't our own controller for this page. #}
-    initializeUI('/login/');
-</script>
-
-
-{% endblock %}
+  </body>
+</html>

@@ -100,53 +100,14 @@ var DetailWaveformPanel = WaveformPanel.extend(
         }
         this.waveformView = waveformView;
         
-        var tagsContainerElement = $('#detail_waveform_panel_tags');
-        if(typeof(tagsContainerElement) == 'undefined') {
-            throw new Error('$(\'#detail_waveform_panel_tags\') is undefined');
-        }
-        else if(tagsContainerElement.length == 0) {
-            throw new Error('tagsContainerElement not found');
-        }
         /**
-         *  Container for bottom content.
+         *  Sub-Panel for managing tags in tag bay.
          **/
-        this.tagsContainerElement = tagsContainerElement;
-        
-        var bottomSegmentTemplate = $('#detail_waveform_bottom_segment_template');
-        if(typeof(bottomSegmentTemplate) == 'undefined') {
-            throw new Error('$(\'#detail_waveform_bottom_segment_template\') is undefined');
-        }
-        else if(bottomSegmentTemplate.length == 0) {
-            throw new Error('bottomSegmentTemplate not found');
-        }
-        /**
-         *  Template for bottom content when a segment is selected.
-         **/
-        this.bottomSegmentTemplate = bottomSegmentTemplate;
-        
-        
-        var tagInputElement = $('#detail_waveform_panel_tag_input');
-        if(typeof(tagInputElement) == 'undefined') {
-            throw new Error('$(\'#detail_waveform_panel_tag_input\') is undefined');
-        }
-        else if(tagInputElement.length == 0) {
-            throw new Error('tagInputElement not found');
-        }
-        /**
-         *  The input element for entering new tags.
-         **/
-        this.tagInputElement = tagInputElement;
-        
-        /**
-         *  The component used to add new tags to the selected segment.
-         **/
-        this.tagInputComponent = new TagAutocompleteListInputComponent({
-            inputElement: tagInputElement,
-            panel: this, 
+        this.tagBay = new DetailWaveformPanelTagBay({
+            el: $('#detail_waveform_panel_tag_bay_panel'),
+            page: this.page
         });
-        
-        
-        
+
         /**
          *  By default, autoscrolling is ON
          **/
@@ -191,10 +152,6 @@ var DetailWaveformPanel = WaveformPanel.extend(
         //    el: $('#detail_waveform_selected_name_container')
         //});
         
-        /* Clear bottom tags area */
-        this.tagsContainerElement.empty();
-        /* Hide tag input box (for now) */
-        this.tagInputElement.hide();
         
         this.timecodeComponent.audio_file_selected(this.audioFileDuration);
         this.highlighter.audio_file_selected(this.selectedAudioFile);
@@ -222,25 +179,6 @@ var DetailWaveformPanel = WaveformPanel.extend(
             el: $('#detail_waveform_selected_name_container')
         });
         
-        /* Show tag input element */
-        this.tagInputElement.show();
-
-        var frag = document.createDocumentFragment();
-        var panel = this;
-        /* For each of this segment's tags */
-        selectedAudioSegment.get('tags').each(function(tag) {
-            /* Create a tag widget */
-            var widget = new TagWidget({
-                model: tag, 
-                panel: panel, 
-            });
-            
-            /* Inject it into our fragment */
-            frag.appendChild(widget.render().el);
-        });
-        
-        /* Load tags in bottom */
-        this.tagsContainerElement.html(frag);    
         
         this.timecodeComponent.audio_segment_selected(this.selectedAudioSegment);
         this.highlighter.audio_segment_selected(this.selectedAudioSegment);

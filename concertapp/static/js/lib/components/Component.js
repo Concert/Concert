@@ -29,9 +29,9 @@ var Component = Backbone.View.extend(
         this.panel = panel;
 
 
-        this._initializeElements();
+        this._initialize_elements();
         
-        this._initializeEvents();
+        this._initialize_events();
         
         
         
@@ -42,7 +42,7 @@ var Component = Backbone.View.extend(
      *  Any elements that this component is associated with on the DOM should be
      *  initialized here.
      **/
-    _initializeElements: function() {
+    _initialize_elements: function() {
         
         
     }, 
@@ -51,7 +51,7 @@ var Component = Backbone.View.extend(
      *  Any event handlers that need to occur for this component should be 
      *  created here.
      **/
-    _initializeEvents: function() {
+    _initialize_events: function() {
         
     }, 
 
