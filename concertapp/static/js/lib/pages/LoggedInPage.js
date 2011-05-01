@@ -73,6 +73,8 @@ var LoggedInPage = Page.extend(
     },
     
     _initialize_routes: function() {
+        this.defaultHash = '#collections';
+        
         Page.prototype._initialize_routes.call(this);
         
         _.bindAll(this, '_collections_route');
@@ -102,7 +104,6 @@ var LoggedInPage = Page.extend(
             this._collection_audio_segment_route
         );
         
-        this.defaultHash = '#collections';
         return;
     }, 
     

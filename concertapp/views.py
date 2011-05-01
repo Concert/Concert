@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from django.template.response import TemplateResponse
+from django.http import HttpResponseRedirect
 
 from django.utils import simplejson
 

@@ -39,11 +39,6 @@ var Page = Backbone.Controller.extend(
         
         Backbone.history.start();
         
-        /* If there is currently no hash */
-        if(Backbone.history.fragment == '') {
-            /* Go to default */
-            window.location.assign(this.defaultHash);
-        }
     }, 
     /**
      *  This method just defines which dataset manager to use.  Should be overridden
@@ -67,8 +62,16 @@ var Page = Backbone.Controller.extend(
      **/
     _initialize_routes: function() { 
         
+        _.bindAll(this, '_default_route');
+        this.route('', 'default', this._default_route);
         
         return;
     }, 
     
+    /**
+     *  The default route will just redirect to the defaultHash for now.
+     **/
+    _default_route: function() {
+        window.location.assign(this.defaultHash);
+    }, 
 });
