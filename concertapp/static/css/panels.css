@@ -309,20 +309,6 @@ div.file_widget {
     padding: 5px;
 }
 
-a.tag {
-    display: block;
-    float: left;
-    height: 15px;
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 10px;
-    background: #f8f8fa url(/graphics/x.png) -23px 0px no-repeat;
-    border: 1px solid white;
-    -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.5);
-    padding: 3px 5px 0px 5px;
-    margin: 10px 10px 0px 0px;
-    cursor: pointer;
-}
 
 /**
  *  Detail waveform panel tag bay
@@ -352,41 +338,6 @@ input#detail_waveform_panel_tag_input::-webkit-input-placeholder {
 }
 
 
-
-/*a.tag:hover {
-padding: 3px 5px 0px 25px;
-background: #fff url(/graphics/x.png) left left no-repeat;
-margin: 7px 10px 0px 0px;
-}*/
-
-@-webkit-keyframes tagExpand {
-    0% {
-        padding: 3px 5px 0px 5px;
-        background: #fff url(/graphics/x.png) -23px 0px no-repeat;
-        margin: 7px 10px 3px 0px;
-    }
-    75% {
-        padding: 3px 5px 0px 5px;
-        background: #fff url(/graphics/x.png) -23px 0px no-repeat;
-        margin: 7px 10px 3px 0px;
-    }
-    100% {
-        padding: 3px 5px 0px 25px;
-        background: #fff url(/graphics/x.png) left left no-repeat;
-        margin: 7px 10px 3px 0px;
-    }
-}
-
-a.tag:hover {
-    -webkit-animation-name: tagExpand;
-    -webkit-animation-duration: 4s;
-    -webkit-animation-iteration-count: 1;
-    -webkit-animation-direction: alternate;
-    -webkit-animation-timing-function: ease-in-out;
-    padding: 3px 5px 0px 25px;
-    background: #fff url(/graphics/x.png) left left no-repeat;
-    margin: 7px 10px 3px 0px;
-}	
 
 /*AUDIO PANEL*/
 
@@ -562,9 +513,6 @@ div.event_widget .user{
     background: url(/graphics/comment.png) no-repeat;
 }
 
-.tag .icon {
-    background: url(/graphics/tag.png) no-repeat;
-}
 
 
 /**
