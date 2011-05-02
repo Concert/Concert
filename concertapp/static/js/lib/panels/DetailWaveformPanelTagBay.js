@@ -148,9 +148,17 @@ var DetailWaveformPanelTagBay = Panel.extend(
         /* Load tags in bottom */
         this.tagsContainerElement.html(frag);
         
-        /* Set autocomplete component's dataset */
-        var tagNames = currentSegment.get('collection').get('tags').pluck('name');
-        this.tagInputComponent.set_data(tagNames);
+        /* Get all tags in this collection */
+        var collectionTags = currentSegment.get('collection').get('tags');
+        /* And all tags for this segment */
+        var segmentTags = currentSegment.get('tags');
+
+        
+        /* And now all tags for this collection that are not already on this segment */
+        var possibleNewTags = new TagSet(collectionTags.without.apply(collectionTags, segmentTags.models));
+
+        /* Set autocomplete components dataset to just the names of these tags */
+        this.tagInputComponent.set_data(possibleNewTags.pluck('name'));
     }, 
     
 });
