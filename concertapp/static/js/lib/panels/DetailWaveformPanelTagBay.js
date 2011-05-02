@@ -118,24 +118,24 @@ var DetailWaveformPanelTagBay = Panel.extend(
         /* Render the current segment's tags now */
         this._render_current_segment_tags();
         
-        /* Set autocomplete component's dataset */
-        var tagNames = selectedCollection.get('tags').pluck('name');
-        this.tagInputComponent.set_data(tagNames);
         
         
     }, 
     
     /**
-     *  Renders the current tag list.
+     *  Renders the current tag list, also updates the autocomplete components list
+     *  of tags.
      **/
     _render_current_segment_tags: function() {
         /* Show tag input element */
         this.tagInputElement.show();
+        
+        var currentSegment = this.currentSegment;
 
         var frag = document.createDocumentFragment();
         var panel = this;
         /* For each of this segment's tags */
-        this.currentSegment.get('tags').each(function(tag) {
+        currentSegment.get('tags').each(function(tag) {
             /* Create a tag widget */
             var widget = new TagWidget({
                 model: tag, 
@@ -149,6 +149,9 @@ var DetailWaveformPanelTagBay = Panel.extend(
         /* Load tags in bottom */
         this.tagsContainerElement.html(frag);
         
+        /* Set autocomplete component's dataset */
+        var tagNames = currentSegment.get('collection').get('tags').pluck('name');
+        this.tagInputComponent.set_data(tagNames);
     }, 
     
 });

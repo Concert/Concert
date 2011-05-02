@@ -23,9 +23,9 @@ var TagAutocompleteListInputComponent = AutocompleteListInputComponent.extend(
     _handle_new_token: function(token) {
         AutocompleteListInputComponent.prototype._handle_new_token.call(this, token);
         
-        /* A new tag has been entered, tell the page. */
+        /* A tag has been entered, tell the page. */
         this.panel.page.tag_current_segment(token);
-        
+
         return;
     },
     

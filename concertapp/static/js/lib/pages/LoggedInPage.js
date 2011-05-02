@@ -173,26 +173,7 @@ var LoggedInPage = Page.extend(
 
          return newArgs;
      },
-    
-    // Manually bind a single named route to a callback. For example:
-    //
-    //     this.route('search/:query/p:num', 'search', function(query, num) {
-    //       ...
-    //     });
-    //
-    route : function(route, name, callback) {
-        Backbone.history || (Backbone.history = new Backbone.History);
-        if (!_.isRegExp(route)) route = this._routeToRegExp(route);
-        Backbone.history.route(route, _.bind(function(fragment) {
-            var args = this._extractParameters(route, fragment);
-            /* Whatever our callback for this route returns, we will push into
-            the args array to send along with the route information */
-            args = args.concat(callback.apply(this, args));
-            
-            this.trigger.apply(this, ['route:' + name].concat(args));
-        }, this));
-    },
-    
+        
     /**
      *  Called from elsewhere when there is a new audio segment to be created
      *  @param  {Number}    startTime   the start time of the new segment

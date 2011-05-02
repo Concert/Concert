@@ -142,8 +142,7 @@ var AutocompleteListInputComponent = Component.extend(
      *  @param  {String}    token    The token that we are building.
      **/
     _handle_continue_token: function(token) {
-        console.log('token:');
-        console.log(token);
+        
     },
     
     /**
