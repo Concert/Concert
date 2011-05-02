@@ -2,26 +2,32 @@
  *  Tag widgets
  **/
  
-a.tag:hover {
+div.tag:hover {
     
 }	
 
-.tag .icon {
+div.tag .icon {
     background: url(/graphics/tag.png) no-repeat;
 }
 
-a.tag {
-    display: block;
-    float: left;
-    height: 15px;
+div.tag {
+    /* `inline-block` ensures that line breaks wont occur in the middle of a tag */
+    display: inline-block;
     text-transform: uppercase;
     font-weight: bold;
-    font-size: 10px;
+    font-size: 0.8em;
     background: #f8f8fa url(/graphics/x.png) -23px 0px no-repeat;
     border: 1px solid white;
     -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.5);
-    padding: 3px 5px 0px 5px;
-    margin: 10px 10px 0px 0px;
+    padding: 0.4em;
+    margin: 0.4em;
     cursor: pointer;
 }
 
+/**
+ *  Event widgets
+ **/
+
+div.time {
+    display: inline;
+}

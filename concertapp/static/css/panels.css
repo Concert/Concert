@@ -189,7 +189,7 @@ div#detail_waveform_panel_playhead {
 
 div#detail_waveform_panel_bottom {
     width: 948px;
-    padding: 0px 0px 9px 9px;
+    padding: 1em;
 }
 
 div#detail_waveform_panel_waveform_timecode_playhead {
