@@ -90,8 +90,8 @@ var WaveformInteractionComponent = Component.extend(
             endTime:null};
     },
     
-    _initialize_events: function(){
-        Component.prototype._initialize_events.call(this);
+    _initialize_behavior: function(){
+        Component.prototype._initialize_behavior.call(this);
         
         /* The element that we are receiving the drag events from (should be defined
         in child classes) */

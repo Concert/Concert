@@ -31,7 +31,7 @@ var Component = Backbone.View.extend(
 
         this._initialize_elements();
         
-        this._initialize_events();
+        this._initialize_behavior();
         
         
         
@@ -51,7 +51,7 @@ var Component = Backbone.View.extend(
      *  Any event handlers that need to occur for this component should be 
      *  created here.
      **/
-    _initialize_events: function() {
+    _initialize_behavior: function() {
         
     }, 
 

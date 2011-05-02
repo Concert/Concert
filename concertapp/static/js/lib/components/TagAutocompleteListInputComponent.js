@@ -9,14 +9,12 @@
  *  @class
  *  @extends    AutocompleteListInputComponent
  **/
-var TagAutocompleteListInputComponent = AutocompleteListInputComponent.extend({
-    initialize: function() {
-        AutocompleteListInputComponent.prototype.initialize.call(this);
-
-        var params = this.options;
-        
-    },
-
+var TagAutocompleteListInputComponent = AutocompleteListInputComponent.extend(
+    /**
+     *  @scope  TagAutocompleteListInputComponent.prototype
+     **/
+{
+    
     /**
      *  Handle a new token that was entered in the inputElement.
      *

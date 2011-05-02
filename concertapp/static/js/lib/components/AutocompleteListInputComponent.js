@@ -14,8 +14,8 @@ var AutocompleteListInputComponent = Component.extend(
  *  @scope AudiocompleteListInputComponent.prototype
  **/
 {
-    initialize: function() {
-        Component.prototype.initialize.call(this);
+    _initialize_elements: function() {
+        Component.prototype._initialize_elements.call(this);
 
         var params = this.options;
         
@@ -23,7 +23,38 @@ var AutocompleteListInputComponent = Component.extend(
         if(typeof(inputElement) == 'undefined') {
             throw new Error('params.inputElement is undefined');
         }
+        else if(inputElement.length == 0) {
+            throw new Error('inputElement not found');
+        }
+        /**
+         *  The input element for this autocomplete box.
+         **/
         this.inputElement = inputElement;
+        
+        var resultsContainerElement = params.resultsContainerElement;
+        if(typeof(resultsContainerElement) == 'undefined') {
+            throw new Error('params.resultsContainerElement is undefined');
+        }
+        else if(resultsContainerElement.length == 0) {
+            throw new Error('resultsContainerElement not found');
+        }
+        /**
+         *  Container for the autocomplete results.
+         **/
+        this.resultsContainerElement = resultsContainerElement;
+        
+        /* The jQuery autocomplete that will help us do business */
+        inputElement.autocomplete({
+            minLength: 0, 
+            
+        });
+        
+    },
+    
+    _initialize_behavior: function() {
+        Component.prototype._initialize_behavior.call(this);
+        
+        var inputElement = this.inputElement;
         
         _.bindAll(this, '_handle_input_keyup');
         inputElement.bind('keyup', this._handle_input_keyup);
@@ -32,7 +63,8 @@ var AutocompleteListInputComponent = Component.extend(
         inputElement.bind('blur', this._handle_input_blur);
 
         _.bindAll(this, "render");
-    },
+        
+    }, 
     
     /**
      *  Regexp used to split the input into separate tokens.
@@ -66,8 +98,7 @@ var AutocompleteListInputComponent = Component.extend(
         }
         /* A key was pressed that is not a delimiter */
         else {
-            console.log('wordSplit:');
-            console.log(wordSplit);
+            this._handle_continue_token(wordSplit[0])
         }
     },
     
@@ -104,4 +135,23 @@ var AutocompleteListInputComponent = Component.extend(
         
         return;
     },
+    
+    /**
+     *  Handle the continuation of a token that was entered in the inputElement
+     *
+     *  @param  {String}    token    The token that we are building.
+     **/
+    _handle_continue_token: function(token) {
+        console.log('token:');
+        console.log(token);
+    },
+    
+    /**
+     *  Called whenever the data for this autocomplete component needs to be set
+     *
+     *  @param  {Array[String]}    data    The data for the autocomplete.
+     **/
+    set_data: function(data) {
+        this.inputElement.autocomplete('option', 'source', data)
+    }, 
 });

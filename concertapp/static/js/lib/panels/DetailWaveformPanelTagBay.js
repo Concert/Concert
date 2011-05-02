@@ -47,6 +47,7 @@ var DetailWaveformPanelTagBay = Panel.extend(
          **/
         this.tagInputComponent = new TagAutocompleteListInputComponent({
             inputElement: tagInputElement,
+            resultsContainerElement: $('#detail_waveform_panel_tag_autocomplete_list'), 
             panel: this, 
         });
         
@@ -116,6 +117,11 @@ var DetailWaveformPanelTagBay = Panel.extend(
 
         /* Render the current segment's tags now */
         this._render_current_segment_tags();
+        
+        /* Set autocomplete component's dataset */
+        var tagNames = selectedCollection.get('tags').pluck('name');
+        this.tagInputComponent.set_data(tagNames);
+        
         
     }, 
     

@@ -351,6 +351,14 @@ input#detail_waveform_panel_tag_input::-webkit-input-placeholder {
     opacity: 0.7;
 }
 
+
+/**
+ *  An autocomplete listing
+ **/
+div.autocomplete_list {
+    
+}
+
 /*a.tag:hover {
 padding: 3px 5px 0px 25px;
 background: #fff url(/graphics/x.png) left left no-repeat;

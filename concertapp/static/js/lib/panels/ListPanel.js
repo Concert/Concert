@@ -57,7 +57,7 @@ var ListPanel = Panel.extend(
          **/
         this.collectionWidgetTemplate = collectionWidgetTemplate;
         
-        
+/*        
         var searchBox = new ListPanelSearchAutocompleteListInputComponent({
             el: $('#list_panel_search_container'), 
             inputElement: $('input#list_panel_search'), 
@@ -66,7 +66,7 @@ var ListPanel = Panel.extend(
         /**
          *  The search box above the list panel.
          **/
-        this.searchBox = searchBox;
+  //      this.searchBox = searchBox;
 
         
         /**
