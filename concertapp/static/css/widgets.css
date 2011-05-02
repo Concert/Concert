@@ -1,6 +1,12 @@
 /** 
  *  All Widgets
  **/
+
+div.widget_icon {
+    height: 30px;
+    width: 30px;
+    margin-right: 1em;
+}
  
 
 /**
@@ -28,12 +34,6 @@ div.list_widget .info{
 
 span.list_widget_title_text {
     cursor: pointer;
-}
-
-div.list_widget_icon {
-    height: 30px;
-    width: 30px;
-    margin-right: 10px;
 }
 
 
@@ -84,7 +84,16 @@ div.tag {
  *  Event widgets
  **/
 
+
+
+.event_widget{
+    display: -webkit-box;
+    -webkit-box-orient: horizontal;
+}
 div.time {
     display: inline;
 }
 
+div.event_widget div.event_icon{
+    
+}
