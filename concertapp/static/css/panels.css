@@ -352,12 +352,6 @@ input#detail_waveform_panel_tag_input::-webkit-input-placeholder {
 }
 
 
-/**
- *  An autocomplete listing
- **/
-div.autocomplete_list {
-    
-}
 
 /*a.tag:hover {
 padding: 3px 5px 0px 25px;

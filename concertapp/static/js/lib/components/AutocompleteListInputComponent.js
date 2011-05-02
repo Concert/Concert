@@ -43,12 +43,33 @@ var AutocompleteListInputComponent = Component.extend(
          **/
         this.resultsContainerElement = resultsContainerElement;
         
+        var resultTemplate = params.resultTemplate;
+        if(typeof(resultTemplate) == 'undefined') {
+            throw new Error('params.resultTemplate is undefined');
+        }
+        else if(resultTemplate.length == 0) {
+            throw new Error('resultTemplate not found');
+        }
+        /**
+         *  The template used for a single autocomplete result.
+         **/
+        this.resultTemplate = resultTemplate;
+        
+        
         /* The jQuery autocomplete that will help us do business */
         inputElement.autocomplete({
             minLength: 0, 
+            appendTo: resultsContainerElement, 
+        })
+        .data( "autocomplete" )._renderItem = function( ul, item ) {
+            /* Pass term along to template */
+            var itemWithTerm = _.extend(item, {term: this.term});
             
-        });
-        
+            return resultTemplate.tmpl(itemWithTerm)
+                .data( "item.autocomplete", item )
+                .appendTo( ul );
+        };
+
     },
     
     _initialize_behavior: function() {

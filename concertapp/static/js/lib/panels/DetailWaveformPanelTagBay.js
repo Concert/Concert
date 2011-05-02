@@ -47,7 +47,6 @@ var DetailWaveformPanelTagBay = Panel.extend(
          **/
         this.tagInputComponent = new TagAutocompleteListInputComponent({
             inputElement: tagInputElement,
-            resultsContainerElement: $('#detail_waveform_panel_tag_autocomplete_list'), 
             panel: this, 
         });
         

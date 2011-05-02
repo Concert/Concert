@@ -14,6 +14,14 @@ var TagAutocompleteListInputComponent = AutocompleteListInputComponent.extend(
      *  @scope  TagAutocompleteListInputComponent.prototype
      **/
 {
+    _initialize_elements: function() {
+        this.options = _.extend(this.options, {
+            resultsContainerElement: $('#detail_waveform_panel_tag_autocomplete_list'), 
+            resultTemplate: $('#autocomplete_list_item_template')
+        });
+
+        AutocompleteListInputComponent.prototype._initialize_elements.call(this);
+    }, 
     
     /**
      *  Handle a new token that was entered in the inputElement.
