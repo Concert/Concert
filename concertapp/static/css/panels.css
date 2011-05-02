@@ -324,13 +324,18 @@ a.tag {
     cursor: pointer;
 }
 
+/**
+ *  Detail waveform panel tag bay
+ **/
+div#detail_waveform_panel_tags {
+    display: inline;
+}
+
 input#detail_waveform_panel_tag_input {
-    display: block;
-    float: left;
+    display: inline;
     height: 15px;
-    width: 930px;
     font-size: 10px;
-    margin: 10px 10px 0px 0px;
+    margin: 0.8em 1em 0px 0px;
     padding: 3px 5px 0px 5px;
     -webkit-appearance: none;
     background: transparent;
