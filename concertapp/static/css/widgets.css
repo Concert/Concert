@@ -62,10 +62,6 @@ div.tag:hover {
     
 }	
 
-div.tag .icon {
-    background: url(/graphics/tag.png) no-repeat;
-}
-
 div.tag {
     /* `inline-block` ensures that line breaks wont occur in the middle of a tag */
     display: inline-block;
@@ -96,4 +92,10 @@ div.time {
 
 div.event_widget div.event_icon{
     
+}
+
+
+/* Segment tagged event */
+div.type2_event_widget_icon {
+    background: url(/graphics/tag.png) no-repeat;
 }
