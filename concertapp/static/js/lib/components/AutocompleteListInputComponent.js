@@ -50,10 +50,9 @@ var AutocompleteListInputComponent = Component.extend(
         
         var wordSplit = inputElement.val().split(AutocompleteListInputComponent.prototype.TOKEN_SPLITTER);
         
-        /* If another token was created because a delimiter was entered */
-        if(wordSplit.length > 1
-            /* Or the return key was pressed */
-            || e.keyCode == 13) {
+        /* If another token was created because a delimiter was entered or
+        the return key was pressed */
+        if(wordSplit.length > 1 || e.keyCode == 13) {
             /* Grab previous token */
             var token = wordSplit[0];
             
@@ -64,7 +63,11 @@ var AutocompleteListInputComponent = Component.extend(
             if(token.length && !token.match(AutocompleteListInputComponent.prototype.SPACE_MATCH)) {
                 this._handle_new_token(token);
             }
-            
+        }
+        /* A key was pressed that is not a delimiter */
+        else {
+            console.log('wordSplit:');
+            console.log(wordSplit);
         }
     },
     
@@ -89,14 +92,6 @@ var AutocompleteListInputComponent = Component.extend(
                 this._handle_new_token(token);
             }
         }
-        
-    }, 
-    
-    /**
-     *  Called whenever input field is to be analyzed and new tokens are
-     *  to be discovered.
-     **/
-    _look_for_tokens: function() {
         
     }, 
     

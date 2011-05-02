@@ -261,5 +261,15 @@ var LoggedInPage = Page.extend(
         this.overviewPanel.clear_waveform_highlight();
     },
     
+    /**
+     *  Called from elsewhere when we're searching in the collections list
+     *
+     *  @param  {String}    term    Search term.
+     **/
+    collections_search: function(term) {
+        console.log('term:');
+        console.log(term);
+    }, 
+    
 });
     
