@@ -37,7 +37,12 @@ span.list_widget_title_text {
     cursor: pointer;
 }
 
-
+/**
+ *  Collection list widget
+ **/
+div.collection_list_widget_icon {
+    background: url(/graphics/group.png);
+}
 
 /**
  *  Audio file list widget
