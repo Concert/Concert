@@ -17,14 +17,22 @@ var SegmentWidget = ListWidget.extend(
     initialize: function() {
         ListWidget.prototype.initialize.call(this);
         
-        var params = this.options;      
+        var params = this.options;
+        
+        var model = this.model;
         
         this.clickUrl = '#collection/'
-            +this.model.get('collection').get('id')
+            +model.get('collection').get('id')
             +'/audio/file/'
-            +this.model.get('audioFile').get('id')
+            +model.get('audioFile').get('id')
             +'/segment/'
-            +this.model.get('id');
+            +model.get('id');
+        
+        /* Re-render when parent audio file changes as well */
+        var audioFile = model.get('audioFile');
+        if(audioFile) {
+            audioFile.bind('change', this.render);
+        }
         
         this.render();
     }, 
