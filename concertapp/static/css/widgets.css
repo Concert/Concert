@@ -109,3 +109,8 @@ div.type1_event_widget_icon {
 div.type2_event_widget_icon {
     background: url(/graphics/tag.png);
 }
+
+/* File uploaded event */
+div.type3_event_widget_icon {
+    background: url(/graphics/file.png);
+}
