@@ -88,6 +88,10 @@ var DetailWaveformTimecodeComponent = Component.extend(
                 ctx.strokeStyle = 'black';
                 ctx.lineCap = 'square';
                 ctx.lineWidth = 1.0;
+                /* This is a hack to get the lines to appear to be 1px in width.
+                Search for "canvas 1px antialiasing" for a plethora of resources
+                on the subject */
+                ctx.translate(0.5, 0.5);
 
                 ctx.beginPath();
                 
