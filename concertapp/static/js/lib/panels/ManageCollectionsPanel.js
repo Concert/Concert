@@ -54,7 +54,7 @@
          }
          this.userRequestsSet = userRequestsSet;
 
-         _.bindAll(this, "render");
+         
          userMemberCollectionsSet.bind('refresh', this.render);
          userMemberCollectionsSet.bind('add', this.render);
          userMemberCollectionsSet.bind('remove', this.render);

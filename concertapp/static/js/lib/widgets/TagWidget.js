@@ -28,7 +28,7 @@ var TagWidget = Widget.extend(
         
         
 
-        _.bindAll(this, "render");
+        
     },
 
     render: function() {

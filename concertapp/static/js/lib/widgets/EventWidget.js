@@ -30,7 +30,6 @@ var EventWidget = Widget.extend(
         this.timeUpdateInterval = null;
         
 
-        _.bindAll(this, "render");
         _.bindAll(this, 'update_time');
     },
 

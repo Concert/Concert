@@ -17,7 +17,7 @@ var CommentWidget = Widget.extend({
         
         
 
-        _.bindAll(this, "render");
+        
     },
 
     render: function() {

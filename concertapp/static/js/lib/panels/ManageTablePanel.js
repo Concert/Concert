@@ -58,7 +58,7 @@ var ManageTablePanel = Panel.extend(
         this.tableHeader = tableHeader;        
         
         
-        _.bindAll(this, "render");
+        
         set.bind('refresh', this.render);
         set.bind('add', this.render);
         set.bind('remove', this.render);

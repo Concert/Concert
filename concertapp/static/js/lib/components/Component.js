@@ -35,7 +35,6 @@ var Component = Backbone.View.extend(
         
         
         
-        _.bindAll(this, "render");
     },
     
     /**
@@ -52,6 +51,7 @@ var Component = Backbone.View.extend(
      *  created here.
      **/
     _initialize_behavior: function() {
+        _.bindAll(this, 'render');
         
     }, 
 

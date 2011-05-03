@@ -20,7 +20,7 @@ var ManageRequestWidget = Widget.extend(
         var params = this.options;
         
 
-        _.bindAll(this, "render");
+        
         this.render();
     },
     render: function() {

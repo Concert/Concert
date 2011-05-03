@@ -20,7 +20,7 @@ var AudioSegmentCreatedEventWidget = EventWidget.extend(
         
         
 
-        _.bindAll(this, "render");
+        
     },
 
     render: function() {

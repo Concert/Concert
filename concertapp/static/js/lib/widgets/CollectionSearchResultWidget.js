@@ -24,7 +24,7 @@ var CollectionSearchResultWidget = Widget.extend(
         this.userRequests = page.userRequests;        
         this.user = page.user;
                 
-        _.bindAll(this, "render");
+        
         this.render();
     },
     render: function() {

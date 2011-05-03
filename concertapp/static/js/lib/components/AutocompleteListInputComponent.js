@@ -82,8 +82,6 @@ var AutocompleteListInputComponent = Component.extend(
         
         _.bindAll(this, '_handle_input_blur');
         inputElement.bind('blur', this._handle_input_blur);
-
-        _.bindAll(this, "render");
         
     }, 
     

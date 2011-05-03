@@ -20,7 +20,7 @@ var JoinCollectionEventWidget = EventWidget.extend(
         
         
 
-        _.bindAll(this, "render");
+        
     },
 
     render: function() {

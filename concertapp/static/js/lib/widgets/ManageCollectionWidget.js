@@ -36,7 +36,7 @@ var ManageCollectionWidget = Widget.extend(
          **/
         this.requestContainer = null;
         
-        _.bindAll(this, "render");
+        
         /* Render when users has changed */
         this.model.get('users').bind('add', this.render);
         this.model.get('users').bind('remove', this.render);

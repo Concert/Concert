@@ -56,7 +56,7 @@ var UploadFileWidget = Widget.extend(
         this.progressTrackingDelay = 400;
         
 
-        _.bindAll(this, "render");
+        
         this.render();
     },
     render: function() {
