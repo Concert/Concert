@@ -19,9 +19,6 @@ var ListWidget = Widget.extend(
         Widget.prototype.initialize.call(this);
 
         var params = this.options;
-        
-        this.model.bind('change', this.render);
-        _.bindAll(this, 'render');
     },
     render: function() {
         Widget.prototype.render.call(this);
