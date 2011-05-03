@@ -31,6 +31,38 @@ var EventWidget = Widget.extend(
         
 
         _.bindAll(this, 'update_time');
+        
+        /* If the event model exists */
+        var model = this.model;
+        if(model) {
+            /* And has a collection attribute (they all should) */
+            var collection = model.get('collection');
+            if(collection) {
+                /* Re-render when the collection changes as well */
+                collection.bind('change', this.render);
+            }
+            
+            /* If we have a user attribute, bind to user changes */
+            var user = model.get('user');
+            if(user) {
+                user.bind('change', this.render);
+            }
+            
+            var audioSegment = model.get('audioSegment');
+            if(audioSegment){
+                audioSegment.bind('change', this.render);
+            }
+            
+            var audioFile = model.get('audioFile');
+            if(audioFile) {
+                audioFile.bind('change', this.render);
+            }
+            
+            var tag = model.get('tag');
+            if(tag) {
+                tag.bind('change', this.render);
+            }
+        }
     },
 
     render: function() {
