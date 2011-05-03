@@ -97,8 +97,6 @@ var DetailWaveformTimecodeComponent = Component.extend(
                 
                 /* Place long marker every 10 seconds */
                 for(var i = 0; i < duration; i+=10) {
-                    /* Draw marker for this second */
-                    
                     /* Move cursor horizontally */
                     cursor.x = i*pxPerSecond;
                     cursor.y = 0;
@@ -107,6 +105,10 @@ var DetailWaveformTimecodeComponent = Component.extend(
                     /* Draw a vertical line at current point */
                     ctx.lineTo(cursor.x, cursor.y+(height*0.50));
                     ctx.stroke();
+                    
+                    /* Put timecode there too */
+                    var timecodeText = seconds_to_timecode(i, {noZeroHours: true});
+                    ctx.fillText(timecodeText, cursor.x, cursor.y+(height*0.75));
                 }
                 
                 /* Place short marker every 10 seconds (on multiples of 5) */
