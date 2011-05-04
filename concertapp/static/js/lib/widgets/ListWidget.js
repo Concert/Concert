@@ -17,7 +17,7 @@ var ListWidget = Widget.extend(
     
     initialize: function() {
         Widget.prototype.initialize.call(this);
-
+        
         var params = this.options;
     },
     render: function() {
