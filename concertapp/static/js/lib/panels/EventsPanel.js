@@ -126,7 +126,7 @@ var EventsPanel = Panel.extend({
             /* Proper widget for this event */
             var widgetClass = eventTypesToWidgetMap[eventType];
             var widgetTemplate = eventTypesToTemplateMap[eventType];
-
+            
             /* Create widget */
             var widget = new widgetClass({
                 panel: panel, 

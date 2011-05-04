@@ -154,7 +154,7 @@ var LoggedInPage = Page.extend(
         var file = this.modelManager.select_audiofile(fileId);
         newArgs.push(file);
         
-        this.currentRoute = 'collection_audio_file';        
+        this.currentRoute = 'collection_audio_file';
         
         return newArgs;
     },
@@ -185,10 +185,10 @@ var LoggedInPage = Page.extend(
         
         this.modelManager.create_and_select_new_segment(startTime, endTime,
             /* When the segment is created */
-            function(model, resp) {
-                var collectionId = model.get('collection').get('id');
-                var fileId = model.get('audioFile').get('id');
-                var segmentId = model.get('id');
+            function(segment, resp) {
+                var collectionId = segment.get('collection').get('id');
+                var fileId = segment.get('audioFile').get('id');
+                var segmentId = segment.get('id');
                 /* Go to new URL */
                 window.location.assign('#collection/'+collectionId+'/audio/file/'+fileId+'/segment/'+segmentId);
         });

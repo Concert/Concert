@@ -1,4 +1,4 @@
-from concertapp.lib.api import NestedResource, ConcertAuthorization, DjangoAuthentication
+from concertapp.lib.api import MyResource, ConcertAuthorization, DjangoAuthentication
 from concertapp.models import *
 from concertapp.users.api import *
 from concertapp.collection.api import CollectionResource
@@ -35,7 +35,7 @@ class TagAuthorization(ConcertAuthorization):
         else:
             return False
 
-class TagResource(NestedResource):
+class TagResource(MyResource):
     creator = fields.ForeignKey(UserResource, 'creator')
     collection = fields.ForeignKey(CollectionResource, "collection")
     segments = fields.ToManyField('concertapp.audiosegments.api.AudioSegmentResource', 'segments', null = True)

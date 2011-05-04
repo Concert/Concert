@@ -197,6 +197,8 @@ LoggedInModelManager.prototype.create_and_select_new_segment = function(startTim
         audioFile = this.selectedAudioSegments.first().get('audioFile');
     }
     
+    var collection = this.selectedCollections.first();
+    
     /* Create new segment */
     var newSegment = new AudioSegment({
         audioFile: audioFile,
@@ -204,14 +206,16 @@ LoggedInModelManager.prototype.create_and_select_new_segment = function(startTim
         end: endTime,
         creator: this.user, 
         name: 'segment_'+timestamp.format('yyyy-mm-dd_hh:MM:ss:L'), 
-        collection: this.selectedCollections.first(),
+        collection: collection,
     });
+    
 
     /* TODO: make this less hackish please */
     /* Because newSegment has no ID, it can be added to these sets manually */
-    this.selectedCollections.first().get('segments').add(newSegment);
+    collection.get('segments').add(newSegment);
     this.seenInstances['audiosegment'].add(newSegment);
     
+    var user = this.user;
     /* Now save to server */
     newSegment.save(null, {
         /* if there is an error */
@@ -222,7 +226,34 @@ LoggedInModelManager.prototype.create_and_select_new_segment = function(startTim
             };
         }(newSegment), 
         error_message: 'Audio segment was not created.', 
-        success: callback
+        success: function(model, resp) {
+            var newSegmentEvent = new Event({
+                eventType: 1, 
+                user: user, 
+                audioSegment: newSegment, 
+                collection: collection, 
+                audioFile: audioFile,
+                time: new Date(), 
+            });
+
+            newSegment.get('events').add(newSegmentEvent);
+            collection.get('events').add(newSegmentEvent);
+            audioFile.get('events').add(newSegmentEvent);
+            
+            newSegmentEvent.save(null, {
+                error_callback: function(newSegmentEvent) {
+                    return function() {
+                        /* Delete event object */
+                        newSegmentEvent.destroy();
+                    }
+                }(newSegmentEvent), 
+                error_message: 'Event was not created', 
+            })
+            
+            if(callback) {
+                callback(model, resp);
+            }
+        }
     });
 };
 

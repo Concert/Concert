@@ -2,7 +2,7 @@
 #   This file contains the REST API functionality relating to collections.
 ###
 
-from concertapp.lib.api import NestedResource, ConcertAuthorization, DjangoAuthentication
+from concertapp.lib.api import MyResource, ConcertAuthorization, DjangoAuthentication
 from concertapp.models import *
 from concertapp.users.api import *
 #from concertapp.event.api import *
@@ -74,7 +74,7 @@ class RequestAuthorization(ConcertAuthorization):
 ###
 #   This is the resource that is used for a collection.
 ###
-class CollectionResource(NestedResource):
+class CollectionResource(MyResource):
     users = fields.ManyToManyField(UserResource, 'users', null = True, full=True)
     admin = fields.ForeignKey(UserResource, 'admin')
     events = fields.ManyToManyField(
