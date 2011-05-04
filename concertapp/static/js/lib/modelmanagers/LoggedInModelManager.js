@@ -222,9 +222,9 @@ LoggedInModelManager.prototype.create_and_select_new_segment = function(startTim
     });
 
 
-    /* TODO: make this less hackish please */
-    /* Because newSegment has no ID and these sets will not be sent to server, 
-    it can be added to these sets manually */
+    /* Add the segment to the list of seen instances, and to the collection.  This
+    is hackish because when adding to the collection, it will check seenInstances
+    but since the segment does not have an id yet, it will not find a duplicate. */
     collection.get('segments').add(newSegment);
     this.seenInstances['audiosegment'].add(newSegment);
     
@@ -241,18 +241,16 @@ LoggedInModelManager.prototype.create_and_select_new_segment = function(startTim
         };
     }(newSegment);
     
-    
-    
-
-    /* Now save to server */
+    /* Now save segment to server */
     newSegment.save(null, {
-        /* if there is an error */
+        /* upon error */
         error_callback: newSegmentFailHandler, 
         error_message: 'Audio segment was not created.', 
         /* If we saved successfully */
-        success: function(model, resp) {
-
-            /** Add event to segment's lists **/
+        success: function(segmentModel, segmentResp) {
+            /** Add event to segment's lists.  This will happen automatically
+            on the backend.  Couldn't do this before segment was saved because
+            it would have contained a reference to an event with no id. **/
             newSegment.get('events').add(newSegmentEvent);
             collection.get('events').add(newSegmentEvent);
             audioFile.get('events').add(newSegmentEvent);
@@ -265,7 +263,8 @@ LoggedInModelManager.prototype.create_and_select_new_segment = function(startTim
                 error_message: 'Event was not created', 
                 success: function(eventModel, eventResp) {
                     if(callback) {
-                        callback(model, resp);
+                        /* Now event and segment have ids, and we can rest in peace */
+                        callback(segmentModel, segmentResp);
                     }
                 }, 
             });
@@ -376,7 +375,8 @@ LoggedInModelManager.prototype.tag_current_segment = function(tagName) {
         
         tagWasCreated = true;
         
-        /*TODO: make less hackish please (x2) */
+        /* Since tag has no id yet, we can add it to seenInstances in the same
+        way we do with AudioSegment objects above */
         /* Add to tags for this collection */
         collection.get('tags').add(tag);
         /* Add to seen instances */
@@ -384,7 +384,10 @@ LoggedInModelManager.prototype.tag_current_segment = function(tagName) {
     }
 
 
-    /* tell tag and segment about eachother */
+    /* tell tag and segment about eachother, since segment already has an id, this
+    will work on server.  Segment.tags is implied on server, and will happen
+    automatically, but the relationship will be saved on the server when the 
+    tag object is saved. */
     tag.get('segments').add(currentSegment);
     currentSegment.get('tags').add(tag);
     
@@ -398,11 +401,11 @@ LoggedInModelManager.prototype.tag_current_segment = function(tagName) {
         audioFile: currentSegmentAudioFile, 
         tag: tag
     });
-    /* Add to event lists */
+    
+    /* Add to event lists.  Will happen automatically on server. */
     collection.get('events').add(segmentTaggedEvent);
     currentSegment.get('events').add(segmentTaggedEvent);
     currentSegmentAudioFile.get('events').add(segmentTaggedEvent);
-    tag.get('events').add(segmentTaggedEvent);
     this.seenInstances['event'].add(segmentTaggedEvent);
     
     /**
@@ -438,7 +441,10 @@ LoggedInModelManager.prototype.tag_current_segment = function(tagName) {
         error_callback: tagFailHandler,
         error_message: 'Segment was not tagged.',
         /* If segment was successfully tagged, save event */
-        success: function(model, resp) {
+        success: function(tag, resp) {
+            /* Add event to tag's list of events */
+            tag.get('events').add(segmentTaggedEvent);
+            
             segmentTaggedEvent.save(null, {
                 /* If event saving fails, run tagFailHandler also */
                 error_callback: tagFailHandler, 
