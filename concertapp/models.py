@@ -258,7 +258,7 @@ class AudioSegment(models.Model):
     name = models.CharField(max_length = 100)
     beginning = models.FloatField()
     end = models.FloatField()
-    audioFile = models.ForeignKey('AudioFile')
+    audioFile = models.ForeignKey('AudioFile', related_name="segments")
     creator = models.ForeignKey(User)
     collection = models.ForeignKey('Collection', related_name="segments")
     
