@@ -35,7 +35,7 @@ var CreateJoinCollectionWidget = Widget.extend(
         this.createNewTemplate = createNewTemplate;
         
         
-        _.bindAll(this, "render");
+        
         this.render();
     },
     render: function() {

@@ -138,19 +138,18 @@ var DetailWaveformPanel = WaveformPanel.extend(
     render_collection_audio_file: function(collectionId, fileId, selectedCollection, selectedAudioFile) {
         WaveformPanel.prototype.render_collection_audio_file.call(this, collectionId, fileId, selectedCollection, selectedAudioFile);
 
-        //console.log(selectedAudioFile.toJSON());
         /* Load top content with audio file information */
-        //this.topContainer.html(
-        //    this.topFileTemplate.tmpl(selectedAudioFile.toJSON())
-        //);
+        this.topContainer.html(
+            this.topFileTemplate.tmpl(selectedAudioFile.toJSON())
+        );
         
         /* Create editable text component to handle name change */
-        //this.topNameComponent = new EditableModelTextComponent({
-        //    panel: this, 
-        //    model: selectedAudioFile, 
-        //    attr: 'name',
-        //    el: $('#detail_waveform_selected_name_container')
-        //});
+        this.topNameComponent = new EditableModelTextComponent({
+            panel: this, 
+            model: selectedAudioFile, 
+            attr: 'name',
+            el: $('#detail_waveform_selected_name_container')
+        });
         
         
         this.timecodeComponent.audio_file_selected(this.audioFileDuration);

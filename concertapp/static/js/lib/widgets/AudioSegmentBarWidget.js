@@ -25,7 +25,7 @@ var AudioSegmentBarWidget = Widget.extend({
          **/
         this.leftPx = null;
 
-        _.bindAll(this, "render");
+        
     },
 
     render: function() {

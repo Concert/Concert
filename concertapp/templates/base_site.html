@@ -14,8 +14,13 @@ The base template for all pages.  All page templates will use this.
   <head>
     <title>Concert</title>
     <link rel="icon" type="image/png" href="/graphics/logo.png" />
+    
+    <link rel="stylesheet" href="/css/jquery-ui/jquery-ui-1.8.12.custom.css">
+    
     <link rel="stylesheet" type="text/css" href="/css/styles.css">
     <link rel="stylesheet" type="text/css" href="/css/panels.css">
+    <link rel="stylesheet" href="/css/components.css">
+    <link rel="stylesheet" href="/css/widgets.css">
    <!-- <link rel="stylehseet" type="text/css" href="/css/pages.css">-->
 
     {# Global namespaces and variables #}
@@ -24,7 +29,7 @@ The base template for all pages.  All page templates will use this.
     {# Vendor #}
     <script src="/js/lib/vendor/jquery-1.5.1.js"></script>
     <script src="/js/lib/vendor/jquery.tmpl.js"></script>
-    <script src="/js/lib/vendor/jquery-ui-1.8.5.custom.min.js"></script>
+    <script src="/js/lib/vendor/jquery-ui-1.8.12.custom.min.js"></script>
     <script src="/js/lib/vendor/modernizr-1.6.min.js"></script>
     <script src="/js/lib/vendor/jquery.form.js"></script>
     <script src="/js/lib/vendor/jquery.imagesloaded.js"></script>
@@ -128,6 +133,7 @@ The base template for all pages.  All page templates will use this.
     <script src="/js/lib/components/EditableModelTextComponent.js"></script>
     <script src="/js/lib/components/AutocompleteListInputComponent.js"></script>
     <script src="/js/lib/components/TagAutocompleteListInputComponent.js"></script>
+    <script src="/js/lib/components/ListPanelSearchAutocompleteListInputComponent.js"></script>
     
 
     {# Panels #}
@@ -215,8 +221,8 @@ The base template for all pages.  All page templates will use this.
     </script>
     
     {# A link to a tag #}
-    <script id="tag_link_template" type="text/x-jquery-tmpl">
-        {% include 'clientside/tag_link.html' %}
+    <script id="tag_widget_template" type="text/x-jquery-tmpl">
+        {% include 'clientside/tag_widget_template.html' %}
     </script>
     
     {# Event widgets #}
@@ -250,6 +256,11 @@ The base template for all pages.  All page templates will use this.
     
     <script id="requestrevokedevent_template" type="text/x-jquery-tmpl">
         {% include 'clientside/requestrevokedevent.html' %}
+    </script>
+    
+    {# Template used for a result in an autocomplete listing #}
+    <script id="autocomplete_list_item_template" type="text/x-jquery-tmpl">
+        {% include 'logged_in/clientside/autocomplete_list_item_template.html' %}
     </script>
     
     {# Send variable to javascript with recognizable path so we know what page we're on #}

@@ -20,7 +20,7 @@ var CreateCollectionEventWidget = EventWidget.extend(
         
         
 
-        _.bindAll(this, "render");
+        
     },
 
     render: function() {

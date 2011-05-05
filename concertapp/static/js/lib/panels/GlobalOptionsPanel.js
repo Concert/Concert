@@ -79,7 +79,7 @@ var GlobalOptionsPanel = Panel.extend(
 
 
         
-        _.bindAll(this, "render");
+        
         /* Bind collection events to render */
         userMemberCollections.bind('refresh', this.render);
         userMemberCollections.bind('add', this.render);

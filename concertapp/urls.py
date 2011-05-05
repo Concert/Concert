@@ -30,7 +30,6 @@ api1.register(AudioSegmentResource())
 
 # Events
 api1.register(EventResource())
-api1.register(RequestJoinCollectionEventResource())
 
 urlpatterns = patterns('',
 

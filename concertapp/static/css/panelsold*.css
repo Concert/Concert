@@ -652,7 +652,7 @@ div.list_widget .boxwrap{
     -webkit-box-orient: horizontal;
 }
 
-div.file_widget_icon {
+div.file_list_widget_icon {
     height: 24px;
     width: 24px;
     background: url(/graphics/file.png) no-repeat;
@@ -660,7 +660,7 @@ div.file_widget_icon {
     margin-top: 3px;
 }
 
-div.segment_widget_icon {
+div.segment_list_widget_icon {
     height: 24px;
     width: 24px;
     background: url(/graphics/segment.png) no-repeat;

@@ -56,7 +56,7 @@ class Event(models.Model):
     # Wether this event is shown to the public or not
     active = models.BooleanField(default=True)
     # The real class
-    realType = models.ForeignKey(ContentType, editable=False, null=True)
+    #realType = models.ForeignKey(ContentType, editable=False, null=True)
     
 
     # The collection that this event is associated with
@@ -95,14 +95,14 @@ class Event(models.Model):
     # etc.)
     ###
     def save(self, **kwargs):
-        if type(self)==Event:
-            raise Exception('Event is abstract, but not through Django semantics (e.g., \'Class Meta: abstract = True\' is NOT set).\nYou must use one of the Event subclasses')
-        else:
-            # Add event to all of this collection's user's unread events
-            self.realType = self._get_real_type()
-            super(Event,self).save(kwargs)
-            for user in self.collection.users.all():
-                user.get_profile().unreadEvents.add(self)
+#        if type(self)==Event:
+#            raise Exception('Event is abstract, but not through Django semantics (e.g., \'Class Meta: abstract = True\' is NOT set).\nYou must use one of the Event subclasses')
+#        else:
+        # Add event to all of this collection's user's unread events
+        #self.realType = self._get_real_type()
+        super(Event,self).save(kwargs)
+        for user in self.collection.users.all():
+            user.get_profile().unreadEvents.add(self)
 
     def _get_real_type(self):
         return ContentType.objects.get_for_model(type(self))
@@ -110,11 +110,11 @@ class Event(models.Model):
     ###
     # return the sub_class object thats associated with this tuple
     ###
-    def cast(self):
-        return self.realType.get_object_for_this_type(pk=self.pk)
+#    def cast(self):
+        #return self.realType.get_object_for_this_type(pk=self.pk)
 
-    def __unicode__(self):
-        return str(self.cast())
+#    def __unicode__(self):
+#        return str(self.cast())
 
 
 ###
@@ -258,7 +258,7 @@ class AudioSegment(models.Model):
     name = models.CharField(max_length = 100)
     beginning = models.FloatField()
     end = models.FloatField()
-    audioFile = models.ForeignKey('AudioFile')
+    audioFile = models.ForeignKey('AudioFile', related_name="segments")
     creator = models.ForeignKey(User)
     collection = models.ForeignKey('Collection', related_name="segments")
     

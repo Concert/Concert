@@ -46,19 +46,57 @@ var EventsPanel = Panel.extend({
             9: $('#requestrevokedevent_template')
         }
         
+        /**
+         *  The current EventSet we are watching for changes.
+         **/
+        var currentEventSet = null;
+        
+        _.bindAll(this, '_render_and_add_event');
         
     },
+    
+    /**
+     *  Stop watching any `EventSet`s we are currently watching.
+     **/
+    _stop_watching_eventset: function() {
+        /* Are we currently watching some set of events for changes? */
+        var currentEventSet = this.currentEventSet;
+        if(currentEventSet) {
+            /* If so, stop */
+            currentEventSet.unbind('add', this._render_and_add_event);
+        }
+        this.currentEventSet = null;
+    }, 
+    
+    /**
+     *  Start watching a single list of events for changes.
+     *
+     *  @param  {EventSet}      events  The set of Event objets we're watching.
+     **/
+    _start_watching_eventset: function(events) {
+        /* stop watching any previous EventSets */
+        this._stop_watching_eventset();
+        
+        /* Set new callback for when an event is added */
+        events.bind('add', this._render_and_add_event);
+        
+        this.currentEventSet = events;
+    }, 
+    
     
     /**
      *  When we are viewing collections.
      **/
     render_collections: function(collections) {
+        /* We'll aggregate together the events for each collection, and render
+        a giant list of all */
         var allCollectionEvents = new EventSet;
-        
+
         /* For each collection, aggregate together the events */
         collections.each(function(collection) {
             allCollectionEvents.add(collection.get('events').models);
         });
+        
         
         /* Render this giant list of events */
         this._render_events(allCollectionEvents);
@@ -94,7 +132,9 @@ var EventsPanel = Panel.extend({
      *  When we are viewing an audio segment from a collection
      **/
     render_collection_audio_segment: function(collectionId, fileId, segmentId, collection, audioFile, audioSegment) {
-        /* render segment's events */
+        this._start_watching_eventset(audioSegment.get('events'));
+        
+        /* Initially render all events */
         this._render_events(audioSegment.get('events'));
     }, 
     
@@ -114,26 +154,15 @@ var EventsPanel = Panel.extend({
      *  @param  {EventSet}    eventModels    The models to render
      **/
     _render_events: function(eventModels) {
-        Panel.prototype.render.call(this);
+        
         
         var panel = this;
-        var eventTypesToWidgetMap = this.eventTypesToWidgetMap;
-        var eventTypesToTemplateMap = this.eventTypesToTemplateMap;
+
         var frag = document.createDocumentFragment();
         /* For each event model */
         eventModels.each(function(eventModel) {
-            var eventType = eventModel.get('eventType');
-            /* Proper widget for this event */
-            var widgetClass = eventTypesToWidgetMap[eventType];
-            var widgetTemplate = eventTypesToTemplateMap[eventType];
+            var widget = panel._create_event_widget(eventModel);
 
-            /* Create widget */
-            var widget = new widgetClass({
-                panel: panel, 
-                model: eventModel,
-                template: widgetTemplate 
-            });
-            
             frag.appendChild(widget.render().el);
             
             
@@ -142,5 +171,39 @@ var EventsPanel = Panel.extend({
         this.contents.html(frag);
         
         return this;
-    }
+    },
+    
+    /**
+     *  This is called when a single event must be added to the list.
+     *
+     *  @param  {Event}    eventModel    The Event object to be added to our display
+     **/
+    _render_and_add_event: function(eventModel) {
+        var widget = this._create_event_widget(eventModel);
+        
+        this.contents.prepend(widget.render().el);
+        
+    }, 
+    
+    /**
+     *  Called from internal render methods when a widget is to be created.
+     *
+     *  @param  {Event}    eventModel    The model instance from which to create
+     *  the widget.
+     **/
+    _create_event_widget: function(eventModel) {
+        var eventType = eventModel.get('eventType');
+        /* Proper widget for this event */
+        var widgetClass = this.eventTypesToWidgetMap[eventType];
+        var widgetTemplate = this.eventTypesToTemplateMap[eventType];
+        
+        
+        /* Create and return widget */
+        return new widgetClass({
+            panel: this, 
+            model: eventModel,
+            template: widgetTemplate 
+        });
+    }, 
+    
 });

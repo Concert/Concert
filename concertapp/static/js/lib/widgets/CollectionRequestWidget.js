@@ -24,7 +24,7 @@ var CollectionRequestWidget = Widget.extend(
         /* Store a reference to the user widget */
         this.userWidget = null;
 
-        _.bindAll(this, "render");
+        
         this.render();
     },
     render: function() {

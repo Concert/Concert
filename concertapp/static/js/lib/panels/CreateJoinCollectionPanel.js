@@ -78,7 +78,6 @@ var CreateJoinCollectionPanel = Panel.extend(
         /* Initialize the auto complete behavior */
         this.initAutoCompleteBehavior();
         
-        _.bindAll(this, "render");
         searchResults.bind('refresh', this.render);        
     },
     render: function() {

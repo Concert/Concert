@@ -14,8 +14,8 @@ var AutocompleteListInputComponent = Component.extend(
  *  @scope AudiocompleteListInputComponent.prototype
  **/
 {
-    initialize: function() {
-        Component.prototype.initialize.call(this);
+    _initialize_elements: function() {
+        Component.prototype._initialize_elements.call(this);
 
         var params = this.options;
         
@@ -23,16 +23,67 @@ var AutocompleteListInputComponent = Component.extend(
         if(typeof(inputElement) == 'undefined') {
             throw new Error('params.inputElement is undefined');
         }
+        else if(inputElement.length == 0) {
+            throw new Error('inputElement not found');
+        }
+        /**
+         *  The input element for this autocomplete box.
+         **/
         this.inputElement = inputElement;
+        
+        var resultsContainerElement = params.resultsContainerElement;
+        if(typeof(resultsContainerElement) == 'undefined') {
+            throw new Error('params.resultsContainerElement is undefined');
+        }
+        else if(resultsContainerElement.length == 0) {
+            throw new Error('resultsContainerElement not found');
+        }
+        /**
+         *  Container for the autocomplete results.
+         **/
+        this.resultsContainerElement = resultsContainerElement;
+        
+        var resultTemplate = params.resultTemplate;
+        if(typeof(resultTemplate) == 'undefined') {
+            throw new Error('params.resultTemplate is undefined');
+        }
+        else if(resultTemplate.length == 0) {
+            throw new Error('resultTemplate not found');
+        }
+        /**
+         *  The template used for a single autocomplete result.
+         **/
+        this.resultTemplate = resultTemplate;
+        
+        
+        /* The jQuery autocomplete that will help us do business */
+        inputElement.autocomplete({
+            minLength: 0, 
+            appendTo: resultsContainerElement, 
+        })
+        .data( "autocomplete" )._renderItem = function( ul, item ) {
+            /* Pass term along to template */
+            var itemWithTerm = _.extend(item, {term: this.term});
+            
+            return resultTemplate.tmpl(itemWithTerm)
+                .data( "item.autocomplete", item )
+                .appendTo( ul );
+        };
+
+    },
+    
+    _initialize_behavior: function() {
+        Component.prototype._initialize_behavior.call(this);
+        
+        var inputElement = this.inputElement;
         
         _.bindAll(this, '_handle_input_keyup');
         inputElement.bind('keyup', this._handle_input_keyup);
         
         _.bindAll(this, '_handle_input_blur');
         inputElement.bind('blur', this._handle_input_blur);
-
-        _.bindAll(this, "render");
-    },
+        
+    }, 
     
     /**
      *  Regexp used to split the input into separate tokens.
@@ -50,10 +101,9 @@ var AutocompleteListInputComponent = Component.extend(
         
         var wordSplit = inputElement.val().split(AutocompleteListInputComponent.prototype.TOKEN_SPLITTER);
         
-        /* If another token was created because a delimiter was entered */
-        if(wordSplit.length > 1
-            /* Or the return key was pressed */
-            || e.keyCode == 13) {
+        /* If another token was created because a delimiter was entered or
+        the return key was pressed */
+        if(wordSplit.length > 1 || e.keyCode == 13) {
             /* Grab previous token */
             var token = wordSplit[0];
             
@@ -64,7 +114,10 @@ var AutocompleteListInputComponent = Component.extend(
             if(token.length && !token.match(AutocompleteListInputComponent.prototype.SPACE_MATCH)) {
                 this._handle_new_token(token);
             }
-            
+        }
+        /* A key was pressed that is not a delimiter */
+        else {
+            this._handle_continue_token(wordSplit[0])
         }
     },
     
@@ -93,14 +146,6 @@ var AutocompleteListInputComponent = Component.extend(
     }, 
     
     /**
-     *  Called whenever input field is to be analyzed and new tokens are
-     *  to be discovered.
-     **/
-    _look_for_tokens: function() {
-        
-    }, 
-    
-    /**
      *  Handle a new token that was entered in the inputElement.
      *
      *  @param  {String}    token   The token that was entered.
@@ -109,4 +154,22 @@ var AutocompleteListInputComponent = Component.extend(
         
         return;
     },
+    
+    /**
+     *  Handle the continuation of a token that was entered in the inputElement
+     *
+     *  @param  {String}    token    The token that we are building.
+     **/
+    _handle_continue_token: function(token) {
+        
+    },
+    
+    /**
+     *  Called whenever the data for this autocomplete component needs to be set
+     *
+     *  @param  {Array[String]}    data    The data for the autocomplete.
+     **/
+    set_data: function(data) {
+        this.inputElement.autocomplete('option', 'source', data)
+    }, 
 });

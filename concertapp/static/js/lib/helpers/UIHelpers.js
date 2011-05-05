@@ -80,10 +80,14 @@ function get_event_x(e) {
  *  This function will convert between an amount of seconds, and a timecode value.
  *
  *  @param  {Number}    seconds -   The amount of seconds to convert.
+ *  @param  {Object}    options     Different options available for presentation
+ *  @param  {Object}    options.noZeroHours    If hours are zero, omit them.
  *  @return {String}    hh:mm:ss    -   Formatted timecode string.
  **/
-function seconds_to_timecode(seconds)
+function seconds_to_timecode(seconds, options)
 {
+    options || (options = {});
+    
     if(seconds < 0) {
         throw new Error('sec_to_timecode: Error: Seconds cannot be negative.');
     }
@@ -107,7 +111,14 @@ function seconds_to_timecode(seconds)
         seconds = '0'+seconds;
     }
     
-    return hours+':'+minutes+':'+seconds;
+    var result = '';
+    if(!(options.noZeroHours && hours == '00')) {
+        result += hours+':';
+    }
+    
+    result += minutes+':'+seconds;
+    
+    return result;
 }
 
 /**

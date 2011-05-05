@@ -129,7 +129,7 @@ var UploadPanel = Panel.extend(
         this.createNewFileChooser();
         
 
-        _.bindAll(this, "render");
+        
         this.render();
     },
     render: function() {

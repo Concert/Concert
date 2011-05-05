@@ -9,14 +9,20 @@
  *  @class
  *  @extends    AutocompleteListInputComponent
  **/
-var TagAutocompleteListInputComponent = AutocompleteListInputComponent.extend({
-    initialize: function() {
-        AutocompleteListInputComponent.prototype.initialize.call(this);
+var TagAutocompleteListInputComponent = AutocompleteListInputComponent.extend(
+    /**
+     *  @scope  TagAutocompleteListInputComponent.prototype
+     **/
+{
+    _initialize_elements: function() {
+        this.options = _.extend(this.options, {
+            resultsContainerElement: $('#detail_waveform_panel_tag_autocomplete_list'), 
+            resultTemplate: $('#autocomplete_list_item_template')
+        });
 
-        var params = this.options;
-        
-    },
-
+        AutocompleteListInputComponent.prototype._initialize_elements.call(this);
+    }, 
+    
     /**
      *  Handle a new token that was entered in the inputElement.
      *
@@ -25,9 +31,9 @@ var TagAutocompleteListInputComponent = AutocompleteListInputComponent.extend({
     _handle_new_token: function(token) {
         AutocompleteListInputComponent.prototype._handle_new_token.call(this, token);
         
-        /* A new tag has been entered, tell the page. */
+        /* A tag has been entered, tell the page. */
         this.panel.page.tag_current_segment(token);
-        
+
         return;
     },
     

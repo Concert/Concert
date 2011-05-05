@@ -56,6 +56,17 @@ var ListPanel = Panel.extend(
          *  The template for each collection in the list (when in collections mode)
          **/
         this.collectionWidgetTemplate = collectionWidgetTemplate;
+        
+/*        
+        var searchBox = new ListPanelSearchAutocompleteListInputComponent({
+            el: $('#list_panel_search_container'), 
+            inputElement: $('input#list_panel_search'), 
+            panel: this 
+        });
+        /**
+         *  The search box above the list panel.
+         **/
+  //      this.searchBox = searchBox;
 
         
         /**
@@ -87,9 +98,6 @@ var ListPanel = Panel.extend(
          *  List of collection widgets.  Indexed by the ID of the collection
          **/
         this.collectionWidgets = {};
-        
-        
-        
     }, 
     
     /**

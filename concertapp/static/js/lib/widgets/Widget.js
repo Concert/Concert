@@ -40,9 +40,9 @@ var Widget = Backbone.View.extend(
         }
         this.panel = panel;
 
-        _.bindAll(this, "render");
+        _.bindAll(this, 'render');
         if(this.model) {
-            this.model.bind('change', this.render);            
+            this.model.bind('change', this.render);
         }
     },
     render: function() {

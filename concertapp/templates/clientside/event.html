@@ -2,7 +2,8 @@
 
 {# The base template for all events #}
 
-<div class="event">
+<div class="event_widget">
+    <div class="type${eventType}_event_widget_icon event_widget_icon widget_icon"></div>
     {%verbatim%}{{tmpl(user.toJSON()) "#user_link_template"}}{%endverbatim%}
     {% block event_text %}{% endblock %}
     <div class="time">

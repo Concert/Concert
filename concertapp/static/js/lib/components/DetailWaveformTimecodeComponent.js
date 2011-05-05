@@ -74,59 +74,63 @@ var DetailWaveformTimecodeComponent = Component.extend(
         
         /* Draw timecode with canvas */
         $g().size(pxPerSecond*duration, el.height())
-            .add(function(pxPerSecond, duration) {
-                return function(ctx, canvas) {
-                    var height = canvas.height;
-                    var width = canvas.width;
-                    
-                    /* Begin our cursor at the top left corner of the canvas */
-                    var cursor = {
-                        x: 0, 
-                        y: 0
-                    };
-                    
-                    /* We will draw black 1px lines for now */
-                    ctx.strokeStyle = 'black';
-                    ctx.lineCap = 'square';
-                    ctx.lineWidth = 1.0;
-
-                    ctx.beginPath();
-                    
-                    /* Place long marker every 10 seconds */
-                    for(var i = 0; i < duration; i+=10) {
-                        /* Draw marker for this second */
-                        
-                        /* Move cursor horizontally */
-                        cursor.x = i*pxPerSecond;
-                        cursor.y = 0;
-                        ctx.moveTo(cursor.x, cursor.y);
-                        
-                        /* Draw a vertical line at current point */
-                        ctx.lineTo(cursor.x, cursor.y+(height*0.50));
-                        ctx.stroke();
-                    }
-                    
-                    /* Place short marker every 10 seconds (on multiples of 5) */
-                    for(var i = 5; i < duration; i+=5) {
-                        cursor.x = i*pxPerSecond;
-                        cursor.y = 0;
-                        ctx.moveTo(cursor.x, cursor.y);
-                        
-                        ctx.lineTo(cursor.x, cursor.y+(height * 0.25));
-                        ctx.stroke();
-                    }
-                     /* Place short marker every 1 seconds */
-                    for(var i = 0; i < duration; i+=1) {
-                        cursor.x = i*pxPerSecond;
-                        cursor.y = 0;
-                        ctx.moveTo(cursor.x, cursor.y);
-                        
-                        ctx.lineTo(cursor.x, cursor.y+(height * 0.125));
-                        ctx.stroke();
-                    }
-                    ctx.closePath();
+            .add(function(ctx, canvas) {
+                var height = canvas.height;
+                var width = canvas.width;
+                
+                /* Begin our cursor at the top left corner of the canvas */
+                var cursor = {
+                    x: 0, 
+                    y: 0
                 };
-            }(pxPerSecond, duration))
+                
+                /* We will draw black 1px lines for now */
+                ctx.strokeStyle = 'black';
+                ctx.lineCap = 'square';
+                ctx.lineWidth = 1.0;
+                /* This is a hack to get the lines to appear to be 1px in width.
+                Search for "canvas 1px antialiasing" for a plethora of resources
+                on the subject */
+                ctx.translate(0.5, 0.5);
+
+                ctx.beginPath();
+                
+                /* Place long marker every 10 seconds */
+                for(var i = 0; i < duration; i+=10) {
+                    /* Move cursor horizontally */
+                    cursor.x = i*pxPerSecond;
+                    cursor.y = 0;
+                    ctx.moveTo(cursor.x, cursor.y);
+                    
+                    /* Draw a vertical line at current point */
+                    ctx.lineTo(cursor.x, cursor.y+(height*0.50));
+                    ctx.stroke();
+                    
+                    /* Put timecode there too */
+                    var timecodeText = seconds_to_timecode(i, {noZeroHours: true});
+                    ctx.fillText(timecodeText, cursor.x, cursor.y+(height*0.75));
+                }
+                
+                /* Place short marker every 10 seconds (on multiples of 5) */
+                for(var i = 5; i < duration; i+=5) {
+                    cursor.x = i*pxPerSecond;
+                    cursor.y = 0;
+                    ctx.moveTo(cursor.x, cursor.y);
+                    
+                    ctx.lineTo(cursor.x, cursor.y+(height * 0.25));
+                    ctx.stroke();
+                }
+                 /* Place short marker every 1 seconds */
+                for(var i = 0; i < duration; i+=1) {
+                    cursor.x = i*pxPerSecond;
+                    cursor.y = 0;
+                    ctx.moveTo(cursor.x, cursor.y);
+                    
+                    ctx.lineTo(cursor.x, cursor.y+(height * 0.125));
+                    ctx.stroke();
+                }
+                ctx.closePath();
+            })
             .place(el).draw();
         
         

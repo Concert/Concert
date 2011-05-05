@@ -1,0 +1,10 @@
+{% load extra_template_tags %}
+
+    <li>
+        <a>
+            {# Gotta keep this all on one line, sorry #}
+            {% verbatim %}
+                {{each(i, nonMatch) label.split(term)}}<span>${nonMatch}</span>{{if i < label.split(term).length-1}}<span class="autocomplete_substring_match">${term}</span>{{/if}}{{/each}}
+            {% endverbatim %}
+        </a>
+    </li>

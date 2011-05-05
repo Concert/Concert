@@ -1,4 +1,4 @@
-from concertapp.lib.api import NestedResource, ConcertAuthorization, DjangoAuthentication
+from concertapp.lib.api import MyResource, ConcertAuthorization, DjangoAuthentication
 from concertapp.models import *
 from concertapp.users.api import *
 from concertapp.audio.api import AudioFileResource
@@ -38,7 +38,7 @@ class AudioSegmentAuthorization(ConcertAuthorization):
             return False
 
 
-class AudioSegmentResource(NestedResource):
+class AudioSegmentResource(MyResource):
     name = fields.CharField('name')
     beginning = fields.FloatField('beginning')
     end = fields.FloatField('end')
@@ -52,7 +52,7 @@ class AudioSegmentResource(NestedResource):
         null=True
     )
     
-    class Meta(NestedResource.Meta):
+    class Meta(MyResource.Meta):
         authentication = DjangoAuthentication()
         authorization = AudioSegmentAuthorization()
         queryset = AudioSegment.objects.all()

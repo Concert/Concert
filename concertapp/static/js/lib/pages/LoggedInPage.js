@@ -73,6 +73,8 @@ var LoggedInPage = Page.extend(
     },
     
     _initialize_routes: function() {
+        this.defaultHash = '#collections';
+        
         Page.prototype._initialize_routes.call(this);
         
         _.bindAll(this, '_collections_route');
@@ -102,7 +104,6 @@ var LoggedInPage = Page.extend(
             this._collection_audio_segment_route
         );
         
-        this.defaultHash = '#collections';
         return;
     }, 
     
@@ -153,7 +154,7 @@ var LoggedInPage = Page.extend(
         var file = this.modelManager.select_audiofile(fileId);
         newArgs.push(file);
         
-        this.currentRoute = 'collection_audio_file';        
+        this.currentRoute = 'collection_audio_file';
         
         return newArgs;
     },
@@ -172,26 +173,7 @@ var LoggedInPage = Page.extend(
 
          return newArgs;
      },
-    
-    // Manually bind a single named route to a callback. For example:
-    //
-    //     this.route('search/:query/p:num', 'search', function(query, num) {
-    //       ...
-    //     });
-    //
-    route : function(route, name, callback) {
-        Backbone.history || (Backbone.history = new Backbone.History);
-        if (!_.isRegExp(route)) route = this._routeToRegExp(route);
-        Backbone.history.route(route, _.bind(function(fragment) {
-            var args = this._extractParameters(route, fragment);
-            /* Whatever our callback for this route returns, we will push into
-            the args array to send along with the route information */
-            args = args.concat(callback.apply(this, args));
-            
-            this.trigger.apply(this, ['route:' + name].concat(args));
-        }, this));
-    },
-    
+        
     /**
      *  Called from elsewhere when there is a new audio segment to be created
      *  @param  {Number}    startTime   the start time of the new segment
@@ -203,10 +185,10 @@ var LoggedInPage = Page.extend(
         
         this.modelManager.create_and_select_new_segment(startTime, endTime,
             /* When the segment is created */
-            function(model, resp) {
-                var collectionId = model.get('collection').get('id');
-                var fileId = model.get('audioFile').get('id');
-                var segmentId = model.get('id');
+            function(segment, resp) {
+                var collectionId = segment.get('collection').get('id');
+                var fileId = segment.get('audioFile').get('id');
+                var segmentId = segment.get('id');
                 /* Go to new URL */
                 window.location.assign('#collection/'+collectionId+'/audio/file/'+fileId+'/segment/'+segmentId);
         });
@@ -259,6 +241,16 @@ var LoggedInPage = Page.extend(
         this.detailPanel.clear_waveform_highlight();
         this.overviewPanel.clear_waveform_highlight();
     },
+    
+    /**
+     *  Called from elsewhere when we're searching in the collections list
+     *
+     *  @param  {String}    term    Search term.
+     **/
+    collections_search: function(term) {
+        console.log('term:');
+        console.log(term);
+    }, 
     
 });
     
