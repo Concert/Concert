@@ -1,0 +1,32 @@
+{% load extra_template_tags %}
+
+{% verbatim %}
+    <div class="collection_widget">
+        <div class="user_collection_name" id="user_collection_name-${id}">
+            ${name}
+        </div>
+        
+        <div class="user_collection_members">
+            ${users.length}{{if users.length ==  1}}user{{else}}users{{/if}}
+        </div>
+        
+        <div class="user_collection_actions">    
+            {{if user_is_admin}}        
+                <button class="delete_collection" id="delete_collection-${id}"> 
+                    Delete this collection
+                </button> <br>
+                <div class="user_collection_requests">
+                </div>
+            {{else}}
+                <button class="leave_collection" id="leave_collection-${id}">
+                    Leave this collection
+                </button> <br>
+            {{/if}}
+        </div>
+        
+    </div>
+{% endverbatim %}
+
+{% comment %}
+
+{% endcomment %}

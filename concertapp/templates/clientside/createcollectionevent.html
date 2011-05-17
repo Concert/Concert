@@ -1,0 +1,11 @@
+{% extends 'clientside/event.html' %}
+{% load extra_template_tags %}
+
+{# The template for a `CreateCollectionEventWidget` #}
+
+{% block event_text %}
+    created collection
+    {% verbatim %}
+        {{tmpl(collection.toJSON()) "#collection_link_template"}}
+    {% endverbatim %}
+{% endblock %}

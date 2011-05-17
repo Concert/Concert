@@ -1,0 +1,8 @@
+{% load extra_template_tags %}
+
+{% verbatim %}
+<option value="-1">ORGANIZE &darr;</option>
+{{each(i, collection) collections}}
+    <option id="collection_option-${collection.id}" value="${collection.id}">${collection.name}</option>
+{{/each}}
+{% endverbatim %}

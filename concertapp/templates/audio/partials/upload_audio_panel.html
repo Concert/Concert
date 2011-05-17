@@ -1,0 +1,29 @@
+{% extends 'partials/panel.html' %}
+
+
+{% block panel_content %}
+
+{# area to display uploading status #}
+<div id="status_container">
+    <p>
+        Uploading<span id="status_animated_dots"></span><br />
+        Please be patient.  This may take some time.
+    </p>
+</div>
+
+{#  Form that user sees #}
+<div id="upload_form">
+    <label for="file_uploader" id="file_uploader_label">Select a file to upload: </label>
+    {# This will be populated client-side with the actual '<input>' element #}
+    <div id="choose_file_container"></div>
+    {# This is the listing of files that the user has chosen #}
+    <div id="files_table" class="table"></div>
+    <button id="upload_submit_button">Upload</button>
+
+    {# Form that is actually used to send data to server #}
+    <form id="server_upload_form" action="/audio/upload/" method="POST" class="hidden">
+        {# Each file that needs to be uploaded will get injected into here #}
+    </form>    
+</div>
+
+{% endblock %}

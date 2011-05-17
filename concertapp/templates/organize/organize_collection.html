@@ -1,0 +1,75 @@
+{% extends 'base_site.html' %}
+{% load extra_template_tags %}
+{% load panels %}
+{% load widgets %}
+
+{% comment %}
+    @file   organize_collection.html
+    This is the template for the organize page.    
+{% endcomment %}
+
+{% block middle %}
+    {#  We have two waveform viewer panels #}
+    {% panel 'organize/partials/overview_waveform_panel.html' 'Overview Waveform' 'overview_waveform' %}
+    {% panel 'organize/partials/detail_waveform_panel.html' 'Detail Waveform' 'detail_waveform' %}
+{% endblock %}
+
+{% block left %}
+    {# an events panel #}
+    {% panel 'organize/partials/eventslist_panel.html' '' 'events_list' %}
+{% endblock %}
+
+{% block right %}
+    {# and an audio list panel #}
+    {% panel 'organize/partials/audiolist_panel.html' '' 'audio_list' %}
+{% endblock %}
+
+{% block clientside %}
+
+    {# and some client-side templates #}
+    <script id="file_widget_template" type="text/x-jquery-tmpl">
+        {% widget 'organize/clientside/file_widget_template.html' 'file' %}
+    </script>
+
+    <script id="segment_widget_template" type="text/x-jquery-tmpl">
+        {% widget 'organize/clientside/segment_widget_template.html' 'segment' %}
+    </script>
+    
+    {# Template for top of detail waveform panel when a file is selected #}
+    <script id="detail_waveform_top_file_template" type="text/x-jquery-tmpl">
+        {% include 'organize/clientside/detail_waveform_top_file_template.html' %}
+    </script>
+    
+    {# Template for top of detail waveform panel when a segment is selected #}
+    <script id="detail_waveform_top_segment_template" type="text/x-jquery-tmpl">
+        {% include 'organize/clientside/detail_waveform_top_segment_template.html' %}    
+    </script>
+
+    {# Template for bottom of detail waveform panel when a segment is selected #}
+    <script id="detail_waveform_bottom_segment_template" type="text-x-jquery-tmpl">
+        {% include 'organize/clientside/detail_waveform_bottom_template.html' %}
+    </script>
+    
+    <script id="comment_widget_template" type="text/x-jquery-tmpl">
+        {% include 'organize/clientside/comment_widget_template.html' %}
+    </script>
+    
+    <script id="comment_panel_header_template" type="text/x-jquery-tmpl">
+        {% include 'organize/clientside/comment_panel_header_template.html' %}
+    </script>
+
+    <script id="segment_bar_row_template" type="text/x-jquery-tmpl">
+        {% include 'organize/clientside/segment_bar_row.html' %}
+    </script>
+    
+    <script id="segment_bar_template" type="text/x-jquery-tmpl">
+        {% include 'organize/clientside/segment_bar.html' %}
+    </script>
+    
+    <script id="tag_widget_template" type="text/x-jquery-tmpl">
+        {% include 'organize/clientside/tag_widget_template.html' %}
+    </script>
+
+    
+        
+{% endblock %}

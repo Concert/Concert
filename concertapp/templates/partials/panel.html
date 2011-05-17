@@ -1,0 +1,14 @@
+<div id="{{ id }}_panel" class="{{ id }}_panel panel {% block panel_class %}{% endblock %}">
+    <div id="{{ id }}_panel_loader" class="panel_loader">
+        <div id="{{ id }}_panel_loader_notification" class="panel_loader_notification">
+            Loading...
+        </div>
+    </div>
+    <div id="{{ id }}_panel_header" class="{{ id }}_panel_header panel_header">
+        {% block header_content %}<h3>{{ title }}</h3>{% endblock %}
+    </div>
+    
+    <div id="{{ id }}_panel_contents" class="{{ id }}_panel_contents panel_contents">
+        {% block panel_content %}{% endblock %}
+    </div>
+</div>

@@ -1,0 +1,41 @@
+{% extends 'partials/panel.html' %}
+
+{% load buttons %}
+
+{% block header_content %}
+{% endblock %}
+
+{% block panel_content %}
+<div id="global_options_panel_left">
+  <h1>Concert</h1>
+</div>
+
+<div id="global_options_panel_middle">
+</div>
+
+<div id="global_options_panel_right">
+ 
+  
+  <div id="global_menu">
+    <ul>
+    	<li>
+    		<a href="/logout">logout ({{user.username}})</a>
+    	</li>
+    	<li>
+    		<a href="/audio/upload">upload</a>
+    	</li> 
+  		<li>
+  			<a href="/collections">collections</a>
+  		</li>
+        <li> 
+            <select id="collection_selector" class="collection_selector">
+      		    {# Collection options will be injected here #}
+            </select>
+        </li>
+    </ul>
+  </div>
+  <div id="logout_info">
+  	
+  </div>
+</div>
+{% endblock %}

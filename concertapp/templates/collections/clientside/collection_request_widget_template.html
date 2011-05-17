@@ -1,0 +1,24 @@
+{% load extra_template_tags %}
+
+{% verbatim %}
+    <div class="user_collection_request">
+        <div class="user_widget">
+            <div class="user_widget_username">
+                ${user.get("username")}                            
+            </div>
+        </div>
+        {{if status == 'p'}}
+            <button class="approve_request">Approve</button>
+            <button class="deny_request">Deny</button>
+            {{else}}{{if status == 'd'}}
+                Denied
+                {{else}}{{if status == 'r'}}
+                    Revoked
+                    {{else}}{{if status == 'a'}}
+                        Accepted
+                    {{/if}}
+                {{/if}}
+            {{/if}}
+        {{/if}}
+    </div>
+{% endverbatim %}

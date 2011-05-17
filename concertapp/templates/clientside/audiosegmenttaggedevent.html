@@ -1,0 +1,13 @@
+{% extends 'clientside/event.html' %}
+{% load extra_template_tags %}
+
+{# The template for an `AudioSegmentTaggedEventWidget` #}
+
+{% block event_text %}
+    tagged
+    {% verbatim %}
+        {{tmpl(audioSegment.toJSON()) "#audiosegment_link_template"}}
+        as
+        {{tmpl(tag.toJSON()) "#tag_link_template"}}
+    {% endverbatim %}
+{% endblock %}

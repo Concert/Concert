@@ -1,0 +1,24 @@
+/*
+ *  Page-specific layout
+ */
+/* Settings Page */
+div.create_join_panel {
+  -webkit-box-flex: 4;
+}
+
+div.social_panel {
+  -webkit-box-flex: 1;
+}
+
+/* Dashboard */
+div#concert_info_panel {
+  -webkit-box-flex: 1;
+}
+
+div#recent_events_panel {
+  -webkit-box-flex: 1;
+}
+
+/*
+ *  Audio list panel
+ */

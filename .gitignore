@@ -1,2 +1,15 @@
-*.DS_Store
+.DS_Store
+*.pyc
+documentation
+*~
+concertapp/media/audio/*.*
+concertapp/media/images/*
+!concertapp/media/audio/.gitignore
+!concertapp/media/images/.gitignore
+Concert.tmproj
+*.autosave
+#*
+api_tester.sh
+adams_temp.html
+*.wsgi*.DS_Store
 *.dia~

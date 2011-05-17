@@ -1,0 +1,19 @@
+<div id="{{ id }}_button"
+    {% if href %}
+        data-href="{{ href }}" 
+    {% endif %}
+    class="large-icon-button{% if extra_classes %} {{ extra_classes }}{% endif %}">
+    <button id="{{ id }}_icon" 
+        {% if title %}
+            title="{{ title }}" 
+        {% else %}
+            {% if label %}
+                title="{{ label }}" 
+            {% endif %}
+        {% endif %}
+        class="large-icon-button-icon">
+    </button>
+    <label for="{{ id }}_icon" id="{{ id }}_label" class="large-icon-button-label">
+        {{ label }}
+    </label>
+</div>
