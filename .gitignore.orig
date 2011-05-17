@@ -1,0 +1,19 @@
+<<<<<<< HEAD
+*.DS_Store
+*.dia~
+=======
+.DS_Store
+*.pyc
+documentation
+*~
+concertapp/media/audio/*.*
+concertapp/media/images/*
+!concertapp/media/audio/.gitignore
+!concertapp/media/images/.gitignore
+Concert.tmproj
+*.autosave
+#*
+api_tester.sh
+adams_temp.html
+*.wsgi
+>>>>>>> 125fdece9d363fb357b09fb02a5127336c99a9a9

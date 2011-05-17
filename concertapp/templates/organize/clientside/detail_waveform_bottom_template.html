@@ -1,7 +1,0 @@
-{% load extra_template_tags %}
-
-{% verbatim %}
-    {{each(i, tag) tags.toJSON()}}
-        {{tmpl(tag) "#tag_widget_template"}}
-    {{/each}}
-{% endverbatim %}
