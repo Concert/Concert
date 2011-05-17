@@ -1,0 +1,54 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">/**
+<span class='line'>  2</span>  *  @file       init.js
+<span class='line'>  3</span>  *  This file contains the function that is called from the bottom of the template,
+<span class='line'>  4</span>  *  to initialize all client side code.  It also contains the individual functions
+<span class='line'>  5</span>  *  that are used to initialize each page on the UI.
+<span class='line'>  6</span>  *  @author     Colin Sullivan &lt;colinsul [at] gmail.com>
+<span class='line'>  7</span>  **/</span><span class="WHIT">
+<span class='line'>  8</span> 
+<span class='line'>  9</span> </span><span class="COMM">/**
+<span class='line'> 10</span>  *  Initialize all client side functionality by creating the applicable
+<span class='line'> 11</span>  *  page object.
+<span class='line'> 12</span>  *
+<span class='line'> 13</span>  *  @param  {String}        pagePath  -   From the server, the string that we will
+<span class='line'> 14</span>  *  use to determine what page we are on.  This variable is sent in on 
+<span class='line'> 15</span>  *  base_site.html template.
+<span class='line'> 16</span>  *  @param  {Object}        data   -   the JSON object that contains all of the
+<span class='line'> 17</span>  *  data we need for this page.
+<span class='line'> 18</span>  **/</span><span class="WHIT">
+<span class='line'> 19</span> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="NAME">initializeUI</span><span class="PUNC">(</span><span class="NAME">pagePath</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">data</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 20</span> </span><span class="WHIT">    </span><span class="NAME">$</span><span class="PUNC">(</span><span class="NAME">document</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">ready</span><span class="PUNC">(</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 21</span> 
+<span class='line'> 22</span> </span><span class="WHIT">        </span><span class="COMM">/* Make global notifier object that we can use anywhere to notify the user */</span><span class="WHIT">
+<span class='line'> 23</span> </span><span class="WHIT">        </span><span class="NAME">com.concertsoundorganizer.notifier</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Notifier</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 24</span> 
+<span class='line'> 25</span> </span><span class="WHIT">        </span><span class="COMM">/* image urls put here will be loaded 
+<span class='line'> 26</span>         preloadImages([
+<span class='line'> 27</span>             '/graphics/ajax-loader.gif',
+<span class='line'> 28</span>             '/graphics/somethingelse.jpg'
+<span class='line'> 29</span>         ]);
+<span class='line'> 30</span>         */</span><span class="WHIT">    
+<span class='line'> 31</span>         
+<span class='line'> 32</span>         </span><span class="COMM">/* For each page, run JS corresponding to that page */</span><span class="WHIT">
+<span class='line'> 33</span> </span><span class="WHIT">        </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">pageInitializers</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 34</span> </span><span class="WHIT">            </span><span class="STRN">'/login/'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">LoginPage</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 35</span> </span><span class="WHIT">            </span><span class="STRN">'/'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">LoggedInPage</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 36</span> </span><span class="WHIT">            </span><span class="STRN">'/collections/'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">CollectionsPage</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 37</span> </span><span class="WHIT">            </span><span class="STRN">'/audio/upload/'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">UploadPage</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 38</span> </span><span class="WHIT">            </span><span class="STRN">'/organize/collection/'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">OrganizePage</span><span class="WHIT">
+<span class='line'> 39</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 40</span> </span><span class="WHIT">        
+<span class='line'> 41</span>         </span><span class="COMM">/* Check browser problems */</span><span class="WHIT">
+<span class='line'> 42</span> </span><span class="WHIT">        </span><span class="NAME">detectBrowserCompatibility</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 43</span> 
+<span class='line'> 44</span> </span><span class="WHIT">        </span><span class="COMM">/* Run the initializer function for this page. */</span><span class="WHIT">
+<span class='line'> 45</span> </span><span class="WHIT">        </span><span class="NAME">com.concertsoundorganizer.page</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">pageInitializers</span><span class="PUNC">[</span><span class="NAME">pagePath</span><span class="PUNC">]</span><span class="PUNC">(</span><span class="NAME">data</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 46</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 47</span> </span><span class="PUNC">}</span></pre></body></html>
