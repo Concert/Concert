@@ -1,6 +1,5 @@
 .DS_Store
 *.pyc
-documentation
 *~
 concertapp/media/audio/*.*
 concertapp/media/images/*
