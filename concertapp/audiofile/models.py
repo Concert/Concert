@@ -16,6 +16,7 @@ import os, tempfile, sys
 
 from concertapp.collection.models import *
 
+
 class AudioFile(models.Model):
     # The zoom levels (px per second) for images that will be created.  A directory
     # for each of these numbers should exist in the MEDIA_ROOT/waveforms/ directory
@@ -44,6 +45,7 @@ class AudioFile(models.Model):
     #   @throws     audiotools.EncodingError - upon encoding error
     #   @throws     probably other stuff.
     def save(self, f = None, *args, **kwargs):
+        from concertapp.event.models import AudioFileUploadedEvent
         # if we're updating not initializing
         if self.pk:
             return super(AudioFile,self).save(*args,**kwargs)
@@ -118,6 +120,8 @@ class AudioFile(models.Model):
         
     # Delete the current audio file from the filesystem
     def delete(self):
+        from concertapp.audiosegment.models import AudioSegment
+        from concertapp.event.models import AudioFileUploadedEvent
         
         # Remove wav from this object, and delete file on filesystem.
         if(self.wav and os.path.exists(self.wav.name)):

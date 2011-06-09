@@ -31,6 +31,7 @@ class AudioSegment(models.Model):
         return self.name
 
     def save(self, *args, **kwargs):
+        from concertapp.event.models import *
         self.full_clean()
 
         new = False

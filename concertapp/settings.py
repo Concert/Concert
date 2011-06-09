@@ -100,13 +100,13 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.markup',
     'tastypie',
+    'south',
     'concertapp',
     'concertapp.audiofile',
     'concertapp.audiosegment',
     'concertapp.collection',
     'concertapp.event',
     'concertapp.tag',
-    'south'
 )
 
 FIXTURE_DIRS = (

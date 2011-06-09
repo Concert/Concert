@@ -1,4 +1,10 @@
 from concertapp.models import *
+from concertapp.collection.models import *
+from concertapp.audiofile.models import *
+from concertapp.audiosegment.models import *
+from concertapp.event.models import *
+from concertapp.tag.models import *
+
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.http import HttpRequest
@@ -171,7 +177,7 @@ class APITestCase(DjangoTestCase):
                                 data = '{"name":"new_audio_segment","creator":"/api/1/user/1/","beginning":"1","end":"5","audioFile":"/api/1/audiofile/%s/","collection":"/api/1/collection/1/"}' % audio_id,
                                 content_type = 'application/json')
 
-        self.assertEqual(resp.status_code, 200) #make sure API created audio segment
+        self.assertEqual(resp.status_code, 200, 'Response was not 200.  It was: '+str(resp)) # make sure API created audio segment
 
         try:
             AudioSegment.objects.get(name = "new_audio_segment")

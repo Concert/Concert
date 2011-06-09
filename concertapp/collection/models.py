@@ -41,6 +41,7 @@ class Collection(models.Model):
                 self.users.add(self.admin)
 
             # Create event
+            from concertapp.event.models import CreateCollectionEvent
             CreateCollectionEvent.objects.create(user=self.admin, collection=self)
         else:
             super(Collection, self).save(*args, **kwargs)
