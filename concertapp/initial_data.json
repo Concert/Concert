@@ -20,5 +20,22 @@
             "mp3": "1.mp3", 
             "duration": 258
         }
+    },
+    {
+        "model": "concertapp.concertuser", 
+        "pk": 1, 
+        "fields": {
+            "unreadEvents": [], 
+            "user": 1
+        }
+    },
+    {
+        "model": "concertapp.event", 
+        "pk": 1, 
+        "fields": {
+            "collection": 1, 
+            "user": 1, 
+            "eventType": 6
+        }
     }
 ]
