@@ -35,7 +35,19 @@
         "fields": {
             "collection": 1, 
             "user": 1, 
-            "eventType": 6
+            "eventType": 6,
+            "time": "2011-06-09 10:30:00"
+        }
+    },
+    {
+        "model": "concertapp.event", 
+        "pk": 1, 
+        "fields": {
+            "collection": 1, 
+            "user": 1, 
+            "audioFile": 1, 
+            "eventType": 3,
+            "time": "2011-06-09 10:30:00"
         }
     }
 ]
