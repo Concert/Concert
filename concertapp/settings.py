@@ -6,7 +6,7 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@domain.com'),
+    #('Admin', 'concertsoundorganizer@concertsoundorganizer.org'),
 )
 
 MANAGERS = ADMINS
@@ -90,7 +90,7 @@ ROOT_URLCONF = 'concertapp.urls'
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
-    )
+)
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -101,6 +101,11 @@ INSTALLED_APPS = (
     'django.contrib.markup',
     'tastypie',
     'concertapp',
+    'concertapp.audiofile',
+    'concertapp.audiosegment',
+    'concertapp.collection',
+    'concertapp.event',
+    'concertapp.tag',
     'south'
 )
 
@@ -135,3 +140,26 @@ SITE_ID = 1
 CSRF_FAILURE_VIEW='concertapp.lib.errorviews.csrf_failure'
 
 TASTYPIE_DATETIME_FORMATTING='rfc-2822'
+
+# A sample logging configuration. The only tangible logging
+# performed by this configuration is to send an email to
+# the site admins on every HTTP 500 error.
+# See http://docs.djangoproject.com/en/dev/topics/logging for
+# more details on how to customize your logging configuration.
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler'
+        }
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+    }
+}

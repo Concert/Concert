@@ -31,7 +31,7 @@ class AudioFileResource(MyResource):
     uploader = fields.ForeignKey('concertapp.users.api.UserResource', 'uploader')
     collection = fields.ForeignKey('concertapp.collection.api.CollectionResource', "collection")
     segments = fields.ManyToManyField(
-        'concertapp.audiosegments.api.AudioSegmentResource',
+        'concertapp.audiosegment.api.AudioSegmentResource',
         'segments',
         null=True
     )

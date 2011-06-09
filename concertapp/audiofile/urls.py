@@ -5,7 +5,7 @@ from django.conf import settings
 
 admin.autodiscover()
 
-urlpatterns = patterns('concertapp.audio.views',
+urlpatterns = patterns('concertapp.audiofile.views',
     # Upload_audio
     url(r'^upload/$', 'upload_audio', name='upload_audio'),
     # reserve a unique upload_id

@@ -12,8 +12,8 @@ import os, hashlib, tempfile, audiotools, tempfile
 
 from concertapp.models  import *
 
-from concertapp.audio import audioHelpers
-from concertapp.audio.waveform import *
+from concertapp.audiofile import audioHelpers
+from concertapp.audiofile.waveform import *
 from concertapp.settings import MEDIA_ROOT, LOGIN_REDIRECT_URL
 
 

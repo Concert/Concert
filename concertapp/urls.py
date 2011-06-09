@@ -1,10 +1,10 @@
-from concertapp.audiosegments.api import AudioSegmentResource
+from concertapp.audiosegment.api import AudioSegmentResource
 from concertapp.collection.api import CollectionResource, RequestResource 
 from concertapp.event.api import *
-from concertapp.audio.api import AudioFileResource
-from concertapp.tags.api import TagResource
+from concertapp.audiofile.api import AudioFileResource
+from concertapp.tag.api import TagResource
 from concertapp.users.api import UserResource
-from concertapp.audiosegments.api import AudioSegmentResource
+from concertapp.audiosegment.api import AudioSegmentResource
 
 # We can import the views explicitly here because there are only like
 # 3 server-side URLS in the entire program.
@@ -52,7 +52,7 @@ urlpatterns = patterns('',
     (r'^collections/', include('concertapp.collection.urls')),
 
     # audio urls (upload_audio and audio utilities)
-    (r'^audio/', include('concertapp.audio.urls')), 
+    (r'^audio/', include('concertapp.audiofile.urls')), 
 
     #   Organize audio (for a collection)
     url(r'organize/collection/(?P<collection_id>[\d]+)/$', organize_collection, name='organize_collection'),

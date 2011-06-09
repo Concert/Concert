@@ -12,17 +12,17 @@ import os, hashlib, tempfile, audiotools, json
 
 from concertapp.models  import *
 
-from concertapp.audio import audioHelpers
-from concertapp.audio.waveform import *
+from concertapp.audiofile import audioHelpers
+from concertapp.audiofile.waveform import *
 from concertapp.settings import MEDIA_ROOT, LOGIN_REDIRECT_URL
 
 from concertapp.decorators import user_is_member_and_collection_exists
 
 from concertapp.collection.api import *
-from concertapp.audio.api import *
-from concertapp.audiosegments.api import *
-from concertapp.tags.api import *
-from concertapp.comment.api import *
+from concertapp.audiofile.api import *
+from concertapp.audiosegment.api import *
+from concertapp.tag.api import *
+
 from concertapp.event.api import *
 
 
