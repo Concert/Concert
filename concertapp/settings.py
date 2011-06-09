@@ -13,12 +13,6 @@ MANAGERS = ADMINS
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# TODO: Is this necessary anymore?
-# Fix up piston imports here. We would normally place piston in 
-# a directory accessible via the Django app, but this is an
-# example and we ship it a couple of directories up.
-sys.path.insert(0, os.path.join(BASE_DIR, '..', '..'))
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
