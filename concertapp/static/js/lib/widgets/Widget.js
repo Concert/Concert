@@ -49,7 +49,10 @@ var Widget = Backbone.View.extend(
         var template = this.template;
         if(template) {
             /* render new widget */
-            var newel = template.tmpl(this.model.toJSON());
+            var newel = template.tmpl(
+                /* with model data and extra template data */
+                _.extend(this.model.toJSON(), this._extra_template_data())
+            );
             if(newel.length != 1) {
                 throw new Error('widgets must have a single containing element');
             }
@@ -67,5 +70,12 @@ var Widget = Backbone.View.extend(
         this.delegateEvents();
                 
         return this;
-    }
+    },
+    /**
+     *  This method will be called when rendering, and can be overridden to send
+     *  extra arbitrary data to the template.
+     **/
+    _extra_template_data: function() {
+        return {};
+    }, 
 });

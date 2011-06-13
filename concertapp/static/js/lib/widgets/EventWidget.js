@@ -29,6 +29,14 @@ var EventWidget = Widget.extend(
          **/
         this.timeUpdateInterval = null;
         
+        var currentRoute = params.currentRoute;
+        if(typeof(currentRoute) == 'undefined') {
+            throw new Error('params.currentRoute is undefined');
+        }
+        /**
+         *  The route we are currently on
+         **/
+        this.currentRoute = currentRoute;
 
         _.bindAll(this, 'update_time');
         
@@ -88,5 +96,17 @@ var EventWidget = Widget.extend(
         var formattedTime = pretty_date(this.model.get('time'));
         
         this.timeContainerElement.html(formattedTime);
+    }, 
+    
+    /**
+     *  Send along current route info to the template so it can render proper
+     *  context data.
+     **/
+    _extra_template_data: function() {
+        var parentData = Widget.prototype._extra_template_data.call(this);
+        
+        return _.extend(parentData, {
+            currentRoute: this.currentRoute
+        });
     }, 
 });

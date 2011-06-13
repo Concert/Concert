@@ -3,9 +3,13 @@
 
 {# The template for an `AudioFileCommentEvent` widget #}
 
-{% block event_text %} commented on 
+{% block event_text %}
     {%verbatim%}
-        {{tmpl(audioFile.toJSON()) "#audiofile_link_template"}} from 
-        {{tmpl(collection.toJSON()) "#collection_link_template"}}
+        {{if currentRoute == 'collections' || currentRoute == 'collection_audio'}}
+            commented on {{tmpl(audioFile.toJSON()) "#audiofile_link_template"}}
+        {{/if}}
+        {{if currentRoute == 'collections'}}
+            from {{tmpl(collection.toJSON()) "#collection_link_template"}}
+        {{/if}}
     {% endverbatim %}
 {% endblock %}

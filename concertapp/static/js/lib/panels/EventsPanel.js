@@ -196,7 +196,6 @@ var EventsPanel = Panel.extend({
         
         /* Render the events for this collection */
         this._render_events(collection.get('events'));
-        
     }, 
     
     /**
@@ -207,7 +206,7 @@ var EventsPanel = Panel.extend({
         /* Comment form is hidden */
         this.commentContainerElement.addClass('hidden');
 
-        return this.render_collection(collectionId, collection);
+        this.render_collection(collectionId, collection);
     }, 
     
     /**
@@ -253,18 +252,15 @@ var EventsPanel = Panel.extend({
      *  @param  {EventSet}    eventModels    The models to render
      **/
     _render_events: function(eventModels) {
-        
-        
         var panel = this;
 
         var frag = document.createDocumentFragment();
+        var currentRoute = this.page.currentRoute;
         /* For each event model */
         eventModels.each(function(eventModel) {
-            var widget = panel._create_event_widget(eventModel);
+            var widget = panel._create_event_widget(eventModel, currentRoute);
 
             frag.appendChild(widget.render().el);
-            
-            
         });
         
         this.contents.html(frag);
@@ -278,30 +274,31 @@ var EventsPanel = Panel.extend({
      *  @param  {Event}    eventModel    The Event object to be added to our display
      **/
     _render_and_add_event: function(eventModel) {
-        var widget = this._create_event_widget(eventModel);
+        var widget = this._create_event_widget(eventModel, this.page.currentRoute);
         
         this.contents.prepend(widget.render().el);
-        
     }, 
-    
+
     /**
      *  Called from internal render methods when a widget is to be created.
      *
      *  @param  {Event}    eventModel    The model instance from which to create
      *  the widget.
+     *  @param  {String}    currentRoute    The current route we're on
      **/
-    _create_event_widget: function(eventModel) {
+    _create_event_widget: function(eventModel, currentRoute) {
         var eventType = eventModel.get('eventType');
+
         /* Proper widget for this event */
         var widgetClass = this.eventTypesToWidgetMap[eventType];
         var widgetTemplate = this.eventTypesToTemplateMap[eventType];
-        
-        
+
         /* Create and return widget */
         return new widgetClass({
             panel: this, 
             model: eventModel,
-            template: widgetTemplate 
+            template: widgetTemplate,
+            currentRoute: currentRoute
         });
     }, 
     

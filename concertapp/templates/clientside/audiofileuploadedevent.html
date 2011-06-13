@@ -3,9 +3,11 @@
 
 {# The template for an `AudioFileUploadedEventWidget` #}
 
-{% block event_text %} uploaded 
+{% block event_text %}
     {%verbatim%}
-        {{tmpl(audioFile.toJSON()) "#audiofile_link_template"}} to 
-        {{tmpl(collection.toJSON()) "#collection_link_template"}}
+        uploaded {{tmpl(audioFile.toJSON()) "#audiofile_link_template"}}
+        {{if currentRoute == 'collections'}}
+            to {{tmpl(collection.toJSON()) "#collection_link_template"}}
+        {{/if}}
     {% endverbatim %}
 {% endblock %}
