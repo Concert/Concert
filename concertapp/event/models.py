@@ -42,8 +42,8 @@ class Event(models.Model):
     # The event might also be related to a `Tag` instance
     tag = models.ForeignKey(Tag, related_name='events', null=True)
     
-    # Content (used for comment on comment events)
-    content = models.TextField(null=True)
+    # Comment (used for comment events)
+    comment = models.TextField(null=True)
     
     ###
     #   The possible event types:
