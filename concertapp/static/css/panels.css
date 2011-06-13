@@ -362,11 +362,6 @@ div#list_panel_header{
 	margin: 0 auto;
 }
 
-input#list_panel_search, input#detail_waveform_panel_tag_input {
-    font-family: Georgia, serif;
-    font-size: 14px;
-    color: white;    
-}
 
 div#list_panel_search_container{
 	background: -webkit-gradient(linear, left top, left bottom, from(#18181f), to(#45455a));
@@ -418,21 +413,36 @@ div.title{
     font-size: 15px;
 }*/
 
-/*event header*/
-div#comment_list_panel_header {
-    padding-bottom: 10px;
-    margin: 0px 10px 0px 0px;
-    border-bottom: 1px solid white;
-    -webkit-box-shadow: 0px 1px 0px rgba(0,0,0,0.5);
-    margin-bottom: 1px;
-	background: #fff;
-}
-
+/* events panel */
 div#events_list_panel{
 	width: 578px;
 	padding: 10px;
 }
 
+/* Container for comment form */
+div#events_list_panel_header {
+    margin-bottom: 1em;
+}
+
+/* Comment form field */
+textarea#comment_field {
+    width: 100%;
+    height: 2.5em;
+    padding: 0.5em;
+    box-sizing: border-box;
+}
+
+/* When comment form field is expanded */
+textarea#comment_field.expanded {
+    height: 4em;
+}
+
+/* Comment button */
+button#comment_button.hidden {
+    display: none;
+}
+
+/* Container for events */
 div#events_list_panel_contents {
     
 }

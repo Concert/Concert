@@ -33,6 +33,16 @@ body {
   
 }
 
+input, textarea {
+    font-family: Georgia, serif;
+    font-size: 14px;
+}
+
+input#list_panel_search, input#detail_waveform_panel_tag_input {
+    color: white;    
+}
+
+
 div#layout {
 	width: 960px;
 	margin: 0 auto;

@@ -48,6 +48,10 @@ var EventsPanel = Panel.extend({
         
         /* The container for our comment form */
         this.commentContainerElement = $(this.el).children('.panel_header');
+        /* The comment field */
+        this.commentFieldElement = $('#comment_field');
+        /* The comment button */
+        this.commentButtonElement = $('#comment_button');
         
         /**
          *  The current EventSet we are watching for changes.
@@ -55,8 +59,56 @@ var EventsPanel = Panel.extend({
         var currentEventSet = null;
         
         _.bindAll(this, '_render_and_add_event');
-        
+        _.bindAll(this, '_handle_comment_field_focus');
+        _.bindAll(this, '_handle_comment_field_blur');
+        _.bindAll(this, '_handle_comment_field_keyup');
     },
+    
+    events: {
+        'focus #comment_field': '_handle_comment_field_focus',
+        'blur #comment_field': '_handle_comment_field_blur', 
+        'keyup #comment_field': '_handle_comment_field_keyup'
+    }, 
+    
+    /**
+     *  When the comment field has focus, expand and show 'comment' button.
+     **/
+    _handle_comment_field_focus: function() {
+        /* Expand field */
+        this.commentFieldElement.addClass('expanded');
+        
+        /* Show comment button, initially disabled */
+        this.commentButtonElement.removeClass('hidden').addClass('disabled');
+    }, 
+    
+    /**
+     *  When the comment field is blurred, contract and hide button.
+     **/
+    _handle_comment_field_blur: function() {
+        var field = this.commentFieldElement;
+
+        /* If the user did not type anything */
+        if(field.val() == '') {
+            /* contract field and hide comment button */
+            field.removeClass('expanded');
+            
+            this.commentButtonElement.addClass('hidden');
+        }
+    }, 
+    
+    /**
+     *  When the user types in the comment field, activate button.
+     **/
+    _handle_comment_field_keyup: function() {
+        var field = this.commentFieldElement;
+        
+        if(field.val() != '') {
+            this.commentButtonElement.removeAttr('disabled');
+        }
+        else {
+            this.commentButtonElement.attr('disabled', 'true');
+        }
+    }, 
     
     /**
      *  Stop watching any `EventSet`s we are currently watching.
