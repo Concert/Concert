@@ -68,7 +68,8 @@ The base template for all pages.  All page templates will use this.
     <script src="/js/lib/models/RequestDeniedEvent.js"></script>
     <script src="/js/lib/models/RequestJoinCollectionEvent.js"></script>
     <script src="/js/lib/models/RequestRevokedEvent.js"></script>
-    
+    <script src="/js/lib/models/AudioSegmentCommentEvent.js"></script>
+    <script src="/js/lib/models/AudioFileCommentEvent.js"></script>
     
     {# Modal notification framework #}
     <script src="/js/lib/notifications/ModalAlert.js"></script>
@@ -119,6 +120,7 @@ The base template for all pages.  All page templates will use this.
     <script src="/js/lib/widgets/RequestDeniedEventWidget.js"></script>
     <script src="/js/lib/widgets/RequestJoinCollectionEventWidget.js"></script>
     <script src="/js/lib/widgets/RequestRevokedEventWidget.js"></script>
+    <script src="/js/lib/widgets/AudioFileCommentEventWidget.js"></script>
     <script src="/js/lib/widgets/CollectionWidget.js"></script>
     
     
@@ -253,6 +255,9 @@ The base template for all pages.  All page templates will use this.
     </script>
     <script id="requestjoincollectionevent_template" type="text/x-jquery-tmpl">
         {% include 'clientside/requestjoincollectionevent.html' %}
+    </script>
+    <script id="audiofilecommentevent_template" type="text/x-jquery-tmpl">
+        {% include 'clientside/audiofilecommentevent.html' %}
     </script>
     
     <script id="requestrevokedevent_template" type="text/x-jquery-tmpl">

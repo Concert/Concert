@@ -252,5 +252,14 @@ var LoggedInPage = Page.extend(
         console.log(term);
     }, 
     
+    /**
+     *  Called from UI classes when user makes a comment.
+     *
+     *  @param  {String}    content The content of the comment.
+     **/
+    create_new_comment: function(content) {
+        this.modelManager.create_new_comment(content);
+    }, 
+    
 });
     

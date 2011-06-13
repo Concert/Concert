@@ -28,7 +28,10 @@ var EventsPanel = Panel.extend({
             6: CreateCollectionEventWidget,
             7: RequestJoinCollectionEventWidget,
             8: RequestDeniedEventWidget,
-            9: RequestRevokedEventWidget
+            9: RequestRevokedEventWidget,
+            /*10: TagCommentEventWidget, 
+            11: AudioSegmentCommentEventWidget, */
+            12: AudioFileCommentEventWidget
         }
         
         /**
@@ -43,7 +46,10 @@ var EventsPanel = Panel.extend({
             6: $('#createcollectionevent_template'),
             7: $('#requestjoincollectionevent_template'),
             8: $('#requestdeniedevent_template'),
-            9: $('#requestrevokedevent_template')
+            9: $('#requestrevokedevent_template'),
+            /*10: $('#tagcommentevent_template), 
+            11: $("#audiosegmentcommentevent_template"), */
+            12: $('#audiofilecommentevent_template')
         }
         
         /* The container for our comment form */
@@ -62,12 +68,14 @@ var EventsPanel = Panel.extend({
         _.bindAll(this, '_handle_comment_field_focus');
         _.bindAll(this, '_handle_comment_field_blur');
         _.bindAll(this, '_handle_comment_field_keyup');
+        _.bindAll(this, '_handle_comment_button_click');
     },
     
     events: {
         'focus #comment_field': '_handle_comment_field_focus',
         'blur #comment_field': '_handle_comment_field_blur', 
-        'keyup #comment_field': '_handle_comment_field_keyup'
+        'keyup #comment_field': '_handle_comment_field_keyup',
+        'click #comment_button': '_handle_comment_button_click'
     }, 
     
     /**
@@ -108,6 +116,23 @@ var EventsPanel = Panel.extend({
         else {
             this.commentButtonElement.attr('disabled', 'true');
         }
+    }, 
+    
+    /**
+     *  When the user submits a comment, create a new event for this collection.
+     **/
+    _handle_comment_button_click: function() {
+        var button = this.commentButtonElement;
+        var field = this.commentFieldElement;
+        /* if button is disabled, do nothing */
+        if(button.attr('disabled')) {
+            return;
+        }
+        
+        /* Otherwise, create the event */
+        this.page.create_new_comment(field.val());
+        field.val('');
+        field.blur();
     }, 
     
     /**
@@ -189,11 +214,16 @@ var EventsPanel = Panel.extend({
      *  When we are viewing an audio file from a collection
      **/
     render_collection_audio_file: function(collectionId, fileId, collection, audioFile) {
+        var events = audioFile.get('events');
+
         /* Comment form is visible */
         this.commentContainerElement.removeClass('hidden');
+        
+        /* watch audio file's events for changes */
+        this._start_watching_eventset(events);
 
         /* render the audio file's events */
-        this._render_events(audioFile.get('events'));
+        this._render_events(events);
     }, 
     
     /**
@@ -201,6 +231,7 @@ var EventsPanel = Panel.extend({
      **/
     render_collection_audio_segment: function(collectionId, fileId, segmentId, collection, audioFile, audioSegment) {
         this._start_watching_eventset(audioSegment.get('events'));
+        
         
         /* Initially render all events */
         this._render_events(audioSegment.get('events'));

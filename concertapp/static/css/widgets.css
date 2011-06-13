@@ -85,13 +85,17 @@ div.tag {
 /**
  *  Event widgets
  **/
-
-
-
 .event_widget{
+    /* Display the icon to the left of the content */
     display: -webkit-box;
     -webkit-box-orient: horizontal;
 }
+
+/* event comment text */
+div.event_widget_content {
+    
+}
+
 div.time {
     display: inline;
 }

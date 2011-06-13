@@ -4,9 +4,16 @@
 
 <div class="event_widget">
     <div class="type${eventType}_event_widget_icon event_widget_icon widget_icon"></div>
-    {%verbatim%}{{tmpl(user.toJSON()) "#user_link_template"}}{%endverbatim%}
-    {% block event_text %}{% endblock %}
-    <div class="time">
-        {# Time will be injected here in pretty format #}
+    <div class="type${eventType}_event_widget_content event_widget_content">
+        {%verbatim%}{{tmpl(user.toJSON()) "#user_link_template"}}{%endverbatim%}
+        <span class="event_widget_text">{% block event_text %}{% endblock %}</span>
+        <div class="time">
+            {# Time will be injected here in pretty format #}
+        </div>
+        {% verbatim %}
+            {{if comment && comment != ''}}
+                <div class="event_widget_comment">${comment}</div>
+            {{/if}}
+        {% endverbatim %}
     </div>
 </div>

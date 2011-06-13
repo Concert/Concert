@@ -28,7 +28,7 @@ api1.register(TagResource())
 api1.register(AudioFileResource())
 api1.register(AudioSegmentResource())
 
-# Events
+# Events will only be accessed through the base level resource
 api1.register(EventResource())
 
 urlpatterns = patterns('',
