@@ -118,3 +118,8 @@ div.type2_event_widget_icon {
 div.type3_event_widget_icon {
     background: url(/graphics/file.png);
 }
+
+/* File comment */
+div.type12_event_widget_icon {
+    background: url(/graphics/comment.png);
+}
