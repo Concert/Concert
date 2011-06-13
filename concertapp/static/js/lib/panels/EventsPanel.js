@@ -46,6 +46,9 @@ var EventsPanel = Panel.extend({
             9: $('#requestrevokedevent_template')
         }
         
+        /* The container for our comment form */
+        this.commentContainerElement = $(this.el).children('.panel_header');
+        
         /**
          *  The current EventSet we are watching for changes.
          **/
@@ -97,6 +100,8 @@ var EventsPanel = Panel.extend({
             allCollectionEvents.add(collection.get('events').models);
         });
         
+        /* Comment form is hidden */
+        this.commentContainerElement.addClass('hidden');
         
         /* Render this giant list of events */
         this._render_events(allCollectionEvents);
@@ -107,6 +112,11 @@ var EventsPanel = Panel.extend({
      *  collection.
      **/
     render_collection: function(collectionId, collection) {
+        
+        /* Comment form is hidden */
+        this.commentContainerElement.addClass('hidden');
+
+        
         /* Render the events for this collection */
         this._render_events(collection.get('events'));
         
@@ -117,6 +127,9 @@ var EventsPanel = Panel.extend({
      *  viewing a collection.
      **/
     render_collection_audio: function(collectionId, collection) {
+        /* Comment form is hidden */
+        this.commentContainerElement.addClass('hidden');
+
         return this.render_collection(collectionId, collection);
     }, 
     
@@ -124,6 +137,9 @@ var EventsPanel = Panel.extend({
      *  When we are viewing an audio file from a collection
      **/
     render_collection_audio_file: function(collectionId, fileId, collection, audioFile) {
+        /* Comment form is visible */
+        this.commentContainerElement.removeClass('hidden');
+
         /* render the audio file's events */
         this._render_events(audioFile.get('events'));
     }, 
