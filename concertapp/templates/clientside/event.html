@@ -7,13 +7,13 @@
     <div class="type${eventType}_event_widget_content event_widget_content">
         {%verbatim%}{{tmpl(user.toJSON()) "#user_link_template"}}{%endverbatim%}
         <span class="event_widget_text">{% block event_text %}{% endblock %}</span>
-        <div class="time">
-            {# Time will be injected here in pretty format #}
-        </div>
         {% verbatim %}
             {{if comment && comment != ''}}
                 <div class="event_widget_comment">${comment}</div>
             {{/if}}
         {% endverbatim %}
+        <div class="time small_text">
+            {# Time will be injected here in pretty format #}
+        </div>
     </div>
 </div>

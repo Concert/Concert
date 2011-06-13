@@ -33,10 +33,12 @@ body {
   
 }
 
-input, textarea {
+input, textarea, div.event_widget_comment {
     font-family: Georgia, serif;
     font-size: 14px;
 }
+
+
 
 input#list_panel_search, input#detail_waveform_panel_tag_input {
     color: white;    
