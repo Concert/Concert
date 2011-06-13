@@ -59,7 +59,8 @@ class Event(models.Model):
         (8, 'RequestDeniedEvent'),
         (9, 'RequestRevokedEvent'),
         (10, 'TagCommentEvent'),
-        (11, 'AudioSegmentCommentEvent')
+        (11, 'AudioSegmentCommentEvent'),
+        (12, 'AudioFileCommentEvent')
     )
     # The type of event that this is
     eventType = models.IntegerField(choices=EVENT_TYPES, null=False)
@@ -96,6 +97,20 @@ class AudioSegmentCommentEvent(Event):
         creator = self.user
         audioSegment = self.audioSegment.name
         return str(creator) + " commented on " + str(audioSegment) + ":\n'" + self.content + "'"
+
+## When a user comments on an audio file
+class AudioFileCommentEvent(Event):
+    # Set the default event type
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault('eventType', 12)
+        return super(AudioFileCommentEvent, self).__init__(*args, **kwargs)
+
+    def __unicode____(self):
+        creator = self.user
+        audioFile = self.audioFile.name
+        return str(creator) + "commented on " + str(audioFile) + ":\n'" + self.content + "'"
+    
+    
 
 ## When an audio segment is created.
 class AudioSegmentCreatedEvent(Event):

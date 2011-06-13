@@ -138,3 +138,6 @@ class AudioSegmentCommentEventResource(CollectionEventResource):
     class Meta(CollectionEventResource.Meta):
         queryset = AudioSegmentCommentEvent.objects.all()
 
+class AudioFileCommentEventResource(CollectionEventResource):
+    class Meta(CollectionEventResource.Meta):
+        queryset = AudioFileCommentEvent.objects.all()
