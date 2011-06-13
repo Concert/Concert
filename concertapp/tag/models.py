@@ -44,24 +44,24 @@ class Tag(models.Model):
             if Tag.objects.filter(name = self.name, collection = self.collection):
                 raise ValidationError('Tags must have unique names!')
         
-    def delete(self):
-        # Get all segments with this tag
-        segments = self.segments.all()
-        
+#    def delete(self):
+#        # Get all segments with this tag
+#        segments = self.segments.all()
+#        
         # For each segment
-        for segment in segments :
+#        for segment in segments :
             # If segment only has one tag, it is this one, so we can delete segment
-            if segment.tag_set.count() == 1 :
+#            if segment.tag_set.count() == 1 :
                 # delete segment
-                segment.delete()
+#                segment.delete()
         
         #Make all unread TagCreatedEvents read                
-        for event in TagCreatedEvent.objects.filter(tag = self):
-            event.active = False
+#        for event in TagCreatedEvent.objects.filter(tag = self):
+#            event.active = False
 
         #Make all unread TagCommentEvent read
-        for event in TagCommentEvent.objects.filter(tag_comment__tag = self):
-            event.active = False
+#        for event in TagCommentEvent.objects.filter(tag_comment__tag = self):
+#            event.active = False
 
         # Delete tag using built-in delete method
-        super(Tag, self).delete()
+#        super(Tag, self).delete()

@@ -31,7 +31,7 @@ class AudioSegment(models.Model):
         return self.name
 
     def save(self, *args, **kwargs):
-        from concertapp.event.models import *
+        from concertapp.event.models import AudioSegmentCreatedEvent
         self.full_clean()
 
         new = False
@@ -72,6 +72,7 @@ class AudioSegment(models.Model):
         return ', '.join(tags)
     
     def delete(self):
+        from concertapp.event.models import AudioSegmentCreatedEvent, AudioSegmentTaggedEvent
         for event in AudioSegmentCreatedEvent.objects.filter(audioSegment = self):
             event.active = False
 
