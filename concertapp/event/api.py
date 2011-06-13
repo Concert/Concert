@@ -134,3 +134,7 @@ class RequestJoinCollectionEventResource(CollectionEventResource):
     class Meta(CollectionEventResource.Meta):
         queryset = RequestJoinCollectionEvent.objects.all()
 
+class AudioSegmentCommentEventResource(CollectionEventResource):
+    class Meta(CollectionEventResource.Meta):
+        queryset = AudioSegmentCommentEvent.objects.all()
+

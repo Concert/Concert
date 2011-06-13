@@ -19,18 +19,15 @@ from concertapp.audiosegment.models import *
 from concertapp.audiofile.models import *
 from concertapp.tag.models import *
 
-###
-# An abstract class (abstract by Concert semantics, not Django) used as a base event
-# class.  Not abstract so models can have lists of events (i.e. a `User` can have
-# a m2m relationship of unread events)
+##  Base event class.
+#
+#   Has all members that subclasses will ever need, this helps us use one REST
+#   interface for transporting all event types. Models can have lists of events (i.e. #   a `User` can have a m2m relationship of unread events)
 class Event(models.Model):
     # The time this event occurred
     time = models.DateTimeField(auto_now_add = True)
     # Wether this event is shown to the public or not
     active = models.BooleanField(default=True)
-    # The real class
-    #realType = models.ForeignKey(ContentType, editable=False, null=True)
-    
 
     # The collection that this event is associated with
     collection = models.ForeignKey(Collection, related_name='events')
@@ -45,6 +42,9 @@ class Event(models.Model):
     # The event might also be related to a `Tag` instance
     tag = models.ForeignKey(Tag, related_name='events', null=True)
     
+    # Content (used for comment on comment events)
+    content = models.TextField(null=True)
+    
     ###
     #   The possible event types:
     ###
@@ -57,23 +57,16 @@ class Event(models.Model):
         (6, 'CreateCollectionEvent'),
         (7, 'RequestJoinCollectionEvent'),
         (8, 'RequestDeniedEvent'),
-        (9, 'RequestRevokedEvent')
+        (9, 'RequestRevokedEvent'),
+        (10, 'TagCommentEvent'),
+        (11, 'AudioSegmentCommentEvent')
     )
     # The type of event that this is
     eventType = models.IntegerField(choices=EVENT_TYPES, null=False)
     
     
-    ###
-    # Only allow sub classes of Event to be saved, and when saving, determine the 
-    # sub class' type and store it in realType (e.g., TagCommentEvent, SegmentCommentEvent,
-    # etc.)
-    ###
+    ##  Update relevant user's `unreadEvents` member.
     def save(self, **kwargs):
-#        if type(self)==Event:
-#            raise Exception('Event is abstract, but not through Django semantics (e.g., \'Class Meta: abstract = True\' is NOT set).\nYou must use one of the Event subclasses')
-#        else:
-        # Add event to all of this collection's user's unread events
-        #self.realType = self._get_real_type()
         super(Event,self).save(kwargs)
         for user in self.collection.users.all():
             user.get_profile().unreadEvents.add(self)
@@ -81,19 +74,7 @@ class Event(models.Model):
     def _get_real_type(self):
         return ContentType.objects.get_for_model(type(self))
 
-    ###
-    # return the sub_class object thats associated with this tuple
-    ###
-#    def cast(self):
-        #return self.realType.get_object_for_this_type(pk=self.pk)
-
-#    def __unicode__(self):
-#        return str(self.cast())
-
-
-###
-#   When a user comments on a tag.
-###
+## When a user comments on a tag.
 #class TagCommentEvent(Event):
 #    tag_comment = models.ForeignKey("TagComment", related_name = 'comment_event')
     
@@ -104,21 +85,19 @@ class Event(models.Model):
 #        return str(author) + " commented on tag '" + str(tag) + "'."
 
 
-###
-#   When a user comments on a segment
-###
-#class SegmentCommentEvent(Event):
-#    segment_comment = models.ForeignKey("SegmentComment", related_name = "comment_event" )
+## When a user comments on a segment
+class AudioSegmentCommentEvent(Event):
+    # Set the default event type
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault('eventType', 11)
+        return super(AudioSegmentCommentEvent, self).__init__(*args, **kwargs)
+    
+    def __unicode__(self):
+        creator = self.user
+        audioSegment = self.audioSegment.name
+        return str(creator) + " commented on " + str(audioSegment) + ":\n'" + self.content + "'"
 
-#    def __unicode__(self):
-#        author = self.segment_comment.author
-#        segment = self.segment_comment.segment.name
-
-#        return str(author) + " commented on segment '" + str(segment) + "'."
-
-###
-#   When an audio segment is created.
-###
+## When an audio segment is created.
 class AudioSegmentCreatedEvent(Event):
     # Set the default event type
     def __init__(self, *args, **kwargs):
@@ -131,9 +110,7 @@ class AudioSegmentCreatedEvent(Event):
 
         return str(creator) + " created segment '" + str(audioSegment) + "'."
     
-###
-#   When an audio segment has been tagged.
-###
+## When an audio segment has been tagged.
 class AudioSegmentTaggedEvent(Event):
     # Set the default event type
     def __init__(self, *args, **kwargs):
@@ -143,9 +120,7 @@ class AudioSegmentTaggedEvent(Event):
     def __unicode__(self):
         return str(self.user) + " tagged '" + str(self.audioSegment.name) + "' with tag '" + self.tag.name + "'."
 
-###
-#   When an audio file was uploaded
-###
+## When an audio file was uploaded
 class AudioFileUploadedEvent(Event):
     # Set the default event type
     def __init__(self, *args, **kwargs):
@@ -155,9 +130,7 @@ class AudioFileUploadedEvent(Event):
     def __unicode__(self):
         return str(self.audioFile.uploader) + " uploaded file '" + self.audioFile.name + "'."
 
-###
-#   When a user joins a collection
-###
+## When a user joins a collection
 class JoinCollectionEvent(Event):
     # Set the default event type
     def __init__(self, *args, **kwargs):
@@ -167,9 +140,7 @@ class JoinCollectionEvent(Event):
     def __unicode__(self):
         return str(self.user) + " joined " + str(self.collection)        
 
-###
-#   When a user leaves a collection
-###
+## When a user leaves a collection
 class LeaveCollectionEvent(Event):
     # Set the default event type
     def __init__(self, *args, **kwargs):
@@ -179,9 +150,7 @@ class LeaveCollectionEvent(Event):
     def __unicode__(self):
         return str(self.user) + " left " + str(self.collection)        
 
-###
-#   When a collection is created.
-###
+## When a collection is created.
 class CreateCollectionEvent(Event):
     # Set the default event type
     def __init__(self, *args, **kwargs):
@@ -191,9 +160,7 @@ class CreateCollectionEvent(Event):
     def __unicode__(self):
         return str(self.user) + " created " + str(self.collection)        
     
-###
-#   When a user requests to join a collection
-###
+## When a user requests to join a collection
 class RequestJoinCollectionEvent(Event):
     # Set the default event type
     def __init__(self, *args, **kwargs):
@@ -203,9 +170,7 @@ class RequestJoinCollectionEvent(Event):
     def __unicode__(self):
         return str(self.user) + " requested to join " + str(self.collection)
 
-###
-#   When a user gets denied from a collection.
-###
+## When a user gets denied from a collection.
 class RequestDeniedEvent(Event):
     # Set the default event type
     def __init__(self, *args, **kwargs):
@@ -215,9 +180,7 @@ class RequestDeniedEvent(Event):
     def __unicode__(self):
         return str(self.user) + " was denied from " + str(self.collection)
 
-###
-#   When a user revokes her/his request to join a collection
-###
+## When a user revokes her/his request to join a collection
 class RequestRevokedEvent(Event):
     # Set the default event type
     def __init__(self, *args, **kwargs):
