@@ -1,0 +1,15 @@
+{% extends 'clientside/event.html' %}
+{% load extra_template_tags %}
+
+{# The template for an `AudioFileCommentEvent` widget #}
+
+{% block event_text %}
+    {%verbatim%}
+        {{if currentRoute == 'collections' || currentRoute == 'collection_audio'}}
+            commented on {{tmpl(audioFile.toJSON()) "#audiofile_link_template"}}
+        {{/if}}
+        {{if currentRoute == 'collections'}}
+            from {{tmpl(collection.toJSON()) "#collection_link_template"}}
+        {{/if}}
+    {% endverbatim %}
+{% endblock %}

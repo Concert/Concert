@@ -90,6 +90,12 @@ LoggedInModelManager.prototype.init = function(params) {
         }), 
         requestrevokedevent: new RequestRevokedEventSet(null, {
             seenInstances: true
+        }),
+        audiosegmentcommentevent: new AudioSegmentCommentEventSet(null, {
+            seenInstances: true
+        }), 
+        audiofilecommentevent: new AudioFileCommentEventSet(null, {
+            seenInstances: true
         })
     }
     
@@ -454,3 +460,54 @@ LoggedInModelManager.prototype.tag_current_segment = function(tagName) {
     });
     
 };
+
+/**
+ *  When the user has commented on the currently selected audio file/segment.
+ *
+ *  @param  {String}    content    The content of the comment
+ **/
+LoggedInModelManager.prototype.create_new_comment = function(content) {
+    var user = this.user;
+    var collection = this.selectedCollections.first();
+    var audioFile = this.selectedAudioFiles.first();
+    var audioSegment = this.selectedAudioSegments.first();
+    
+    var eventParams = {
+        user: user, 
+        collection: collection, 
+        comment: content,
+        time: new Date(),
+        active: true, 
+    };
+    var commentEvent = null;
+    
+    if(audioFile) {
+        eventParams.audioFile = audioFile;
+        eventParams.eventType = 12;
+        commentEvent = new Event(eventParams);
+        collection.get('events').add(commentEvent);
+        audioFile.get('events').add(commentEvent);
+        this.seenInstances['event'].add(commentEvent);
+    }
+    else if(audioSegment) {
+        eventParams.audioSegment = audioSegment;
+        eventParams.eventType = 11;
+        commentEvent = new Event(eventParams);
+        collection.get('events').add(commentEvent);
+        audioSegment.get('events').add(commentEvent);
+        this.seenInstances['event'].add(commentEvent);
+    }
+    else {
+        throw new Error('Something went wrong.  No AudioFile or AudioSegment selected.');
+    }
+    
+    commentEvent.save(null, {
+        error_callback: function(commentEvent) {
+            return function() {
+                commentEvent.destroy();
+            };
+        }(commentEvent), 
+        error_message: 'Comment was not saved.'
+    });
+};
+

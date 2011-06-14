@@ -70,15 +70,15 @@ def login_register(request, redirect_field_name=REDIRECT_FIELD_NAME):
     
     request.session.set_test_cookie()
     
-    if Site._meta.installed:
-        current_site = Site.objects.get_current()
-    else:
-        current_site = RequestSite(request)
+#    if Site._meta.installed:
+#        current_site = Site.objects.get_current()
+#    else:
+#        current_site = RequestSite(request)
     
     return TemplateResponse(request, 'users/login_register.html', {
             'login_form': login_form,
             'register_form': register_form,
             redirect_field_name: redirect_to,
-            'site': current_site,
-            'site_name': current_site.name,
+#            'site': current_site,
+#            'site_name': current_site.name,
             })

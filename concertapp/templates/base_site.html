@@ -17,10 +17,11 @@ The base template for all pages.  All page templates will use this.
     
     <link rel="stylesheet" href="/css/jquery-ui/jquery-ui-1.8.12.custom.css">
     
-    <link rel="stylesheet" type="text/css" href="/css/styles.css">
-    <link rel="stylesheet" type="text/css" href="/css/panels.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/panels.css">
     <link rel="stylesheet" href="/css/components.css">
     <link rel="stylesheet" href="/css/widgets.css">
+    <link rel="stylesheet" href="/css/animations.css">
    <!-- <link rel="stylehseet" type="text/css" href="/css/pages.css">-->
 
     {# Global namespaces and variables #}
@@ -67,7 +68,8 @@ The base template for all pages.  All page templates will use this.
     <script src="/js/lib/models/RequestDeniedEvent.js"></script>
     <script src="/js/lib/models/RequestJoinCollectionEvent.js"></script>
     <script src="/js/lib/models/RequestRevokedEvent.js"></script>
-    
+    <script src="/js/lib/models/AudioSegmentCommentEvent.js"></script>
+    <script src="/js/lib/models/AudioFileCommentEvent.js"></script>
     
     {# Modal notification framework #}
     <script src="/js/lib/notifications/ModalAlert.js"></script>
@@ -118,6 +120,7 @@ The base template for all pages.  All page templates will use this.
     <script src="/js/lib/widgets/RequestDeniedEventWidget.js"></script>
     <script src="/js/lib/widgets/RequestJoinCollectionEventWidget.js"></script>
     <script src="/js/lib/widgets/RequestRevokedEventWidget.js"></script>
+    <script src="/js/lib/widgets/AudioFileCommentEventWidget.js"></script>
     <script src="/js/lib/widgets/CollectionWidget.js"></script>
     
     
@@ -252,6 +255,9 @@ The base template for all pages.  All page templates will use this.
     </script>
     <script id="requestjoincollectionevent_template" type="text/x-jquery-tmpl">
         {% include 'clientside/requestjoincollectionevent.html' %}
+    </script>
+    <script id="audiofilecommentevent_template" type="text/x-jquery-tmpl">
+        {% include 'clientside/audiofilecommentevent.html' %}
     </script>
     
     <script id="requestrevokedevent_template" type="text/x-jquery-tmpl">

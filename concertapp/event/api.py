@@ -4,8 +4,10 @@
 from concertapp.collection.api import *
 from concertapp.lib.api import MyResource, DjangoAuthentication
 from concertapp.models import *
+from concertapp.event.models import *
 from concertapp.users.api import *
-from concertapp.audiosegments.api import *
+from concertapp.audiosegment.api import *
+
 from django.conf.urls.defaults import *
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
@@ -132,3 +134,10 @@ class RequestJoinCollectionEventResource(CollectionEventResource):
     class Meta(CollectionEventResource.Meta):
         queryset = RequestJoinCollectionEvent.objects.all()
 
+class AudioSegmentCommentEventResource(CollectionEventResource):
+    class Meta(CollectionEventResource.Meta):
+        queryset = AudioSegmentCommentEvent.objects.all()
+
+class AudioFileCommentEventResource(CollectionEventResource):
+    class Meta(CollectionEventResource.Meta):
+        queryset = AudioFileCommentEvent.objects.all()

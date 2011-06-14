@@ -112,7 +112,10 @@ var ListPanel = Panel.extend(
     }, 
     
     /**
-     *  Called when we are in the audio mode, and the render method is called.
+     *  Called when we're looking at a collection's audio assets
+     *
+     *  @param  {Number}    collectionId    -   The id of the current collection
+     *  @param  {Collection}    collection    - The collection
      **/
     render_collection_audio: function(collectionId, collection) {
         this._deselect_currently_selected_widget();

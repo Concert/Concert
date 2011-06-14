@@ -85,15 +85,23 @@ div.tag {
 /**
  *  Event widgets
  **/
-
-
-
 .event_widget{
+    /* Display the icon to the left of the content */
     display: -webkit-box;
     -webkit-box-orient: horizontal;
+    
+    margin-bottom: 2em;
 }
+
+/* event comment text */
+div.event_widget_comment {
+    text-transform: none;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
 div.time {
-    display: inline;
+    display: block;
 }
 
 div.event_widget div.event_icon{
@@ -113,4 +121,9 @@ div.type2_event_widget_icon {
 /* File uploaded event */
 div.type3_event_widget_icon {
     background: url(/graphics/file.png);
+}
+
+/* File comment */
+div.type12_event_widget_icon {
+    background: url(/graphics/comment.png);
 }

@@ -1,6 +1,14 @@
 [
     {
-        "model": "concertapp.collection", 
+        "model": "concertapp.concertuser", 
+        "pk": 1, 
+        "fields": {
+            "unreadEvents": [], 
+            "user": 1
+        }
+    },
+    {
+        "model": "collection.collection", 
         "pk": 1, 
         "fields": {
             "name": "[  ]", 
@@ -9,7 +17,7 @@
         }
     },
     {
-        "model": "concertapp.audiofile", 
+        "model": "audiofile.audiofile", 
         "pk": 1, 
         "fields": {
             "name": "Exosphere", 
@@ -19,6 +27,27 @@
             "ogg": "1.ogg", 
             "mp3": "1.mp3", 
             "duration": 258
+        }
+    },
+    {
+        "model": "event.event", 
+        "pk": 1, 
+        "fields": {
+            "collection": 1, 
+            "user": 1, 
+            "eventType": 6, 
+            "time": "2011-06-09 10:30:00"
+        }
+    },
+    {
+        "model": "event.event", 
+        "pk": 1, 
+        "fields": {
+            "collection": 1, 
+            "user": 1, 
+            "audioFile": 1, 
+            "eventType": 3, 
+            "time": "2011-06-09 10:30:00"
         }
     }
 ]

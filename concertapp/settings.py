@@ -6,18 +6,12 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@domain.com'),
+    #('Admin', 'concertsoundorganizer@concertsoundorganizer.org'),
 )
 
 MANAGERS = ADMINS
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-
-# TODO: Is this necessary anymore?
-# Fix up piston imports here. We would normally place piston in 
-# a directory accessible via the Django app, but this is an
-# example and we ship it a couple of directories up.
-sys.path.insert(0, os.path.join(BASE_DIR, '..', '..'))
 
 DATABASES = {
     'default': {
@@ -46,7 +40,7 @@ SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
-USE_I18N = True
+USE_I18N = False
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
@@ -96,17 +90,23 @@ ROOT_URLCONF = 'concertapp.urls'
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
-    )
+)
 
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.sites',
+#    'django.contrib.sites',
     'django.contrib.admin',
     'django.contrib.markup',
     'tastypie',
+    'south',
     'concertapp',
+    'concertapp.audiofile',
+    'concertapp.audiosegment',
+    'concertapp.collection',
+    'concertapp.event',
+    'concertapp.tag',
 )
 
 FIXTURE_DIRS = (
@@ -140,3 +140,26 @@ SITE_ID = 1
 CSRF_FAILURE_VIEW='concertapp.lib.errorviews.csrf_failure'
 
 TASTYPIE_DATETIME_FORMATTING='rfc-2822'
+
+# A sample logging configuration. The only tangible logging
+# performed by this configuration is to send an email to
+# the site admins on every HTTP 500 error.
+# See http://docs.djangoproject.com/en/dev/topics/logging for
+# more details on how to customize your logging configuration.
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler'
+        }
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+    }
+}

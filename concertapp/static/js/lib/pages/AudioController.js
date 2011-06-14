@@ -44,8 +44,8 @@ var AudioController = Backbone.Controller.extend(
         /* When the space button is pressed */
         $(window).bind('keydown', function(me) {
             return function(e) {
-                /* If this was a space, not from an input element */
-                if(e.keyCode == 32 && !$(e.srcElement).is('input')) {
+                /* If this was a space, not from an input/textarea element */
+                if(e.keyCode == 32 && !$(e.srcElement).is('input') && !$(e.srcElement).is('textarea')) {
                     e.preventDefault();
                     e.stopPropagation();
                     /* Handle event */
