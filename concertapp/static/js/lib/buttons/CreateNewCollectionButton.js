@@ -48,8 +48,8 @@ CreateNewCollectionButton.prototype.init = function(params) {
  *  create a new collection.
  **/
 CreateNewCollectionButton.prototype.click = function() {
-   /* Call corresponding method on page */
-   this.panel.page.createNewCollection(this.newCollectionName);   
+   /* Call corresponding method on router */
+   this.panel.router.createNewCollection(this.newCollectionName);   
    /* reset form */
    this.panel.resetForm();
 };

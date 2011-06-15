@@ -57,7 +57,7 @@ var Collection = ConcertBackboneModel.extend(
     requestToJoin: function() {
         var reqs = this.get('requests');
         reqs.create({
-            user: com.concertsoundorganizer.page.user.url(), 
+            user: com.concertsoundorganizer.router.user.url(), 
             collection: this.url()
         });
     },

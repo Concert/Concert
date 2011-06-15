@@ -19,7 +19,6 @@ LoggedInModelManager.prototype = new ModelManager();
 LoggedInModelManager.prototype.init = function(params) {
     ModelManager.prototype.init.call(this, params);
     
-    
     var dataToLoad = this._dataToLoad;
     
     /* Get data for user */
@@ -193,7 +192,7 @@ LoggedInModelManager.prototype.create_and_select_new_segment = function(startTim
     /* The audio file that will be the parent for our new segment */
     var audioFile = null;
     
-    var routeName = this.page.currentRoute;
+    var routeName = this.router.currentRoute;
     
     /* If a file is currently selected */
     if(routeName == 'collection_audio_file') {

@@ -1,36 +1,63 @@
 /**
- *  @file       LoggedInPage.js
+ *  @file       Router.js
+ *
  *  @author     Colin Sullivan <colinsul [at] gmail.com>
- **/ 
+ **/
 
 /**
- *  @class  The main controller for when a user is logged into Concert.
- *  @extends    Page
+ *  @class  The router that will be instantiated once, and will be the first class
+ *  instantiated, to handle all of the routing of messages between components, as
+ *  well as URL hash changes.  Still use Backbone.Controller until we upgrade
+ *  to newer Backbone.
+ *  @extends    Backbone.Controller
  **/
-var LoggedInPage = Page.extend(
-	/**
-	 *	@scope	LoggedInPage.prototype
-	 **/
+var Router = Backbone.Controller.extend(
+    /**
+     *  @scope Router.prototype
+     **/
 {
     
     /**
-     *  Our dataset manager is this one.
+     *  @constructor
      **/
-    _initializeModelManager: function(params) {
-        return new LoggedInModelManager(params);
-    }, 
+    initialize: function(options) {
+        Backbone.Controller.prototype.initialize.call(this);
+
+        /**
+         *  The current route that we are on.
+         **/
+        this.currentRoute = null;
+
+        /* Create dataset manager */
+        var modelManager = new LoggedInModelManager(_.extend(options, {
+            router: this 
+        }));
+        this.modelManager = modelManager;
+        /* Save this in global namespace because it will be needed before our current
+        stack ends */
+        com.concertsoundorganizer.modelManager = modelManager;
+
+        /* Create views */
+        this._initializeViews();
+        
+        /* Load data so views can update and such */
+        this.modelManager._loadData();
+        
+        /* Initialize routes */
+        this._initialize_routes();
+        
+        Backbone.history.start();
+    },
     
     /**
-     *  Every page where a user is logged in will display a global options panel.
+     *  This method is called when views are to be created.  Should be overridden
+     *  in child classes.
      **/
     _initializeViews: function() {
-        Page.prototype._initializeViews.call(this);
-
-        
         /* Create the globalOptionsPanel (the buttons and menus at the top of 
         the page) 
         this.globalOptionsPanel = new GlobalOptionsPanel({
-            page: this, 
+            router: this, 
             el: $('#global_options_panel'),
             userMemberCollections: this.modelManager.user.get('memberCollections')
         });*/
@@ -39,7 +66,7 @@ var LoggedInPage = Page.extend(
          *  The list on the right side of the UI.
          **/
         this.listPanel = new ListPanel({
-            page: this, 
+            router: this, 
             el: $('#list_panel'),
             modelManager: this.modelManager
         });
@@ -48,34 +75,38 @@ var LoggedInPage = Page.extend(
          *  The events panel on the left side of the UI.
          **/
         this.eventsPanel = new EventsPanel({
-            page: this, 
+            router: this, 
             el: $('#events_list_panel'), 
             modelManager: this.modelManager
         });
         
         /* Create audio controller */ 
         this.audioController = new AudioController({
-            page: this
+            router: this
         });
 
         /*  Create waveform overview panel */
         this.overviewPanel = new OverviewWaveformPanel({
-            page: this, 
+            router: this, 
             el: $('#overview_waveform_panel')
         });
                 
         /* Create waveform detail panel */
         this.detailPanel = new DetailWaveformPanel({
-            page: this, 
+            router: this, 
             el: $('#detail_waveform_panel'),
         });
         
-    },
+        return true;
+    }, 
     
-    _initialize_routes: function() {
-        this.defaultHash = '#collections';
+    /**
+     *  This method is called when routes are to be initialized.
+     **/
+    _initialize_routes: function() { 
         
-        Page.prototype._initialize_routes.call(this);
+        _.bindAll(this, '_default_route');
+        this.route('', 'default', '#collections');
         
         _.bindAll(this, '_collections_route');
         this.route('collections', 'collections', this._collections_route);
@@ -104,8 +135,39 @@ var LoggedInPage = Page.extend(
             this._collection_audio_segment_route
         );
         
+        
         return;
     }, 
+    
+    /**
+     *  The default route will just redirect to the defaultHash for now.
+     **/
+    _default_route: function() {
+        window.location.assign(this.defaultHash);
+    }, 
+    
+    /**
+     *  Overriding this method so we can pass extra arguments through our
+     *  route:* events.
+     **/
+    // Manually bind a single named route to a callback. For example:
+    //
+    //     this.route('search/:query/p:num', 'search', function(query, num) {
+    //       ...
+    //     });
+    //
+    route : function(route, name, callback) {
+        Backbone.history || (Backbone.history = new Backbone.History);
+        if (!_.isRegExp(route)) route = this._routeToRegExp(route);
+        Backbone.history.route(route, _.bind(function(fragment) {
+            var args = this._extractParameters(route, fragment);
+            /* Whatever our callback for this route returns, we will push into
+            the args array to send along with the route information */
+            args = args.concat(callback.apply(this, args));
+            
+            this.trigger.apply(this, ['route:' + name].concat(args));
+        }, this));
+    },
     
     /**
      *  Route for "/#collections".  Lists collections and such.
@@ -262,4 +324,4 @@ var LoggedInPage = Page.extend(
     }, 
     
 });
-    
+

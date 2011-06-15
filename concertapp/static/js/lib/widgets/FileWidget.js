@@ -35,7 +35,7 @@ var FileWidget = ListWidget.extend(
     _handle_delete_click: function() {
         ListWidget.prototype._handle_delete_click.call(this);
         
-        this.panel.page.delete_audio_file(this.model);
+        this.panel.router.delete_audio_file(this.model);
     }, 
 });
 

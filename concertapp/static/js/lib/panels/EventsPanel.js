@@ -130,7 +130,7 @@ var EventsPanel = Panel.extend({
         }
         
         /* Otherwise, create the event */
-        this.page.create_new_comment(field.val());
+        this.router.create_new_comment(field.val());
         field.val('');
         field.blur();
     }, 
@@ -255,7 +255,7 @@ var EventsPanel = Panel.extend({
         var panel = this;
 
         var frag = document.createDocumentFragment();
-        var currentRoute = this.page.currentRoute;
+        var currentRoute = this.router.currentRoute;
         /* For each event model */
         eventModels.each(function(eventModel) {
             var widget = panel._create_event_widget(eventModel, currentRoute);
@@ -274,7 +274,7 @@ var EventsPanel = Panel.extend({
      *  @param  {Event}    eventModel    The Event object to be added to our display
      **/
     _render_and_add_event: function(eventModel) {
-        var widget = this._create_event_widget(eventModel, this.page.currentRoute);
+        var widget = this._create_event_widget(eventModel, this.router.currentRoute);
         
         this.contents.prepend(widget.render().el);
     }, 

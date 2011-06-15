@@ -18,7 +18,7 @@ var CollectionSearchResultWidget = Widget.extend(
 
         var params = this.options;
         
-        var page = this.panel.page;
+        var router = this.panel.page;
         
         /* Save references to userRequests collection and user */
         this.userRequests = page.userRequests;        

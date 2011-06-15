@@ -11,12 +11,12 @@
 var AudioController = Backbone.Controller.extend(
 {
     initialize: function(params) {
-        /* the page */
-        var page = params.page;
-        if(typeof(page) == 'undefined') {
-            throw new Error('params.page is undefined');
+        /* the router */
+        var router = params.router;
+        if(typeof(router) == 'undefined') {
+            throw new Error('params.router is undefined');
         }
-        this.page = page;
+        this.router = router;
         
         /* This is our HTML5 audio player */
         var audio = new Audio();
@@ -36,10 +36,10 @@ var AudioController = Backbone.Controller.extend(
         this.audioType = com.concertsoundorganizer.compatibility.audioType;
         
         _.bindAll(this, "_select_file");
-        this.page.bind('route:collection_audio_file', this._select_file);
+        this.router.bind('route:collection_audio_file', this._select_file);
         
         _.bindAll(this, "_select_segment");
-        this.page.bind('route:collection_audio_segment', this._select_segment);
+        this.router.bind('route:collection_audio_segment', this._select_segment);
                 
         /* When the space button is pressed */
         $(window).bind('keydown', function(me) {
@@ -198,8 +198,8 @@ var AudioController = Backbone.Controller.extend(
      *  inside the current highlight
      **/
     enable_audio_loop: function() {
-        this._start_audio_loop(this.page.selectedAudioSegments.first().get('beginning'),
-            this.page.selectedAudioSegments.first().get('end'));
+        this._start_audio_loop(this.router.selectedAudioSegments.first().get('beginning'),
+            this.router.selectedAudioSegments.first().get('end'));
     },
     
     /**
@@ -219,7 +219,7 @@ var AudioController = Backbone.Controller.extend(
         /* calls handle_scroll_stop to turn autoscrolling on when playhead is moved into view */
         $(this.audio).one('timeupdate', function(me) {
             return function() {
-                me.page.detailPanel.handle_scroll_stop();
+                me.router.detailPanel.handle_scroll_stop();
             }
         }(this));
         this.audio.currentTime = seconds;

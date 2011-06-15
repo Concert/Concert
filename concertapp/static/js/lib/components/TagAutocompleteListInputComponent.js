@@ -32,7 +32,7 @@ var TagAutocompleteListInputComponent = AutocompleteListInputComponent.extend(
         AutocompleteListInputComponent.prototype._handle_new_token.call(this, token);
         
         /* A tag has been entered, tell the page. */
-        this.panel.page.tag_current_segment(token);
+        this.panel.router.tag_current_segment(token);
 
         return;
     },

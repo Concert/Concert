@@ -18,7 +18,7 @@ var Panel = Backbone.View.extend(
 {
     /**
      *  @param  {jQuery HTMLElement}    params.container - container for panel  
-     *  @param  {Page}                  params.page - the page that this panel 
+     *  @param  {Page}                  params.router - the page that this panel 
      *                                  belongs to
      *  @param  {Boolean}               params.loading -   Wether or not this panel
      *                                  is initially to display a loading 
@@ -39,7 +39,7 @@ var Panel = Backbone.View.extend(
         this._initialize_route_handlers();
         
         var routeHandlerMap = this.routeHandlerMap;
-        var page = this.page;
+        var router = this.router;
         /* For each route handler */
         for(var route in routeHandlerMap) {
             var handlerString = routeHandlerMap[route];
@@ -49,11 +49,11 @@ var Panel = Backbone.View.extend(
                 /* Closure */
                 _.bindAll(this, handlerString);
                 /* Handle this route with the corresponding method */
-                page.bind(route, this[handlerString]);
+                router.bind(route, this[handlerString]);
             }
             /* Just use render method */
             else {
-                page.bind(route, this.render);
+                router.bind(route, this.render);
             }
             
         }
@@ -64,11 +64,11 @@ var Panel = Backbone.View.extend(
     _initialize_elements: function() {
         var params = this.options;
         
-        var page = params.page;
-        if(typeof(page) == 'undefined') {
-            throw new Error('params.page is undefined');
+        var router = params.router;
+        if(typeof(router) == 'undefined') {
+            throw new Error('params.router is undefined');
         }
-        this.page = page;
+        this.router = router;
 
         var container = $(this.el);
         

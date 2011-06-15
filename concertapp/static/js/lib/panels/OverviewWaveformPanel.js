@@ -21,7 +21,7 @@ var OverviewWaveformPanel = WaveformPanel.extend(
         var playheadComponent = new OverviewWaveformPlayheadComponent({
             el: this.playheadElement,
             panel: this,
-            audio: this.page.audioController.audio
+            audio: this.router.audioController.audio
         });
         /**
          *  Playhead for this waveform panel

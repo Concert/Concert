@@ -48,6 +48,7 @@ The base template for all pages.  All page templates will use this.
     <script src="/js/lib/helpers/UIHelpers.js"></script>
     <script src="/js/lib/helpers/BackboneHelpers.js"></script>
 
+    
     {# Models #}
     <script src="/js/lib/models/ConcertBackboneCollection.js"></script>
     <script src="/js/lib/models/ConcertBackboneModel.js"></script>
@@ -156,14 +157,11 @@ The base template for all pages.  All page templates will use this.
     <script src="/js/lib/panels/EventsPanel.js"></script>
     <script src="/js/lib/panels/DetailWaveformPanelTagBay.js"></script>
     
-    {# Pages #}
-    <script src="/js/lib/pages/Page.js"></script>
-    <script src="/js/lib/pages/LoggedInPage.js"></script>
-    <script src="/js/lib/pages/CollectionsPage.js"></script>
-    <script src="/js/lib/pages/UploadPage.js"></script>
-    <script src="/js/lib/pages/LoginPage.js"></script>
-    <script src="/js/lib/pages/AudioController.js"></script>
-      
+    {# Controllers #}
+    <script src="/js/lib/controllers/AudioController.js"></script>
+    
+    <script src="/js/lib/Router.js"></script>
+
     <script src="/js/init.js"></script>
 
 </head>
@@ -272,8 +270,8 @@ The base template for all pages.  All page templates will use this.
     {# Send variable to javascript with recognizable path so we know what page we're on #}
     {% if js_page_path %}
         <script>
-            {# Initialize the page with our current page path and default data #}
-            initializeUI('{{ js_page_path }}',
+            {# Initialize the page with our initial data #}
+            initializeUI(
                 {% if data %}
                     {% autoescape off %}
                         {{ data }}

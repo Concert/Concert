@@ -62,7 +62,7 @@ var DetailWaveformPanel = WaveformPanel.extend(
         var timecodeComponent = new DetailWaveformTimecodeComponent({
             el: timecodeContainerElement, 
             panel: this, 
-            audio: this.page.audioController.audio
+            audio: this.router.audioController.audio
         });
         this.timecodeComponent = timecodeComponent;
         
@@ -70,7 +70,7 @@ var DetailWaveformPanel = WaveformPanel.extend(
         var playheadComponent = new DetailWaveformPlayheadComponent({
             el: this.playheadElement,
             panel: this,
-            audio: this.page.audioController.audio
+            audio: this.router.audioController.audio
         });
         this.playheadComponent = playheadComponent;
         
@@ -105,7 +105,7 @@ var DetailWaveformPanel = WaveformPanel.extend(
          **/
         this.tagBay = new DetailWaveformPanelTagBay({
             el: $('#detail_waveform_panel_tag_bay_panel'),
-            page: this.page
+            router: this.router
         });
 
         /**
@@ -131,7 +131,7 @@ var DetailWaveformPanel = WaveformPanel.extend(
 
     },
     /**
-     *  Called from page when an audio file has been selected.
+     *  Called from router when an audio file has been selected.
      *
      *  @param  {AudioFile}    selectedAudioFile    -   The selected file.
      **/
@@ -158,7 +158,7 @@ var DetailWaveformPanel = WaveformPanel.extend(
     },
     
     /**
-     *  Called from page when audio segment has been selected.
+     *  Called from router when audio segment has been selected.
      *
      *  @param  {AudioSegment}    selectedAudioSegment    - The selected segment.
      **/
