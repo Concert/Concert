@@ -115,7 +115,7 @@ class CollectionResource(MyResource):
         
         filtering = {
             'users': ALL,
-            'name': ('contains','icontains',)
+            'name': ('icontains','iexact')
             }
 
         nested = 'users'
