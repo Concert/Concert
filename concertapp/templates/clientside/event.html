@@ -8,7 +8,7 @@
         {%verbatim%}{{tmpl(user.toJSON()) "#user_link_template"}}{%endverbatim%}
         <span class="event_widget_text">{% block event_text %}{% endblock %}</span>
         {% verbatim %}
-            {{if comment && comment != ''}}
+            {{if $data.comment && comment != ''}}
                 <div class="event_widget_comment">${comment}</div>
             {{/if}}
         {% endverbatim %}
