@@ -241,13 +241,10 @@ LoggedInModelManager.prototype.create_and_select_new_segment = function(startTim
      **/
     var newSegmentFailHandler = function(segment, newSegmentEvent) {
         return function(){
-            console.log('segment fail handler');
             segment.destroy();
             newSegmentEvent.destroy();
         };
     }(newSegment, newSegmentEvent);
-
-    console.log('saving segment');
 
     /* Now save segment to server */
     newSegment.save(null, {
@@ -256,7 +253,6 @@ LoggedInModelManager.prototype.create_and_select_new_segment = function(startTim
         error_message: 'Audio segment was not created.', 
         /* If we saved successfully */
         success: function(segmentModel, segmentResp) {
-            console.log('segment save success');
             /** Add event to segment's lists.  This will happen automatically
             on the backend.  Couldn't do this before segment was saved because
             it would have contained a reference to an event with no id. **/
@@ -265,14 +261,12 @@ LoggedInModelManager.prototype.create_and_select_new_segment = function(startTim
             audioFile.get('events').add(newSegmentEvent);
             eventSeenInstances.add(newSegmentEvent);
             
-            console.log('event saving');
             /* Save event too */
             newSegmentEvent.save(null, {
                 /* If event fails, run fail handler also */
                 error_callback: newSegmentFailHandler, 
                 error_message: 'Event was not created', 
                 success: function(eventModel, eventResp) {
-                    console.log('event save success');
                     if(callback) {
                         /* Now event and segment have ids, and we can rest in peace */
                         callback(segmentModel, segmentResp);
