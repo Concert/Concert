@@ -105,8 +105,11 @@ var Router = Backbone.Controller.extend(
      **/
     _initialize_routes: function() { 
         
+        /* If no hash, go to #collections */
         _.bindAll(this, '_default_route');
-        this.route('', 'default', '#collections');
+        this.route('', 'default', function() {
+            window.location.assign('#collections');
+        });
         
         _.bindAll(this, '_collections_route');
         this.route('collections', 'collections', this._collections_route);
@@ -138,14 +141,7 @@ var Router = Backbone.Controller.extend(
         
         return;
     }, 
-    
-    /**
-     *  The default route will just redirect to the defaultHash for now.
-     **/
-    _default_route: function() {
-        window.location.assign(this.defaultHash);
-    }, 
-    
+
     /**
      *  Overriding this method so we can pass extra arguments through our
      *  route:* events.
