@@ -23,7 +23,6 @@ class Collection(models.Model):
     name = models.CharField(max_length = 100, unique=True)
     admin = models.ForeignKey(User)
     users = models.ManyToManyField(User, related_name = "collections")
-    pendingUsers = models.ManyToManyField(User, related_name = "pending_collections")
 
     def __unicode__(self):
         return str(self.name)
