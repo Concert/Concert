@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Concert panel test</title>
+        
+        <link rel="stylesheet" href="stylesheets/screen.css">
+        
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    </head>
+    
+    <body>
+        <div id="view_container">
+            <div id="master_container" class="collections_events">
+                <div id="manage_panel" class="panel">
+                    <p>manage stuff here</p>
+                </div>
+                <div id="collections-list_panel" class="panel">
+                    <h3>
+                        <a href="#" class="collections_list_link">
+                            collections listing
+                        </a>
+                    </h3>
+                    <br />
+                    <a href="#" id="collection_link">[  ]</a>
+                    <a id="manage_collections_link" href="#">wrench</a>
+                </div>
+                <div id="events_panel" class="panel">
+                    <p>Events</p>
+                </div>
+                <div id="audio-list_panel" class="panel">
+                    <a href="#" class="collections_list_link">back to collections</a>
+                    
+                    <br />
+                    
+                    <p>Audio listing</p>
+                </div>
+            </div>
+        </div>
+    
+        <script>
+            $(document).ready(function() {
+                var allClasses = 'manage_collections collections_events collection_audio';
+                
+                var changeContainer = function(newContainerClass) {
+                    $('#master_container')
+                        .removeClass(allClasses)
+                        .addClass(newContainerClass);
+                    
+                };
+                $('a#manage_collections_link').click(function() {
+                    changeContainer('manage_collections');
+                });
+                
+                $('a.collections_list_link').click(function() {
+                    changeContainer('collections_events');
+                });
+                
+                $('a#collection_link').click(function() {
+                    changeContainer('collection_audio');
+                });
+                
+            });
+        </script>
+    </body>
+</html>
