@@ -14,7 +14,7 @@ var CreateCollectionEvent = Event.extend(
      *  @scope  CreateCollectionEvent.prototype
      **/
 {
-    name: 'createcollectionevent',
+    name: 'createcollectionevent'
 });
 
 /**

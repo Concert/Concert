@@ -184,13 +184,14 @@ class AudioFile(models.Model):
     def _generate_waveform(self):
         # Relative path to our wave file (from MEDIA_ROOT)
         wavPath = self.wav.name
+
         # Absolute path to our wave file
-        wavPathAbsolute = os.path.join(MEDIA_ROOT, wavPath)
+        wavPathAbsolute = os.path.join(MEDIA_ROOT, 'audio', wavPath)
         
         idString = str(self.id)
         
         # Get length of audio (samples)
-        length = audioHelpers.getLength(wavPathAbsolute)        
+        length = audioHelpers.getLength(wavPathAbsolute)
 
         # For each zoom level
         for zoomLevel in AudioFile.ZOOM_LEVELS:

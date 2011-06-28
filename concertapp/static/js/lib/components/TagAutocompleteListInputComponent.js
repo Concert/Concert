@@ -35,6 +35,6 @@ var TagAutocompleteListInputComponent = AutocompleteListInputComponent.extend(
         this.panel.router.tag_current_segment(token);
 
         return;
-    },
+    }
     
 });

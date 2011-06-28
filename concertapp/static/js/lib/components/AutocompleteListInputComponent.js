@@ -59,7 +59,7 @@ var AutocompleteListInputComponent = Component.extend(
         /* The jQuery autocomplete that will help us do business */
         inputElement.autocomplete({
             minLength: 0, 
-            appendTo: resultsContainerElement, 
+            appendTo: resultsContainerElement 
         })
         .data( "autocomplete" )._renderItem = function( ul, item ) {
             /* Pass term along to template */
@@ -171,5 +171,5 @@ var AutocompleteListInputComponent = Component.extend(
      **/
     set_data: function(data) {
         this.inputElement.autocomplete('option', 'source', data)
-    }, 
+    } 
 });

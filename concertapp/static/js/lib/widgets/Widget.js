@@ -77,5 +77,5 @@ var Widget = Backbone.View.extend(
      **/
     _extra_template_data: function() {
         return {};
-    }, 
+    } 
 });

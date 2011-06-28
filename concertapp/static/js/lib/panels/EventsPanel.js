@@ -300,6 +300,6 @@ var EventsPanel = Panel.extend({
             template: widgetTemplate,
             currentRoute: currentRoute
         });
-    }, 
+    } 
     
 });

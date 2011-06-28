@@ -46,7 +46,7 @@ var Collection = ConcertBackboneModel.extend(
         return [
             {
                 attr: 'admin', 
-                model: User, 
+                model: User 
             }
         ]
     },
@@ -84,7 +84,7 @@ var Collection = ConcertBackboneModel.extend(
         /* Remove collection from memberCollections */
         user.get('collections').remove(this);
         
-    },
+    }
     
 });
 
@@ -100,5 +100,5 @@ var CollectionSet = ConcertBackboneCollection.extend(
 	 *	@scope	CollectionSet.prototype
 	 **/
 {
-    model: Collection,
+    model: Collection
 });

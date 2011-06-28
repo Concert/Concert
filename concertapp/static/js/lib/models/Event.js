@@ -55,7 +55,7 @@ var Event = ConcertBackboneModel.extend(
             }
         }
         return ConcertBackboneModel.prototype.set.call(this, attrs, options);
-    }, 
+    } 
 });
 
 var EventSet = ConcertBackboneCollection.extend(
@@ -66,5 +66,5 @@ var EventSet = ConcertBackboneCollection.extend(
     model: Event,
     comparator: function(eventModel) {
         return -(eventModel.get('time'));
-    }, 
+    } 
 });

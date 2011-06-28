@@ -1,14 +1,16 @@
 /**
  *  An autocomplete listing
  **/
+/* line 4, ../sass/components.scss */
 div.autocomplete_list ul.ui-autocomplete {
-    position: absolute;
-    top: auto;
-    padding: 0;
-    margin-top: 0.5em;
+  position: absolute;
+  top: auto;
+  padding: 0;
+  margin-top: 0.5em;
 }
 
 /* A substring that matches the search term */
+/* line 12, ../sass/components.scss */
 span.autocomplete_substring_match {
-    font-weight: bold;
+  font-weight: bold;
 }

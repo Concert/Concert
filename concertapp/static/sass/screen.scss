@@ -1,3 +1,10 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/reset";
+
 /* FONT IMPORT */
 @font-face {
     font-family: "GeosansLight";
@@ -68,7 +75,7 @@ div#layout_top {
 	border: 1px solid white;
 	margin: 0 auto;
 	padding: 10px;
-	background: #f8f8fa url(/graphics/logo.png) center no-repeat;
+	background: #f8f8fa inline-image("logo.png") center no-repeat;
 }
 
 div#layout_middle {
@@ -122,3 +129,7 @@ div#modal-overlay-pane {
 	z-index: 10000001;
 	background: #fff;
 }
+
+@import "panels.scss";
+@import "components.scss";
+@import "widgets.scss";

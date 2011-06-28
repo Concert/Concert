@@ -157,8 +157,5 @@ var ConcertBackboneCollection = Backbone.Collection.extend(
 
             (this.sync || Backbone.sync)(method, null, options);
         }
-    },
-     
-     
-    
+    }
 });

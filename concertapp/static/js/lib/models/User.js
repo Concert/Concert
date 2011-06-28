@@ -22,7 +22,7 @@ var User = ConcertBackboneModel.extend(
                 collectionType: CollectionSet
             }
         ];
-    }, 
+    } 
 });
 
 /**

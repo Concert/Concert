@@ -13,7 +13,7 @@ var LeaveCollectionEvent = Event.extend(
      *  @scope  LeaveCollectionEvent.prototype
      **/
 {
-    name: 'leavecollectionevent', 
+    name: 'leavecollectionevent' 
     
 });
 

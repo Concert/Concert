@@ -149,7 +149,7 @@ var UploadPanel = Panel.extend(
 
         /* Create new file chooser */
         var chooser = this.fileChooserTemplate.tmpl({
-            id: newFileIndex, 
+            id: newFileIndex 
         });
 
         /* When a file is chosen with this new element */

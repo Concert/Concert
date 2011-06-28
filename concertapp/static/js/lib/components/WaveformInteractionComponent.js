@@ -373,6 +373,6 @@ var WaveformInteractionComponent = Component.extend(
             }
         
         return false;
-    },
+    }
 
 });

@@ -13,7 +13,7 @@ var RequestJoinCollectionEvent = Event.extend(
      *  @scope  RequestJoinCollectionEvent.prototype
      **/
 {
-    name: 'requestjoincollectionevent', 
+    name: 'requestjoincollectionevent' 
     
 });
 

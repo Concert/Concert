@@ -87,7 +87,7 @@ var DetailWaveformPanel = WaveformPanel.extend(
         /* a highlighter component so we can highlight things */
         var highlighter = new DetailWaveformInteractionComponent({
             el: highlightContainerElement, 
-            panel: this, 
+            panel: this 
         });
         this.highlighter = highlighter;
         
@@ -258,6 +258,6 @@ var DetailWaveformPanel = WaveformPanel.extend(
      **/
     get_resolution: function() {
         return 10;
-    }, 
+    } 
 
 });
