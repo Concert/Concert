@@ -75,7 +75,7 @@ div#layout_top {
 	border: 1px solid white;
 	margin: 0 auto;
 	padding: 10px;
-	background: #f8f8fa url(/graphics/logo.png) center no-repeat;
+	background: #f8f8fa inline-image("logo.png") center no-repeat;
 }
 
 div#layout_middle {
