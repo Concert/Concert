@@ -56,19 +56,18 @@ var ListPanel = Panel.extend(
          *  The template for each collection in the list (when in collections mode)
          **/
         this.collectionWidgetTemplate = collectionWidgetTemplate;
-        
-/*        
+
         var searchBox = new ListPanelSearchAutocompleteListInputComponent({
             el: $('#list_panel_search_container'), 
             inputElement: $('input#list_panel_search'), 
-            panel: this 
+            panel: this
         });
         /**
          *  The search box above the list panel.
          **/
-  //      this.searchBox = searchBox;
+        this.searchBox = searchBox;
 
-        
+
         /**
          *  If a segment/file has been selected, the model manager will throw
          *  events.

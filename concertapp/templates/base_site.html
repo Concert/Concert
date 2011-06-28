@@ -29,7 +29,7 @@ The base template for all pages.  All page templates will use this.
     {# Vendor #}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
 
-    {% comment %}
+
     <script src="/js/lib/vendor/jquery.tmpl.js"></script>
     <script src="/js/lib/vendor/jquery-ui-1.8.12.custom.min.js"></script>
     <script src="/js/lib/vendor/modernizr-1.6.min.js"></script>
@@ -165,9 +165,7 @@ The base template for all pages.  All page templates will use this.
 
     <script src="/js/init.js"></script>
     
-    {% endcomment %}
-    
-    <script src="/js/compiled.js"></script>
+    {# <script src="/js/compiled.js"></script> #}
 
 </head>
 <body>
@@ -270,6 +268,11 @@ The base template for all pages.  All page templates will use this.
     {# Template used for a result in an autocomplete listing #}
     <script id="autocomplete_list_item_template" type="text/x-jquery-tmpl">
         {% include 'logged_in/clientside/autocomplete_list_item_template.html' %}
+    </script>
+    
+    {# Template used for an autocomplete result when searching for collections #}
+    <script id="collection_autocomplete_result_template" type="text/x-jquery-tmpl">
+        {% include 'logged_in/clientside/collection_autocomplete_result.html' %}
     </script>
     
     {# Send variable to javascript with recognizable path so we know what page we're on #}
