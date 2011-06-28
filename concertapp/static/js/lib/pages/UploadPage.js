@@ -27,5 +27,5 @@ var UploadPage = LoggedInPage.extend(
             el: $('#upload_audio_panel')
         });
         
-    }, 
+    } 
 });

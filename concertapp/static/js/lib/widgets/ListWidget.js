@@ -70,6 +70,6 @@ var ListWidget = Widget.extend(
     deselect: function() {
         var el = $(this.el);
         el.removeClass('selected');
-    }, 
+    } 
 });
 

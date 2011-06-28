@@ -25,6 +25,6 @@ var CollectionWidget = ListWidget.extend(
         ListWidget.prototype.render.call(this);
         
         return this;
-    },
+    }
 });
 

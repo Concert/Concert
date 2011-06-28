@@ -33,11 +33,11 @@ var AudioFile = ConcertBackboneModel.extend(
                 collectionType: AudioSegmentSet,
                 comparator: function(segment) {
                     return segment.get('beginning');
-                },  
+                }  
             },
             {
                 attr: 'events', 
-                collectionType: EventSet, 
+                collectionType: EventSet 
             }
         ];
     }, 
@@ -73,7 +73,7 @@ var AudioFile = ConcertBackboneModel.extend(
         else {
             return null;
         }
-    }, 
+    } 
     
 });
 

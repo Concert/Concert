@@ -70,6 +70,6 @@ var WaveformPlayheadComponent = Component.extend(
     
     position: function() {
         return this.el.position().left;
-    },
+    }
 
 });

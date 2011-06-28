@@ -21,7 +21,7 @@ var AudioFileUploadedEvent = Event.extend(
             }
         ]);
     }, 
-    name: 'audiofileuploadedevent', 
+    name: 'audiofileuploadedevent' 
 });
 
 /**

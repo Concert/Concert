@@ -138,5 +138,5 @@ var WaveformPanel = Panel.extend(
         /* Load the waveform viewer with the audio files' waveform image */
         waveformImageElement.attr('src', src);
         
-    }, 
+    } 
 });

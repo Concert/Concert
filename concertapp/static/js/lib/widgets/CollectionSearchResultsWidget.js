@@ -61,7 +61,7 @@ var CollectionSearchResultsWidget = Widget.extend(
                     var widget = new CollectionSearchResultWidget({
                         template: resultTemplate, 
                         model: collection,
-                        panel: panel, 
+                        panel: panel 
                     });
 
                     frag.appendChild(widget.el);

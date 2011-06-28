@@ -110,5 +110,5 @@ var SegmentWidget = ListWidget.extend(
         ListWidget.prototype._handle_delete_click.call(this);
         
         this.panel.router.delete_audio_segment(this.model);
-    }, 
+    } 
 });

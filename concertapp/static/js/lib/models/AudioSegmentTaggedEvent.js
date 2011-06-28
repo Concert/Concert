@@ -25,7 +25,7 @@ var AudioSegmentTaggedEvent = Event.extend(
             }
         ]);
     }, 
-    name: 'audiosegmenttaggedevent', 
+    name: 'audiosegmenttaggedevent' 
 });
 
 /**

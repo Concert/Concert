@@ -20,5 +20,5 @@ var OverviewWaveformPlayheadComponent = WaveformPlayheadComponent.extend(
     
     update_speed: function() {
         this.pxPerSecond = this.panel.get_resolution();         
-    },
+    }
 });

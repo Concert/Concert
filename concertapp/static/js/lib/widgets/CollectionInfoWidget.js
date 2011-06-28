@@ -16,5 +16,5 @@ var CollectionInfoWidget = Widget.extend(
 {
     initialize: function() {
         
-    }, 
+    } 
 });

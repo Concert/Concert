@@ -409,6 +409,6 @@ var ConcertBackboneModel = Backbone.Model.extend(
         else {
             return url;
         }
-    },
+    }
 
 });

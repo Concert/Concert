@@ -122,7 +122,7 @@ var Panel = Backbone.View.extend(
             'route:collection': 'render_collection', 
             'route:collection_audio': 'render_collection_audio', 
             'route:collection_audio_file': 'render_collection_audio_file',
-            'route:collection_audio_segment': 'render_collection_audio_segment',
+            'route:collection_audio_segment': 'render_collection_audio_segment'
         };
     }, 
     
@@ -163,6 +163,6 @@ var Panel = Backbone.View.extend(
     hide_loading_notification: function() {
         this.loader.removeClass('panel_loader_enabled');
         this.loading = false;
-    },
+    }
 
 });

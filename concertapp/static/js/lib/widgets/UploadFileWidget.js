@@ -152,7 +152,7 @@ var UploadFileWidget = Widget.extend(
             type: 'hidden', 
             name: 'upload_id', 
             id: 'upload_id',         
-            value: this.upload_id, 
+            value: this.upload_id 
         }));
         
         /* Put our collection select element into the form */
@@ -172,7 +172,7 @@ var UploadFileWidget = Widget.extend(
 
                     com.concertsoundorganizer.notifier.alert({
                         title: 'Success!', 
-                        content: 'Your file uploaded successfully.', 
+                        content: 'Your file uploaded successfully.' 
                     });
                 };
             }(this),

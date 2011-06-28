@@ -213,7 +213,7 @@ LoggedInModelManager.prototype.create_and_select_new_segment = function(startTim
         end: endTime,
         creator: this.user, 
         name: 'segment_'+timestamp.format('yyyy-mm-dd_hh:MM:ss:L'), 
-        collection: collection,
+        collection: collection
     });
 
     /* Create event */
@@ -223,7 +223,7 @@ LoggedInModelManager.prototype.create_and_select_new_segment = function(startTim
         audioSegment: newSegment, 
         collection: collection, 
         audioFile: audioFile,
-        time: new Date(), 
+        time: new Date() 
     });
 
 
@@ -271,7 +271,7 @@ LoggedInModelManager.prototype.create_and_select_new_segment = function(startTim
                         /* Now event and segment have ids, and we can rest in peace */
                         callback(segmentModel, segmentResp);
                     }
-                }, 
+                } 
             });
         }
     });
@@ -453,7 +453,7 @@ LoggedInModelManager.prototype.tag_current_segment = function(tagName) {
             segmentTaggedEvent.save(null, {
                 /* If event saving fails, run tagFailHandler also */
                 error_callback: tagFailHandler, 
-                error_message: 'Event was not created.', 
+                error_message: 'Event was not created.' 
             });
         }
     });
@@ -476,7 +476,7 @@ LoggedInModelManager.prototype.create_new_comment = function(content) {
         collection: collection, 
         comment: content,
         time: new Date(),
-        active: true, 
+        active: true 
     };
     var commentEvent = null;
     

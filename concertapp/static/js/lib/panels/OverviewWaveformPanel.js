@@ -248,5 +248,5 @@ var OverviewWaveformPanel = WaveformPanel.extend(
 
         /* replace old segment bars with new ones */
         segmentBarsContainerElement.html(segmentBarsContents);
-    }, 
+    } 
 })

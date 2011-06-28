@@ -108,5 +108,5 @@ var EventWidget = Widget.extend(
         return _.extend(parentData, {
             currentRoute: this.currentRoute
         });
-    }, 
+    } 
 });

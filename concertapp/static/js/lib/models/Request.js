@@ -102,5 +102,5 @@ var RequestSet = ConcertBackboneCollection.extend(
 	 *	@scope	RequestSet.prototype
 	 **/
 {
-    model: Request, 
+    model: Request 
 });

@@ -13,7 +13,7 @@ var RequestDeniedEvent = Event.extend(
      *  @scope  RequestDeniedEvent.prototype
      **/
 {
-    name: 'requestdeniedevent', 
+    name: 'requestdeniedevent' 
     
 });
 

@@ -94,7 +94,7 @@ var Router = Backbone.Controller.extend(
         /* Create waveform detail panel */
         this.detailPanel = new DetailWaveformPanel({
             router: this, 
-            el: $('#detail_waveform_panel'),
+            el: $('#detail_waveform_panel')
         });
         
         return true;
@@ -317,7 +317,7 @@ var Router = Backbone.Controller.extend(
      **/
     create_new_comment: function(content) {
         this.modelManager.create_new_comment(content);
-    }, 
+    } 
     
 });
 

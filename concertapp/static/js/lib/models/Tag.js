@@ -40,7 +40,7 @@ var Tag = ConcertBackboneModel.extend(
             }
         ];
     }, 
-    name: 'tag', 
+    name: 'tag' 
 });
 
 /**

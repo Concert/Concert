@@ -223,6 +223,6 @@ var AudioController = Backbone.Controller.extend(
             }
         }(this));
         this.audio.currentTime = seconds;
-    },
+    }
 
 });

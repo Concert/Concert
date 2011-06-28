@@ -13,7 +13,7 @@ var RequestRevokedEvent = Event.extend(
      *  @scope  RequestRevokedEvent.prototype
      **/
 {
-    name: 'requestrevokedevent', 
+    name: 'requestrevokedevent' 
     
 });
 

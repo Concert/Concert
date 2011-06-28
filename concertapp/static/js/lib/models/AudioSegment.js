@@ -52,7 +52,7 @@ var AudioSegment = ConcertBackboneModel.extend(
         if(audioFile) {
             audioFile.get('segments').add(this);
         }
-    }, 
+    } 
 });
 
 /**

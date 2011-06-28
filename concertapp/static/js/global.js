@@ -11,11 +11,11 @@
  **/
 if(!com) var com = {};
 if(!com.concertsoundorganizer) com.concertsoundorganizer = {
-    apiBaseURL: '/api/1/', 
+    apiBaseURL: '/api/1/'
 };
 if(!com.concertsoundorganizer.animation) {
     com.concertsoundorganizer.animation = {
-        speed: 200, 
+        speed: 200
     };
 }
 if(!com.concertsoundorganizer.compatibility) {

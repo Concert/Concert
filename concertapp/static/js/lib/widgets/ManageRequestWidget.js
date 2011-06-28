@@ -31,7 +31,7 @@ var ManageRequestWidget = Widget.extend(
         return this;
     },
     events: {
-        'click .revoke_request': 'revokeRequest', 
+        'click .revoke_request': 'revokeRequest' 
     }, 
     /**
      *  Called when user clicks the revoke request button
@@ -39,5 +39,5 @@ var ManageRequestWidget = Widget.extend(
     revokeRequest: function(){
         /* Revoke join request. */
         this.panel.page.revoke_request(this.model);
-    }, 
+    } 
 });

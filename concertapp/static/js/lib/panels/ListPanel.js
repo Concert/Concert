@@ -134,7 +134,7 @@ var ListPanel = Panel.extend(
                 var widget = new FileWidget({
                     template: fileWidgetTemplate, 
                     model: obj, 
-                    panel: panel,
+                    panel: panel
                 });
                 
                 fileWidgets[obj.get('id')] = widget;
@@ -151,7 +151,7 @@ var ListPanel = Panel.extend(
                 var widget = new SegmentWidget({
                     template: segmentWidgetTemplate,
                     model: obj,
-                    panel: panel, 
+                    panel: panel 
                 });
                 
                 segmentWidgets[obj.get('id')] = widget;
@@ -251,5 +251,5 @@ var ListPanel = Panel.extend(
         selectedWidget.select();
         
         this.selectedWidget = selectedWidget;
-    }, 
+    } 
 });

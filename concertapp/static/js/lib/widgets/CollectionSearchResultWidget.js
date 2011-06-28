@@ -34,7 +34,7 @@ var CollectionSearchResultWidget = Widget.extend(
     },
     events: {
         'click .collection_join_button': 'joinCollection', 
-        'click .collection_info_button': 'showCollectionInfo', 
+        'click .collection_info_button': 'showCollectionInfo' 
     }, 
     /**
      *  This will be executed when a user decides to join a collection.  Tell 
@@ -47,5 +47,5 @@ var CollectionSearchResultWidget = Widget.extend(
     }, 
     showCollectionInfo: function() {
         console.log('showCollectionInfo');
-    }, 
+    } 
 });
