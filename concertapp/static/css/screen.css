@@ -1,3 +1,205 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/* line 17, ../../../../../../../opt/local/lib/ruby/gems/1.8/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* line 20, ../../../../../../../opt/local/lib/ruby/gems/1.8/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+body {
+  line-height: 1;
+}
+
+/* line 22, ../../../../../../../opt/local/lib/ruby/gems/1.8/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 24, ../../../../../../../opt/local/lib/ruby/gems/1.8/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 26, ../../../../../../../opt/local/lib/ruby/gems/1.8/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 28, ../../../../../../../opt/local/lib/ruby/gems/1.8/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 101, ../../../../../../../opt/local/lib/ruby/gems/1.8/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 30, ../../../../../../../opt/local/lib/ruby/gems/1.8/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 115, ../../../../../../../opt/local/lib/ruby/gems/1.8/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+/* FONT IMPORT */
+@font-face {
+  font-family: "GeosansLight";
+  src: url(/fonts/GeosansLight.ttf) format("truetype");
+}
+
+/*selection prefs
+
+div::selection {
+    background-color:fuschia;
+    color:	white;
+}
+
+img::selection {
+    background-color:Transparent;
+    color:#000;
+}*/
+/* line 26, ../sass/screen.scss */
+body {
+  font: 12px "Helvetica", Arial, sans-serif;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 0px #fff;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  background: #e1e1e6;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+/* line 43, ../sass/screen.scss */
+input, textarea, div.event_widget_comment {
+  font-family: Georgia, serif;
+  font-size: 14px;
+}
+
+/* line 50, ../sass/screen.scss */
+input#list_panel_search, input#detail_waveform_panel_tag_input {
+  color: white;
+}
+
+/* line 55, ../sass/screen.scss */
+div#layout {
+  width: 960px;
+  margin: 0 auto;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+/* line 62, ../sass/screen.scss */
+div#inset {
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+  border-bottom: 1px solid white;
+  -webkit-box-shadow: inset 0px 0px 2px rgba(0, 0, 0, 0.8);
+  margin-bottom: 20px;
+  background: #b5b5bc;
+  /*background-image: -webkit-radial-gradient(circle, white, #c9c9d1)*/
+}
+
+/* line 72, ../sass/screen.scss */
+div#layout_top {
+  width: 934px;
+  height: 40px;
+  border: 1px solid white;
+  margin: 0 auto;
+  padding: 10px;
+  background: #f8f8fa url(/graphics/logo.png) center no-repeat;
+}
+
+/* line 81, ../sass/screen.scss */
+div#layout_middle {
+  width: 100%;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+/* line 87, ../sass/screen.scss */
+div#layout_bottom {
+  width: 958px;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  margin-bottom: 20px;
+  border: 1px solid white;
+  -webkit-box-shadow: inset 0px 0px 2px rgba(0, 0, 0, 0.4);
+  background: #b5b5bc;
+}
+
+/* line 97, ../sass/screen.scss */
+div#bottom_left {
+  width: 596px;
+  margin: 1px 0px 1px 1px;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  background: #e1e1e6;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+/* line 106, ../sass/screen.scss */
+div#bottom_right {
+  width: 359px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+/*Overlay modal box */
+/* line 114, ../sass/screen.scss */
+div#modal-overlay {
+  outline: 0 !important;
+  display: none;
+}
+
+/* line 119, ../sass/screen.scss */
+div#modal-overlay-background {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 999999;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+/* line 127, ../sass/screen.scss */
+div#modal-overlay-pane {
+  position: fixed;
+  z-index: 10000001;
+  background: #fff;
+}
+
 /* This is a panel on the UI, used for many things. */
 /* line 2, ../sass/panels.scss */
 div.panel {
@@ -526,4 +728,154 @@ button#comment_button.hidden {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+/**
+ *  An autocomplete listing
+ **/
+/* line 4, ../sass/components.scss */
+div.autocomplete_list ul.ui-autocomplete {
+  position: absolute;
+  top: auto;
+  padding: 0;
+  margin-top: 0.5em;
+}
+
+/* A substring that matches the search term */
+/* line 12, ../sass/components.scss */
+span.autocomplete_substring_match {
+  font-weight: bold;
+}
+
+/** 
+ *  All Widgets
+ **/
+/* line 5, ../sass/widgets.scss */
+div.widget_icon {
+  height: 30px;
+  width: 30px;
+  margin-right: 1em;
+  background-repeat: no-repeat;
+}
+
+/**
+ *  List widgets
+ **/
+/* line 16, ../sass/widgets.scss */
+div.list_widget {
+  width: 335px;
+  padding: 10px;
+  font-weight: bold;
+  margin: 0 auto;
+}
+
+/* line 23, ../sass/widgets.scss */
+div.list_widget .boxwrap {
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+}
+
+/* line 28, ../sass/widgets.scss */
+div.list_widget .bottom {
+  font-weight: normal;
+}
+
+/* line 32, ../sass/widgets.scss */
+div.list_widget .info {
+  padding-bottom: 10px;
+}
+
+/* line 36, ../sass/widgets.scss */
+span.list_widget_title_text {
+  cursor: pointer;
+}
+
+/**
+ *  Collection list widget
+ **/
+/* line 43, ../sass/widgets.scss */
+div.collection_list_widget_icon {
+  background: url(/graphics/group.png);
+}
+
+/**
+ *  Audio file list widget
+ **/
+/* line 50, ../sass/widgets.scss */
+div.file_list_widget_icon {
+  background: url(/graphics/file.png);
+}
+
+/**
+ *  Audio segment widgets 
+ **/
+/* line 58, ../sass/widgets.scss */
+div.segment_list_widget_icon {
+  background: url(/graphics/segment.png);
+}
+
+/**
+ *  Tag widgets
+ **/
+/* line 71, ../sass/widgets.scss */
+div.tag {
+  /* `inline-block` ensures that line breaks wont occur in the middle of a tag */
+  display: inline-block;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 0.8em;
+  background: #f8f8fa;
+  border: 1px solid white;
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  padding: 0.4em;
+  margin: 0.4em;
+  cursor: pointer;
+}
+
+/**
+ *  Event widgets
+ **/
+/* line 88, ../sass/widgets.scss */
+.event_widget {
+  /* Display the icon to the left of the content */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  margin-bottom: 2em;
+}
+
+/* event comment text */
+/* line 97, ../sass/widgets.scss */
+div.event_widget_comment {
+  text-transform: none;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+/* line 103, ../sass/widgets.scss */
+div.time {
+  display: block;
+}
+
+/* segment created event */
+/* line 112, ../sass/widgets.scss */
+div.type1_event_widget_icon {
+  background: url(/graphics/segment.png);
+}
+
+/* Segment tagged event */
+/* line 117, ../sass/widgets.scss */
+div.type2_event_widget_icon {
+  background: url(/graphics/tag.png);
+}
+
+/* File uploaded event */
+/* line 122, ../sass/widgets.scss */
+div.type3_event_widget_icon {
+  background: url(/graphics/file.png);
+}
+
+/* File comment */
+/* line 127, ../sass/widgets.scss */
+div.type12_event_widget_icon {
+  background: url(/graphics/comment.png);
 }

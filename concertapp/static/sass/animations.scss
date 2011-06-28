@@ -1,17 +1,15 @@
 /**
  *  Animations for UI elements.
  **/
+
 /*  The events list panel header is where the comment form is stored.  The comment
     form fades in by default. */
-/* line 7, ../sass/animations.scss */
 #events_list_panel_header {
-  opacity: 1;
-  -webkit-transition: opacity 1s ease-in;
+    opacity: 1;
+    -webkit-transition: opacity 1s ease-in;
 }
-
 /*  and it fades out when the 'hidden' class is applied */
-/* line 12, ../sass/animations.scss */
 #events_list_panel_header.hidden {
-  opacity: 0;
-  -webkit-transition: opacity 1s ease-out;
+    opacity: 0;
+    -webkit-transition: opacity 1s ease-out;
 }

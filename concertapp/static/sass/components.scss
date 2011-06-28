@@ -1,0 +1,14 @@
+/**
+ *  An autocomplete listing
+ **/
+div.autocomplete_list ul.ui-autocomplete {
+    position: absolute;
+    top: auto;
+    padding: 0;
+    margin-top: 0.5em;
+}
+
+/* A substring that matches the search term */
+span.autocomplete_substring_match {
+    font-weight: bold;
+}

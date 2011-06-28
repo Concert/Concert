@@ -1,129 +1,132 @@
 /** 
  *  All Widgets
  **/
-
+/* line 5, ../sass/widgets.scss */
 div.widget_icon {
-    height: 30px;
-    width: 30px;
-    margin-right: 1em;
-    background-repeat: no-repeat;
+  height: 30px;
+  width: 30px;
+  margin-right: 1em;
+  background-repeat: no-repeat;
 }
- 
 
 /**
  *  List widgets
  **/
+/* line 16, ../sass/widgets.scss */
 div.list_widget {
-    width: 335px;
-    padding: 10px;
-    font-weight: bold;
-	margin: 0 auto;
+  width: 335px;
+  padding: 10px;
+  font-weight: bold;
+  margin: 0 auto;
 }
 
-div.list_widget .boxwrap{
-    display: -webkit-box;
-    -webkit-box-orient: horizontal;
+/* line 23, ../sass/widgets.scss */
+div.list_widget .boxwrap {
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
 }
 
-div.list_widget .bottom{
-    font-weight: normal;
+/* line 28, ../sass/widgets.scss */
+div.list_widget .bottom {
+  font-weight: normal;
 }
 
-div.list_widget .info{
-    padding-bottom: 10px;
+/* line 32, ../sass/widgets.scss */
+div.list_widget .info {
+  padding-bottom: 10px;
 }
 
+/* line 36, ../sass/widgets.scss */
 span.list_widget_title_text {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 /**
  *  Collection list widget
  **/
+/* line 43, ../sass/widgets.scss */
 div.collection_list_widget_icon {
-    background: url(/graphics/group.png);
+  background: url(/graphics/group.png);
 }
 
 /**
  *  Audio file list widget
  **/
+/* line 50, ../sass/widgets.scss */
 div.file_list_widget_icon {
-    background: url(/graphics/file.png);
+  background: url(/graphics/file.png);
 }
-
 
 /**
  *  Audio segment widgets 
  **/
+/* line 58, ../sass/widgets.scss */
 div.segment_list_widget_icon {
-    background: url(/graphics/segment.png);
+  background: url(/graphics/segment.png);
 }
-
 
 /**
  *  Tag widgets
  **/
- 
-div.tag:hover {
-    
-}	
-
+/* line 71, ../sass/widgets.scss */
 div.tag {
-    /* `inline-block` ensures that line breaks wont occur in the middle of a tag */
-    display: inline-block;
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 0.8em;
-    background: #f8f8fa;
-    border: 1px solid white;
-    -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.5);
-    padding: 0.4em;
-    margin: 0.4em;
-    cursor: pointer;
+  /* `inline-block` ensures that line breaks wont occur in the middle of a tag */
+  display: inline-block;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 0.8em;
+  background: #f8f8fa;
+  border: 1px solid white;
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  padding: 0.4em;
+  margin: 0.4em;
+  cursor: pointer;
 }
 
 /**
  *  Event widgets
  **/
-.event_widget{
-    /* Display the icon to the left of the content */
-    display: -webkit-box;
-    -webkit-box-orient: horizontal;
-    
-    margin-bottom: 2em;
+/* line 88, ../sass/widgets.scss */
+.event_widget {
+  /* Display the icon to the left of the content */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  margin-bottom: 2em;
 }
 
 /* event comment text */
+/* line 97, ../sass/widgets.scss */
 div.event_widget_comment {
-    text-transform: none;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
+  text-transform: none;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }
 
+/* line 103, ../sass/widgets.scss */
 div.time {
-    display: block;
-}
-
-div.event_widget div.event_icon{
-    
+  display: block;
 }
 
 /* segment created event */
+/* line 112, ../sass/widgets.scss */
 div.type1_event_widget_icon {
-    background: url(/graphics/segment.png);
+  background: url(/graphics/segment.png);
 }
 
 /* Segment tagged event */
+/* line 117, ../sass/widgets.scss */
 div.type2_event_widget_icon {
-    background: url(/graphics/tag.png);
+  background: url(/graphics/tag.png);
 }
 
 /* File uploaded event */
+/* line 122, ../sass/widgets.scss */
 div.type3_event_widget_icon {
-    background: url(/graphics/file.png);
+  background: url(/graphics/file.png);
 }
 
 /* File comment */
+/* line 127, ../sass/widgets.scss */
 div.type12_event_widget_icon {
-    background: url(/graphics/comment.png);
+  background: url(/graphics/comment.png);
 }

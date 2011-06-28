@@ -1,0 +1,487 @@
+/* This is a panel on the UI, used for many things. */
+div.panel {
+    position: relative;
+}
+
+.panel_nocontent_container {
+	display: none;
+}
+
+/* This is the div that shows a loading notification on each panel */
+div.panel_loader {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: gray;
+    text-align: center;
+    opacity: 0;
+    z-index: -1;
+}
+
+/* This class is added when the panel loader is to be displayed */
+div.panel_loader_enabled {
+    opacity: 0.7;
+    z-index: 9999;
+}
+
+/*Overview Waveform Panel */
+
+div#overview_waveform_panel_top {
+    color: #f8f8fa;
+    width: 956px;
+	margin: 0 auto;
+    height: 60px;
+  	background: -webkit-gradient(linear, left top, left bottom, from(#18181f), to(#45455a));
+    -webkit-box-shadow: inset 0 0 10px #000000;
+}
+
+div#overview_waveform_panel_playhead {
+    height: 60px;
+	margin: 0px 1px 0px 1px;
+}
+
+div.playhead {
+    background-color: #FF0000;
+    color: #FF0000;
+    width: 1px;
+    z-index: 300;
+    position: absolute;
+}
+
+div#overview_waveform_panel_bottom {
+    width: 956px;
+	margin: 0 auto;
+    height: 20px;
+	padding-bottom: 20px;
+}
+
+/*Detail Waveform Panel */
+
+div#detail_waveform_panel_contents {
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+}
+
+div#detail_wavform_wrap{
+ 	width: 954px;
+	border: 1px solid white;
+	margin: 0 auto;
+	background: #f8f8fa;
+}
+
+div#detail_waveform_panel_top {
+    width: 874px;
+    height: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-right: 40px;
+    padding-left: 40px;
+    -webkit-box-orient: horizontal;
+    display: -webkit-box;
+}
+
+div#detail_waveform_panel_top_left {
+    width: 440px;
+    text-transform: uppercase;
+}
+
+/* The name of the segment/file at the top of the detail panel */
+span#detail_waveform_selected_name {
+    font-weight: bold;
+}
+
+/* The text input box that appears when clicking on the name */
+input#detail_waveform_selected_name_editable {
+    height: 1em;
+}
+
+
+div#detail_waveform_panel_top_right {
+    width: 440px;
+    text-align: right;
+    text-transform: uppercase;
+}
+
+div#detail_waveform_panel_middle {
+    width: 954px;
+    height: 254px;
+    -webkit-box-orient: horizontal;
+    display: -webkit-box;
+}
+
+div#detail_waveform_panel_middle_left {
+	padding-left: 12px;
+    padding-right: 18px;
+	width: 10px;
+}
+
+div#detail_waveform_panel_middle_right {
+	padding-left: 18px;
+    padding-right: 12px;
+	width: 10px;
+    margin-left: 874px;
+}
+
+div#detail_waveform_panel_middle_left .arrow_space{
+    height: 57px;
+    width: 100%;
+    padding-top: 43px;
+}
+
+div#detail_waveform_panel_middle_right .arrow_space{
+    height: 57px;
+    width: 100%;
+    padding-top: 43px;
+}
+
+div#detail_waveform_panel_middle_left .arrow_space .arrow{
+    border-color: transparent #45455a transparent transparent;
+    border-style: solid;
+    border-width: 8px 12px 8px 0px;
+    width:0;
+    height:0;
+}
+
+div#detail_waveform_panel_middle_right .arrow_space .arrow{
+    border-color: transparent transparent transparent #45455a;
+    border-style: solid;
+    border-width: 8px 0px 8px 12px;
+    width: 0;
+    height: 0;
+}
+
+div#detail_waveform_panel_view {
+    color: #f8f8fa;
+    width: 874px;
+    height: 255px;
+    position: absolute;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+/**SHADOW**/
+div#detail_waveform_panel_view_overlay {
+    width: 874px;
+    height: 198px;
+    -webkit-box-shadow:inset 0 0 10px #000000;
+    z-index: 200;
+    position: absolute;
+    top: 41px;
+    left: 41px;
+    border: 1px solid white;
+}
+
+/**UNDERLAY GRADIENT**/
+div#detail_waveform_panel_view_underlay {
+    width: 874px;
+    height: 200px;
+    z-index: 100;
+    position: absolute;
+    top: 41px;
+    left: 41px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#45455a), to(#18181f));
+}
+
+div#detail_waveform_panel_playhead {
+    height: 198px;
+	margin: 1px;
+}
+
+div#detail_waveform_panel_bottom {
+    width: 948px;
+    padding: 1em;
+}
+
+div#detail_waveform_panel_waveform_timecode_playhead {
+    position: absolute;
+}
+
+div#detail_waveform_panel_timecode {
+    height: 40px;
+    background: #f8f8fa;
+    position: absolute;
+    top: 200px;
+    z-index: 200;
+}
+
+div#audiolist_panel_contents {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+
+/**
+*  Waveform highlight
+**/
+
+div.highlight_container {
+    z-index: 300;
+    position: absolute;
+}
+
+div.highlight {
+    height: 100%;
+    position: relative;
+    background: transparent;
+    -webkit-box-shadow:inset 0 0 40px #fff;
+}
+
+/* Initially a highlight will be disabled */
+/*div.highlight.disabled {
+  height: 100%;
+  position: relative;
+  background-color: white;
+  opacity: 0.5;
+  display: -webkit-box;
+}
+*/
+
+div.leftHandle {
+    height: 100%;
+    position: absolute;
+    left: -1;
+    background-color: #fff;
+    width: 1px;
+    visibility: inherit;
+}
+
+div.leftHandle:hover {
+    left: -2px;
+    width: 3px;
+    cursor: col-resize;
+}
+
+div.rightHandle {
+    height: 100%;
+    position: absolute;
+    right: -1px;
+    background-color: #fff;
+    width: 1px;
+    visibility: inherit;
+}
+
+div.rightHandle:hover {
+    right: -2px;
+    width: 3px;
+    cursor: col-resize;
+}
+
+/* Initially a highlight will be disabled */
+div.disabled {
+    visibility: hidden;
+}
+
+div#detail_waveform_panel_highlight_container {
+    height: 196px;
+	margin: 2px 0px 2px 0px;
+}
+div#overview_waveform_panel_highlight_container {
+    height: 58px;
+	margin: 1px 0px 1px 0px;
+}
+
+/**
+*  Waveform images
+**/
+img.waveform_image {
+    display: block;
+    z-index: 100;
+    position: absolute;
+}
+
+/* Fit overview image in box */
+img#overview_waveform_image {
+    width: 956px;
+    height: 60px;
+}
+
+div#create_join_panel, div#manage_admin_collections_panel, div#manage_member_collections_panel, div#manage_request_collections_panel {
+    height: 100px;
+}
+
+
+div.file_widget {
+    width: 408px;
+    height: 70px;
+    border: 1px solid #000000;
+    display: -webkit-box;
+    -webkit-box-orient: horizontal;
+    padding: 5px;
+}
+
+
+/**
+ *  Detail waveform panel tag bay
+ **/
+div#detail_waveform_panel_tags {
+    display: inline;
+}
+
+input#detail_waveform_panel_tag_input {
+    display: inline;
+    height: 15px;
+    font-size: 10px;
+    margin: 0.8em 1em 0px 0px;
+    padding: 3px 5px 0px 5px;
+    -webkit-appearance: none;
+    background: transparent;
+    border: 0;
+}
+
+input#detail_waveform_panel_tag_input:focus {
+    border: 0;
+}
+
+input#detail_waveform_panel_tag_input::-webkit-input-placeholder {
+    color:  gray;
+    opacity: 0.7;
+}
+
+
+
+/*AUDIO PANEL*/
+
+div#list_panel{
+	width: 359px;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	padding-top: 1px;
+	padding-bottom: 1px;
+}
+
+div#list_nav{
+	width: 335px;
+	height: 20px;
+	border: 1px solid white;
+	padding: 10px;
+	background: #f8f8fa;
+}
+
+div#list_panel_header{
+    width: 357px;
+	margin: 0 auto;
+}
+
+
+div#list_panel_search_container{
+	background: -webkit-gradient(linear, left top, left bottom, from(#18181f), to(#45455a));
+    height: 40px;
+    width: 337px;
+   -webkit-box-shadow:inset 0 0 10px #000;
+    text-shadow: none;
+	padding: 0px 10px 0px 10px;
+	margin-bottom: -2px;
+}
+
+input#list_panel_search {
+	background: transparent;
+	text-decoration: none;
+	height: 30px;
+	width: 337px;
+	padding-top: 10px;
+	outline: 0px;
+	border: 0px;
+}
+
+div#list_panel .selected{
+	width: 335px;
+	border: 1px solid white;
+	padding: 9px;
+	background: #f8f8fa;
+    color: #2e2e35;
+    overflow: hidden;
+	margin: 0 auto;
+}
+
+
+/*pushed to universal classes*/
+div.title{
+    font-size: 13px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.small_text{
+    font-size: 10px;
+    font-weight: normal;
+    padding-bottom: 8px;
+}
+/*
+.text{
+    font-family: Georgia, serif;
+    text-transform: none;
+    font-size: 15px;
+}*/
+
+/* events panel */
+div#events_list_panel{
+	width: 578px;
+	padding: 10px;
+}
+
+/* Container for comment form */
+div#events_list_panel_header {
+    margin-bottom: 1em;
+}
+
+/* Comment form field */
+textarea#comment_field {
+    width: 100%;
+    height: 2.5em;
+    padding: 0.5em;
+    box-sizing: border-box;
+}
+
+/* When comment form field is expanded */
+textarea#comment_field.expanded {
+    height: 4em;
+}
+
+/* Comment button */
+button#comment_button.hidden {
+    display: none;
+}
+
+/* Container for events */
+div#events_list_panel_contents {
+    
+}
+
+
+
+
+
+/**
+ *  SEGMENT BARS
+ **/
+
+/* A row of segment bars */
+.segment_bar_row {
+    padding-top: 2px;
+    height: 3px;
+    display: -webkit-box;
+    -webkit-box-orient: horizontal;
+}
+
+/**
+*  A single segment bar
+*
+*  margin-left and width properties will change dynamically
+**/
+.segment_bar {
+    background: #45455a;
+    position: absolute;
+    height: 3px;
+}
+
+#background_glare{
+    border-color: transparent transparent transparent rgba(255,255,255,0.4);
+    border-style: solid;
+    border-width: 0px 0px 520px 960px;
+    width:0;
+    height:0;
+    z-index: -2000;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
