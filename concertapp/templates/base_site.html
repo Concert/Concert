@@ -35,7 +35,7 @@ The base template for all pages.  All page templates will use this.
     <script src="/js/lib/vendor/modernizr-1.6.min.js"></script>
     <script src="/js/lib/vendor/jquery.form.js"></script>
     <script src="/js/lib/vendor/jquery.imagesloaded.js"></script>
-    <script src="/js/lib/vendor/underscore-min.js"></script>
+    <script src="/js/lib/vendor/underscore.js"></script>
     <script src="/js/lib/vendor/json2.js"></script>
     <script src="/js/lib/vendor/backbone.js"></script>
     <script src="/js/lib/vendor/gury.js"></script>
@@ -43,6 +43,7 @@ The base template for all pages.  All page templates will use this.
     <script src="/js/lib/vendor/jquery.scroll-startstop.events.js"></script>
     <script src="/js/lib/vendor/jquery.noisy.js"></script>
     <script src="/js/lib/vendor/date.format.js"></script>
+    <script src="/js/lib/vendor/backbone-relational.js"></script>
 
     {# Helpers #}
     <script src="/js/lib/helpers/AnimatedDots.js"></script>
@@ -51,27 +52,14 @@ The base template for all pages.  All page templates will use this.
 
     
     {# Models #}
-    <script src="/js/lib/models/ConcertBackboneCollection.js"></script>
-    <script src="/js/lib/models/ConcertBackboneModel.js"></script>
+    <script src="/js/lib/models/ConcertModel.js"></script>
     <script src="/js/lib/models/Collection.js"></script>
     <script src="/js/lib/models/User.js"></script>
-    <script src="/js/lib/models/Request.js"></script>
+    {#}<script src="/js/lib/models/Request.js"></script>#}
     <script src="/js/lib/models/AudioFile.js"></script>
     <script src="/js/lib/models/AudioSegment.js"></script>
     <script src="/js/lib/models/Tag.js"></script>
-    <script src="/js/lib/models/Comment.js"></script>
     <script src="/js/lib/models/Event.js"></script>
-    <script src="/js/lib/models/AudioFileUploadedEvent.js"></script>
-    <script src="/js/lib/models/AudioSegmentCreatedEvent.js"></script>
-    <script src="/js/lib/models/AudioSegmentTaggedEvent.js"></script>
-    <script src="/js/lib/models/CreateCollectionEvent.js"></script>
-    <script src="/js/lib/models/JoinCollectionEvent.js"></script>
-    <script src="/js/lib/models/LeaveCollectionEvent.js"></script>
-    <script src="/js/lib/models/RequestDeniedEvent.js"></script>
-    <script src="/js/lib/models/RequestJoinCollectionEvent.js"></script>
-    <script src="/js/lib/models/RequestRevokedEvent.js"></script>
-    <script src="/js/lib/models/AudioSegmentCommentEvent.js"></script>
-    <script src="/js/lib/models/AudioFileCommentEvent.js"></script>
     
     {# Modal notification framework #}
     <script src="/js/lib/notifications/ModalAlert.js"></script>
@@ -124,6 +112,7 @@ The base template for all pages.  All page templates will use this.
     <script src="/js/lib/widgets/RequestRevokedEventWidget.js"></script>
     <script src="/js/lib/widgets/AudioFileCommentEventWidget.js"></script>
     <script src="/js/lib/widgets/CollectionWidget.js"></script>
+    <script src="/js/lib/widgets/AudioSegmentCommentEventWidget.js"></script>
     
     
     {# Components #}
@@ -259,6 +248,9 @@ The base template for all pages.  All page templates will use this.
     </script>
     <script id="audiofilecommentevent_template" type="text/x-jquery-tmpl">
         {% include 'clientside/audiofilecommentevent.html' %}
+    </script>
+    <script id="audiosegmentcommentevent_template" type="text/x-jquery-tmpl">
+        {% include 'clientside/audiosegmentcommentevent.html' %}
     </script>
     
     <script id="requestrevokedevent_template" type="text/x-jquery-tmpl">

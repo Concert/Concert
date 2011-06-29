@@ -2,7 +2,13 @@
 {% load extra_template_tags %}
 
 {% block title %}
-    {% verbatim %}{{tmpl($data) "#collection_link_template"}}{% endverbatim %}
+    {% verbatim %}
+        {{tmpl($data) "#collection_link_template"}}
+        <br />
+        <span class="small_text">
+            ${users.length} {{if users.length == 1}}user{{else}}users{{/if}}
+        </span>
+    {% endverbatim %}
 {% endblock %}
 
 
@@ -19,9 +25,10 @@
     {% block bottom %}
     <div class="bottom">
         {# List all users for this collection #}
+        {% comment %}
         
         {% verbatim %}
-            {{each(i, user) users.toJSON()}}
+            {{each(i, user) users}}
                 {{tmpl(user) "#user_link_template"}}
         {% endverbatim %}
         
@@ -30,5 +37,7 @@
                 {{if i != users.length-1}} , {{/if}}
             {{/each}}
         {% endverbatim %}
+        {% endcomment %}
+        
     </div>
 {% endblock %}

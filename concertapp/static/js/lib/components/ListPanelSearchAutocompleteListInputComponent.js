@@ -29,7 +29,7 @@ var ListPanelSearchAutocompleteListInputComponent = AutocompleteListInputCompone
             this.pending++;
             this.element.addClass( "ui-autocomplete-loading" );
 
-            this.source( { 'name__icontains': value }, this.response );
+            this.source( { 'name__icontains': value, 'limit': 0 }, this.response );
         };
         
     },

@@ -5,51 +5,46 @@
  **/
  
 /**
- *  A Collection object represents a django Collection object.
- *  @class
+ *  @class  A Collection object represents a django Collection object.
+ *  @extends    ConcertModel
  **/
-var Collection = ConcertBackboneModel.extend(
+var Collection = ConcertModel.extend(
 	/**
 	 *	@scope	Collection.prototype
 	 **/
 {
-    
-    oneToManyAttributes: function() {
-        return [
-            {
-                attr: 'requests', 
-                collectionType: RequestSet
-            },
-            {
-                attr: 'users', 
-                collectionType: UserSet
-            },
-            {
-                attr: 'events', 
-                collectionType: EventSet
-            },
-            {
-                attr: 'files', 
-                collectionType: AudioFileSet 
-            },
-            {
-                attr: 'segments', 
-                collectionType: AudioSegmentSet
-            },
-            {
-                attr: 'tags', 
-                collectionType: TagSet
-            }
-        ];
-    },
-    foreignKeyAttributes: function() {
-        return [
-            {
-                attr: 'admin', 
-                model: User 
-            }
-        ]
-    },
+    relations: [
+        {
+            type: Backbone.HasMany, 
+            key: 'users', 
+            relatedModel: 'User'
+        },
+        {
+            type: Backbone.HasMany, 
+            key: 'events', 
+            relatedModel: 'Event'
+        },
+        {
+            type: Backbone.HasMany, 
+            key: 'files', 
+            relatedModel: 'AudioFile'
+        },
+        {
+            type: Backbone.HasMany, 
+            key: 'segments', 
+            relatedModel: 'AudioSegment'
+        },
+        {
+            type: Backbone.HasMany, 
+            key: 'tags', 
+            relatedModel: 'Tag'
+        },
+        {
+            type: Backbone.HasOne, 
+            key: 'admin', 
+            relatedModel: 'User'
+        }
+    ], 
     name: 'collection',
     /**
      *  When a user wants to join a collection.
@@ -95,7 +90,7 @@ var Collection = ConcertBackboneModel.extend(
  *  while lowercase collection just means a set or array)
  *  @class
  **/
-var CollectionSet = ConcertBackboneCollection.extend(
+var CollectionSet = Backbone.Collection.extend(
 	/**
 	 *	@scope	CollectionSet.prototype
 	 **/

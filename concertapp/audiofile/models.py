@@ -26,7 +26,7 @@ class AudioFile(models.Model):
     WAVEFORM_LOCATION = 'waveforms/'
     AUDIO_LOCATION = 'audio/'
     name = models.CharField(max_length = 100)
-    uploader = models.ForeignKey(User)
+    uploader = models.ForeignKey(User, related_name="uploadedFiles")
     collection = models.ForeignKey(Collection, related_name="files")
     wav = models.FileField(upload_to = AUDIO_LOCATION)
     ogg = models.FileField(upload_to = AUDIO_LOCATION)

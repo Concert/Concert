@@ -5,38 +5,42 @@
  **/
 
 /**
- *  A base class for an event that occurs in the application.
+ *  @class  A base class for an event that occurs in the application.
+ *  @extends    ConcertModel
  **/
-var Event = ConcertBackboneModel.extend(
+var Event = ConcertModel.extend(
     /**
      *  @scope  Event.prototype
      **/
 
 {
-    foreignKeyAttributes: function() {
-        return [
-            {
-                attr: 'user', 
-                model: User
-            },
-            {
-                attr: 'collection', 
-                model: Collection 
-            },
-            {
-                attr: 'audioSegment', 
-                model: AudioSegment 
-            },
-            {
-                attr: 'audioFile', 
-                model: AudioFile
-            },
-            {
-                attr: 'tag', 
-                model: Tag 
-            }
-        ];
-    }, 
+    relations: [
+        {
+            type: Backbone.HasOne, 
+            key: 'user', 
+            relatedModel: 'User'
+        },
+        {
+            type: Backbone.HasOne, 
+            key: 'collection', 
+            relatedModel: 'Collection'
+        },
+        {
+            type: Backbone.HasOne, 
+            key: 'audioSegment', 
+            relatedModel: 'AudioSegment'
+        },
+        {
+            type: Backbone.HasOne, 
+            key: 'audioFile', 
+            relatedModel: 'AudioFile'
+        },
+        {
+            type: Backbone.HasOne, 
+            key: 'tag', 
+            relatedModel: 'Tag'
+        }
+    ], 
     name: 'event', 
     /**
      *  Override the set method so we can turn our time attribute into an actual
@@ -54,11 +58,11 @@ var Event = ConcertBackboneModel.extend(
                 throw new Error('Invalid date for event id '+this.id+': '+attrs.time);
             }
         }
-        return ConcertBackboneModel.prototype.set.call(this, attrs, options);
+        return Backbone.RelationalModel.prototype.set.call(this, attrs, options);
     } 
 });
 
-var EventSet = ConcertBackboneCollection.extend(
+var EventSet = Backbone.Collection.extend(
     /**
      *  @scope  EventSet.prototype
      **/

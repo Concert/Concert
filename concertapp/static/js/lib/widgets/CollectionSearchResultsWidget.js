@@ -35,7 +35,7 @@ var CollectionSearchResultsWidget = Widget.extend(
         
 
         /* Bind collection events to render */
-        searchResults.bind('refresh', this.render);
+        searchResults.bind('reset', this.render);
     },
     render: function() {
         

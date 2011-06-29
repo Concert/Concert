@@ -34,72 +34,7 @@ LoggedInModelManager.prototype.init = function(params) {
     var user = new User;
     this.user = user;
     
-    /**
-     *  A master list, for each type of model, of each instance we have come
-     *  across so we can ensure there are no duplicates.
-     **/
-    this.seenInstances = {
-        collection: new CollectionSet(null, {
-            seenInstances: true 
-        }), 
-        requests: new RequestSet(null, {
-            seenInstances: true
-        }), 
-        user: new UserSet(null, {
-            seenInstances: true
-        }),
-        audiofile: new AudioFileSet(null, {
-            seenInstances: true
-        }),
-        audiosegment: new AudioSegmentSet(null, {
-            seenInstances: true
-        }), 
-        tag: new TagSet(null, {
-            seenInstances: true
-        }), 
-        comment: new CommentSet(null, {
-            seenInstances: true
-        }), 
-        'event': new EventSet(null, {
-            seenInstances: true
-        }), 
-        audiofileuploadedevent: new AudioFileUploadedEventSet(null, {
-            seenInstances: true
-        }), 
-        audiosegmentcreatedevent: new AudioSegmentCreatedEventSet(null, {
-            seenInstances: true
-        }), 
-        audiosegmenttaggedevent: new AudioSegmentTaggedEventSet(null, {
-            seenInstances: true
-        }), 
-        createcollectionevent: new CreateCollectionEventSet(null, {
-            seenInstances: true
-        }), 
-        joincollectionevent: new JoinCollectionEventSet(null, {
-            seenInstances: true
-        }), 
-        leavecollectionevent: new LeaveCollectionEventSet(null, {
-            seenInstances: true
-        }), 
-        requestdeniedevent: new RequestDeniedEventSet(null, {
-            seenInstances: true
-        }), 
-        requestjoincollectionevent: new RequestJoinCollectionEventSet(null, {
-            seenInstances: true
-        }), 
-        requestrevokedevent: new RequestRevokedEventSet(null, {
-            seenInstances: true
-        }),
-        audiosegmentcommentevent: new AudioSegmentCommentEventSet(null, {
-            seenInstances: true
-        }), 
-        audiofilecommentevent: new AudioFileCommentEventSet(null, {
-            seenInstances: true
-        })
-    }
-    
-    /* Add user to seen instances */
-    this.seenInstances['user'].add(user);
+
     
     /* The collection(s) which are currently selected */
     this.selectedCollections = new CollectionSet;
@@ -116,16 +51,12 @@ LoggedInModelManager.prototype.init = function(params) {
  **/
 LoggedInModelManager.prototype._loadData = function() {
     var dataToLoad = this._dataToLoad;
-    
     /**
      *  Load user info
      **/
     var user = this.user;
-    /* First just update id so everything will see that this user exists in 
-    seenInstances */
-    user.set({id: dataToLoad['userData'].id});
-    /* now set rest of attributes */
     user.set(dataToLoad['userData']);
+
     /* done with user data */
     dataToLoad['userData'] = null;
     
@@ -136,12 +67,18 @@ LoggedInModelManager.prototype._loadData = function() {
  *  @param  {Collection|Number}    collection      the selected collection
  **/
 LoggedInModelManager.prototype.select_collection = function(collection) {
+    /* When just a collection is selected, no audio files or audio segments
+    are */
+    this.selectedAudioFiles.reset([], {silent: true});
+    this.selectedAudioSegments.reset([], {silent: true});
+    
     /* If we were passed the id of this collection */
     if(_.isNumber(collection) || _.isString(collection)) {
+        var collectionId = collection;
         /* Get actual collection instance */
-        collection = this.seenInstances['collection'].get(collection);
+        collection = Backbone.Relational.store.find(Collection, collectionId);
     }
-    this.selectedCollections.refresh([collection]);
+    this.selectedCollections.reset([collection]);
     
     return collection;
 };
@@ -151,14 +88,18 @@ LoggedInModelManager.prototype.select_collection = function(collection) {
  *  @param  {AudioFile|Number}    selectedAudioFile     the selected audio file to view
  **/ 
 LoggedInModelManager.prototype.select_audiofile = function(selectedAudioFile) {
+    /* when an audio file is selected, no segments are */
+    this.selectedAudioSegments.reset([], {silent: true});
+    
     /* if we were just passed an id */
     if(_.isNumber(selectedAudioFile) || _.isString(selectedAudioFile)) {
+        var selectedAudioFileId = selectedAudioFile;
         /* First retrieve file instance */
-        selectedAudioFile = this.seenInstances['audiofile'].get(selectedAudioFile);
+        selectedAudioFile = Backbone.Relational.store.find(AudioFile, selectedAudioFileId);
     }
     
     /* Remove previously selected files and select new one */
-    this.selectedAudioFiles.refresh([selectedAudioFile]);
+    this.selectedAudioFiles.reset([selectedAudioFile]);
     
     return selectedAudioFile;
 };
@@ -169,10 +110,11 @@ LoggedInModelManager.prototype.select_audiofile = function(selectedAudioFile) {
  **/
 LoggedInModelManager.prototype.select_audio_segment = function(selectedAudioSegment) {    
     if(_.isNumber(selectedAudioSegment) || _.isString(selectedAudioSegment)) {
-        selectedAudioSegment = this.seenInstances['audiosegment'].get(selectedAudioSegment);
+        var segmentId = selectedAudioSegment;
+        selectedAudioSegment = Backbone.Relational.store.find(AudioSegment, segmentId);
     }
     
-    this.selectedAudioSegments.refresh([selectedAudioSegment]);
+    this.selectedAudioSegments.reset([selectedAudioSegment]);
     
     return selectedAudioSegment;
 };
@@ -204,7 +146,6 @@ LoggedInModelManager.prototype.create_and_select_new_segment = function(startTim
     
     var collection = this.selectedCollections.first();
     var user = this.user;
-    var eventSeenInstances = this.seenInstances['event'];
     
     /* Create new segment */
     var newSegment = new AudioSegment({
@@ -225,13 +166,9 @@ LoggedInModelManager.prototype.create_and_select_new_segment = function(startTim
         audioFile: audioFile,
         time: new Date() 
     });
-
-
-    /* Add the segment to the list of seen instances, and to the collection.  This
-    is hackish because when adding to the collection, it will check seenInstances
-    but since the segment does not have an id yet, it will not find a duplicate. */
+    
+    /* Add the segment to the collection. */
     collection.get('segments').add(newSegment);
-    this.seenInstances['audiosegment'].add(newSegment);
     
     /**
      *  When saving a new AudioSegment or SegmentCratedEvent, if there is a failure.
@@ -259,7 +196,12 @@ LoggedInModelManager.prototype.create_and_select_new_segment = function(startTim
             newSegment.get('events').add(newSegmentEvent);
             collection.get('events').add(newSegmentEvent);
             audioFile.get('events').add(newSegmentEvent);
-            eventSeenInstances.add(newSegmentEvent);
+            
+            console.log('segment saved');
+            console.log('newSegmentEvent:');
+            console.log(newSegmentEvent);
+            console.log('newSegmentEvent.toJSON():');
+            console.log(newSegmentEvent.toJSON());
             
             /* Save event too */
             newSegmentEvent.save(null, {
@@ -380,12 +322,8 @@ LoggedInModelManager.prototype.tag_current_segment = function(tagName) {
         
         tagWasCreated = true;
         
-        /* Since tag has no id yet, we can add it to seenInstances in the same
-        way we do with AudioSegment objects above */
         /* Add to tags for this collection */
         collection.get('tags').add(tag);
-        /* Add to seen instances */
-        this.seenInstances['tag'].add(tag);
     }
 
 
@@ -411,7 +349,6 @@ LoggedInModelManager.prototype.tag_current_segment = function(tagName) {
     collection.get('events').add(segmentTaggedEvent);
     currentSegment.get('events').add(segmentTaggedEvent);
     currentSegmentAudioFile.get('events').add(segmentTaggedEvent);
-    this.seenInstances['event'].add(segmentTaggedEvent);
     
     /**
      *  Method to call if tagging a segment fails.
@@ -480,21 +417,22 @@ LoggedInModelManager.prototype.create_new_comment = function(content) {
     };
     var commentEvent = null;
     
-    if(audioFile) {
-        eventParams.audioFile = audioFile;
-        eventParams.eventType = 12;
-        commentEvent = new Event(eventParams);
-        collection.get('events').add(commentEvent);
-        audioFile.get('events').add(commentEvent);
-        this.seenInstances['event'].add(commentEvent);
-    }
-    else if(audioSegment) {
+    /* This puts the comment on the segment or file, but not both.  Order here
+    matters because selectedAudioFiles and selectedAudioSegments both
+    contain something when a segment is selected.  TODO: Make that cleaner. */
+    if(audioSegment) {
         eventParams.audioSegment = audioSegment;
         eventParams.eventType = 11;
         commentEvent = new Event(eventParams);
         collection.get('events').add(commentEvent);
         audioSegment.get('events').add(commentEvent);
-        this.seenInstances['event'].add(commentEvent);
+    }
+    else if(audioFile) {
+        eventParams.audioFile = audioFile;
+        eventParams.eventType = 12;
+        commentEvent = new Event(eventParams);
+        collection.get('events').add(commentEvent);
+        audioFile.get('events').add(commentEvent);
     }
     else {
         throw new Error('Something went wrong.  No AudioFile or AudioSegment selected.');

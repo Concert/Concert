@@ -55,10 +55,10 @@
          this.userRequestsSet = userRequestsSet;
 
          
-         userMemberCollectionsSet.bind('refresh', this.render);
+         userMemberCollectionsSet.bind('reset', this.render);
          userMemberCollectionsSet.bind('add', this.render);
          userMemberCollectionsSet.bind('remove', this.render);
-         userRequestsSet.bind('refresh', this.render);
+         userRequestsSet.bind('reset', this.render);
          userRequestsSet.bind('add', this.render);
          userRequestsSet.bind('remove', this.render);
      },

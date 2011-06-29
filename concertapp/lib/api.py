@@ -3,6 +3,7 @@ from django.conf.urls.defaults import *
 from django.contrib.auth.models import User
 from django.http import HttpResponse, Http404
 from django.shortcuts import get_object_or_404
+from django.core.urlresolvers import NoReverseMatch, reverse, resolve, Resolver404
 from tastypie import fields
 from tastypie.authentication import Authentication, BasicAuthentication
 from tastypie.authorization import DjangoAuthorization, Authorization
@@ -44,9 +45,17 @@ class MyResource(ModelResource):
         # incase we need to pass around the request in awkward ways.
         request = None
         
-        # this attribute should be set to the name of the tastypie field which
-        # represents the nested resource
-        nested = None
+
+    ###
+    #   Instead of sending the entire api URL to the client for a related
+    #   resource, just send the id of the model.
+    ###
+    def _build_reverse_url(self, name, args=None, kwargs=None):
+        if 'pk' in kwargs:
+            pk = unicode(kwargs['pk'])
+            return pk
+        else:
+            return super(MyResource, self)._build_reverse_url(name, args, kwargs)
 
 
     ###

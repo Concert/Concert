@@ -107,12 +107,16 @@ var AutocompleteListInputComponent = Component.extend(
             /* Grab previous token */
             var token = wordSplit[0];
             
-            /* Remove everything from inputElement */
-            this.inputElement.val('');
             
             /* If token was fo-real (not just another delimiter character) */
             if(token.length && !token.match(AutocompleteListInputComponent.prototype.SPACE_MATCH)) {
                 this._handle_new_token(token);
+            }
+            /* Token was just some amount of delimiter characters */
+            else {
+                /* Remove everything from inputElement */
+                this.inputElement.val('');
+                
             }
         }
         /* A key was pressed that is not a delimiter */

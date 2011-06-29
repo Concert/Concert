@@ -83,7 +83,7 @@ var DetailWaveformPanelTagBay = Panel.extend(
             var currentSegmentTags = currentSegment.get('tags');
             currentSegmentTags.unbind('add', this._render_current_segment_tags);
             currentSegmentTags.unbind('remove', this._render_current_segment_tags);
-            currentSegmentTags.unbind('refresh', this._render_current_segment_tags);
+            currentSegmentTags.unbind('reset', this._render_current_segment_tags);
             
             this.currentSegment = null;
         }
@@ -109,7 +109,7 @@ var DetailWaveformPanelTagBay = Panel.extend(
 
             currentSegmentTags.bind('add', this._render_current_segment_tags);
             currentSegmentTags.bind('remove', this._render_current_segment_tags);
-            currentSegmentTags.bind('refresh', this._render_current_segment_tags);
+            currentSegmentTags.bind('reset', this._render_current_segment_tags);
 
             this.currentSegment = currentSegment;
         }

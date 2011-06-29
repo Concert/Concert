@@ -10,7 +10,9 @@
 {% block info %}
     <div class="info">
         {% verbatim %}
-    		${seconds_to_timecode(duration)} <span class="small_text"> uploaded by </span> ${uploader.get("username")}	
+            ${seconds_to_timecode(duration)}
+            <span class="small_text"> uploaded by </span>
+            {{tmpl(uploader) "#user_link_template"}}
     	{% endverbatim %}
     </div>
 {% endblock %}
@@ -20,7 +22,7 @@
         {# List all segments for this audio file #}
         
         {% verbatim %}
-            {{each(i, segment) segments.toJSON()}}
+            {{each(i, segment) segments}}
                 <a href="#collection/1/audio/file/1/segment/${segment.id}">${segment.name}</a>
         {% endverbatim %}
         

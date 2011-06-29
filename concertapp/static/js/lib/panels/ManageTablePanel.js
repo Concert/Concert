@@ -59,7 +59,7 @@ var ManageTablePanel = Panel.extend(
         
         
         
-        set.bind('refresh', this.render);
+        set.bind('reset', this.render);
         set.bind('add', this.render);
         set.bind('remove', this.render);
     },

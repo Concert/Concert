@@ -123,7 +123,12 @@ div.type3_event_widget_icon {
     background: inline-image("file.png");
 }
 
-/* File comment */
-div.type12_event_widget_icon {
+/* File comment, segment comment */
+div.type12_event_widget_icon, div.type11_event_widget_icon {
     background: inline-image("comment.png");
+}
+
+/* collection created event */
+div.type6_event_widget_icon {
+    background: inline-image("group.png");
 }

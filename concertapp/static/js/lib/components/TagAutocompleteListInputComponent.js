@@ -31,6 +31,9 @@ var TagAutocompleteListInputComponent = AutocompleteListInputComponent.extend(
     _handle_new_token: function(token) {
         AutocompleteListInputComponent.prototype._handle_new_token.call(this, token);
         
+        /* Remove everything from inputElement */
+        this.inputElement.val('');
+        
         /* A tag has been entered, tell the page. */
         this.panel.router.tag_current_segment(token);
 

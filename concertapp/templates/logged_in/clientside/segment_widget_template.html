@@ -14,8 +14,9 @@
         <div class="info">
             ${seconds_to_timecode(end-beginning)}
             <span class="small_text">of</span>
-            {{tmpl(audioFile.toJSON()) "#audiofile_link_template"}}
-            <span class="small_text">selected by</span> ${creator.get("username")}	
+            {{tmpl(audioFile) "#audiofile_link_template"}}
+            <span class="small_text">selected by</span>
+            {{tmpl(creator) "#user_link_template"}}
         </div>
     {% endverbatim %}
 {% endblock %}

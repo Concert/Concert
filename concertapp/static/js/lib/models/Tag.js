@@ -5,41 +5,36 @@
  **/
  
 /**
- *  A tag object.
- *
- *  @class
- *  @extends    ConcertBackboneModel
+ *  @class  A tag object.
+ *  @extends    ConcertModel
  **/
-var Tag = ConcertBackboneModel.extend(
+var Tag = ConcertModel.extend(
 	/**
 	 *	@scope	Tag.prototype
 	 **/
 {
-    foreignKeyAttributes: function() {
-        return [
-            {
-                attr: 'creator', 
-                model: User
-            },
-            {
-                attr: 'collection', 
-                model: Collection 
-            }
-        ];
-    },
-    
-    oneToManyAttributes: function() {
-        return [
-            {
-                attr: 'segments', 
-                collectionType: AudioSegmentSet 
-            },
-            {
-                attr: 'events', 
-                collectionType: EventSet
-            }
-        ];
-    }, 
+    relations: [
+        {
+            type: Backbone.HasOne, 
+            key: 'creator', 
+            relatedModel: 'User',
+        },
+        {
+            type: Backbone.HasOne, 
+            key: 'collection', 
+            relatedModel: 'Collection'
+        },
+        {
+            type: 'HasMany', 
+            key: 'segments', 
+            relatedModel: 'AudioSegment'
+        },
+        {
+            type: Backbone.HasMany, 
+            key: 'events', 
+            relatedModel: 'Event'
+        }
+    ], 
     name: 'tag' 
 });
 
@@ -47,9 +42,9 @@ var Tag = ConcertBackboneModel.extend(
  *  A set of tag objects.
  *
  *  @class
- *  @extends    ConcertBackboneCollection
+ *  @extends    Backbone.Collection
  **/
-var TagSet = ConcertBackboneCollection.extend(
+var TagSet = Backbone.Collection.extend(
 	/**
 	 *	@scope	TagSet.prototype
 	 **/
