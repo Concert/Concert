@@ -67,6 +67,11 @@ LoggedInModelManager.prototype._loadData = function() {
  *  @param  {Collection|Number}    collection      the selected collection
  **/
 LoggedInModelManager.prototype.select_collection = function(collection) {
+    /* When just a collection is selected, no audio files or audio segments
+    are */
+    this.selectedAudioFiles.reset([], {silent: true});
+    this.selectedAudioSegments.reset([], {silent: true});
+    
     /* If we were passed the id of this collection */
     if(_.isNumber(collection) || _.isString(collection)) {
         var collectionId = collection;
@@ -83,6 +88,9 @@ LoggedInModelManager.prototype.select_collection = function(collection) {
  *  @param  {AudioFile|Number}    selectedAudioFile     the selected audio file to view
  **/ 
 LoggedInModelManager.prototype.select_audiofile = function(selectedAudioFile) {
+    /* when an audio file is selected, no segments are */
+    this.selectedAudioSegments.reset([], {silent: true});
+    
     /* if we were just passed an id */
     if(_.isNumber(selectedAudioFile) || _.isString(selectedAudioFile)) {
         var selectedAudioFileId = selectedAudioFile;
