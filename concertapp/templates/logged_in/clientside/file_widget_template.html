@@ -22,7 +22,7 @@
         {# List all segments for this audio file #}
         
         {% verbatim %}
-            {{each(i, segment) segments.toJSON()}}
+            {{each(i, segment) segments}}
                 <a href="#collection/1/audio/file/1/segment/${segment.id}">${segment.name}</a>
         {% endverbatim %}
         
