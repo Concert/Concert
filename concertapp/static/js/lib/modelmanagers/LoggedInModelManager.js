@@ -404,19 +404,22 @@ LoggedInModelManager.prototype.create_new_comment = function(content) {
     };
     var commentEvent = null;
     
-    if(audioFile) {
-        eventParams.audioFile = audioFile;
-        eventParams.eventType = 12;
-        commentEvent = new Event(eventParams);
-        collection.get('events').add(commentEvent);
-        audioFile.get('events').add(commentEvent);
-    }
-    else if(audioSegment) {
+    /* This puts the comment on the segment or file, but not both.  Order here
+    matters because selectedAudioFiles and selectedAudioSegments both
+    contain something when a segment is selected.  TODO: Make that cleaner. */
+    if(audioSegment) {
         eventParams.audioSegment = audioSegment;
         eventParams.eventType = 11;
         commentEvent = new Event(eventParams);
         collection.get('events').add(commentEvent);
         audioSegment.get('events').add(commentEvent);
+    }
+    else if(audioFile) {
+        eventParams.audioFile = audioFile;
+        eventParams.eventType = 12;
+        commentEvent = new Event(eventParams);
+        collection.get('events').add(commentEvent);
+        audioFile.get('events').add(commentEvent);
     }
     else {
         throw new Error('Something went wrong.  No AudioFile or AudioSegment selected.');

@@ -29,8 +29,8 @@ var EventsPanel = Panel.extend({
             7: RequestJoinCollectionEventWidget,
             8: RequestDeniedEventWidget,
             9: RequestRevokedEventWidget,
-            /*10: TagCommentEventWidget, 
-            11: AudioSegmentCommentEventWidget, */
+            /*10: TagCommentEventWidget, */
+            11: AudioSegmentCommentEventWidget, 
             12: AudioFileCommentEventWidget
         }
         
@@ -47,8 +47,8 @@ var EventsPanel = Panel.extend({
             7: $('#requestjoincollectionevent_template'),
             8: $('#requestdeniedevent_template'),
             9: $('#requestrevokedevent_template'),
-            /*10: $('#tagcommentevent_template), 
-            11: $("#audiosegmentcommentevent_template"), */
+            /*10: $('#tagcommentevent_template), */
+            11: $("#audiosegmentcommentevent_template"), 
             12: $('#audiofilecommentevent_template')
         }
         

@@ -53,13 +53,16 @@ Backbone.sync = function(method, model, options) {
             if(relation instanceof Backbone.HasOne) {
                 /* We will just send along the url of the related instance for 
                 tastypie */
-                data[relationKey] = relation.related.url();
+                var related = relation.related;
+                if(related) {
+                    data[relationKey] = related.url();
+                }
             }
             else if(relation instanceof Backbone.HasMany) {
                 /* We will send an array of urls of all related instances */
                 var relatedInstances = relation.related;
                 data[relationKey] = [];
-                _.each(relatedInstances, function(relatedInstance) {
+                relatedInstances.each(function(relatedInstance) {
                     data[relationKey].push(relatedInstance.url());
                 });
             }

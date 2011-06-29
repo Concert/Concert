@@ -112,6 +112,7 @@ The base template for all pages.  All page templates will use this.
     <script src="/js/lib/widgets/RequestRevokedEventWidget.js"></script>
     <script src="/js/lib/widgets/AudioFileCommentEventWidget.js"></script>
     <script src="/js/lib/widgets/CollectionWidget.js"></script>
+    <script src="/js/lib/widgets/AudioSegmentCommentEventWidget.js"></script>
     
     
     {# Components #}
@@ -247,6 +248,9 @@ The base template for all pages.  All page templates will use this.
     </script>
     <script id="audiofilecommentevent_template" type="text/x-jquery-tmpl">
         {% include 'clientside/audiofilecommentevent.html' %}
+    </script>
+    <script id="audiosegmentcommentevent_template" type="text/x-jquery-tmpl">
+        {% include 'clientside/audiosegmentcommentevent.html' %}
     </script>
     
     <script id="requestrevokedevent_template" type="text/x-jquery-tmpl">
