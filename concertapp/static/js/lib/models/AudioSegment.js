@@ -7,63 +7,53 @@
 /**
  *  Audio segment object.
  *  @class
- *  @extends    ConcertBackboneModel
+ *  @extends    Backbone.RelationalModel
  **/
-var AudioSegment = ConcertBackboneModel.extend(
+var AudioSegment = Backbone.RelationalModel.extend(
 	/**
 	 *	@scope	AudioSegment.prototype
 	 **/
 
 {
-    oneToManyAttributes: function() {
-        return [
-            {
-                attr: 'tags', 
-                collectionType: TagSet
-            },
-            {
-                attr: 'events', 
-                collectionType: EventSet
-            }
-        ];
-    }, 
-    foreignKeyAttributes: function() {
-        return [
-            {
-                attr: 'audioFile', 
-                model: AudioFile
-            },
-            {
-                attr: 'creator', 
-                model: User 
-            },
-            {
-                attr: 'collection', 
-                model: Collection 
-            }
-        ];
-    }, 
-    name: 'audiosegment', 
-    
-    initialize: function(attributes, options) {
-        ConcertBackboneModel.prototype.initialize.call(this, attributes, options);
-        /* tell our AudioFile about us if it already exists */
-        var audioFile = this.get('audioFile');
-        if(audioFile) {
-            audioFile.get('segments').add(this);
+    relations: [
+        {
+            type: 'HasMany', 
+            key: 'tags', 
+            relatedModel: 'Tag'
+        },
+        {
+            type: Backbone.HasMany, 
+            key: 'events', 
+            relatedModel: 'Event'
+        },
+        {
+            type: Backbone.HasOne, 
+            key: 'audioFile', 
+            relatedModel: 'AudioFile'
+        },
+        {
+            type: Backbone.HasOne, 
+            key: 'creator', 
+            relatedModel: 'User'
+        },
+        {
+            type: Backbone.HasOne, 
+            key: 'collection', 
+            relatedModel: 'Collection'
         }
-    } 
+    ], 
+    name: 'audiosegment', 
 });
 
 /**
  *  A set of audio segment objects.
  *  @class
- *  @extends    ConcertBackboneCollection
+ *  @extends    Backbone.Collection
  **/
-var AudioSegmentSet = ConcertBackboneCollection.extend(
+var AudioSegmentSet = Backbone.Collection.extend(
 	/**
 	 *	@scope	AudioSegmentSet.prototype
 	 **/
 {
-    model: AudioSegment 
+    model: AudioSegment
 });

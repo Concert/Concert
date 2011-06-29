@@ -22,9 +22,6 @@ ModelManager.prototype.init = function(params) {
     /* Here we will store the temporary data that we will load later */
     this._dataToLoad = {};
     
-    /* Here is where we will store all of the seen instances of each model */
-    this.seenInstances = {};
-    
     /* Keep a reference to the router */
     var router = params.router;
     if(typeof(router) == 'undefined') {

@@ -8,7 +8,7 @@
   *	 @class
   *  @extends 
   **/
-var AudioController = Backbone.Controller.extend(
+var AudioController = Backbone.Router.extend(
 {
     initialize: function(params) {
         /* the router */

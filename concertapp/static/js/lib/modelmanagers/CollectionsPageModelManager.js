@@ -42,7 +42,6 @@ CollectionsPageModelManager.prototype._loadData = function() {
     
     var dataToLoad = this._dataToLoad;
     
-    var seenInstances = com.concertsoundorganizer.modelManager.seenInstances['collection'];
     
     var userMemberCollections = this.userMemberCollections;
     for(var i=0, il = userMemberCollections.length; i < il; i++) {
@@ -51,7 +50,6 @@ CollectionsPageModelManager.prototype._loadData = function() {
         }
     }
             
-    var seenRequests = this.seenInstances['request'];
     this.userRequests.refresh(dataToLoad.requestData);
     dataToLoad.requestData = null;
 };

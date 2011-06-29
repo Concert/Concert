@@ -6,8 +6,8 @@
 {% block event_text %}
     created
     {% verbatim %}
-        {{tmpl(audioSegment.toJSON()) "#audiosegment_link_template"}}
+        {{tmpl(audioSegment) "#audiosegment_link_template"}}
         from
-        {{tmpl(audioSegment.get('audioFile').toJSON()) "#audiofile_link_template"}}
+        {{tmpl(audioSegment.get('audioFile')) "#audiofile_link_template"}}
     {% endverbatim %}
 {% endblock %}

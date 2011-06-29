@@ -7,11 +7,11 @@
 /**
  *  @class  The router that will be instantiated once, and will be the first class
  *  instantiated, to handle all of the routing of messages between components, as
- *  well as URL hash changes.  Still use Backbone.Controller until we upgrade
+ *  well as URL hash changes.  Still use Backbone.Router until we upgrade
  *  to newer Backbone.
- *  @extends    Backbone.Controller
+ *  @extends    Backbone.Router
  **/
-var Router = Backbone.Controller.extend(
+var Router = Backbone.Router.extend(
     /**
      *  @scope Router.prototype
      **/
@@ -21,7 +21,7 @@ var Router = Backbone.Controller.extend(
      *  @constructor
      **/
     initialize: function(options) {
-        Backbone.Controller.prototype.initialize.call(this);
+        Backbone.Router.prototype.initialize.call(this);
 
         /**
          *  The current route that we are on.
@@ -106,7 +106,6 @@ var Router = Backbone.Controller.extend(
     _initialize_routes: function() { 
         
         /* If no hash, go to #collections */
-        _.bindAll(this, '_default_route');
         this.route('', 'default', function() {
             window.location.assign('#collections');
         });

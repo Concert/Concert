@@ -95,9 +95,9 @@ var Request = ConcertBackboneModel.extend(
 /**
  *  A set of Request objects.
  *  @class
- *  @extends    ConcertBackboneCollection
+ *  @extends    Backbone.Collection
  **/
-var RequestSet = ConcertBackboneCollection.extend(
+var RequestSet = Backbone.Collection.extend(
 	/**
 	 *	@scope	RequestSet.prototype
 	 **/
