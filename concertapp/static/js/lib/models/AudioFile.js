@@ -7,9 +7,9 @@
 /**
  *  An audio file object.
  *  @class
- *  @extends    Backbone.RelationalModel
+ *  @extends    ConcertModel
  **/
-var AudioFile = Backbone.RelationalModel.extend(
+var AudioFile = ConcertModel.extend(
 	/**
 	 *	@scope	AudioFile.prototype
 	 **/

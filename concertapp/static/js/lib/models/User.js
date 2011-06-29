@@ -6,9 +6,9 @@
 
 /**
  *  @class  User represents a django User object.
- *  @extends    Backbone.RelationalModel
+ *  @extends    ConcertModel
  **/ 
-var User = Backbone.RelationalModel.extend(
+var User = ConcertModel.extend(
 	/**
 	 *	@scope	User.prototype
 	 **/
@@ -17,8 +17,7 @@ var User = Backbone.RelationalModel.extend(
         {
             type: Backbone.HasMany, 
             key: 'memberCollections', 
-            relatedModel: 'Collection', 
-            includeInJSON: true
+            relatedModel: 'Collection'
         }
     ], 
     name: 'user',

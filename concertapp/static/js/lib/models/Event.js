@@ -6,9 +6,9 @@
 
 /**
  *  @class  A base class for an event that occurs in the application.
- *  @extends    Backbone.RelationalModel
+ *  @extends    ConcertModel
  **/
-var Event = Backbone.RelationalModel.extend(
+var Event = ConcertModel.extend(
     /**
      *  @scope  Event.prototype
      **/

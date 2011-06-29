@@ -6,9 +6,9 @@
  
 /**
  *  @class  A Collection object represents a django Collection object.
- *  @extends    Backbone.RelationalModel
+ *  @extends    ConcertModel
  **/
-var Collection = Backbone.RelationalModel.extend(
+var Collection = ConcertModel.extend(
 	/**
 	 *	@scope	Collection.prototype
 	 **/
@@ -17,32 +17,27 @@ var Collection = Backbone.RelationalModel.extend(
         {
             type: Backbone.HasMany, 
             key: 'users', 
-            relatedModel: 'User', 
-            includeInJSON: true
+            relatedModel: 'User'
         },
         {
             type: Backbone.HasMany, 
             key: 'events', 
-            relatedModel: 'Event', 
-            includeInJSON: true
+            relatedModel: 'Event'
         },
         {
             type: Backbone.HasMany, 
             key: 'files', 
-            relatedModel: 'AudioFile', 
-            includeInJSON: true
+            relatedModel: 'AudioFile'
         },
         {
             type: Backbone.HasMany, 
             key: 'segments', 
-            relatedModel: 'AudioSegment', 
-            includeInJSON: true
+            relatedModel: 'AudioSegment'
         },
         {
             type: Backbone.HasMany, 
             key: 'tags', 
-            relatedModel: 'Tag', 
-            includeInJSON: true
+            relatedModel: 'Tag'
         },
         {
             type: Backbone.HasOne, 

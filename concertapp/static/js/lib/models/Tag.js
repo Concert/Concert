@@ -6,9 +6,9 @@
  
 /**
  *  @class  A tag object.
- *  @extends    Backbone.RelationalModel
+ *  @extends    ConcertModel
  **/
-var Tag = Backbone.RelationalModel.extend(
+var Tag = ConcertModel.extend(
 	/**
 	 *	@scope	Tag.prototype
 	 **/
@@ -17,7 +17,7 @@ var Tag = Backbone.RelationalModel.extend(
         {
             type: Backbone.HasOne, 
             key: 'creator', 
-            relatedModel: 'User', 
+            relatedModel: 'User',
         },
         {
             type: Backbone.HasOne, 

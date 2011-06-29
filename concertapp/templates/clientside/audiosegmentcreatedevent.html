@@ -8,6 +8,6 @@
     {% verbatim %}
         {{tmpl(audioSegment) "#audiosegment_link_template"}}
         from
-        {{tmpl(audioSegment.get('audioFile')) "#audiofile_link_template"}}
+        {{tmpl(audioSegment.audioFile) "#audiofile_link_template"}}
     {% endverbatim %}
 {% endblock %}

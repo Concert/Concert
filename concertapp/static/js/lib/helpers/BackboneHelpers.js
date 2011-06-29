@@ -41,24 +41,30 @@ Backbone.sync = function(method, model, options) {
     if (!params.data && model && (method == 'create' || method == 'update')) {
         var data = model.toJSON();
         
-        for(var key in data) {
-            var attr = data[key];
-            /* This makes sure that only the URL of a related object is sent */
-            if(attr instanceof Backbone.Model) {
-                data[key] = data[key].url();
+        /* Get the relations for this model */
+        var relations = model.getRelations();
+        
+        /* For each relation */
+        _.each(relations, function(relation) {
+            /* Get the key for this relation so we can modify our model */
+            var relationKey = relation.key;
+            
+            /* If this relation is a single instance */
+            if(relation instanceof Backbone.HasOne) {
+                /* We will just send along the url of the related instance for 
+                tastypie */
+                data[relationKey] = relation.related.url();
             }
-            /* This makes sure that only URLS of related objects in 
-            collections are sent */
-            else if(attr instanceof Backbone.Collection) {
-                /* Create list of urls */
-                data[key] = [];
-                attr.each(function(result){
-                    return function(obj) {
-                        result.push(obj.url());
-                    }
-                }(data[key]));
+            else if(relation instanceof Backbone.HasMany) {
+                /* We will send an array of urls of all related instances */
+                var relatedInstances = relation.related;
+                data[relationKey] = [];
+                _.each(relatedInstances, function(relatedInstance) {
+                    data[relationKey].push(relatedInstance.url());
+                });
             }
-        }
+        });
+        
         params.data = JSON.stringify(data);
     }
 

@@ -7,9 +7,9 @@
 /**
  *  Audio segment object.
  *  @class
- *  @extends    Backbone.RelationalModel
+ *  @extends    ConcertModel
  **/
-var AudioSegment = Backbone.RelationalModel.extend(
+var AudioSegment = ConcertModel.extend(
 	/**
 	 *	@scope	AudioSegment.prototype
 	 **/
