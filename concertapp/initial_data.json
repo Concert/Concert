@@ -41,7 +41,7 @@
     },
     {
         "model": "event.event", 
-        "pk": 1, 
+        "pk": 2, 
         "fields": {
             "collection": 1, 
             "user": 1, 
