@@ -10,7 +10,9 @@
 {% block info %}
     <div class="info">
         {% verbatim %}
-    		${seconds_to_timecode(duration)} <span class="small_text"> uploaded by </span> ${uploader.get("username")}	
+            ${seconds_to_timecode(duration)}
+            <span class="small_text"> uploaded by </span>
+            {{tmpl(uploader) "#user_link_template"}}
     	{% endverbatim %}
     </div>
 {% endblock %}
