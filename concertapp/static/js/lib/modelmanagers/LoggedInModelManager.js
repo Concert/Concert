@@ -225,8 +225,7 @@ LoggedInModelManager.prototype.create_and_select_new_segment = function(startTim
         audioFile: audioFile,
         time: new Date() 
     });
-
-
+    
     /* Add the segment to the list of seen instances, and to the collection.  This
     is hackish because when adding to the collection, it will check seenInstances
     but since the segment does not have an id yet, it will not find a duplicate. */

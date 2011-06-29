@@ -292,7 +292,7 @@ var EventsPanel = Panel.extend({
         /* Proper widget for this event */
         var widgetClass = this.eventTypesToWidgetMap[eventType];
         var widgetTemplate = this.eventTypesToTemplateMap[eventType];
-
+        
         /* Create and return widget */
         return new widgetClass({
             panel: this, 
