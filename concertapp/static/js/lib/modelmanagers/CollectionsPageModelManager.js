@@ -50,7 +50,7 @@ CollectionsPageModelManager.prototype._loadData = function() {
         }
     }
             
-    this.userRequests.refresh(dataToLoad.requestData);
+    this.userRequests.reset(dataToLoad.requestData);
     dataToLoad.requestData = null;
 };
 

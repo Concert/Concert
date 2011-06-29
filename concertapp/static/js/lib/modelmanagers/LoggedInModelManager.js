@@ -71,9 +71,9 @@ LoggedInModelManager.prototype.select_collection = function(collection) {
     if(_.isNumber(collection) || _.isString(collection)) {
         var collectionId = collection;
         /* Get actual collection instance */
-        collection = Backbone.Store.find(Collection, collectionId);
+        collection = Backbone.Relational.store.find(Collection, collectionId);
     }
-    this.selectedCollections.refresh([collection]);
+    this.selectedCollections.reset([collection]);
     
     return collection;
 };
@@ -87,11 +87,11 @@ LoggedInModelManager.prototype.select_audiofile = function(selectedAudioFile) {
     if(_.isNumber(selectedAudioFile) || _.isString(selectedAudioFile)) {
         var selectedAudioFileId = selectedAudioFile;
         /* First retrieve file instance */
-        selectedAudioFile = Backbone.Store.find(AudioFile, selectedAudioFileId);
+        selectedAudioFile = Backbone.Relational.store.find(AudioFile, selectedAudioFileId);
     }
     
     /* Remove previously selected files and select new one */
-    this.selectedAudioFiles.refresh([selectedAudioFile]);
+    this.selectedAudioFiles.reset([selectedAudioFile]);
     
     return selectedAudioFile;
 };
@@ -103,10 +103,10 @@ LoggedInModelManager.prototype.select_audiofile = function(selectedAudioFile) {
 LoggedInModelManager.prototype.select_audio_segment = function(selectedAudioSegment) {    
     if(_.isNumber(selectedAudioSegment) || _.isString(selectedAudioSegment)) {
         var segmentId = selectedAudioSegment;
-        selectedAudioSegment = Backbone.Store.find(AudioSegment, segmentId);
+        selectedAudioSegment = Backbone.Relational.store.find(AudioSegment, segmentId);
     }
     
-    this.selectedAudioSegments.refresh([selectedAudioSegment]);
+    this.selectedAudioSegments.reset([selectedAudioSegment]);
     
     return selectedAudioSegment;
 };
