@@ -51,8 +51,11 @@ class MyResource(ModelResource):
     #   resource, just send the id of the model.
     ###
     def _build_reverse_url(self, name, args=None, kwargs=None):
-        pk = unicode(kwargs['pk'])
-        return pk
+        if 'pk' in kwargs:
+            pk = unicode(kwargs['pk'])
+            return pk
+        else:
+            return super(MyResource, self)._build_reverse_url(name, args, kwargs)
 
 
     ###

@@ -49,6 +49,8 @@ var Widget = Backbone.View.extend(
         var template = this.template;
 
         if(template) {
+            console.log('this.model.toJSON():');
+            console.log(this.model.toJSON());
             /* render new widget */
             var newel = template.tmpl(
                 /* with model data and extra template data */

@@ -196,7 +196,12 @@ LoggedInModelManager.prototype.create_and_select_new_segment = function(startTim
             newSegment.get('events').add(newSegmentEvent);
             collection.get('events').add(newSegmentEvent);
             audioFile.get('events').add(newSegmentEvent);
-            eventSeenInstances.add(newSegmentEvent);
+            
+            console.log('segment saved');
+            console.log('newSegmentEvent:');
+            console.log(newSegmentEvent);
+            console.log('newSegmentEvent.toJSON():');
+            console.log(newSegmentEvent.toJSON());
             
             /* Save event too */
             newSegmentEvent.save(null, {

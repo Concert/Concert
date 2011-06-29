@@ -30,23 +30,6 @@ class AudioSegment(models.Model):
     def __unicode__(self):
         return self.name
 
-    def save(self, *args, **kwargs):
-        from concertapp.event.models import AudioSegmentCreatedEvent
-        self.full_clean()
-
-        new = False
-        if not self.id:
-            new = True
-
-        super(AudioSegment, self).save(*args, **kwargs)
-
-        if new:
-            AudioSegmentCreatedEvent.objects.create(
-                user = self.creator, 
-                audioSegment = self, 
-                collection = self.collection
-            )
-
     # Make sure it has a unique name (relative to the other segments
     # in the collection)
     def clean(self):
