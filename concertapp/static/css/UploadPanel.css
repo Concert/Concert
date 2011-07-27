@@ -1,0 +1,4 @@
+/* line 1, ../sass/UploadPanel.scss */
+div#upload_panel.hidden {
+  display: none;
+}

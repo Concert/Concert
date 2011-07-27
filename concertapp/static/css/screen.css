@@ -2,7 +2,7 @@
  * In this file you should write your main styles. (or centralize your imports)
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
-/* line 17, /opt/local/lib/ruby/gems/1.8/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 17, /opt/local/lib/ruby/gems/1.8/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -24,47 +24,46 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 20, /opt/local/lib/ruby/gems/1.8/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 20, /opt/local/lib/ruby/gems/1.8/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 body {
   line-height: 1;
 }
 
-/* line 22, /opt/local/lib/ruby/gems/1.8/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 22, /opt/local/lib/ruby/gems/1.8/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 24, /opt/local/lib/ruby/gems/1.8/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 24, /opt/local/lib/ruby/gems/1.8/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 26, /opt/local/lib/ruby/gems/1.8/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 26, /opt/local/lib/ruby/gems/1.8/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 28, /opt/local/lib/ruby/gems/1.8/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 28, /opt/local/lib/ruby/gems/1.8/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 101, /opt/local/lib/ruby/gems/1.8/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 101, /opt/local/lib/ruby/gems/1.8/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 30, /opt/local/lib/ruby/gems/1.8/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 30, /opt/local/lib/ruby/gems/1.8/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 115, /opt/local/lib/ruby/gems/1.8/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
+/* line 114, /opt/local/lib/ruby/gems/1.8/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
   display: block;
 }
 
@@ -697,7 +696,7 @@ button#comment_button.hidden {
  *  SEGMENT BARS
  **/
 /* A row of segment bars */
-/* line 459, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 455, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
 .segment_bar_row {
   padding-top: 2px;
   height: 3px;
@@ -710,14 +709,14 @@ button#comment_button.hidden {
 *
 *  margin-left and width properties will change dynamically
 **/
-/* line 471, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 467, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
 .segment_bar {
   background: #45455a;
   position: absolute;
   height: 3px;
 }
 
-/* line 477, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 473, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
 #background_glare {
   border-color: transparent transparent transparent rgba(255, 255, 255, 0.4);
   border-style: solid;
@@ -728,6 +727,11 @@ button#comment_button.hidden {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+/* line 1, /Users/colin/Projects/Concert/concertapp/static/sass/UploadPanel.scss */
+div#upload_panel.hidden {
+  display: none;
 }
 
 /**

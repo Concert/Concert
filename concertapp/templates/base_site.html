@@ -146,6 +146,7 @@ The base template for all pages.  All page templates will use this.
     <script src="/js/lib/panels/ManageCollectionsPanel.js"></script>
     <script src="/js/lib/panels/EventsPanel.js"></script>
     <script src="/js/lib/panels/DetailWaveformPanelTagBay.js"></script>
+    <script src="/js/lib/panels/ModalUploadPanel.js"></script>
     
     {# Controllers #}
     <script src="/js/lib/controllers/AudioController.js"></script>
@@ -158,32 +159,37 @@ The base template for all pages.  All page templates will use this.
 
 </head>
 <body>
-<div id="modal-container">
-	<div id="modal-overlay">
-		<div id="modal-overlay-background"></div>
-		<div id="modal-overlay-pane">
-			<button id="modal-overlay-confirm-ok">ok</button>
-		</div>
-	</div>
-</div>
+  <div id="modal-container">
+    <div id="modal-overlay">
+      <div id="modal-overlay-background"></div>
+      <div id="modal-overlay-pane">
+        <button id="modal-overlay-confirm-ok">ok</button>
+      </div>
+    </div>
+  </div>
 
-<div id="layout">
-	<div id="inset">
-    	<div id="layout_top">
-       	</div>
-		<div id="layout_middle">
-          	{% block middle %}{% endblock %}
-		</div>
-	</div>
+  
+  {% panel 'partials/upload_panel.html' 'upload' %}
+  
+  
+  <div id="layout">
+    <div id="inset">
+      <div id="layout_top">
+        {% include 'partials/upload_link.html' %}
+      </div>
+      <div id="layout_middle">
+        {% block middle %}{% endblock %}
+      </div>
+    </div>
     <div id="layout_bottom">
-    	<div id="bottom_left"> 
-       		{% block left %}{% endblock %}
-       	</div>
-        <div id="bottom_right">
-       		{% block right %}{% endblock %}
-       	</div>    
-	</div>    
-</div>
+      <div id="bottom_left"> 
+        {% block left %}{% endblock %}
+      </div>
+      <div id="bottom_right">
+        {% block right %}{% endblock %}
+      </div>    
+    </div>    
+  </div>
 
 <!--- <div id="background_glare"></div> -->
 

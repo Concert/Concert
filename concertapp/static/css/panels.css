@@ -495,7 +495,7 @@ button#comment_button.hidden {
  *  SEGMENT BARS
  **/
 /* A row of segment bars */
-/* line 459, ../sass/panels.scss */
+/* line 455, ../sass/panels.scss */
 .segment_bar_row {
   padding-top: 2px;
   height: 3px;
@@ -508,14 +508,14 @@ button#comment_button.hidden {
 *
 *  margin-left and width properties will change dynamically
 **/
-/* line 471, ../sass/panels.scss */
+/* line 467, ../sass/panels.scss */
 .segment_bar {
   background: #45455a;
   position: absolute;
   height: 3px;
 }
 
-/* line 477, ../sass/panels.scss */
+/* line 473, ../sass/panels.scss */
 #background_glare {
   border-color: transparent transparent transparent rgba(255, 255, 255, 0.4);
   border-style: solid;

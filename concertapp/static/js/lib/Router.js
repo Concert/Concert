@@ -97,6 +97,12 @@ var Router = Backbone.Router.extend(
             el: $('#detail_waveform_panel')
         });
         
+        /* Upload panel */
+        this.uploadPanel = new ModalUploadPanel({
+            router: this, 
+            el: $('#upload_panel')
+        });
+        
         return true;
     }, 
     
@@ -137,6 +143,8 @@ var Router = Backbone.Router.extend(
             this._collection_audio_segment_route
         );
         
+        _.bindAll(this, '_audio_upload_route');
+        this.route('upload', 'upload', this._audio_upload_route);
         
         return;
     }, 
@@ -163,6 +171,14 @@ var Router = Backbone.Router.extend(
             this.trigger.apply(this, ['route:' + name].concat(args));
         }, this));
     },
+    
+    /**
+     *  Route for #upload, brings up modal window for uploading audio or viewing
+     *  audio upload status.
+     **/
+    _audio_upload_route: function() {
+        this.currentRoute = 'upload';
+    }, 
     
     /**
      *  Route for "/#collections".  Lists collections and such.
