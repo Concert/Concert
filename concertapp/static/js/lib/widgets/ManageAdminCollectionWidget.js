@@ -82,5 +82,5 @@ var ManageAdminCollectionWidget = Widget.extend(
      **/
     delete_collection: function() {
         this.panel.page.deleteCollectionWithConfirm(this.model);
-    }, 
+    } 
 });

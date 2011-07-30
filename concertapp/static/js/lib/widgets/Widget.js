@@ -47,6 +47,7 @@ var Widget = Backbone.View.extend(
     },
     render: function() {
         var template = this.template;
+
         if(template) {
             /* render new widget */
             var newel = template.tmpl(
@@ -77,5 +78,5 @@ var Widget = Backbone.View.extend(
      **/
     _extra_template_data: function() {
         return {};
-    }, 
+    } 
 });

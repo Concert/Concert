@@ -5,31 +5,29 @@
  **/
 
 /**
- *  User represents a django User object.
- *  @class
- *  @extends    Backbone.Model
+ *  @class  User represents a django User object.
+ *  @extends    ConcertModel
  **/ 
-var User = ConcertBackboneModel.extend(
+var User = ConcertModel.extend(
 	/**
 	 *	@scope	User.prototype
 	 **/
 {
+    relations: [
+        {
+            type: Backbone.HasMany, 
+            key: 'memberCollections', 
+            relatedModel: 'Collection'
+        }
+    ], 
     name: 'user',
-    oneToManyAttributes: function() {
-        return [
-            {
-                attr: 'memberCollections', 
-                collectionType: CollectionSet
-            }
-        ];
-    }, 
 });
 
 /**
  *  Users represents a collection of django User objects.
  *  @class
  **/
-var UserSet = ConcertBackboneCollection.extend(
+var UserSet = Backbone.Collection.extend(
 	/**
 	 *	@scope	UserSet.prototype
 	 **/

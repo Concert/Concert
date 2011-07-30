@@ -6,8 +6,8 @@
 {% block event_text %}
     tagged
     {% verbatim %}
-        {{tmpl(audioSegment.toJSON()) "#audiosegment_link_template"}}
+        {{tmpl(audioSegment) "#audiosegment_link_template"}}
         as
-        {{tmpl(tag.toJSON()) "#tag_widget_template"}}
+        {{tmpl(tag) "#tag_widget_template"}}
     {% endverbatim %}
 {% endblock %}

@@ -35,5 +35,5 @@ var LoginPage = Page.extend(
      **/
     _default_route: function() {
         return;
-    },
+    }
 });

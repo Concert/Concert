@@ -42,8 +42,8 @@ var SegmentWidget = ListWidget.extend(
         /* And when list of tags changes */
         _.bindAll(this, '_render_and_add_tag');
         model.get('tags').bind('add', this._render_and_add_tag);
-        _.bindAll(this, '_remove_tag');
-        model.get('tags').bind('remove', this._remove_tag);
+        //_.bindAll(this, '_remove_tag');
+        //model.get('tags').bind('remove', this._remove_tag);
         
         
         this.render();
@@ -109,6 +109,6 @@ var SegmentWidget = ListWidget.extend(
     _handle_delete_click: function() {
         ListWidget.prototype._handle_delete_click.call(this);
         
-        this.panel.page.delete_audio_segment(this.model);
-    }, 
+        this.panel.router.delete_audio_segment(this.model);
+    } 
 });

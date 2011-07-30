@@ -173,7 +173,7 @@ ModalAlert.prototype.loadAndDisplayContent = function(params) {
         var title = params.title;
         params.callback = function(me, title) {
             return function(data) {
-                me.displayContent({content: data, title: title, });
+                me.displayContent({content: data, title: title });
             };
         }(this, title);        
     }
@@ -261,7 +261,7 @@ ModalAlert.prototype.animateLoadingNotification = function() {
         'Loading': 'Loading.', 
         'Loading.': 'Loading..', 
         'Loading..': 'Loading...',
-        'Loading...': 'Loading',
+        'Loading...': 'Loading'
     }
     
     title.html(transitions[title.html()]);

@@ -41,7 +41,7 @@ var CreateJoinCollectionWidget = Widget.extend(
     render: function() {
         
         return this;
-    },
+    }
     
 
 });

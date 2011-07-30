@@ -59,7 +59,7 @@ var AutocompleteListInputComponent = Component.extend(
         /* The jQuery autocomplete that will help us do business */
         inputElement.autocomplete({
             minLength: 0, 
-            appendTo: resultsContainerElement, 
+            appendTo: resultsContainerElement 
         })
         .data( "autocomplete" )._renderItem = function( ul, item ) {
             /* Pass term along to template */
@@ -107,12 +107,16 @@ var AutocompleteListInputComponent = Component.extend(
             /* Grab previous token */
             var token = wordSplit[0];
             
-            /* Remove everything from inputElement */
-            this.inputElement.val('');
             
             /* If token was fo-real (not just another delimiter character) */
             if(token.length && !token.match(AutocompleteListInputComponent.prototype.SPACE_MATCH)) {
                 this._handle_new_token(token);
+            }
+            /* Token was just some amount of delimiter characters */
+            else {
+                /* Remove everything from inputElement */
+                this.inputElement.val('');
+                
             }
         }
         /* A key was pressed that is not a delimiter */
@@ -171,5 +175,5 @@ var AutocompleteListInputComponent = Component.extend(
      **/
     set_data: function(data) {
         this.inputElement.autocomplete('option', 'source', data)
-    }, 
+    } 
 });

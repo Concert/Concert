@@ -1,0 +1,134 @@
+/** 
+ *  All Widgets
+ **/
+
+div.widget_icon {
+    height: 30px;
+    width: 30px;
+    margin-right: 1em;
+    background-repeat: no-repeat;
+}
+ 
+
+/**
+ *  List widgets
+ **/
+div.list_widget {
+    width: 335px;
+    padding: 10px;
+    font-weight: bold;
+	margin: 0 auto;
+}
+
+div.list_widget .boxwrap{
+    display: -webkit-box;
+    -webkit-box-orient: horizontal;
+}
+
+div.list_widget .bottom{
+    font-weight: normal;
+}
+
+div.list_widget .info{
+    padding-bottom: 10px;
+}
+
+span.list_widget_title_text {
+    cursor: pointer;
+}
+
+/**
+ *  Collection list widget
+ **/
+div.collection_list_widget_icon {
+    background: inline-image("group.png");
+}
+
+/**
+ *  Audio file list widget
+ **/
+div.file_list_widget_icon {
+    background: inline-image("file.png");
+}
+
+
+/**
+ *  Audio segment widgets 
+ **/
+div.segment_list_widget_icon {
+    background: inline-image("segment.png");
+}
+
+
+/**
+ *  Tag widgets
+ **/
+ 
+div.tag:hover {
+    
+}	
+
+div.tag {
+    /* `inline-block` ensures that line breaks wont occur in the middle of a tag */
+    display: inline-block;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.8em;
+    background: #f8f8fa;
+    border: 1px solid white;
+    -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    padding: 0.4em;
+    margin: 0.4em;
+    cursor: pointer;
+}
+
+/**
+ *  Event widgets
+ **/
+.event_widget{
+    /* Display the icon to the left of the content */
+    display: -webkit-box;
+    -webkit-box-orient: horizontal;
+    
+    margin-bottom: 2em;
+}
+
+/* event comment text */
+div.event_widget_comment {
+    text-transform: none;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+div.time {
+    display: block;
+}
+
+div.event_widget div.event_icon{
+    
+}
+
+/* segment created event */
+div.type1_event_widget_icon {
+    background: inline-image("segment.png");
+}
+
+/* Segment tagged event */
+div.type2_event_widget_icon {
+    background: inline-image("tag.png");
+}
+
+/* File uploaded event */
+div.type3_event_widget_icon {
+    background: inline-image("file.png");
+}
+
+/* File comment, segment comment */
+div.type12_event_widget_icon, div.type11_event_widget_icon {
+    background: inline-image("comment.png");
+}
+
+/* collection created event */
+div.type6_event_widget_icon {
+    background: inline-image("group.png");
+}

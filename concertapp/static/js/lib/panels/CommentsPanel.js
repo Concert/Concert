@@ -58,7 +58,7 @@ var CommentsPanel = Panel.extend({
                 var widget = new CommentWidget({
                     model: obj,
                     template: template, 
-                    panel: panel, 
+                    panel: panel 
                 });
                 
                 /* put in document fragment */
@@ -81,6 +81,6 @@ var CommentsPanel = Panel.extend({
     select_audio_file: function(e, selectedAudioFile) {
         /* just clear for now */
         this.contents.empty();
-    }, 
+    } 
     
 });

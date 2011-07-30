@@ -135,7 +135,7 @@ var WaveformInteractionComponent = Component.extend(
             /* we are adjusting the highlight */
             this.adjusting = true;
             
-            this.panel.page.clear_waveform_highlight();
+            this.panel.router.clear_waveform_highlight();
         } else {
             /* Save new starting point */
             this.lastDragStartX = x;
@@ -183,18 +183,18 @@ var WaveformInteractionComponent = Component.extend(
             if((dragEndX < this.highlight.position().left ||
                 dragEndX > this.highlight.position().left + this.highlight.width()) 
                 && this.disabled == false) {
-                    this.panel.page.disable_audio_loop();
+                    this.panel.router.disable_audio_loop();
             }
                 
             //update audio's currentTime to location clicked
             var seconds = dragStartX/this.panel.get_resolution();
-            this.panel.page.set_audio_time(seconds);
+            this.panel.router.set_audio_time(seconds);
             
             /* If click is inside current highlight */
             if((dragEndX > this.highlight.position().left && 
                 dragEndX < this.highlight.position().left + this.highlight.width()) 
                 && this.disabled == false) {
-                    this.panel.page.enable_audio_loop();
+                    this.panel.router.enable_audio_loop();
             } 
         }
         /* This was a drag */
@@ -211,13 +211,13 @@ var WaveformInteractionComponent = Component.extend(
 
             /* if we were just adjusting */
             if(this.adjusting) {
-                /* Tell page that we've changed segment */
-                this.panel.page.modify_current_segment_times(startTime, endTime);
+                /* Tell router that we've changed segment */
+                this.panel.router.modify_current_segment_times(startTime, endTime);
             }
             /* we must have been creating a new segment */
             else {
-                /* Tell page about highlight */
-                this.panel.page.create_new_segment(startTime, endTime);                
+                /* Tell router about highlight */
+                this.panel.router.create_new_segment(startTime, endTime);                
             }
         }
 
@@ -350,7 +350,7 @@ var WaveformInteractionComponent = Component.extend(
             width: '0px'
         });
                 
-        this.panel.page.clear_waveform_highlight();
+        this.panel.router.clear_waveform_highlight();
     },
     
     /**
@@ -373,6 +373,6 @@ var WaveformInteractionComponent = Component.extend(
             }
         
         return false;
-    },
+    }
 
 });

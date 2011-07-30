@@ -74,7 +74,7 @@ var EditableModelTextComponent = Component.extend(
     
     events: {
         'blur .attribute_editor': 'attr_input_blurred',
-        'click .editable_attribute': 'attr_clicked', 
+        'click .editable_attribute': 'attr_clicked' 
     }, 
     
     /**
@@ -139,7 +139,7 @@ var EditableModelTextComponent = Component.extend(
                     return function() {
                         model.set({name: oldAttr});
                     };
-                }(model, oldAttr), 
+                }(model, oldAttr) 
             });
         }
         
@@ -149,5 +149,5 @@ var EditableModelTextComponent = Component.extend(
 
         /* Put back display element */
         $(this.el).html(displayElement);
-    },
+    }
 });

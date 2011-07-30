@@ -1,0 +1,135 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/reset";
+
+/* FONT IMPORT */
+@font-face {
+    font-family: "GeosansLight";
+    src: url(/fonts/GeosansLight.ttf) format("truetype");
+}
+
+/*selection prefs
+
+div::selection {
+    background-color:fuschia;
+    color:	white;
+}
+
+img::selection {
+    background-color:Transparent;
+    color:#000;
+}*/
+
+body {
+	font: 12px "Helvetica", Arial, sans-serif;
+	text-transform: uppercase;
+	text-shadow: 1px 1px 0px #fff;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+	background: #e1e1e6;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+  
+}
+
+input, textarea, div.event_widget_comment {
+    font-family: Georgia, serif;
+    font-size: 14px;
+}
+
+
+
+input#list_panel_search, input#detail_waveform_panel_tag_input {
+    color: white;    
+}
+
+
+div#layout {
+	width: 960px;
+	margin: 0 auto;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+}
+
+div#inset{
+    border-left: 1px solid white;
+ 	border-right: 1px solid white;
+ 	border-bottom: 1px solid white;
+    -webkit-box-shadow: inset 0px 0px 2px rgba(0,0,0,0.8);
+	margin-bottom: 20px;
+	background: #b5b5bc;
+	/*background-image: -webkit-radial-gradient(circle, white, #c9c9d1)*/
+}
+
+div#layout_top {
+	width: 934px;
+	height: 40px;
+	border: 1px solid white;
+	margin: 0 auto;
+	padding: 10px;
+	background: #f8f8fa inline-image("logo.png") center no-repeat;
+}
+
+div#layout_middle {
+	width: 100%;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+}
+
+div#layout_bottom {
+	width: 958px;
+	display: -webkit-box;
+	-webkit-box-orient: horizontal;
+	margin-bottom: 20px;
+	border: 1px solid white;
+    -webkit-box-shadow: inset 0px 0px 2px rgba(0,0,0,0.4);
+	background: #b5b5bc;
+}
+
+div#bottom_left {
+	width: 596px;
+	margin: 1px 0px 1px 1px;
+	border: 1px solid rgba(255,255,255,0.75);
+	background: #e1e1e6;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+}
+
+div#bottom_right {
+	width: 359px;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+}
+
+/*Overlay modal box */
+
+div#modal-overlay {
+	outline: 0 !important;
+	display: none;
+}
+
+div#modal-overlay-background {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	z-index: 999999;
+	background: rgba(0,0,0,0.4);
+}
+
+div#modal-overlay-pane {
+	position: fixed;
+	z-index: 10000001;
+	background: #fff;
+}
+
+@import "panels.scss";
+@import "components.scss";
+@import "widgets.scss";

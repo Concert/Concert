@@ -40,7 +40,7 @@ var GlobalOptionsPanel = Panel.extend(
         if(uploadButtonContainer.length) {
             /* Create UploadLinkLargeIconButton object */
             this.uploadButton = new UploadLinkLargeIconButton({
-                container: uploadButtonContainer, 
+                container: uploadButtonContainer 
             });        
         }
 
@@ -50,7 +50,7 @@ var GlobalOptionsPanel = Panel.extend(
         if(settingsButtonContainer.length) {
             /* Create settings Button */
             this.settingsButton = new SettingsLinkLargeIconButton({
-                container: settingsButtonContainer, 
+                container: settingsButtonContainer 
             });
         }
 
@@ -81,7 +81,7 @@ var GlobalOptionsPanel = Panel.extend(
         
         
         /* Bind collection events to render */
-        userMemberCollections.bind('refresh', this.render);
+        userMemberCollections.bind('reset', this.render);
         userMemberCollections.bind('add', this.render);
         userMemberCollections.bind('remove', this.render);
     },
@@ -98,7 +98,7 @@ var GlobalOptionsPanel = Panel.extend(
             /* Populate dropdown */
             this.collectionSelector.html(
                 this.collectionSelectorOptionsTemplate.tmpl({
-                    collections: this.userMemberCollections.toJSON(), 
+                    collections: this.userMemberCollections.toJSON() 
                 })
             );            
         }

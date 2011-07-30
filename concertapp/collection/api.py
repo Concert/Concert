@@ -114,48 +114,29 @@ class CollectionResource(MyResource):
         search_term = None
         
         filtering = {
-            'users': ALL,
-            'name': ('contains','icontains',)
-            }
+            'name': ('icontains','iexact')
+        }
 
-        nested = 'users'
-    
-    ###
-    #   Used to set the current search term from the outside.  This should not 
-    #   be done like this, but our search is not too robust right now in either case.
-    ###
-    def set_search_term(self, term):
-        self._meta.search_term = term
-        
-        
     ###
     #   Make sure the user is an admin if they are trying to modify or delete the 
     #   collection.
-    ###
-    def apply_authorization_limits(self, request, object_list):
-        if not request:
-            return super(CollectionResource, self).apply_authorization_limits(request, object_list)
+    #
+    ##def apply_authorization_limits(self, request, object_list):
+    #    if not request:
+    #        return super(CollectionResource, self).apply_authorization_limits(request, object_list)
             
-        method = request.META['REQUEST_METHOD']
+    #   method = request.META['REQUEST_METHOD']
         
+    #    return super(Collection)
         # If user is just trying to delete or update the collection:
-        if method == 'DELETE' or method == 'PUT':
-            user = request.user
+    #    if method == 'DELETE' or method == 'PUT':
+    #        user = request.user
             # User must be an administrator of the collection
-            object_list = super(CollectionResource, self).apply_authorization_limits(request, user.collection_set.filter(admin=user))
+    #        return super(CollectionResource, self).apply_authorization_limits(request, user.collection_set.filter(admin=user))
+    #    else:
+            # Anyone can get
+    #        return super(CollectionResource, self).apply_authorization_limits(request, object_list)
   
-        else:
-            # Filter by search term if there is one
-            try:                
-                search_term = self._meta.search_term
-                if search_term:
-                    object_list = super(CollectionResource, self).apply_authorization_limits(request, object_list.filter(name__icontains=self._meta.search_term))
-                else:
-                    object_list = super(CollectionResource, self).apply_authorization_limits(request, object_list)
-            except AttributeError, e:
-                object_list = super(CollectionResource, self).apply_authorization_limits(request, object_list)
-
-        return object_list    
         
 ###
 #   This resource is used for serializing a single collection.

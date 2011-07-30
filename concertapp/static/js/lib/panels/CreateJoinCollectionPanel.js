@@ -53,7 +53,7 @@ var CreateJoinCollectionPanel = Panel.extend(
         var searchResultsWidget = new CollectionSearchResultsWidget({
             el: contents.find('.create_join_results'), 
             searchResults: searchResults, 
-            panel: this, 
+            panel: this 
         });
         
         var createNewTemplate = $('#create_join_create_new_template');
@@ -78,7 +78,7 @@ var CreateJoinCollectionPanel = Panel.extend(
         /* Initialize the auto complete behavior */
         this.initAutoCompleteBehavior();
         
-        searchResults.bind('refresh', this.render);        
+        searchResults.bind('reset', this.render);        
     },
     render: function() {
         this.createResultsElement.empty();
@@ -88,13 +88,13 @@ var CreateJoinCollectionPanel = Panel.extend(
 
             /* "create new" button */
             var createNewElement = this.createNewTemplate.tmpl({
-                term: this.currentTerm, 
+                term: this.currentTerm 
             });
             
             var createNewButton = new CreateNewCollectionButton({
                 container: createNewElement, 
                 newCollectionName: this.currentTerm,
-                panel: this,  
+                panel: this  
             });
                                     
             /* Put in search results area */
@@ -136,7 +136,7 @@ var CreateJoinCollectionPanel = Panel.extend(
                                     
                                     me.exactResult = data.exact;
                                     
-                                    me.searchResults.refresh(data.results);
+                                    me.searchResults.reset(data.results);
                                     
                                    // me.toggleLoadingNotification();
                                 }
@@ -146,7 +146,7 @@ var CreateJoinCollectionPanel = Panel.extend(
                     /* Search is empty */
                     else {
                         me.currentTerm = term;
-                        me.searchResults.refresh([]);
+                        me.searchResults.reset([]);
                     }
                 };
 
@@ -170,7 +170,7 @@ var CreateJoinCollectionPanel = Panel.extend(
         this.inputElement.val('');
         this.currentTerm = '';
         /* Clear auto complete */
-        this.searchResults.refresh([]);
-    }, 
+        this.searchResults.reset([]);
+    } 
 
 });

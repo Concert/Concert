@@ -7,40 +7,35 @@
 /**
  *  An audio file object.
  *  @class
- *  @extends    ConcertBackboneModel
+ *  @extends    ConcertModel
  **/
-var AudioFile = ConcertBackboneModel.extend(
+var AudioFile = ConcertModel.extend(
 	/**
 	 *	@scope	AudioFile.prototype
 	 **/
 {
-    foreignKeyAttributes: function() {
-        return [
-            {
-                attr: 'uploader', 
-                model: User 
-            },
-            {
-                attr: 'collection', 
-                model: Collection
-            }
-        ];
-    }, 
-    oneToManyAttributes: function() {
-        return [
-            {
-                attr: 'segments', 
-                collectionType: AudioSegmentSet,
-                comparator: function(segment) {
-                    return segment.get('beginning');
-                },  
-            },
-            {
-                attr: 'events', 
-                collectionType: EventSet, 
-            }
-        ];
-    }, 
+    relations: [
+        {
+            type: Backbone.HasOne, 
+            key: 'uploader', 
+            relatedModel: 'User'
+        },
+        {
+            type: Backbone.HasOne, 
+            key: 'collection', 
+            relatedModel: 'Collection'
+        },
+        {
+            type: Backbone.HasMany, 
+            key: 'segments', 
+            relatedModel: 'AudioSegment'
+        },
+        {
+            type: Backbone.HasMany, 
+            key: 'events', 
+            relatedModel: 'Event'
+        }
+    ], 
     name: 'audiofile', 
     
     /**
@@ -73,16 +68,16 @@ var AudioFile = ConcertBackboneModel.extend(
         else {
             return null;
         }
-    }, 
+    } 
     
 });
 
 /**
  *  A set of audio file objects
  *  @class
- *  @extends    ConcertBackboneCollection
+ *  @extends    Backbone.Collection
  **/
-var AudioFileSet = ConcertBackboneCollection.extend(
+var AudioFileSet = Backbone.Collection.extend(
     /**
 	 *	@scope	AudioFile.prototype
 	 **/

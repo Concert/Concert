@@ -48,16 +48,16 @@ var WaveformPanel = Panel.extend(
         this.audioFileDuration = null;
                 
         _.bindAll(this, "_waveform_loaded");
-        this.page.audioController.bind('waveform_loaded', this._waveform_loaded);
+        this.router.audioController.bind('waveform_loaded', this._waveform_loaded);
         
         /* When the controller is in the process of creating a new audio segment */
         _.bindAll(this, 'show_loading_notification');
-        this.page.bind('creating_new_segment', this.show_loading_notification);
+        this.router.bind('creating_new_segment', this.show_loading_notification);
         
     },
     
     /**
-     *  Called from page when an audio file is selected.
+     *  Called from router when an audio file is selected.
      *
      *  @param  {AudioFile}    selectedAudioFile    -   The selected file
      **/
@@ -76,7 +76,7 @@ var WaveformPanel = Panel.extend(
     },
     
     /**
-     *  Called from page when an audio segment is selected.
+     *  Called from router when an audio segment is selected.
      *
      *  @param  {AudioSegment}    selectedAudioSegment    - The selected segment
      **/
@@ -108,14 +108,14 @@ var WaveformPanel = Panel.extend(
     },
     
     /**
-     *  Called from page when waveform highlight should be cleared.
+     *  Called from router when waveform highlight should be cleared.
      **/
     clear_waveform_highlight: function() {
         this.highlighter.disable();
     }, 
     
     /**
-     *  Called from page when waveform should highlight
+     *  Called from router when waveform should highlight
      **/
     highlight_waveform: function(startTime, endTime) {
         /* Draw highlight */
@@ -138,5 +138,5 @@ var WaveformPanel = Panel.extend(
         /* Load the waveform viewer with the audio files' waveform image */
         waveformImageElement.attr('src', src);
         
-    }, 
+    } 
 });

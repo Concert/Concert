@@ -5,10 +5,11 @@
 <div class="event_widget">
     <div class="type${eventType}_event_widget_icon event_widget_icon widget_icon"></div>
     <div class="type${eventType}_event_widget_content event_widget_content">
-        {%verbatim%}{{tmpl(user.toJSON()) "#user_link_template"}}{%endverbatim%}
+        {%verbatim%}{{tmpl(user) "#user_link_template"}}{%endverbatim%}
         <span class="event_widget_text">{% block event_text %}{% endblock %}</span>
+        {# If the current template context has a 'comment' attribute #}
         {% verbatim %}
-            {{if comment && comment != ''}}
+            {{if $data.comment && comment != ''}}
                 <div class="event_widget_comment">${comment}</div>
             {{/if}}
         {% endverbatim %}

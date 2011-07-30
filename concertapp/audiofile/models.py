@@ -26,7 +26,7 @@ class AudioFile(models.Model):
     WAVEFORM_LOCATION = 'waveforms/'
     AUDIO_LOCATION = 'audio/'
     name = models.CharField(max_length = 100)
-    uploader = models.ForeignKey(User)
+    uploader = models.ForeignKey(User, related_name="uploadedFiles")
     collection = models.ForeignKey(Collection, related_name="files")
     wav = models.FileField(upload_to = AUDIO_LOCATION)
     ogg = models.FileField(upload_to = AUDIO_LOCATION)
@@ -184,13 +184,14 @@ class AudioFile(models.Model):
     def _generate_waveform(self):
         # Relative path to our wave file (from MEDIA_ROOT)
         wavPath = self.wav.name
+
         # Absolute path to our wave file
-        wavPathAbsolute = os.path.join(MEDIA_ROOT, wavPath)
+        wavPathAbsolute = os.path.join(MEDIA_ROOT, 'audio', wavPath)
         
         idString = str(self.id)
         
         # Get length of audio (samples)
-        length = audioHelpers.getLength(wavPathAbsolute)        
+        length = audioHelpers.getLength(wavPathAbsolute)
 
         # For each zoom level
         for zoomLevel in AudioFile.ZOOM_LEVELS:

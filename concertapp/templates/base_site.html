@@ -17,24 +17,25 @@ The base template for all pages.  All page templates will use this.
     
     <link rel="stylesheet" href="/css/jquery-ui/jquery-ui-1.8.12.custom.css">
     
-    <link rel="stylesheet" href="/css/styles.css">
-    <link rel="stylesheet" href="/css/panels.css">
-    <link rel="stylesheet" href="/css/components.css">
-    <link rel="stylesheet" href="/css/widgets.css">
-    <link rel="stylesheet" href="/css/animations.css">
-   <!-- <link rel="stylehseet" type="text/css" href="/css/pages.css">-->
-
+    <link href="/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <link href="/css/print.css" media="print" rel="stylesheet" type="text/css" />
+    <!--[if IE]>
+        <link href="/css/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <![endif]-->
+    
     {# Global namespaces and variables #}
     <script src="/js/global.js"></script>
     
     {# Vendor #}
-    <script src="/js/lib/vendor/jquery-1.5.1.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+
+
     <script src="/js/lib/vendor/jquery.tmpl.js"></script>
     <script src="/js/lib/vendor/jquery-ui-1.8.12.custom.min.js"></script>
     <script src="/js/lib/vendor/modernizr-1.6.min.js"></script>
     <script src="/js/lib/vendor/jquery.form.js"></script>
     <script src="/js/lib/vendor/jquery.imagesloaded.js"></script>
-    <script src="/js/lib/vendor/underscore-min.js"></script>
+    <script src="/js/lib/vendor/underscore.js"></script>
     <script src="/js/lib/vendor/json2.js"></script>
     <script src="/js/lib/vendor/backbone.js"></script>
     <script src="/js/lib/vendor/gury.js"></script>
@@ -42,34 +43,23 @@ The base template for all pages.  All page templates will use this.
     <script src="/js/lib/vendor/jquery.scroll-startstop.events.js"></script>
     <script src="/js/lib/vendor/jquery.noisy.js"></script>
     <script src="/js/lib/vendor/date.format.js"></script>
+    <script src="/js/lib/vendor/backbone-relational.js"></script>
 
     {# Helpers #}
     <script src="/js/lib/helpers/AnimatedDots.js"></script>
     <script src="/js/lib/helpers/UIHelpers.js"></script>
     <script src="/js/lib/helpers/BackboneHelpers.js"></script>
 
+    
     {# Models #}
-    <script src="/js/lib/models/ConcertBackboneCollection.js"></script>
-    <script src="/js/lib/models/ConcertBackboneModel.js"></script>
+    <script src="/js/lib/models/ConcertModel.js"></script>
     <script src="/js/lib/models/Collection.js"></script>
     <script src="/js/lib/models/User.js"></script>
-    <script src="/js/lib/models/Request.js"></script>
+    {#}<script src="/js/lib/models/Request.js"></script>#}
     <script src="/js/lib/models/AudioFile.js"></script>
     <script src="/js/lib/models/AudioSegment.js"></script>
     <script src="/js/lib/models/Tag.js"></script>
-    <script src="/js/lib/models/Comment.js"></script>
     <script src="/js/lib/models/Event.js"></script>
-    <script src="/js/lib/models/AudioFileUploadedEvent.js"></script>
-    <script src="/js/lib/models/AudioSegmentCreatedEvent.js"></script>
-    <script src="/js/lib/models/AudioSegmentTaggedEvent.js"></script>
-    <script src="/js/lib/models/CreateCollectionEvent.js"></script>
-    <script src="/js/lib/models/JoinCollectionEvent.js"></script>
-    <script src="/js/lib/models/LeaveCollectionEvent.js"></script>
-    <script src="/js/lib/models/RequestDeniedEvent.js"></script>
-    <script src="/js/lib/models/RequestJoinCollectionEvent.js"></script>
-    <script src="/js/lib/models/RequestRevokedEvent.js"></script>
-    <script src="/js/lib/models/AudioSegmentCommentEvent.js"></script>
-    <script src="/js/lib/models/AudioFileCommentEvent.js"></script>
     
     {# Modal notification framework #}
     <script src="/js/lib/notifications/ModalAlert.js"></script>
@@ -122,6 +112,7 @@ The base template for all pages.  All page templates will use this.
     <script src="/js/lib/widgets/RequestRevokedEventWidget.js"></script>
     <script src="/js/lib/widgets/AudioFileCommentEventWidget.js"></script>
     <script src="/js/lib/widgets/CollectionWidget.js"></script>
+    <script src="/js/lib/widgets/AudioSegmentCommentEventWidget.js"></script>
     
     
     {# Components #}
@@ -156,15 +147,14 @@ The base template for all pages.  All page templates will use this.
     <script src="/js/lib/panels/EventsPanel.js"></script>
     <script src="/js/lib/panels/DetailWaveformPanelTagBay.js"></script>
     
-    {# Pages #}
-    <script src="/js/lib/pages/Page.js"></script>
-    <script src="/js/lib/pages/LoggedInPage.js"></script>
-    <script src="/js/lib/pages/CollectionsPage.js"></script>
-    <script src="/js/lib/pages/UploadPage.js"></script>
-    <script src="/js/lib/pages/LoginPage.js"></script>
-    <script src="/js/lib/pages/AudioController.js"></script>
-      
+    {# Controllers #}
+    <script src="/js/lib/controllers/AudioController.js"></script>
+    
+    <script src="/js/lib/Router.js"></script>
+
     <script src="/js/init.js"></script>
+    
+    {# <script src="/js/compiled.js"></script> #}
 
 </head>
 <body>
@@ -259,6 +249,9 @@ The base template for all pages.  All page templates will use this.
     <script id="audiofilecommentevent_template" type="text/x-jquery-tmpl">
         {% include 'clientside/audiofilecommentevent.html' %}
     </script>
+    <script id="audiosegmentcommentevent_template" type="text/x-jquery-tmpl">
+        {% include 'clientside/audiosegmentcommentevent.html' %}
+    </script>
     
     <script id="requestrevokedevent_template" type="text/x-jquery-tmpl">
         {% include 'clientside/requestrevokedevent.html' %}
@@ -269,11 +262,16 @@ The base template for all pages.  All page templates will use this.
         {% include 'logged_in/clientside/autocomplete_list_item_template.html' %}
     </script>
     
+    {# Template used for an autocomplete result when searching for collections #}
+    <script id="collection_autocomplete_result_template" type="text/x-jquery-tmpl">
+        {% include 'logged_in/clientside/collection_autocomplete_result.html' %}
+    </script>
+    
     {# Send variable to javascript with recognizable path so we know what page we're on #}
     {% if js_page_path %}
         <script>
-            {# Initialize the page with our current page path and default data #}
-            initializeUI('{{ js_page_path }}',
+            {# Initialize the page with our initial data #}
+            initializeUI(
                 {% if data %}
                     {% autoescape off %}
                         {{ data }}

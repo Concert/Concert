@@ -29,8 +29,8 @@ var EventsPanel = Panel.extend({
             7: RequestJoinCollectionEventWidget,
             8: RequestDeniedEventWidget,
             9: RequestRevokedEventWidget,
-            /*10: TagCommentEventWidget, 
-            11: AudioSegmentCommentEventWidget, */
+            /*10: TagCommentEventWidget, */
+            11: AudioSegmentCommentEventWidget, 
             12: AudioFileCommentEventWidget
         }
         
@@ -47,8 +47,8 @@ var EventsPanel = Panel.extend({
             7: $('#requestjoincollectionevent_template'),
             8: $('#requestdeniedevent_template'),
             9: $('#requestrevokedevent_template'),
-            /*10: $('#tagcommentevent_template), 
-            11: $("#audiosegmentcommentevent_template"), */
+            /*10: $('#tagcommentevent_template), */
+            11: $("#audiosegmentcommentevent_template"), 
             12: $('#audiofilecommentevent_template')
         }
         
@@ -130,7 +130,7 @@ var EventsPanel = Panel.extend({
         }
         
         /* Otherwise, create the event */
-        this.page.create_new_comment(field.val());
+        this.router.create_new_comment(field.val());
         field.val('');
         field.blur();
     }, 
@@ -255,7 +255,7 @@ var EventsPanel = Panel.extend({
         var panel = this;
 
         var frag = document.createDocumentFragment();
-        var currentRoute = this.page.currentRoute;
+        var currentRoute = this.router.currentRoute;
         /* For each event model */
         eventModels.each(function(eventModel) {
             var widget = panel._create_event_widget(eventModel, currentRoute);
@@ -274,7 +274,7 @@ var EventsPanel = Panel.extend({
      *  @param  {Event}    eventModel    The Event object to be added to our display
      **/
     _render_and_add_event: function(eventModel) {
-        var widget = this._create_event_widget(eventModel, this.page.currentRoute);
+        var widget = this._create_event_widget(eventModel, this.router.currentRoute);
         
         this.contents.prepend(widget.render().el);
     }, 
@@ -292,7 +292,7 @@ var EventsPanel = Panel.extend({
         /* Proper widget for this event */
         var widgetClass = this.eventTypesToWidgetMap[eventType];
         var widgetTemplate = this.eventTypesToTemplateMap[eventType];
-
+        
         /* Create and return widget */
         return new widgetClass({
             panel: this, 
@@ -300,6 +300,6 @@ var EventsPanel = Panel.extend({
             template: widgetTemplate,
             currentRoute: currentRoute
         });
-    }, 
+    } 
     
 });
