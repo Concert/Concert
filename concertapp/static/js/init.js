@@ -27,5 +27,10 @@ function initializeUI(data) {
 
         /* Run the initializer function for this page. */
         com.concertsoundorganizer.router = new Router(data);
+
+		/*temp*/
+		$('.file_list_widget_admin').live('click', function(){
+			$('#bottom_left').toggleClass('active_admin');
+		});
     });
 }

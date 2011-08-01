@@ -37,7 +37,6 @@ body {
 	width: 100%;
 	height: 100%;
 	margin: 0;
-  
 }
 
 input, textarea, div.event_widget_comment {
@@ -85,26 +84,44 @@ div#layout_middle {
 }
 
 div#layout_bottom {
-	width: 958px;
-	display: -webkit-box;
-	-webkit-box-orient: horizontal;
-	margin-bottom: 20px;
-	border: 1px solid white;
-    -webkit-box-shadow: inset 0px 0px 2px rgba(0,0,0,0.4);
-	background: #b5b5bc;
+  width: 958px;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  margin-bottom: 20px;
+  border: 1px solid white;
+  -webkit-box-shadow: inset 0px 0px 2px rgba(0, 0, 0, 0.4);
+  background: #b5b5bc;
+	overflow: hidden;
 }
 
+div#layout_bottom .active_admin {
+	margin-left: -600px;
+}
+
+/* line 97, ../sass/screen.scss */
 div#bottom_left {
+  width: 596px;
+  margin: 1px 0px 1px 1px;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  background: #e1e1e6;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+	-webkit-transition: all linear 0.24s;
+}
+
+/* line 106, ../sass/screen.scss */
+div#bottom_right {
+  width: 359px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+div#bottom_admin {
+	width: 596px;
 	width: 596px;
 	margin: 1px 0px 1px 1px;
 	border: 1px solid rgba(255,255,255,0.75);
-	background: #e1e1e6;
-	display: -webkit-box;
-	-webkit-box-orient: vertical;
-}
-
-div#bottom_right {
-	width: 359px;
+	background: red;
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
 }

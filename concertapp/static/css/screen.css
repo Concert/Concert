@@ -2,7 +2,7 @@
  * In this file you should write your main styles. (or centralize your imports)
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
-/* line 17, /opt/local/lib/ruby/gems/1.8/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 17, ../../../../../../usr/lib/ruby/gems/1.8/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -24,47 +24,46 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 20, /opt/local/lib/ruby/gems/1.8/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 20, ../../../../../../usr/lib/ruby/gems/1.8/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 body {
   line-height: 1;
 }
 
-/* line 22, /opt/local/lib/ruby/gems/1.8/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 22, ../../../../../../usr/lib/ruby/gems/1.8/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 24, /opt/local/lib/ruby/gems/1.8/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 24, ../../../../../../usr/lib/ruby/gems/1.8/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 26, /opt/local/lib/ruby/gems/1.8/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 26, ../../../../../../usr/lib/ruby/gems/1.8/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 28, /opt/local/lib/ruby/gems/1.8/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 28, ../../../../../../usr/lib/ruby/gems/1.8/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 101, /opt/local/lib/ruby/gems/1.8/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 101, ../../../../../../usr/lib/ruby/gems/1.8/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 30, /opt/local/lib/ruby/gems/1.8/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 30, ../../../../../../usr/lib/ruby/gems/1.8/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 115, /opt/local/lib/ruby/gems/1.8/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
+/* line 114, ../../../../../../usr/lib/ruby/gems/1.8/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
   display: block;
 }
 
@@ -102,18 +101,18 @@ body {
   margin: 0;
 }
 
-/* line 43, ../sass/screen.scss */
+/* line 42, ../sass/screen.scss */
 input, textarea, div.event_widget_comment {
   font-family: Georgia, serif;
   font-size: 14px;
 }
 
-/* line 50, ../sass/screen.scss */
+/* line 49, ../sass/screen.scss */
 input#list_panel_search, input#detail_waveform_panel_tag_input {
   color: white;
 }
 
-/* line 55, ../sass/screen.scss */
+/* line 54, ../sass/screen.scss */
 div#layout {
   width: 960px;
   margin: 0 auto;
@@ -121,7 +120,7 @@ div#layout {
   -webkit-box-orient: vertical;
 }
 
-/* line 62, ../sass/screen.scss */
+/* line 61, ../sass/screen.scss */
 div#inset {
   border-left: 1px solid white;
   border-right: 1px solid white;
@@ -132,7 +131,7 @@ div#inset {
   /*background-image: -webkit-radial-gradient(circle, white, #c9c9d1)*/
 }
 
-/* line 72, ../sass/screen.scss */
+/* line 71, ../sass/screen.scss */
 div#layout_top {
   width: 934px;
   height: 40px;
@@ -142,14 +141,14 @@ div#layout_top {
   background: #f8f8fa url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDpFM0I4QzA3ODlGMjE2ODExQjFBNEYwODNDMEU2NjlFNSIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpDREFGREI1MzY1OUYxMUUwQTA4MUEwNEZBOTlBMzlDRCIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpDREFGREI1MjY1OUYxMUUwQTA4MUEwNEZBOTlBMzlDRCIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkUzQjhDMDc4OUYyMTY4MTFCMUE0RjA4M0MwRTY2OUU1IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkUzQjhDMDc4OUYyMTY4MTFCMUE0RjA4M0MwRTY2OUU1Ii8+IDwvcmRmOkRlc2NyaXB0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') center no-repeat;
 }
 
-/* line 81, ../sass/screen.scss */
+/* line 80, ../sass/screen.scss */
 div#layout_middle {
   width: 100%;
   display: -webkit-box;
   -webkit-box-orient: vertical;
 }
 
-/* line 87, ../sass/screen.scss */
+/* line 86, ../sass/screen.scss */
 div#layout_bottom {
   width: 958px;
   display: -webkit-box;
@@ -158,9 +157,16 @@ div#layout_bottom {
   border: 1px solid white;
   -webkit-box-shadow: inset 0px 0px 2px rgba(0, 0, 0, 0.4);
   background: #b5b5bc;
+  overflow: hidden;
 }
 
 /* line 97, ../sass/screen.scss */
+div#layout_bottom .active_admin {
+  margin-left: -600px;
+}
+
+/* line 97, ../sass/screen.scss */
+/* line 102, ../sass/screen.scss */
 div#bottom_left {
   width: 596px;
   margin: 1px 0px 1px 1px;
@@ -168,23 +174,36 @@ div#bottom_left {
   background: #e1e1e6;
   display: -webkit-box;
   -webkit-box-orient: vertical;
+  -webkit-transition: all linear 0.24s;
 }
 
 /* line 106, ../sass/screen.scss */
+/* line 113, ../sass/screen.scss */
 div#bottom_right {
   width: 359px;
   display: -webkit-box;
   -webkit-box-orient: vertical;
 }
 
+/* line 119, ../sass/screen.scss */
+div#bottom_admin {
+  width: 596px;
+  width: 596px;
+  margin: 1px 0px 1px 1px;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  background: red;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
 /*Overlay modal box */
-/* line 114, ../sass/screen.scss */
+/* line 131, ../sass/screen.scss */
 div#modal-overlay {
   outline: 0 !important;
   display: none;
 }
 
-/* line 119, ../sass/screen.scss */
+/* line 136, ../sass/screen.scss */
 div#modal-overlay-background {
   width: 100%;
   height: 100%;
@@ -193,7 +212,7 @@ div#modal-overlay-background {
   background: rgba(0, 0, 0, 0.4);
 }
 
-/* line 127, ../sass/screen.scss */
+/* line 144, ../sass/screen.scss */
 div#modal-overlay-pane {
   position: fixed;
   z-index: 10000001;
@@ -201,18 +220,18 @@ div#modal-overlay-pane {
 }
 
 /* This is a panel on the UI, used for many things. */
-/* line 2, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 2, ../sass/panels.scss */
 div.panel {
   position: relative;
 }
 
-/* line 6, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 6, ../sass/panels.scss */
 .panel_nocontent_container {
   display: none;
 }
 
 /* This is the div that shows a loading notification on each panel */
-/* line 11, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 11, ../sass/panels.scss */
 div.panel_loader {
   position: absolute;
   width: 100%;
@@ -224,14 +243,14 @@ div.panel_loader {
 }
 
 /* This class is added when the panel loader is to be displayed */
-/* line 22, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 22, ../sass/panels.scss */
 div.panel_loader_enabled {
   opacity: 0.7;
   z-index: 9999;
 }
 
 /*Overview Waveform Panel */
-/* line 29, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 29, ../sass/panels.scss */
 div#overview_waveform_panel_top {
   color: #f8f8fa;
   width: 956px;
@@ -241,13 +260,13 @@ div#overview_waveform_panel_top {
   -webkit-box-shadow: inset 0 0 10px #000000;
 }
 
-/* line 38, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 38, ../sass/panels.scss */
 div#overview_waveform_panel_playhead {
   height: 60px;
   margin: 0px 1px 0px 1px;
 }
 
-/* line 43, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 43, ../sass/panels.scss */
 div.playhead {
   background-color: #FF0000;
   color: #FF0000;
@@ -256,7 +275,7 @@ div.playhead {
   position: absolute;
 }
 
-/* line 51, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 51, ../sass/panels.scss */
 div#overview_waveform_panel_bottom {
   width: 956px;
   margin: 0 auto;
@@ -265,13 +284,13 @@ div#overview_waveform_panel_bottom {
 }
 
 /*Detail Waveform Panel */
-/* line 60, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 60, ../sass/panels.scss */
 div#detail_waveform_panel_contents {
   -webkit-box-orient: vertical;
   display: -webkit-box;
 }
 
-/* line 65, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 65, ../sass/panels.scss */
 div#detail_wavform_wrap {
   width: 954px;
   border: 1px solid white;
@@ -279,7 +298,7 @@ div#detail_wavform_wrap {
   background: #f8f8fa;
 }
 
-/* line 72, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 72, ../sass/panels.scss */
 div#detail_waveform_panel_top {
   width: 874px;
   height: 10px;
@@ -291,32 +310,32 @@ div#detail_waveform_panel_top {
   display: -webkit-box;
 }
 
-/* line 83, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 83, ../sass/panels.scss */
 div#detail_waveform_panel_top_left {
   width: 440px;
   text-transform: uppercase;
 }
 
 /* The name of the segment/file at the top of the detail panel */
-/* line 89, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 89, ../sass/panels.scss */
 span#detail_waveform_selected_name {
   font-weight: bold;
 }
 
 /* The text input box that appears when clicking on the name */
-/* line 94, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 94, ../sass/panels.scss */
 input#detail_waveform_selected_name_editable {
   height: 1em;
 }
 
-/* line 99, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 99, ../sass/panels.scss */
 div#detail_waveform_panel_top_right {
   width: 440px;
   text-align: right;
   text-transform: uppercase;
 }
 
-/* line 105, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 105, ../sass/panels.scss */
 div#detail_waveform_panel_middle {
   width: 954px;
   height: 254px;
@@ -324,14 +343,14 @@ div#detail_waveform_panel_middle {
   display: -webkit-box;
 }
 
-/* line 112, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 112, ../sass/panels.scss */
 div#detail_waveform_panel_middle_left {
   padding-left: 12px;
   padding-right: 18px;
   width: 10px;
 }
 
-/* line 118, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 118, ../sass/panels.scss */
 div#detail_waveform_panel_middle_right {
   padding-left: 18px;
   padding-right: 12px;
@@ -339,21 +358,21 @@ div#detail_waveform_panel_middle_right {
   margin-left: 874px;
 }
 
-/* line 125, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 125, ../sass/panels.scss */
 div#detail_waveform_panel_middle_left .arrow_space {
   height: 57px;
   width: 100%;
   padding-top: 43px;
 }
 
-/* line 131, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 131, ../sass/panels.scss */
 div#detail_waveform_panel_middle_right .arrow_space {
   height: 57px;
   width: 100%;
   padding-top: 43px;
 }
 
-/* line 137, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 137, ../sass/panels.scss */
 div#detail_waveform_panel_middle_left .arrow_space .arrow {
   border-color: transparent #45455a transparent transparent;
   border-style: solid;
@@ -362,7 +381,7 @@ div#detail_waveform_panel_middle_left .arrow_space .arrow {
   height: 0;
 }
 
-/* line 145, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 145, ../sass/panels.scss */
 div#detail_waveform_panel_middle_right .arrow_space .arrow {
   border-color: transparent transparent transparent #45455a;
   border-style: solid;
@@ -371,7 +390,7 @@ div#detail_waveform_panel_middle_right .arrow_space .arrow {
   height: 0;
 }
 
-/* line 153, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 153, ../sass/panels.scss */
 div#detail_waveform_panel_view {
   color: #f8f8fa;
   width: 874px;
@@ -382,7 +401,7 @@ div#detail_waveform_panel_view {
 }
 
 /**SHADOW**/
-/* line 163, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 163, ../sass/panels.scss */
 div#detail_waveform_panel_view_overlay {
   width: 874px;
   height: 198px;
@@ -395,7 +414,7 @@ div#detail_waveform_panel_view_overlay {
 }
 
 /**UNDERLAY GRADIENT**/
-/* line 175, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 175, ../sass/panels.scss */
 div#detail_waveform_panel_view_underlay {
   width: 874px;
   height: 200px;
@@ -406,24 +425,24 @@ div#detail_waveform_panel_view_underlay {
   background: -webkit-gradient(linear, left top, left bottom, from(#45455a), to(#18181f));
 }
 
-/* line 185, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 185, ../sass/panels.scss */
 div#detail_waveform_panel_playhead {
   height: 198px;
   margin: 1px;
 }
 
-/* line 190, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 190, ../sass/panels.scss */
 div#detail_waveform_panel_bottom {
   width: 948px;
   padding: 1em;
 }
 
-/* line 195, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 195, ../sass/panels.scss */
 div#detail_waveform_panel_waveform_timecode_playhead {
   position: absolute;
 }
 
-/* line 199, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 199, ../sass/panels.scss */
 div#detail_waveform_panel_timecode {
   height: 40px;
   background: #f8f8fa;
@@ -432,7 +451,7 @@ div#detail_waveform_panel_timecode {
   z-index: 200;
 }
 
-/* line 207, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 207, ../sass/panels.scss */
 div#audiolist_panel_contents {
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -441,13 +460,13 @@ div#audiolist_panel_contents {
 /**
 *  Waveform highlight
 **/
-/* line 217, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 217, ../sass/panels.scss */
 div.highlight_container {
   z-index: 300;
   position: absolute;
 }
 
-/* line 222, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 222, ../sass/panels.scss */
 div.highlight {
   height: 100%;
   position: relative;
@@ -464,7 +483,7 @@ div.highlight {
   display: -webkit-box;
 }
 */
-/* line 239, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 239, ../sass/panels.scss */
 div.leftHandle {
   height: 100%;
   position: absolute;
@@ -474,14 +493,14 @@ div.leftHandle {
   visibility: inherit;
 }
 
-/* line 248, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 248, ../sass/panels.scss */
 div.leftHandle:hover {
   left: -2px;
   width: 3px;
   cursor: col-resize;
 }
 
-/* line 254, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 254, ../sass/panels.scss */
 div.rightHandle {
   height: 100%;
   position: absolute;
@@ -491,7 +510,7 @@ div.rightHandle {
   visibility: inherit;
 }
 
-/* line 263, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 263, ../sass/panels.scss */
 div.rightHandle:hover {
   right: -2px;
   width: 3px;
@@ -499,18 +518,18 @@ div.rightHandle:hover {
 }
 
 /* Initially a highlight will be disabled */
-/* line 270, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 270, ../sass/panels.scss */
 div.disabled {
   visibility: hidden;
 }
 
-/* line 274, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 274, ../sass/panels.scss */
 div#detail_waveform_panel_highlight_container {
   height: 196px;
   margin: 2px 0px 2px 0px;
 }
 
-/* line 278, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 278, ../sass/panels.scss */
 div#overview_waveform_panel_highlight_container {
   height: 58px;
   margin: 1px 0px 1px 0px;
@@ -519,7 +538,7 @@ div#overview_waveform_panel_highlight_container {
 /**
 *  Waveform images
 **/
-/* line 286, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 286, ../sass/panels.scss */
 img.waveform_image {
   display: block;
   z-index: 100;
@@ -527,18 +546,18 @@ img.waveform_image {
 }
 
 /* Fit overview image in box */
-/* line 293, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 293, ../sass/panels.scss */
 img#overview_waveform_image {
   width: 956px;
   height: 60px;
 }
 
-/* line 298, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 298, ../sass/panels.scss */
 div#create_join_panel, div#manage_admin_collections_panel, div#manage_member_collections_panel, div#manage_request_collections_panel {
   height: 100px;
 }
 
-/* line 303, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 303, ../sass/panels.scss */
 div.file_widget {
   width: 408px;
   height: 70px;
@@ -551,12 +570,12 @@ div.file_widget {
 /**
  *  Detail waveform panel tag bay
  **/
-/* line 316, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 316, ../sass/panels.scss */
 div#detail_waveform_panel_tags {
   display: inline;
 }
 
-/* line 320, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 320, ../sass/panels.scss */
 input#detail_waveform_panel_tag_input {
   display: inline;
   height: 15px;
@@ -568,19 +587,19 @@ input#detail_waveform_panel_tag_input {
   border: 0;
 }
 
-/* line 331, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 331, ../sass/panels.scss */
 input#detail_waveform_panel_tag_input:focus {
   border: 0;
 }
 
-/* line 335, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 335, ../sass/panels.scss */
 input#detail_waveform_panel_tag_input::-webkit-input-placeholder {
   color: gray;
   opacity: 0.7;
 }
 
 /*AUDIO PANEL*/
-/* line 344, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 344, ../sass/panels.scss */
 div#list_panel {
   width: 359px;
   display: -webkit-box;
@@ -589,7 +608,7 @@ div#list_panel {
   padding-bottom: 1px;
 }
 
-/* line 352, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 352, ../sass/panels.scss */
 div#list_nav {
   width: 335px;
   height: 20px;
@@ -598,13 +617,13 @@ div#list_nav {
   background: #f8f8fa;
 }
 
-/* line 360, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 360, ../sass/panels.scss */
 div#list_panel_header {
   width: 357px;
   margin: 0 auto;
 }
 
-/* line 366, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 366, ../sass/panels.scss */
 div#list_panel_search_container {
   background: -webkit-gradient(linear, left top, left bottom, from(#18181f), to(#45455a));
   height: 40px;
@@ -615,7 +634,7 @@ div#list_panel_search_container {
   margin-bottom: -2px;
 }
 
-/* line 376, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 376, ../sass/panels.scss */
 input#list_panel_search {
   background: transparent;
   text-decoration: none;
@@ -626,7 +645,7 @@ input#list_panel_search {
   border: 0px;
 }
 
-/* line 386, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 386, ../sass/panels.scss */
 div#list_panel .selected {
   width: 335px;
   border: 1px solid white;
@@ -638,14 +657,14 @@ div#list_panel .selected {
 }
 
 /*pushed to universal classes*/
-/* line 398, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 398, ../sass/panels.scss */
 div.title {
   font-size: 13px;
   text-transform: uppercase;
   font-weight: bold;
 }
 
-/* line 404, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 404, ../sass/panels.scss */
 .small_text {
   font-size: 10px;
   font-weight: normal;
@@ -659,20 +678,20 @@ div.title {
     font-size: 15px;
 }*/
 /* events panel */
-/* line 417, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 417, ../sass/panels.scss */
 div#events_list_panel {
   width: 578px;
   padding: 10px;
 }
 
 /* Container for comment form */
-/* line 423, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 423, ../sass/panels.scss */
 div#events_list_panel_header {
   margin-bottom: 1em;
 }
 
 /* Comment form field */
-/* line 428, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 428, ../sass/panels.scss */
 textarea#comment_field {
   width: 100%;
   height: 2.5em;
@@ -681,13 +700,13 @@ textarea#comment_field {
 }
 
 /* When comment form field is expanded */
-/* line 436, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 436, ../sass/panels.scss */
 textarea#comment_field.expanded {
   height: 4em;
 }
 
 /* Comment button */
-/* line 441, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 441, ../sass/panels.scss */
 button#comment_button.hidden {
   display: none;
 }
@@ -697,7 +716,7 @@ button#comment_button.hidden {
  *  SEGMENT BARS
  **/
 /* A row of segment bars */
-/* line 459, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 459, ../sass/panels.scss */
 .segment_bar_row {
   padding-top: 2px;
   height: 3px;
@@ -710,14 +729,14 @@ button#comment_button.hidden {
 *
 *  margin-left and width properties will change dynamically
 **/
-/* line 471, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 471, ../sass/panels.scss */
 .segment_bar {
   background: #45455a;
   position: absolute;
   height: 3px;
 }
 
-/* line 477, /Users/colin/Projects/Concert/concertapp/static/sass/panels.scss */
+/* line 477, ../sass/panels.scss */
 #background_glare {
   border-color: transparent transparent transparent rgba(255, 255, 255, 0.4);
   border-style: solid;
@@ -733,7 +752,7 @@ button#comment_button.hidden {
 /**
  *  An autocomplete listing
  **/
-/* line 4, /Users/colin/Projects/Concert/concertapp/static/sass/components.scss */
+/* line 4, ../sass/components.scss */
 div.autocomplete_list ul.ui-autocomplete {
   position: absolute;
   top: auto;
@@ -742,7 +761,7 @@ div.autocomplete_list ul.ui-autocomplete {
 }
 
 /* A substring that matches the search term */
-/* line 12, /Users/colin/Projects/Concert/concertapp/static/sass/components.scss */
+/* line 12, ../sass/components.scss */
 span.autocomplete_substring_match {
   font-weight: bold;
 }
@@ -750,7 +769,7 @@ span.autocomplete_substring_match {
 /** 
  *  All Widgets
  **/
-/* line 5, /Users/colin/Projects/Concert/concertapp/static/sass/widgets.scss */
+/* line 5, ../sass/widgets.scss */
 div.widget_icon {
   height: 30px;
   width: 30px;
@@ -761,7 +780,7 @@ div.widget_icon {
 /**
  *  List widgets
  **/
-/* line 16, /Users/colin/Projects/Concert/concertapp/static/sass/widgets.scss */
+/* line 16, ../sass/widgets.scss */
 div.list_widget {
   width: 335px;
   padding: 10px;
@@ -769,23 +788,23 @@ div.list_widget {
   margin: 0 auto;
 }
 
-/* line 23, /Users/colin/Projects/Concert/concertapp/static/sass/widgets.scss */
+/* line 23, ../sass/widgets.scss */
 div.list_widget .boxwrap {
   display: -webkit-box;
   -webkit-box-orient: horizontal;
 }
 
-/* line 28, /Users/colin/Projects/Concert/concertapp/static/sass/widgets.scss */
+/* line 28, ../sass/widgets.scss */
 div.list_widget .bottom {
   font-weight: normal;
 }
 
-/* line 32, /Users/colin/Projects/Concert/concertapp/static/sass/widgets.scss */
+/* line 32, ../sass/widgets.scss */
 div.list_widget .info {
   padding-bottom: 10px;
 }
 
-/* line 36, /Users/colin/Projects/Concert/concertapp/static/sass/widgets.scss */
+/* line 36, ../sass/widgets.scss */
 span.list_widget_title_text {
   cursor: pointer;
 }
@@ -793,7 +812,7 @@ span.list_widget_title_text {
 /**
  *  Collection list widget
  **/
-/* line 43, /Users/colin/Projects/Concert/concertapp/static/sass/widgets.scss */
+/* line 43, ../sass/widgets.scss */
 div.collection_list_widget_icon {
   background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA+VpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1wTU06T3JpZ2luYWxEb2N1bWVudElEPSJ1dWlkOjY1RTYzOTA2ODZDRjExREJBNkUyRDg4N0NFQUNCNDA3IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjRFNDIzNTUyNkQyRTExRTA5OUVBQkQ0M0RBQ0Y2RTZDIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjRFNDIzNTUxNkQyRTExRTA5OUVBQkQ0M0RBQ0Y2RTZDIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDUzUgTWFjaW50b3NoIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MDU4MDExNzQwNzIwNjgxMUE0OTlCMEFCMEYzQzA1NDQiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RkI3RjExNzQwNzIwNjgxMThDMTRGNkYyRjBGOUFDRTUiLz4gPGRjOnRpdGxlPiA8cmRmOkFsdD4gPHJkZjpsaSB4bWw6bGFuZz0ieC1kZWZhdWx0Ij5XZWI8L3JkZjpsaT4gPC9yZGY6QWx0PiA8L2RjOnRpdGxlPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PjFbCP0AAAPUSURBVHjaxFdfSJNRFL/f0qnDRjopgiKRNIiVVgRqJlkqCYIVRkVJVDQFxZdeqheFCNlDveRLsh4STewx1IQVlpJFZmWYlq0oEP81kjbd3JbZ78SdzLu7zzmJLhzOPd/587v3nvvnfMrCwgL7H01RA7ZarayhoUH8vBV0HJTO5Xeg+yBboJHRaGQ1NTWhkQk4FNXX14vm50E/yU0gB+hCoGFmZqZqbI3ackRHRweKB0F3QHqJ6VqQRVGUfP+HuLg41aVWBY6NjV1MCdrVMFJ3hWypExUVpWq4qJ2ZmWG1tbXM5XKlA6QEy5EwNDQ0AFUryAd5x3Ko3IZiroHvicrKygz0p/H9gU6ne0vx4+Pjl+Z4dnaWRnkRnzxC/l5gIJvBP0tyK9IX2G4Cfy589yK2iTD8eEp7eztrampiHo8npa2tbdjr9WqDtr6i3KKUw6FC9Ygoym0aOOyqRZ1Wq/UVFxdvj4mJsZWVlTFWV1fn151WmckwgqaCT6jYTMImDfy9ik0ZAZnNZqbBSPzAUyqTcWEWn8ALQb0SPS1tIWxGyFYlzhSfPQvcej08aLZkCW/wi4YuixzIOZCNXDeI/jN0f3P5JuR7IQb3NGhXo82BjnGQIvR1oK+QzUIgiAs9fKBMvPkgt8BHC34ZYjKtAOROyJc4RhAwtUkYnKEjDNoA+sYD58E5F3wbZIPE7xf0P8A/0qBAd9En2kLLC9kddI55julwHYDzLvD1XHcNDjngtKMzlntMBD2lpBrxaKOZ+aXyHTZvwJ8A08lMJtNhCB+E3feSD8IdxtkNRR7E2CM50yPl5eVFTK/Xj4tOcKgDnV0FqD/OOdB18Tth0nGakizbTvGZi7BRzjMkj88EPRIPJQ5ZlBPQ+CpAx0B22fFE6yDgRxJFAmhjiMsi3NYNont7nazGIOB+fhWKLRv5eRxxaaMoNKFciWqUMDU+n2+ag4t5PgT2ahUzfo0Y+ZLvfcB0apKSkuiN7JYY7OUlzWgEoDZ+FHeLCmB1ESaz2+3MYrFkhTgONOuWCI5SA3yLZbrm5uZ0wtQYDAaWmJjYH2JZ90WSZ+6TJ1F1AW+QMP/WXG632wt2kt8ygXk+AjawQtx5er+57xJQeo/n5ubmF+tqm83GqBLBSKN4NZlChWBvb6+9tbW1g4OnhAlM9/H+1NTUo1VVVXr+XNI73UXPWklJCUtOTlavqxsbG/3BTq0gv3T3s4KCgsjraofD4e/SBqvgxbxadUED7CTB6XSGV97KWlpaGistLfWLVMhZ+e8L3b/agAKij//GjAX+wkT87/Qv2x8BBgC5xzuLVX50DQAAAABJRU5ErkJggg==');
 }
@@ -801,15 +820,20 @@ div.collection_list_widget_icon {
 /**
  *  Audio file list widget
  **/
-/* line 50, /Users/colin/Projects/Concert/concertapp/static/sass/widgets.scss */
+/* line 50, ../sass/widgets.scss */
 div.file_list_widget_icon {
   background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA+VpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1wTU06T3JpZ2luYWxEb2N1bWVudElEPSJ1dWlkOjY1RTYzOTA2ODZDRjExREJBNkUyRDg4N0NFQUNCNDA3IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjVENzFCNDg2NkQyNzExRTA5OUU3QUVBMDhBQzQwOTZDIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjVENzFCNDg1NkQyNzExRTA5OUU3QUVBMDhBQzQwOTZDIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDUzUgTWFjaW50b3NoIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MDE4MDExNzQwNzIwNjgxMUE0OTlCMEFCMEYzQzA1NDQiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RkI3RjExNzQwNzIwNjgxMThDMTRGNkYyRjBGOUFDRTUiLz4gPGRjOnRpdGxlPiA8cmRmOkFsdD4gPHJkZjpsaSB4bWw6bGFuZz0ieC1kZWZhdWx0Ij5XZWI8L3JkZjpsaT4gPC9yZGY6QWx0PiA8L2RjOnRpdGxlPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pp+HvJEAAAMfSURBVHjatJdNaBNBFMd3k+6uxkpLjVEUY8WQQkCwBhFykF5sQCEnhXjSo6hYKF4MePPgQYi0i57qB3iKB69etET8IOagBD00oPULrLUqsa1tGpP1PfyvTLfZj9T0wY/szM7Mm/cxbzayYRiSKfl8fiCXyx2TWpMA8ZgYEzuj0ag0NDRkP4sVm2Sz2WHuapFx/J4W100kEsvWttIhDlYU5bfUulwg+olrhJ8Y5U5N0xwndUj/LxuJ68QGYgTW626T2qHYh98r+GWLZb/fP7rWig3h2VQ+UqlUjFKppEciESkQCDgnl67r51aRXINNNnMe784WCgX35Gqj/HN7JpORQqGQnk6npVQqteYWr7A8Ho+33eK6i+U1tlxV1QaOXNuSq4cIOiTeDaKXrW5VMe90EaWxmYzBKqes5/eTXo/THPEZE58Tx/HMrtWERQOoWG7yvtnhbybfiXe4AJ4Rn7DrBUt8K4JnGpZzLYrs1eIZ7JIVvsImqrC2G0q5PY84fyU+IN67mqy34FXxT+IFLC8TE6jH64gwlLCLf2H8NHGL2EnsQGjEOM+2UjLvEkt4foMLgRPlIPGAiBEq3k9hPG9KIVLYqITkrHqN8SLcV4Fb2eW3EW+WRwjFD7S/YPxLooixVbh4Ap7z2VksQ8k3y6Y4jg9hlYaM50S7h6w+JHimLhSPccS7D672IQFXKObOM4hvtyVGU3h+TVxG8j3FHD52Hy1rTQLe6FYi4xRjs/5yPO2+RrqwqS7M98MDqs34TiSb4RRjP74ecsQpy7i9SJoBFP/txFGMe0KctKx1AO/uEDeJ9aab7SxWcCT68b4HR2UQ8YphbAw1uBPtTeYHJrGbuETsQ98SQtHwWjLDYBoZugduYzmBvjm0t8H9F7HJzcJaqrBBV8WcnYehbB6eCAuKIzjTs0L7Ks54yOay8aSY3ZUEbM0WVC2xECgIhSRUK8XLXeqkuBcWcmIdEWL11uFrU/N6ibuVTJ/lZtGEJGrLN/HfoNbrXu7V0GoU1Wq1ZedcFv+0lcvlvmKxuN9lDdnhzrWVYDA4k0wm75vtPwIMANruQKUEIXo5AAAAAElFTkSuQmCC');
+}
+
+/* line 58, ../sass/widgets.scss */
+div.segment_list_widget_admin {
+  display: none;
 }
 
 /**
  *  Audio segment widgets 
  **/
-/* line 58, /Users/colin/Projects/Concert/concertapp/static/sass/widgets.scss */
+/* line 65, ../sass/widgets.scss */
 div.segment_list_widget_icon {
   background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA+VpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1wTU06T3JpZ2luYWxEb2N1bWVudElEPSJ1dWlkOjY1RTYzOTA2ODZDRjExREJBNkUyRDg4N0NFQUNCNDA3IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjVENzFCNDgyNkQyNzExRTA5OUU3QUVBMDhBQzQwOTZDIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjVENzFCNDgxNkQyNzExRTA5OUU3QUVBMDhBQzQwOTZDIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDUzUgTWFjaW50b3NoIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MDE4MDExNzQwNzIwNjgxMUE0OTlCMEFCMEYzQzA1NDQiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RkI3RjExNzQwNzIwNjgxMThDMTRGNkYyRjBGOUFDRTUiLz4gPGRjOnRpdGxlPiA8cmRmOkFsdD4gPHJkZjpsaSB4bWw6bGFuZz0ieC1kZWZhdWx0Ij5XZWI8L3JkZjpsaT4gPC9yZGY6QWx0PiA8L2RjOnRpdGxlPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PjSX9DQAAAS/SURBVHjarFbdT1tlHH77RdvTSkdpx6iU0VVv1EyMEpUELowmxhk16v4BLwh3XJNw427Ra+6WeGHkwhCVRDO5IsMEP+Jww0S2MZY1rp1UWLeuLf04x+fB38HD4bSlZid58nvP+/F7fl/vhzIMQ5lYWlp6Tyn1M6DGxsb4z6bP5XLFle1zu91qc3NTWdc7IZPJDKbT6Vvb29snrf1eqzIQUOhADIp78H8D7RDaY5i8pev6FXJyTjAY9M3MzBiFQqFuN8rr9XbNzc3piUTiyNjBHIc+Ep8BaQSSxG+g/TyI/WhfgRG9MCAP5drKyooBjx446NBmZ2erkB0TD4KoDhKG4FW06XUChAxxCrKBPm8gEDCclPp8vqCsLXVCTGWngRwQAJhfel/ZHzSMpyEKwCODyXL4ECFN9KhOiYdEeQg4CfQADdYAuAbR3mRk8O8+XG9uDdEooh1sFWYlhXLIWJFDCFe/pmn0lNXYDzkA+EGWYCQgQx6PJ2nVhb6oRCWAtawJFQqFzKJt6bEh5L3r6+unUbU98KKPHsMTjp0A0kxjuVwOZbPZAUt4u4Bn0byDuYHJyclqOBxWpVJpHzCyLTH7XLlc7iXgIxBHoYiekvQEvEmh7avVahpgJX4SeAXN7zAnvLi4uGeOxWKx/X3fLsdeydcZKHgOpB4JX5DkkDEJdwGyv9FomOuGMDYiIQ8DJbP2pDbaeuwDupgeTLaaSQO60eeBovdhWBbt7oOFiATEC7I+IsV57Ko2iQPw9EjhIU8v1+t1D0hexHhVDhjzS8L7UzAqxmKEbLbbHKuaM/2Co/vMMD4QY3vRHgDi8PwZGT4lRG9BPgXic6wFbkPLbmlJbIb66JGm62d5HDLcQhIDPjSJJZ/nIMYx9zW0J9GuCnnLUOtyWPiaeGw3lMRvg+AzyJQY965l/ALwjtSH0YqYloXVMT+e16xkhPsipMthnFvwdSk0vVWoO/rg6V2QfgKC8/hdMvuAInAfyKBrASjb8+ztkGgHJFHL3f0H8DH6SJSTad/CmC6EnAV2AWO/oe8Hu5N2j5nbLK0W5Q0b8acQNyHLwO/cMnIp8Lsj8jL6foTMQF4SnW2rmpNuAmtCxFtoz5IzeriFfnpwiQZY1t6VKFyVSr5tu3hUuxyzYDSp0OsQRctYCcr9GL8K0MBdy9gNhHgZ/fS8DHmr05OLxmgMM662XyuVylmcSL0yXuPhwTACfPLkLdH4E7goFXw/EonkeTHw1eJ0LTaranp1bWJi4vtUKsVwVrC4KoZ1Sz4fAtu2dZe5JbH2r4WFhczGxoZaXl5WvB4tl4mjxy55OTCv17DgJ7/fv8IwgjgNhSXxmhUcxH/WdrJtmYUWj8f3gAOP291O/PYw8TYmXseFUIP8guFF35vMK+TnkDs84SB3m0TsHu7qf3Mj8jhvLh5vX0pl0uJfuB4kTwB5EH+F/7/lIVj5v4ePEzEvgW/MiwLtgsivRTIaBXlfPXosxFJ9LjlXUdAVVSwWzarNi9wxt9ZjI65Wq6qvr09NT0/v/4+MjKjh4WG1u/tfKufn59Xq6qqSQnvQTDGLqiPiZDKppqamDvpGR0cPLRgfH1dra2sMRxmvR080GnVUjG3YkvgfAQYAjmd/llB3vSkAAAAASUVORK5CYII=');
 }
@@ -817,7 +841,7 @@ div.segment_list_widget_icon {
 /**
  *  Tag widgets
  **/
-/* line 71, /Users/colin/Projects/Concert/concertapp/static/sass/widgets.scss */
+/* line 78, ../sass/widgets.scss */
 div.tag {
   /* `inline-block` ensures that line breaks wont occur in the middle of a tag */
   display: inline-block;
@@ -835,7 +859,7 @@ div.tag {
 /**
  *  Event widgets
  **/
-/* line 88, /Users/colin/Projects/Concert/concertapp/static/sass/widgets.scss */
+/* line 95, ../sass/widgets.scss */
 .event_widget {
   /* Display the icon to the left of the content */
   display: -webkit-box;
@@ -844,44 +868,44 @@ div.tag {
 }
 
 /* event comment text */
-/* line 97, /Users/colin/Projects/Concert/concertapp/static/sass/widgets.scss */
+/* line 104, ../sass/widgets.scss */
 div.event_widget_comment {
   text-transform: none;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
 }
 
-/* line 103, /Users/colin/Projects/Concert/concertapp/static/sass/widgets.scss */
+/* line 110, ../sass/widgets.scss */
 div.time {
   display: block;
 }
 
 /* segment created event */
-/* line 112, /Users/colin/Projects/Concert/concertapp/static/sass/widgets.scss */
+/* line 119, ../sass/widgets.scss */
 div.type1_event_widget_icon {
   background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA+VpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1wTU06T3JpZ2luYWxEb2N1bWVudElEPSJ1dWlkOjY1RTYzOTA2ODZDRjExREJBNkUyRDg4N0NFQUNCNDA3IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjVENzFCNDgyNkQyNzExRTA5OUU3QUVBMDhBQzQwOTZDIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjVENzFCNDgxNkQyNzExRTA5OUU3QUVBMDhBQzQwOTZDIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDUzUgTWFjaW50b3NoIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MDE4MDExNzQwNzIwNjgxMUE0OTlCMEFCMEYzQzA1NDQiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RkI3RjExNzQwNzIwNjgxMThDMTRGNkYyRjBGOUFDRTUiLz4gPGRjOnRpdGxlPiA8cmRmOkFsdD4gPHJkZjpsaSB4bWw6bGFuZz0ieC1kZWZhdWx0Ij5XZWI8L3JkZjpsaT4gPC9yZGY6QWx0PiA8L2RjOnRpdGxlPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PjSX9DQAAAS/SURBVHjarFbdT1tlHH77RdvTSkdpx6iU0VVv1EyMEpUELowmxhk16v4BLwh3XJNw427Ra+6WeGHkwhCVRDO5IsMEP+Jww0S2MZY1rp1UWLeuLf04x+fB38HD4bSlZid58nvP+/F7fl/vhzIMQ5lYWlp6Tyn1M6DGxsb4z6bP5XLFle1zu91qc3NTWdc7IZPJDKbT6Vvb29snrf1eqzIQUOhADIp78H8D7RDaY5i8pev6FXJyTjAY9M3MzBiFQqFuN8rr9XbNzc3piUTiyNjBHIc+Ep8BaQSSxG+g/TyI/WhfgRG9MCAP5drKyooBjx446NBmZ2erkB0TD4KoDhKG4FW06XUChAxxCrKBPm8gEDCclPp8vqCsLXVCTGWngRwQAJhfel/ZHzSMpyEKwCODyXL4ECFN9KhOiYdEeQg4CfQADdYAuAbR3mRk8O8+XG9uDdEooh1sFWYlhXLIWJFDCFe/pmn0lNXYDzkA+EGWYCQgQx6PJ2nVhb6oRCWAtawJFQqFzKJt6bEh5L3r6+unUbU98KKPHsMTjp0A0kxjuVwOZbPZAUt4u4Bn0byDuYHJyclqOBxWpVJpHzCyLTH7XLlc7iXgIxBHoYiekvQEvEmh7avVahpgJX4SeAXN7zAnvLi4uGeOxWKx/X3fLsdeydcZKHgOpB4JX5DkkDEJdwGyv9FomOuGMDYiIQ8DJbP2pDbaeuwDupgeTLaaSQO60eeBovdhWBbt7oOFiATEC7I+IsV57Ko2iQPw9EjhIU8v1+t1D0hexHhVDhjzS8L7UzAqxmKEbLbbHKuaM/2Co/vMMD4QY3vRHgDi8PwZGT4lRG9BPgXic6wFbkPLbmlJbIb66JGm62d5HDLcQhIDPjSJJZ/nIMYx9zW0J9GuCnnLUOtyWPiaeGw3lMRvg+AzyJQY965l/ALwjtSH0YqYloXVMT+e16xkhPsipMthnFvwdSk0vVWoO/rg6V2QfgKC8/hdMvuAInAfyKBrASjb8+ztkGgHJFHL3f0H8DH6SJSTad/CmC6EnAV2AWO/oe8Hu5N2j5nbLK0W5Q0b8acQNyHLwO/cMnIp8Lsj8jL6foTMQF4SnW2rmpNuAmtCxFtoz5IzeriFfnpwiQZY1t6VKFyVSr5tu3hUuxyzYDSp0OsQRctYCcr9GL8K0MBdy9gNhHgZ/fS8DHmr05OLxmgMM662XyuVylmcSL0yXuPhwTACfPLkLdH4E7goFXw/EonkeTHw1eJ0LTaranp1bWJi4vtUKsVwVrC4KoZ1Sz4fAtu2dZe5JbH2r4WFhczGxoZaXl5WvB4tl4mjxy55OTCv17DgJ7/fv8IwgjgNhSXxmhUcxH/WdrJtmYUWj8f3gAOP291O/PYw8TYmXseFUIP8guFF35vMK+TnkDs84SB3m0TsHu7qf3Mj8jhvLh5vX0pl0uJfuB4kTwB5EH+F/7/lIVj5v4ePEzEvgW/MiwLtgsivRTIaBXlfPXosxFJ9LjlXUdAVVSwWzarNi9wxt9ZjI65Wq6qvr09NT0/v/4+MjKjh4WG1u/tfKufn59Xq6qqSQnvQTDGLqiPiZDKppqamDvpGR0cPLRgfH1dra2sMRxmvR080GnVUjG3YkvgfAQYAjmd/llB3vSkAAAAASUVORK5CYII=');
 }
 
 /* Segment tagged event */
-/* line 117, /Users/colin/Projects/Concert/concertapp/static/sass/widgets.scss */
+/* line 124, ../sass/widgets.scss */
 div.type2_event_widget_icon {
   background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA+VpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1wTU06T3JpZ2luYWxEb2N1bWVudElEPSJ1dWlkOjY1RTYzOTA2ODZDRjExREJBNkUyRDg4N0NFQUNCNDA3IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjRFNDIzNTU2NkQyRTExRTA5OUVBQkQ0M0RBQ0Y2RTZDIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjRFNDIzNTU1NkQyRTExRTA5OUVBQkQ0M0RBQ0Y2RTZDIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDUzUgTWFjaW50b3NoIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MDU4MDExNzQwNzIwNjgxMUE0OTlCMEFCMEYzQzA1NDQiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RkI3RjExNzQwNzIwNjgxMThDMTRGNkYyRjBGOUFDRTUiLz4gPGRjOnRpdGxlPiA8cmRmOkFsdD4gPHJkZjpsaSB4bWw6bGFuZz0ieC1kZWZhdWx0Ij5XZWI8L3JkZjpsaT4gPC9yZGY6QWx0PiA8L2RjOnRpdGxlPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PppLQFgAAAPuSURBVHja5FdbSFRBGJ5dV1fJNS/oglI+tCCtDyKJIvWShRmShFCyRlLSgy1IhEFWbGmWGhFEJGQPkoiZIAZGWRSyog9mZWJoF6lNS7xErrAmXnLt+0/nyHE453ip8KGBj3/2zH+bmX++mdUtLCyw9Wh6tk7N8CfGZWVlbGBgQOjrdLpDEGas4EPI97GxsSw/P//fBK6trWW9vb3J6F4Edkv5AF1RUVHNer3+ERLpwm+v3M5sNjPdSve4tbWV9fX1yT9tKi8vPzc4OHgMfR8N026gCbgv9hmtBqPAK0FOTo7kKAA4BYwBC6sEzd6elJS0ecXFFRQURGI/0AFcBcI5lZ8a5i6AVuYTUOH1eis0Z+l0OpnNZmPZ2dnxFoulSWUWHhTWJcBKRaWkg7ECMQET/c7KyqowjIyMMGSgmGZbW5u5rq6uEN3jgFFB5S5QgiTfiZV9Fv0GXgnfDkC0YzyVJhQWFtbFoqOjmclk4uEL2P39/b+qzLIV2KmyrM+W2WdvXl5eIgsODuYN9wDPVYw+IOvDNDmN/YwX91st8DACh+h9fBZPwlY4rYd8DCRyztyAA0jAUtWIDtTaa/i5rTFO2+I2QImmTJt/Ek43yDUw5gUJVKFbijEX70GtNqBbDHEQCFMY7hSYC0oPIHcoKDxB9RU5HI4OtdQxxlwul9LQ6OTkZEl/f/91hbH26elpxkBtfAHRWcskDeLalRIMj85OYWKv5L6NRqMnIyPDXFlZyQwhISGFQ0NDNbKMKJFG6szPz2uSSktLC3O73YpjIof7y7+hkLsaGhpGfX19GbNa6dwLBSU/8HTTMLvdrjkr0ZZvW4Aq8WJYUtERERGFExMTgq1EmUQS87LiuEwsuRyNBgQELJkQcEFc3qPckftG/A6/N6RLSQrczR2BaFJERWsGho3gA/II5EugCNgoU6HJ3AK2Adc8Hs+UFNigcQQKoFg9PDz8US3w7OzsLohi2G7nx1C0T9PT08+Ll4rQAgMDGdjw94+YmBi5/gn5nvj5+dUr0CndVFbgHshHiZmIIGwpKSma9cGSk5MZKluCERm94RzJOZmuwivADz4g7CZCQ0MdgIl84dhoBx4fH2djY2OLAI/u5Zy+oIDYR7qhvqjwb3Vubq5F7keqXjXQOV6yN9iHZghis33ipwQ6llDmL35aoXaDwUAc7oyMjGTh4eFrf2WK/HsaSJXdwbzHz3QPNzY23omLixMMFotmre9qsdzfAjcV9Kew5OXiKlThQvdK9cGd6dUHnpubk7qlwIhsiF4WiUjsDOR3+jAzM/P3HvREk2lpadQdx2M9s6enx4Z+swjGv4/X2nT/3X+nXwIMALS0XTvXmY1QAAAAAElFTkSuQmCC');
 }
 
 /* File uploaded event */
-/* line 122, /Users/colin/Projects/Concert/concertapp/static/sass/widgets.scss */
+/* line 129, ../sass/widgets.scss */
 div.type3_event_widget_icon {
   background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA+VpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1wTU06T3JpZ2luYWxEb2N1bWVudElEPSJ1dWlkOjY1RTYzOTA2ODZDRjExREJBNkUyRDg4N0NFQUNCNDA3IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjVENzFCNDg2NkQyNzExRTA5OUU3QUVBMDhBQzQwOTZDIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjVENzFCNDg1NkQyNzExRTA5OUU3QUVBMDhBQzQwOTZDIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDUzUgTWFjaW50b3NoIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MDE4MDExNzQwNzIwNjgxMUE0OTlCMEFCMEYzQzA1NDQiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RkI3RjExNzQwNzIwNjgxMThDMTRGNkYyRjBGOUFDRTUiLz4gPGRjOnRpdGxlPiA8cmRmOkFsdD4gPHJkZjpsaSB4bWw6bGFuZz0ieC1kZWZhdWx0Ij5XZWI8L3JkZjpsaT4gPC9yZGY6QWx0PiA8L2RjOnRpdGxlPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pp+HvJEAAAMfSURBVHjatJdNaBNBFMd3k+6uxkpLjVEUY8WQQkCwBhFykF5sQCEnhXjSo6hYKF4MePPgQYi0i57qB3iKB69etET8IOagBD00oPULrLUqsa1tGpP1PfyvTLfZj9T0wY/szM7Mm/cxbzayYRiSKfl8fiCXyx2TWpMA8ZgYEzuj0ag0NDRkP4sVm2Sz2WHuapFx/J4W100kEsvWttIhDlYU5bfUulwg+olrhJ8Y5U5N0xwndUj/LxuJ68QGYgTW626T2qHYh98r+GWLZb/fP7rWig3h2VQ+UqlUjFKppEciESkQCDgnl67r51aRXINNNnMe784WCgX35Gqj/HN7JpORQqGQnk6npVQqteYWr7A8Ho+33eK6i+U1tlxV1QaOXNuSq4cIOiTeDaKXrW5VMe90EaWxmYzBKqes5/eTXo/THPEZE58Tx/HMrtWERQOoWG7yvtnhbybfiXe4AJ4Rn7DrBUt8K4JnGpZzLYrs1eIZ7JIVvsImqrC2G0q5PY84fyU+IN67mqy34FXxT+IFLC8TE6jH64gwlLCLf2H8NHGL2EnsQGjEOM+2UjLvEkt4foMLgRPlIPGAiBEq3k9hPG9KIVLYqITkrHqN8SLcV4Fb2eW3EW+WRwjFD7S/YPxLooixVbh4Ap7z2VksQ8k3y6Y4jg9hlYaM50S7h6w+JHimLhSPccS7D672IQFXKObOM4hvtyVGU3h+TVxG8j3FHD52Hy1rTQLe6FYi4xRjs/5yPO2+RrqwqS7M98MDqs34TiSb4RRjP74ecsQpy7i9SJoBFP/txFGMe0KctKx1AO/uEDeJ9aab7SxWcCT68b4HR2UQ8YphbAw1uBPtTeYHJrGbuETsQ98SQtHwWjLDYBoZugduYzmBvjm0t8H9F7HJzcJaqrBBV8WcnYehbB6eCAuKIzjTs0L7Ks54yOay8aSY3ZUEbM0WVC2xECgIhSRUK8XLXeqkuBcWcmIdEWL11uFrU/N6ibuVTJ/lZtGEJGrLN/HfoNbrXu7V0GoU1Wq1ZedcFv+0lcvlvmKxuN9lDdnhzrWVYDA4k0wm75vtPwIMANruQKUEIXo5AAAAAElFTkSuQmCC');
 }
 
 /* File comment, segment comment */
-/* line 127, /Users/colin/Projects/Concert/concertapp/static/sass/widgets.scss */
+/* line 134, ../sass/widgets.scss */
 div.type12_event_widget_icon, div.type11_event_widget_icon {
   background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA+VpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1wTU06T3JpZ2luYWxEb2N1bWVudElEPSJ1dWlkOjY1RTYzOTA2ODZDRjExREJBNkUyRDg4N0NFQUNCNDA3IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkRBNjI3NERDOEUyMzExRTBCMjczQjk4OUVFMzVBNTA0IiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkRBNjI3NERCOEUyMzExRTBCMjczQjk4OUVFMzVBNTA0IiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDUzUgTWFjaW50b3NoIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MDI4MDExNzQwNzIwNjgxMTk1RkVCNEUxRjY3RTgwNEIiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RkI3RjExNzQwNzIwNjgxMThDMTRGNkYyRjBGOUFDRTUiLz4gPGRjOnRpdGxlPiA8cmRmOkFsdD4gPHJkZjpsaSB4bWw6bGFuZz0ieC1kZWZhdWx0Ij5XZWI8L3JkZjpsaT4gPC9yZGY6QWx0PiA8L2RjOnRpdGxlPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PrhTZNUAAAKASURBVHjaxJfPi1JRFMfvm+eP8FcpPF24aIRECUKxQBcjhFBtLHARhdRO/BNa+Q8MRgw0gYt2Da1y0zAzC4UiYiYKhgoDRYIiJBRr8SgJSe17Lj7ymVnovPcufLjv3vv0e8+55957njAajZgRZYUZVEzzBqvVKiuVSkrTAaKEIAirqCV4y06TR/sH6i9of0T9DryNRqOtQqGwmHCz2WTlcjmJxxvgEjj5nwbJlUplv16vP8BkHqHdp05RFFmxWGQ+n48xWmOFXC7H4vG4wvlAIFDB+6MlOQQXlBk1Gg2upRKOxWI0Ru7bPALBaW6ZzWbuRdJSudpms/lRkWsSGsTTOvhpt9vv8DXOZrO8FwEiYU328HhGq0geDAa38/n8gcfjOZjcVrsauHcWzynOFGtzOolyrFbrRVJ2gYfghG6Hh8kk0ua/iudVnQ+uNVrbawacmL4V7KmzeqtCUySLPXoLWywW2ZDbyeFwNEj4qwGu3qGofqazrgy2yOK7Ogtvju9tXu7rdGq9ptvP6/WyyeziqcaiH8ApEsMlwQS3262IO2VZvocb5KYGUXyILXQdLm5SW5IkxjqdDqfdbrNgMEj9V8CnI7JyQDGEvM2p6BDdbpeZuPrvw5uqx4h0J2a3tcyO8fv92+l0eh3/s59IJNikjrKnOMPhkIXDYaX79IIWvgcb4FwymVSlVdPMzDJhcWxWoo9+iv7jGKPpi0gIv7tcrs+Uw4EX4BXGevQu0tt/niLTFlO01acs+TZOcVWlVqvNtWoeqrO61+tdHs88NJnXA8qt/1jzfr+//JcE3MgymcyxVqv1Es03tO8ikcheKpV68rcfh0KhhYUFoz7afgkwAOZOz5S99HN8AAAAAElFTkSuQmCC');
 }
 
 /* collection created event */
-/* line 132, /Users/colin/Projects/Concert/concertapp/static/sass/widgets.scss */
+/* line 139, ../sass/widgets.scss */
 div.type6_event_widget_icon {
   background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA+VpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1wTU06T3JpZ2luYWxEb2N1bWVudElEPSJ1dWlkOjY1RTYzOTA2ODZDRjExREJBNkUyRDg4N0NFQUNCNDA3IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjRFNDIzNTUyNkQyRTExRTA5OUVBQkQ0M0RBQ0Y2RTZDIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjRFNDIzNTUxNkQyRTExRTA5OUVBQkQ0M0RBQ0Y2RTZDIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDUzUgTWFjaW50b3NoIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MDU4MDExNzQwNzIwNjgxMUE0OTlCMEFCMEYzQzA1NDQiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RkI3RjExNzQwNzIwNjgxMThDMTRGNkYyRjBGOUFDRTUiLz4gPGRjOnRpdGxlPiA8cmRmOkFsdD4gPHJkZjpsaSB4bWw6bGFuZz0ieC1kZWZhdWx0Ij5XZWI8L3JkZjpsaT4gPC9yZGY6QWx0PiA8L2RjOnRpdGxlPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PjFbCP0AAAPUSURBVHjaxFdfSJNRFL/f0qnDRjopgiKRNIiVVgRqJlkqCYIVRkVJVDQFxZdeqheFCNlDveRLsh4STewx1IQVlpJFZmWYlq0oEP81kjbd3JbZ78SdzLu7zzmJLhzOPd/587v3nvvnfMrCwgL7H01RA7ZarayhoUH8vBV0HJTO5Xeg+yBboJHRaGQ1NTWhkQk4FNXX14vm50E/yU0gB+hCoGFmZqZqbI3ackRHRweKB0F3QHqJ6VqQRVGUfP+HuLg41aVWBY6NjV1MCdrVMFJ3hWypExUVpWq4qJ2ZmWG1tbXM5XKlA6QEy5EwNDQ0AFUryAd5x3Ko3IZiroHvicrKygz0p/H9gU6ne0vx4+Pjl+Z4dnaWRnkRnzxC/l5gIJvBP0tyK9IX2G4Cfy589yK2iTD8eEp7eztrampiHo8npa2tbdjr9WqDtr6i3KKUw6FC9Ygoym0aOOyqRZ1Wq/UVFxdvj4mJsZWVlTFWV1fn151WmckwgqaCT6jYTMImDfy9ik0ZAZnNZqbBSPzAUyqTcWEWn8ALQb0SPS1tIWxGyFYlzhSfPQvcej08aLZkCW/wi4YuixzIOZCNXDeI/jN0f3P5JuR7IQb3NGhXo82BjnGQIvR1oK+QzUIgiAs9fKBMvPkgt8BHC34ZYjKtAOROyJc4RhAwtUkYnKEjDNoA+sYD58E5F3wbZIPE7xf0P8A/0qBAd9En2kLLC9kddI55julwHYDzLvD1XHcNDjngtKMzlntMBD2lpBrxaKOZ+aXyHTZvwJ8A08lMJtNhCB+E3feSD8IdxtkNRR7E2CM50yPl5eVFTK/Xj4tOcKgDnV0FqD/OOdB18Tth0nGakizbTvGZi7BRzjMkj88EPRIPJQ5ZlBPQ+CpAx0B22fFE6yDgRxJFAmhjiMsi3NYNont7nazGIOB+fhWKLRv5eRxxaaMoNKFciWqUMDU+n2+ag4t5PgT2ahUzfo0Y+ZLvfcB0apKSkuiN7JYY7OUlzWgEoDZ+FHeLCmB1ESaz2+3MYrFkhTgONOuWCI5SA3yLZbrm5uZ0wtQYDAaWmJjYH2JZ90WSZ+6TJ1F1AW+QMP/WXG632wt2kt8ygXk+AjawQtx5er+57xJQeo/n5ubmF+tqm83GqBLBSKN4NZlChWBvb6+9tbW1g4OnhAlM9/H+1NTUo1VVVXr+XNI73UXPWklJCUtOTlavqxsbG/3BTq0gv3T3s4KCgsjraofD4e/SBqvgxbxadUED7CTB6XSGV97KWlpaGistLfWLVMhZ+e8L3b/agAKij//GjAX+wkT87/Qv2x8BBgC5xzuLVX50DQAAAABJRU5ErkJggg==');
 }
