@@ -171,25 +171,33 @@ The base template for all pages.  All page templates will use this.
   
   {% panel 'partials/upload_panel.html' 'upload' %}
   
+
+<div id="temp" style="position: absolute; top: 0; height: 100px; width: 100%;">
+    <a>
+</div>
   
-  <div id="layout">
+<div id="layout">
     <div id="inset">
-      <div id="layout_top">
+        <div id="layout_top">
         {% include 'partials/upload_link.html' %}
-      </div>
-      <div id="layout_middle">
+        </div>
+        <div id="layout_middle">
         {% block middle %}{% endblock %}
-      </div>
-    </div>
-    <div id="layout_bottom">
-      <div id="bottom_left"> 
-        {% block left %}{% endblock %}
-      </div>
-      <div id="bottom_right">
-        {% block right %}{% endblock %}
-      </div>    
-    </div>    
-  </div>
+        </div>
+        <div id="layout_bottom">
+            <div id="bottom_left"> 
+                {% block left %}{% endblock %}
+            </div>
+            <div id="bottom_right">
+                {% block right %}{% endblock %}
+            </div> 
+            <div id="bottom_admin">
+                {% block admin %}{% endblock %}
+            </div>   
+        </div>
+    </div> 
+</div>
+
 
 <!--- <div id="background_glare"></div> -->
 

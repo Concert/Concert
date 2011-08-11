@@ -51,6 +51,13 @@ div.file_list_widget_icon {
     background: inline-image("file.png");
 }
 
+div.file_list_widget_admin {
+	display: none;
+}
+
+div.segment_list_widget_admin {
+	display: none;
+}
 
 /**
  *  Audio segment widgets 

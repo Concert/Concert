@@ -26,7 +26,6 @@ img::selection {
 body {
 	font: 12px "Helvetica", Arial, sans-serif;
 	text-transform: uppercase;
-	text-shadow: 1px 1px 0px #fff;
 	-webkit-user-select: none;
 	-khtml-user-select: none;
 	-moz-user-select: none;
@@ -37,7 +36,15 @@ body {
 	width: 100%;
 	height: 100%;
 	margin: 0;
-  
+}
+
+a:link, a:visited{
+	color: blue;
+	text-decoration: none;
+}
+
+a:hover{
+	margin-top: -1px;
 }
 
 input, textarea, div.event_widget_comment {
@@ -85,26 +92,48 @@ div#layout_middle {
 }
 
 div#layout_bottom {
-	width: 958px;
-	display: -webkit-box;
-	-webkit-box-orient: horizontal;
-	margin-bottom: 20px;
-	border: 1px solid white;
-    -webkit-box-shadow: inset 0px 0px 2px rgba(0,0,0,0.4);
-	background: #b5b5bc;
+  width: 958px;
+	height: 400px;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  margin-bottom: 20px;
+  border: 1px solid white;
+  -webkit-box-shadow: inset 0px 0px 2px rgba(0, 0, 0, 0.4);
+  background: #b5b5bc;
+	overflow: hidden;
 }
 
+div#layout_bottom .active_admin {
+	margin-left: -598px;
+}
+
+/* line 97, ../sass/screen.scss */
 div#bottom_left {
-	width: 596px;
-	margin: 1px 0px 1px 1px;
-	border: 1px solid rgba(255,255,255,0.75);
-	background: #e1e1e6;
-	display: -webkit-box;
-	-webkit-box-orient: vertical;
+	height: 400px;
+  width: 596px;
+  margin: 1px 0px 1px 1px;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  background: #e1e1e6;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+	-webkit-transition: all linear 0.24s;
 }
 
+/* line 106, ../sass/screen.scss */
 div#bottom_right {
-	width: 359px;
+  width: 359px;
+	height: 400px;
+	overflow: scoll;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+div#bottom_admin {
+	height: 400px;
+	width: 596px;
+	margin: 1px 1px 1px 0px;
+	border: 1px solid rgba(255,255,255,0.75);
+	background: red;
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
 }

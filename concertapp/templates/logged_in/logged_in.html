@@ -24,6 +24,11 @@
     {% panel 'logged_in/partials/list_panel.html' 'list' %}
 {% endblock %}
 
+{% block admin %}
+	{# an events panel #}
+	{% panel 'logged_in/partials/eventslist_panel.html' 'events_list' %}
+{% endblock %}
+
 {% block clientside %}
 
     {# and some client-side templates #}

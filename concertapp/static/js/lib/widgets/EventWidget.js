@@ -13,6 +13,30 @@ var EventWidget = Widget.extend(
      *  @scope  EventWidget.prototype
      **/
 {
+    /**
+     *  The interval that will run repeatedly to update all event date/time
+     *  displays.
+     **/
+    TIME_UPDATE_INTERVAL: null,
+
+
+    /**
+     *    Master list of all Event widget objects for time updating.
+     **/
+    ALL_EVENT_WIDGETS: [],
+
+
+    /**
+     *  The method that will be called by `TIME_UPDATE_INTERVAL` and will update
+     *  the time fields on all event widgets.
+     **/
+    UPDATE_TIME_DISPLAYS: function() {
+        _.each(EventWidget.prototype.ALL_EVENT_WIDGETS, function(widget) {
+            widget.update_time();
+        });
+    },
+
+
     initialize: function() {
         Widget.prototype.initialize.call(this);
 
@@ -22,13 +46,7 @@ var EventWidget = Widget.extend(
          *  The container that will hold the time that this event occurred.
          **/
         this.timeContainerElement = null;
-        
-        /**
-         *  The interval that will run repeatedly to update the time of this
-         *  event.
-         **/
-        this.timeUpdateInterval = null;
-        
+                
         var currentRoute = params.currentRoute;
         if(typeof(currentRoute) == 'undefined') {
             throw new Error('params.currentRoute is undefined');
@@ -37,8 +55,6 @@ var EventWidget = Widget.extend(
          *  The route we are currently on
          **/
         this.currentRoute = currentRoute;
-
-        _.bindAll(this, 'update_time');
         
         /* If the event model exists */
         var model = this.model;
@@ -79,11 +95,21 @@ var EventWidget = Widget.extend(
         /* save timeContainerElement because it was just rendered */
         this.timeContainerElement = $(this.el).find('.time');
         
-        /* If the time is not being updated yet */
-        if(!this.timeUpdateInterval) {
-            this.timeUpdateInterval = setInterval(this.update_time, 5000);
+        /* If we are the first event widget, the time interval will not be
+        set yet */
+        if(!EventWidget.prototype.TIME_UPDATE_INTERVAL) {
+            /* Set the time update interval to update all time displays every 
+            5 seconds */
+            EventWidget.prototype.TIME_UPDATE_INTERVAL = setInterval(
+                EventWidget.prototype.UPDATE_TIME_DISPLAYS, 5000
+            );
         }
-        /* Update time now */
+
+        /* make sure we're added to the master list so our time field gets
+        updated */
+        EventWidget.prototype.ALL_EVENT_WIDGETS.push(this);
+        
+        /* Update time now on this widget */
         this.update_time();
         
         return this;
