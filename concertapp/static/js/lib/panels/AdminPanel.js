@@ -87,16 +87,18 @@ var AdminPanel = Panel.extend({
         
         collection.get('users').bind('remove', this._handle_remove_user);
         collection.get('users').bind('add', this._handle_approve_user);
-        collection.get('pendingUsers').bind('remove', this._handle_deny_user);
+        collection.get('pendingUsers').bind('remove', this._handle_remove_user);
         
         this.userWidgets = userWidgets;
     }, 
     
+    /* Removes a user widget from the list of user widgets */
     _handle_remove_user: function(user) {
         this.userWidgets[user.get('id')].remove();
         this.userWidgets[user.get('id')] = null;
     },
     
+    /* Replaces a pending user widget with a member user widget */
     _handle_approve_user: function(user) {
         var self = this;
         
@@ -108,15 +110,9 @@ var AdminPanel = Panel.extend({
             
         widget.render();
         
-        oldWidgetElement = $(this.userWidgets[user.get('id')].el)
-        
-        oldWidgetElement.replaceWith(widget.el);
-        this.userWidgets[user.get('id')] = widget;
-    },
-    
-    _handle_deny_user: function(user) {
-        this.userWidgets[user.get('id')].remove();
-        this.userWidgets[user.get('id')] = null;
+        oldWidget = this.userWidgets[user.get('id')];
+        $(oldWidget.el).replaceWith(widget.el);
+        oldWidget = widget;
     }
     
 });
