@@ -17,23 +17,27 @@ var AudioFile = ConcertModel.extend(
     relations: [
         {
             type: Backbone.HasOne, 
-            key: 'uploader', 
-            relatedModel: 'User'
-        },
-        {
-            type: Backbone.HasOne, 
             key: 'collection', 
-            relatedModel: 'Collection'
-        },
-        {
-            type: Backbone.HasMany, 
-            key: 'segments', 
-            relatedModel: 'AudioSegment'
+            relatedModel: 'Collection',
+            includeInJSON: "id"
         },
         {
             type: Backbone.HasMany, 
             key: 'events', 
-            relatedModel: 'Event'
+            relatedModel: 'Event',
+            includeInJSON: "id"
+        },
+        {
+            type: Backbone.HasMany, 
+            key: 'segments', 
+            relatedModel: 'AudioSegment',
+            includeInJSON: "id"
+        },
+        {
+            type: Backbone.HasOne, 
+            key: 'uploader', 
+            relatedModel: 'User',
+            includeInJSON: "id"
         }
     ], 
     name: 'audiofile', 

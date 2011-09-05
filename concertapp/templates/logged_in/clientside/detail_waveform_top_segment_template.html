@@ -1,16 +1,22 @@
 {% extends 'logged_in/clientside/detail_waveform_top_template.html' %}
 {% load extra_template_tags %}
 
+
+{% comment %}
+  Template for top of `DetailWaveformPanel` when `AudioSegment` is selected.
+  Expects `AudioSegment` instance as context.
+{% endcomment %}
+
 {% block verb %}created{% endblock %}
 
 {% block username %}
     {% verbatim %}
-        ${creator.get("username")}
+        ${$data.get('creator').get("username")}
     {% endverbatim %}
 {% endblock %}
 
 {% block right %}
     {% verbatim %}
-        <b>${seconds_to_timecode(end-beginning)}</b> of <b>${audioFile.get("name")}</b>
+        <b>${seconds_to_timecode($data.get('end')-$data.get('beginning'))}</b> of <b>${$data.get('audioFile').get("name")}</b>
     {% endverbatim %}
 {% endblock %}

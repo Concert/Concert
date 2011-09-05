@@ -1,11 +1,14 @@
 {% extends 'clientside/event.html' %}
 {% load extra_template_tags %}
 
-{# The template for a `CreateCollectionEventWidget` #}
+{% comment %}
+  The template for a `CreateCollectionEventWidget`
+  Expects a `Event` model instance as context
+{% endcomment %}
 
 {% block event_text %}
     created collection
     {% verbatim %}
-        {{tmpl(collection) "#collection_link_template"}}
+        {{tmpl($data.get('collection')) "#collection_link_template"}}
     {% endverbatim %}
 {% endblock %}

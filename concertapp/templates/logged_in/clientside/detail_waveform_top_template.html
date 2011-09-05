@@ -1,10 +1,15 @@
 {% load extra_template_tags %}
 
+{% comment %}
+    Template for top of `DetailWaveformPanel`.  This is not used directly, instead child templates
+    are used depending on if an `AudioSegment` or `AudioFile` is selected.
+{% endcomment %}
+
 <div id="detail_waveform_panel_top_left" class="detail_waveform_panel_top_left">
     {% verbatim %}
         <span id="detail_waveform_selected_name_container">
-            <span id="detail_waveform_selected_name" class="editable_attribute">${name}</span>
-            <input id="detail_waveform_selected_name_editable" value="${name}" class="attribute_editor" />
+            <span id="detail_waveform_selected_name" class="editable_attribute">${$data.get('name')}</span>
+            <input id="detail_waveform_selected_name_editable" value="${$data.get('name')}" class="attribute_editor" />
         </span>
     {% endverbatim %}
     

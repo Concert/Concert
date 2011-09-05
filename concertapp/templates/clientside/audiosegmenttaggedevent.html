@@ -1,13 +1,16 @@
 {% extends 'clientside/event.html' %}
 {% load extra_template_tags %}
 
-{# The template for an `AudioSegmentTaggedEventWidget` #}
+{% comment %}
+  The template for an `AudioSegmentTaggedEventWidget`
+  Expects an `Event` model instance as context
+{% endcomment %}
 
 {% block event_text %}
     tagged
     {% verbatim %}
-        {{tmpl(audioSegment) "#audiosegment_link_template"}}
+        {{tmpl($data.get('audioSegment')) "#audiosegment_link_template"}}
         as
-        {{tmpl(tag) "#tag_widget_template"}}
+        {{tmpl($data.get('tag')) "#tag_widget_template"}}
     {% endverbatim %}
 {% endblock %}

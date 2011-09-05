@@ -1,13 +1,16 @@
 {% extends 'clientside/event.html' %}
 {% load extra_template_tags %}
 
-{# The template for an `AudioFileUploadedEventWidget` #}
+{% comment %}
+  The template for an `AudioFileUploadedEventWidget`
+  Expects `Event` instance as context
+{% endcomment %}
 
 {% block event_text %}
     {%verbatim%}
-        uploaded {{tmpl(audioFile) "#audiofile_link_template"}}
+        uploaded {{tmpl($data.get('audioFile')) "#audiofile_link_template"}}
         {{if currentRoute == 'collections'}}
-            to {{tmpl(collection) "#collection_link_template"}}
+            to {{tmpl($data.get('collection')) "#collection_link_template"}}
         {{/if}}
     {% endverbatim %}
 {% endblock %}

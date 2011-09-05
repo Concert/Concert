@@ -128,11 +128,11 @@ var EventWidget = Widget.extend(
      *  Send along current route info to the template so it can render proper
      *  context data.
      **/
-    _extra_template_data: function() {
-        var parentData = Widget.prototype._extra_template_data.call(this);
+    getTemplateData: function() {
+        var parentData = Widget.prototype.getTemplateData.call(this);
         
         return _.extend(parentData, {
-            currentRoute: this.currentRoute
+            currentRoute: this.currentRoute, 
         });
     } 
 });

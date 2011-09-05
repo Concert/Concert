@@ -138,26 +138,33 @@ function pretty_date(date){
     var diff = (((new Date()).getTime() - date.getTime()) / 1000),
     day_diff = Math.floor(diff / 86400);
 
-    if ( isNaN(day_diff) || day_diff < 0 || day_diff >= 31 )
-    return;
+    if ( isNaN(day_diff) || day_diff < 0 ) return;
 
-    return day_diff == 0 && (
-        /* If less than a minute ago, "just now" */
-        diff < 60 && "just now" ||
-        /* If less than 2 minutes ago, "1 minute ago" */
-        diff < 120 && "1 minute ago" ||
-        /* If less than 1 hour ago, "5 minutes ago" */
-        diff < 3600 && Math.floor( diff / 60 ) + " minutes ago" ||
-        /* If less than 2 hours ago, "1 hour ago" */
-        diff < 7200 && "1 hour ago" ||
-        /* If less than 1 day ago, "2 hours ago" */
-        diff < 86400 && Math.floor( diff / 3600 ) + " hours ago") ||
-        /* If 1 day ago, "Yesterday at 4:25pm" */
-        day_diff == 1 && "Yesterday at "+date.format("h:MMtt") ||
-        /* If less than 5 days ago, "Monday at 4:25pm" */
-        day_diff < 5 && date.format("dddd") + " at " + date.format("h:MMtt") ||
-        /* else, "April 5 at 4:25pm" */
-        date.format("mmmm d") + " at " + date.format("h:MMtt");
+    if (day_diff == 0) {
+        return (
+            /* If less than a minute ago, "just now" */
+            diff < 60 && "just now" ||
+            /* If less than 2 minutes ago, "1 minute ago" */
+            diff < 120 && "1 minute ago" ||
+            /* If less than 1 hour ago, "5 minutes ago" */
+            diff < 3600 && Math.floor( diff / 60 ) + " minutes ago" ||
+            /* If less than 2 hours ago, "1 hour ago" */
+            diff < 7200 && "1 hour ago" ||
+            /* If less than 1 day ago, "2 hours ago" */
+            diff < 86400 && Math.floor( diff / 3600 ) + " hours ago"
+        );
+    }
+    else {
+        return (
+            /* If 1 day ago, "Yesterday at 4:25pm" */
+            day_diff == 1 && "Yesterday at "+date.format("h:MMtt") ||
+            /* If less than 5 days ago, "Monday at 4:25pm" */
+            day_diff < 5 && date.format("dddd") + " at " + date.format("h:MMtt") ||
+            /* else, "April 5 at 4:25pm" */
+            date.format("mmmm d") + " at " + date.format("h:MMtt")
+        );
+    }
+
 //        day_diff < 7 && day_diff + " days ago" ||
 //        day_diff < 31 && Math.ceil( day_diff / 7 ) + " weeks ago";
 }

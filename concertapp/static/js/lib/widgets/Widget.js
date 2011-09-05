@@ -20,7 +20,7 @@ var Widget = Backbone.View.extend(
      *  is instantiating the widget to take care of.
      *
      *  @param  {jQuery tmpl object}    params.template -   The template.
-     *  @param  {Panel}                 params.panel    -   Panel that we belong to.  
+     *  @param  {Panel}                 params.panel    -   Panel that we belong to.    
      **/    
     initialize: function(params) {
         var params = this.options;
@@ -50,10 +50,7 @@ var Widget = Backbone.View.extend(
 
         if(template) {
             /* render new widget */
-            var newel = template.tmpl(
-                /* with model data and extra template data */
-                _.extend(this.model.toJSON(), this._extra_template_data())
-            );
+            var newel = template.tmpl(this.getTemplateData());
             if(newel.length != 1) {
                 throw new Error('widgets must have a single containing element');
             }
@@ -72,11 +69,14 @@ var Widget = Backbone.View.extend(
                 
         return this;
     },
+
     /**
-     *  This method will be called when rendering, and can be overridden to send
-     *  extra arbitrary data to the template.
+     *  Hook for retrieval of data to send to template incase
+     *  some data needs to be determined when template is rendered.
+     *  By default just returns an object with this widget's
+     *  model in it.
      **/
-    _extra_template_data: function() {
-        return {};
-    } 
+    getTemplateData: function () {
+        return this.model;
+    }, 
 });

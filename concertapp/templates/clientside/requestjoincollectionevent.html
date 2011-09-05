@@ -1,12 +1,15 @@
 {% extends 'clientside/event.html' %}
 {% load extra_template_tags %}
 
-{# The template for a `RequestJoinCollectionEventWidget` #}
+{% comment %}
+  The template for a `RequestJoinCollectionEventWidget`
+  Expects `Event` instance as context
+{% endcomment %}
 
 {% block event_text %}
     requested to join 
     {% verbatim %}
-        {{tmpl(collection) "#collection_link_template"}}
+        {{tmpl($data.get('collection')) "#collection_link_template"}}
     {% endverbatim %}
     
 {% endblock %}

@@ -140,7 +140,7 @@ var DetailWaveformPanel = WaveformPanel.extend(
 
         /* Load top content with audio file information */
         this.topContainer.html(
-            this.topFileTemplate.tmpl(selectedAudioFile.toJSON())
+            this.topFileTemplate.tmpl(selectedAudioFile)
         );
         
         /* Create editable text component to handle name change */
@@ -167,7 +167,7 @@ var DetailWaveformPanel = WaveformPanel.extend(
         
         /* Load top of panel with audio segment information */
         this.topContainer.html(
-            this.topSegmentTemplate.tmpl(selectedAudioSegment.toJSON())
+            this.topSegmentTemplate.tmpl(selectedAudioSegment)
         );
 
         /* Create editable text component to handle name change */
