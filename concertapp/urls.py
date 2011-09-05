@@ -15,7 +15,7 @@ from concertapp.admin import admin_site
 
 from django.conf import settings
 from django.conf.urls.defaults import *
-from django.views.generic.simple import redirect_to
+from django.views.generic.simple import redirect_to, direct_to_template
 from tastypie.api import Api
 import django.contrib.auth.views
 import os
@@ -48,21 +48,12 @@ urlpatterns = patterns('',
     # The Logged In Page
     url(r'^$', logged_in_view, name='logged_in_view'),
 
-    # collections urls (manage collections and organize audio)
-    (r'^collections/', include('concertapp.collection.urls')),
-
-    # audio urls (upload_audio and audio utilities)
-    (r'^audio/', include('concertapp.audiofile.urls')), 
-
-    #   Organize audio (for a collection)
-    url(r'organize/collection/(?P<collection_id>[\d]+)/$', organize_collection, name='organize_collection'),
-    
-    
     # REST api
     (r'^api/', include(api1.urls)),
 
     # admin
     (r'^admin/', include(admin_site.urls)),
+
 )
 
 
