@@ -80,6 +80,15 @@ var Router = Backbone.Router.extend(
             modelManager: this.modelManager
         });
         
+        /**
+         *  The admin panel on the left side of the UI.
+         **/
+        this.adminPanel = new AdminPanel({
+            router: this,
+            el: $('#admin_panel'),
+            modelManager: this.modelManager
+        });
+        
         /* Create audio controller */ 
         this.audioController = new AudioController({
             router: this

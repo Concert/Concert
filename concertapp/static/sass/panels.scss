@@ -419,6 +419,21 @@ div#admin_panel{
 	padding: 10px;
 }
 
+div.user {
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+}
+
+div.username {
+  -webkit-box-flex: 1;
+  text-align: center;
+  /*color: rgba(255, 255, 255, 0.746094);*/
+}
+
+div.actions {
+  text-align: right;
+}
+
 /* events panel */
 div#events_list_panel{
   display: -webkit-box;
