@@ -1,0 +1,14 @@
+{% load extra_template_tags %}
+
+{% comment %}
+    Template for a `UserWidget`
+    Expects `User` instance as context
+{% endcomment %}
+
+{% verbatim %}
+<div class="user">
+    <img src="http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=50">
+    <div class="username">${$data.get('username')}</div>
+    <div class="actions">approve/deny/remove user</div>
+</div>
+{% endverbatim %}

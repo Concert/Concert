@@ -113,7 +113,7 @@ The base template for all pages.  All page templates will use this.
     <script src="/js/lib/widgets/AudioFileCommentEventWidget.js"></script>
     <script src="/js/lib/widgets/CollectionWidget.js"></script>
     <script src="/js/lib/widgets/AudioSegmentCommentEventWidget.js"></script>
-    
+    <script src="/js/lib/widgets/UserWidget.js"></script>
     
     {# Components #}
     <script src="/js/lib/components/Component.js"></script>
@@ -263,6 +263,11 @@ The base template for all pages.  All page templates will use this.
     
     <script id="requestrevokedevent_template" type="text/x-jquery-tmpl">
         {% include 'clientside/requestrevokedevent.html' %}
+    </script>
+    
+    {# Template for a user listing in the admin panel #}
+    <script id="user_widget_template" type="text/x-jquery-tmpl">
+        {% include 'logged_in/clientside/user_widget.html' %}
     </script>
     
     {# Template used for a result in an autocomplete listing #}

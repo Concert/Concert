@@ -206,7 +206,6 @@ var Router = Backbone.Router.extend(
     
     _collection_manage_route: function(collectionId) {
         var collection = this.modelManager.select_collection(collectionId);
-        console.log('hello, made it to the router')
         
         this.currentRoute = 'collection_manage';
         return [collection];
