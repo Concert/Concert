@@ -114,6 +114,8 @@ The base template for all pages.  All page templates will use this.
     <script src="/js/lib/widgets/CollectionWidget.js"></script>
     <script src="/js/lib/widgets/AudioSegmentCommentEventWidget.js"></script>
     <script src="/js/lib/widgets/UserWidget.js"></script>
+    <script src="/js/lib/widgets/MemberUserWidget.js"></script>
+    <script src="/js/lib/widgets/PendingUserWidget.js"></script>
     
     {# Components #}
     <script src="/js/lib/components/Component.js"></script>
@@ -265,9 +267,18 @@ The base template for all pages.  All page templates will use this.
         {% include 'clientside/requestrevokedevent.html' %}
     </script>
     
-    {# Template for a user listing in the admin panel #}
-    <script id="user_widget_template" type="text/x-jquery-tmpl">
-        {% include 'logged_in/clientside/user_widget.html' %}
+    {# Template for a member user listing in the admin panel #}
+    <script id="member_widget_template" type="text/x-jquery-tmpl">
+        {% include 'UserWidget/MemberUserWidget.html' %}
+    </script>
+    
+    <script id="admin_widget_template" type="text/x-jquery-tmpl">
+        {% include 'UserWidget/AdminUserWidget.html' %}
+    </script>
+    
+    {# Template for a pending user listing in the admin panel #}
+    <script id="pending_widget_template" type="text/x-jquery-tmpl">
+        {% include 'UserWidget/PendingUserWidget.html' %}
     </script>
     
     {# Template used for a result in an autocomplete listing #}

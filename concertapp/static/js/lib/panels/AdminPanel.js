@@ -16,7 +16,9 @@ var AdminPanel = Panel.extend({
         
         var $ = jQuery;
         
-        this.userTemplate = $('#user_widget_template');
+        this.adminTemplate = $('#admin_widget_template');
+        this.memberTemplate = $('#member_widget_template');
+        this.pendingTemplate = $('#pending_widget_template');
     },
     
     render: function() {
@@ -26,14 +28,20 @@ var AdminPanel = Panel.extend({
     render_collection_manage: function(collectionId, collection) {
         $("#bottom_left_container").addClass('manage');
         
+        /* Display the admin */
+        
         var self = this;
-        var template = this.userTemplate;
+        var adminTemplate = this.adminTemplate;
+        var memberTemplate = this.memberTemplate;
+        var pendingTemplate = this.pendingTemplate;
         var frag = document.createDocumentFragment();
+        
+        this.header.html(adminTemplate.tmpl(com.concertsoundorganizer.modelManager.user));
         
         /* Create a widget for each pending user & append to document fragment */
         collection.get('pendingUsers').each(function(user) {
-            var widget = new UserWidget({
-                template: template,
+            var widget = new PendingUserWidget({
+                template: pendingTemplate,
                 panel: self,
                 model: user});
             
@@ -45,8 +53,8 @@ var AdminPanel = Panel.extend({
         /* Create a widget for each user (that is not the currently logged in user) & append to document fragment */
         collection.get('users').each(function(user) {
             if (user !== com.concertsoundorganizer.modelManager.user) {
-                var widget = new UserWidget({
-                    template: template, 
+                var widget = new MemberUserWidget({
+                    template: memberTemplate, 
                     panel: self,
                     model: user});
             
