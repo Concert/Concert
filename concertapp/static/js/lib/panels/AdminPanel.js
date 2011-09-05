@@ -30,17 +30,33 @@ var AdminPanel = Panel.extend({
         var template = this.userTemplate;
         var frag = document.createDocumentFragment();
         
-        collection.get('users').each(function(user) {
+        /* Create a widget for each pending user & append to document fragment */
+        collection.get('pendingUsers').each(function(user) {
             var widget = new UserWidget({
-                template: template, 
+                template: template,
                 panel: self,
                 model: user});
             
             widget.render();
-
+            
             frag.appendChild(widget.el);
         });
         
+        /* Create a widget for each user (that is not the currently logged in user) & append to document fragment */
+        collection.get('users').each(function(user) {
+            if (user !== com.concertsoundorganizer.modelManager.user) {
+                var widget = new UserWidget({
+                    template: template, 
+                    panel: self,
+                    model: user});
+            
+                widget.render();
+
+                frag.appendChild(widget.el);
+            }
+        });
+        
+        /* Insert frag into panel contents */
         self.contents.append(frag);
     }
     

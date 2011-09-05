@@ -76,6 +76,7 @@ class RequestAuthorization(ConcertAuthorization):
 ###
 class CollectionResource(MyResource):
     users = fields.ManyToManyField(UserResource, 'users', null = True, full=True)
+    pendingUsers = fields.ManyToManyField(UserResource, 'pendingUsers', null = True, full=True)
     admin = fields.ForeignKey(UserResource, 'admin')
     events = fields.ManyToManyField(
         'concertapp.event.api.EventResource',

@@ -21,6 +21,12 @@ var Collection = ConcertModel.extend(
             includeInJSON: "id"
         },
         {
+            type: Backbone.HasMany,
+            key: 'pendingUsers',
+            relatedModel: 'User',
+            includeInJSON: "id"
+        },
+        {
             type: Backbone.HasMany, 
             key: 'events', 
             relatedModel: 'Event',
