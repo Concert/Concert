@@ -14,9 +14,13 @@
     {% panel 'logged_in/partials/detail_waveform_panel.html' 'detail_waveform' %}
 {% endblock %}
 
+{# block left acts as a window #}
 {% block left %}
-    {# an events panel #}
-    {% panel 'logged_in/partials/eventslist_panel.html' 'events_list' %}
+    <div id="bottom_left_container">
+      {# an events panel #}
+      {% panel 'logged_in/partials/eventslist_panel.html' 'events_list' %}
+      {% panel 'logged_in/partials/admin_panel.html' 'admin' %} 
+    </div>
 {% endblock %}
 
 {% block right %}

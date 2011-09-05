@@ -413,8 +413,16 @@ div.title{
     font-size: 15px;
 }*/
 
+/* admin panel */
+div#admin_panel{
+  width: 578px;
+	padding: 10px;
+}
+
 /* events panel */
 div#events_list_panel{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
 	width: 578px;
 	padding: 10px;
 }

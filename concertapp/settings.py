@@ -17,6 +17,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': '/opt/concert/db/database.db',
+#        'NAME': '/Users/sarojini/Projects/databases/Concert/concert.db',
         'HOST': '',
         'PORT': '',
         'USER': '',
@@ -30,7 +31,7 @@ DATABASES = {
 # although not all choices may be available on all operating systems.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = 'America/New_York'
+TIME_ZONE = 'America/Los_Angeles'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html

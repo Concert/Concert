@@ -114,9 +114,18 @@ div#bottom_left {
   margin: 1px 0px 1px 1px;
   border: 1px solid rgba(255, 255, 255, 0.75);
   background: #e1e1e6;
+  overflow: hidden;
+}
+
+div#bottom_left_container {
   display: -webkit-box;
-  -webkit-box-orient: vertical;
-	-webkit-transition: all linear 0.24s;
+  -webkit-box-orient: horizontal;
+  -webkit-transition: left linear 0.24s;
+  position: relative;
+}
+
+.manage {
+  left: -100%;
 }
 
 /* line 106, ../sass/screen.scss */
