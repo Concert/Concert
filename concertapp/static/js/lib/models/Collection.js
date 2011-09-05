@@ -58,40 +58,51 @@ var Collection = ConcertModel.extend(
         }
     ], 
     name: 'collection',
+    
+    remove_user: function(user) {
+        this.get('users').remove(user);
+        this.save({
+            /* TODO: handle errors */
+        });
+    }
+    
+    
     /**
      *  When a user wants to join a collection.
      **/
-    requestToJoin: function() {
-        var reqs = this.get('requests');
-        reqs.create({
-            user: com.concertsoundorganizer.router.user.url(), 
-            collection: this.url()
-        });
-    },
+    // requestToJoin: function() {
+    //     var reqs = this.get('requests');
+    //     reqs.create({
+    //         user: com.concertsoundorganizer.router.user.url(), 
+    //         collection: this.url()
+    //     });
+    // },
+    
     /**
      *  When a user wants to leave the collection.
      **/
-    leave: function() {
-        var modelManager = com.concertsoundorganizer.modelManager;
-        var user = modelManager.user;
-        /* Remove user and save */
-        this.get('users').remove(user, {
-            error_message: 'An error occurred while leaving the collection',
-            /* If there was an error */
-            error_callback: function(me, removedUser) {
-                return function() {
-                    /* Put user back */
-                    me.get('users').add(removedUser);
-                    /* Put collection back in user's list */
-                    removedUser.get('collections').add(me);
-                };
-            }(this, user),
-            save: true
-        });
-        /* Remove collection from memberCollections */
-        user.get('collections').remove(this);
-        
-    }
+    // 
+    // leave: function() {
+    //     var modelManager = com.concertsoundorganizer.modelManager;
+    //     var user = modelManager.user;
+    //     /* Remove user and save */
+    //     this.get('users').remove(user, {
+    //         error_message: 'An error occurred while leaving the collection',
+    //         /* If there was an error */
+    //         error_callback: function(me, removedUser) {
+    //             return function() {
+    //                 /* Put user back */
+    //                 me.get('users').add(removedUser);
+    //                 /* Put collection back in user's list */
+    //                 removedUser.get('collections').add(me);
+    //             };
+    //         }(this, user),
+    //         save: true
+    //     });
+    //     /* Remove collection from memberCollections */
+    //     user.get('collections').remove(this);
+    //     
+    // }
     
 });
 

@@ -18,7 +18,8 @@
 
          var params = this.options;
 
-
+         /* collection refers to a Concert collection NOT a backbone collection */
+         this.collection = params.collection;
 
          _.bindAll(this, "render");
      },
