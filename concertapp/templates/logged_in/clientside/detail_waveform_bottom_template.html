@@ -1,7 +1,12 @@
 {% load extra_template_tags %}
 
+{% comment %}
+  Template for bottom of `DetailWaveformPanel`.  Currently only used when `AudioSegment` is selected.
+  Expects `AudioSegment` instance as context
+{% endcomment %}
+
 {% verbatim %}
-    {{each(i, tag) tags}}
+    {{each(i, tag) $data.get('tags').models}}
         {{tmpl(tag) "#tag_widget_template"}}
     {{/each}}
 {% endverbatim %}

@@ -1,18 +1,22 @@
 {% extends 'logged_in/clientside/list_widget_template.html' %}
 {% load extra_template_tags %}
 
+{% comment %}
+    Template for a `FileWidget`
+    Expects a `AudioFile` as context
+{% endcomment %}
+
 {% block title %}
         {% verbatim %}{{tmpl($data) "#audiofile_link_template"}}{% endverbatim %}
 {% endblock %}
 
 
-
 {% block info %}
     <div class="info">
         {% verbatim %}
-            ${seconds_to_timecode(duration)}
+            ${seconds_to_timecode($data.get('duration'))}
             <span class="small_text"> uploaded by </span>
-            {{tmpl(uploader) "#user_link_template"}}
+            {{tmpl($data.get('uploader')) "#user_link_template"}}
     	{% endverbatim %}
     </div>
 {% endblock %}
@@ -20,15 +24,10 @@
 {% block bottom %}
     <div class="bottom">
         {# List all segments for this audio file #}
-        
         {% verbatim %}
-            {{each(i, segment) segments}}
-                <a href="#collection/1/audio/file/1/segment/${segment.id}">${segment.name}</a>
-        {% endverbatim %}
-        
-        {# only put separating dash if this is not the last segment #}
-        {% verbatim %}
-                {{if i != segments.length-1}} - {{/if}}
+            {{each(i, segment) $data.get('segments').models}}
+                {{tmpl(segment) "#audiosegment_link_template"}}
+                {{if i != $data.get('segments').length-1}} - {{/if}}
             {{/each}}
         {% endverbatim %}
     </div>

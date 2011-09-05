@@ -1,12 +1,17 @@
 {% extends 'logged_in/clientside/list_widget_template.html' %}
 {% load extra_template_tags %}
 
+{% comment %}
+    Template for a `CollectionWidget`
+    Expects a `Collection` model instance as context
+{% endcomment %}
+
 {% block title %}
     {% verbatim %}
         {{tmpl($data) "#collection_link_template"}}
         <br />
         <span class="small_text">
-            ${users.length} {{if users.length == 1}}user{{else}}users{{/if}}
+            ${$data.get('users').length} {{if $data.get('users').length == 1}}user{{else}}users{{/if}}
         </span>
     {% endverbatim %}
 {% endblock %}
@@ -28,13 +33,13 @@
         {% comment %}
         
         {% verbatim %}
-            {{each(i, user) users}}
+            {{each(i, user) $data.get('users').models}}
                 {{tmpl(user) "#user_link_template"}}
         {% endverbatim %}
         
         {# only put comma if this is not the last user #}
         {% verbatim %}
-                {{if i != users.length-1}} , {{/if}}
+                {{if i != $data.get('users').length-1}} , {{/if}}
             {{/each}}
         {% endverbatim %}
         {% endcomment %}

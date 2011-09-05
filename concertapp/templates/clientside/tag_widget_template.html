@@ -1,5 +1,10 @@
 {% load extra_template_tags %}
 
+{% comment %}
+  Template for a `TagWidget`
+  Expects a `Tag` instance as context.
+{% endcomment %}
+
 {% verbatim %}
-    <div class="tag">${name}</div>
+    <div class="tag">${$data.get('name')}</div>
 {% endverbatim %}

@@ -18,27 +18,32 @@ var Event = ConcertModel.extend(
         {
             type: Backbone.HasOne, 
             key: 'user', 
-            relatedModel: 'User'
+            relatedModel: 'User',
+            includeInJSON: "id"
         },
         {
             type: Backbone.HasOne, 
             key: 'collection', 
-            relatedModel: 'Collection'
+            relatedModel: 'Collection',
+            includeInJSON: "id"
         },
         {
             type: Backbone.HasOne, 
             key: 'audioSegment', 
-            relatedModel: 'AudioSegment'
+            relatedModel: 'AudioSegment',
+            includeInJSON: "id"
         },
         {
             type: Backbone.HasOne, 
             key: 'audioFile', 
-            relatedModel: 'AudioFile'
+            relatedModel: 'AudioFile',
+            includeInJSON: "id"
         },
         {
             type: Backbone.HasOne, 
             key: 'tag', 
-            relatedModel: 'Tag'
+            relatedModel: 'Tag',
+            includeInJSON: "id"
         }
     ], 
     name: 'event', 

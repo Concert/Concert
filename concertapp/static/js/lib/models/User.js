@@ -17,7 +17,8 @@ var User = ConcertModel.extend(
         {
             type: Backbone.HasMany, 
             key: 'memberCollections', 
-            relatedModel: 'Collection'
+            relatedModel: 'Collection',
+            includeInJSON: "id"
         }
     ], 
     name: 'user',
