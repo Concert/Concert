@@ -136,6 +136,9 @@ var UploadPanel = Panel.extend(
         
         return this;
     },
+
+    
+
     handleUploadError: function() {
         /* TODO: Write this function */
     },

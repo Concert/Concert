@@ -1,0 +1,10 @@
+{% load extra_template_tags %}
+
+{% comment %}
+  Partial template for an `UploadPanel` to display a link to upload audio for a collection.
+  Accepts a `Collection` instance as context.
+{% endcomment %}
+
+{% verbatim %}
+  <span id="upload_link_icon"></span><a id="upload_link_text" href="#collection/${$data.get('id')}/upload">Upload</a>
+{% endverbatim %}

@@ -159,44 +159,43 @@ The base template for all pages.  All page templates will use this.
 
 </head>
 <body>
-  <div id="modal-container">
-    <div id="modal-overlay">
-      <div id="modal-overlay-background"></div>
-      <div id="modal-overlay-pane">
-        <button id="modal-overlay-confirm-ok">ok</button>
-      </div>
+    <div id="modal-container">
+        <div id="modal-overlay">
+              <div id="modal-overlay-background"></div>
+              <div id="modal-overlay-pane">
+                <button id="modal-overlay-confirm-ok">ok</button>
+              </div>
+        </div>
     </div>
-  </div>
 
   
-  {% panel 'partials/upload_panel.html' 'upload' %}
+    {# Upload panel is modal #}
+    {% panel 'Panel/ModalUploadPanel/ModalUploadPanel.html' 'upload' %}
   
 
-<div id="temp" style="position: absolute; top: 0; height: 100px; width: 100%;">
-    <!-- <a> -->
-</div>
-  
-<div id="layout">
-    <div id="inset">
-        <div id="layout_top">
-        {% include 'partials/upload_link.html' %}
-        </div>
-        <div id="layout_middle">
-        {% block middle %}{% endblock %}
-        </div>
-        <div id="layout_bottom">
-            <div id="bottom_left"> 
-                {% block left %}{% endblock %}
+    <div id="layout">
+        <div id="inset">
+            <div id="layout_top">
+                <div id="upload_status_container">
+                    {# Status of uploads will go here #}
+                </div>
             </div>
-            <div id="bottom_right">
-                {% block right %}{% endblock %}
-            </div> 
-            <div id="bottom_admin">
-                {% block admin %}{% endblock %}
-            </div>   
-        </div>
-    </div> 
-</div>
+            <div id="layout_middle">
+                {% block middle %}{% endblock %}
+            </div>
+            <div id="layout_bottom">
+                <div id="bottom_left"> 
+                    {% block left %}{% endblock %}
+                </div>
+                <div id="bottom_right">
+                    {% block right %}{% endblock %}
+                </div> 
+                <div id="bottom_admin">
+                    {% block admin %}{% endblock %}
+                </div>   
+            </div>
+        </div> 
+    </div>
 
 
 <!--- <div id="background_glare"></div> -->
@@ -279,6 +278,11 @@ The base template for all pages.  All page templates will use this.
     {# Template used for an autocomplete result when searching for collections #}
     <script id="collection_autocomplete_result_template" type="text/x-jquery-tmpl">
         {% include 'logged_in/clientside/collection_autocomplete_result.html' %}
+    </script>
+
+    {# ModalUploadPanel partials #}
+    <script id="modaluploadpanel_upload-link_template" type="text/x-jquery-tmpl">
+        {% include 'Panel/ModalUploadPanel/upload-link.html' %}
     </script>
     
     {# Send variable to javascript with recognizable path so we know what page we're on #}

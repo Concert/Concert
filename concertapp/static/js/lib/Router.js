@@ -143,8 +143,8 @@ var Router = Backbone.Router.extend(
             this._collection_audio_segment_route
         );
         
-        _.bindAll(this, '_audio_upload_route');
-        this.route('upload', 'upload', this._audio_upload_route);
+        _.bindAll(this, '_collection_upload_route');
+        this.route('collection/:collectionId/upload', 'collection_upload', this._collection_upload_route);
         
         return;
     }, 
@@ -171,15 +171,7 @@ var Router = Backbone.Router.extend(
             this.trigger.apply(this, ['route:' + name].concat(args));
         }, this));
     },
-    
-    /**
-     *  Route for #upload, brings up modal window for uploading audio or viewing
-     *  audio upload status.
-     **/
-    _audio_upload_route: function() {
-        this.currentRoute = 'upload';
-    }, 
-    
+        
     /**
      *  Route for "/#collections".  Lists collections and such.
      **/
@@ -204,6 +196,17 @@ var Router = Backbone.Router.extend(
         return [collection];
     }, 
     
+    /**
+     *  Route for #collection/:collectionId/upload, brings up modal window for uploading audio or viewing
+     *  audio upload status.
+     **/
+    _collection_upload_route: function(collectionId) {
+        var newArgs = this._collection_route(collectionId);
+
+        this.currentRoute = 'collection_upload';
+        return newArgs;
+    }, 
+
     /**
      *  Rotue for "/#collection/:collectionId/audio".  Shows collection's audio
      *  files and segments.

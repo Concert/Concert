@@ -17,23 +17,49 @@ var ModalUploadPanel = Panel.extend(
         Panel.prototype.initialize.call(this);
 
         var params = this.options;
+
+        /**
+         *    Container for upload display at top of layout.
+         **/
+        this.uploadStatusContainer = $('#upload_status_container');
+
+        /**
+         *    Template for "upload" link
+         **/
+        this.uploadLinkTemplate = $('#modaluploadpanel_upload-link_template');
     },
 
     /**
-     *  This will be called by default on all routes other than #upload
+     *  This will be called by default on all routes other than #collections and
+     *  #collection/:collectionId/upload
      **/
-    render: function() {
+    render: function(collectionId, collection) {
         Panel.prototype.render.call(this);
         
         this._hide();
+
+        /* render upload link in status container */
+        this.uploadStatusContainer.html(
+            this.uploadLinkTemplate.tmpl(collection)
+        );
+
+        /* Show upload status container, since we're on a specific collection */
+        this.uploadStatusContainer.show();
         
         return this;
     },
+
+    /**
+     *    When we're on the collections view, hide upload status area.
+     **/
+    render_collections: function () {
+        this.uploadStatusContainer.hide();
+    }, 
     
     /**
      *  When we're on upload route
      **/
-    render_upload: function() {
+    render_collection_upload: function(collectionId, collection) {
         /* Show modal window */
         this._show();
     }, 
