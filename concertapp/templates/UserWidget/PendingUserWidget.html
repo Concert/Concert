@@ -1,0 +1,12 @@
+{% extends 'UserWidget/UserWidget.html' %}
+{% load extra_template_tags %}
+
+{% comment %}
+    Template for a `PendingUserWidget`
+    Expects a `User` as context
+{% endcomment %}
+
+{% block actions %}
+    <button class="approve">approve</button>
+    <button class="deny">deny</button>
+{% endblock %}

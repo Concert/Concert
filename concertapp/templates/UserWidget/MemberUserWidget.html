@@ -1,0 +1,11 @@
+{% extends 'UserWidget/UserWidget.html' %}
+{% load extra_template_tags %}
+
+{% comment %}
+    Template for a `MemberUserWidget`
+    Expects a `User` as context
+{% endcomment %}
+
+{% block actions %}
+    <button class="remove_user">remove user</button>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'UserWidget/UserWidget.html' %}
+{% load extra_template_tags %}
+
+{% comment %}
+    Template for a `AdminUserWidget`
+    Expects a `User` as context
+{% endcomment %}
+
+{% block actions %}
+    <button id="delete_collection">delete collection</button>
+{% endblock %}
