@@ -21,6 +21,8 @@ var AdminPanel = Panel.extend({
         this.pendingTemplate = $('#pending_widget_template'); 
         
         _.bindAll(this, "_handle_remove_user");
+        _.bindAll(this, "_handle_approve_user");
+        _.bindAll(this, "_handle_deny_user");
     },
     
     render: function() {
@@ -28,6 +30,8 @@ var AdminPanel = Panel.extend({
         
         if (this.collection) {
             this.collection.get('users').unbind('remove', this._handle_remove_user);
+            this.collection.get('users').unbind('add', this._handle_approve_user);
+            this.collection.get('pendingUsers').unbind('remove', this._handle_deny_user);
             this.collection = null;
         }
     },
@@ -50,7 +54,8 @@ var AdminPanel = Panel.extend({
             var widget = new PendingUserWidget({
                 template: pendingTemplate,
                 panel: self,
-                model: user});
+                model: user,
+                collection: collection});
             
             widget.render();
             
@@ -81,11 +86,35 @@ var AdminPanel = Panel.extend({
         self.contents.append(frag);
         
         collection.get('users').bind('remove', this._handle_remove_user);
+        collection.get('users').bind('add', this._handle_approve_user);
+        collection.get('pendingUsers').bind('remove', this._handle_deny_user);
         
         this.userWidgets = userWidgets;
     }, 
     
     _handle_remove_user: function(user) {
+        this.userWidgets[user.get('id')].remove();
+        this.userWidgets[user.get('id')] = null;
+    },
+    
+    _handle_approve_user: function(user) {
+        var self = this;
+        
+        var widget = new MemberUserWidget({
+            template: self.memberTemplate,
+            panel: self,
+            model: user, 
+            collection: self.collection});
+            
+        widget.render();
+        
+        oldWidgetElement = $(this.userWidgets[user.get('id')].el)
+        
+        oldWidgetElement.replaceWith(widget.el);
+        this.userWidgets[user.get('id')] = widget;
+    },
+    
+    _handle_deny_user: function(user) {
         this.userWidgets[user.get('id')].remove();
         this.userWidgets[user.get('id')] = null;
     }

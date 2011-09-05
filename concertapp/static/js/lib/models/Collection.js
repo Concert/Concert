@@ -64,6 +64,21 @@ var Collection = ConcertModel.extend(
         this.save({
             /* TODO: handle errors */
         });
+    },
+    
+    approve_user: function(user) {
+        this.get('pendingUsers').remove(user, {silent: true});
+        this.get('users').add(user);
+        this.save({
+            /* TODO: handle errors */
+        });
+    },
+    
+    deny_user: function(user) {
+        this.get('pendingUsers').remove(user);
+        this.save({
+            /* TODO: handle errors */
+        });
     }
     
     
