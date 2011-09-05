@@ -125,6 +125,13 @@ var Router = Backbone.Router.extend(
         _.bindAll(this, '_collection_route');
         this.route('collection/:collectionId', 'collection', this._collection_route);
         
+        _.bindAll(this, '_collection_manage_route');
+        this.route(
+          'collection/:collectionId/manage', 
+          'collection_manage',
+          this._collection_manage_route
+        );
+        
         _.bindAll(this, '_collection_audio_route');
         this.route(
             'collection/:collectionId/audio',
@@ -196,6 +203,14 @@ var Router = Backbone.Router.extend(
         this.currentRoute = 'collection';
         return [collection];
     }, 
+    
+    _collection_manage_route: function(collectionId) {
+        var collection = this.modelManager.select_collection(collectionId);
+        console.log('hello, made it to the router')
+        
+        this.currentRoute = 'collection_manage';
+        return [collection];
+    },
     
     /**
      *  Rotue for "/#collection/:collectionId/audio".  Shows collection's audio

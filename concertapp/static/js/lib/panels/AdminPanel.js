@@ -8,7 +8,7 @@
  *  @class  Panel that shows administrative actions on a collection
  *  @extends    Panel
  **/
-var EventsPanel = Panel.extend({
+var AdminPanel = Panel.extend({
     _initialize_elements: function() {
         Panel.prototype._initialize_elements.call(this);
 
@@ -17,5 +17,13 @@ var EventsPanel = Panel.extend({
         var $ = jQuery;
         
     },
+    
+    render: function() {
+        $("#bottom_left_container").removeClass('manage');
+    },
+    
+    render_collection_manage: function(collectionId, collection) {
+        $("#bottom_left_container").addClass('manage');
+    }
     
 });
