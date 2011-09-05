@@ -1,6 +1,10 @@
 {% load extra_template_tags %}
 
-{#<a class="username" href="#user/${id}">${username}</a>#}
+{% comment %}
+  Partial template for a link to a specific user.
+  Expects a `User` model instance as context.
+{% endcomment %}
+
 {% verbatim %}
-    ${username}
+    ${$data.get('username')}
 {% endverbatim %}

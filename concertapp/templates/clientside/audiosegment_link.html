@@ -1,5 +1,15 @@
 {% load extra_template_tags %}
 
+{% comment %}
+  Partial template for a link to an audio segment within a collection
+  Expects an `AudioSegment` instance as context
+{% endcomment %}
+
 {% verbatim %}
-    <a class="audiosegment" href="#collection/${collection.id}/audio/file/${audioFile.id}/segment/${id}">${name}</a>
+    <a
+      class="audiosegment"
+      href="#collection/${$data.get('collection').get('id')}/audio/file/${$data.get('audioFile').get('id')}/segment/${$data.get('id')}"
+    >
+      ${$data.get('name')}
+    </a>
 {% endverbatim %}

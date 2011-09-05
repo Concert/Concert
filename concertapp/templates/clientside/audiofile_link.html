@@ -1,5 +1,10 @@
+{% comment %}
+  @file audiofile_link.html
+  Expects an `AudioFile` model instance as its context.
+{% endcomment %}
+
 {% load extra_template_tags %}
 
 {% verbatim %}
-    <a class="audiofile" href="#collection/${collection.id}/audio/file/${id}">${name}</a>
+    <a class="audiofile" href="#collection/${$data.get('collection').get('id')}/audio/file/${$data.get('id')}">${$data.get('name')}</a>
 {% endverbatim %}

@@ -1,6 +1,11 @@
 {% extends 'logged_in/clientside/list_widget_template.html' %}
 {% load extra_template_tags %}
 
+{% comment %}
+    Template for an `AudioSegmentWidget`
+    Expects `AudioSegment` instance as context
+{% endcomment %}
+
 {% block title %}
     {% verbatim %}{{tmpl($data) "#audiosegment_link_template"}}{% endverbatim %}
 {% endblock %}
@@ -12,11 +17,11 @@
 {% block info %}
     {% verbatim %}
         <div class="info">
-            ${seconds_to_timecode(end-beginning)}
+            ${seconds_to_timecode($data.get('end')-$data.get('beginning'))}
             <span class="small_text">of</span>
-            {{tmpl(audioFile) "#audiofile_link_template"}}
+            {{tmpl($data.get('audioFile')) "#audiofile_link_template"}}
             <span class="small_text">selected by</span>
-            {{tmpl(creator) "#user_link_template"}}
+            {{tmpl($data.get('creator')) "#user_link_template"}}
         </div>
     {% endverbatim %}
 {% endblock %}

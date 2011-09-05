@@ -19,27 +19,32 @@ var AudioSegment = ConcertModel.extend(
         {
             type: 'HasMany', 
             key: 'tags', 
-            relatedModel: 'Tag'
+            relatedModel: 'Tag',
+            includeInJSON: "id"
         },
         {
             type: Backbone.HasMany, 
             key: 'events', 
-            relatedModel: 'Event'
+            relatedModel: 'Event',
+            includeInJSON: "id"
         },
         {
             type: Backbone.HasOne, 
             key: 'audioFile', 
-            relatedModel: 'AudioFile'
+            relatedModel: 'AudioFile',
+            includeInJSON: "id"
         },
         {
             type: Backbone.HasOne, 
             key: 'creator', 
-            relatedModel: 'User'
+            relatedModel: 'User',
+            includeInJSON: "id"
         },
         {
             type: Backbone.HasOne, 
             key: 'collection', 
-            relatedModel: 'Collection'
+            relatedModel: 'Collection',
+            includeInJSON: "id"
         }
     ], 
     name: 'audiosegment', 

@@ -17,32 +17,38 @@ var Collection = ConcertModel.extend(
         {
             type: Backbone.HasMany, 
             key: 'users', 
-            relatedModel: 'User'
+            relatedModel: 'User',
+            includeInJSON: "id"
         },
         {
             type: Backbone.HasMany, 
             key: 'events', 
-            relatedModel: 'Event'
+            relatedModel: 'Event',
+            includeInJSON: "id"
         },
         {
             type: Backbone.HasMany, 
             key: 'files', 
-            relatedModel: 'AudioFile'
+            relatedModel: 'AudioFile',
+            includeInJSON: "id"
         },
         {
             type: Backbone.HasMany, 
             key: 'segments', 
-            relatedModel: 'AudioSegment'
+            relatedModel: 'AudioSegment',
+            includeInJSON: "id"
         },
         {
             type: Backbone.HasMany, 
             key: 'tags', 
-            relatedModel: 'Tag'
+            relatedModel: 'Tag',
+            includeInJSON: "id"
         },
         {
             type: Backbone.HasOne, 
             key: 'admin', 
-            relatedModel: 'User'
+            relatedModel: 'User',
+            includeInJSON: "id"
         }
     ], 
     name: 'collection',

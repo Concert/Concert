@@ -1,16 +1,21 @@
 {% extends 'logged_in/clientside/detail_waveform_top_template.html' %}
 {% load extra_template_tags %}
 
+{% comment %}
+  Template for top of `DetailWaveformPanel` when an `AudioFile` is selected.
+  Expects an `AudioFile` instance as the context
+{% endcomment %}
+
 {% block verb %}uploaded{% endblock %}
 
 {% block username %}
     {% verbatim %}
-        ${uploader.get("username")}
+        ${$data.get('uploader').get("username")}
     {% endverbatim %}
 {% endblock %}
 
 {% block right %}
     {% verbatim %}
-        <b>${duration} seconds</b>
+        <b>${$data.get('duration')} seconds</b>
     {% endverbatim %}
 {% endblock %}

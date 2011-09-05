@@ -3,14 +3,14 @@
 {# The base template for all events #}
 
 <div class="event_widget">
-    <div class="type${eventType}_event_widget_icon event_widget_icon widget_icon"></div>
-    <div class="type${eventType}_event_widget_content event_widget_content">
-        {%verbatim%}{{tmpl(user) "#user_link_template"}}{%endverbatim%}
+    <div class="type${$data.get('eventType')}_event_widget_icon event_widget_icon widget_icon"></div>
+    <div class="type${$data.get('eventType')}_event_widget_content event_widget_content">
+        {%verbatim%}{{tmpl($data.get('user')) "#user_link_template"}}{%endverbatim%}
         <span class="event_widget_text">{% block event_text %}{% endblock %}</span>
         {# If the current template context has a 'comment' attribute #}
         {% verbatim %}
-            {{if $data.comment && comment != ''}}
-                <div class="event_widget_comment">${comment}</div>
+            {{if $data.get('comment') && $data.get('comment') != ''}}
+                <div class="event_widget_comment">${$data.get('comment')}</div>
             {{/if}}
         {% endverbatim %}
         <div class="time small_text">

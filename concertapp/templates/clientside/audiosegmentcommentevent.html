@@ -1,15 +1,18 @@
 {% extends 'clientside/event.html' %}
 {% load extra_template_tags %}
 
-{# The template for an `AudioFileCommentEvent` widget #}
+{% comment %}
+  The template for an `AudioSegmentCommentEvent` widget.
+  Expects `Event` model instance as context.
+{% endcomment %}
 
 {% block event_text %}
     {%verbatim%}
         {{if currentRoute == 'collections' || currentRoute == 'collection_audio'}}
-            commented on {{tmpl(audioSegment) "#audiosegment_link_template"}}
+            commented on {{tmpl($data.get('audioSegment')) "#audiosegment_link_template"}}
         {{/if}}
         {{if currentRoute == 'collections'}}
-            from {{tmpl(collection) "#collection_link_template"}}
+            from {{tmpl($data.get('collection')) "#collection_link_template"}}
         {{/if}}
     {% endverbatim %}
 {% endblock %}

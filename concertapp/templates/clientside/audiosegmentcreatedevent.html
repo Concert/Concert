@@ -1,13 +1,16 @@
 {% extends 'clientside/event.html' %}
 {% load extra_template_tags %}
 
-{# The template for an `AudioSegmentCreatedEventWidget` #}
+{% comment %}
+  The template for an `AudioSegmentCreatedEventWidget`
+  Expects an `Event` instance as context
+{% endcomment %}
 
 {% block event_text %}
     created
     {% verbatim %}
-        {{tmpl(audioSegment) "#audiosegment_link_template"}}
+        {{tmpl($data.get('audioSegment')) "#audiosegment_link_template"}}
         from
-        {{tmpl(audioSegment.audioFile) "#audiofile_link_template"}}
+        {{tmpl($data.get('audioSegment').get('audioFile')) "#audiofile_link_template"}}
     {% endverbatim %}
 {% endblock %}

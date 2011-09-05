@@ -18,21 +18,25 @@ var Tag = ConcertModel.extend(
             type: Backbone.HasOne, 
             key: 'creator', 
             relatedModel: 'User',
+            includeInJSON: "id"
         },
         {
             type: Backbone.HasOne, 
             key: 'collection', 
-            relatedModel: 'Collection'
+            relatedModel: 'Collection',
+            includeInJSON: "id"
         },
         {
             type: 'HasMany', 
             key: 'segments', 
-            relatedModel: 'AudioSegment'
+            relatedModel: 'AudioSegment',
+            includeInJSON: "id"
         },
         {
             type: Backbone.HasMany, 
             key: 'events', 
-            relatedModel: 'Event'
+            relatedModel: 'Event',
+            includeInJSON: "id"
         }
     ], 
     name: 'tag' 
