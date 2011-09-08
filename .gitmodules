@@ -1,0 +1,3 @@
+[submodule "concertapp/static/js/lib/vendor/jquery-file-upload"]
+	path = concertapp/static/js/lib/vendor/jquery-file-upload
+	url = git://github.com/blueimp/jQuery-File-Upload.git
