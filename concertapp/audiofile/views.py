@@ -72,6 +72,9 @@ def upload_audio(request):
     username = user.username
 
     if request.method == 'POST':
+        
+        raise Exception(request)
+
         # The id for this upload (we will use this at the end)
         # upload_id = request.POST['upload_id']
         

@@ -81,6 +81,12 @@ var ModalUploadPanel = Panel.extend(
      *  Show the modal panel
      **/
     _show: function() {
+        $('#upload_panel_form').fileupload({
+            url: "/upload/", 
+            dataType: "json", 
+            dropZone: null, 
+            fileInput: $('#upload_panel_file_chooser')
+        });
         this.el.removeClass('hidden');
         
         /* Bind to the escape key */

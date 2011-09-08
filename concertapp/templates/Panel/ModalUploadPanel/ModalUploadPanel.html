@@ -8,10 +8,32 @@ Upload Audio
 {% endblock %}
 
 {% block panel_content %}
-    <p>Select files to upload</p>
-    <p>Many formats accepted.</p>
+
+    {# area to display uploading status #}
+    {% comment %}
+    <div id="status_container">
+        <p>
+            Uploading<span id="status_animated_dots"></span><br />
+            Please be patient.  This may take some time.
+        </p>
+    </div>
+    {% endcomment %}
 
     <div id="upload_panel_formContainer">
-        
+        <p>Select files to upload</p>
+        <p>Many formats accepted.</p>
+
+        <form id="upload_panel_form">
+            <label for="upload_panel_file_chooser">Select a file to upload: </label>
+            <input type="file" multiple="true" id="upload_panel_file_chooser" />
+
+            {% csrf_token %}
+
+            <button id="upload_submit_button">Upload</button>
+        </form>
+
+        {# This is the listing of files that the user has chosen #}
+        <div id="files_table" class="table"></div>
+
     </div>
 {% endblock %}

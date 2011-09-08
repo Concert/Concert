@@ -10,6 +10,7 @@ from concertapp.audiosegment.api import AudioSegmentResource
 # 3 server-side URLS in the entire program.
 from concertapp.views import logged_in_view
 from concertapp.organize.views import organize_collection
+from concertapp.audiofile.views import upload_audio
 
 from concertapp.admin import admin_site
 
@@ -48,11 +49,15 @@ urlpatterns = patterns('',
     # The Logged In Page
     url(r'^$', logged_in_view, name='logged_in_view'),
 
+    # Upload audio
+    url(r'^upload/', upload_audio, name='upload_audio'),
+
     # REST api
     (r'^api/', include(api1.urls)),
 
     # admin
     (r'^admin/', include(admin_site.urls)),
+
 
 )
 
