@@ -12,5 +12,6 @@ Concert.tmproj
 api_tester.sh
 adams_temp.html
 *.wsgi
-*.sass-cacheconcertapp/static/css/*.css
+*.sass-cache
+concertapp/static/css/*.css
 concertapp/static/.sass-cache
