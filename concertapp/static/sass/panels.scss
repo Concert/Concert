@@ -211,8 +211,8 @@ div#audiolist_panel_contents {
 
 
 /**
-*  Waveform highlight
-**/
+ *  Waveform highlight
+ **/
 
 div.highlight_container {
     z-index: 300;
@@ -281,8 +281,8 @@ div#overview_waveform_panel_highlight_container {
 }
 
 /**
-*  Waveform images
-**/
+ *  Waveform images
+ **/
 img.waveform_image {
     display: block;
     z-index: 100;
@@ -480,4 +480,59 @@ div#events_list_panel_contents {
     position: absolute;
     top: 0;
     left: 0;
+}
+
+/**
+ *    Modal Panel
+ **/
+
+.panel.modal {
+    position: absolute;
+    z-index: 1000;
+
+    height: 100%;
+    width: 100%;
+
+    /* center horizontally */
+    text-align: center;
+
+    /* center vertically */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+
+    /* when panel is hidden */
+    &.hidden {
+        display: none;
+    }
+
+    .panel_header, .panel_contents {
+        /* Move header and contents up a bit so they aren't
+        directly in the center of the page */
+        position: relative;
+        top: -15%;
+
+        /* Also make them the same width */
+        width: 60%;
+    }
+
+    /* header receives standard height */
+    .panel_header {
+        height: 2em;
+        line-height: 2em;
+        background-color: green;
+    }
+
+    /* contents stretches vertically to fill remainder of page. */
+    .panel_contents {
+        background-color: blue;
+
+        min-height: 20%;
+
+        padding: 1em;
+        -webkit-box-sizing: border-box; /* Keep padding inside box */
+        text-align: left;
+    }
+
 }

@@ -28,6 +28,11 @@ var Router = Backbone.Router.extend(
          **/
         this.currentRoute = null;
 
+        /**
+         *    The previous fragment (for going back)
+         **/
+        this.previousFragment = null;
+
         /* Create dataset manager */
         var modelManager = new LoggedInModelManager(_.extend(options, {
             router: this 
@@ -48,6 +53,14 @@ var Router = Backbone.Router.extend(
         
         Backbone.history.start();
     },
+
+    goBack: function () {
+        if(this.previousFragment) {
+            console.log('this.previousFragment:');
+            console.log(this.previousFragment);
+            this.navigate(this.previousFragment);
+        }
+    }, 
     
     /**
      *  This method is called when views are to be created.  Should be overridden

@@ -1,12 +1,17 @@
 {% extends "partials/panel.html" %}
 
 {# Panel is initially hidden because it is a modal dialog #}
-{% block panel_class %}hidden{% endblock %}
+{% block panel_class %}modal hidden{% endblock %}
 
 {% block header_content %}
 Upload Audio
 {% endblock %}
 
 {% block panel_content %}
-Select files to upload
+    <p>Select files to upload</p>
+    <p>Many formats accepted.</p>
+
+    <div id="upload_panel_formContainer">
+        
+    </div>
 {% endblock %}

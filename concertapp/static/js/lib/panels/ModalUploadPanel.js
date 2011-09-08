@@ -27,34 +27,47 @@ var ModalUploadPanel = Panel.extend(
          *    Template for "upload" link
          **/
         this.uploadLinkTemplate = $('#modaluploadpanel_upload-link_template');
-    },
 
-    /**
-     *  This will be called by default on all routes other than #collections and
-     *  #collection/:collectionId/upload
-     **/
-    render: function(collectionId, collection) {
-        Panel.prototype.render.call(this);
-        
-        this._hide();
-
-        /* render upload link in status container */
-        this.uploadStatusContainer.html(
-            this.uploadLinkTemplate.tmpl(collection)
-        );
-
-        /* Show upload status container, since we're on a specific collection */
-        this.uploadStatusContainer.show();
-        
-        return this;
     },
 
     /**
      *    When we're on the collections view, hide upload status area.
      **/
     render_collections: function () {
-        this.uploadStatusContainer.hide();
+        this._hideStatus();
+    },
+
+    /**
+     *    When we're looking at a collection, show status
+     *    of this collection's uploads.
+     **/
+    render_collection: function (collectionId, collection) {
+        this._showStatus(collection);
     }, 
+
+    /**
+     *  When we're looking at a collection's audio, show status
+     *  of this collection's uploads.
+     **/
+    render_collection_audio: function (collectionId, collection) {
+        this._showStatus(collection);
+    }, 
+
+    /**
+     *    When we're looking at a specific audio file, show
+     *    status of this collection's uploads.
+     **/
+    render_collection_audio_file: function (collectionId, audioFileId, collection, audioFile) {
+        this._showStatus(collection);
+    }, 
+
+    /**
+     *    When we're looking at an audio segment, show status
+     *    of this collection's uploads.
+     **/
+    render_collection_audio_segment: function (collectionId, audioFileId, audioSegmentId, collection, audioFile, audioSegment) {
+        this._showStatus(collection);
+    },
     
     /**
      *  When we're on upload route
@@ -71,12 +84,14 @@ var ModalUploadPanel = Panel.extend(
         this.el.removeClass('hidden');
         
         /* Bind to the escape key */
-        $(document).bind('keyup', function(e) {
+        $(document).bind('keyup', _.bind(function(e) {
             if(e.keyCode == 27) {
                 /* go back to wherever we were */
-                history.go(-1);
+                // com.concertsoundorganizer.router.goBack();
+                /* Just close window for now */
+                this._hide();
             }
-        });
+        }, this));
     }, 
     
     /**
@@ -84,6 +99,28 @@ var ModalUploadPanel = Panel.extend(
      **/
     _hide: function() {
         this.el.addClass('hidden');
-    }
+    },
+
+    /**
+     *  Show the upload status for a 
+     *  given collection.
+     **/
+    _showStatus: function (collection) {
+        /* render upload link in status container */
+        this.uploadStatusContainer.html(
+            this.uploadLinkTemplate.tmpl(collection)
+        );
+
+        /* Show upload status container, since we're on a specific collection */
+        this.uploadStatusContainer.show();
+
+    }, 
+
+    /**
+     *  Hide upload status.
+     **/
+    _hideStatus: function () {
+        this.uploadStatusContainer.hide();
+    }, 
 });
 
