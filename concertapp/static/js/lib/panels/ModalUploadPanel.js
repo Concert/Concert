@@ -87,6 +87,28 @@ var ModalUploadPanel = Panel.extend(
             dropZone: null, 
             fileInput: $('#upload_panel_file_chooser')
         });
+            // .bind('fileuploadadd', function (e, data) {console.log('fileuploadadd');console.log('data:');
+            // console.log(data);})
+            // .bind('fileuploadsend', function (e, data) {console.log('fileuploadsend');console.log('data:');
+            // console.log(data);})
+            // .bind('fileuploaddone', function (e, data) {console.log('fileuploadone');console.log('data:');
+            // console.log(data);})
+            // .bind('fileuploadfail', function (e, data) {console.log('fileuploadfail');console.log('data:');
+            // console.log(data);})
+            // .bind('fileuploadalways', function (e, data) {console.log('fileuploadalways');console.log('data:');
+            // console.log(data);})
+            // .bind('fileuploadprogress', function (e, data) {console.log('fileuploadprogress');console.log('data:');
+            // console.log(data);})
+            // .bind('fileuploadprogressall', function (e, data) {console.log('fileuploadprogressall');console.log('data:');
+            // console.log(data);})
+            // .bind('fileuploadstart', function (e) {console.log('fileuploadstart');})
+            // .bind('fileuploadstop', function (e) {console.log('fileuploadstop');})
+            // .bind('fileuploadchange', function (e, data) {console.log('fileuploadchange');console.log('data:');
+            // console.log(data);})
+            // .bind('fileuploaddrop', function (e, data) {console.log('fileuploaddrop');console.log('data:');
+            // console.log(data);})
+            // .bind('fileuploaddragover', function (e) {console.log('fileuploaddragover');console.log('data:');
+            // console.log(data);});
         this.el.removeClass('hidden');
         
         /* Bind to the escape key */

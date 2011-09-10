@@ -123,9 +123,9 @@ APPEND_SLASH = True
 FILE_UPLOAD_MAX_MEMORY_SIZE = 0
 
 # New file upload handlers for progress uploads
-FILE_UPLOAD_HANDLERS = (
-    'concertapp.uploadprogresscachedhandler.UploadProgressCachedHandler', 
-) + global_settings.FILE_UPLOAD_HANDLERS
+# FILE_UPLOAD_HANDLERS = (
+#     'concertapp.uploadprogresscachedhandler.UploadProgressCachedHandler', 
+# ) + global_settings.FILE_UPLOAD_HANDLERS
 
 # Cache!
 CACHE_BACKEND = 'memcached://127.0.0.1:11211/'

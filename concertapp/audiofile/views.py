@@ -1,4 +1,4 @@
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseBadRequest
 from django.contrib.auth.decorators import login_required
 from django.template.response import TemplateResponse
 from django.template import RequestContext
@@ -72,48 +72,57 @@ def upload_audio(request):
     username = user.username
 
     if request.method == 'POST':
-        
-        raise Exception(request)
+        print('POST to upload_audio')
+        if request.FILES == None:
+            return HttpResponseBadRequest('Must have files attached!')
 
-        # The id for this upload (we will use this at the end)
-        # upload_id = request.POST['upload_id']
-        
-        # The file being uploaded
-        f = request.FILES['audio']        
-
-
-        # The collection that this audioFile object is to be associated with.
-        try:
-            col = Collection.objects.get(id = request.POST['collection_id'])
-        except ObjectDoesNotExist, e:
-            raise Exception('Invalid collection chosen.')
-        
-        #   new audioFile object
-        audioFile = AudioFile(uploader = user, collection=col)
-
-        try:
-            #   initialize audioFile object (this will take a while as we have to encode)
-            audioFile.save(f)
-        except audiotools.UnsupportedFile, e:
-            # Delete audioFile object that was partially created.
-            audioFile.delete()
-            raise Exception('Unsupported file type.')
-        except audiotools.PCMReaderError, e:
-            # Delete audioFile object that was partially created.
-            audioFile.delete()
-            raise Exception('Error reading file.')
-        except IOError, e:
-            # Delete audioFile object that was partially created.
-            audioFile.delete()
-            raise Exception('An error occured while file handling: '+str(e))
-        except Exception, e:
-            audioFile.delete()
-            raise Exception(str(e))
+        file = request.FILES[u'files[]']
+        print('Received file: ')
+        print(file)
 
         return HttpResponse(status = 200)
+
+
+        
+    #     # The id for this upload (we will use this at the end)
+    #     # upload_id = request.POST['upload_id']
+        
+    #     # The file being uploaded
+    #     f = request.FILES['audio']        
+
+
+    #     # The collection that this audioFile object is to be associated with.
+    #     try:
+    #         col = Collection.objects.get(id = request.POST['collection_id'])
+    #     except ObjectDoesNotExist, e:
+    #         raise Exception('Invalid collection chosen.')
+        
+    #     #   new audioFile object
+    #     audioFile = AudioFile(uploader = user, collection=col)
+
+    #     try:
+    #         #   initialize audioFile object (this will take a while as we have to encode)
+    #         audioFile.save(f)
+    #     except audiotools.UnsupportedFile, e:
+    #         # Delete audioFile object that was partially created.
+    #         audioFile.delete()
+    #         raise Exception('Unsupported file type.')
+    #     except audiotools.PCMReaderError, e:
+    #         # Delete audioFile object that was partially created.
+    #         audioFile.delete()
+    #         raise Exception('Error reading file.')
+    #     except IOError, e:
+    #         # Delete audioFile object that was partially created.
+    #         audioFile.delete()
+    #         raise Exception('An error occured while file handling: '+str(e))
+    #     except Exception, e:
+    #         audioFile.delete()
+    #         raise Exception(str(e))
+
+    #     return HttpResponse(status = 200)
                 
-    else :        
-        return TemplateResponse(request, 'audio/upload_audio.html', {
-            'page_name': 'Upload Audio',
-            'js_page_path': '/audio/upload/',
-        })
+    # else :        
+    #     return TemplateResponse(request, 'audio/upload_audio.html', {
+    #         'page_name': 'Upload Audio',
+    #         'js_page_path': '/audio/upload/',
+    #     })
