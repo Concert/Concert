@@ -38,7 +38,7 @@ var User = ConcertModel.extend(
         this.get('uploadedFiles').add(
             new AudioFile({
                 name: file.name
-            });
+            })
         );      
     }
 });
