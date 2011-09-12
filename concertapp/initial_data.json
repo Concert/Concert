@@ -26,7 +26,8 @@
             "wav": "1.wav", 
             "ogg": "1.ogg", 
             "mp3": "1.mp3", 
-            "duration": 258
+            "duration": 258,
+            "status": "d"
         }
     },
     {
