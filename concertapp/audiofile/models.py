@@ -33,6 +33,18 @@ class AudioFile(models.Model):
     mp3 = models.FileField(upload_to = AUDIO_LOCATION)
     # The duration of the audio file.  Default is 0
     duration = models.DecimalField(max_digits = 8, decimal_places = 2, default=0)
+
+    # The status of this file
+    status = models.CharField(
+        max_length=1,
+        choices=(
+            ('u', 'Uploading'),
+            ('p', 'Processing'),
+            ('d', 'Done')
+        ),
+        # File is initially uploading
+        default='u'
+    )
     
     def __unicode__(self):
         return self.name

@@ -163,9 +163,14 @@ var ModalUploadPanel = Panel.extend(
      *    Called when a file is added to be uploaded.
      **/
     _handle_file_added: function (e, data) {
-        /* Create file object for this currently uploading file */
-        
+        var files = data.files;
+        if(files.length != 1) {
+            throw new Error('Not implemented');
+        }
+        var file = data.files[0];
 
+        /* Create file object for this currently uploading file */
+        com.concertsoundorganizer.modelManager.user.upload_file(file);
     } 
 });
 

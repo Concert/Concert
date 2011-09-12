@@ -28,6 +28,19 @@ var User = ConcertModel.extend(
         }
     ], 
     name: 'user',
+
+    /**
+     *    Called when a file is added to be uploaded.
+     *
+     *  @param    {File}    The file object.    
+     **/
+    upload_file: function (file) {
+        this.get('uploadedFiles').add(
+            new AudioFile({
+                name: file.name
+            });
+        );      
+    }
 });
 
 /**
