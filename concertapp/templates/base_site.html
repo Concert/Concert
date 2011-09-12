@@ -286,6 +286,11 @@ The base template for all pages.  All page templates will use this.
     <script id="modaluploadpanel_upload-link_template" type="text/x-jquery-tmpl">
         {% include 'Panel/ModalUploadPanel/upload-link.html' %}
     </script>
+
+    <script id="uploadfilewidget_template" type="text/x-jquery-tmpl">
+        {% include 'clientside/UploadFileWidget.html' %}
+    </script>
+
     
     {# Send variable to javascript with recognizable path so we know what page we're on #}
     {% if js_page_path %}

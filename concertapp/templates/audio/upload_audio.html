@@ -11,23 +11,6 @@
 {% block clientside %}
 
     <!-- Client side templates -->
-    <script id="uploadfilewidget_template" type="text/x-jquery-tmpl">
-        <div class="uploadfilewidget table-row" id="uploadfilewidget-${id}">
-            <div class="uploadfilewidget_filename table-cell" id="uploadfilewidget_filename-${id}">${filename}</div>
-            <div class="uploadfilewidget_collection_selector_container table-cell">
-                <select id="uploadfilewidget_collection_selector-${id}" class="uploadfilewidget_collection_selector" name="collection_id">
-                    <option value="-1">Please select a collection</option>
-                    {# Server side templating, to populate dropdowns #}
-                    {% for collection in user.collections.all %}
-                        <option value="{{ collection.id }}">{{ collection.name }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div class="uploadfilewidget_progress_container table-cell">
-                <progress id="uploadfilewidget_progress-${id}" class="uploadfilewidget_progress" max=1 value=0 />
-           </div>
-        </div>
-    </script>
 
     <script id="file_chooser_template" type="text/x-jquery-tmpl">
         <input name="audio" type="file" multiple="false" id="file_chooser-${id}" />

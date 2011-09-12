@@ -28,6 +28,14 @@ var ModalUploadPanel = Panel.extend(
          **/
         this.uploadLinkTemplate = $('#modaluploadpanel_upload-link_template');
 
+        /**
+         *    Template for a UploadFileWidget
+         **/
+        this.uploadFileWidgetTemplate = $('#uploadfilewidget_template');
+
+        /* Callbacks for fileupload plugin */
+        _.bindAll(this, '_handle_file_added');
+
     },
 
     /**
@@ -85,10 +93,10 @@ var ModalUploadPanel = Panel.extend(
             url: "/upload/", 
             dataType: "json", 
             dropZone: null, 
-            fileInput: $('#upload_panel_file_chooser')
-        });
-            // .bind('fileuploadadd', function (e, data) {console.log('fileuploadadd');console.log('data:');
-            // console.log(data);})
+            fileInput: $('#upload_panel_file_chooser'),
+            autoUpload: false 
+        })
+            .bind('fileuploadadd', this._handle_file_added);
             // .bind('fileuploadsend', function (e, data) {console.log('fileuploadsend');console.log('data:');
             // console.log(data);})
             // .bind('fileuploaddone', function (e, data) {console.log('fileuploadone');console.log('data:');
@@ -150,5 +158,14 @@ var ModalUploadPanel = Panel.extend(
     _hideStatus: function () {
         this.uploadStatusContainer.hide();
     }, 
+
+    /**
+     *    Called when a file is added to be uploaded.
+     **/
+    _handle_file_added: function (e, data) {
+        /* Create file object for this currently uploading file */
+        
+
+    } 
 });
 

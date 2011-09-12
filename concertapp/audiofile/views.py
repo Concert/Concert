@@ -67,6 +67,7 @@ def upload_id(request):
 ##
 @login_required
 def upload_audio(request):
+    print('upload_audio')
     user = request.user
     
     username = user.username
@@ -76,6 +77,7 @@ def upload_audio(request):
         if request.FILES == None:
             return HttpResponseBadRequest('Must have files attached!')
 
+        print('Receiving file')
         file = request.FILES[u'files[]']
         print('Received file: ')
         print(file)

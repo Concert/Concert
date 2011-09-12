@@ -59,6 +59,14 @@ class UserWithCollectionsResource(UserResource):
         null=True,
         full=True
     )
+
+    # The files that the user has uploaded
+    uploadedFiles = fields.OneToManyField(
+        'concertapp.audiofile.api.AudioFileResource',
+        'uploadedFiles',
+        null=True,
+        full=False
+    )
     
     class Meta(UserResource.Meta):
         # The user object
