@@ -10,14 +10,8 @@ Upload Audio
 {% block panel_content %}
 
     {# area to display uploading status #}
-    {% comment %}
-    <div id="status_container">
-        <p>
-            Uploading<span id="status_animated_dots"></span><br />
-            Please be patient.  This may take some time.
-        </p>
+    <div id="upload_status_container">
     </div>
-    {% endcomment %}
 
     <div id="upload_panel_formContainer">
 
@@ -25,7 +19,7 @@ Upload Audio
         <form id="upload_panel_form">
             <label for="upload_panel_file_chooser">Select files to upload</label>
             <p>Many formats accepted.</p>
-            
+
             <input type="file" multiple="true" id="upload_panel_file_chooser" />
 
             {% csrf_token %}

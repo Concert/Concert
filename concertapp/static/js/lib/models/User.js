@@ -32,14 +32,17 @@ var User = ConcertModel.extend(
     /**
      *    Called when a file is added to be uploaded.
      *
-     *  @param    {File}    The file object.    
+     *  @param    {File}    file - The file object.
+     *  @param    {Object}  data - FileUpload data object
      **/
-    upload_file: function (file) {
-        this.get('uploadedFiles').add(
-            new AudioFile({
-                name: file.name
-            })
-        );      
+    upload_file: function (file, data) {
+        var newAudioFile = new AudioFile({
+            name: file.name
+        });
+        this.get('uploadedFiles').add(newAudioFile);
+
+        /* Start uploading of audio file */
+        newAudioFile.upload(data);
     }
 });
 

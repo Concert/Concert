@@ -21,6 +21,11 @@ var ModalUploadPanel = Panel.extend(
         /**
          *    Container for upload display at top of layout.
          **/
+        this.uploadMiniStatusContainer = $('#upload_mini_status_container');
+
+        /**
+         *    Container for upload status at top of panel
+         **/
         this.uploadStatusContainer = $('#upload_status_container');
 
         /**
@@ -36,7 +41,30 @@ var ModalUploadPanel = Panel.extend(
         /* Callbacks for fileupload plugin */
         _.bindAll(this, '_handle_file_added');
 
+        /* Watch the user's uploadedFiles list for newly added files */
+        _.bindAll(this, '_handle_uploaded_file');
+        com.concertsoundorganizer.modelManager.user.bind('add:uploadedFiles', this._handle_uploaded_file);
     },
+
+    /**
+     *    Called when a new uploaded file is added to the user's list.
+     **/
+    _handle_uploaded_file: function (audioFile) {
+        /* If file is not done */
+        if(audioFile.get('status') != 'd') {
+            /* render UploadFileWidget */
+            var widget = new UploadFileWidget({
+                model: audioFile, 
+                template: this.uploadFileWidgetTemplate,
+                panel: this
+            });
+
+            /* Add to uploadStatusContainer */
+            /* TODO: initially this method will be called a whole bunch of times
+            if there are files processing, and DOM will potentially reflow repeatedly */
+            this.uploadStatusContainer.append(widget.render().el);
+        }
+    }, 
 
     /**
      *    When we're on the collections view, hide upload status area.
@@ -94,9 +122,13 @@ var ModalUploadPanel = Panel.extend(
             dataType: "json", 
             dropZone: null, 
             fileInput: $('#upload_panel_file_chooser'),
-            autoUpload: false 
-        })
-            .bind('fileuploadadd', this._handle_file_added);
+            add: this._handle_file_added,
+            /* on upload progress, set the audioFile's progress attribute */
+            progress: function (e, data) {
+                data.audioFile.set({'progress': (data.loaded/data.total)});
+            }
+        });
+            // .bind('fileuploadadd', this._handle_file_added)
             // .bind('fileuploadsend', function (e, data) {console.log('fileuploadsend');console.log('data:');
             // console.log(data);})
             // .bind('fileuploaddone', function (e, data) {console.log('fileuploadone');console.log('data:');
@@ -106,9 +138,9 @@ var ModalUploadPanel = Panel.extend(
             // .bind('fileuploadalways', function (e, data) {console.log('fileuploadalways');console.log('data:');
             // console.log(data);})
             // .bind('fileuploadprogress', function (e, data) {console.log('fileuploadprogress');console.log('data:');
-            // console.log(data);})
+            // console.log(data);});
             // .bind('fileuploadprogressall', function (e, data) {console.log('fileuploadprogressall');console.log('data:');
-            // console.log(data);})
+            // console.log(data);});
             // .bind('fileuploadstart', function (e) {console.log('fileuploadstart');})
             // .bind('fileuploadstop', function (e) {console.log('fileuploadstop');})
             // .bind('fileuploadchange', function (e, data) {console.log('fileuploadchange');console.log('data:');
@@ -170,7 +202,7 @@ var ModalUploadPanel = Panel.extend(
         var file = data.files[0];
 
         /* Create file object for this currently uploading file */
-        com.concertsoundorganizer.modelManager.user.upload_file(file);
+        com.concertsoundorganizer.modelManager.user.upload_file(file, data);
     } 
 });
 
