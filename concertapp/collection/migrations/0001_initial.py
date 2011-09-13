@@ -24,6 +24,14 @@ class Migration(SchemaMigration):
         ))
         db.create_unique('collection_collection_users', ['collection_id', 'user_id'])
 
+        # Adding M2M table for field pendingUsers on 'Collection'
+        db.create_table('collection_collection_pendingUsers', (
+            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
+            ('collection', models.ForeignKey(orm['collection.collection'], null=False)),
+            ('user', models.ForeignKey(orm['auth.user'], null=False))
+        ))
+        db.create_unique('collection_collection_pendingUsers', ['collection_id', 'user_id'])
+
 
     def backwards(self, orm):
         
@@ -32,6 +40,9 @@ class Migration(SchemaMigration):
 
         # Removing M2M table for field users on 'Collection'
         db.delete_table('collection_collection_users')
+
+        # Removing M2M table for field pendingUsers on 'Collection'
+        db.delete_table('collection_collection_pendingUsers')
 
 
     models = {
@@ -69,6 +80,7 @@ class Migration(SchemaMigration):
             'admin': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '100'}),
+            'pendingUsers': ('django.db.models.fields.related.ManyToManyField', [], {'related_name': "'pendingCollections'", 'symmetrical': 'False', 'to': "orm['auth.User']"}),
             'users': ('django.db.models.fields.related.ManyToManyField', [], {'related_name': "'collections'", 'symmetrical': 'False', 'to': "orm['auth.User']"})
         },
         'contenttypes.contenttype': {

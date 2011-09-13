@@ -36,7 +36,7 @@ class Migration(SchemaMigration):
             'mp3': ('django.db.models.fields.files.FileField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'ogg': ('django.db.models.fields.files.FileField', [], {'max_length': '100'}),
-            'uploader': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"}),
+            'uploader': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'uploadedFiles'", 'to': "orm['auth.User']"}),
             'wav': ('django.db.models.fields.files.FileField', [], {'max_length': '100'})
         },
         'audiosegment.audiosegment': {
@@ -83,6 +83,7 @@ class Migration(SchemaMigration):
             'admin': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '100'}),
+            'pendingUsers': ('django.db.models.fields.related.ManyToManyField', [], {'related_name': "'pendingCollections'", 'symmetrical': 'False', 'to': "orm['auth.User']"}),
             'users': ('django.db.models.fields.related.ManyToManyField', [], {'related_name': "'collections'", 'symmetrical': 'False', 'to': "orm['auth.User']"})
         },
         'contenttypes.contenttype': {
