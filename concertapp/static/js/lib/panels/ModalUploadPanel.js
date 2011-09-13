@@ -26,7 +26,14 @@ var ModalUploadPanel = Panel.extend(
         /**
          *    Container for upload status at top of panel
          **/
-        this.uploadStatusContainer = $('#upload_status_container');
+        var uploadStatusContainer = this.uploadStatusContainer = $('#upload_status_container');
+        if(typeof(uploadStatusContainer) == 'undefined') {
+            throw new Error('this.uploadStatusContainer\' is undefined');
+        }
+        else if(uploadStatusContainer.length == 0) {
+            throw new Error('uploadStatusContainer not found');
+        }
+
 
         /**
          *    Template for "upload" link
@@ -50,6 +57,10 @@ var ModalUploadPanel = Panel.extend(
      *    Called when a new uploaded file is added to the user's list.
      **/
     _handle_uploaded_file: function (audioFile) {
+        // console.log('ModalUploadPanel._handle_uploaded_file');
+        // console.log('audioFile:');
+        // console.log(audioFile);
+
         /* If file is not done */
         if(audioFile.get('status') != 'd') {
             /* render UploadFileWidget */
@@ -70,7 +81,7 @@ var ModalUploadPanel = Panel.extend(
      *    When we're on the collections view, hide upload status area.
      **/
     render_collections: function () {
-        this._hideStatus();
+        this._hideMiniStatus();
     },
 
     /**
@@ -78,7 +89,7 @@ var ModalUploadPanel = Panel.extend(
      *    of this collection's uploads.
      **/
     render_collection: function (collectionId, collection) {
-        this._showStatus(collection);
+        this._showMiniStatus(collection);
     }, 
 
     /**
@@ -86,7 +97,7 @@ var ModalUploadPanel = Panel.extend(
      *  of this collection's uploads.
      **/
     render_collection_audio: function (collectionId, collection) {
-        this._showStatus(collection);
+        this._showMiniStatus(collection);
     }, 
 
     /**
@@ -94,7 +105,7 @@ var ModalUploadPanel = Panel.extend(
      *    status of this collection's uploads.
      **/
     render_collection_audio_file: function (collectionId, audioFileId, collection, audioFile) {
-        this._showStatus(collection);
+        this._showMiniStatus(collection);
     }, 
 
     /**
@@ -102,7 +113,7 @@ var ModalUploadPanel = Panel.extend(
      *    of this collection's uploads.
      **/
     render_collection_audio_segment: function (collectionId, audioFileId, audioSegmentId, collection, audioFile, audioSegment) {
-        this._showStatus(collection);
+        this._showMiniStatus(collection);
     },
     
     /**
@@ -125,7 +136,10 @@ var ModalUploadPanel = Panel.extend(
             add: this._handle_file_added,
             /* on upload progress, set the audioFile's progress attribute */
             progress: function (e, data) {
-                data.audioFile.set({'progress': (data.loaded/data.total)});
+                /* Round progress to one decimal point */
+                var progress = Math.round((data.loaded / data.total)*10)/10;
+                /* "change" event will only be fired if progress is set to new value */
+                data.audioFile.set({'progress': progress});
             }
         });
             // .bind('fileuploadadd', this._handle_file_added)
@@ -173,22 +187,22 @@ var ModalUploadPanel = Panel.extend(
      *  Show the upload status for a 
      *  given collection.
      **/
-    _showStatus: function (collection) {
+    _showMiniStatus: function (collection) {
         /* render upload link in status container */
-        this.uploadStatusContainer.html(
+        this.uploadMiniStatusContainer.html(
             this.uploadLinkTemplate.tmpl(collection)
         );
 
         /* Show upload status container, since we're on a specific collection */
-        this.uploadStatusContainer.show();
+        this.uploadMiniStatusContainer.show();
 
     }, 
 
     /**
      *  Hide upload status.
      **/
-    _hideStatus: function () {
-        this.uploadStatusContainer.hide();
+    _hideMiniStatus: function () {
+        this.uploadMiniStatusContainer.hide();
     }, 
 
     /**

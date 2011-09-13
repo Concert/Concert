@@ -14,12 +14,13 @@ var UploadFileWidget = Widget.extend(
 
     var params = this.options;
 
-    
+    /* When model changes, just refresh entire widget for now */
+    this.model.bind("change", this.render);
   },
 
   render: function() {
     Widget.prototype.render.call(this);
     
     return this;
-  }
+  }, 
 });

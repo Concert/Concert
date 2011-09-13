@@ -1,8 +1,16 @@
 {% load extra_template_tags %}
 
 {% verbatim %}
-    <div class="uploadfilewidget table-row" id="uploadfilewidget-${id}">
-        <div class="uploadfilewidget_filename table-cell" id="uploadfilewidget_filename-${id}">${filename}</div>
+    <div class="table-row uploadfilewidget">
+        <div class="table-cell uploadfilewidget_nameContainer">${$data.get('name')}</div>
+        <div class="table-cell uploadfilewidget_statusContainer">
+            <p class="uploadfilewidget_status">${$data.getDisplayStatus('UPPER')}</p>
+            <progress class="uploadfilewidget_progress" value="${$data.get('progress')}"></progress>
+       </div>
+    </div>
+{% endverbatim %}
+
+        {% comment %}
         <!-- <div class="uploadfilewidget_collection_selector_container table-cell">
             <select id="uploadfilewidget_collection_selector-${id}" class="uploadfilewidget_collection_selector" name="collection_id">
                 <option value="-1">Please select a collection</option>
@@ -12,8 +20,4 @@
                 {% endfor %}
             </select>
         </div> -->
-        <div class="uploadfilewidget_progress_container table-cell">
-            <progress id="uploadfilewidget_progress-${id}" class="uploadfilewidget_progress" max=1 value=0 />
-       </div>
-    </div>
-{% endverbatim %}
+       {% endcomment %}

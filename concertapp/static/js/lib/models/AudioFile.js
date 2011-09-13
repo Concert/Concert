@@ -42,12 +42,41 @@ var AudioFile = ConcertModel.extend(
     ], 
     name: 'audiofile', 
 
+    /* Static object mapping short strings to 
+    display strings */
+    DISPLAY_STATUS: {
+        LOWER: {
+            'u': 'uploading', 
+            'p': 'processing',
+            'd': 'done'
+        },
+        UPPER: {
+            'u': 'Uploading',
+            'p': 'Processing',
+            'd': 'Done'
+        }, 
+    }, 
+
+    /**
+     *  Gets the status string for display.
+     *
+     *  @param    {String}    "UPPER" | "LOWER"
+     **/
+    getDisplayStatus: function (upperOrLower) {
+        return this.DISPLAY_STATUS[upperOrLower][this.get('status')];
+    }, 
+
     initialize: function () {
         ConcertModel.prototype.initialize.apply(this, arguments);
 
         /* Default value for status is 'u' */
         if(!this.get('status')) {
             this.set({'status': 'u'});
+        }
+
+        /* Default value for progress is 0 */
+        if(!this.get('progress')) {
+            this.set({'progress': 0});
         }
 
         _.bindAll(this, '_handle_upload_done');

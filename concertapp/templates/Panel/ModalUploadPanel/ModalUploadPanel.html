@@ -10,12 +10,10 @@ Upload Audio
 {% block panel_content %}
 
     {# area to display uploading status #}
-    <div id="upload_status_container">
+    <div id="upload_status_container" class="table">
     </div>
 
     <div id="upload_panel_formContainer">
-
-
         <form id="upload_panel_form">
             <label for="upload_panel_file_chooser">Select files to upload</label>
             <p>Many formats accepted.</p>
@@ -26,9 +24,5 @@ Upload Audio
 
             <button id="upload_submit_button">Upload</button>
         </form>
-
-        {# This is the listing of files that the user has chosen #}
-        <div id="files_table" class="table"></div>
-
     </div>
 {% endblock %}
