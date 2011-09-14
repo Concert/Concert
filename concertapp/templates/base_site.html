@@ -115,7 +115,9 @@ The base template for all pages.  All page templates will use this.
     <script src="/js/lib/widgets/AudioFileCommentEventWidget.js"></script>
     <script src="/js/lib/widgets/CollectionWidget.js"></script>
     <script src="/js/lib/widgets/AudioSegmentCommentEventWidget.js"></script>
-    
+    <script src="/js/lib/widgets/UserWidget.js"></script>
+    <script src="/js/lib/widgets/MemberUserWidget.js"></script>
+    <script src="/js/lib/widgets/PendingUserWidget.js"></script>
     
     {# Components #}
     <script src="/js/lib/components/Component.js"></script>
@@ -149,6 +151,7 @@ The base template for all pages.  All page templates will use this.
     <script src="/js/lib/panels/EventsPanel.js"></script>
     <script src="/js/lib/panels/DetailWaveformPanelTagBay.js"></script>
     <script src="/js/lib/panels/ModalUploadPanel.js"></script>
+    <script src="/js/lib/panels/AdminPanel.js"></script>
     
     {# Controllers #}
     <script src="/js/lib/controllers/AudioController.js"></script>
@@ -192,13 +195,12 @@ The base template for all pages.  All page templates will use this.
                 <div id="bottom_right">
                     {% block right %}{% endblock %}
                 </div> 
-                <div id="bottom_admin">
+                <!-- <div id="bottom_admin">
                     {% block admin %}{% endblock %}
-                </div>   
+                </div> -->   
             </div>
         </div> 
     </div>
-
 
 <!--- <div id="background_glare"></div> -->
 
@@ -270,6 +272,20 @@ The base template for all pages.  All page templates will use this.
     
     <script id="requestrevokedevent_template" type="text/x-jquery-tmpl">
         {% include 'clientside/requestrevokedevent.html' %}
+    </script>
+    
+    {# Template for a member user listing in the admin panel #}
+    <script id="member_widget_template" type="text/x-jquery-tmpl">
+        {% include 'UserWidget/MemberUserWidget.html' %}
+    </script>
+    
+    <script id="admin_widget_template" type="text/x-jquery-tmpl">
+        {% include 'UserWidget/AdminUserWidget.html' %}
+    </script>
+    
+    {# Template for a pending user listing in the admin panel #}
+    <script id="pending_widget_template" type="text/x-jquery-tmpl">
+        {% include 'UserWidget/PendingUserWidget.html' %}
     </script>
     
     {# Template used for a result in an autocomplete listing #}

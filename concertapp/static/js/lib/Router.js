@@ -93,6 +93,15 @@ var Router = Backbone.Router.extend(
             modelManager: this.modelManager
         });
         
+        /**
+         *  The admin panel on the left side of the UI.
+         **/
+        this.adminPanel = new AdminPanel({
+            router: this,
+            el: $('#admin_panel'),
+            modelManager: this.modelManager
+        });
+        
         /* Create audio controller */ 
         this.audioController = new AudioController({
             router: this
@@ -134,6 +143,13 @@ var Router = Backbone.Router.extend(
         
         _.bindAll(this, '_collection_route');
         this.route('collection/:collectionId', 'collection', this._collection_route);
+        
+        _.bindAll(this, '_collection_manage_route');
+        this.route(
+          'collection/:collectionId/manage', 
+          'collection_manage',
+          this._collection_manage_route
+        );
         
         _.bindAll(this, '_collection_audio_route');
         this.route(
@@ -208,6 +224,13 @@ var Router = Backbone.Router.extend(
         this.currentRoute = 'collection';
         return [collection];
     }, 
+    
+    _collection_manage_route: function(collectionId) {
+        var collection = this.modelManager.select_collection(collectionId);
+        
+        this.currentRoute = 'collection_manage';
+        return [collection];
+    },
     
     /**
      *  Route for #collection/:collectionId/upload, brings up modal window for uploading audio or viewing

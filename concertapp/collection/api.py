@@ -44,38 +44,11 @@ class CollectionAuthorization(ConcertAuthorization):
             return False
             
 ###
-#   Make sure that the user who is trying to access/modify a request is either
-#   the creator of that request, or the administrator of the collection.
-###
-class RequestAuthorization(ConcertAuthorization):
-    def is_authorized(self, request, object=None):
-        
-        if super(RequestAuthorization, self).is_authorized(request, object):
-            user = request.user
-            
-            # If we have an object to authenticate
-            if object:
-                # If the user is the one who made this request
-                if user == object.user:
-                    return True
-                # or the user is the administrator of the collection
-                elif user == object.collection.admin:
-                    return True
-                else:
-                    return False
-            else:
-                # TODO: This is always the case (tastypie issues)
-                return True
-            
-        else:
-            # not authorized by django
-            return False
-
-###
 #   This is the resource that is used for a collection.
 ###
 class CollectionResource(MyResource):
     users = fields.ManyToManyField(UserResource, 'users', null = True, full=True)
+    pendingUsers = fields.ManyToManyField(UserResource, 'pendingUsers', null = True, full=True)
     admin = fields.ForeignKey(UserResource, 'admin')
     events = fields.ManyToManyField(
         'concertapp.event.api.EventResource',
@@ -198,23 +171,6 @@ class MemberCollectionResource(CollectionResource):
         
         return object_list
     
-    ###
-    #   Here, before the object is sent for serialization we will add the 
-    #   requests objects for each collection that our user is a member of.
-    ###
-    def full_dehydrate(self, obj):
-
-        dehydrated = super(MemberCollectionResource, self).full_dehydrate(obj)
-        
-        # If the user is the administrator of this collection
-        if(self._meta.user == obj.admin):
-            # Get all requests for this collection
-            r = CollectionRequestResource()
-            r.set_collection(obj)
-            # Add requests to bundle
-            dehydrated.data['requests'] = r.as_dict(self._meta.request)
-
-        return dehydrated
     
         
 ###
@@ -256,125 +212,4 @@ class AdminCollectionResource(CollectionResource):
         
         return object_list
 
-    ###
-    #   Here, before the object is sent for serialization we will add the 
-    #   requests.
-    ###
-    def full_dehydrate(self, obj):
-
-        dehydrated = super(AdminCollectionResource, self).full_dehydrate(obj)
-        
-        # Get all requests for this collection
-        r = CollectionRequestResource()
-        r.set_collection(obj)
-        
-        dehydrated.data['requests'] = r.as_dict(self._meta.request)
-        
-        return dehydrated
-        
-###
-#   This resource is for collections that a user has requested to join.
-###
-class CollectionRequestResource(CollectionResource):
-    
-    ###
-    #   Retrieve only the collections for which the user has sent join requests
-    ###
-    def apply_authorization_limits(self, request, object_list):
-        user = request.user
-        
-        # Ignore argument, just get collections that user has requested to join
-        object_list = super(UserCollectionRequestResource, self).apply_authorization_limits(request, user.collection_join_requests.all())
-        
-        return object_list
-        
-        
-###
-#   This is the resource that is used for a collection request.
-###
-class RequestResource(MyResource):
-    user = fields.ForeignKey(UserResource, 'user')
-    collection = fields.ForeignKey(CollectionResource, 'collection')
-    status = fields.CharField('status', default='p')
-
-    class Meta:
-        queryset = Request.objects.all()
-
-        authorization = RequestAuthorization()
-        authentication = DjangoAuthentication()        
-
-    ###
-    #   When a request is updated, create event if necessary
-    ###
-    def obj_update(self, bundle, request=None, **kwargs):
-        # Get old and new status
-        oldStatus = bundle.obj.status
-        newStatus = bundle.data['status']
-
-        # Save
-        bundle = super(RequestResource, self).obj_update(bundle, request, **kwargs)
-        
-        # Determine how request has changed
-        if oldStatus is not newStatus:
-            
-            # If request was revoked
-            if oldStatus == 'p' and newStatus == 'r':
-                bundle.obj.revoke()
-            elif oldStatus == 'p' and newStatus == 'a':
-                bundle.obj.accept()
-            elif oldStatus == 'p' and newStatus == 'd':
-                bundle.obj.deny()
-            else:
-                raise Exception('Request cannot be changed after status is no longer pending.')
-
-    
-        return bundle
-            
-        
-
-
-###
-#   This is the resource that is used for collection requests from a single
-#   user.
-###
-class UserRequestResource(RequestResource):
-    ###
-    #   Make sure the user is the one who made the request
-    ###
-    def apply_authorization_limits(self, request, object_list):
-        
-        user = request.user
-        
-        # Here we ignore the incomming argument, and only send forth the
-        # requests for this user
-        object_list = super(UserRequestResource, self).apply_authorization_limits(request, user.request_set.all())
-        
-        return object_list
-        
-###
-#   This is a resource that is used for the requests from a single collection.
-###
-class CollectionRequestResource(RequestResource):
-    user = fields.ForeignKey(UserResource, 'user', full=True)
-    
-    
-    class Meta:
-        # The collection for which we will retrieve these requests
-        collection = None
-        
-    ###
-    #   This must be called before retreving the requests
-    ###
-    def set_collection(self, collection):
-        self._meta.collection = collection
-        
-    ###
-    #   When retrieving the requests, only get those from our specified collection.
-    ###
-    def apply_authorization_limits(self, request, object_list):
-        collection = self._meta.collection
-        
-        object_list = super(CollectionRequestResource, self).apply_authorization_limits(request, Request.objects.filter(collection=collection))
-        
-        return object_list
         

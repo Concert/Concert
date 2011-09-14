@@ -8,12 +8,47 @@
         }
     },
     {
+        "model": "auth.user",
+        "pk": 2,
+        "fields": {
+            "username": "sarojini",
+            "email": "amywieliczka@gmail.com",
+            "password": "sarojini"
+        }
+    },
+    {
+        "model": "concertapp.concertuser",
+        "pk": 2,
+        "fields": {
+            "unreadEvents": [],
+            "user": 2
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 3,
+        "fields": {
+            "username": "prometheus",
+            "email": "amy.wieliczka@gmail.com",
+            "password": "prometheus"
+        }
+    },
+    {
+        "model": "concertapp.concertuser",
+        "pk": 3,
+        "fields": {
+            "unreadEvents": [],
+            "user": 3
+        }
+    },
+    {
         "model": "collection.collection", 
         "pk": 1, 
         "fields": {
             "name": "[  ]", 
             "admin": 1,
-            "users": [1]
+            "users": [1, 3],
+            "pendingUsers": [2]
         }
     },
     {

@@ -17,6 +17,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': '/opt/concert/db/database.db',
+#        'NAME': '/Users/sarojini/Projects/databases/Concert/concert.db',
         'HOST': '',
         'PORT': '',
         'USER': '',
