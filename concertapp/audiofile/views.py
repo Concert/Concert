@@ -11,54 +11,12 @@ from django.core.exceptions import ObjectDoesNotExist
 import os, hashlib, tempfile, audiotools, tempfile
 
 from concertapp.models  import *
+from concertapp.collection.models import Collection
 
 from concertapp.audiofile import audioHelpers
 from concertapp.audiofile.waveform import *
 from concertapp.settings import MEDIA_ROOT, LOGIN_REDIRECT_URL
 
-
-###
-#   Get the upload progress for a currently uploading file.  If the result from the
-#   cache is null, it means the upload has completed.
-###
-@login_required
-def get_upload_progress(request, upload_id):
-    data = cache.get(upload_id)
-    return HttpResponse(
-        simplejson.dumps(data),
-        content_type = 'application/json'
-    )
-
-
-##
-#   This controller returns a unique upload_id for use in the cache, so the 
-#   client side can keep track of upload progress.  It also reserves that spot in 
-#   the cache.
-###
-@login_required
-def upload_id(request):
-    # Generate a unique upload id so we can track progress of the upload
-    upload_id = hashlib.sha224(os.urandom(16)).hexdigest()
-    while(cache.get(upload_id) != None) :
-        upload_id = hashlib.sha224(os.urandom(16)).hexdigest()
-    
-    # Save spot in cache
-    cache.set(upload_id, {
-        'length': 0,
-        'uploaded' : 0
-    })
-    
-    response = dict({
-        'status': 'success',
-        'upload_id': upload_id
-    })
-
-    #   Serialize results into JSON response        
-    return HttpResponse(
-        simplejson.dumps(response),
-        content_type = 'application/json'
-    )
-    
 
 ##
 # The upload_audio page.  User goes here to upload audio to a specific collection.
@@ -80,27 +38,23 @@ def upload_audio(request):
         print('Receiving file')
         file = request.FILES[u'files[]']
         print('Received file: ')
-        print(file)
+        print(str(file))
+
+        
+        # The collection that this audioFile object is to be associated with.
+        try:
+            col_id = request.POST['collection_id']
+            col = Collection.objects.get(id = request.POST['collection_id'])
+        except ObjectDoesNotExist, e:
+            raise Exception('Invalid collection chosen.')
+        
 
         return HttpResponse(status = 200)
 
+        #   new audioFile object
+        # audioFile = AudioFile(uploader = user, collection=col)
 
         
-    #     # The id for this upload (we will use this at the end)
-    #     # upload_id = request.POST['upload_id']
-        
-    #     # The file being uploaded
-    #     f = request.FILES['audio']        
-
-
-    #     # The collection that this audioFile object is to be associated with.
-    #     try:
-    #         col = Collection.objects.get(id = request.POST['collection_id'])
-    #     except ObjectDoesNotExist, e:
-    #         raise Exception('Invalid collection chosen.')
-        
-    #     #   new audioFile object
-    #     audioFile = AudioFile(uploader = user, collection=col)
 
     #     try:
     #         #   initialize audioFile object (this will take a while as we have to encode)

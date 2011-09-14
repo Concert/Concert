@@ -45,6 +45,17 @@ var ModalUploadPanel = Panel.extend(
          **/
         this.uploadFileWidgetTemplate = $('#uploadfilewidget_template');
 
+        /**
+         *    Input element for collection_id
+         **/
+        var collectionIdInputElement = this.collectionIdInputElement = $('#upload_panel_collection_id');
+        if(!collectionIdInputElement) {
+            throw new Error('this.collectionIdInputElement is undefined');
+        }
+        else if(!collectionIdInputElement.length) {
+            throw new Error('collectionIdInputElement not found');
+        }
+
         /* Callbacks for fileupload plugin */
         _.bindAll(this, '_handle_file_added');
         _.bindAll(this, '_handle_upload_progress');
@@ -91,6 +102,7 @@ var ModalUploadPanel = Panel.extend(
      **/
     render_collection: function (collectionId, collection) {
         this._showMiniStatus(collection);
+        this.collectionIdInputElement.attr('value', collection.get('id'));
     }, 
 
     /**
@@ -98,7 +110,7 @@ var ModalUploadPanel = Panel.extend(
      *  of this collection's uploads.
      **/
     render_collection_audio: function (collectionId, collection) {
-        this._showMiniStatus(collection);
+        this.render_collection(collectionId, collection);
     }, 
 
     /**
@@ -106,7 +118,7 @@ var ModalUploadPanel = Panel.extend(
      *    status of this collection's uploads.
      **/
     render_collection_audio_file: function (collectionId, audioFileId, collection, audioFile) {
-        this._showMiniStatus(collection);
+        this.render_collection(collectionId, collection);
     }, 
 
     /**
@@ -114,14 +126,16 @@ var ModalUploadPanel = Panel.extend(
      *    of this collection's uploads.
      **/
     render_collection_audio_segment: function (collectionId, audioFileId, audioSegmentId, collection, audioFile, audioSegment) {
-        this._showMiniStatus(collection);
+        this.render_collection(collectionId, collection);
     },
+
+
     
     /**
      *  When we're on upload route
      **/
     render_collection_upload: function(collectionId, collection) {
-        /* Show modal window */
+        this.render_collection(collectionId, collection);
         this._show();
     }, 
     
