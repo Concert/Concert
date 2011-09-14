@@ -22,7 +22,7 @@ var AdminPanel = Panel.extend({
         
         _.bindAll(this, "_handle_remove_user");
         _.bindAll(this, "_handle_approve_user");
-        _.bindAll(this, "_handle_deny_user");
+        // _.bindAll(this, "_handle_deny_user");
     },
     
     render: function() {
