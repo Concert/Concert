@@ -47,6 +47,7 @@ var ModalUploadPanel = Panel.extend(
 
         /* Callbacks for fileupload plugin */
         _.bindAll(this, '_handle_file_added');
+        _.bindAll(this, '_handle_upload_progress');
 
         /* Watch the user's uploadedFiles list for newly added files */
         _.bindAll(this, '_handle_uploaded_file');
@@ -128,19 +129,17 @@ var ModalUploadPanel = Panel.extend(
      *  Show the modal panel
      **/
     _show: function() {
+        /* jQuery File Upload plugin */
         $('#upload_panel_form').fileupload({
             url: "/upload/", 
             dataType: "json", 
             dropZone: null, 
             fileInput: $('#upload_panel_file_chooser'),
+            /* When file is added */
             add: this._handle_file_added,
-            /* on upload progress, set the audioFile's progress attribute */
-            progress: function (e, data) {
-                /* Round progress to one decimal point */
-                var progress = Math.round((data.loaded / data.total)*10)/10;
-                /* "change" event will only be fired if progress is set to new value */
-                data.audioFile.set({'progress': progress});
-            }
+
+            /* on upload progress */
+            progress: this._handle_upload_progress
         });
             // .bind('fileuploadadd', this._handle_file_added)
             // .bind('fileuploadsend', function (e, data) {console.log('fileuploadsend');console.log('data:');
@@ -217,6 +216,17 @@ var ModalUploadPanel = Panel.extend(
 
         /* Create file object for this currently uploading file */
         com.concertsoundorganizer.modelManager.user.upload_file(file, data);
-    } 
+    },
+
+    /**
+     *    Called from upload plugin when a progress event is
+     *  triggered.
+     **/
+    _handle_upload_progress: function (e, data) {
+        /* Round progress to one decimal point */
+        var progress = Math.round((data.loaded / data.total)*10)/10;
+        /* "change" event will only be fired if progress is set to new value */
+        data.audioFile.set({'progress': progress});
+    }
 });
 
