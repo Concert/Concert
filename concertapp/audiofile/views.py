@@ -4,19 +4,12 @@ from django.template.response import TemplateResponse
 from django.template import RequestContext
 from django.core.cache import cache
 from django.utils import simplejson
-from django.core.files.uploadedfile import SimpleUploadedFile
 
-from django.core.exceptions import ObjectDoesNotExist
-
-import os, hashlib, tempfile, audiotools, tempfile
-
-from concertapp.models  import *
 from concertapp.collection.models import Collection
+from concertapp.audiofile.models import AudioFile
 
-from concertapp.audiofile import audioHelpers
-from concertapp.audiofile.waveform import *
-from concertapp.settings import MEDIA_ROOT, LOGIN_REDIRECT_URL
-
+from concertapp.audiofile import tasks
+from concertapp.audiofile.api import AudioFileResource
 
 ##
 # The upload_audio page.  User goes here to upload audio to a specific collection.
@@ -35,11 +28,7 @@ def upload_audio(request):
         if request.FILES == None:
             return HttpResponseBadRequest('Must have files attached!')
 
-        print('Receiving file')
         file = request.FILES[u'files[]']
-        print('Received file: ')
-        print(str(file))
-
         
         # The collection that this audioFile object is to be associated with.
         try:
@@ -49,31 +38,26 @@ def upload_audio(request):
             raise Exception('Invalid collection chosen.')
         
 
-        return HttpResponse(status = 200)
+        # create new audioFile object
+        audioFile = AudioFile(uploader = user, collection=col)
+        # audioFile.save()
 
-        #   new audioFile object
-        # audioFile = AudioFile(uploader = user, collection=col)
+        # Handle encoding of audio file asynchronously
+        tasks.handleNewAudioFile.delay(audioFile, file)
 
-        
+        audiofileResource = AudioFileResource()
+        audiofileBundle = audiofileResource.full_dehydrate(audioFile)
+        audiofileData = audiofileResource._meta.serializer.to_simple(audiofileBundle, {})
 
-    #     try:
-    #         #   initialize audioFile object (this will take a while as we have to encode)
-    #         audioFile.save(f)
-    #     except audiotools.UnsupportedFile, e:
-    #         # Delete audioFile object that was partially created.
-    #         audioFile.delete()
-    #         raise Exception('Unsupported file type.')
-    #     except audiotools.PCMReaderError, e:
-    #         # Delete audioFile object that was partially created.
-    #         audioFile.delete()
-    #         raise Exception('Error reading file.')
-    #     except IOError, e:
-    #         # Delete audioFile object that was partially created.
-    #         audioFile.delete()
-    #         raise Exception('An error occured while file handling: '+str(e))
-    #     except Exception, e:
-    #         audioFile.delete()
-    #         raise Exception(str(e))
+        print('Returning JSON:')
+        print(audiofileData)
+
+        # Return serialized audioFile so clientside has id
+        return HttpResponse(simplejson.dumps(audiofileData))
+
+    else:
+        return HttpResponseBadRequest()
+
 
     #     return HttpResponse(status = 200)
                 

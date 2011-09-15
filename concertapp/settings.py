@@ -101,6 +101,7 @@ INSTALLED_APPS = (
     'django.contrib.markup',
     'tastypie',
     'south',
+    'djcelery',
     'concertapp',
     'concertapp.audiofile',
     'concertapp.audiosegment',
@@ -163,3 +164,29 @@ LOGGING = {
         },
     }
 }
+
+import djcelery
+djcelery.setup_loader()
+
+# List of modules to import when celery starts.
+CELERY_IMPORTS = ('concertapp.audiofile.tasks')
+
+## Result store settings.
+CELERY_RESULT_BACKEND = "database"
+CELERY_RESULT_DBURI = "sqlite:///opt/concert/db/database.db"
+
+## Broker settings.
+#BROKER_HOST = "localhost"
+#BROKER_PORT = 5672
+#BROKER_VHOST = "/"
+#BROKER_USER = "bitnami"
+#BROKER_PASSWORD = "concert6^6"
+
+## Worker settings
+## If you're doing mostly I/O you can have more processes,
+## but if mostly spending CPU, try to keep it close to the
+## number of CPUs on your machine. If not set, the number of CPUs/cores
+## available will be used.
+CELERYD_CONCURRENCY = 2
+CELERYD_LOG_FILE = "/opt/binami/celery/celeryd.log"
+# CELERYD_LOG_LEVEL = "INFO"
