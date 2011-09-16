@@ -11,6 +11,9 @@ from concertapp.audiofile.models import AudioFile
 from concertapp.audiofile import tasks
 from concertapp.audiofile.api import AudioFileResource
 
+import logging
+log = logging.getLogger('concertapp')
+
 ##
 # The upload_audio page.  User goes here to upload audio to a specific collection.
 #
@@ -18,13 +21,13 @@ from concertapp.audiofile.api import AudioFileResource
 ##
 @login_required
 def upload_audio(request):
-    print('upload_audio')
+    log.info('upload_audio')
     user = request.user
     
     username = user.username
 
     if request.method == 'POST':
-        print('POST to upload_audio')
+        log.info('POST to upload_audio')
         if request.FILES == None:
             return HttpResponseBadRequest('Must have files attached!')
 
@@ -43,7 +46,7 @@ def upload_audio(request):
         # audioFile.save()
 
         # Handle encoding of audio file asynchronously
-        tasks.handleNewAudioFile.delay(audioFile, file)
+        tasks.handleNewAudioFile.delay()
 
         audiofileResource = AudioFileResource()
         audiofileBundle = audiofileResource.full_dehydrate(audioFile)

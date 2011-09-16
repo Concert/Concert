@@ -3,7 +3,10 @@
 # celery.
 ###
 
-from celery.decorators import task
+from celery.task import task
+
+import logging
+logger = logging.getLogger('concertapp')
 
 
 ###
@@ -17,9 +20,12 @@ from celery.decorators import task
 #   @throws     probably other stuff.
 ###
 @task()
-def handleNewAudioFile(newAudioFile, f):
-
-    print('handleNewAudioFile running')
+def handleNewAudioFile(**kwargs):
+    log = self.get_logger(**kwargs)
+    log.info('1. handleNewAudioFile running')
+    print('2. handleNewAudioFile running')
+    logger.info('3. handleNewAudioFile running')
+    self.logger.info('4. handleNewAudioFile running')
 
     return True
 

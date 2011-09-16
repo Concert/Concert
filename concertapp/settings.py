@@ -154,14 +154,23 @@ LOGGING = {
         'mail_admins': {
             'level': 'ERROR',
             'class': 'django.utils.log.AdminEmailHandler'
+        },
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler'
         }
     },
     'loggers': {
         'django.request': {
             'handlers': ['mail_admins'],
             'level': 'ERROR',
-            'propagate': True,
+            'propagate': True
         },
+        'concertapp': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propogate': True,
+        }
     }
 }
 
@@ -174,19 +183,22 @@ CELERY_IMPORTS = ('concertapp.audiofile.tasks')
 ## Result store settings.
 CELERY_RESULT_BACKEND = "database"
 CELERY_RESULT_DBURI = "sqlite:///opt/concert/db/database.db"
+# echo enables verbose logging from SQLAlchemy.
+CELERY_RESULT_ENGINE_OPTIONS = {"echo": True}
 
 ## Broker settings.
-#BROKER_HOST = "localhost"
-#BROKER_PORT = 5672
-#BROKER_VHOST = "/"
-#BROKER_USER = "bitnami"
-#BROKER_PASSWORD = "concert6^6"
+BROKER_HOST = "localhost"
+BROKER_PORT = 5672
+BROKER_VHOST = "concertmqhost"
+BROKER_USER = "concertmquser"
+BROKER_PASSWORD = "concert6^6"
 
 ## Worker settings
 ## If you're doing mostly I/O you can have more processes,
 ## but if mostly spending CPU, try to keep it close to the
 ## number of CPUs on your machine. If not set, the number of CPUs/cores
 ## available will be used.
-CELERYD_CONCURRENCY = 2
-CELERYD_LOG_FILE = "/opt/binami/celery/celeryd.log"
-# CELERYD_LOG_LEVEL = "INFO"
+#CELERYD_CONCURRENCY = 2
+#CELERYD_LOG_FILE = "/opt/bitnami/celery/celeryd.log"
+#CELERYD_LOG_LEVEL = "INFO"
+
