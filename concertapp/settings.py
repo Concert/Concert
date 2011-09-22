@@ -124,10 +124,13 @@ APPEND_SLASH = True
 # Make all uploaded files write to disk
 FILE_UPLOAD_MAX_MEMORY_SIZE = 0
 
-# New file upload handlers for progress uploads
-# FILE_UPLOAD_HANDLERS = (
-#     'concertapp.uploadprogresscachedhandler.UploadProgressCachedHandler', 
-# ) + global_settings.FILE_UPLOAD_HANDLERS
+# Ensures that uploaded files will never be kept in memory, and will always be written to disk.
+FILE_UPLOAD_HANDLERS = (
+    "django.core.files.uploadhandler.TemporaryFileUploadHandler",
+)
+
+# Put the temporary files in our own directory, we'll be sure to delete them when we are done.
+FILE_UPLOAD_TEMP_DIR = "/opt/concert/tmp/"
 
 # Cache!
 CACHE_BACKEND = 'memcached://127.0.0.1:11211/'
@@ -178,7 +181,7 @@ import djcelery
 djcelery.setup_loader()
 
 # List of modules to import when celery starts.
-CELERY_IMPORTS = ('concertapp.audiofile.tasks')
+CELERY_IMPORTS = ()
 
 ## Result store settings.
 CELERY_RESULT_BACKEND = "database"
@@ -198,7 +201,8 @@ BROKER_PASSWORD = "concert6^6"
 ## but if mostly spending CPU, try to keep it close to the
 ## number of CPUs on your machine. If not set, the number of CPUs/cores
 ## available will be used.
-#CELERYD_CONCURRENCY = 2
-#CELERYD_LOG_FILE = "/opt/bitnami/celery/celeryd.log"
-#CELERYD_LOG_LEVEL = "INFO"
+CELERYD_CONCURRENCY = 2
+#CELERYD_LOG_FILE="/var/log/celery/%n.log"
+#CELERYD_PID_FILE="/var/run/celery/%n.pid"
+#CELERY_LOG_LEVEL="INFO"
 

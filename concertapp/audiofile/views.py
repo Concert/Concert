@@ -42,11 +42,11 @@ def upload_audio(request):
         
 
         # create new audioFile object
-        audioFile = AudioFile(uploader = user, collection=col)
-        # audioFile.save()
+        audioFile = AudioFile(uploader = user, collection=col, name=file.name)
+        audioFile.save()
 
         # Handle encoding of audio file asynchronously
-        tasks.handleNewAudioFile.delay()
+        tasks.handleNewAudioFile.delay(path=str(file.temporary_file_path()), audioFileId=str(audioFile.id))
 
         audiofileResource = AudioFileResource()
         audiofileBundle = audiofileResource.full_dehydrate(audioFile)

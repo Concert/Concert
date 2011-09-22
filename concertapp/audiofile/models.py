@@ -7,7 +7,6 @@ from django.core.exceptions import ValidationError
 from django.core.files  import File
 from django.core.files.base import ContentFile
 from django.core.files.storage import FileSystemStorage
-from django.core.files.uploadedfile import SimpleUploadedFile
 from django.db import models
 from django.db.models.signals import post_save
 from django.core.exceptions import ObjectDoesNotExist
@@ -45,6 +44,8 @@ class AudioFile(models.Model):
         # File is initially uploading
         default='u'
     )
+    # The progress of the current stage
+    progress = models.DecimalField(max_digits = 3, decimal_places = 2, default = 0)
     
     def __unicode__(self):
         return self.name
