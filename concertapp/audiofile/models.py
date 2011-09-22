@@ -39,7 +39,8 @@ class AudioFile(models.Model):
         choices=(
             ('u', 'Uploading'),
             ('p', 'Processing'),
-            ('d', 'Done')
+            ('d', 'Done'),
+            ('e', 'Error')
         ),
         # File is initially uploading
         default='u'
@@ -98,44 +99,3 @@ class AudioFile(models.Model):
         #   has not called save()
         if(self.id):
             super(AudioFile, self).delete()
-
-    ###
-    #   Return a path to a waveform image for this AudioFile object at a given
-    #   zoom level.
-    #   
-    #   @param  {Number}    zoomLevel    -  The given zoom level.
-    ###
-    def _get_waveform_path(self, zoomLevel):
-        return os.path.join(
-            MEDIA_ROOT, AudioFile.WAVEFORM_LOCATION, str(zoomLevel), str(self.id)+'.png'
-        )
-
-    ##
-    # Generate all the waveforms for this audio object.  
-    #
-    def _generate_waveform(self):
-        # Relative path to our wave file (from MEDIA_ROOT)
-        wavPath = self.wav.name
-
-        # Absolute path to our wave file
-        wavPathAbsolute = os.path.join(MEDIA_ROOT, 'audio', wavPath)
-        
-        idString = str(self.id)
-        
-        # Get length of audio (samples)
-        length = audioHelpers.getLength(wavPathAbsolute)
-
-        # For each zoom level
-        for zoomLevel in AudioFile.ZOOM_LEVELS:
-            # Path to the image for the waveform at this zoom level
-            waveformPath = self._get_waveform_path(zoomLevel)
-            audioHelpers.generateWaveform(
-                # from this wave file
-                wavPathAbsolute, 
-                # put waveform here
-                waveformPath, 
-                # At zoomLevel px per second (width)
-                zoomLevel * length, 
-                # Height
-                AudioFile.WAVEFORM_IMAGE_HEIGHT
-            )

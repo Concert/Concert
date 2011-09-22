@@ -41,6 +41,7 @@ class AudioFileResource(MyResource):
         null=True
     )
     status = fields.CharField('status')
+    
 
     class Meta(MyResource.Meta):
         authentication = DjangoAuthentication()

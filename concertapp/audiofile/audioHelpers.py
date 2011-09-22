@@ -25,15 +25,13 @@ NEW_FILE_PERMISSIONS = 0755
 #   @throws   Exception                   - unsupported audio channel config
 #   @throws   Exception                   - unsupported bit-depth
 #   @throws   audiotools.EncodingError    - encoding error
-def toNormalizedWav(inputFilePath, outputFilePath):
+def toNormalizedWav(inputFilePath, outputFilePath, progressCallback):
     # open file (can raise errors)
     orig = audiotools.open(inputFilePath)
     
 
     ## Decode file to raw audio (PCM)
     origPCM = orig.to_pcm()
-
-
 
     # If this is a surround sound file, or if there is no channel mask
     # we shall error for now.  This will probably not happen.
@@ -65,14 +63,25 @@ def toNormalizedWav(inputFilePath, outputFilePath):
 
 
     # Create new PCM stream at 44100, with 2 channels
-    normalizedPCM = audiotools.PCMConverter(origPCM, 44100, 2,
-        channel_mask, bits_per_sample)
+    normalizedPCM = audiotools.PCMConverter(
+        origPCM,
+        44100,
+        2,
+        channel_mask,
+        bits_per_sample
+    )
 
     
 
     # Output normalized audio to wav (Can raise error)
-    wav = audiotools.WaveAudio.from_pcm(outputFilePath,
-        normalizedPCM)
+    wav = audiotools.WaveAudio.from_pcm(
+        outputFilePath,
+        audiotools.PCMReaderProgress(
+            normalizedPCM,
+            orig.total_frames(),
+            progressCallback
+        )
+    )
 
     os.chmod(outputFilePath, NEW_FILE_PERMISSIONS)
     

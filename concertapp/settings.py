@@ -129,8 +129,8 @@ FILE_UPLOAD_HANDLERS = (
     "django.core.files.uploadhandler.TemporaryFileUploadHandler",
 )
 
-# Put the temporary files in our own directory, we'll be sure to delete them when we are done.
-FILE_UPLOAD_TEMP_DIR = "/opt/concert/tmp/"
+# Files that are being processed
+TO_PROCESS_DIRECTORY = '/opt/concert/tmp/to_process'
 
 # Cache!
 CACHE_BACKEND = 'memcached://127.0.0.1:11211/'
