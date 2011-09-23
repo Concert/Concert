@@ -18,6 +18,8 @@ from concertapp.settings import TO_PROCESS_DIRECTORY
 import logging
 logger = logging.getLogger('concertapp')
 
+from decimal import Decimal
+
 
 
 ###
@@ -45,50 +47,64 @@ def handleNewAudioFile(audioFileId=None, path=None, **kwargs):
     oggPath = os.path.join(TO_PROCESS_DIRECTORY, idString+'.ogg')
     mp3Path = os.path.join(TO_PROCESS_DIRECTORY, idString+'.mp3')
 
-    # We'll say the progress breakdown is as follows:
-    #   0% - 50%: Encoding
-    #       0 - 16%:    Converting to .wav
-    #       16 - 32%:   Converting to .mp3
-    #       32% - 50%:  Converting to .ogg
-    #   50% - 100%: Transferring (to S3)
-    
-    progressCap = 0.16
-
     def progressCallback(x, y):
-        # logger.info('progressCallback')
-        # rawPercent = x/y
+        rawPercent = Decimal(x)/Decimal(y)
+        thisProgress = (rawPercent*progressCallback.progressScale).quantize(Decimal('.01'))
 
-        # logger.info(str(round(progress, 2)))
-        pass
+        newTotalProgress = progressCallback.prevProgress + thisProgress
+        
+        if newTotalProgress != progressCallback.cache:
+            progressCallback.cache = newTotalProgress
+
+            logger.info('progress: {0}'.format(str(newTotalProgress)))
+    
+    # The total progress for this audiofile thus far
+    progressCallback.prevProgress = Decimal('0')
+    # Factor to scale current task against the total progress
+    progressCallback.progressScale = Decimal('0.16')
+    # Cache so we don't send the same progress more than once
+    progressCallback.cache = Decimal('0')
     
     def errorHandler(e):
         audioFile.status = 'e'
         audioFile.save()
         logger.error('Error while converting to wav:')
         logger.error(str(e))
+    
+    convertingMsg = 'Converting {0} to {1}'
+
+    # We'll say the progress breakdown is as follows:
+    #   0% - 50%: Encoding
+    #       0 - 16%:    Converting to .wav
+    #       16 - 32%:   Converting to .mp3
+    #       32% - 50%:  Converting to .ogg
+    #   50% - 60%: Generating waveform
+    #   60% - 100%: Transferring (to S3)
 
 
     try:
         # We will first normalize the wav file (convert to proper sample rate,
         #   etc). NOTE: this doesn't actually mean "normalize" to 0db, but 
         #   hopefully in the future.
-        logger.info('Converting "'+path+'" to "'+wavPath+'"')
+        logger.info(convertingMsg.format(path, wavPath))
         audioHelpers.toNormalizedWav(path, wavPath, progressCallback)
+        progressCallback.prevProgress = Decimal('0.16')
     except Exception, e:
         errorHandler(e)
     
     try:
         # Convert to ogg
-        logger.info('Converting "'+wavPath+'" to "'+oggPath+'"')
-        audioHelpers.toOgg(wavPath, oggPath)
+        logger.info(convertingMsg.format(wavPath, oggPath))
+        # audioHelpers.toOgg(wavPath, oggPath, progressCallback)
+        progressCallback.prevProgress = Decimal('0.32')
     except Exception, e:
         errorHandler(e)
     
-
     try:
         # Convert to mp3
-        logger.info('Converting "'+wavPath+'" to "'+mp3Path+'"')
-        audioHelpers.toMp3(wavPath, mp3Path)
+        logger.info(convertingMsg.format(wavPath, mp3Path))
+        # audioHelpers.toMp3(wavPath, mp3Path, progressCallback)
+        progressCallback.prevProgress = Decimal('0.50')
     except Exception, e:
         errorHandler(e)
     
@@ -104,14 +120,19 @@ def handleNewAudioFile(audioFileId=None, path=None, **kwargs):
     #         TO_PROCESS_DIRECTORY, str(zoomLevel), str(audioFile.id)+'.png'
     #     )
 
+    # Waveform generation only counts for 10%
+    progressCallback.progressScale = Decimal('0.10')
+
     # Generate the waveform onto disk
     # Get length of audio (samples)
-    length = audioHelpers.getLength(wavPathAbsolute)
+    length = audioHelpers.getLength(wavPath)
 
     # For each zoom level
     for zoomLevel in AudioFile.ZOOM_LEVELS:
         # Path to the image for the waveform at this zoom level
         waveformPath = os.path.join(TO_PROCESS_DIRECTORY, idString + '-' + str(zoomLevel) + '.png')
+        logger.info('Creating waveform image {0}'.format(waveformPath))
+
         audioHelpers.generateWaveform(
             # from this wave file
             wavPath, 
@@ -122,10 +143,14 @@ def handleNewAudioFile(audioFileId=None, path=None, **kwargs):
             # Height
             AudioFile.WAVEFORM_IMAGE_HEIGHT
         )
+        progressCallback.prevProgress = Decimal('0.60')
+    
 
 
     # Save duration of audio file in seconds
-    audioFile.duration = audioHelpers.getLength(wavOutput)
+    audioFile.duration = audioHelpers.getLength(wavPath)
+    # Save current progress of audio file
+    audioFile.progress = progressCallback.prevProgress
 
     audioFile.save()
 

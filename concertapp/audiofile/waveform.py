@@ -296,8 +296,8 @@ class WaveformImage(object):
 ##
 # Actual driver function for creating the waveform image
 ##
-def create_png(input_filename, output_filename_w, image_width, image_height, channels, fft_size, f_max, f_min):
-    print "processing file %s:\n\t" % input_filename
+def create_png(input_filename, output_filename_w, image_width, image_height, channels, fft_size, f_max, f_min, progressCallback):
+    # print "processing file %s:\n\t" % input_filename
  
     audio_file = audiolab.sndfile(input_filename, 'read')
  
@@ -310,10 +310,13 @@ def create_png(input_filename, output_filename_w, image_width, image_height, cha
         waveform = WaveformImage(image_width, image_height/channels)
      
         for x in range(image_width):
+
+            if progressCallback:
+                progressCallback(x, (image_width/2))
      
-            if x % (image_width/10) == 0:
-                sys.stdout.write('.')
-                sys.stdout.flush()
+            # if x % (image_width/10) == 0:
+            #     sys.stdout.write('.')
+            #     sys.stdout.flush()
      
             seek_point = int(x * samples_per_pixel)
             next_seek_point = int((x + 1) * samples_per_pixel)

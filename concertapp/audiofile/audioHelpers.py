@@ -17,7 +17,8 @@ NEW_FILE_PERMISSIONS = 0755
 #
 #   @param inputFilePath    String  The path of an audio file (any format)
 #   @param outputFilePath   String  The path to the file to output to
-#                                       (including .wav)
+#   (including .wav)
+#   @param  progressCallback    Function    Method to call on progress.
 #
 #   @throws   audiotools.UnsupportedFile  - if filetype is unsupported
 #   @throws   IOError                     - if there was a problem opening
@@ -96,13 +97,17 @@ def toNormalizedWav(inputFilePath, outputFilePath, progressCallback):
 #                                   format)
 #   @param  outputFilePath  String  The path to the output audio file (should
 #                                   end in .ogg)
+#   @param  progressCallback    Function    Method to call on progress
 #
 #   @throws audiotools.UnsupportedFile  If input filetype is not supported
 #   @throws IOError                     If input file cannot be opened
 #   @throws audiotools.EncodingError    Problems during encoding to PCM or ogg
-def toOgg(inputFilePath, outputFilePath):
-    ogg = audiotools.VorbisAudio.from_pcm(outputFilePath,
-        audiotools.open(inputFilePath).to_pcm())
+def toOgg(inputFilePath, outputFilePath, progressCallback):
+    audiotools.open(inputFilePath).convert(
+        outputFilePath,
+        audiotools.VorbisAudio,
+        progress=progressCallback
+    )
     os.chmod(outputFilePath, NEW_FILE_PERMISSIONS)
     
 ###
@@ -113,13 +118,17 @@ def toOgg(inputFilePath, outputFilePath):
 #                                   format)
 #   @param  outputFilePath  String  The path to the output audio file (should
 #                                   end in .mp3)
+#   @param  progressCallback    Function    Method to call on progress
 #
 #   @throws audiotools.UnsupportedFile  If input filetype is not supported
 #   @throws IOError                     If input file cannot be opened
 #   @throws audiotools.EncodingError    Problems during encoding to PCM or mp3
-def toMp3(inputFilePath, outputFilePath):
-    mp3 = audiotools.MP3Audio.from_pcm(outputFilePath,
-        audiotools.open(inputFilePath).to_pcm())
+def toMp3(inputFilePath, outputFilePath, progressCallback):
+    audiotools.open(inputFilePath).convert(
+        outputFilePath,
+        audiotools.MP3Audio,
+        progress=progressCallback
+    )
     os.chmod(outputFilePath, NEW_FILE_PERMISSIONS)
 
 
@@ -146,11 +155,11 @@ def getLength(waveFilePath):
 # @param f_max Optional 
 # @param f_min Optional
 #
-def generateWaveform(waveFilePath, imageFilePath, imageWidth, imageHeight, channels=None, fft_size=2048, f_max=22050, f_min=10):
+def generateWaveform(waveFilePath, imageFilePath, imageWidth, imageHeight, channels=None, fft_size=2048, f_max=22050, f_min=10, progress=None):
     # Determine channels if unknown
     if not channels:
         src = wave.open(waveFilePath, 'rb')
         channels = src.getnchannels()
         src.close()
 
-    create_png(waveFilePath, imageFilePath, imageWidth, imageHeight, channels, fft_size, f_max, f_min);
+    create_png(waveFilePath, imageFilePath, imageWidth, imageHeight, channels, fft_size, f_max, f_min, progress);
