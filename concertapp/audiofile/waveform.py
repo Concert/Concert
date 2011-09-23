@@ -27,6 +27,10 @@ import scikits.audiolab as audiolab
 import ImageFilter, ImageChops, Image, ImageDraw, ImageColor
 import numpy
 import os
+
+import logging
+log = logging.getLogger('concertapp')
+
  
 class AudioProcessor(object):
     def __init__(self, audio_file, fft_size, window_function=numpy.ones):
@@ -306,13 +310,17 @@ def create_png(input_filename, output_filename_w, image_width, image_height, cha
     processor = AudioProcessor(audio_file, fft_size, numpy.hanning)
     path_split = os.path.split(output_filename_w)
 
+    progressTotal = image_width*channels
+    progressPrevious = 0
+
+    
     for channel in range(channels):
         waveform = WaveformImage(image_width, image_height/channels)
-     
+
         for x in range(image_width):
 
             if progressCallback:
-                progressCallback(x, (image_width/2))
+                progressCallback(progressPrevious+x, progressTotal)
      
             # if x % (image_width/10) == 0:
             #     sys.stdout.write('.')
@@ -325,6 +333,8 @@ def create_png(input_filename, output_filename_w, image_width, image_height, cha
      
             peaks = processor.peaks(seek_point, next_seek_point, channel)
             waveform.draw_peaks(x, peaks, spectral_centroid)
+        
+        progressPrevious += image_width
      
         # If we have only one channel, don't bother with renaming
         if channels == 1:
@@ -332,8 +342,6 @@ def create_png(input_filename, output_filename_w, image_width, image_height, cha
         else:
             waveform.save(os.path.join(path_split[0], str(channel) +
                 path_split[1]))
-
-        print " done"
 
     if channels > 1:
         combined = Image.new("RGBA", (image_width, image_height))
@@ -347,9 +355,6 @@ def create_png(input_filename, output_filename_w, image_width, image_height, cha
                 path_split[1]))
 
         combined.save(output_filename_w)
-
- 
-    print " done"
  
  
 if __name__ == '__main__':

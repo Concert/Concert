@@ -141,7 +141,8 @@ def handleNewAudioFile(audioFileId=None, path=None, **kwargs):
             # At zoomLevel px per second (width)
             zoomLevel * length, 
             # Height
-            AudioFile.WAVEFORM_IMAGE_HEIGHT
+            AudioFile.WAVEFORM_IMAGE_HEIGHT,
+            progress=progressCallback
         )
         progressCallback.prevProgress = Decimal('0.60')
     
