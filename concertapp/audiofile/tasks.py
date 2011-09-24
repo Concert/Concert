@@ -57,7 +57,12 @@ def handleNewAudioFile(audioFileId=None, path=None, **kwargs):
             progressCallback.cache = newTotalProgress
 
             logger.info('progress: {0}'.format(str(newTotalProgress)))
-    
+            audioFile.progress = newTotalProgress
+            audioFile.save()
+
+    # progressCallback can have a reference to the audioFile (I don't know how 
+    # to do scoping in Python)
+    progressCallback.audioFile = audioFile
     # The total progress for this audiofile thus far
     progressCallback.prevProgress = Decimal('0')
     # Factor to scale current task against the total progress
@@ -95,7 +100,7 @@ def handleNewAudioFile(audioFileId=None, path=None, **kwargs):
     try:
         # Convert to ogg
         logger.info(convertingMsg.format(wavPath, oggPath))
-        # audioHelpers.toOgg(wavPath, oggPath, progressCallback)
+        audioHelpers.toOgg(wavPath, oggPath, progressCallback)
         progressCallback.prevProgress = Decimal('0.32')
     except Exception, e:
         errorHandler(e)
@@ -103,7 +108,7 @@ def handleNewAudioFile(audioFileId=None, path=None, **kwargs):
     try:
         # Convert to mp3
         logger.info(convertingMsg.format(wavPath, mp3Path))
-        # audioHelpers.toMp3(wavPath, mp3Path, progressCallback)
+        audioHelpers.toMp3(wavPath, mp3Path, progressCallback)
         progressCallback.prevProgress = Decimal('0.50')
     except Exception, e:
         errorHandler(e)

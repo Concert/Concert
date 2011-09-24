@@ -50,6 +50,7 @@ LoggedInModelManager.prototype.init = function(params) {
  *  was loaded initially.
  **/
 LoggedInModelManager.prototype._loadData = function() {
+    console.log('LoggedInModelManager._loadData');
     var dataToLoad = this._dataToLoad;
     /**
      *  Load user info

@@ -37,7 +37,8 @@ var User = ConcertModel.extend(
      **/
     upload_file: function (file, data) {
         var newAudioFile = new AudioFile({
-            name: file.name
+            name: file.name,
+            uploader: this
         });
         this.get('uploadedFiles').add(newAudioFile);
 

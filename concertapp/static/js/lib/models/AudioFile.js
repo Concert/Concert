@@ -58,6 +58,11 @@ var AudioFile = ConcertModel.extend(
     }, 
 
     /**
+     *    handle to interval that is checking this audioFile's status
+     **/
+    _statusCheckerHandle: null,
+
+    /**
      *  Gets the status string for display.
      *
      *  @param    {String}    "UPPER" | "LOWER"
@@ -79,9 +84,30 @@ var AudioFile = ConcertModel.extend(
             this.set({'progress': 0});
         }
 
+        // if(this.get('uploader')) {
+        //     this.get('uploader').get('uploadedFiles').add(this);
+        // }
+
+
         _.bindAll(this, '_handle_upload_done');
         _.bindAll(this, '_handle_upload_fail');
         _.bindAll(this, '_handle_upload_always');
+        _.bindAll(this, 'fetch');
+
+
+        /* If the audioFile is not done, and has an id */
+        if((this.get('status') != 'd') && this.get('id')) {
+            /* We need to continue checking progress */
+            this.beginStatusChecking();
+        }
+    }, 
+
+    /**
+     *    Continuously check for the audio file's status.
+     **/
+    beginStatusChecking: function () {
+        /* Check every 500ms for updates */
+        this._statusCheckerHandle = setInterval(this.fetch, 1000);
     }, 
 
     /**
@@ -137,9 +163,10 @@ var AudioFile = ConcertModel.extend(
      *    When file upload is complete
      **/
     _handle_upload_done: function (data, textStatus) {
-        console.log('AudioFile._handle_upload_done');
-        console.log('data:');
-        console.log(data);
+        /* Update our model */
+        this.set(data);
+
+        this.beginStatusChecking();
     },
 
     /**
@@ -155,9 +182,7 @@ var AudioFile = ConcertModel.extend(
      *    Always after file is uploaded
      **/
     _handle_upload_always: function (data, textStatus) {
-        console.log('AudioFile._handle_upload_always');
-        console.log('data:');
-        console.log(data);
+        
     }
     
 });

@@ -20,6 +20,8 @@ var UploadFileWidget = Widget.extend(
 
   render: function() {
     Widget.prototype.render.call(this);
+
+
     
     return this;
   }, 
