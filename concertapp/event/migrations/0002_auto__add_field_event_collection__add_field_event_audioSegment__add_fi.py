@@ -9,7 +9,16 @@ class Migration(SchemaMigration):
     def forwards(self, orm):
         
         # Adding field 'Event.collection'
-        db.add_column('event_event', 'collection', self.gf('django.db.models.fields.related.ForeignKey')(related_name='events', null=True, to=orm['collection.Collection']), keep_default=False)
+        db.add_column('event_event', 'collection', self.gf('django.db.models.fields.related.ForeignKey')(default=1, related_name='events', to=orm['collection.Collection']), keep_default=False)
+
+        # Adding field 'Event.audioSegment'
+        db.add_column('event_event', 'audioSegment', self.gf('django.db.models.fields.related.ForeignKey')(related_name='events', null=True, to=orm['audiosegment.AudioSegment']), keep_default=False)
+
+        # Adding field 'Event.audioFile'
+        db.add_column('event_event', 'audioFile', self.gf('django.db.models.fields.related.ForeignKey')(related_name='events', null=True, to=orm['audiofile.AudioFile']), keep_default=False)
+
+        # Adding field 'Event.tag'
+        db.add_column('event_event', 'tag', self.gf('django.db.models.fields.related.ForeignKey')(related_name='events', null=True, to=orm['tag.Tag']), keep_default=False)
 
 
     def backwards(self, orm):
@@ -17,8 +26,40 @@ class Migration(SchemaMigration):
         # Deleting field 'Event.collection'
         db.delete_column('event_event', 'collection_id')
 
+        # Deleting field 'Event.audioSegment'
+        db.delete_column('event_event', 'audioSegment_id')
+
+        # Deleting field 'Event.audioFile'
+        db.delete_column('event_event', 'audioFile_id')
+
+        # Deleting field 'Event.tag'
+        db.delete_column('event_event', 'tag_id')
+
 
     models = {
+        'audiofile.audiofile': {
+            'Meta': {'object_name': 'AudioFile'},
+            'collection': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'files'", 'to': "orm['collection.Collection']"}),
+            'duration': ('django.db.models.fields.DecimalField', [], {'default': '0', 'max_digits': '8', 'decimal_places': '2'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'mp3': ('django.db.models.fields.files.FileField', [], {'max_length': '100'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
+            'ogg': ('django.db.models.fields.files.FileField', [], {'max_length': '100'}),
+            'progress': ('django.db.models.fields.DecimalField', [], {'default': '0', 'max_digits': '3', 'decimal_places': '2'}),
+            'status': ('django.db.models.fields.CharField', [], {'default': "'u'", 'max_length': '1'}),
+            'uploader': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'uploadedFiles'", 'to': "orm['auth.User']"}),
+            'wav': ('django.db.models.fields.files.FileField', [], {'max_length': '100'})
+        },
+        'audiosegment.audiosegment': {
+            'Meta': {'object_name': 'AudioSegment'},
+            'audioFile': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'segments'", 'to': "orm['audiofile.AudioFile']"}),
+            'beginning': ('django.db.models.fields.FloatField', [], {}),
+            'collection': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'segments'", 'to': "orm['collection.Collection']"}),
+            'creator': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"}),
+            'end': ('django.db.models.fields.FloatField', [], {}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
+        },
         'auth.group': {
             'Meta': {'object_name': 'Group'},
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
@@ -90,10 +131,15 @@ class Migration(SchemaMigration):
         'event.event': {
             'Meta': {'object_name': 'Event'},
             'active': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
-            'collection': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'events'", 'null': 'True', 'to': "orm['collection.Collection']"}),
+            'audioFile': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'events'", 'null': 'True', 'to': "orm['audiofile.AudioFile']"}),
+            'audioSegment': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'events'", 'null': 'True', 'to': "orm['audiosegment.AudioSegment']"}),
+            'collection': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'events'", 'to': "orm['collection.Collection']"}),
+            'comment': ('django.db.models.fields.TextField', [], {'null': 'True'}),
             'eventType': ('django.db.models.fields.IntegerField', [], {}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'time': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'})
+            'tag': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'events'", 'null': 'True', 'to': "orm['tag.Tag']"}),
+            'time': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'events'", 'to': "orm['auth.User']"})
         },
         'event.joincollectionevent': {
             'Meta': {'object_name': 'JoinCollectionEvent', '_ormbases': ['event.Event']},
@@ -114,6 +160,18 @@ class Migration(SchemaMigration):
         'event.requestrevokedevent': {
             'Meta': {'object_name': 'RequestRevokedEvent', '_ormbases': ['event.Event']},
             'event_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['event.Event']", 'unique': 'True', 'primary_key': 'True'})
+        },
+        'event.tagcommentevent': {
+            'Meta': {'object_name': 'TagCommentEvent', '_ormbases': ['event.Event']},
+            'event_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['event.Event']", 'unique': 'True', 'primary_key': 'True'})
+        },
+        'tag.tag': {
+            'Meta': {'object_name': 'Tag'},
+            'collection': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'tags'", 'to': "orm['collection.Collection']"}),
+            'creator': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
+            'segments': ('django.db.models.fields.related.ManyToManyField', [], {'related_name': "'tags'", 'symmetrical': 'False', 'to': "orm['audiosegment.AudioSegment']"})
         }
     }
 

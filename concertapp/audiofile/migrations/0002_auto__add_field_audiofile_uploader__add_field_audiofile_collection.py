@@ -8,14 +8,20 @@ class Migration(SchemaMigration):
 
     def forwards(self, orm):
         
-        # Adding field 'AudioFile.status'
-        db.add_column('audiofile_audiofile', 'status', self.gf('django.db.models.fields.CharField')(default='u', max_length=1), keep_default=False)
+        # Adding field 'AudioFile.uploader'
+        db.add_column('audiofile_audiofile', 'uploader', self.gf('django.db.models.fields.related.ForeignKey')(default=1, related_name='uploadedFiles', to=orm['auth.User']), keep_default=False)
+
+        # Adding field 'AudioFile.collection'
+        db.add_column('audiofile_audiofile', 'collection', self.gf('django.db.models.fields.related.ForeignKey')(default=1, related_name='files', to=orm['collection.Collection']), keep_default=False)
 
 
     def backwards(self, orm):
         
-        # Deleting field 'AudioFile.status'
-        db.delete_column('audiofile_audiofile', 'status')
+        # Deleting field 'AudioFile.uploader'
+        db.delete_column('audiofile_audiofile', 'uploader_id')
+
+        # Deleting field 'AudioFile.collection'
+        db.delete_column('audiofile_audiofile', 'collection_id')
 
 
     models = {
@@ -27,6 +33,7 @@ class Migration(SchemaMigration):
             'mp3': ('django.db.models.fields.files.FileField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'ogg': ('django.db.models.fields.files.FileField', [], {'max_length': '100'}),
+            'progress': ('django.db.models.fields.DecimalField', [], {'default': '0', 'max_digits': '3', 'decimal_places': '2'}),
             'status': ('django.db.models.fields.CharField', [], {'default': "'u'", 'max_length': '1'}),
             'uploader': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'uploadedFiles'", 'to': "orm['auth.User']"}),
             'wav': ('django.db.models.fields.files.FileField', [], {'max_length': '100'})
@@ -65,6 +72,7 @@ class Migration(SchemaMigration):
             'admin': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '100'}),
+            'pendingUsers': ('django.db.models.fields.related.ManyToManyField', [], {'related_name': "'pendingCollections'", 'symmetrical': 'False', 'to': "orm['auth.User']"}),
             'users': ('django.db.models.fields.related.ManyToManyField', [], {'related_name': "'collections'", 'symmetrical': 'False', 'to': "orm['auth.User']"})
         },
         'contenttypes.contenttype': {

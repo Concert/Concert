@@ -29,13 +29,11 @@ class Event(models.Model):
     # Wether this event is shown to the public or not
     active = models.BooleanField(default=True)
 
-    # The collection that this event is associated with.  Should never be null,
-    # but we can't have a default.
-    collection = models.ForeignKey(Collection, related_name='events', null=True)
+    # The collection that this event is associated with.
+    collection = models.ForeignKey(Collection, related_name='events')
 
-    # Every event has a user associated with it, so lets just store it here.  Should
-    # also never be null, but we don't have a default.
-    user = models.ForeignKey(User, related_name='events', null=True)
+    # Every event has a user associated with it, so lets just store it here.
+    user = models.ForeignKey(User, related_name='events')
 
     # This event might be related to an `AudioSegment` or an `AudioFile` object
     audioSegment = models.ForeignKey(AudioSegment, related_name='events', null=True)
@@ -78,14 +76,16 @@ class Event(models.Model):
         return ContentType.objects.get_for_model(type(self))
 
 ## When a user comments on a tag.
-#class TagCommentEvent(Event):
-#    tag_comment = models.ForeignKey("TagComment", related_name = 'comment_event')
+class TagCommentEvent(Event):
+    # Set the default event type
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault('eventType', 10)
+        return super(TagCommentEvent, self).__init__(*args, **kwargs)
     
-#    def __unicode__(self):
-#        author = self.user
-#        tag = self.tag_comment.tag.name
-
-#        return str(author) + " commented on tag '" + str(tag) + "'."
+    def __unicode__(self):
+        author = self.user
+        tag = self.tag
+        return str(author) + " commented on tag '" + str(tag) + "'."
 
 
 ## When a user comments on a segment
@@ -111,8 +111,6 @@ class AudioFileCommentEvent(Event):
         creator = self.user
         audioFile = self.audioFile.name
         return str(creator) + "commented on " + str(audioFile) + ":\n'" + self.content + "'"
-    
-    
 
 ## When an audio segment is created.
 class AudioSegmentCreatedEvent(Event):

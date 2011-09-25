@@ -14,9 +14,7 @@ class Migration(SchemaMigration):
             ('name', self.gf('django.db.models.fields.CharField')(max_length=100)),
             ('beginning', self.gf('django.db.models.fields.FloatField')()),
             ('end', self.gf('django.db.models.fields.FloatField')()),
-            ('audioFile', self.gf('django.db.models.fields.related.ForeignKey')(related_name='segments', to=orm['audiofile.AudioFile'])),
             ('creator', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
-            ('collection', self.gf('django.db.models.fields.related.ForeignKey')(related_name='segments', to=orm['collection.Collection'])),
         ))
         db.send_create_signal('audiosegment', ['AudioSegment'])
 
@@ -28,22 +26,9 @@ class Migration(SchemaMigration):
 
 
     models = {
-        'audiofile.audiofile': {
-            'Meta': {'object_name': 'AudioFile'},
-            'collection': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'files'", 'to': "orm['collection.Collection']"}),
-            'duration': ('django.db.models.fields.DecimalField', [], {'default': '0', 'max_digits': '8', 'decimal_places': '2'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'mp3': ('django.db.models.fields.files.FileField', [], {'max_length': '100'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
-            'ogg': ('django.db.models.fields.files.FileField', [], {'max_length': '100'}),
-            'uploader': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'uploadedFiles'", 'to': "orm['auth.User']"}),
-            'wav': ('django.db.models.fields.files.FileField', [], {'max_length': '100'})
-        },
         'audiosegment.audiosegment': {
             'Meta': {'object_name': 'AudioSegment'},
-            'audioFile': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'segments'", 'to': "orm['audiofile.AudioFile']"}),
             'beginning': ('django.db.models.fields.FloatField', [], {}),
-            'collection': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'segments'", 'to': "orm['collection.Collection']"}),
             'creator': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"}),
             'end': ('django.db.models.fields.FloatField', [], {}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
@@ -77,14 +62,6 @@ class Migration(SchemaMigration):
             'password': ('django.db.models.fields.CharField', [], {'max_length': '128'}),
             'user_permissions': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['auth.Permission']", 'symmetrical': 'False', 'blank': 'True'}),
             'username': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '30'})
-        },
-        'collection.collection': {
-            'Meta': {'object_name': 'Collection'},
-            'admin': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '100'}),
-            'pendingUsers': ('django.db.models.fields.related.ManyToManyField', [], {'related_name': "'pendingCollections'", 'symmetrical': 'False', 'to': "orm['auth.User']"}),
-            'users': ('django.db.models.fields.related.ManyToManyField', [], {'related_name': "'collections'", 'symmetrical': 'False', 'to': "orm['auth.User']"})
         },
         'contenttypes.contenttype': {
             'Meta': {'ordering': "('name',)", 'unique_together': "(('app_label', 'model'),)", 'object_name': 'ContentType', 'db_table': "'django_content_type'"},
