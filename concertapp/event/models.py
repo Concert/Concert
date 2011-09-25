@@ -29,11 +29,13 @@ class Event(models.Model):
     # Wether this event is shown to the public or not
     active = models.BooleanField(default=True)
 
-    # The collection that this event is associated with
-    collection = models.ForeignKey(Collection, related_name='events')
+    # The collection that this event is associated with.  Should never be null,
+    # but we can't have a default.
+    collection = models.ForeignKey(Collection, related_name='events', null=True)
 
-    # Every event has a user associated with it, so lets just store it here
-    user = models.ForeignKey(User)
+    # Every event has a user associated with it, so lets just store it here.  Should
+    # also never be null, but we don't have a default.
+    user = models.ForeignKey(User, related_name='events', null=True)
 
     # This event might be related to an `AudioSegment` or an `AudioFile` object
     audioSegment = models.ForeignKey(AudioSegment, related_name='events', null=True)
