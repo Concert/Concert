@@ -28,11 +28,6 @@ var Router = Backbone.Router.extend(
          **/
         this.currentRoute = null;
 
-        /**
-         *    The previous fragment (for going back)
-         **/
-        this.previousFragment = null;
-
         /* Create dataset manager */
         var modelManager = new LoggedInModelManager(_.extend(options, {
             router: this 
@@ -54,14 +49,6 @@ var Router = Backbone.Router.extend(
         Backbone.history.start();
     },
 
-    goBack: function () {
-        if(this.previousFragment) {
-            console.log('this.previousFragment:');
-            console.log(this.previousFragment);
-            this.navigate(this.previousFragment);
-        }
-    }, 
-    
     /**
      *  This method is called when views are to be created.  Should be overridden
      *  in child classes.
@@ -172,9 +159,6 @@ var Router = Backbone.Router.extend(
             this._collection_audio_segment_route
         );
         
-        _.bindAll(this, '_collection_upload_route');
-        this.route('collection/:collectionId/upload', 'collection_upload', this._collection_upload_route);
-        
         return;
     }, 
 
@@ -232,17 +216,6 @@ var Router = Backbone.Router.extend(
         return [collection];
     },
     
-    /**
-     *  Route for #collection/:collectionId/upload, brings up modal window for uploading audio or viewing
-     *  audio upload status.
-     **/
-    _collection_upload_route: function(collectionId) {
-        var newArgs = this._collection_route(collectionId);
-
-        this.currentRoute = 'collection_upload';
-        return newArgs;
-    }, 
-
     /**
      *  Rotue for "/#collection/:collectionId/audio".  Shows collection's audio
      *  files and segments.

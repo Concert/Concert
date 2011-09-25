@@ -21,7 +21,7 @@ var ModalUploadPanel = Panel.extend(
         /**
          *    Container for upload display at top of layout.
          **/
-        this.uploadMiniStatusContainer = $('#upload_mini_status_container');
+        var uploadMiniStatusContainer = this.uploadMiniStatusContainer = $('#upload_mini_status_container');
 
         /**
          *    Container for upload status at top of panel
@@ -63,6 +63,10 @@ var ModalUploadPanel = Panel.extend(
         /* Watch the user's uploadedFiles list for newly added files */
         _.bindAll(this, '_handle_uploaded_file');
         com.concertsoundorganizer.modelManager.user.bind('add:uploadedFiles', this._handle_uploaded_file);
+
+        /* When the upload link button is clicked */
+        _.bindAll(this, '_show');
+        uploadMiniStatusContainer.bind('click', this._show);
     },
 
     /**
@@ -128,16 +132,6 @@ var ModalUploadPanel = Panel.extend(
     render_collection_audio_segment: function (collectionId, audioFileId, audioSegmentId, collection, audioFile, audioSegment) {
         this.render_collection(collectionId, collection);
     },
-
-
-    
-    /**
-     *  When we're on upload route
-     **/
-    render_collection_upload: function(collectionId, collection) {
-        this.render_collection(collectionId, collection);
-        this._show();
-    }, 
     
     /**
      *  Show the modal panel
@@ -178,8 +172,8 @@ var ModalUploadPanel = Panel.extend(
             // console.log(data);});
         this.el.removeClass('hidden');
         
-        /* Bind to the escape key */
-        $(document).bind('keyup', _.bind(function(e) {
+        /* Bind to the escape key just once */
+        $(document).one('keyup', _.bind(function(e) {
             if(e.keyCode == 27) {
                 /* go back to wherever we were */
                 // com.concertsoundorganizer.router.goBack();
