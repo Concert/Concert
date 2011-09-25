@@ -11,19 +11,10 @@ class Migration(SchemaMigration):
         # Adding model 'Tag'
         db.create_table('tag_tag', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('collection', self.gf('django.db.models.fields.related.ForeignKey')(related_name='tags', to=orm['collection.Collection'])),
             ('name', self.gf('django.db.models.fields.CharField')(max_length=100)),
             ('creator', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
         ))
         db.send_create_signal('tag', ['Tag'])
-
-        # Adding M2M table for field segments on 'Tag'
-        db.create_table('tag_tag_segments', (
-            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('tag', models.ForeignKey(orm['tag.tag'], null=False)),
-            ('audiosegment', models.ForeignKey(orm['audiosegment.audiosegment'], null=False))
-        ))
-        db.create_unique('tag_tag_segments', ['tag_id', 'audiosegment_id'])
 
 
     def backwards(self, orm):
@@ -31,32 +22,8 @@ class Migration(SchemaMigration):
         # Deleting model 'Tag'
         db.delete_table('tag_tag')
 
-        # Removing M2M table for field segments on 'Tag'
-        db.delete_table('tag_tag_segments')
-
 
     models = {
-        'audiofile.audiofile': {
-            'Meta': {'object_name': 'AudioFile'},
-            'collection': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'files'", 'to': "orm['collection.Collection']"}),
-            'duration': ('django.db.models.fields.DecimalField', [], {'default': '0', 'max_digits': '8', 'decimal_places': '2'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'mp3': ('django.db.models.fields.files.FileField', [], {'max_length': '100'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
-            'ogg': ('django.db.models.fields.files.FileField', [], {'max_length': '100'}),
-            'uploader': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'uploadedFiles'", 'to': "orm['auth.User']"}),
-            'wav': ('django.db.models.fields.files.FileField', [], {'max_length': '100'})
-        },
-        'audiosegment.audiosegment': {
-            'Meta': {'object_name': 'AudioSegment'},
-            'audioFile': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'segments'", 'to': "orm['audiofile.AudioFile']"}),
-            'beginning': ('django.db.models.fields.FloatField', [], {}),
-            'collection': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'segments'", 'to': "orm['collection.Collection']"}),
-            'creator': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"}),
-            'end': ('django.db.models.fields.FloatField', [], {}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
-        },
         'auth.group': {
             'Meta': {'object_name': 'Group'},
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
@@ -86,14 +53,6 @@ class Migration(SchemaMigration):
             'user_permissions': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['auth.Permission']", 'symmetrical': 'False', 'blank': 'True'}),
             'username': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '30'})
         },
-        'collection.collection': {
-            'Meta': {'object_name': 'Collection'},
-            'admin': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '100'}),
-            'pendingUsers': ('django.db.models.fields.related.ManyToManyField', [], {'related_name': "'pendingCollections'", 'symmetrical': 'False', 'to': "orm['auth.User']"}),
-            'users': ('django.db.models.fields.related.ManyToManyField', [], {'related_name': "'collections'", 'symmetrical': 'False', 'to': "orm['auth.User']"})
-        },
         'contenttypes.contenttype': {
             'Meta': {'ordering': "('name',)", 'unique_together': "(('app_label', 'model'),)", 'object_name': 'ContentType', 'db_table': "'django_content_type'"},
             'app_label': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
@@ -103,11 +62,9 @@ class Migration(SchemaMigration):
         },
         'tag.tag': {
             'Meta': {'object_name': 'Tag'},
-            'collection': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'tags'", 'to': "orm['collection.Collection']"}),
             'creator': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
-            'segments': ('django.db.models.fields.related.ManyToManyField', [], {'related_name': "'tags'", 'symmetrical': 'False', 'to': "orm['audiosegment.AudioSegment']"})
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         }
     }
 

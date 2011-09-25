@@ -21,7 +21,6 @@ class Tag(models.Model):
     segments = models.ManyToManyField(AudioSegment, related_name = "tags")
     collection = models.ForeignKey(Collection, related_name="tags")
     name = models.CharField(max_length = 100)
-#    time = models.DateTimeField(auto_now_add = True)
     creator = models.ForeignKey(User)
 
     def __unicode__(self):
