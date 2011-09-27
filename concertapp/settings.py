@@ -206,3 +206,7 @@ CELERYD_CONCURRENCY = 2
 #CELERYD_PID_FILE="/var/run/celery/%n.pid"
 #CELERY_LOG_LEVEL="INFO"
 
+# Amazon credentials (for uploading audio)
+AWS_ACCESS_KEY_ID=""
+AWS_SECRET_ACCESS_KEY=""
+S3_BUCKET=""
