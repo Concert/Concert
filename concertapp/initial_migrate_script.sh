@@ -8,3 +8,5 @@ mv initial_data.json initial_data.json.bak
 ./manage.py migrate concertapp.tag 0001_initial
 ./manage.py migrate
 mv initial_data.json.bak initial_data.json
+./manage.py createsuperuser
+./manage.py loaddata initial_data.json
