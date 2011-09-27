@@ -11,7 +11,7 @@ from concertapp.audiofile import audioHelpers
 
 from django.core.files.uploadedfile import SimpleUploadedFile
 
-from concertapp.settings import TO_PROCESS_DIRECTORY
+from concertapp.settings import TO_PROCESS_DIRECTORY, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, S3_BUCKET
 
 
 
@@ -20,6 +20,25 @@ logger = logging.getLogger('concertapp')
 
 from decimal import Decimal
 
+from boto.s3.connection import S3Connection
+from boto.s3.key import Key
+
+###
+#   Uploads a file to S3 using the same filename.
+#
+#   @param  String  filePath    -   The path to the local
+#   file to upload to the S3 bucket defined in concertapp.settings.
+#   @param  Function    progressCallback    -   The progress callback
+###
+def uploadToS3(filePath, progressCallback=None):
+    logger.info('Opening S3 connection')
+    conn = S3Connection(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
+    logger.info('Opening "{0}" bucket'.format(S3_BUCKET))
+    bucket = conn.get_bucket(S3_BUCKET)
+
+    logger.info('Uploading {0} to {1}/{2}'.format(filePath, S3_BUCKET, os.path.basename(filePath)))
+    key = bucket.new_key(key_name=os.path.basename(filePath))
+    key.set_contents_from_filename(filePath, cb=progressCallback)
 
 
 ###
@@ -35,6 +54,7 @@ def handleNewAudioFile(audioFileId=None, path=None, **kwargs):
     logger.info('\n-----\nhandleNewAudioFile running')
 
     audioFile = AudioFile.objects.get(pk=audioFileId)
+
 
     # Update audioFile status for browser
     audioFile.status = 'p'
@@ -65,8 +85,6 @@ def handleNewAudioFile(audioFileId=None, path=None, **kwargs):
     progressCallback.audioFile = audioFile
     # The total progress for this audiofile thus far
     progressCallback.prevProgress = Decimal('0')
-    # Factor to scale current task against the total progress
-    progressCallback.progressScale = Decimal('0.16')
     # Cache so we don't send the same progress more than once
     progressCallback.cache = Decimal('0')
     
@@ -79,13 +97,17 @@ def handleNewAudioFile(audioFileId=None, path=None, **kwargs):
     convertingMsg = 'Converting {0} to {1}'
 
     # We'll say the progress breakdown is as follows:
-    #   0% - 50%: Encoding
-    #       0 - 16%:    Converting to .wav
-    #       16 - 32%:   Converting to .mp3
-    #       32% - 50%:  Converting to .ogg
-    #   50% - 60%: Generating waveform
-    #   60% - 100%: Transferring (to S3)
+    #   0% - 90%: Encoding and uploading audio
+    #       0 - 30: Generating wav
+    #       30 - 50: Generating ogg
+    #       50 - 60: Uploading ogg
+    #       60 - 80: Generating mp3
+    #       80 - 90: Uploading mp3
+    #   90 - 100: Generating and uploading waveforms
 
+
+    # Factor to scale current task against the total progress
+    progressCallback.progressScale = Decimal('0.30')
 
     try:
         # We will first normalize the wav file (convert to proper sample rate,
@@ -93,40 +115,55 @@ def handleNewAudioFile(audioFileId=None, path=None, **kwargs):
         #   hopefully in the future.
         logger.info(convertingMsg.format(path, wavPath))
         audioHelpers.toNormalizedWav(path, wavPath, progressCallback)
-        progressCallback.prevProgress = Decimal('0.16')
+
+        # Save duration of audio file in seconds
+        audioFile.duration = audioHelpers.getLength(wavPath)
+
+        progressCallback.prevProgress = Decimal('0.30')
     except Exception, e:
         errorHandler(e)
     
+    progressCallback.progressScale = Decimal('0.20')
+
     try:
         # Convert to ogg
         logger.info(convertingMsg.format(wavPath, oggPath))
         audioHelpers.toOgg(wavPath, oggPath, progressCallback)
-        progressCallback.prevProgress = Decimal('0.32')
+        progressCallback.prevProgress = Decimal('0.50')
+
+        progressCallback.progressScale = Decimal('0.10')
+
+        # Upload to S3
+        uploadToS3(oggPath, progressCallback)
+        # Delete
+        os.remove(oggPath)
+
+        progressCallback.prevProgress = Decimal('0.60')
     except Exception, e:
         errorHandler(e)
+
+
+    progressCallback.progressScale = Decimal('0.20')
     
     try:
         # Convert to mp3
         logger.info(convertingMsg.format(wavPath, mp3Path))
         audioHelpers.toMp3(wavPath, mp3Path, progressCallback)
-        progressCallback.prevProgress = Decimal('0.50')
+        progressCallback.prevProgress = Decimal('0.80')
+
+        progressCallback.progressScale = Decimal('0.10')
+
+        # Upload
+        uploadToS3(mp3Path, progressCallback)
+        # Delete
+        os.remove(mp3Path)
+        progressCallback.prevProgress = Decimal('0.90')
     except Exception, e:
         errorHandler(e)
     
 
-    ###
-    #   Return a path to a waveform image for this AudioFile object at a given
-    #   zoom level.
-    #   
-    #   @param  {Number}    zoomLevel    -  The given zoom level.
-    ###
-    # def get_waveform_path(audioFile, zoomLevel):
-    #     return os.path.join(
-    #         TO_PROCESS_DIRECTORY, str(zoomLevel), str(audioFile.id)+'.png'
-    #     )
-
     # Waveform generation only counts for 10%
-    progressCallback.progressScale = Decimal('0.10')
+    progressCallback.progressScale = Decimal('0.10') / len(AudioFile.ZOOM_LEVELS)
 
     # Generate the waveform onto disk
     # Get length of audio (samples)
@@ -149,20 +186,30 @@ def handleNewAudioFile(audioFileId=None, path=None, **kwargs):
             AudioFile.WAVEFORM_IMAGE_HEIGHT,
             progress=progressCallback
         )
-        progressCallback.prevProgress = Decimal('0.60')
+
+        # Upload waveform images as they're created
+        uploadToS3(waveformPath, progressCallback)
+        # Then delete
+        os.remove(waveformPath)
+
+        progressCallback.prevProgress += progressCallback.progressScale
     
 
 
-    # Save duration of audio file in seconds
-    audioFile.duration = audioHelpers.getLength(wavPath)
-    # Save current progress of audio file
-    audioFile.progress = progressCallback.prevProgress
 
+    # Delete wav
+    os.remove(wavPath)
+    # Delete original uploaded file
+    os.remove(path)
+
+    # We are done
+    audioFile.progress = 1
     audioFile.save()
 
     logger.info('\n-----\nhandleNewAudioFile success')
     return True
-        
+
+
         
         
         
