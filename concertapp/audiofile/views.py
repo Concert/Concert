@@ -12,6 +12,7 @@ from concertapp.audiofile import tasks
 from concertapp.audiofile.api import AudioFileResource
 
 import os
+from shutil import copyfile
 from concertapp.settings import TO_PROCESS_DIRECTORY
 
 import logging
@@ -50,9 +51,9 @@ def upload_audio(request):
 
         # Move file to "to_upload" folder so Django doesn't delete it.
         tmpPath = os.path.join(TO_PROCESS_DIRECTORY, file.name)
-        os.rename(file.temporary_file_path(), tmpPath)
-        os.chmod(tmpPath, 0777) # Probably a security risk.
-        stats = os.stat(TO_PROCESS_DIRECTORY)
+
+	log.info('copying file from {0} to {1}'.format(file.temporary_file_path(), tmpPath))
+        copyfile(file.temporary_file_path(), tmpPath)
 
 
         # Handle encoding of audio file asynchronously
