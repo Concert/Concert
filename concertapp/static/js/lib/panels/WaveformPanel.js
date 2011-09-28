@@ -104,7 +104,10 @@ var WaveformPanel = Panel.extend(
         var waveformImageElement = this.waveformImageElement;
         
         /* Load the waveform viewer with the audio files' waveform image */
-        waveformImageElement.attr('src', this.selectedAudioFile.get_waveform_src(10));
+        this.selectedAudioFile.get_waveform_src(10, function (url) {
+            waveformImageElement.attr('src', url);
+        });
+        
     },
     
     /**

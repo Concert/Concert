@@ -10,7 +10,7 @@ from concertapp.audiosegment.api import AudioSegmentResource
 # 3 server-side URLS in the entire program.
 from concertapp.views import logged_in_view
 from concertapp.organize.views import organize_collection
-from concertapp.audiofile.views import upload_audio
+from concertapp.audiofile.views import upload_audio, get_audio_src
 
 from concertapp.admin import admin_site
 
@@ -50,6 +50,9 @@ urlpatterns = patterns('',
 
     # Upload audio
     url(r'^upload/', upload_audio, name='upload_audio'),
+
+    # Get audio and waveform urls from S3
+    url(r'^src/(?P<audio_id>\d+)/$', get_audio_src, name='get_audio_src'),
 
     # REST api
     (r'^api/', include(api1.urls)),

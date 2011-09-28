@@ -13,7 +13,9 @@ from concertapp.audiofile.api import AudioFileResource
 
 import os
 from shutil import copyfile
-from concertapp.settings import TO_PROCESS_DIRECTORY
+from concertapp.settings import TO_PROCESS_DIRECTORY, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, S3_BUCKET
+
+from boto.s3.connection import S3Connection
 
 import logging
 log = logging.getLogger('concertapp')
@@ -69,11 +71,40 @@ def upload_audio(request):
     else:
         return HttpResponseBadRequest()
 
+@login_required
+def get_audio_src(request, audio_id):
+    log.info('get_audio_src')
 
-    #     return HttpResponse(status = 200)
-                
-    # else :        
-    #     return TemplateResponse(request, 'audio/upload_audio.html', {
-    #         'page_name': 'Upload Audio',
-    #         'js_page_path': '/audio/upload/',
-    #     })
+    # All links will expire in 24 hours
+    expiresIn = 60 * 60 * 24
+
+    conn = S3Connection(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
+    bucket = conn.get_bucket(S3_BUCKET)
+
+    result = {
+        'audioSrc': {
+            'ogg': '',
+            'mp3': ''
+        },
+        'waveformSrc': {
+            # Waveform images go here indexed by ZOOM_LEVEL
+        }
+    }
+
+    # Get link for mp3
+    mp3Key = bucket.get_key('{0}.mp3'.format(audio_id))
+    result['audioSrc']['mp3'] = mp3Key.generate_url(expiresIn)
+
+    # Get link for ogg
+    oggKey = bucket.get_key('{0}.ogg'.format(audio_id))
+    result['audioSrc']['ogg'] = oggKey.generate_url(expiresIn)
+
+    # For each zoom level
+    for zoomLevel in AudioFile.ZOOM_LEVELS:
+        # Get link for waveform at this zoom level
+        waveformKey = bucket.get_key('{0}-{1}.png'.format(audio_id, zoomLevel))
+        result['waveformSrc'][zoomLevel] = waveformKey.generate_url(expiresIn)
+
+    return HttpResponse(simplejson.dumps(result))
+
+    

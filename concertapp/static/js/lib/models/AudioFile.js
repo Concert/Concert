@@ -88,38 +88,77 @@ var AudioFile = ConcertModel.extend(
         _.bindAll(this, '_handle_upload_fail');
         _.bindAll(this, '_handle_upload_always');
         _.bindAll(this, 'fetch');
+
+        /* Temporary urls for our resources */
+        this._audioSrc = null;
+        this._waveformSrc = null;
+
+        /* When we last updated our resources */
+        this._lastUpdatedResources = null;
+    }, 
+
+    /**
+     *    If we need to update our resources, they will be updated here.
+     *
+     *  @param    {Function}    cb - the method to call upon success.    
+     **/
+    _update_resources: function (cb) {
+        var now = new Date();
+        if(!this._lastUpdatedResources 
+            /* or resources were updated more than 24 hours ago */
+            || (now.getTime() - this._lastUpdatedResources.getTime()) > 60 * 60 * 24) {
+                
+            /* Update resources */
+            var me = this;
+            $.ajax({
+                url: 'src/'+this.get('id'), 
+                dataType: "json", 
+                success: function (resp) {
+                    me._audioSrc = resp.audioSrc;
+                    me._waveformSrc = resp.waveformSrc;
+                    me._lastUpdatedResources = new Date();
+                    cb();
+                }, 
+                error: function (resp) {
+                    throw new Error('Error while retrieving resource URLs');
+                }
+            });
+        }
+        else {
+            // already have urls cached
+            cb();
+        }
+        
+
+
     }, 
 
     /**
      *  Returns the path to the audio file specified by type.
      *
-     *  @param  {String: ogg|mp3}    type    -   The type of audio file
+     *  @param    {Function}    cb    - The method that will be executed
+     *  containing the audio url.
      **/
-    get_audio_src: function(type) {
-        var id = this.get('id');
-        
-        if(id) {
-            return '/media/audio/'+id+'.'+type;
-        }
-        else {
-            return null;
-        }
+    get_audio_src: function(cb) {
+        var me = this;
+        this._update_resources(function () {
+            var audioType = com.concertsoundorganizer.compatibility.audioType;
+            cb(me._audioSrc[audioType]);
+        });
     }, 
     
     /**
      *  Returns the path to the waveform image specified by zoom_level
      *
      *  @param  {Number}    zoom_level    - The zoom level for this waveform image.
+     *  @param    {Function}    cb    - The method that will be executed
+     *  containing the waveform url.
      **/
-    get_waveform_src: function(zoom_level) {
-        var id = this.get('id');
-        
-        if(id) {
-            return '/media/waveforms/'+zoom_level+'/'+id+'.png';
-        }
-        else {
-            return null;
-        }
+    get_waveform_src: function(zoom_level, cb) {
+        var me = this;
+        this._update_resources(function () {
+            cb(me._waveformSrc[zoom_level]);
+        });
     },
 
     /**

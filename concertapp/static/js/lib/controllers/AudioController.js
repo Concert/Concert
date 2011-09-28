@@ -31,10 +31,7 @@ var AudioController = Backbone.Router.extend(
         /* The callback function for an audio loop (on a timeupdate event) */ 
         this.audioLoopTimeUpdateCallback = function() {};
         this.audioLoopEnabled = false;
-        
-        /* This is the type of audio file we will use */
-        this.audioType = com.concertsoundorganizer.compatibility.audioType;
-        
+                
         _.bindAll(this, "_select_file");
         this.router.bind('route:collection_audio_file', this._select_file);
         
@@ -63,13 +60,13 @@ var AudioController = Backbone.Router.extend(
                 me.trigger('audio_loaded');
             }
         }(this));
-        
-        this._load_waveform_image(selectedAudioFile.get_waveform_src(10), function(me) {
-            return function() {
+        var me = this;
+        selectedAudioFile.get_waveform_src(10, function (url) {
+            me._load_waveform_image(url, function() {
                 console.log("AudioController triggers waveform_loaded");
                 me.trigger('waveform_loaded');
-            }
-        }(this));        
+            });
+        });
     },
     
     _select_segment: function(collectionId, fileId, segmentId, selectedCollection, selectedAudioFile, selectedAudioSegment) {
@@ -87,12 +84,12 @@ var AudioController = Backbone.Router.extend(
         
         
         /* Load waveform image */
-        this._load_waveform_image(selectedAudioFile.get_waveform_src(10),
-            function(me) {
-                return function() {
-                    me.trigger('waveform_loaded');
-                };
-            }(this));        
+        var me = this;
+        selectedAudioFile.get_waveform_src(10, function (url) {
+            me._load_waveform_image(url, function() {
+                me.trigger('waveform_loaded');
+            });            
+        });
     },
     
     /**
@@ -106,20 +103,22 @@ var AudioController = Backbone.Router.extend(
         var audio = this.audio;
 
         /* The proper audio source for this browser */
-        var audiosrc = audioFile.get_audio_src(this.audioType);
-        
-        /* If this is a new audio file */
-        var newAudioSrc = !(audio.src.search(audiosrc) > 0);
-        
-        if(newAudioSrc) {
-            /* when the file is done loading */
-            $(audio).one('canplaythrough', callback);
-        
-            this.audio.src = audiosrc;
-        }
-        else {
-            callback();
-        }     
+        var me = this;
+        audioFile.get_audio_src(function (audiosrc) {
+            /* If this is a new audio file */
+            var newAudioSrc = !(audio.src.search(audiosrc) > 0);
+            
+            if(newAudioSrc) {
+                /* when the file is done loading */
+                $(audio).one('canplaythrough', callback);
+            
+                me.audio.src = audiosrc;
+            }
+            else {
+                callback();
+            }     
+
+        });
     },
 
     /**
