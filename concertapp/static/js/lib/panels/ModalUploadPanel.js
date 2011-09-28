@@ -34,7 +34,6 @@ var ModalUploadPanel = Panel.extend(
             throw new Error('uploadStatusContainer not found');
         }
 
-
         /**
          *    Template for "upload" link
          **/
@@ -56,6 +55,11 @@ var ModalUploadPanel = Panel.extend(
             throw new Error('collectionIdInputElement not found');
         }
 
+        /**
+         *    A list of AudioFile objects which represent our currently uploading files.
+         **/
+        this._pendingFiles = [];
+
         /* Callbacks for fileupload plugin */
         _.bindAll(this, '_handle_file_added');
         _.bindAll(this, '_handle_upload_progress');
@@ -67,7 +71,36 @@ var ModalUploadPanel = Panel.extend(
         /* When the upload link button is clicked */
         _.bindAll(this, '_show');
         uploadMiniStatusContainer.bind('click', this._show);
+
+        /* Every 1 second, update all of our pending audio files */
+        _.bindAll(this, 'updatePendingFiles');
+        setInterval(this.updatePendingFiles, 1000);
     },
+
+    /**
+     *    Called every 1000ms, loop through our pending AudioFile objects
+     *  and call fetch.
+     **/
+    updatePendingFiles: function () {
+        var pendingFiles = this._pendingFiles;
+        for (var i = 0, il = pendingFiles.length; i < il; i++) {
+            var file = pendingFiles[i];
+
+            if(file && (file instanceof AudioFile) && file.get('id')) {
+                var currentIndex = i;
+                /* Retrieve updated file */
+                file.fetch({
+                    success: function (file) {
+                        /* If file is now done */
+                        if(file.get('status') == 'd') {
+                            /* Remove from pending files list */
+                            delete pendingFiles[currentIndex];
+                        }
+                    }
+                });
+            }
+        };
+    }, 
 
     /**
      *    Called when a new uploaded file is added to the user's list.
@@ -90,6 +123,9 @@ var ModalUploadPanel = Panel.extend(
             /* TODO: initially this method will be called a whole bunch of times
             if there are files processing, and DOM will potentially reflow repeatedly */
             this.uploadStatusContainer.append(widget.render().el);
+
+            /* Add to list of pending files so it will be updated */
+            this._pendingFiles.push(audioFile);            
         }
     }, 
 

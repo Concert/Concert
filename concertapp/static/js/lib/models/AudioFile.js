@@ -58,11 +58,6 @@ var AudioFile = ConcertModel.extend(
     }, 
 
     /**
-     *    handle to interval that is checking this audioFile's status
-     **/
-    _statusCheckerHandle: null,
-
-    /**
      *  Gets the status string for display.
      *
      *  @param    {String}    "UPPER" | "LOWER"
@@ -93,21 +88,6 @@ var AudioFile = ConcertModel.extend(
         _.bindAll(this, '_handle_upload_fail');
         _.bindAll(this, '_handle_upload_always');
         _.bindAll(this, 'fetch');
-
-
-        /* If the audioFile is not done, and has an id */
-        if((this.get('status') != 'd') && this.get('id')) {
-            /* We need to continue checking progress */
-            this.beginStatusChecking();
-        }
-    }, 
-
-    /**
-     *    Continuously check for the audio file's status.
-     **/
-    beginStatusChecking: function () {
-        /* Check every 500ms for updates */
-        this._statusCheckerHandle = setInterval(this.fetch, 1000);
     }, 
 
     /**
@@ -165,8 +145,6 @@ var AudioFile = ConcertModel.extend(
     _handle_upload_done: function (data, textStatus) {
         /* Update our model */
         this.set(data);
-
-        this.beginStatusChecking();
     },
 
     /**

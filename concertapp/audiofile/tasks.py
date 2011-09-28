@@ -204,6 +204,7 @@ def handleNewAudioFile(audioFileId=None, path=None, **kwargs):
 
     # We are done
     audioFile.progress = 1
+    audioFile.status = 'd'
     audioFile.save()
 
     logger.info('\n-----\nhandleNewAudioFile success')
