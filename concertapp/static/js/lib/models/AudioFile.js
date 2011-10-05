@@ -184,6 +184,9 @@ var AudioFile = ConcertModel.extend(
     _handle_upload_done: function (data, textStatus) {
         /* Update our model */
         this.set(data);
+
+        /* Update our collection */
+        this.get('collection').get('files').add(this);
     },
 
     /**

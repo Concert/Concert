@@ -36,11 +36,14 @@ var User = ConcertModel.extend(
      *  @param    {Object}  data - FileUpload data object
      **/
     upload_file: function (file, data) {
+        var currentCollection = com.concertsoundorganizer.modelManager.selectedCollections.first();
         var newAudioFile = new AudioFile({
             name: file.name,
-            uploader: this
+            uploader: this,
+            collection: currentCollection
         });
         this.get('uploadedFiles').add(newAudioFile);
+        // currentCollection.get('files').add(newAudioFile);
 
         /* Start uploading of audio file */
         newAudioFile.upload(data);

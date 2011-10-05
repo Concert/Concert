@@ -97,6 +97,14 @@ var ListPanel = Panel.extend(
          *  List of collection widgets.  Indexed by the ID of the collection
          **/
         this.collectionWidgets = {};
+
+        /**
+         *  A reference to the current collection model.
+         **/
+        this.collection = null;
+
+        _.bindAll(this, '_handle_audiofile_added');
+        _.bindAll(this, '_handle_audiosegment_added');
     }, 
     
     /**
@@ -109,6 +117,26 @@ var ListPanel = Panel.extend(
             selectedWidget.deselect();
         }
     }, 
+
+    /**
+     *  Called when an `AudioFile` is added to the current collection.
+     *
+     *  @param    {AudioFile}    audioFile  -   The file that was added.
+     **/
+    _handle_audiofile_added: function (audioFile) {
+        /* Just re-render everything (for now) */
+        this.render_collection_audio(null, audioFile.get('collection'));
+    }, 
+
+    /**
+     *  Called when an `AudioSegment` object is added to the current collection.
+     *
+     *  @param    {AudioSegment}    audioSegment    -   The segment that was added.
+     **/
+    _handle_audiosegment_added: function (audioSegment) {
+        /* Just re-render everything for now */
+        this.render_collection_audio(null, audioSegment.get('collection'));
+    },
     
     /**
      *  Called when we're looking at a collection's audio assets
@@ -169,6 +197,14 @@ var ListPanel = Panel.extend(
         /* Save some state */
         this.currentlyRendered = 'collection_audio';
         this.selectedWidget = null;
+
+        if(this.collection) {
+            this.collection.get('segments').unbind('add', this._handle_audiosegment_added);
+            this.collection.get('files').unbind('add', this._handle_audiofile_added);            
+        }
+        this.collection = collection;
+        collection.get('segments').bind('add', this._handle_audiosegment_added);
+        collection.get('files').bind('add', this._handle_audiofile_added);
     }, 
     
     /**
