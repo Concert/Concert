@@ -43,7 +43,6 @@ var User = ConcertModel.extend(
             collection: currentCollection
         });
         this.get('uploadedFiles').add(newAudioFile);
-        // currentCollection.get('files').add(newAudioFile);
 
         /* Start uploading of audio file */
         newAudioFile.upload(data);

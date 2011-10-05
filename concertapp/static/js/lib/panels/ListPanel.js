@@ -124,7 +124,10 @@ var ListPanel = Panel.extend(
      *  @param    {AudioFile}    audioFile  -   The file that was added.
      **/
     _handle_audiofile_added: function (audioFile) {
-        /* Just re-render everything (for now) */
+        /* Just re-render everything (for now). 
+        TODO: Rework this when we get filtering. */
+        if(com.concertsoundorganizer.modelManager.selectedAudioSegments.length) {
+        }
         this.render_collection_audio(null, audioFile.get('collection'));
     }, 
 
@@ -145,7 +148,7 @@ var ListPanel = Panel.extend(
      *  @param  {Collection}    collection    - The collection
      **/
     render_collection_audio: function(collectionId, collection) {
-        this._deselect_currently_selected_widget();
+        this._deselect_currently_selected_widget();    
         
         /* temporary frag for dom additions */
         var frag = document.createDocumentFragment();

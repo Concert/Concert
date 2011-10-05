@@ -58,6 +58,40 @@ var Collection = ConcertModel.extend(
         }
     ], 
     name: 'collection',
+
+    initialize: function () {
+        ConcertModel.prototype.initialize.apply(this, arguments);
+
+        /**
+         *  A master list of audio segments and files, sorted by date
+         **/
+        this.audio = new Backbone.Collection({
+            /* `ConcertModel` so it can store `AudioSegment` and `AudioFile` objects */
+            model: ConcertModel
+        });
+
+        /**
+         *  When we add to our list of segments, add to above list as well.
+         **/
+        this.get('segments').bind('add', _.bind(function (segment) {
+            this.audio.add(segment);
+        }, this));
+
+        /* Same with files */
+        this.get('files').bind('add', _.bind(function (file) {
+            this.audio.add(file);
+        }, this));
+
+        /* And when removed */
+        this.get('segments').bind('remove', _.bind(function (segment) {
+            this.audio.remove(segment);
+        }, this));
+        this.get('files').bind('remove', _.bind(function (file) {
+            this.audio.remove(file);
+        }, this));
+    }, 
+
+
     
     remove_user: function(user) {
         this.get('users').remove(user);
