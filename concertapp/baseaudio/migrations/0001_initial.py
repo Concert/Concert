@@ -18,4 +18,4 @@ class Migration(SchemaMigration):
         
     }
 
-    complete_apps = ['audio']
+    complete_apps = ['baseaudio']

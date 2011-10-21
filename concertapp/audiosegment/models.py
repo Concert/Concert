@@ -16,17 +16,14 @@ import os, tempfile, sys
 
 from concertapp.audiofile.models import *
 
-from concertapp.audio.models import Audio
+from concertapp.baseaudio.models import BaseAudio
 
-class AudioSegment(Audio):
+class AudioSegment(BaseAudio):
     beginning = models.FloatField()
     end = models.FloatField()
     creator = models.ForeignKey(User)
     audioFile = models.ForeignKey(AudioFile, related_name="segments")
     
-    def __unicode__(self):
-      return self.name
-
     def __unicode__(self):
         return self.name
 
