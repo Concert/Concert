@@ -14,20 +14,19 @@ import audiotools
 import os, tempfile, sys
 
 from concertapp.collection.models import *
+from concertapp.audio.models import Audio
 
 from concertapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, S3_BUCKET
 
 
-class AudioFile(models.Model):
+class AudioFile(Audio):
     # The zoom levels (px per second) for images that will be created.  A directory
     # for each of these numbers should exist in the MEDIA_ROOT/waveforms/ directory
     ZOOM_LEVELS = [10]
     # The height of each waveform image
     WAVEFORM_IMAGE_HEIGHT = 198
     AUDIO_LOCATION = 'audio/'
-    name = models.CharField(max_length = 100)
     uploader = models.ForeignKey(User, related_name="uploadedFiles")
-    collection = models.ForeignKey(Collection, related_name="files")
 
     # The duration of the audio file.  Default is 0
     duration = models.DecimalField(max_digits = 8, decimal_places = 2, default=0)

@@ -59,13 +59,13 @@ class CollectionResource(MyResource):
     # Segments and files will be sent along with the collection
     files = fields.ManyToManyField(
         'concertapp.audiofile.api.AudioFileResource',
-        'files',
+        'audiofiles',
         null=True,
         full=True
     )
     segments = fields.ManyToManyField(
         'concertapp.audiosegment.api.AudioSegmentResource',
-        'segments',
+        'audiosegments',
         null=True,
         full=True
     )
