@@ -15,6 +15,8 @@ import os, tempfile, sys
 
 from concertapp.collection.models import *
 
+from concertapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, S3_BUCKET
+
 
 class AudioFile(models.Model):
     # The zoom levels (px per second) for images that will be created.  A directory
@@ -22,14 +24,11 @@ class AudioFile(models.Model):
     ZOOM_LEVELS = [10]
     # The height of each waveform image
     WAVEFORM_IMAGE_HEIGHT = 198
-    WAVEFORM_LOCATION = 'waveforms/'
     AUDIO_LOCATION = 'audio/'
     name = models.CharField(max_length = 100)
     uploader = models.ForeignKey(User, related_name="uploadedFiles")
     collection = models.ForeignKey(Collection, related_name="files")
-    wav = models.FileField(upload_to = AUDIO_LOCATION)
-    ogg = models.FileField(upload_to = AUDIO_LOCATION)
-    mp3 = models.FileField(upload_to = AUDIO_LOCATION)
+
     # The duration of the audio file.  Default is 0
     duration = models.DecimalField(max_digits = 8, decimal_places = 2, default=0)
 
@@ -50,52 +49,42 @@ class AudioFile(models.Model):
     
     def __unicode__(self):
         return self.name
-        
-    # Delete the current audio file from the filesystem
+
+
+    ###
+    #   Delete this audio file object, also removing it from S3
+    ###
     def delete(self):
         from concertapp.audiosegment.models import AudioSegment
-        from concertapp.event.models import AudioFileUploadedEvent
+        logger.info('Opening S3 connection')
+        conn = S3Connection(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
+        logger.info('Opening "{0}" bucket'.format(S3_BUCKET))
+        bucket = conn.get_bucket(S3_BUCKET)
+
+        # TODO: implement and test.
+
         
-        # Remove wav from this object, and delete file on filesystem.
-        if(self.wav and os.path.exists(self.wav.name)):
-            # These lines should delete the files, but i'm getting an error that
-            #   I don't understand.
-            #self.wav.delete(save=False)
-            
-            #   So instead, lets just delete the file manually.
-            os.unlink(self.wav.name)
+        # Remove wav
             
         # Remove ogg
-        if(self.ogg and os.path.exists(self.ogg.name)):
-            #self.ogg.delete(save=False)
-            os.unlink(self.ogg.name)
         
         # Remove mp3
-        if(self.mp3 and os.path.exists(self.mp3.name)):
-            #self.mp3.delete(save=False)
-            os.unlink(self.mp3.name)
 
         # For each zoom level
-        for zoomLevel in AudioFile.ZOOM_LEVELS:
-            # Path to waveform image for this zoom level
-            waveformPath = self._get_waveform_path(zoomLevel)
-            # If image exists at this zoom level
-            if(os.path.exists(waveformPath)):
-                # Remove it
-                os.unlink(waveformPath)
+        # for zoomLevel in AudioFile.ZOOM_LEVELS:
+            # Delete waveform image
             
 
         # Get all segments who have this audio object as its parent
-        segments = AudioSegment.objects.filter(audioFile = self)
+        # segments = self.segments.all()
 
         # Delete all of the segments
-        for segment in segments:
-            segment.delete()
+        # for segment in segments:
+            # segment.delete()
 
-        for event in AudioFileUploadedEvent.objects.filter(audioFile=self):
-            event.active = False
+        # Should we have a 'deleted' event?
+        # for event in AudioFileUploadedEvent.objects.filter(audioFile=self):
+            # event.active = False
 
-        # Send delete up if necessary.  This will not happen if the audio object
-        #   has not called save()
-        if(self.id):
-            super(AudioFile, self).delete()
+        # Send delete up.
+        return super(AudioFile, self).delete()

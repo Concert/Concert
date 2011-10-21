@@ -209,17 +209,3 @@ def handleNewAudioFile(audioFileId=None, path=None, **kwargs):
 
     logger.info('\n-----\nhandleNewAudioFile success')
     return True
-
-
-        
-        
-        
-
-        # super(AudioFile, self).save(*args, **kwargs)
-        
-        # event = AudioFileUploadedEvent(
-        #   user = self.uploader,
-        #   audioFile = self,
-        #   collection = self.collection
-        # )
-        # event.save()
