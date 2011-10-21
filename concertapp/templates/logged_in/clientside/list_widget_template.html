@@ -1,5 +1,5 @@
 {% load extra_template_tags %}
-<div class="list_widget {{ widgetType }}_list_widget">
+<div class="list_widget {{ widgetType }}_list_widget {% block extra_classes %}{% endblock %}">
     <div class="boxwrap">
         <div class="{{ widgetType }}_list_widget_icon list_widget_icon widget_icon">
         </div>
