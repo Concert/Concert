@@ -66,18 +66,6 @@ var ListPanel = Panel.extend(
          *  The search box above the list panel.
          **/
         this.searchBox = searchBox;
-
-
-        /**
-         *  If a segment/file has been selected, the model manager will throw
-         *  events.
-         **/
-        var modelManager = params.modelManager;
-        if(typeof(modelManager) == 'undefined') {
-            throw new Error('params.modelManager is undefined');
-        }
-        /* But we don't need to keep the model manager in memory
-        this.modelManager = modelManager;*/
         
         /* The widget that represents the currently selected audio file/segment */
         this.selectedWidget = null;
@@ -103,8 +91,7 @@ var ListPanel = Panel.extend(
          **/
         this.collection = null;
 
-        _.bindAll(this, '_handle_audiofile_added');
-        _.bindAll(this, '_handle_audiosegment_added');
+        _.bindAll(this, '_handle_audio_added');
     }, 
     
     /**
@@ -115,31 +102,39 @@ var ListPanel = Panel.extend(
         var selectedWidget = this.selectedWidget;
         if(selectedWidget) {
             selectedWidget.deselect();
+            this.selectedWidget = null;
         }
     }, 
 
     /**
-     *  Called when an `AudioFile` is added to the current collection.
+     *  Select a given widget.
      *
-     *  @param    {AudioFile}    audioFile  -   The file that was added.
+     *  @param    {FileWidget}    the widget to select.    
      **/
-    _handle_audiofile_added: function (audioFile) {
-        /* Just re-render everything (for now). 
-        TODO: Rework this when we get filtering. */
-        if(com.concertsoundorganizer.modelManager.selectedAudioSegments.length) {
-        }
-        this.render_collection_audio(null, audioFile.get('collection'));
-    }, 
-
-    /**
-     *  Called when an `AudioSegment` object is added to the current collection.
-     *
-     *  @param    {AudioSegment}    audioSegment    -   The segment that was added.
-     **/
-    _handle_audiosegment_added: function (audioSegment) {
-        /* Just re-render everything for now */
-        this.render_collection_audio(null, audioSegment.get('collection'));
+    _select_widget: function _select_widget(widget) {
+        this._deselect_currently_selected_widget();
+        this.selectedWidget = widget;
+        widget.select();
     },
+
+    /**
+     *  Called when an `AudioSegment` or `AudioFile` model instance is added
+     *  to the current collection.
+     *
+     *  @param    {AudioSegment|AudioFile}    audioModel    -   Instance that was
+     *  added.
+     **/
+    _handle_audio_added: function (audioModel) {
+        /* Grab the currently selected widget if there is one */
+        var toSelect = this.selectedWidget;
+
+        /* Re-render list, including new audio model */
+        this.render_collection_audio(null, audioModel.get('collection'));
+
+        if(toSelect) {
+            this._select_widget(toSelect);
+        }
+    }, 
     
     /**
      *  Called when we're looking at a collection's audio assets
@@ -153,47 +148,70 @@ var ListPanel = Panel.extend(
         /* temporary frag for dom additions */
         var frag = document.createDocumentFragment();
         
-        /* Empty our list of segment and file widgets */
-        var fileWidgets = {};
-        var segmentWidgets = {};
+        /* Grab our list of segment and file widgets */
+        var fileWidgets = this.fileWidgets;
+        var segmentWidgets = this.segmentWidgets;
+
+        /* Grab our templates for rendering file & segment widgets */
+        var fileWidgetTemplate = this.fileWidgetTemplate;
+        var segmentWidgetTemplate = this.segmentWidgetTemplate;
+
+        /* And ourself of course */
+        var panel = this;
         
-        /* Put each file in list */
-        collection.get('files').each(function(fileWidgetTemplate, panel, frag, fileWidgets) {
-            return function(obj) {
-                /* Create a file widget */
-                var widget = new FileWidget({
-                    template: fileWidgetTemplate, 
-                    model: obj, 
-                    panel: panel
-                });
+        /* For each audio file & segment */
+        collection.audio.each(function (audioModel) {
+            /* We will be rendering a widget */
+            var widget = null;
+
+            /* If we have an audio file */
+            if(audioModel instanceof AudioFile) {
+                /* See if we've already got a widget instance */
+                widget = fileWidgets[audioModel.get('id')];
+
+                /* If not, we'll create one */
+                if(!widget) {
+                    /* Create a file widget */
+                    widget = new FileWidget({
+                        template: fileWidgetTemplate, 
+                        model: audioModel, 
+                        panel: panel
+                    });
+                    
+                    fileWidgets[audioModel.get('id')] = widget;
+                }
+            }
+            /* If we have an audio segment */
+            else if(audioModel instanceof AudioSegment) {
+                /* See if we've already got a widget instance */
+                widget = segmentWidgets[audioModel.get('id')];
+
+                /* if not, create one */
+                if(!widget) {
+                    /* Create segment widget */
+                    widget = new SegmentWidget({
+                        template: segmentWidgetTemplate,
+                        model: audioModel,
+                        panel: panel 
+                    });
+                    
+                    segmentWidgets[audioModel.get('id')] = widget;                    
+                }
                 
-                fileWidgets[obj.get('id')] = widget;
+            }
+            else {
+                throw new Error('audioModel was not an instance of AudioFile or AudioSegment');
+            }
+
+            console.log('widget:');
+            console.log(widget);
+            frag.appendChild(widget.render().el);
+        });
                 
-                frag.appendChild(widget.el);
-            };
-        }(this.fileWidgetTemplate, this, frag, fileWidgets));
-        
-        
-        /* Put each segment in list */
-        collection.get('segments').each(function(segmentWidgetTemplate, panel, frag, segmentWidgets) {
-            return function(obj) {
-                /* Create segment widget */
-                var widget = new SegmentWidget({
-                    template: segmentWidgetTemplate,
-                    model: obj,
-                    panel: panel 
-                });
-                
-                segmentWidgets[obj.get('id')] = widget;
-                
-                frag.appendChild(widget.el);
-            };
-        }(this.segmentWidgetTemplate, this, frag, segmentWidgets));
-                
-        /* update panel */
+        /* Replace contents of panel with new audio segment/file widgets */
         this.contents.html(frag);
         
-        /* Save list of file/segment widgets */
+        /* Save lists of file/segment widgets */
         this.segmentWidgets = segmentWidgets;
         this.fileWidgets = fileWidgets;
         
@@ -201,13 +219,12 @@ var ListPanel = Panel.extend(
         this.currentlyRendered = 'collection_audio';
         this.selectedWidget = null;
 
+        /* Bind to the collection's `audio` list for updates */
         if(this.collection) {
-            this.collection.get('segments').unbind('add', this._handle_audiosegment_added);
-            this.collection.get('files').unbind('add', this._handle_audiofile_added);            
+            this.collection.audio.unbind('add', this._handle_audio_added);
         }
         this.collection = collection;
-        collection.get('segments').bind('add', this._handle_audiosegment_added);
-        collection.get('files').bind('add', this._handle_audiofile_added);
+        collection.audio.bind('add', this._handle_audio_added);
     }, 
     
     /**
@@ -218,10 +235,8 @@ var ListPanel = Panel.extend(
         this.render_collection_audio(collectionId, collection);
         
         /* Ensure that proper audio is selected in list */
-        selectedWidget = this.fileWidgets[fileId];
-        selectedWidget.select();
-        
-        this.selectedWidget = selectedWidget;
+        var selectedWidget = this.fileWidgets[fileId];
+        this._select_widget(selectedWidget);
     }, 
     
     /**
@@ -232,10 +247,8 @@ var ListPanel = Panel.extend(
         this.render_collection_audio(collectionId, collection);
         
         /* Ensure that segment is selected in list */
-        selectedWidget = this.segmentWidgets[segmentId];
-        selectedWidget.select();
-        
-        this.selectedWidget = selectedWidget;
+        var selectedWidget = this.segmentWidgets[segmentId];
+        this._select_widget(selectedWidget);
     }, 
     
     /**
@@ -244,31 +257,32 @@ var ListPanel = Panel.extend(
     render_collections: function(collections) {
         this._deselect_currently_selected_widget();
         
-        /* If we've already rendered the list of collections, no need to do it
-        again */
-        if(this.currentlyRendered == 'collections') {
-            return;
-        }
-        
-        
         var panel = this;
         var frag = document.createDocumentFragment();
         var template = this.collectionWidgetTemplate;
-        var collectionWidgets = [];
+        var collectionWidgets = this.collectionWidgets;
         /* For each collection */
         collections.each(function(collection) {
-            /* Create collection widget */
-            var widget = new CollectionWidget({
-                panel: panel, 
-                model: collection,
-                template: template 
-            });
+            /*  see if we've already got a corresponding widget
+                instance. */
+            var widget = collectionWidgets[collection.get('id')];
+            
+            /* If not */
+            if(!widget) {
+                /* Create collection widget */
+                var widget = new CollectionWidget({
+                    panel: panel, 
+                    model: collection,
+                    template: template 
+                });                
+                collectionWidgets[collection.get('id')] = widget;
+            }
             
             frag.appendChild(widget.render().el);
             
-            collectionWidgets[collection.get('id')] = widget;
         });
         
+        /* Add all collections to list */
         this.contents.html(frag);
         
         this.currentlyRendered = 'collections';
@@ -285,9 +299,7 @@ var ListPanel = Panel.extend(
         this.render_collections();
         
         /* Select proper collection */
-        selectedWidget = this.collectionWidgets[collectionId];
-        selectedWidget.select();
-        
-        this.selectedWidget = selectedWidget;
+        var selectedWidget = this.collectionWidgets[collectionId];
+        this._select_widget(selectedWidget);
     } 
 });
