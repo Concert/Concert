@@ -103,6 +103,7 @@ INSTALLED_APPS = (
     'south',
     'djcelery',
     'concertapp',
+    'concertapp.audio',
     'concertapp.audiofile',
     'concertapp.audiosegment',
     'concertapp.collection',
