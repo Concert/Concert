@@ -14,12 +14,12 @@ import audiotools
 import os, tempfile, sys
 
 from concertapp.collection.models import *
-from concertapp.audio.models import Audio
+from concertapp.baseaudio.models import BaseAudio
 
 from concertapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, S3_BUCKET
 
 
-class AudioFile(Audio):
+class AudioFile(BaseAudio):
     # The zoom levels (px per second) for images that will be created.  A directory
     # for each of these numbers should exist in the MEDIA_ROOT/waveforms/ directory
     ZOOM_LEVELS = [10]
