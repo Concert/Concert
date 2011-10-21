@@ -203,8 +203,6 @@ var ListPanel = Panel.extend(
                 throw new Error('audioModel was not an instance of AudioFile or AudioSegment');
             }
 
-            console.log('widget:');
-            console.log(widget);
             frag.appendChild(widget.render().el);
         });
                 
