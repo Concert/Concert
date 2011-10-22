@@ -1,3 +1,9 @@
 [submodule "concertapp/static/js/lib/vendor/jquery-file-upload"]
 	path = concertapp/static/js/lib/vendor/jquery-file-upload
 	url = git://github.com/blueimp/jQuery-File-Upload.git
+[submodule "concertapp/static/js/lib/vendor/backbone-relational"]
+	path = concertapp/static/js/lib/vendor/backbone-relational
+	url = git://github.com/PaulUithol/Backbone-relational.git
+[submodule "concertapp/static/js/lib/vendor/underscore"]
+	path = concertapp/static/js/lib/vendor/underscore
+	url = git://github.com/documentcloud/underscore.git

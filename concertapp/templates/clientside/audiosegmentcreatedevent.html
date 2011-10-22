@@ -11,6 +11,6 @@
     {% verbatim %}
         {{tmpl($data.get('audioSegment')) "#audiosegment_link_template"}}
         from
-        {{tmpl($data.get('audioSegment').get('audioFile')) "#audiofile_link_template"}}
+        {{tmpl($data.get('audioFile')) "#audiofile_link_template"}}
     {% endverbatim %}
 {% endblock %}

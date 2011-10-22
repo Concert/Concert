@@ -7,9 +7,9 @@
 /**
  *  An audio file object.
  *  @class
- *  @extends    Audio
+ *  @extends    BaseAudio
  **/
-var AudioFile = Audio.extend(
+var AudioFile = BaseAudio.extend(
 	/**
 	 *	@scope	AudioFile.prototype
 	 **/
@@ -68,7 +68,7 @@ var AudioFile = Audio.extend(
     }, 
 
     initialize: function () {
-        ConcertModel.prototype.initialize.apply(this, arguments);
+        BaseAudio.prototype.initialize.apply(this, arguments);
 
         /* Default value for status is 'u' */
         if(!this.get('status')) {

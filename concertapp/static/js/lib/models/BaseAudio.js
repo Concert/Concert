@@ -1,5 +1,5 @@
 /**
- *  @file       Audio.js
+ *  @file       BaseAudio.js
  *
  *  @author     Colin Sullivan <colinsul [at] gmail.com>
  *
@@ -13,9 +13,9 @@
  *  objs.
  *  @extends    ConcertModel
  **/
-var Audio = ConcertModel.extend(
+var BaseAudio = ConcertModel.extend(
     /**
-     *  @scope  Audio.prototype
+     *  @scope  BaseAudio.prototype
      **/
 {
     /**
@@ -34,15 +34,15 @@ var Audio = ConcertModel.extend(
 });
 
 /**
- *    @class    A set of Audio objects
+ *    @class    A set of BaseAudio objects
  *    @extends  Backbone.Collection
  **/
-var AudioSet = Backbone.Collection.extend(
+var BaseAudioSet = Backbone.Collection.extend(
     /**
-     *    @scope    AudioSet.prototype
+     *    @scope    BaseAudioSet.prototype
      **/
 {
-    model: Audio,
+    model: BaseAudio,
     comparator: function (audioModel) {
         return -(audioModel.get('dateModified'));
     }

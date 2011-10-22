@@ -5,6 +5,7 @@
 
 {% load extra_template_tags %}
 
+{# If the file is not done processing, don't provide a link #}
 {% verbatim %}
     <a class="audiofile" href="#collection/${$data.get('collection').get('id')}/audio/file/${$data.get('id')}">${$data.get('name')}</a>
 {% endverbatim %}

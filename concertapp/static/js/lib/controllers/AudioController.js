@@ -106,7 +106,7 @@ var AudioController = Backbone.Router.extend(
         var me = this;
         audioFile.get_audio_src(function (audiosrc) {
             /* If this is a new audio file */
-            var newAudioSrc = !(audio.src.search(audiosrc) > 0);
+            var newAudioSrc = !audio.src || !(audio.src.search(audiosrc) > 0);
             
             if(newAudioSrc) {
                 /* when the file is done loading */
@@ -183,7 +183,7 @@ var AudioController = Backbone.Router.extend(
     _handle_space_bar: function() {
         /* Get HTML5 audio object */
         var audio = this.audio;
-            
+
         if(audio.paused) {
             audio.play();
         }

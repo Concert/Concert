@@ -66,7 +66,7 @@ var Collection = ConcertModel.extend(
         /**
          *  A master list of audio segments and files, sorted by date
          **/
-        this.audio = new AudioSet();
+        this.audio = new BaseAudioSet();
 
         /**
          *  When we add to our list of segments, add to above list as well.
