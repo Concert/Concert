@@ -193,9 +193,10 @@ var AudioFile = ConcertModel.extend(
      *    When file upload fails
      **/
     _handle_upload_fail: function (data, textStatus) {
-        console.log('AudioFile._handle_upload_fail');
-        console.log('data:');
-        console.log(data);
+        // TODO: Handle this error better
+        alert('Sorry, upload failed.');
+
+        this.destroy();
     }, 
 
     /**
