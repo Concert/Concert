@@ -36,7 +36,8 @@ var Tag = ConcertModel.extend(
             type: Backbone.HasMany, 
             key: 'events', 
             relatedModel: 'Event',
-            includeInJSON: "id"
+            includeInJSON: "id",
+            collectionType: 'EventSet'
         }
     ], 
     name: 'tag' 

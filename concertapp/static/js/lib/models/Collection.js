@@ -30,7 +30,8 @@ var Collection = ConcertModel.extend(
             type: Backbone.HasMany, 
             key: 'events', 
             relatedModel: 'Event',
-            includeInJSON: "id"
+            includeInJSON: "id",
+            collectionType: 'EventSet'
         },
         {
             type: Backbone.HasMany, 

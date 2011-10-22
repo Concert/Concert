@@ -25,7 +25,8 @@ var AudioFile = ConcertModel.extend(
             type: Backbone.HasMany, 
             key: 'events', 
             relatedModel: 'Event',
-            includeInJSON: "id"
+            includeInJSON: "id",
+            collectionType: 'EventSet'
         },
         {
             type: Backbone.HasMany, 
@@ -187,6 +188,26 @@ var AudioFile = ConcertModel.extend(
 
         /* Update our collection */
         this.get('collection').get('files').add(this);
+
+        /* Create event */
+        var uploadedEvent = new Event({
+            // AudioFileUploadedEvent
+            eventType: 3, 
+            collection: this.get('collection'), 
+            user: this.get('uploader'), 
+            audioFile: this
+        });
+        var audioFile = this;
+        uploadedEvent.save(null, {
+            error_callback: function () {
+                uploadedEvent.destroy();
+            }, 
+            error_message: 'AudioFileUploadedEvent was not created.', 
+            success: function (uploadedEvent) {
+                uploadedEvent.get('audioFile').get('events').add(uploadedEvent);
+                uploadedEvent.get('collection').get('events').add(uploadedEvent);
+            }
+        });
     },
 
     /**

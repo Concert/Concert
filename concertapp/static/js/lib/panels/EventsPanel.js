@@ -196,6 +196,9 @@ var EventsPanel = Panel.extend({
         
         /* Render the events for this collection */
         this._render_events(collection.get('events'));
+
+        /* Watch collection's event set for changes */
+        this._start_watching_eventset(collection.get('events'));
     }, 
     
     /**
@@ -206,6 +209,7 @@ var EventsPanel = Panel.extend({
         /* Comment form is hidden */
         this.commentContainerElement.addClass('hidden');
 
+        /* Render and watch collection's event set */
         this.render_collection(collectionId, collection);
     }, 
     
@@ -228,12 +232,13 @@ var EventsPanel = Panel.extend({
     /**
      *  When we are viewing an audio segment from a collection
      **/
-    render_collection_audio_segment: function(collectionId, fileId, segmentId, collection, audioFile, audioSegment) {
-        this._start_watching_eventset(audioSegment.get('events'));
-        
+    render_collection_audio_segment: function(collectionId, fileId, segmentId, collection, audioFile, audioSegment) {        
         
         /* Initially render all events */
         this._render_events(audioSegment.get('events'));
+
+        this._start_watching_eventset(audioSegment.get('events'));
+
     }, 
     
     /**
