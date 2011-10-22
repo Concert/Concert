@@ -7,9 +7,9 @@
 /**
  *  Audio segment object.
  *  @class
- *  @extends    ConcertModel
+ *  @extends    Audio
  **/
-var AudioSegment = ConcertModel.extend(
+var AudioSegment = Audio.extend(
 	/**
 	 *	@scope	AudioSegment.prototype
 	 **/

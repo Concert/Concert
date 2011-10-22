@@ -7,9 +7,9 @@
 /**
  *  An audio file object.
  *  @class
- *  @extends    ConcertModel
+ *  @extends    Audio
  **/
-var AudioFile = ConcertModel.extend(
+var AudioFile = Audio.extend(
 	/**
 	 *	@scope	AudioFile.prototype
 	 **/

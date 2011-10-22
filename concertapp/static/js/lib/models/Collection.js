@@ -66,11 +66,7 @@ var Collection = ConcertModel.extend(
         /**
          *  A master list of audio segments and files, sorted by date
          **/
-        var SortedAudioList = Backbone.Collection.extend({
-            /* `ConcertModel` so it can store `AudioSegment` and `AudioFile` objects */
-            model: ConcertModel
-        });
-        this.audio = new SortedAudioList();
+        this.audio = new AudioSet();
 
         /**
          *  When we add to our list of segments, add to above list as well.
