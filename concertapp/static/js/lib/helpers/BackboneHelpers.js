@@ -125,6 +125,12 @@ com.concertsoundorganizer.helpers.wrapError = function(options) {
     return options;
 };
 
+// Throw an error when a URL is needed, and none is supplied.
+var urlError = function() {
+    throw new Error('A "url" property or function must be specified');
+};
+
+
 /**
  *  Another error wrapper, this is a clone of the backbone one.
  **/

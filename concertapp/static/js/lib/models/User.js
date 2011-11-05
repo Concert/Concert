@@ -50,6 +50,23 @@ var User = ConcertModel.extend(
 });
 
 /**
+ *  Only one of these should be instantiated
+ **/
+var LoggedInUser = User.extend({
+    initialize: function () {
+        /**
+         *  Each user has a `QueryableCollectionSet` which
+         *  is rendered as the list of collections on the
+         *  collections page.  This set should be
+         *  initialized to the user's `memberCollections`
+         *  list.
+         **/
+        this.collectionsList = new QueryableCollectionSet();
+    }, 
+});
+
+
+/**
  *  Users represents a collection of django User objects.
  *  @class
  **/

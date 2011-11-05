@@ -55,3 +55,21 @@ var ConcertModel = Backbone.RelationalModel.extend(
         }
     }
 });
+
+/**
+ *  Base `ConcertCollection` class to make small things easier.
+ **/
+var ConcertCollection = Backbone.Collection.extend({
+    url: function () {
+        var url = com.concertsoundorganizer.apiBaseURL;
+        url += this.name+'/';
+        return url;
+    },
+
+    /**
+     *  Override parse method to just use 'objects' array.
+     **/
+    parse : function(resp, xhr) {
+        return resp['objects'];
+    }
+});

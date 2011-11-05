@@ -160,10 +160,39 @@ var Collection = ConcertModel.extend(
  *  while lowercase collection just means a set or array)
  *  @class
  **/
-var CollectionSet = Backbone.Collection.extend(
+var CollectionSet = ConcertCollection.extend(
 	/**
 	 *	@scope	CollectionSet.prototype
 	 **/
 {
-    model: Collection
+    model: Collection,
+    name: "collection"
+});
+
+var QueryableCollectionSet = CollectionSet.extend({
+    /**
+     *  @scope  QueryableCollectionSet.prototype
+     **/
+    
+    initialize: function () {
+        /**
+         *  The last query used.
+         **/
+        this.query = '';
+    }, 
+
+    /**
+     *  Override the fetch method to add our query.
+     **/
+    fetch: function (options) {
+        options || (options = {});
+        options.data || (options.data = {});
+
+        // When response comes back, reset collection
+        options.add = 'reset';
+
+        options.data = "name__icontains=" + encodeURIComponent(this.query);
+
+        return CollectionSet.prototype.fetch.call(this, options);
+    }
 });
