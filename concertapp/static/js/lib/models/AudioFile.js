@@ -121,7 +121,7 @@ var AudioFile = BaseAudio.extend(
                     cb();
                 }, 
                 error: function (resp) {
-                    throw new Error('Error while retrieving resource URLs');
+                    //throw new Error('Error while retrieving resource URLs');
                 }
             });
         }

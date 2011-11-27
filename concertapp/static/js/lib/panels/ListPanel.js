@@ -343,5 +343,19 @@ var ListPanel = Panel.extend(
         /* Select proper collection */
         var selectedWidget = this.collectionWidgets[collectionId];
         this._select_widget(selectedWidget);
-    } 
+    }, 
+    
+    render_collection_manage: function(collectionId, collection) {
+        /* Ensure that list of collections is rendered, this will also deselect
+        currently selected widget */
+        // this.render_collections();
+        
+        this.breadcrumbs.html("<a href='#collections'>collections</a> : ");
+		this.breadcrumbs.append(this.collection_link_template.tmpl(collection));
+		this.breadcrumbs.append(" wrench");
+        
+        /* Select proper collection */
+        // var selectedWidget = this.collectionWidgets[collectionId];
+        // this._select_widget(selectedWidget);
+    }
 });

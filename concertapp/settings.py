@@ -208,12 +208,12 @@ CELERYD_CONCURRENCY = 2
 #CELERY_LOG_LEVEL="INFO"
 
 # Amazon credentials (for uploading audio, add these to local_settings.py)
-AWS_ACCESS_KEY_ID=""
-AWS_SECRET_ACCESS_KEY=""
-S3_BUCKET=""
+# AWS_ACCESS_KEY_ID=""
+# AWS_SECRET_ACCESS_KEY=""
+# S3_BUCKET=""
 
 # Import local settings
-try:
-    from local_settings import *
-except ImportError:
-    pass
+# try:
+#     from local_settings import *
+# except ImportError:
+#     pass
