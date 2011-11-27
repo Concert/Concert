@@ -16,3 +16,4 @@ adams_temp.html
 concertapp/static/css/*.css
 concertapp/static/.sass-cache
 celery*
+concertapp/local_settings.py

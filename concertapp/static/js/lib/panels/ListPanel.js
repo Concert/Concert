@@ -16,7 +16,6 @@ var ListPanel = Panel.extend(
 {
     _initialize_elements: function() {
         Panel.prototype._initialize_elements.call(this);
-        
         var params = this.options;
         
         
@@ -66,6 +65,26 @@ var ListPanel = Panel.extend(
          *  The search box above the list panel.
          **/
         this.searchBox = searchBox;
+
+        this.breadcrumbs = $('#list_nav');
+		
+		var collection_link = $('#collection_link_template');
+        this.collection_link_template = collection_link;
+        var audiofile_link = $('#audiofile_link_template');
+        this.audiofile_link_template = audiofile_link;
+        var audiosegment_link = $('#audiosegment_link_template');
+        this.audiosegment_link_template = audiosegment_link;
+        
+        /**
+         *  If a segment/file has been selected, the model manager will throw
+         *  events.
+         **/
+        var modelManager = params.modelManager;
+        if(typeof(modelManager) == 'undefined') {
+            throw new Error('params.modelManager is undefined');
+        }
+        /* But we don't need to keep the model manager in memory
+        this.modelManager = modelManager;*/
         
         /* The widget that represents the currently selected audio file/segment */
         this.selectedWidget = null;
@@ -143,8 +162,11 @@ var ListPanel = Panel.extend(
      *  @param  {Collection}    collection    - The collection
      **/
     render_collection_audio: function(collectionId, collection) {
-        this._deselect_currently_selected_widget();    
-        
+        this._deselect_currently_selected_widget();
+
+        this.breadcrumbs.html("<a href='#collections'>collections</a> : ");
+		this.breadcrumbs.append(this.collection_link_template.tmpl(collection));
+
         /* temporary frag for dom additions */
         var frag = document.createDocumentFragment();
         
@@ -231,6 +253,13 @@ var ListPanel = Panel.extend(
     render_collection_audio_file: function(collectionId, fileId, collection, audioFile) {
         /* Ensure that the list of audio is rendered */
         this.render_collection_audio(collectionId, collection);
+
+		this.breadcrumbs.html("<a href='#collections'>collections</a> : ");
+		this.breadcrumbs.append(this.collection_link_template.tmpl(collection));
+		this.breadcrumbs.append(" : ");
+		this.breadcrumbs.append(this.audiofile_link_template.tmpl(audioFile));
+		
+		//console.log("collections, " + collection.get('name') + ", " + audioFile.get('name'));
         
         /* Ensure that proper audio is selected in list */
         var selectedWidget = this.fileWidgets[fileId];
@@ -243,6 +272,13 @@ var ListPanel = Panel.extend(
     render_collection_audio_segment: function(collectionId, fileId, segmentId, collection, audioFile, audioSegment) {
         /* Ensure that the list of audio is rendered */
         this.render_collection_audio(collectionId, collection);
+
+		this.breadcrumbs.html("<a href='#collections'>collections</a> : ");
+		this.breadcrumbs.append(this.collection_link_template.tmpl(collection));
+		this.breadcrumbs.append(" : ");
+		this.breadcrumbs.append(this.audiofile_link_template.tmpl(audioFile));
+		this.breadcrumbs.append(" : ");
+		this.breadcrumbs.append(this.audiosegment_link_template.tmpl(audioSegment));
         
         /* Ensure that segment is selected in list */
         var selectedWidget = this.segmentWidgets[segmentId];
@@ -255,6 +291,14 @@ var ListPanel = Panel.extend(
     render_collections: function(collections) {
         this._deselect_currently_selected_widget();
         
+		this.breadcrumbs.html("<a href='#collections'>collections</a>");
+		
+		/* If we've already rendered the list of collections, no need to do it 
+		again */
+		if(this.currentlyRendered == 'collections') {
+			return;
+		}
+
         var panel = this;
         var frag = document.createDocumentFragment();
         var template = this.collectionWidgetTemplate;
